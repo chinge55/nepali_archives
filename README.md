@@ -83,25 +83,25 @@ python3 pipeline/build_formats.py --all
 
 ## Current status
 
-**134 works** by Laxmi Prasad Devkota (~590k Devanagari characters). The full,
-machine-readable catalogue is [`archives/index.json`](./archives/index.json);
-the breakdown by genre:
+**139 works across 3 authors** — Laxmi Prasad Devkota (134), Lekhnath Paudyal (3),
+Bhanubhakta Acharya (2). The full, machine-readable catalogue is
+[`archives/index.json`](./archives/index.json); the breakdown by genre:
 
 | Genre                         | Count | Notable / source |
 |-------------------------------|-------|------------------|
-| कविता — poems                  | 109   | individual poems (Kavita Kosh; 2 from inepal.org); most tagged with their source collection (भिखारी, लक्ष्मी कवितासङ्ग्रह). |
-| बालकविता — children's poems    | 18    | from the collection *सुनको बिहान*. |
-| महाकाव्य — epics               | 2     | *पृथ्वीराज चौहान* (21 cantos, Kavita Kosh) · *शाकुन्तल* (Internet Archive, OCR). |
-| खण्डकाव्य — narrative poem      | 1     | *मुना मदन* (18 sections assembled from Kavita Kosh; a scanned PDF is also preserved). |
-| उपन्यास — novel                | 1     | *चम्पा* (sahityasangraha.com). |
-| निबन्ध — essay                 | 1     | *के नेपाल सानो छ ?* (Internet Archive, OCR). |
-| गीत / गजल — song / ghazal       | 2     | from Kavita Kosh. |
+| कविता — poems                  | 112   | individual poems (Kavita Kosh; 2 from inepal.org); most Devkota poems tagged with their collection (भिखारी, लक्ष्मी कवितासङ्ग्रह). Incl. Bhanubhakta's *कान्तिपुरी नगरी* and Lekhnath's *जीवन चङ्गा*, *प्रश्न*. |
+| बालकविता — children's poems    | 18    | from the collection *सुनको बिहान* (Devkota). |
+| महाकाव्य — epics               | 4     | *पृथ्वीराज चौहान*, *शाकुन्तल* (Devkota) · *रामायण* (Bhanubhakta, PDF text layer) · *तरुण तपसी* (Lekhnath, OCR). |
+| खण्डकाव्य — narrative poem      | 1     | *मुना मदन* (Devkota; 18 sections assembled). |
+| उपन्यास — novel                | 1     | *चम्पा* (Devkota, sahityasangraha.com). |
+| निबन्ध — essay                 | 1     | *के नेपाल सानो छ ?* (Devkota, Internet Archive, OCR). |
+| गीत / गजल — song / ghazal       | 2     | Devkota (Kavita Kosh). |
 
-Sources: **129 Kavita Kosh** (born-digital), 2 from inepal.org, plus *Shakuntala* & *Ke Nepal Sano
-Cha* (Internet Archive PDFs, OCR), and *Champa* (sahityasangraha.com). Per the
-mission, **no work is proofread or rights-verified yet** — that gate must be
-cleared before publishing. Kavita Kosh's per-page publication boxes (e.g. *Muna
-Madan*, *Prithviraj Chauhan*) are recorded where present.
+Sources: Kavita Kosh, inepal.org, Internet Archive, sahityasangraha.com, plus
+scanned PDFs (Bhanubhakta's *Ramayana* via embedded text layer; Lekhnath's *Tarun
+Tapasi* via Tesseract OCR). Per the mission, **no work is proofread or
+rights-verified yet** — that gate must be cleared before publishing. (Lekhnath's
+`book_archive` multi-poem PDF is held for later per-poem extraction.)
 
 Multi-part works (*मुना मदन*, *पृथ्वीराज चौहान*) are assembled into a single
 `text.txt` with a header per section/canto. Collection anthologies (*भिखारी*,

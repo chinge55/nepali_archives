@@ -1,0 +1,50 @@
+{
+  "id": "tarun_tapasi",
+  "title": "तरुण तपसी",
+  "title_roman": "Tarun Tapasi",
+  "subtitle": null,
+  "author": {
+    "id": "lekhnath_paudyal",
+    "name": "लेखनाथ पौड्याल",
+    "name_roman": "Lekhnath Paudyal"
+  },
+  "language": "ne",
+  "script": "Devanagari",
+  "genre": [
+    "mahakavya",
+    "epic"
+  ],
+  "first_published": {
+    "bs": null,
+    "ad": null
+  },
+  "edition": null,
+  "publisher": null,
+  "description": "Lekhnath Paudyal's narrative poem (नव्यकाव्य). Scanned edition; OCR pending.",
+  "rights": {
+    "status": "public-domain",
+    "basis": "Author died 1966; public domain since 2016 (Nepal's Copyright Act 2059: life + 50 years). Verify before publishing.",
+    "verified": false
+  },
+  "source": {
+    "name": null,
+    "url": null,
+    "pdf": "000051__लेखनाथ_पौड्_याल__तरुण_तपसी_नव्यकाव्य.pdf",
+    "html": null
+  },
+  "pages": 130,
+  "text": {
+    "extraction_method": "ocr",
+    "ocr_status": "ocr-done",
+    "proofread": false,
+    "quality": "poor"
+  },
+  "formats": {
+    "pdf": "000051__लेखनाथ_पौड्_याल__तरुण_तपसी_नव्यकाव्य.pdf",
+    "txt": "text.txt",
+    "html": "reader.html",
+    "epub": "reader.epub"
+  },
+  "added": "2026-06-05",
+  "updated": "2026-06-05"
+}

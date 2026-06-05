@@ -40,6 +40,14 @@ GENRE = {
 ORDER = ["mahakavya", "khandakavya", "upanyas", "nibandha", "kavita",
          "balkavita", "git", "gazal"]
 
+# Author display registry (name in Devanagari, romanized, life dates). Authors not
+# listed fall back to the name/name_roman recorded in their works' metadata.
+AUTHORS = {
+    "devkota": ("लक्ष्मीप्रसाद देवकोटा", "Laxmi Prasad Devkota", "1909–1959"),
+    "bhanubhakta_acharya": ("भानुभक्त आचार्य", "Bhanubhakta Acharya", "1814–1868"),
+    "lekhnath_paudyal": ("लेखनाथ पौड्याल", "Lekhnath Paudyal", "1885–1966"),
+}
+
 
 def esc(s): return html.escape(s or "")
 
@@ -95,7 +103,7 @@ def page(title, body, *, desc="", css_depth=0, extra_head="", active="", canon="
         f'<a href="{up}{href}"{" class=on" if active==key else ""}>{label}</a>'
         for key, href, label in [
             ("home", "index.html", "गृह"),
-            ("works", "authors/devkota/index.html", "कृतिहरू"),
+            ("works", "authors/index.html", "लेखकहरू"),
             ("about", "about.html", "बारेमा"),
         ])
     return f"""<!DOCTYPE html>
@@ -272,17 +280,19 @@ SEARCH_JS = """(function(){
    var a=scoreField(qn,w._r); if(a>s)s=a;
    a=scoreField(qn,w._s); if(a>s)s=a;
    a=scoreField(qn,w._c)-8; if(a>s)s=a;           // collection ranks a touch lower
+   a=scoreField(qn,w._a)-6; if(a>s)s=a;           // author name
    return s;
  }
  function load(cb){ if(idx){cb();return;} if(loading)return; loading=true;
    fetch(BASE+'search-index.json').then(function(r){return r.json();}).then(function(d){
      idx=d.works; for(var k=0;k<idx.length;k++){var w=idx[k];
-       w._r=norm(w.r); w._s=norm(w.s); w._c=norm(w.c);}    // precompute once
+       w._r=norm(w.r); w._s=norm(w.s); w._c=norm(w.c); w._a=norm(w.a);}    // precompute once
      cb();});}
  function render(list){
    var rows=list.slice(0,60).map(function(w){
+     var sub=[w.a,w.c].filter(Boolean).join(' · ');
      return '<li><a href="'+BASE+w.p+'">'+w.t+'</a>'+(w.r?' <span class=r>'+w.r+'</span>':'')+
-            (w.c?'<span class=snip>'+w.c+'</span>':'')+'</li>';}).join('');
+            (sub?'<span class=snip>'+sub+'</span>':'')+'</li>';}).join('');
    R.innerHTML=rows||'<li class=hint>केही फेला परेन</li>';
    H.textContent=list.length+' मिल्यो';
  }
@@ -361,67 +371,75 @@ def build(archive_base: str):
         (SITE / "docs").mkdir(exist_ok=True)
         shutil.copy(act_src, SITE / "docs" / "pratilipi-adhikar-ain-2059.pdf")
 
-    # browse/reading order: by genre group (ORDER), then title — same as author page
+    # group works by author; reading order within an author = genre group then title
+    def aslug(w): return Path(w["path"]).relative_to("archives").parts[1]
     def gkey(meta):
         g = meta["genre"][0] if meta["genre"] else "kavita"
         return (ORDER.index(g) if g in ORDER else len(ORDER), meta["title"])
-    seq = sorted(recs, key=lambda r: gkey(r[1]))
+    by_author = {}
+    for rec in recs:
+        by_author.setdefault(aslug(rec[0]), []).append(rec)
+    for a in by_author:
+        by_author[a].sort(key=lambda r: gkey(r[1]))
+    author_order = sorted(by_author, key=lambda a: -len(by_author[a]))   # most works first
+    def ainfo(slug, sample_meta):
+        if slug in AUTHORS:
+            return AUTHORS[slug]
+        au = sample_meta["author"]
+        return (au["name"], au.get("name_roman") or "", "")
 
-    # collections: name -> [(w,meta)], with a stable URL slug
+    # collections (only some authors have them): name -> [(w,meta)], with a URL slug
     collections, cslug = {}, {}
     for w, meta, _ in recs:
         for cn in (w.get("collection") or []):
             collections.setdefault(cn, []).append((w, meta))
     for cn in collections:
         cslug[cn] = cslugify(cn)
-    for items in collections.values():
-        items.sort(key=lambda x: x[1]["title"])
+        collections[cn].sort(key=lambda x: x[1]["title"])
 
-    # ---- per-work reading pages ----
+    # ---- per-work reading pages (prev/next within the same author) ----
     search_rows = []
-    for i, (w, meta, text) in enumerate(seq):
-        rel = Path(w["path"]).relative_to("archives")        # authors/devkota/<slug>
-        out_dir = SITE / rel
-        out_dir.mkdir(parents=True, exist_ok=True)
-        depth = len(rel.parts); up = "../" * depth
-        coll = w.get("collection") or []
-        verse = (meta["genre"][0] if meta["genre"] else "") not in PROSE_GENRES
-        gdev = GENRE.get(meta["genre"][0], (meta["genre"][0], ""))[0] if meta["genre"] else ""
-        meta_bits = [f'<a href="{up}authors/devkota/index.html#{meta["genre"][0]}">{esc(gdev)}</a>' if gdev else ""]
-        for cn in coll:
-            meta_bits.append(f'सङ्ग्रह: <a href="{up}collections/{cslug[cn]}/">{esc(cn)}</a>')
-        # Downloads. With --archive-base set, link to the (S3/R2) archive store and
-        # keep the site lean. Without it, bundle the files into the site so it is
-        # fully self-contained (no broken links; one mirrorable folder).
-        fmts = meta.get("formats", {})
-        src_dir = ROOT / w["path"]
-        dls = []
-        for k, lab in [("pdf", "PDF"), ("epub", "EPUB"), ("txt", "मूल पाठ (TXT)")]:
-            fn = fmts.get(k)
-            if not fn:
-                continue
-            if archive_base:
-                dls.append(f'<a href="{archive_base.rstrip("/")}/{rel}/{esc(fn)}">{lab}</a>')
-            elif (src_dir / fn).exists():
-                shutil.copy(src_dir / fn, out_dir / fn)
-                dls.append(f'<a href="{esc(fn)}">{lab}</a>')
-        src_name = meta["source"].get("name") or ""
-        src_url = meta["source"].get("url") or ""
-        src_html = f'<a href="{esc(src_url)}" rel="nofollow">{esc(src_name)}</a>' if src_url else esc(src_name)
-        # prev/next within seq (relative siblings under authors/devkota/)
-        nav_seq = []
-        if i > 0:
-            pid = seq[i-1][0]["id"]; pt = seq[i-1][1]["title"]
-            nav_seq.append(f'<a class="pv" href="../{esc(pid)}/"><span class="lbl">अघिल्लो</span>← {esc(pt)}</a>')
-        if i < len(seq) - 1:
-            nid = seq[i+1][0]["id"]; nt = seq[i+1][1]["title"]
-            nav_seq.append(f'<a class="nx" href="../{esc(nid)}/"><span class="lbl">अर्को</span>{esc(nt)} →</a>')
-        ld = json.dumps({"@context": "https://schema.org", "@type": "CreativeWork",
-                         "name": meta["title"], "author": {"@type": "Person", "name": meta["author"]["name"]},
-                         "inLanguage": "ne", "isAccessibleForFree": True,
-                         "license": "https://creativecommons.org/publicdomain/mark/1.0/",
-                         "url": SITE_URL + str(rel) + "/"}, ensure_ascii=False)
-        body = f"""<nav class="crumb"><a href="{up}authors/devkota/index.html">← लक्ष्मीप्रसाद देवकोटा</a></nav>
+    for aslug_, arecs in by_author.items():
+        aname = ainfo(aslug_, arecs[0][1])[0]
+        for i, (w, meta, text) in enumerate(arecs):
+            rel = Path(w["path"]).relative_to("archives")    # authors/<author>/<slug>
+            out_dir = SITE / rel
+            out_dir.mkdir(parents=True, exist_ok=True)
+            depth = len(rel.parts); up = "../" * depth
+            coll = w.get("collection") or []
+            verse = (meta["genre"][0] if meta["genre"] else "") not in PROSE_GENRES
+            gdev = GENRE.get(meta["genre"][0], (meta["genre"][0], ""))[0] if meta["genre"] else ""
+            meta_bits = [f'<a href="{up}authors/{aslug_}/index.html#{meta["genre"][0]}">{esc(gdev)}</a>' if gdev else ""]
+            for cn in coll:
+                meta_bits.append(f'सङ्ग्रह: <a href="{up}collections/{cslug[cn]}/">{esc(cn)}</a>')
+            # Downloads: link to --archive-base if set (lean site), else bundle in.
+            fmts = meta.get("formats", {}); src_dir = ROOT / w["path"]; dls = []
+            for k, lab in [("pdf", "PDF"), ("epub", "EPUB"), ("txt", "मूल पाठ (TXT)")]:
+                fn = fmts.get(k)
+                if not fn:
+                    continue
+                if archive_base:
+                    dls.append(f'<a href="{archive_base.rstrip("/")}/{rel}/{esc(fn)}">{lab}</a>')
+                elif (src_dir / fn).exists():
+                    shutil.copy(src_dir / fn, out_dir / fn)
+                    dls.append(f'<a href="{esc(fn)}">{lab}</a>')
+            src_name = meta["source"].get("name") or ""
+            src_url = meta["source"].get("url") or ""
+            src_html = (f'<a href="{esc(src_url)}" rel="nofollow">{esc(src_name or src_url)}</a>'
+                        if src_url else (esc(src_name) or "—"))
+            nav_seq = []
+            if i > 0:
+                pid = arecs[i-1][0]["id"]; pt = arecs[i-1][1]["title"]
+                nav_seq.append(f'<a class="pv" href="../{esc(pid)}/"><span class="lbl">अघिल्लो</span>← {esc(pt)}</a>')
+            if i < len(arecs) - 1:
+                nid = arecs[i+1][0]["id"]; nt = arecs[i+1][1]["title"]
+                nav_seq.append(f'<a class="nx" href="../{esc(nid)}/"><span class="lbl">अर्को</span>{esc(nt)} →</a>')
+            ld = json.dumps({"@context": "https://schema.org", "@type": "CreativeWork",
+                             "name": meta["title"], "author": {"@type": "Person", "name": meta["author"]["name"]},
+                             "inLanguage": "ne", "isAccessibleForFree": True,
+                             "license": "https://creativecommons.org/publicdomain/mark/1.0/",
+                             "url": SITE_URL + str(rel) + "/"}, ensure_ascii=False)
+            body = f"""<nav class="crumb"><a href="{up}authors/{aslug_}/index.html">← {esc(aname)}</a></nav>
 <article>
   <h1>{esc(meta['title'])}</h1>
   <p class="byline">{esc(meta['author']['name'])}</p>
@@ -433,17 +451,18 @@ def build(archive_base: str):
   <span style="font-size:.78rem">स्रोत: {src_html} · सार्वजनिक डोमेन (असत्यापित)</span></p>
 </article>
 <nav class="seqnav">{''.join(nav_seq)}</nav>"""
-        (out_dir / "index.html").write_text(
-            page(f"{meta['title']} — {meta['author']['name']}", body,
-                 desc=f"{meta['title']} — {meta['author']['name']}", css_depth=depth,
-                 active="works", canon=str(rel) + "/",
-                 extra_head=f'<script type="application/ld+json">{ld}</script>\n'),
-            encoding="utf-8")
-        search_rows.append({"t": meta["title"], "r": meta.get("title_roman") or "",
-                            "s": w["id"].replace("_", " "),
-                            "c": "; ".join(coll) if coll else "",
-                            "g": meta["genre"][0] if meta["genre"] else "",
-                            "p": str(rel) + "/"})
+            (out_dir / "index.html").write_text(
+                page(f"{meta['title']} — {meta['author']['name']}", body,
+                     desc=f"{meta['title']} — {meta['author']['name']}", css_depth=depth,
+                     active="works", canon=str(rel) + "/",
+                     extra_head=f'<script type="application/ld+json">{ld}</script>\n'),
+                encoding="utf-8")
+            search_rows.append({"t": meta["title"], "r": meta.get("title_roman") or "",
+                                "s": w["id"].replace("_", " "),
+                                "a": meta["author"].get("name_roman") or "",
+                                "c": "; ".join(coll) if coll else "",
+                                "g": meta["genre"][0] if meta["genre"] else "",
+                                "p": str(rel) + "/"})
 
     # ---- search index ----
     (SITE / "search-index.json").write_text(
@@ -455,65 +474,71 @@ def build(archive_base: str):
     for cn, items in collections.items():
         d = cdir / cslug[cn]; d.mkdir(parents=True, exist_ok=True)
         lis = "".join(
-            f'<li><a href="../../authors/devkota/{esc(w["id"])}/">{esc(meta["title"])}</a>'
+            f'<li><a href="../../{esc(Path(w["path"]).relative_to("archives").as_posix())}/">{esc(meta["title"])}</a>'
             f'<span class="r">{esc(meta.get("title_roman") or "")}</span></li>' for w, meta in items)
-        cb = (f'<nav class="crumb"><a href="../../authors/devkota/index.html">← लक्ष्मीप्रसाद देवकोटा</a></nav>'
+        cb = (f'<nav class="crumb"><a href="../../index.html">← {esc(SITE_NAME)}</a></nav>'
               f'<h1>{esc(cn)}</h1><p class="lead">{len(items)} कृति।</p>'
               f'<ul class="works">{lis}</ul>')
         (d / "index.html").write_text(
             page(f"{cn} — सङ्ग्रह", cb, css_depth=2, active="works",
                  desc=f"{cn} — {len(items)} कृति", canon=f"collections/{cslug[cn]}/"), encoding="utf-8")
 
-    # ---- author page (browse: TOC + collections + genre groups) ----
-    by_genre = {}
-    for w, meta, _ in recs:
-        by_genre.setdefault(meta["genre"][0] if meta["genre"] else "kavita", []).append((w, meta))
-    present = [g for g in ORDER + [k for k in by_genre if k not in ORDER] if by_genre.get(g)]
-    toc = " ".join(f'<a href="#{g}">{esc(GENRE.get(g,(g,""))[0])} <span class="count">{len(by_genre[g])}</span></a>'
-                   for g in present)
-    coll_links = " · ".join(f'<a href="../../collections/{cslug[cn]}/">{esc(cn)}</a>'
-                            for cn in sorted(collections, key=lambda c: -len(collections[c])))
-    groups_html = []
-    for g in present:
-        items = sorted(by_genre[g], key=lambda x: x[1]["title"])
-        dev, en = GENRE.get(g, (g, ""))
-        lis = "".join(
-            f'<li><a href="{esc(w["id"])}/">{esc(meta["title"])}</a>'
-            f'<span class="r">{esc(meta.get("title_roman") or "")}</span></li>' for w, meta in items)
-        groups_html.append(
-            f'<div class="group" id="{g}"><h2>{esc(dev)} <span class="count">{en} · {len(items)}</span></h2>'
-            f'<ul class="works">{lis}</ul></div>')
-    author_body = f"""<h1>लक्ष्मीप्रसाद देवकोटा</h1>
-<p class="byline">Laxmi Prasad Devkota · 1909–1959</p>
-<p class="lead">{len(recs)} कृति।</p>
+    # ---- per-author pages (browse: TOC + collections + genre groups) ----
+    for aslug_ in author_order:
+        arecs = by_author[aslug_]
+        aname, aroman, adates = ainfo(aslug_, arecs[0][1])
+        bg = {}
+        for w, meta, _ in arecs:
+            bg.setdefault(meta["genre"][0] if meta["genre"] else "kavita", []).append((w, meta))
+        present = [g for g in ORDER + [k for k in bg if k not in ORDER] if bg.get(g)]
+        toc = " ".join(f'<a href="#{g}">{esc(GENRE.get(g,(g,""))[0])} <span class="count">{len(bg[g])}</span></a>'
+                       for g in present)
+        acolls = [cn for cn in sorted(collections, key=lambda c: -len(collections[c]))
+                  if any(aslug(w) == aslug_ for w, _ in collections[cn])]
+        coll_links = " · ".join(f'<a href="../../collections/{cslug[cn]}/">{esc(cn)}</a>' for cn in acolls)
+        groups_html = []
+        for g in present:
+            items = sorted(bg[g], key=lambda x: x[1]["title"])
+            dev, en = GENRE.get(g, (g, ""))
+            lis = "".join(
+                f'<li><a href="{esc(w["id"])}/">{esc(meta["title"])}</a>'
+                f'<span class="r">{esc(meta.get("title_roman") or "")}</span></li>' for w, meta in items)
+            groups_html.append(
+                f'<div class="group" id="{g}"><h2>{esc(dev)} <span class="count">{en} · {len(items)}</span></h2>'
+                f'<ul class="works">{lis}</ul></div>')
+        author_body = f"""<nav class="crumb"><a href="../../index.html">← {esc(SITE_NAME)}</a></nav>
+<h1>{esc(aname)}</h1>
+<p class="byline">{esc(aroman)}{' · ' + adates if adates else ''}</p>
+<p class="lead">{len(arecs)} कृति।</p>
 <p class="toc">{toc}</p>
 {f'<p class="meta">सङ्ग्रह: {coll_links}</p>' if coll_links else ''}
 {''.join(groups_html)}"""
-    adir = SITE / "authors" / "devkota"; adir.mkdir(parents=True, exist_ok=True)
-    (adir / "index.html").write_text(
-        page("लक्ष्मीप्रसाद देवकोटा — कृतिहरू", author_body, css_depth=2, active="works",
-             desc=f"लक्ष्मीप्रसाद देवकोटाका {len(recs)} कृति", canon="authors/devkota/index.html"),
+        adir = SITE / "authors" / aslug_; adir.mkdir(parents=True, exist_ok=True)
+        (adir / "index.html").write_text(
+            page(f"{aname} — कृतिहरू", author_body, css_depth=2, active="works",
+                 desc=f"{aname}का {len(arecs)} कृति", canon=f"authors/{aslug_}/index.html"),
+            encoding="utf-8")
+
+    # ---- authors index ----
+    def author_li(a, base):
+        n, r, d = ainfo(a, by_author[a][0][1])
+        return (f'<li><a href="{base}authors/{a}/index.html">{esc(n)}</a>'
+                f'<span class="r">{esc(r)} · {len(by_author[a])} कृति</span></li>')
+    ai_body = (f'<h1>लेखकहरू</h1><p class="lead">{len(by_author)} लेखक · {len(recs)} कृति।</p>'
+               f'<ul class="works">{"".join(author_li(a, "../") for a in author_order)}</ul>')
+    (SITE / "authors").mkdir(parents=True, exist_ok=True)
+    (SITE / "authors" / "index.html").write_text(
+        page("लेखकहरू — " + SITE_NAME, ai_body, css_depth=1, active="works",
+             desc=f"{len(by_author)} लेखक · {len(recs)} कृति", canon="authors/index.html"),
         encoding="utf-8")
 
-    # ---- home: search + the major works + collections ----
-    def home_link(slug, label, roman=""):
-        return (f'<li><a href="authors/devkota/{slug}/">{esc(label)}</a>'
-                f'<span class="r">{esc(roman)}</span></li>')
-    majors = [(w, meta) for w, meta, _ in recs
-              if (meta["genre"][0] if meta["genre"] else "") in ("mahakavya", "khandakavya", "upanyas", "nibandha")]
-    majors.sort(key=lambda x: gkey(x[1]))
-    major_html = "".join(home_link(w["id"], meta["title"], meta.get("title_roman") or "") for w, meta in majors)
-    coll_home = "".join(f'<li><a href="collections/{cslug[cn]}/">{esc(cn)}</a>'
-                        f'<span class="r">{len(collections[cn])} कृति</span></li>'
-                        for cn in sorted(collections, key=lambda c: -len(collections[c])))
+    # ---- home: search + authors ----
     home_body = f"""<h1>{SITE_NAME}</h1>
 <p class="lead">{SITE_TAGLINE}। नि:शुल्क, सधैँभरि — दर्ता छैन, विज्ञापन छैन।</p>
-<p><input id="q" type="search" placeholder="खोज्नुहोस् — शीर्षक वा रोमन (जस्तै: pagal, muna)" autocomplete="off" aria-label="खोज"></p>
+<p><input id="q" type="search" placeholder="खोज्नुहोस् — शीर्षक वा रोमन (जस्तै: pagal, ramayana)" autocomplete="off" aria-label="खोज"></p>
 <p class="hint" id="hint"></p>
 <ul class="works" id="results" data-base=""></ul>
-<div class="home-sec"><h2>प्रमुख कृति</h2><ul class="works">{major_html}</ul></div>
-<div class="home-sec"><h2>सङ्ग्रह</h2><ul class="works">{coll_home}</ul></div>
-<p style="margin-top:1.5rem"><a href="authors/devkota/index.html">सबै {len(recs)} कृति →</a></p>
+<div class="home-sec"><h2>लेखकहरू</h2><ul class="works">{"".join(author_li(a, "") for a in author_order)}</ul></div>
 <script src="search.js?v={SEARCH_VER}" defer></script>"""
     (SITE / "index.html").write_text(
         page(SITE_NAME, home_body, desc=SITE_TAGLINE, css_depth=0, active="home", canon=""),
@@ -534,15 +559,16 @@ def build(archive_base: str):
 <blockquote class="law">“(१) यस ऐन बमोजिम रचयितालाई प्राप्त आर्थिक र नैतिक अधिकार रचयिताको जीवनभर र निजको मृत्यु भएकोमा मृत्यु भएको वर्षबाट पचास वर्षसम्म संरक्षित हुनेछ ।”
 <span class="cite">— <a href="docs/pratilipi-adhikar-ain-2059.pdf">प्रतिलिपि अधिकार ऐन, २०५९</a>, दफा १४ (प्रतिलिपि अधिकार संरक्षणको अवधि), उपदफा (१)</span></blockquote>
 <p class="meta">पूरा ऐन यहाँ हेर्न/डाउनलोड गर्न सकिन्छ: <a href="docs/pratilipi-adhikar-ain-2059.pdf">प्रतिलिपि अधिकार ऐन, २०५९ (PDF)</a>।</p>
-<p>हाल यहाँ लक्ष्मीप्रसाद देवकोटाका {len(recs)} कृति छन्। स्रोत: Kavita Kosh, Internet Archive,
-sahityasangraha.com। प्रत्येक कृति HTML, मूल पाठ (TXT){' र EPUB' if any(m.get('formats',{}).get('epub') for _,m,_ in recs) else ''} मा उपलब्ध छ।</p>
+<p>हाल यहाँ {len(by_author)} लेखकका {len(recs)} कृति छन्। स्रोत: Kavita Kosh, inepal.org,
+Internet Archive, sahityasangraha.com। प्रत्येक कृति HTML, मूल पाठ (TXT){' र EPUB' if any(m.get('formats',{}).get('epub') for _,m,_ in recs) else ''} मा उपलब्ध छ।</p>
 <p class="meta">सबै कृति प्रुफरिड र अधिकार-सत्यापन हुन बाँकी छ।</p>"""
     (SITE / "about.html").write_text(
         page("बारेमा — " + SITE_NAME, about_body, css_depth=0, active="about", canon="about.html"),
         encoding="utf-8")
 
     # ---- sitemap (full URLs) + robots ----
-    urls = (["", "about.html", "authors/devkota/index.html"]
+    urls = (["", "about.html", "authors/index.html"]
+            + [f"authors/{a}/index.html" for a in author_order]
             + [f"collections/{cslug[cn]}/" for cn in collections]
             + [r["p"] for r in search_rows])
     (SITE / "sitemap.txt").write_text(
@@ -555,7 +581,7 @@ sahityasangraha.com। प्रत्येक कृति HTML, मूल प
     domain = SITE_URL.split("//", 1)[-1].strip("/")          # www.nepaliarchives.org
     (SITE / "CNAME").write_text(domain + "\n", encoding="utf-8")
 
-    pages = 3 + len(recs) + len(collections)   # home + about + author
+    pages = 3 + len(author_order) + len(collections) + len(recs)   # home+about+authors-index + per-author + collections + works
     print(f"built site/ : {pages} pages ({len(recs)} works), "
           f"search index {(SITE/'search-index.json').stat().st_size//1024} KB")
     if archive_base:

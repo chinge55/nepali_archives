@@ -1,0 +1,50 @@
+{
+  "id": "ramayana",
+  "title": "रामायण",
+  "title_roman": "Ramayana",
+  "subtitle": null,
+  "author": {
+    "id": "bhanubhakta_acharya",
+    "name": "भानुभक्त आचार्य",
+    "name_roman": "Bhanubhakta Acharya"
+  },
+  "language": "ne",
+  "script": "Devanagari",
+  "genre": [
+    "mahakavya",
+    "epic"
+  ],
+  "first_published": {
+    "bs": null,
+    "ad": null
+  },
+  "edition": null,
+  "publisher": null,
+  "description": "Bhanubhakta Acharya's Nepali Ramayana — the foundational epic of modern Nepali literature.",
+  "rights": {
+    "status": "public-domain",
+    "basis": "Author died 1868; long in the public domain (Nepal's Copyright Act 2059: life + 50 years).",
+    "verified": false
+  },
+  "source": {
+    "name": null,
+    "url": null,
+    "pdf": "NepaliBhanubhaktaRamayan_text.pdf",
+    "html": null
+  },
+  "pages": 344,
+  "text": {
+    "extraction_method": "pdf-text-layer",
+    "ocr_status": "embedded-ocr",
+    "proofread": false,
+    "quality": "fair"
+  },
+  "formats": {
+    "pdf": "NepaliBhanubhaktaRamayan_text.pdf",
+    "txt": "text.txt",
+    "html": "reader.html",
+    "epub": "reader.epub"
+  },
+  "added": "2026-06-05",
+  "updated": "2026-06-05"
+}
