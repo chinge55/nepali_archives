@@ -16,7 +16,7 @@ Usage:
     python3 pipeline/build_site.py            # -> site/
     python3 pipeline/build_site.py --archive-base https://archive.example.org
 """
-import argparse, html, json, re, shutil, sys
+import argparse, hashlib, html, json, re, shutil, sys
 from datetime import date
 from pathlib import Path
 
@@ -107,8 +107,8 @@ def page(title, body, *, desc="", css_depth=0, extra_head="", active="", canon="
 <title>{esc(title)}</title>
 <meta name="description" content="{esc(desc)}">
 <link rel="preload" as="font" type="font/woff2" href="{up}fonts/nsd-devanagari-400.woff2" crossorigin>
-<link rel="stylesheet" href="{up}style.css">
-{og}{extra_head}<script src="{up}ui.js" defer></script>
+<link rel="stylesheet" href="{up}style.css?v={CSS_VER}">
+{og}{extra_head}<script src="{up}ui.js?v={UI_VER}" defer></script>
 </head>
 <body>
 <div id="prog" class="prog"></div>
@@ -128,9 +128,11 @@ def page(title, body, *, desc="", css_depth=0, extra_head="", active="", canon="
 
 
 # ---------------------------------------------------------------- CSS / JS
-CSS = """:root,[data-theme=light]{--bg:#fbfaf7;--fg:#1a1a1a;--mut:#6b675e;--line:#e3ded3;--link:#6a4b16;--accent:#8a5a00}
+CSS = """:root{--bg:#fbfaf7;--fg:#1a1a1a;--mut:#6b675e;--line:#e3ded3;--link:#6a4b16;--accent:#8a5a00}
 @media(prefers-color-scheme:dark){:root{--bg:#15140f;--fg:#e7e3da;--mut:#9a948a;--line:#2c2a22;--link:#d8b15f;--accent:#e0b65f}}
-[data-theme=dark]{--bg:#15140f;--fg:#e7e3da;--mut:#9a948a;--line:#2c2a22;--link:#d8b15f;--accent:#e0b65f}
+/* manual override — :root[...] (0,2,0) outranks the media query's :root (0,1,0), so it wins on any system theme */
+:root[data-theme=light]{--bg:#fbfaf7;--fg:#1a1a1a;--mut:#6b675e;--line:#e3ded3;--link:#6a4b16;--accent:#8a5a00}
+:root[data-theme=dark]{--bg:#15140f;--fg:#e7e3da;--mut:#9a948a;--line:#2c2a22;--link:#d8b15f;--accent:#e0b65f}
 *{box-sizing:border-box}html{font-size:19px}
 body{margin:0;background:var(--bg);color:var(--fg);
  font-family:"Noto Serif Devanagari","Mukta","Kalimati",Georgia,"Times New Roman",serif;
@@ -325,6 +327,11 @@ UI_JS = """(function(){
 })();
 """
 
+# content-hash cache-busting: bumps automatically whenever the asset changes, so
+# returning visitors (phones especially) never get served a stale CSS/JS.
+def _ver(s): return hashlib.sha1(s.encode("utf-8")).hexdigest()[:8]
+CSS_VER, UI_VER, SEARCH_VER = _ver(CSS), _ver(UI_JS), _ver(SEARCH_JS)
+
 
 def build(archive_base: str):
     works = json.loads((ARCHIVES / "index.json").read_text(encoding="utf-8"))["works"]
@@ -507,7 +514,7 @@ def build(archive_base: str):
 <div class="home-sec"><h2>प्रमुख कृति</h2><ul class="works">{major_html}</ul></div>
 <div class="home-sec"><h2>सङ्ग्रह</h2><ul class="works">{coll_home}</ul></div>
 <p style="margin-top:1.5rem"><a href="authors/devkota/index.html">सबै {len(recs)} कृति →</a></p>
-<script src="search.js" defer></script>"""
+<script src="search.js?v={SEARCH_VER}" defer></script>"""
     (SITE / "index.html").write_text(
         page(SITE_NAME, home_body, desc=SITE_TAGLINE, css_depth=0, active="home", canon=""),
         encoding="utf-8")
