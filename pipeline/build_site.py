@@ -114,6 +114,8 @@ def page(title, body, *, desc="", css_depth=0, extra_head="", active="", canon="
 <script>(function(){{try{{var t=localStorage.getItem('theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);}}catch(e){{}}}})();</script>
 <title>{esc(title)}</title>
 <meta name="description" content="{esc(desc)}">
+<link rel="icon" type="image/png" href="{up}favicon.png">
+<link rel="apple-touch-icon" href="{up}apple-touch-icon.png">
 <link rel="preload" as="font" type="font/woff2" href="{up}fonts/nsd-devanagari-400.woff2" crossorigin>
 <link rel="stylesheet" href="{up}style.css?v={CSS_VER}">
 {og}{extra_head}<script src="{up}ui.js?v={UI_VER}" defer></script>
@@ -156,6 +158,7 @@ nav a.on{color:var(--accent)}
 nav a:focus-visible,.themebtn:focus-visible{outline:2px solid color-mix(in srgb,var(--accent) 45%,transparent);outline-offset:1px}
 main{max-width:44rem;margin:0 auto;padding:0 1.25rem 2rem}
 main h2{font-size:1.05rem;font-weight:600;margin:2rem 0 .5rem}
+.about-logo{display:block;width:140px;height:auto;margin:.5rem auto 1.5rem}
 blockquote.law{margin:1.2rem 0;padding:.7rem 0 .7rem 1.1rem;border-left:3px solid var(--accent)}
 blockquote.law .cite{display:block;margin-top:.6rem;color:var(--mut);font-size:.85rem}
 a{color:var(--link)}
@@ -370,6 +373,14 @@ def build(archive_base: str):
     if act_src.exists():
         (SITE / "docs").mkdir(exist_ok=True)
         shutil.copy(act_src, SITE / "docs" / "pratilipi-adhikar-ain-2059.pdf")
+    # logo: favicon (tab icon) + apple-touch + an About-page image. Pre-sized in
+    # assets/logo/ so the build stays pure-stdlib (no PIL in CI).
+    logo = ROOT / "assets" / "logo"
+    for src, dst in [("favicon-48.png", "favicon.png"),
+                     ("favicon-180.png", "apple-touch-icon.png"),
+                     ("logo-240.png", "logo.png")]:
+        if (logo / src).exists():
+            shutil.copy(logo / src, SITE / dst)
 
     # group works by author; reading order within an author = genre group then title
     def aslug(w): return Path(w["path"]).relative_to("archives").parts[1]
@@ -545,7 +556,8 @@ def build(archive_base: str):
         encoding="utf-8")
 
     # ---- about ----
-    about_body = f"""<h1>बारेमा</h1>
+    about_body = f"""<img class="about-logo" src="logo.png" alt="{SITE_NAME}" width="140" height="140">
+<h1>बारेमा</h1>
 <p class="lead">{SITE_TAGLINE}।</p>
 <p>यो अभिलेखले सार्वजनिक डोमेनमा रहेका नेपाली साहित्यिक कृतिहरूलाई संरक्षण, डिजिटलीकरण र
 नि:शुल्क पहुँच प्रदान गर्ने लक्ष्य राख्छ। पाठहरू मूल रूपमै राखिएका छन्; OCR/स्क्यान त्रुटि मात्र
