@@ -1,7 +1,7 @@
 {
  "archive": "Nepali Archives",
  "generated": "2026-06-05",
- "count": 132,
+ "count": 134,
  "works": [
   {
    "id": "ahileko_kshan",
@@ -260,6 +260,26 @@
    "proofread": false,
    "source": "Kavita Kosh (kavitakosh.org)",
    "path": "archives/authors/devkota/barsha",
+   "formats": [
+    "txt",
+    "html",
+    "epub"
+   ]
+  },
+  {
+   "id": "barsha_2",
+   "title": "वर्षा",
+   "title_roman": "Barsha",
+   "author": "Laxmi Prasad Devkota",
+   "genre": [
+    "kavita",
+    "poem"
+   ],
+   "collection": null,
+   "rights": "public-domain",
+   "proofread": false,
+   "source": "iNepal (inepal.org)",
+   "path": "archives/authors/devkota/barsha_2",
    "formats": [
     "txt",
     "html",
@@ -2195,6 +2215,26 @@
    "proofread": false,
    "source": "Kavita Kosh (kavitakosh.org)",
    "path": "archives/authors/devkota/prithviraj_chauhan",
+   "formats": [
+    "txt",
+    "html",
+    "epub"
+   ]
+  },
+  {
+   "id": "putali",
+   "title": "पुतली",
+   "title_roman": "Putali",
+   "author": "Laxmi Prasad Devkota",
+   "genre": [
+    "kavita",
+    "poem"
+   ],
+   "collection": null,
+   "rights": "public-domain",
+   "proofread": false,
+   "source": "iNepal (inepal.org)",
+   "path": "archives/authors/devkota/putali",
    "formats": [
     "txt",
     "html",

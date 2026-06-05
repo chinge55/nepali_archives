@@ -83,13 +83,13 @@ python3 pipeline/build_formats.py --all
 
 ## Current status
 
-**132 works** by Laxmi Prasad Devkota (~590k Devanagari characters). The full,
+**134 works** by Laxmi Prasad Devkota (~590k Devanagari characters). The full,
 machine-readable catalogue is [`archives/index.json`](./archives/index.json);
 the breakdown by genre:
 
 | Genre                         | Count | Notable / source |
 |-------------------------------|-------|------------------|
-| कविता — poems                  | 107   | individual poems from Kavita Kosh; most tagged with their source collection (भिखारी, लक्ष्मी कवितासङ्ग्रह). |
+| कविता — poems                  | 109   | individual poems (Kavita Kosh; 2 from inepal.org); most tagged with their source collection (भिखारी, लक्ष्मी कवितासङ्ग्रह). |
 | बालकविता — children's poems    | 18    | from the collection *सुनको बिहान*. |
 | महाकाव्य — epics               | 2     | *पृथ्वीराज चौहान* (21 cantos, Kavita Kosh) · *शाकुन्तल* (Internet Archive, OCR). |
 | खण्डकाव्य — narrative poem      | 1     | *मुना मदन* (18 sections assembled from Kavita Kosh; a scanned PDF is also preserved). |
@@ -97,7 +97,7 @@ the breakdown by genre:
 | निबन्ध — essay                 | 1     | *के नेपाल सानो छ ?* (Internet Archive, OCR). |
 | गीत / गजल — song / ghazal       | 2     | from Kavita Kosh. |
 
-Sources: **129 Kavita Kosh** (born-digital), plus *Shakuntala* & *Ke Nepal Sano
+Sources: **129 Kavita Kosh** (born-digital), 2 from inepal.org, plus *Shakuntala* & *Ke Nepal Sano
 Cha* (Internet Archive PDFs, OCR), and *Champa* (sahityasangraha.com). Per the
 mission, **no work is proofread or rights-verified yet** — that gate must be
 cleared before publishing. Kavita Kosh's per-page publication boxes (e.g. *Muna
