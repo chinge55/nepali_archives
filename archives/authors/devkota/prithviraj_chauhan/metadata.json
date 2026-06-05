@@ -1,0 +1,50 @@
+{
+  "id": "prithviraj_chauhan",
+  "title": "पृथ्वीराज चौहान",
+  "title_roman": "Prithviraj Chauhan",
+  "subtitle": null,
+  "author": {
+    "id": "devkota",
+    "name": "लक्ष्मीप्रसाद देवकोटा",
+    "name_roman": "Laxmi Prasad Devkota"
+  },
+  "language": "ne",
+  "script": "Devanagari",
+  "genre": [
+    "mahakavya",
+    "epic"
+  ],
+  "first_published": {
+    "bs": 2049,
+    "ad": 1992
+  },
+  "edition": "पहिलो संस्करण वि.सं. २०४९; दोस्रो संस्करण वि.सं. २०६१",
+  "publisher": "साझा प्रकाशन (Sajha Prakashan), Nepal",
+  "description": "Devkota's epic (महाकाव्य) on Prithviraj Chauhan, in 21 cantos (सर्ग). Assembled from the per-canto pages on Kavita Kosh. Sajha Prakashan edition, ISBN 99933-2-510-4, 184 pp.",
+  "rights": {
+    "status": "public-domain",
+    "basis": "Author died 1959; Nepal's Copyright Act 2059 grants life + 50 years, expiring 2009. (Sajha's posthumous 1992 typeset edition carries an ISBN, but the underlying Devkota text is public domain.) Verify before publishing.",
+    "verified": false
+  },
+  "source": {
+    "name": "Kavita Kosh (kavitakosh.org)",
+    "url": "https://kavitakosh.org/kk/पृथ्वीराज_चौहान_/_लक्ष्मीप्रसाद_देवकोटा",
+    "pdf": null,
+    "html": "extracted/index.html"
+  },
+  "pages": 184,
+  "text": {
+    "extraction_method": "html",
+    "ocr_status": "born-digital",
+    "proofread": false,
+    "quality": "good"
+  },
+  "formats": {
+    "pdf": null,
+    "txt": "text.txt",
+    "html": "reader.html",
+    "epub": "reader.epub"
+  },
+  "added": "2026-06-05",
+  "updated": "2026-06-05"
+}

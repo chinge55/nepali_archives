@@ -1,0 +1,50 @@
+{
+  "id": "dil_kachaura_yo_uchalau",
+  "title": "दिल कचौरा यो उचालौँ",
+  "title_roman": "Dil Kachaura Yo Uchalau",
+  "subtitle": null,
+  "author": {
+    "id": "devkota",
+    "name": "लक्ष्मीप्रसाद देवकोटा",
+    "name_roman": "Laxmi Prasad Devkota"
+  },
+  "language": "ne",
+  "script": "Devanagari",
+  "genre": [
+    "gazal",
+    "ghazal"
+  ],
+  "first_published": {
+    "bs": null,
+    "ad": null
+  },
+  "edition": null,
+  "publisher": null,
+  "description": null,
+  "rights": {
+    "status": "public-domain",
+    "basis": "Author died 1959; Nepal's Copyright Act 2059 grants life + 50 years, expiring 2009. Verify before publishing.",
+    "verified": false
+  },
+  "source": {
+    "name": "Kavita Kosh (kavitakosh.org)",
+    "url": "https://kavitakosh.org/kk/दिल_कचौरा_यो_उचालौँ_/_लक्ष्मीप्रसाद_देवकोटा",
+    "pdf": null,
+    "html": "extracted/index.html"
+  },
+  "pages": null,
+  "text": {
+    "extraction_method": "html",
+    "ocr_status": "born-digital",
+    "proofread": false,
+    "quality": "good"
+  },
+  "formats": {
+    "pdf": null,
+    "txt": "text.txt",
+    "html": "reader.html",
+    "epub": "reader.epub"
+  },
+  "added": "2026-06-05",
+  "updated": "2026-06-05"
+}

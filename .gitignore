@@ -1,0 +1,15 @@
+# Generated site build — regenerate with: python3 pipeline/build_site.py
+/site/
+
+# Personal deploy notes — keep out of the repo
+/DEPLOY_NOTES.md
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# OS / editor cruft
+.DS_Store
+*.swp
+*~

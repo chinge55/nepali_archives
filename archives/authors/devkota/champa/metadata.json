@@ -1,0 +1,50 @@
+{
+  "id": "champa",
+  "title": "चम्पा",
+  "title_roman": "Champa",
+  "subtitle": null,
+  "author": {
+    "id": "devkota",
+    "name": "लक्ष्मीप्रसाद देवकोटा",
+    "name_roman": "Laxmi Prasad Devkota"
+  },
+  "language": "ne",
+  "script": "Devanagari",
+  "genre": [
+    "upanyas",
+    "novel"
+  ],
+  "first_published": {
+    "bs": null,
+    "ad": null
+  },
+  "edition": null,
+  "publisher": null,
+  "description": "Devkota's Nepali social novel, presented in chapters (अध्याय).",
+  "rights": {
+    "status": "public-domain",
+    "basis": "Author died 1959; Nepal's Copyright Act 2059 grants life + 50 years, expiring 2009. Verify before publishing.",
+    "verified": false
+  },
+  "source": {
+    "name": "साहित्य सङ्ग्रहालय (sahityasangraha.com)",
+    "url": "https://sahityasangraha.com/2022/04/03/चम्पा/",
+    "pdf": null,
+    "html": "extracted/index.html"
+  },
+  "pages": null,
+  "text": {
+    "extraction_method": "html",
+    "ocr_status": "born-digital",
+    "proofread": false,
+    "quality": null
+  },
+  "formats": {
+    "pdf": null,
+    "txt": "text.txt",
+    "html": "reader.html",
+    "epub": "reader.epub"
+  },
+  "added": "2026-06-05",
+  "updated": "2026-06-05"
+}

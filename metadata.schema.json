@@ -1,0 +1,111 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://nepali-archives/metadata.schema.json",
+  "title": "Nepali Archives — Work Metadata",
+  "description": "Metadata contract for a single literary work. One metadata.json lives in each work directory: archives/authors/<author>/<work>/metadata.json",
+  "type": "object",
+  "required": ["id", "title", "author", "language", "rights", "source", "text", "formats"],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9_-]+$",
+      "description": "Stable slug for the work; matches its directory name."
+    },
+    "title": {
+      "type": "string",
+      "description": "Title in the original script (Devanagari)."
+    },
+    "title_roman": {
+      "type": ["string", "null"],
+      "description": "Romanized/transliterated title for search and URLs."
+    },
+    "subtitle": { "type": ["string", "null"] },
+    "author": {
+      "type": "object",
+      "required": ["id", "name"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9_-]+$", "description": "Author slug; matches the author directory name." },
+        "name": { "type": "string", "description": "Author name in original script." },
+        "name_roman": { "type": ["string", "null"] }
+      }
+    },
+    "language": { "type": "string", "description": "BCP-47 code, e.g. 'ne' for Nepali." },
+    "script": { "type": "string", "default": "Devanagari" },
+    "genre": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Free-form tags, e.g. 'khandakavya', 'poetry', 'novel'."
+    },
+    "first_published": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "properties": {
+        "bs": { "type": ["integer", "null"], "description": "Bikram Sambat year." },
+        "ad": { "type": ["integer", "null"], "description": "Gregorian year." }
+      }
+    },
+    "edition": { "type": ["string", "null"] },
+    "publisher": { "type": ["string", "null"] },
+    "description": { "type": ["string", "null"] },
+    "rights": {
+      "type": "object",
+      "required": ["status"],
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["public-domain", "permission-granted", "unknown", "restricted"],
+          "description": "Per mission, only public-domain or permission-granted works are published."
+        },
+        "basis": { "type": ["string", "null"], "description": "Reasoning, e.g. 'Author d.1959; Nepal copyright = life + 50 yrs'." },
+        "verified": { "type": "boolean", "default": false, "description": "Has a human confirmed the rights status?" }
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Where the work came from. A work has a source PDF, a scraped HTML file, or just a URL — at least one of pdf/html/url should be present.",
+      "properties": {
+        "name": { "type": ["string", "null"], "description": "e.g. 'Internet Archive', 'साहित्य सङ्ग्रहालय'." },
+        "url": { "type": ["string", "null"], "description": "Canonical source URL." },
+        "pdf": { "type": ["string", "null"], "description": "Filename of the source PDF within this directory, if any." },
+        "html": { "type": ["string", "null"], "description": "Path (within this directory) of the scraped source HTML, if any." }
+      }
+    },
+    "pages": { "type": ["integer", "null"] },
+    "text": {
+      "type": "object",
+      "required": ["extraction_method", "ocr_status"],
+      "additionalProperties": false,
+      "properties": {
+        "extraction_method": {
+          "type": ["string", "null"],
+          "enum": ["pdf-text-layer", "ocr", "html", "manual", null],
+          "description": "How text.txt was produced."
+        },
+        "ocr_status": {
+          "type": "string",
+          "enum": ["embedded-ocr", "needs-ocr", "ocr-done", "born-digital", "none"],
+          "description": "embedded-ocr: PDF already carries an OCR layer; needs-ocr: image-only, no usable text yet."
+        },
+        "proofread": { "type": "boolean", "default": false, "description": "Has the extracted text been human-corrected?" },
+        "quality": { "type": ["string", "null"], "enum": ["good", "fair", "poor", null] }
+      }
+    },
+    "formats": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Filenames (within this directory) of each available format, or null if not yet produced.",
+      "properties": {
+        "pdf": { "type": ["string", "null"] },
+        "txt": { "type": ["string", "null"] },
+        "html": { "type": ["string", "null"] },
+        "epub": { "type": ["string", "null"] }
+      }
+    },
+    "added": { "type": ["string", "null"], "description": "ISO date the work was added." },
+    "updated": { "type": ["string", "null"], "description": "ISO date metadata last changed." }
+  }
+}
