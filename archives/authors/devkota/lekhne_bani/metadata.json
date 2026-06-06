@@ -1,7 +1,7 @@
 {
-  "id": "ke_nepal_sano_chha",
-  "title": "के नेपाल सानो छ ?",
-  "title_roman": "Ke Nepal Sano Cha?",
+  "id": "lekhne_bani",
+  "title": "लेख्ने बानी",
+  "title_roman": "Lekhne Bani",
   "subtitle": null,
   "author": {
     "id": "devkota",
@@ -18,32 +18,33 @@
     "bs": null,
     "ad": null
   },
-  "edition": null,
-  "publisher": null,
-  "description": "From the collection लक्ष्मी निबन्ध सङ्ग्रह. Devkota's celebrated nationalist essay arguing that Nepal is not small, written in his characteristic lyrical prose. Frequently anthologized in his essay collections.",
+  "edition": "साझा प्रकाशन (२०६४)",
+  "publisher": "साझा प्रकाशन",
+  "description": "From the collection लक्ष्मी निबन्ध सङ्ग्रह.",
   "rights": {
     "status": "public-domain",
     "basis": "Author died 1959; Nepal's Copyright Act 2059 grants life + 50 years, expiring 2009. Verify before publishing.",
     "verified": false
   },
   "source": {
-    "name": "Internet Archive",
-    "url": "https://archive.org/details/ke-nepal-sano-cha",
-    "pdf": "Ke Nepal Sano Cha_text.pdf"
+    "name": "लक्ष्मी निबन्ध सङ्ग्रह (साझा प्रकाशन)",
+    "url": null,
+    "pdf": "lekhne_bani.pdf",
+    "html": null
   },
-  "pages": 7,
+  "pages": 3,
   "text": {
     "extraction_method": "ocr",
     "ocr_status": "ocr-done",
     "proofread": false,
-    "quality": "fair"
+    "quality": "good"
   },
   "formats": {
-    "pdf": "Ke Nepal Sano Cha_text.pdf",
+    "pdf": "lekhne_bani.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"
   },
-  "added": "2026-06-05",
+  "added": "2026-06-07",
   "updated": "2026-06-07"
 }

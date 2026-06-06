@@ -1,7 +1,7 @@
 {
  "archive": "Nepali Archives",
  "generated": "2026-06-07",
- "count": 157,
+ "count": 194,
  "works": [
   {
    "id": "kantipuri_nagari",
@@ -83,6 +83,52 @@
    "source": "Kavita Kosh (kavitakosh.org)",
    "path": "archives/authors/devkota/aho_malai_tajub_lagchha",
    "formats": [
+    "txt",
+    "html",
+    "epub"
+   ]
+  },
+  {
+   "id": "akar_r_abhipray",
+   "title": "आकार र अभिप्राय",
+   "title_roman": "Akar R Abhipray",
+   "author": "Laxmi Prasad Devkota",
+   "genre": [
+    "nibandha",
+    "essay"
+   ],
+   "collection": [
+    "लक्ष्मी निबन्ध सङ्ग्रह"
+   ],
+   "rights": "public-domain",
+   "proofread": false,
+   "source": null,
+   "path": "archives/authors/devkota/akar_r_abhipray",
+   "formats": [
+    "pdf",
+    "txt",
+    "html",
+    "epub"
+   ]
+  },
+  {
+   "id": "amako_dil",
+   "title": "आमाको दिल",
+   "title_roman": "Amako Dil",
+   "author": "Laxmi Prasad Devkota",
+   "genre": [
+    "nibandha",
+    "essay"
+   ],
+   "collection": [
+    "लक्ष्मी निबन्ध सङ्ग्रह"
+   ],
+   "rights": "public-domain",
+   "proofread": false,
+   "source": null,
+   "path": "archives/authors/devkota/amako_dil",
+   "formats": [
+    "pdf",
     "txt",
     "html",
     "epub"
@@ -177,6 +223,29 @@
    ]
   },
   {
+   "id": "ashadhako_pandhra",
+   "title": "आषाढको पन्ध्र",
+   "title_roman": "Ashadhako Pandhra",
+   "author": "Laxmi Prasad Devkota",
+   "genre": [
+    "nibandha",
+    "essay"
+   ],
+   "collection": [
+    "लक्ष्मी निबन्ध सङ्ग्रह"
+   ],
+   "rights": "public-domain",
+   "proofread": false,
+   "source": null,
+   "path": "archives/authors/devkota/ashadhako_pandhra",
+   "formats": [
+    "pdf",
+    "txt",
+    "html",
+    "epub"
+   ]
+  },
+  {
    "id": "atithiharu",
    "title": "अतिथिहरू",
    "title_roman": "Atithiharu",
@@ -237,6 +306,29 @@
    "source": "Kavita Kosh (kavitakosh.org)",
    "path": "archives/authors/devkota/badalako_sbagat",
    "formats": [
+    "txt",
+    "html",
+    "epub"
+   ]
+  },
+  {
+   "id": "bairagya",
+   "title": "वैराग्य",
+   "title_roman": "Bairagya",
+   "author": "Laxmi Prasad Devkota",
+   "genre": [
+    "nibandha",
+    "essay"
+   ],
+   "collection": [
+    "लक्ष्मी निबन्ध सङ्ग्रह"
+   ],
+   "rights": "public-domain",
+   "proofread": false,
+   "source": null,
+   "path": "archives/authors/devkota/bairagya",
+   "formats": [
+    "pdf",
     "txt",
     "html",
     "epub"
@@ -373,6 +465,29 @@
    ]
   },
   {
+   "id": "bhaladami",
+   "title": "भलादमी",
+   "title_roman": "Bhaladami",
+   "author": "Laxmi Prasad Devkota",
+   "genre": [
+    "nibandha",
+    "essay"
+   ],
+   "collection": [
+    "लक्ष्मी निबन्ध सङ्ग्रह"
+   ],
+   "rights": "public-domain",
+   "proofread": false,
+   "source": null,
+   "path": "archives/authors/devkota/bhaladami",
+   "formats": [
+    "pdf",
+    "txt",
+    "html",
+    "epub"
+   ]
+  },
+  {
    "id": "bhikhari",
    "title": "भिखारी",
    "title_roman": "Bhikhari",
@@ -389,6 +504,29 @@
    "source": "Kavita Kosh (kavitakosh.org)",
    "path": "archives/authors/devkota/bhikhari",
    "formats": [
+    "txt",
+    "html",
+    "epub"
+   ]
+  },
+  {
+   "id": "bhumika",
+   "title": "भूमिका",
+   "title_roman": "Bhumika",
+   "author": "Laxmi Prasad Devkota",
+   "genre": [
+    "nibandha",
+    "essay"
+   ],
+   "collection": [
+    "लक्ष्मी निबन्ध सङ्ग्रह"
+   ],
+   "rights": "public-domain",
+   "proofread": false,
+   "source": null,
+   "path": "archives/authors/devkota/bhumika",
+   "formats": [
+    "pdf",
     "txt",
     "html",
     "epub"
@@ -461,6 +599,29 @@
    ]
   },
   {
+   "id": "biraharu",
+   "title": "वीरहरू",
+   "title_roman": "Biraharu",
+   "author": "Laxmi Prasad Devkota",
+   "genre": [
+    "nibandha",
+    "essay"
+   ],
+   "collection": [
+    "लक्ष्मी निबन्ध सङ्ग्रह"
+   ],
+   "rights": "public-domain",
+   "proofread": false,
+   "source": null,
+   "path": "archives/authors/devkota/biraharu",
+   "formats": [
+    "pdf",
+    "txt",
+    "html",
+    "epub"
+   ]
+  },
+  {
    "id": "briksh",
    "title": "वृक्ष",
    "title_roman": "Briksh",
@@ -520,6 +681,29 @@
    "source": "Kavita Kosh (kavitakosh.org)",
    "path": "archives/authors/devkota/charako_bhajan",
    "formats": [
+    "txt",
+    "html",
+    "epub"
+   ]
+  },
+  {
+   "id": "chhanda_r_lay",
+   "title": "छन्द र लय",
+   "title_roman": "Chhanda R Lay",
+   "author": "Laxmi Prasad Devkota",
+   "genre": [
+    "nibandha",
+    "essay"
+   ],
+   "collection": [
+    "लक्ष्मी निबन्ध सङ्ग्रह"
+   ],
+   "rights": "public-domain",
+   "proofread": false,
+   "source": null,
+   "path": "archives/authors/devkota/chhanda_r_lay",
+   "formats": [
+    "pdf",
     "txt",
     "html",
     "epub"
@@ -850,6 +1034,29 @@
    ]
   },
   {
+   "id": "euti_chariko_chiribiri",
+   "title": "एउटी चरीको चिरीबिरी",
+   "title_roman": "Euti Chariko Chiribiri",
+   "author": "Laxmi Prasad Devkota",
+   "genre": [
+    "nibandha",
+    "essay"
+   ],
+   "collection": [
+    "लक्ष्मी निबन्ध सङ्ग्रह"
+   ],
+   "rights": "public-domain",
+   "proofread": false,
+   "source": null,
+   "path": "archives/authors/devkota/euti_chariko_chiribiri",
+   "formats": [
+    "pdf",
+    "txt",
+    "html",
+    "epub"
+   ]
+  },
+  {
    "id": "gadha_bolchha",
    "title": "गधा बोल्छ",
    "title_roman": "Gadha Bolchha",
@@ -866,6 +1073,29 @@
    "source": "Kavita Kosh (kavitakosh.org)",
    "path": "archives/authors/devkota/gadha_bolchha",
    "formats": [
+    "txt",
+    "html",
+    "epub"
+   ]
+  },
+  {
+   "id": "gadha_buddhiman_ki_guru",
+   "title": "गधा बुद्धिमान् कि गुरु ?",
+   "title_roman": "Gadha Buddhiman Ki Guru",
+   "author": "Laxmi Prasad Devkota",
+   "genre": [
+    "nibandha",
+    "essay"
+   ],
+   "collection": [
+    "लक्ष्मी निबन्ध सङ्ग्रह"
+   ],
+   "rights": "public-domain",
+   "proofread": false,
+   "source": null,
+   "path": "archives/authors/devkota/gadha_buddhiman_ki_guru",
+   "formats": [
+    "pdf",
     "txt",
     "html",
     "epub"
@@ -932,6 +1162,29 @@
    "source": "Kavita Kosh (kavitakosh.org)",
    "path": "archives/authors/devkota/gau_dine_katha",
    "formats": [
+    "txt",
+    "html",
+    "epub"
+   ]
+  },
+  {
+   "id": "gaurishankar_yatra",
+   "title": "गौरीशंकर यात्रा",
+   "title_roman": "Gaurishankar Yatra",
+   "author": "Laxmi Prasad Devkota",
+   "genre": [
+    "nibandha",
+    "essay"
+   ],
+   "collection": [
+    "लक्ष्मी निबन्ध सङ्ग्रह"
+   ],
+   "rights": "public-domain",
+   "proofread": false,
+   "source": null,
+   "path": "archives/authors/devkota/gaurishankar_yatra",
+   "formats": [
+    "pdf",
     "txt",
     "html",
     "epub"
@@ -1026,6 +1279,29 @@
    ]
   },
   {
+   "id": "hai_hai_angreji",
+   "title": "हाइ हाइ अंग्रेजी",
+   "title_roman": "Hai Hai Angreji",
+   "author": "Laxmi Prasad Devkota",
+   "genre": [
+    "nibandha",
+    "essay"
+   ],
+   "collection": [
+    "लक्ष्मी निबन्ध सङ्ग्रह"
+   ],
+   "rights": "public-domain",
+   "proofread": false,
+   "source": null,
+   "path": "archives/authors/devkota/hai_hai_angreji",
+   "formats": [
+    "pdf",
+    "txt",
+    "html",
+    "epub"
+   ]
+  },
+  {
    "id": "haisa_budhiko_mukh",
    "title": "हैँसा बुढीको मुख",
    "title_roman": "Haisa Budhiko Mukh",
@@ -1064,6 +1340,29 @@
    "source": "Kavita Kosh (kavitakosh.org)",
    "path": "archives/authors/devkota/hami_nepali",
    "formats": [
+    "txt",
+    "html",
+    "epub"
+   ]
+  },
+  {
+   "id": "hasyaras",
+   "title": "हास्यरस",
+   "title_roman": "Hasyaras",
+   "author": "Laxmi Prasad Devkota",
+   "genre": [
+    "nibandha",
+    "essay"
+   ],
+   "collection": [
+    "लक्ष्मी निबन्ध सङ्ग्रह"
+   ],
+   "rights": "public-domain",
+   "proofread": false,
+   "source": null,
+   "path": "archives/authors/devkota/hasyaras",
+   "formats": [
+    "pdf",
     "txt",
     "html",
     "epub"
@@ -1310,6 +1609,52 @@
    ]
   },
   {
+   "id": "juba",
+   "title": "जूवा",
+   "title_roman": "Juba",
+   "author": "Laxmi Prasad Devkota",
+   "genre": [
+    "nibandha",
+    "essay"
+   ],
+   "collection": [
+    "लक्ष्मी निबन्ध सङ्ग्रह"
+   ],
+   "rights": "public-domain",
+   "proofread": false,
+   "source": null,
+   "path": "archives/authors/devkota/juba",
+   "formats": [
+    "pdf",
+    "txt",
+    "html",
+    "epub"
+   ]
+  },
+  {
+   "id": "jugha",
+   "title": "जुँघा",
+   "title_roman": "Jugha",
+   "author": "Laxmi Prasad Devkota",
+   "genre": [
+    "nibandha",
+    "essay"
+   ],
+   "collection": [
+    "लक्ष्मी निबन्ध सङ्ग्रह"
+   ],
+   "rights": "public-domain",
+   "proofread": false,
+   "source": null,
+   "path": "archives/authors/devkota/jugha",
+   "formats": [
+    "pdf",
+    "txt",
+    "html",
+    "epub"
+   ]
+  },
+  {
    "id": "juni",
    "title": "जुनी",
    "title_roman": "Juni",
@@ -1376,6 +1721,75 @@
    ]
   },
   {
+   "id": "kabirajako_chyanggre_khachchar",
+   "title": "कविराजको च्याङ्ग्रे खच्चर",
+   "title_roman": "Kabirajako Chyanggre Khachchar",
+   "author": "Laxmi Prasad Devkota",
+   "genre": [
+    "nibandha",
+    "essay"
+   ],
+   "collection": [
+    "लक्ष्मी निबन्ध सङ्ग्रह"
+   ],
+   "rights": "public-domain",
+   "proofread": false,
+   "source": null,
+   "path": "archives/authors/devkota/kabirajako_chyanggre_khachchar",
+   "formats": [
+    "pdf",
+    "txt",
+    "html",
+    "epub"
+   ]
+  },
+  {
+   "id": "kala_r_jiban",
+   "title": "कला र जीवन",
+   "title_roman": "Kala R Jiban",
+   "author": "Laxmi Prasad Devkota",
+   "genre": [
+    "nibandha",
+    "essay"
+   ],
+   "collection": [
+    "लक्ष्मी निबन्ध सङ्ग्रह"
+   ],
+   "rights": "public-domain",
+   "proofread": false,
+   "source": null,
+   "path": "archives/authors/devkota/kala_r_jiban",
+   "formats": [
+    "pdf",
+    "txt",
+    "html",
+    "epub"
+   ]
+  },
+  {
+   "id": "kalpana",
+   "title": "कल्पना",
+   "title_roman": "Kalpana",
+   "author": "Laxmi Prasad Devkota",
+   "genre": [
+    "nibandha",
+    "essay"
+   ],
+   "collection": [
+    "लक्ष्मी निबन्ध सङ्ग्रह"
+   ],
+   "rights": "public-domain",
+   "proofread": false,
+   "source": null,
+   "path": "archives/authors/devkota/kalpana",
+   "formats": [
+    "pdf",
+    "txt",
+    "html",
+    "epub"
+   ]
+  },
+  {
    "id": "kamajori",
    "title": "कमजोरी",
    "title_roman": "Kamajori",
@@ -1406,7 +1820,9 @@
     "nibandha",
     "essay"
    ],
-   "collection": null,
+   "collection": [
+    "लक्ष्मी निबन्ध सङ्ग्रह"
+   ],
    "rights": "public-domain",
    "proofread": false,
    "source": "Internet Archive",
@@ -1569,6 +1985,52 @@
    ]
   },
   {
+   "id": "kumbhakarna",
+   "title": "कुम्भकर्ण",
+   "title_roman": "Kumbhakarna",
+   "author": "Laxmi Prasad Devkota",
+   "genre": [
+    "nibandha",
+    "essay"
+   ],
+   "collection": [
+    "लक्ष्मी निबन्ध सङ्ग्रह"
+   ],
+   "rights": "public-domain",
+   "proofread": false,
+   "source": null,
+   "path": "archives/authors/devkota/kumbhakarna",
+   "formats": [
+    "pdf",
+    "txt",
+    "html",
+    "epub"
+   ]
+  },
+  {
+   "id": "lekhne_bani",
+   "title": "लेख्ने बानी",
+   "title_roman": "Lekhne Bani",
+   "author": "Laxmi Prasad Devkota",
+   "genre": [
+    "nibandha",
+    "essay"
+   ],
+   "collection": [
+    "लक्ष्मी निबन्ध सङ्ग्रह"
+   ],
+   "rights": "public-domain",
+   "proofread": false,
+   "source": null,
+   "path": "archives/authors/devkota/lekhne_bani",
+   "formats": [
+    "pdf",
+    "txt",
+    "html",
+    "epub"
+   ]
+  },
+  {
    "id": "m",
    "title": "म",
    "title_roman": "M",
@@ -1655,6 +2117,52 @@
    ]
   },
   {
+   "id": "manchhejadu",
+   "title": "मान्छे-जादू",
+   "title_roman": "Manchhejadu",
+   "author": "Laxmi Prasad Devkota",
+   "genre": [
+    "nibandha",
+    "essay"
+   ],
+   "collection": [
+    "लक्ष्मी निबन्ध सङ्ग्रह"
+   ],
+   "rights": "public-domain",
+   "proofread": false,
+   "source": null,
+   "path": "archives/authors/devkota/manchhejadu",
+   "formats": [
+    "pdf",
+    "txt",
+    "html",
+    "epub"
+   ]
+  },
+  {
+   "id": "manchhelai_ghadibat_hani",
+   "title": "मान्छेलाई घडीबाट हानि",
+   "title_roman": "Manchhelai Ghadibat Hani",
+   "author": "Laxmi Prasad Devkota",
+   "genre": [
+    "nibandha",
+    "essay"
+   ],
+   "collection": [
+    "लक्ष्मी निबन्ध सङ्ग्रह"
+   ],
+   "rights": "public-domain",
+   "proofread": false,
+   "source": null,
+   "path": "archives/authors/devkota/manchhelai_ghadibat_hani",
+   "formats": [
+    "pdf",
+    "txt",
+    "html",
+    "epub"
+   ]
+  },
+  {
    "id": "manis_birat",
    "title": "मानिस विराट्",
    "title_roman": "Manis Birat",
@@ -1671,6 +2179,29 @@
    "source": "Kavita Kosh (kavitakosh.org)",
    "path": "archives/authors/devkota/manis_birat",
    "formats": [
+    "txt",
+    "html",
+    "epub"
+   ]
+  },
+  {
+   "id": "masalako_botale_ke_herchha",
+   "title": "मसलाको बोटले के हेर्छ ?",
+   "title_roman": "Masalako Botale Ke Herchha",
+   "author": "Laxmi Prasad Devkota",
+   "genre": [
+    "nibandha",
+    "essay"
+   ],
+   "collection": [
+    "लक्ष्मी निबन्ध सङ्ग्रह"
+   ],
+   "rights": "public-domain",
+   "proofread": false,
+   "source": null,
+   "path": "archives/authors/devkota/masalako_botale_ke_herchha",
+   "formats": [
+    "pdf",
     "txt",
     "html",
     "epub"
@@ -1715,6 +2246,29 @@
    "source": "Kavita Kosh (kavitakosh.org)",
    "path": "archives/authors/devkota/matribhumiko_mato_runchha",
    "formats": [
+    "txt",
+    "html",
+    "epub"
+   ]
+  },
+  {
+   "id": "meri_shishu",
+   "title": "मेरी शिशु",
+   "title_roman": "Meri Shishu",
+   "author": "Laxmi Prasad Devkota",
+   "genre": [
+    "nibandha",
+    "essay"
+   ],
+   "collection": [
+    "लक्ष्मी निबन्ध सङ्ग्रह"
+   ],
+   "rights": "public-domain",
+   "proofread": false,
+   "source": null,
+   "path": "archives/authors/devkota/meri_shishu",
+   "formats": [
+    "pdf",
     "txt",
     "html",
     "epub"
@@ -1807,6 +2361,52 @@
    ]
   },
   {
+   "id": "nepali_gundo",
+   "title": "नेपाली गुण्डो",
+   "title_roman": "Nepali Gundo",
+   "author": "Laxmi Prasad Devkota",
+   "genre": [
+    "nibandha",
+    "essay"
+   ],
+   "collection": [
+    "लक्ष्मी निबन्ध सङ्ग्रह"
+   ],
+   "rights": "public-domain",
+   "proofread": false,
+   "source": null,
+   "path": "archives/authors/devkota/nepali_gundo",
+   "formats": [
+    "pdf",
+    "txt",
+    "html",
+    "epub"
+   ]
+  },
+  {
+   "id": "nepali_sahityako_itihasama_sarbashreshtha_purush",
+   "title": "नेपाली साहित्यको इतिहासमा सर्वश्रेष्ठ पुरुष",
+   "title_roman": "Nepali Sahityako Itihasama Sarbashreshtha Purush",
+   "author": "Laxmi Prasad Devkota",
+   "genre": [
+    "nibandha",
+    "essay"
+   ],
+   "collection": [
+    "लक्ष्मी निबन्ध सङ्ग्रह"
+   ],
+   "rights": "public-domain",
+   "proofread": false,
+   "source": null,
+   "path": "archives/authors/devkota/nepali_sahityako_itihasama_sarbashreshtha_purush",
+   "formats": [
+    "pdf",
+    "txt",
+    "html",
+    "epub"
+   ]
+  },
+  {
    "id": "nepali_salai_batta",
    "title": "नेपाली सलाई बट्टा",
    "title_roman": "Nepali Salai Batta",
@@ -1873,6 +2473,29 @@
    ]
   },
   {
+   "id": "pachauta_chahine_kuraharu",
+   "title": "पाँचौटा चाहिने कुराहरू",
+   "title_roman": "Pachauta Chahine Kuraharu",
+   "author": "Laxmi Prasad Devkota",
+   "genre": [
+    "nibandha",
+    "essay"
+   ],
+   "collection": [
+    "लक्ष्मी निबन्ध सङ्ग्रह"
+   ],
+   "rights": "public-domain",
+   "proofread": false,
+   "source": null,
+   "path": "archives/authors/devkota/pachauta_chahine_kuraharu",
+   "formats": [
+    "pdf",
+    "txt",
+    "html",
+    "epub"
+   ]
+  },
+  {
    "id": "pagal",
    "title": "पागल",
    "title_roman": "Pagal",
@@ -1889,6 +2512,29 @@
    "source": "Kavita Kosh (kavitakosh.org)",
    "path": "archives/authors/devkota/pagal",
    "formats": [
+    "txt",
+    "html",
+    "epub"
+   ]
+  },
+  {
+   "id": "pahadi_jiban",
+   "title": "पहाडी जीवन",
+   "title_roman": "Pahadi Jiban",
+   "author": "Laxmi Prasad Devkota",
+   "genre": [
+    "nibandha",
+    "essay"
+   ],
+   "collection": [
+    "लक्ष्मी निबन्ध सङ्ग्रह"
+   ],
+   "rights": "public-domain",
+   "proofread": false,
+   "source": null,
+   "path": "archives/authors/devkota/pahadi_jiban",
+   "formats": [
+    "pdf",
     "txt",
     "html",
     "epub"
@@ -1933,6 +2579,29 @@
    "source": "Kavita Kosh (kavitakosh.org)",
    "path": "archives/authors/devkota/paltan",
    "formats": [
+    "txt",
+    "html",
+    "epub"
+   ]
+  },
+  {
+   "id": "pandit_lekhanath_paudyalako_bishayama",
+   "title": "पण्डित लेखनाथ पौड्यालको विषयमा",
+   "title_roman": "Pandit Lekhanath Paudyalako Bishayama",
+   "author": "Laxmi Prasad Devkota",
+   "genre": [
+    "nibandha",
+    "essay"
+   ],
+   "collection": [
+    "लक्ष्मी निबन्ध सङ्ग्रह"
+   ],
+   "rights": "public-domain",
+   "proofread": false,
+   "source": null,
+   "path": "archives/authors/devkota/pandit_lekhanath_paudyalako_bishayama",
+   "formats": [
+    "pdf",
     "txt",
     "html",
     "epub"
@@ -2021,6 +2690,29 @@
    "source": "Kavita Kosh (kavitakosh.org)",
    "path": "archives/authors/devkota/phagun_phulchha_sansar_sara",
    "formats": [
+    "txt",
+    "html",
+    "epub"
+   ]
+  },
+  {
+   "id": "phul",
+   "title": "फूल",
+   "title_roman": "Phul",
+   "author": "Laxmi Prasad Devkota",
+   "genre": [
+    "nibandha",
+    "essay"
+   ],
+   "collection": [
+    "लक्ष्मी निबन्ध सङ्ग्रह"
+   ],
+   "rights": "public-domain",
+   "proofread": false,
+   "source": null,
+   "path": "archives/authors/devkota/phul",
+   "formats": [
+    "pdf",
     "txt",
     "html",
     "epub"
@@ -2437,6 +3129,29 @@
    ]
   },
   {
+   "id": "sadhuko_mahatmya",
+   "title": "साधुको माहात्म्य",
+   "title_roman": "Sadhuko Mahatmya",
+   "author": "Laxmi Prasad Devkota",
+   "genre": [
+    "nibandha",
+    "essay"
+   ],
+   "collection": [
+    "लक्ष्मी निबन्ध सङ्ग्रह"
+   ],
+   "rights": "public-domain",
+   "proofread": false,
+   "source": null,
+   "path": "archives/authors/devkota/sadhuko_mahatmya",
+   "formats": [
+    "pdf",
+    "txt",
+    "html",
+    "epub"
+   ]
+  },
+  {
    "id": "sagarabhari_chhati_chiri",
    "title": "सागरभरि छाती चिरी",
    "title_roman": "Sagarabhari Chhati Chiri",
@@ -2590,6 +3305,29 @@
    ]
   },
   {
+   "id": "saritako_kalakalama",
+   "title": "सरिताको कलकलमा",
+   "title_roman": "Saritako Kalakalama",
+   "author": "Laxmi Prasad Devkota",
+   "genre": [
+    "nibandha",
+    "essay"
+   ],
+   "collection": [
+    "लक्ष्मी निबन्ध सङ्ग्रह"
+   ],
+   "rights": "public-domain",
+   "proofread": false,
+   "source": null,
+   "path": "archives/authors/devkota/saritako_kalakalama",
+   "formats": [
+    "pdf",
+    "txt",
+    "html",
+    "epub"
+   ]
+  },
+  {
    "id": "sarki",
    "title": "सार्की",
    "title_roman": "Sarki",
@@ -2606,6 +3344,29 @@
    "source": "Kavita Kosh (kavitakosh.org)",
    "path": "archives/authors/devkota/sarki",
    "formats": [
+    "txt",
+    "html",
+    "epub"
+   ]
+  },
+  {
+   "id": "satya_sojho_hunchha",
+   "title": "सत्य सोझो हुन्छ",
+   "title_roman": "Satya Sojho Hunchha",
+   "author": "Laxmi Prasad Devkota",
+   "genre": [
+    "nibandha",
+    "essay"
+   ],
+   "collection": [
+    "लक्ष्मी निबन्ध सङ्ग्रह"
+   ],
+   "rights": "public-domain",
+   "proofread": false,
+   "source": null,
+   "path": "archives/authors/devkota/satya_sojho_hunchha",
+   "formats": [
+    "pdf",
     "txt",
     "html",
     "epub"
@@ -2720,6 +3481,52 @@
    ]
   },
   {
+   "id": "shiksha",
+   "title": "शिक्षा",
+   "title_roman": "Shiksha",
+   "author": "Laxmi Prasad Devkota",
+   "genre": [
+    "nibandha",
+    "essay"
+   ],
+   "collection": [
+    "लक्ष्मी निबन्ध सङ्ग्रह"
+   ],
+   "rights": "public-domain",
+   "proofread": false,
+   "source": null,
+   "path": "archives/authors/devkota/shiksha",
+   "formats": [
+    "pdf",
+    "txt",
+    "html",
+    "epub"
+   ]
+  },
+  {
+   "id": "shriganeshay_namah",
+   "title": "श्रीगणेशाय नमः",
+   "title_roman": "Shriganeshay Namah",
+   "author": "Laxmi Prasad Devkota",
+   "genre": [
+    "nibandha",
+    "essay"
+   ],
+   "collection": [
+    "लक्ष्मी निबन्ध सङ्ग्रह"
+   ],
+   "rights": "public-domain",
+   "proofread": false,
+   "source": null,
+   "path": "archives/authors/devkota/shriganeshay_namah",
+   "formats": [
+    "pdf",
+    "txt",
+    "html",
+    "epub"
+   ]
+  },
+  {
    "id": "shripech",
    "title": "श्रीपेच",
    "title_roman": "Shripech",
@@ -2808,6 +3615,29 @@
    ]
   },
   {
+   "id": "sukulamathi",
+   "title": "सुकुलमाथि",
+   "title_roman": "Sukulamathi",
+   "author": "Laxmi Prasad Devkota",
+   "genre": [
+    "nibandha",
+    "essay"
+   ],
+   "collection": [
+    "लक्ष्मी निबन्ध सङ्ग्रह"
+   ],
+   "rights": "public-domain",
+   "proofread": false,
+   "source": null,
+   "path": "archives/authors/devkota/sukulamathi",
+   "formats": [
+    "pdf",
+    "txt",
+    "html",
+    "epub"
+   ]
+  },
+  {
    "id": "sunako_bihan",
    "title": "सुनको बिहान",
    "title_roman": "Sunako Bihan",
@@ -2847,6 +3677,29 @@
    "source": "Kavita Kosh (kavitakosh.org)",
    "path": "archives/authors/devkota/sunyama_sunya_sari",
    "formats": [
+    "txt",
+    "html",
+    "epub"
+   ]
+  },
+  {
+   "id": "sustari_shbas_pher",
+   "title": "सुस्तरी श्वास फेर",
+   "title_roman": "Sustari Shbas Pher",
+   "author": "Laxmi Prasad Devkota",
+   "genre": [
+    "nibandha",
+    "essay"
+   ],
+   "collection": [
+    "लक्ष्मी निबन्ध सङ्ग्रह"
+   ],
+   "rights": "public-domain",
+   "proofread": false,
+   "source": null,
+   "path": "archives/authors/devkota/sustari_shbas_pher",
+   "formats": [
+    "pdf",
     "txt",
     "html",
     "epub"
