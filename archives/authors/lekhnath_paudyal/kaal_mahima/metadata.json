@@ -1,7 +1,7 @@
 {
-  "id": "jiwan_changa",
-  "title": "जीवन चङ्गा",
-  "title_roman": "Jiwan Changa",
+  "id": "kaal_mahima",
+  "title": "काल महिमा",
+  "title_roman": "Kaal Mahima",
   "subtitle": null,
   "author": {
     "id": "lekhnath_paudyal",
@@ -15,21 +15,21 @@
     "poem"
   ],
   "first_published": {
-    "bs": 1992,
+    "bs": null,
     "ad": null
   },
   "edition": null,
   "publisher": null,
-  "description": "Lekhnath Paudyal's poem likening life to a kite.",
+  "description": "Lekhnath Paudyal's poem personifying काल (Time/Death) as an impartial, insatiable force that spares neither king nor pauper, cannot be bribed, postponed, or frightened, and ceaselessly devours all of creation.",
   "rights": {
     "status": "public-domain",
     "basis": "Author died 1966; public domain since 2016 (Nepal's Copyright Act 2059: life + 50 years). Verify before publishing.",
     "verified": false
   },
   "source": {
-    "name": "लेखनाथका प्रमुख कविता (साझा प्रकाशन)",
+    "name": null,
     "url": null,
-    "pdf": "jiwan_changa.pdf",
+    "pdf": null,
     "html": null
   },
   "pages": null,
@@ -40,11 +40,11 @@
     "quality": "good"
   },
   "formats": {
-    "pdf": "jiwan_changa.pdf",
+    "pdf": null,
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"
   },
-  "added": "2026-06-05",
+  "added": "2026-06-07",
   "updated": "2026-06-07"
 }

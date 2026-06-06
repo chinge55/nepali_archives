@@ -1,7 +1,7 @@
 {
-  "id": "jiwan_changa",
-  "title": "जीवन चङ्गा",
-  "title_roman": "Jiwan Changa",
+  "id": "hamro_indreni",
+  "title": "हाम्रो इन्द्रेनी",
+  "title_roman": "Hamro Indreni",
   "subtitle": null,
   "author": {
     "id": "lekhnath_paudyal",
@@ -15,12 +15,12 @@
     "poem"
   ],
   "first_published": {
-    "bs": 1992,
+    "bs": 2013,
     "ad": null
   },
   "edition": null,
   "publisher": null,
-  "description": "Lekhnath Paudyal's poem likening life to a kite.",
+  "description": "Lekhnath Paudyal's poem \"हाम्रो इन्द्रेनी\" contemplates a rainbow seen across a mountain valley, imagining it through a sequence of fanciful comparisons before it fades.",
   "rights": {
     "status": "public-domain",
     "basis": "Author died 1966; public domain since 2016 (Nepal's Copyright Act 2059: life + 50 years). Verify before publishing.",
@@ -29,22 +29,22 @@
   "source": {
     "name": "लेखनाथका प्रमुख कविता (साझा प्रकाशन)",
     "url": null,
-    "pdf": "jiwan_changa.pdf",
+    "pdf": "hamro_indreni.pdf",
     "html": null
   },
-  "pages": null,
+  "pages": 2,
   "text": {
-    "extraction_method": "manual",
-    "ocr_status": "born-digital",
+    "extraction_method": "ocr",
+    "ocr_status": "ocr-done",
     "proofread": false,
     "quality": "good"
   },
   "formats": {
-    "pdf": "jiwan_changa.pdf",
+    "pdf": "hamro_indreni.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"
   },
-  "added": "2026-06-05",
+  "added": "2026-06-07",
   "updated": "2026-06-07"
 }

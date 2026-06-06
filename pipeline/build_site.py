@@ -68,17 +68,26 @@ def _is_heading(b: str) -> bool:
 
 PROSE_GENRES = {"upanyas", "nibandha"}
 
+# A source colophon: the small attribution line printed at a poem's end giving
+# its original publication, e.g. "वि. सं. १९६९ ... लालित्यबाट". Rendered as a
+# muted attribution line, never as a verse stanza or a section heading.
+_COLOPHON_RE = re.compile(r"^\s*(वि|बि)\.?\s*सं\.?\s*[०-९]")
+
 
 def work_html(text: str, verse: bool) -> str:
     """Blank-line blocks become stanzas/paragraphs; word-like standalone lines
     become section headings. For verse, each line is its own block so wrapped
-    long lines hang-indent (and never read as a new verse line). Prose flows."""
+    long lines hang-indent (and never read as a new verse line). Prose flows.
+    A trailing source colophon is set apart as a muted attribution line."""
     blocks = [b.strip("\n") for b in text.replace("\r\n", "\n").split("\n\n")]
     out = []
     for b in blocks:
         if not b.strip():
             continue
-        if _is_heading(b):
+        if _COLOPHON_RE.match(b):
+            line = re.sub(r"\s+", " ", b.replace("\n", " ")).strip()
+            out.append(f'<p class="colophon">{esc(line)}</p>')
+        elif _is_heading(b):
             out.append(f'<h2 class="sec">{esc(b)}</h2>')
         elif verse:
             lines = "".join(f'<span class="ln">{esc(l)}</span>'
@@ -172,6 +181,7 @@ h1{font-size:1.7rem;line-height:1.3;margin:.5rem 0 .25rem}
 .work.verse .ln{display:block;padding-left:1.6em;text-indent:-1.6em}  /* hanging indent: wraps stay clear of new lines */
 .work.prose .stanza{text-align:left}
 .work h2.sec{font-size:1.05rem;font-weight:600;color:var(--accent);margin:2.4rem 0 1rem}
+.work .colophon{font-size:.82rem;font-style:italic;color:var(--mut);margin:1.8rem 0 0;opacity:.9}
 .seqnav{display:flex;gap:1rem;margin-top:2.5rem;padding-top:1rem;border-top:1px solid var(--line);font-size:.92rem}
 .seqnav a{text-decoration:none;color:var(--link);max-width:48%}
 .seqnav .nx{margin-left:auto;text-align:right}
