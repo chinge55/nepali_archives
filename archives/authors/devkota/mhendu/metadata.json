@@ -1,0 +1,50 @@
+{
+  "id": "mhendu",
+  "title": "म्हेन्दु",
+  "title_roman": "Mhendu",
+  "subtitle": null,
+  "author": {
+    "id": "devkota",
+    "name": "लक्ष्मीप्रसाद देवकोटा",
+    "name_roman": "Laxmi Prasad Devkota"
+  },
+  "language": "ne",
+  "script": "Devanagari",
+  "genre": [
+    "khandakavya",
+    "gitikavya"
+  ],
+  "first_published": {
+    "bs": 2015,
+    "ad": null
+  },
+  "edition": "साझा प्रकाशन (पहिलो संस्करण २०१५; पाँचौं २०६३)",
+  "publisher": "साझा प्रकाशन",
+  "description": "Devkota's गीतिकाव्य (lyric poem) म्हेन्दु — the poetic fruit of his 2003 BS journey toward Gosaikunda — sings of म्हेन्दु, a Tamang highland flower-maiden, and of love amid the Helambu mountains, in five short sections (प्रथम–पञ्चम) of brief Tamang/Bhote-rhythm stanzas. It opens with Devkota's own note 'म्हेन्दुको विषयमा', where he likens the attempt to मुनामदन's म्याउरे-छन्द experiment. First published by साझा प्रकाशन (2015 BS); digitized from the print edition by OLE Nepal / pustakalaya.org.",
+  "rights": {
+    "status": "public-domain",
+    "basis": "Author died 1959; Nepal's Copyright Act 2059 grants life + 50 years, expiring 2009. Verify before publishing.",
+    "verified": false
+  },
+  "source": {
+    "name": "म्हेन्दु (साझा प्रकाशन)",
+    "url": null,
+    "pdf": "mhendu.pdf",
+    "html": null
+  },
+  "pages": 30,
+  "text": {
+    "extraction_method": "ocr",
+    "ocr_status": "ocr-done",
+    "proofread": false,
+    "quality": "good"
+  },
+  "formats": {
+    "pdf": "mhendu.pdf",
+    "txt": "text.txt",
+    "html": "reader.html",
+    "epub": "reader.epub"
+  },
+  "added": "2026-06-07",
+  "updated": "2026-06-07"
+}

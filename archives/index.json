@@ -1,7 +1,7 @@
 {
  "archive": "Nepali Archives",
  "generated": "2026-06-07",
- "count": 155,
+ "count": 156,
  "works": [
   {
    "id": "kantipuri_nagari",
@@ -497,6 +497,7 @@
    "source": "साहित्य सङ्ग्रहालय (sahityasangraha.com)",
    "path": "archives/authors/devkota/champa",
    "formats": [
+    "pdf",
     "txt",
     "html",
     "epub"
@@ -1742,6 +1743,27 @@
    ]
   },
   {
+   "id": "mhendu",
+   "title": "म्हेन्दु",
+   "title_roman": "Mhendu",
+   "author": "Laxmi Prasad Devkota",
+   "genre": [
+    "khandakavya",
+    "gitikavya"
+   ],
+   "collection": null,
+   "rights": "public-domain",
+   "proofread": false,
+   "source": null,
+   "path": "archives/authors/devkota/mhendu",
+   "formats": [
+    "pdf",
+    "txt",
+    "html",
+    "epub"
+   ]
+  },
+  {
    "id": "mohodama",
    "title": "मोहोडामा",
    "title_roman": "Mohodama",
@@ -2962,6 +2984,111 @@
    ]
   },
   {
+   "id": "akhiri_kabita",
+   "title": "आखिरी कविता",
+   "title_roman": "Akhiri Kabita",
+   "author": "Lekhnath Paudyal",
+   "genre": [
+    "kavita",
+    "poem"
+   ],
+   "collection": null,
+   "rights": "public-domain",
+   "proofread": false,
+   "source": null,
+   "path": "archives/authors/lekhnath_paudyal/akhiri_kabita",
+   "formats": [
+    "pdf",
+    "txt",
+    "html",
+    "epub"
+   ]
+  },
+  {
+   "id": "banshidharako_dibya_banshi",
+   "title": "वंशीधरको दिव्य वंशी",
+   "title_roman": "Banshidharako Dibya Banshi",
+   "author": "Lekhnath Paudyal",
+   "genre": [
+    "kavita",
+    "poem"
+   ],
+   "collection": null,
+   "rights": "public-domain",
+   "proofread": false,
+   "source": null,
+   "path": "archives/authors/lekhnath_paudyal/banshidharako_dibya_banshi",
+   "formats": [
+    "pdf",
+    "txt",
+    "html",
+    "epub"
+   ]
+  },
+  {
+   "id": "barsha",
+   "title": "वर्षा",
+   "title_roman": "Barsha",
+   "author": "Lekhnath Paudyal",
+   "genre": [
+    "kavita",
+    "poem"
+   ],
+   "collection": null,
+   "rights": "public-domain",
+   "proofread": false,
+   "source": null,
+   "path": "archives/authors/lekhnath_paudyal/barsha",
+   "formats": [
+    "pdf",
+    "txt",
+    "html",
+    "epub"
+   ]
+  },
+  {
+   "id": "basanta_kokil",
+   "title": "वसन्त कोकिल",
+   "title_roman": "Basanta Kokil",
+   "author": "Lekhnath Paudyal",
+   "genre": [
+    "kavita",
+    "poem"
+   ],
+   "collection": null,
+   "rights": "public-domain",
+   "proofread": false,
+   "source": null,
+   "path": "archives/authors/lekhnath_paudyal/basanta_kokil",
+   "formats": [
+    "pdf",
+    "txt",
+    "html",
+    "epub"
+   ]
+  },
+  {
+   "id": "bigyaanako_moh",
+   "title": "विज्ञानको मोह",
+   "title_roman": "Bigyaanako Moh",
+   "author": "Lekhnath Paudyal",
+   "genre": [
+    "kavita",
+    "poem"
+   ],
+   "collection": null,
+   "rights": "public-domain",
+   "proofread": false,
+   "source": null,
+   "path": "archives/authors/lekhnath_paudyal/bigyaanako_moh",
+   "formats": [
+    "pdf",
+    "txt",
+    "html",
+    "epub"
+   ]
+  },
+  {
    "id": "buddhi_binod_prashna",
    "title": "प्रश्न",
    "title_roman": "Prashna",
@@ -2976,6 +3103,48 @@
    "source": null,
    "path": "archives/authors/lekhnath_paudyal/buddhi_binod_prashna",
    "formats": [
+    "txt",
+    "html",
+    "epub"
+   ]
+  },
+  {
+   "id": "gaunthaliko_chiribiri",
+   "title": "गौँथलीको चिरिबिरी (१)",
+   "title_roman": "Gauthaliko Chiribiri",
+   "author": "Lekhnath Paudyal",
+   "genre": [
+    "kavita",
+    "poem"
+   ],
+   "collection": null,
+   "rights": "public-domain",
+   "proofread": false,
+   "source": null,
+   "path": "archives/authors/lekhnath_paudyal/gaunthaliko_chiribiri",
+   "formats": [
+    "pdf",
+    "txt",
+    "html",
+    "epub"
+   ]
+  },
+  {
+   "id": "hamro_indreni",
+   "title": "हाम्रो इन्द्रेनी",
+   "title_roman": "Hamro Indreni",
+   "author": "Lekhnath Paudyal",
+   "genre": [
+    "kavita",
+    "poem"
+   ],
+   "collection": null,
+   "rights": "public-domain",
+   "proofread": false,
+   "source": null,
+   "path": "archives/authors/lekhnath_paudyal/hamro_indreni",
+   "formats": [
+    "pdf",
     "txt",
     "html",
     "epub"
@@ -3003,21 +3172,20 @@
    ]
   },
   {
-   "id": "tarun_tapasi",
-   "title": "तरुण तपसी",
-   "title_roman": "Tarun Tapasi",
+   "id": "kaal_mahima",
+   "title": "काल महिमा",
+   "title_roman": "Kaal Mahima",
    "author": "Lekhnath Paudyal",
    "genre": [
-    "mahakavya",
-    "epic"
+    "kavita",
+    "poem"
    ],
    "collection": null,
    "rights": "public-domain",
    "proofread": false,
    "source": null,
-   "path": "archives/authors/lekhnath_paudyal/tarun_tapasi",
+   "path": "archives/authors/lekhnath_paudyal/kaal_mahima",
    "formats": [
-    "pdf",
     "txt",
     "html",
     "epub"
@@ -3066,90 +3234,6 @@
    ]
   },
   {
-   "id": "basanta_kokil",
-   "title": "वसन्त कोकिल",
-   "title_roman": "Basanta Kokil",
-   "author": "Lekhnath Paudyal",
-   "genre": [
-    "kavita",
-    "poem"
-   ],
-   "collection": null,
-   "rights": "public-domain",
-   "proofread": false,
-   "source": null,
-   "path": "archives/authors/lekhnath_paudyal/basanta_kokil",
-   "formats": [
-    "pdf",
-    "txt",
-    "html",
-    "epub"
-   ]
-  },
-  {
-   "id": "gaunthaliko_chiribiri",
-   "title": "गौँथलीको चिरिबिरी (१)",
-   "title_roman": "Gauthaliko Chiribiri",
-   "author": "Lekhnath Paudyal",
-   "genre": [
-    "kavita",
-    "poem"
-   ],
-   "collection": null,
-   "rights": "public-domain",
-   "proofread": false,
-   "source": null,
-   "path": "archives/authors/lekhnath_paudyal/gaunthaliko_chiribiri",
-   "formats": [
-    "pdf",
-    "txt",
-    "html",
-    "epub"
-   ]
-  },
-  {
-   "id": "satya_sandeshaharu",
-   "title": "सत्य सन्देशहरू",
-   "title_roman": "Satya Sandeshaharu",
-   "author": "Lekhnath Paudyal",
-   "genre": [
-    "kavita",
-    "poem"
-   ],
-   "collection": null,
-   "rights": "public-domain",
-   "proofread": false,
-   "source": null,
-   "path": "archives/authors/lekhnath_paudyal/satya_sandeshaharu",
-   "formats": [
-    "pdf",
-    "txt",
-    "html",
-    "epub"
-   ]
-  },
-  {
-   "id": "bigyaanako_moh",
-   "title": "विज्ञानको मोह",
-   "title_roman": "Bigyaanako Moh",
-   "author": "Lekhnath Paudyal",
-   "genre": [
-    "kavita",
-    "poem"
-   ],
-   "collection": null,
-   "rights": "public-domain",
-   "proofread": false,
-   "source": null,
-   "path": "archives/authors/lekhnath_paudyal/bigyaanako_moh",
-   "formats": [
-    "pdf",
-    "txt",
-    "html",
-    "epub"
-   ]
-  },
-  {
    "id": "patitapabani_shri_ganggajiko_jhaki",
    "title": "पतित-पावनी श्री गङ्गाजीको झाँकी",
    "title_roman": "Patitapabani Shri Ganggajiko Jhaki",
@@ -3163,111 +3247,6 @@
    "proofread": false,
    "source": null,
    "path": "archives/authors/lekhnath_paudyal/patitapabani_shri_ganggajiko_jhaki",
-   "formats": [
-    "pdf",
-    "txt",
-    "html",
-    "epub"
-   ]
-  },
-  {
-   "id": "banshidharako_dibya_banshi",
-   "title": "वंशीधरको दिव्य वंशी",
-   "title_roman": "Banshidharako Dibya Banshi",
-   "author": "Lekhnath Paudyal",
-   "genre": [
-    "kavita",
-    "poem"
-   ],
-   "collection": null,
-   "rights": "public-domain",
-   "proofread": false,
-   "source": null,
-   "path": "archives/authors/lekhnath_paudyal/banshidharako_dibya_banshi",
-   "formats": [
-    "pdf",
-    "txt",
-    "html",
-    "epub"
-   ]
-  },
-  {
-   "id": "yugabani",
-   "title": "युगवाणी",
-   "title_roman": "Yugabani",
-   "author": "Lekhnath Paudyal",
-   "genre": [
-    "kavita",
-    "poem"
-   ],
-   "collection": null,
-   "rights": "public-domain",
-   "proofread": false,
-   "source": null,
-   "path": "archives/authors/lekhnath_paudyal/yugabani",
-   "formats": [
-    "pdf",
-    "txt",
-    "html",
-    "epub"
-   ]
-  },
-  {
-   "id": "sarasbati_smriti",
-   "title": "सरस्वती स्मृति",
-   "title_roman": "Sarasbati Smriti",
-   "author": "Lekhnath Paudyal",
-   "genre": [
-    "kavita",
-    "poem"
-   ],
-   "collection": null,
-   "rights": "public-domain",
-   "proofread": false,
-   "source": null,
-   "path": "archives/authors/lekhnath_paudyal/sarasbati_smriti",
-   "formats": [
-    "pdf",
-    "txt",
-    "html",
-    "epub"
-   ]
-  },
-  {
-   "id": "sahityako_phutabal",
-   "title": "साहित्यको फुटबल",
-   "title_roman": "Sahityako Phutabal",
-   "author": "Lekhnath Paudyal",
-   "genre": [
-    "kavita",
-    "poem"
-   ],
-   "collection": null,
-   "rights": "public-domain",
-   "proofread": false,
-   "source": null,
-   "path": "archives/authors/lekhnath_paudyal/sahityako_phutabal",
-   "formats": [
-    "pdf",
-    "txt",
-    "html",
-    "epub"
-   ]
-  },
-  {
-   "id": "hamro_indreni",
-   "title": "हाम्रो इन्द्रेनी",
-   "title_roman": "Hamro Indreni",
-   "author": "Lekhnath Paudyal",
-   "genre": [
-    "kavita",
-    "poem"
-   ],
-   "collection": null,
-   "rights": "public-domain",
-   "proofread": false,
-   "source": null,
-   "path": "archives/authors/lekhnath_paudyal/hamro_indreni",
    "formats": [
     "pdf",
     "txt",
@@ -3297,9 +3276,9 @@
    ]
   },
   {
-   "id": "akhiri_kabita",
-   "title": "आखिरी कविता",
-   "title_roman": "Akhiri Kabita",
+   "id": "sahityako_phutabal",
+   "title": "साहित्यको फुटबल",
+   "title_roman": "Sahityako Phutabal",
    "author": "Lekhnath Paudyal",
    "genre": [
     "kavita",
@@ -3309,7 +3288,7 @@
    "rights": "public-domain",
    "proofread": false,
    "source": null,
-   "path": "archives/authors/lekhnath_paudyal/akhiri_kabita",
+   "path": "archives/authors/lekhnath_paudyal/sahityako_phutabal",
    "formats": [
     "pdf",
     "txt",
@@ -3318,9 +3297,9 @@
    ]
   },
   {
-   "id": "barsha",
-   "title": "वर्षा",
-   "title_roman": "Barsha",
+   "id": "sarasbati_smriti",
+   "title": "सरस्वती स्मृति",
+   "title_roman": "Sarasbati Smriti",
    "author": "Lekhnath Paudyal",
    "genre": [
     "kavita",
@@ -3330,7 +3309,7 @@
    "rights": "public-domain",
    "proofread": false,
    "source": null,
-   "path": "archives/authors/lekhnath_paudyal/barsha",
+   "path": "archives/authors/lekhnath_paudyal/sarasbati_smriti",
    "formats": [
     "pdf",
     "txt",
@@ -3339,9 +3318,9 @@
    ]
   },
   {
-   "id": "kaal_mahima",
-   "title": "काल महिमा",
-   "title_roman": "Kaal Mahima",
+   "id": "satya_sandeshaharu",
+   "title": "सत्य सन्देशहरू",
+   "title_roman": "Satya Sandeshaharu",
    "author": "Lekhnath Paudyal",
    "genre": [
     "kavita",
@@ -3351,8 +3330,51 @@
    "rights": "public-domain",
    "proofread": false,
    "source": null,
-   "path": "archives/authors/lekhnath_paudyal/kaal_mahima",
+   "path": "archives/authors/lekhnath_paudyal/satya_sandeshaharu",
    "formats": [
+    "pdf",
+    "txt",
+    "html",
+    "epub"
+   ]
+  },
+  {
+   "id": "tarun_tapasi",
+   "title": "तरुण तपसी",
+   "title_roman": "Tarun Tapasi",
+   "author": "Lekhnath Paudyal",
+   "genre": [
+    "mahakavya",
+    "epic"
+   ],
+   "collection": null,
+   "rights": "public-domain",
+   "proofread": false,
+   "source": null,
+   "path": "archives/authors/lekhnath_paudyal/tarun_tapasi",
+   "formats": [
+    "pdf",
+    "txt",
+    "html",
+    "epub"
+   ]
+  },
+  {
+   "id": "yugabani",
+   "title": "युगवाणी",
+   "title_roman": "Yugabani",
+   "author": "Lekhnath Paudyal",
+   "genre": [
+    "kavita",
+    "poem"
+   ],
+   "collection": null,
+   "rights": "public-domain",
+   "proofread": false,
+   "source": null,
+   "path": "archives/authors/lekhnath_paudyal/yugabani",
+   "formats": [
+    "pdf",
     "txt",
     "html",
     "epub"
