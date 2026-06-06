@@ -1,7 +1,7 @@
 {
  "archive": "Nepali Archives",
  "generated": "2026-06-07",
- "count": 156,
+ "count": 157,
  "works": [
   {
    "id": "kantipuri_nagari",
@@ -2802,6 +2802,29 @@
    "source": "Kavita Kosh (kavitakosh.org)",
    "path": "archives/authors/devkota/sisnoko_gunaso",
    "formats": [
+    "txt",
+    "html",
+    "epub"
+   ]
+  },
+  {
+   "id": "sunako_bihan",
+   "title": "सुनको बिहान",
+   "title_roman": "Sunako Bihan",
+   "author": "Laxmi Prasad Devkota",
+   "genre": [
+    "balkavita",
+    "children's poem"
+   ],
+   "collection": [
+    "सुनको बिहान (बालसाहित्य)"
+   ],
+   "rights": "public-domain",
+   "proofread": false,
+   "source": null,
+   "path": "archives/authors/devkota/sunako_bihan",
+   "formats": [
+    "pdf",
     "txt",
     "html",
     "epub"

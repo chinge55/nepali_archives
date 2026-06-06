@@ -1,0 +1,50 @@
+{
+  "id": "sunako_bihan",
+  "title": "सुनको बिहान",
+  "title_roman": "Sunako Bihan",
+  "subtitle": null,
+  "author": {
+    "id": "devkota",
+    "name": "लक्ष्मीप्रसाद देवकोटा",
+    "name_roman": "Laxmi Prasad Devkota"
+  },
+  "language": "ne",
+  "script": "Devanagari",
+  "genre": [
+    "balkavita",
+    "children's poem"
+  ],
+  "first_published": {
+    "bs": null,
+    "ad": null
+  },
+  "edition": null,
+  "publisher": "साझा प्रकाशन",
+  "description": "From the collection सुनको बिहान (बालसाहित्य). It is the collection's title poem — a children's morning song in which dawn wakes the land, clouds, birds, temples, flowers and hearts alike.",
+  "rights": {
+    "status": "public-domain",
+    "basis": "Author died 1959; Nepal's Copyright Act 2059 grants life + 50 years, expiring 2009. Verify before publishing.",
+    "verified": false
+  },
+  "source": {
+    "name": "सुनको बिहान (साझा प्रकाशन)",
+    "url": null,
+    "pdf": "sunako_bihan.pdf",
+    "html": null
+  },
+  "pages": 1,
+  "text": {
+    "extraction_method": "ocr",
+    "ocr_status": "ocr-done",
+    "proofread": false,
+    "quality": "good"
+  },
+  "formats": {
+    "pdf": "sunako_bihan.pdf",
+    "txt": "text.txt",
+    "html": "reader.html",
+    "epub": "reader.epub"
+  },
+  "added": "2026-06-07",
+  "updated": "2026-06-07"
+}
