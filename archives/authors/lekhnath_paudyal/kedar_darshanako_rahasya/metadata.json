@@ -1,0 +1,50 @@
+{
+  "id": "kedar_darshanako_rahasya",
+  "title": "केदार दर्शनको रहस्य",
+  "title_roman": "Kedar Darshanako Rahasya",
+  "subtitle": null,
+  "author": {
+    "id": "lekhnath_paudyal",
+    "name": "लेखनाथ पौड्याल",
+    "name_roman": "Lekhnath Paudyal"
+  },
+  "language": "ne",
+  "script": "Devanagari",
+  "genre": [
+    "kavita",
+    "poem"
+  ],
+  "first_published": {
+    "bs": null,
+    "ad": null
+  },
+  "edition": null,
+  "publisher": null,
+  "description": "Lekhnath Paudyal's short devotional poem — the 'secret of beholding Kedar': only one who bathes in the Mandākinī of devotion and dwells as a true pilgrim truly sees Kedarnath.",
+  "rights": {
+    "status": "public-domain",
+    "basis": "Author died 1966; public domain since 2016 (Nepal's Copyright Act 2059: life + 50 years). Verify before publishing.",
+    "verified": false
+  },
+  "source": {
+    "name": "iNepal (inepal.org)",
+    "url": "https://inepal.org/nepalipoems/7236/lekhnath-paudyal-kedar-darshan-ko-rahasya/",
+    "pdf": null,
+    "html": "extracted/index.html"
+  },
+  "pages": null,
+  "text": {
+    "extraction_method": "html",
+    "ocr_status": "born-digital",
+    "proofread": false,
+    "quality": "good"
+  },
+  "formats": {
+    "pdf": null,
+    "txt": "text.txt",
+    "html": "reader.html",
+    "epub": "reader.epub"
+  },
+  "added": "2026-06-07",
+  "updated": "2026-06-07"
+}

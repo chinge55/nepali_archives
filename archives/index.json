@@ -1,7 +1,7 @@
 {
  "archive": "Nepali Archives",
  "generated": "2026-06-07",
- "count": 195,
+ "count": 199,
  "works": [
   {
    "id": "kantipuri_nagari",
@@ -3965,6 +3965,46 @@
    ]
   },
   {
+   "id": "bibekabatikako_sanu_phul_k",
+   "title": "विवेक-बाटिकाको सानू फूल (क)",
+   "title_roman": "Bibekabatikako Sanu Phul K",
+   "author": "Lekhnath Paudyal",
+   "genre": [
+    "kavita",
+    "poem"
+   ],
+   "collection": null,
+   "rights": "public-domain",
+   "proofread": false,
+   "source": "iNepal (inepal.org)",
+   "path": "archives/authors/lekhnath_paudyal/bibekabatikako_sanu_phul_k",
+   "formats": [
+    "txt",
+    "html",
+    "epub"
+   ]
+  },
+  {
+   "id": "bibekabatikako_sanu_phul_kh",
+   "title": "विवेक-बाटिकाको सानू फूल (ख)",
+   "title_roman": "Bibekabatikako Sanu Phul Kh",
+   "author": "Lekhnath Paudyal",
+   "genre": [
+    "kavita",
+    "poem"
+   ],
+   "collection": null,
+   "rights": "public-domain",
+   "proofread": false,
+   "source": "iNepal (inepal.org)",
+   "path": "archives/authors/lekhnath_paudyal/bibekabatikako_sanu_phul_kh",
+   "formats": [
+    "txt",
+    "html",
+    "epub"
+   ]
+  },
+  {
    "id": "bigyaanako_moh",
    "title": "विज्ञानको मोह",
    "title_roman": "Bigyaanako Moh",
@@ -3999,6 +4039,26 @@
    "proofread": false,
    "source": null,
    "path": "archives/authors/lekhnath_paudyal/buddhi_binod_prashna",
+   "formats": [
+    "txt",
+    "html",
+    "epub"
+   ]
+  },
+  {
+   "id": "dashain",
+   "title": "दशैं",
+   "title_roman": "Dashain",
+   "author": "Lekhnath Paudyal",
+   "genre": [
+    "kavita",
+    "poem"
+   ],
+   "collection": null,
+   "rights": "public-domain",
+   "proofread": false,
+   "source": "iNepal (inepal.org)",
+   "path": "archives/authors/lekhnath_paudyal/dashain",
    "formats": [
     "txt",
     "html",
@@ -4104,6 +4164,26 @@
    "path": "archives/authors/lekhnath_paudyal/kabikabitalap",
    "formats": [
     "pdf",
+    "txt",
+    "html",
+    "epub"
+   ]
+  },
+  {
+   "id": "kedar_darshanako_rahasya",
+   "title": "केदार दर्शनको रहस्य",
+   "title_roman": "Kedar Darshanako Rahasya",
+   "author": "Lekhnath Paudyal",
+   "genre": [
+    "kavita",
+    "poem"
+   ],
+   "collection": null,
+   "rights": "public-domain",
+   "proofread": false,
+   "source": "iNepal (inepal.org)",
+   "path": "archives/authors/lekhnath_paudyal/kedar_darshanako_rahasya",
+   "formats": [
     "txt",
     "html",
     "epub"
