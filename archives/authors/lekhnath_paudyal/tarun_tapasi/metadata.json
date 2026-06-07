@@ -15,19 +15,19 @@
     "epic"
   ],
   "first_published": {
-    "bs": null,
+    "bs": 2010,
     "ad": null
   },
   "edition": null,
-  "publisher": null,
-  "description": "Lekhnath Paudyal's narrative poem (नव्यकाव्य). Scanned edition; OCR pending.",
+  "publisher": "साझा प्रकाशन",
+  "description": "Lekhnath Paudyal's नव्यकाव्य (narrative poem) in nineteen विश्राम (cantos), first published 2010 BS, opening with the invocation श्री गौरीशङ्कराभ्यां नमः and closing at समाप्त. OCR'd from the साझा प्रकाशन scan and cleaned to the poem itself — the front-matter cataloguing, the editorial भूमिका (by बालकृष्ण सम), running footers, and the back-cover catalogue were removed. OCR quality is poor; pending proofreading.",
   "rights": {
     "status": "public-domain",
     "basis": "Author died 1966; public domain since 2016 (Nepal's Copyright Act 2059: life + 50 years). Verify before publishing.",
     "verified": false
   },
   "source": {
-    "name": null,
+    "name": "तरुण तपसी (साझा प्रकाशन)",
     "url": null,
     "pdf": "000051__लेखनाथ_पौड्_याल__तरुण_तपसी_नव्यकाव्य.pdf",
     "html": null
@@ -46,5 +46,5 @@
     "epub": "reader.epub"
   },
   "added": "2026-06-05",
-  "updated": "2026-06-05"
+  "updated": "2026-06-07"
 }
