@@ -118,5 +118,8 @@ mismatch; every work has its declared format files; `build_site.py` runs clean.
 - The full Devkota glyph repertoire is already in the font subset (~196 glyphs); new
   Devkota works rarely change it. Re-run `subset_fonts.py` anyway and check.
 
-See the project memory and the `process-book-archive` skill for the worked example
-(the 2026-06 `001_book_archive` batch: +40 works, 155→195).
+Skills: **`process-book-archive`** (digitize a folder of scanned book PDFs) and
+**`clean-work-text`** (strip editorial/front/back matter + page furniture from a
+work's text.txt, keeping only the author's own writing). See the project memory for
+worked examples (the 2026-06 `001_book_archive` batch, +40 works 155→195; and the
+तरुण तपसी text cleanup).
