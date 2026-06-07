@@ -16,28 +16,28 @@
   ],
   "first_published": {
     "bs": null,
-    "ad": null
+    "ad": 1887
   },
   "edition": null,
   "publisher": null,
-  "description": "Bhanubhakta Acharya's Nepali Ramayana — the foundational epic of modern Nepali literature.",
+  "description": "Bhanubhakta Acharya's Nepali Ramayana — the foundational epic of modern Nepali literature — in all seven काण्ड (बाल, अयोध्या, अरण्य, किष्किन्धा, सुन्दर, युद्ध, उत्तर; 1,319 श्लोक). Text from Wikisource's born-digital edition (1887), assembled with काण्ड headings and Devanagari श्लोक numbers; spot-checked against the Internet Archive scan, which is bundled here as a downloadable PDF (a Nepali–Hindi bilingual edition). Replaces the earlier garbled IA auto-OCR.",
   "rights": {
     "status": "public-domain",
     "basis": "Author died 1868; long in the public domain (Nepal's Copyright Act 2059: life + 50 years).",
     "verified": false
   },
   "source": {
-    "name": null,
-    "url": null,
-    "pdf": "NepaliBhanubhaktaRamayan_text.pdf",
-    "html": null
+    "name": "Wikisource (wikisource.org)",
+    "url": "https://wikisource.org/wiki/भानुभक्तीय_रामायण",
+    "pdf": null,
+    "html": "extracted/wikisource/"
   },
   "pages": 344,
   "text": {
-    "extraction_method": "pdf-text-layer",
-    "ocr_status": "embedded-ocr",
+    "extraction_method": "html",
+    "ocr_status": "born-digital",
     "proofread": false,
-    "quality": "fair"
+    "quality": "good"
   },
   "formats": {
     "pdf": "NepaliBhanubhaktaRamayan_text.pdf",
@@ -46,5 +46,5 @@
     "epub": "reader.epub"
   },
   "added": "2026-06-05",
-  "updated": "2026-06-05"
+  "updated": "2026-06-07"
 }
