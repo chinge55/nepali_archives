@@ -189,6 +189,110 @@ def page(title, body, *, desc="", css_depth=0, extra_head="", active="", canon="
 """
 
 
+# ---------------------------------------------------------------- PDF reader
+# A dedicated .../pdf/ page per work that has a source PDF: a pdf.js viewer that
+# renders pages on demand (IntersectionObserver) and fetches only the byte ranges
+# for the pages in view (HTTP Range — GitHub Pages serves Accept-Ranges:bytes), so
+# even a 378-page scan never downloads up front. The ~1.5 MB library (vendored in
+# assets/pdfjs/, copied to SITE/pdfjs/) loads ONLY on this page — the text reading
+# pages stay JS-free. Reader CSS/JS live inline here so they never bloat those pages.
+READER_CSS = """main{max-width:64rem}
+.pdftop{margin:.2rem 0 1rem}
+.pdfh1{font-size:1.3rem;margin:.3rem 0}
+.pdfbar{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;color:var(--mut);font-size:.9rem;margin:.5rem 0 0}
+.pdfback{text-decoration:none}
+.pdfstat{margin-left:auto}
+.pdfzoom button{font-family:inherit;font-size:1rem;line-height:1;width:2rem;height:2rem;border:1px solid var(--line);background:none;color:var(--accent);border-radius:6px;cursor:pointer;margin-left:.3rem}
+.pdfzoom button:hover{border-color:var(--accent);background:var(--accent);color:#fff}
+.pdfpages{margin:0 auto;max-width:760px}
+.pdfpage{position:relative;margin:0 auto 1rem;min-height:200px;background:#fff;box-shadow:0 1px 6px rgba(0,0,0,.18)}
+.pdfpage canvas{display:block;width:100%;height:auto}
+.pdferr{color:var(--mut);padding:1rem;border:1px solid var(--line);border-radius:8px}
+@media(prefers-color-scheme:dark){.pdfpage{box-shadow:0 1px 6px rgba(0,0,0,.5)}}"""
+
+# Plain string (NOT an f-string) — its many { } are literal JS. Only __WORKER_URL__
+# is substituted; the PDF URL is read from the #pdfpages data-url attribute.
+READER_JS = """(function(){
+  var lib=window.pdfjsLib, host=document.getElementById('pdfpages'),
+      statusEl=document.getElementById('pdfstatus'), url=host.getAttribute('data-url');
+  function fail(){ host.innerHTML='<p class="pdferr">यो ब्राउजरमा रिडर चल्न सकेन। <a href="'+url+'">सिधै PDF हेर्नुहोस् / डाउनलोड गर्नुहोस्</a>।</p>'; }
+  if(!lib||!('IntersectionObserver' in window)){ fail(); return; }
+  lib.GlobalWorkerOptions.workerSrc="__WORKER_URL__";
+  function dev(n){ return (''+n).replace(/[0-9]/g,function(d){return '०१२३४५६७८९'.charAt(+d);}); }
+  var ZOOM=[0.6,0.75,0.9,1,1.2,1.45,1.75,2.1], zi=3, BASE=760;
+  var doc=null, N=0, divs=[], rendered={}, visible={}, aspect='1 / 1.4', rt=0;
+  function colW(){ return Math.min(BASE*ZOOM[zi], window.innerWidth-28); }
+  function applyW(){ host.style.maxWidth=Math.round(colW())+'px'; }
+  function render(pg){
+    var div=divs[pg-1]; if(!div||rendered[pg]) return; rendered[pg]=true;
+    doc.getPage(pg).then(function(page){
+      if(!rendered[pg]) return;
+      var dpr=window.devicePixelRatio||1, cssW=div.clientWidth||colW(),
+          v1=page.getViewport({scale:1}), vp=page.getViewport({scale:(cssW/v1.width)*dpr}),
+          c=document.createElement('canvas');
+      c.width=Math.ceil(vp.width); c.height=Math.ceil(vp.height);
+      var old=div.querySelector('canvas'); if(old) div.removeChild(old);
+      div.style.aspectRatio=''; div.style.minHeight='0'; div.appendChild(c);
+      page.render({canvasContext:c.getContext('2d'), viewport:vp});
+    }).catch(function(){ rendered[pg]=false; });
+  }
+  function release(pg){
+    var div=divs[pg-1]; rendered[pg]=false;
+    if(div){ var c=div.querySelector('canvas'); if(c){ div.removeChild(c); div.style.aspectRatio=aspect; div.style.minHeight=''; } }
+  }
+  function counter(){ var k=Object.keys(visible).map(Number); if(k.length) statusEl.textContent='पृष्ठ '+dev(Math.min.apply(null,k))+' / '+dev(N); }
+  function rezoom(){ applyW(); for(var pg in rendered){ if(rendered[pg]){ rendered[pg]=false; render(+pg); } } }
+  var plus=document.getElementById('pdfplus'), minus=document.getElementById('pdfminus');
+  plus.addEventListener('click',function(){ if(zi<ZOOM.length-1){zi++; rezoom();} });
+  minus.addEventListener('click',function(){ if(zi>0){zi--; rezoom();} });
+  window.addEventListener('resize',function(){ clearTimeout(rt); rt=setTimeout(rezoom,200); });
+  applyW();
+  lib.getDocument({url:url, disableAutoFetch:true, disableStream:false, rangeChunkSize:65536}).promise
+    .then(function(pdf){ doc=pdf; N=pdf.numPages; return pdf.getPage(1); })
+    .then(function(p1){
+      var v=p1.getViewport({scale:1}); aspect=v.width+' / '+v.height;
+      var frag=document.createDocumentFragment();
+      for(var i=1;i<=N;i++){ var d=document.createElement('div'); d.className='pdfpage'; d.dataset.page=i; d.style.aspectRatio=aspect; frag.appendChild(d); divs.push(d); }
+      host.appendChild(frag);
+      statusEl.textContent='पृष्ठ १ / '+dev(N);
+      var io=new IntersectionObserver(function(es){
+        es.forEach(function(e){ var pg=+e.target.dataset.page;
+          if(e.isIntersecting){ visible[pg]=true; render(pg); } else { delete visible[pg]; release(pg); } });
+        counter();
+      }, {rootMargin:'800px 0px'});
+      divs.forEach(function(d){ io.observe(d); });
+    })
+    .catch(fail);
+})();"""
+
+
+def write_pdf_reader(out_dir, depth, rel, pdf_fn, meta, aslug_, aname, archive_base):
+    """Write out_dir/pdf/index.html — the lazy pdf.js reader for a PDF-bearing work."""
+    rdepth = depth + 1
+    up = "../" * rdepth
+    pdf_url = (f'{archive_base.rstrip("/")}/{rel.as_posix()}/{esc(pdf_fn)}'
+               if archive_base else f'../{esc(pdf_fn)}')
+    title = meta["title"]
+    title_full = f"{title} — {meta['author']['name']} — मूल पृष्ठ"
+    head = (f'<script src="{up}pdfjs/pdf.min.js"></script>\n'
+            f'<style>{READER_CSS}</style>\n')
+    js = READER_JS.replace("__WORKER_URL__", f"{up}pdfjs/pdf.worker.min.js")
+    body = f"""<nav class="crumb"><a href="{up}authors/{aslug_}/index.html">← {esc(aname)}</a> · <a href="../">{esc(title)}</a></nav>
+<div class="pdftop">
+  <h1 class="pdfh1">{esc(title)} — मूल पृष्ठ</h1>
+  <div class="pdfbar"><a class="pdfback" href="../">← पाठ पढ्नुहोस्</a><span id="pdfstatus" class="pdfstat"></span><span class="pdfzoom"><button id="pdfminus" type="button" aria-label="सानो">−</button><button id="pdfplus" type="button" aria-label="ठूलो">+</button></span></div>
+</div>
+<div id="pdfpages" class="pdfpages" data-url="{pdf_url}"></div>
+<noscript><p class="pdferr">PDF रिडरलाई JavaScript चाहिन्छ। <a href="{pdf_url}">सिधै PDF हेर्नुहोस्</a>।</p></noscript>
+<script>{js}</script>"""
+    pdir = out_dir / "pdf"
+    pdir.mkdir(parents=True, exist_ok=True)
+    (pdir / "index.html").write_text(
+        page(title_full, body, desc=title_full, css_depth=rdepth, active="works",
+             canon=rel.as_posix() + "/pdf/", extra_head=head),
+        encoding="utf-8")
+
+
 # ---------------------------------------------------------------- CSS / JS
 CSS = """:root{--bg:#fbfaf7;--fg:#1a1a1a;--mut:#6b675e;--line:#e3ded3;--link:#6a4b16;--accent:#8a5a00}
 @media(prefers-color-scheme:dark){:root{--bg:#15140f;--fg:#e7e3da;--mut:#9a948a;--line:#2c2a22;--link:#d8b15f;--accent:#e0b65f}}
@@ -216,6 +320,8 @@ a{color:var(--link)}
 h1{font-size:1.7rem;line-height:1.3;margin:.5rem 0 .25rem}
 .byline{color:var(--mut);margin:.1rem 0}
 .meta{color:var(--mut);font-size:.85rem;margin:.4rem 0 0}
+.pdfread{display:inline-block;margin:.7rem 0 .1rem;font-size:.9rem;padding:.34rem .85rem;border:1px solid var(--line);border-radius:6px;color:var(--accent);text-decoration:none;transition:background .15s,color .15s,border-color .15s}
+.pdfread:hover{border-color:var(--accent);background:var(--accent);color:#fff}
 .tochint{color:var(--mut);font-size:.9rem;margin:1.6rem 0 .4rem}
 .toc{margin:.3rem 0 0;padding-left:1.3rem;line-height:2.1;font-size:1.05rem}
 .toc a{color:var(--link);text-decoration:none}
@@ -436,6 +542,13 @@ def build(archive_base: str):
                      ("favicon-180.png", "apple-touch-icon.png")]:
         if (logo / src).exists():
             shutil.copy(logo / src, SITE / dst)
+    # vendored pdf.js — lazy, range-loading reader for works that have a source PDF
+    pjs = ROOT / "assets" / "pdfjs"
+    if pjs.exists():
+        pdir = SITE / "pdfjs"; pdir.mkdir(exist_ok=True)
+        for f in pjs.iterdir():
+            if f.is_file():
+                shutil.copy(f, pdir / f.name)
 
     # group works by author; reading order within an author = genre group then title
     def aslug(w): return Path(w["path"]).relative_to("archives").parts[1]
@@ -480,6 +593,9 @@ def build(archive_base: str):
                 meta_bits.append(f'सङ्ग्रह: <a href="{up}collections/{cslug[cn]}/">{esc(cn)}</a>')
             # Downloads: link to --archive-base if set (lean site), else bundle in.
             fmts = meta.get("formats", {}); src_dir = ROOT / w["path"]; dls = []
+            pdf_fn = fmts.get("pdf")
+            pdfbtn = ('\n  <p><a class="pdfread" href="pdf/">\U0001F4D6 मूल पृष्ठ हेर्नुहोस्</a></p>'
+                      if pdf_fn else "")
             for k, lab in [("pdf", "PDF"), ("epub", "EPUB"), ("txt", "मूल पाठ (TXT)")]:
                 fn = fmts.get(k)
                 if not fn:
@@ -518,7 +634,7 @@ def build(archive_base: str):
 <article>
   <h1>{esc(meta['title'])}</h1>
   <p class="byline">{esc(meta['author']['name'])}</p>
-  <p class="meta">{" · ".join(b for b in meta_bits if b)}</p>
+  <p class="meta">{" · ".join(b for b in meta_bits if b)}</p>{pdfbtn}
   <div class="work {'verse' if verse else 'prose'}">
 {full_html}
   </div>
@@ -538,7 +654,7 @@ def build(archive_base: str):
 <article>
   <h1>{esc(meta['title'])}</h1>
   <p class="byline">{esc(meta['author']['name'])}</p>
-  <p class="meta">{" · ".join(b for b in meta_bits if b)}</p>
+  <p class="meta">{" · ".join(b for b in meta_bits if b)}</p>{pdfbtn}
   <p class="tochint">{_dev(N)} खण्डमा विभाजित — कुनै पनि खण्ड छानेर पढ्नुहोस् :</p>
   <ol class="toc">{toc}</ol>
   {downloads}
@@ -570,6 +686,8 @@ def build(archive_base: str):
                         page(f"{lbl} — {title_full}", cbody, desc=f"{lbl} — {title_full}",
                              css_depth=cdepth, active="works", canon=str(rel) + f"/{k+1}/"),
                         encoding="utf-8")
+            if pdf_fn:
+                write_pdf_reader(out_dir, depth, rel, pdf_fn, meta, aslug_, aname, archive_base)
             search_rows.append({"t": meta["title"], "r": meta.get("title_roman") or "",
                                 "s": w["id"].replace("_", " "),
                                 "a": meta["author"].get("name_roman") or "",

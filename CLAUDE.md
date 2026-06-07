@@ -96,7 +96,17 @@ mismatch; every work has its declared format files; `build_site.py` runs clean.
     h1). Each section page gets prev/next + ← सूची. Huge works with no such headings
     (>150 KB) size-balance into भाग pages; everything else stays a single page. So section
     titles in text.txt should use those keywords to paginate cleanly (a bare ordinal like
-    "प्रथम" won't trigger it). The top मूल-PDF button + bottom downloads live on the सूची page.
+    "प्रथम" won't trigger it). Downloads (PDF · EPUB · TXT) live at the bottom of the
+    single/सूची page.
+- **PDF reader** (`write_pdf_reader`): any work with `formats.pdf` gets a top "📖 मूल पृष्ठ
+  हेर्नुहोस्" button linking to a dedicated `<work>/pdf/` page — a **pdf.js** viewer that
+  renders pages on demand (IntersectionObserver) and fetches only the byte ranges for the
+  pages in view (verified: an 11 MB / 378-pp scan paints page 1 after ~1% downloaded). The
+  ~1.5 MB library is **vendored** at `assets/pdfjs/` (pinned v3.11.174 legacy UMD; tracked
+  in git, copied to `SITE/pdfjs/`) and loads **only** on the reader page — text pages stay
+  JS-free. Range loading needs `Accept-Ranges` (GitHub Pages provides it); under
+  `--archive-base` the external host must send CORS + Range or the reader falls back to a
+  direct-PDF link.
 
 ## Git / deploy
 
