@@ -1,7 +1,7 @@
 {
  "archive": "Nepali Archives",
  "generated": "2026-06-07",
- "count": 194,
+ "count": 195,
  "works": [
   {
    "id": "kantipuri_nagari",
@@ -2863,6 +2863,27 @@
    "source": "Kavita Kosh (kavitakosh.org)",
    "path": "archives/authors/devkota/pralayabedana",
    "formats": [
+    "txt",
+    "html",
+    "epub"
+   ]
+  },
+  {
+   "id": "pramithas",
+   "title": "प्रमिथस",
+   "title_roman": "Pramithas",
+   "author": "Laxmi Prasad Devkota",
+   "genre": [
+    "mahakavya",
+    "epic"
+   ],
+   "collection": null,
+   "rights": "public-domain",
+   "proofread": false,
+   "source": null,
+   "path": "archives/authors/devkota/pramithas",
+   "formats": [
+    "pdf",
     "txt",
     "html",
     "epub"
