@@ -13,3 +13,7 @@ __pycache__/
 .DS_Store
 *.swp
 *~
+
+# Font-subset scratch + प्रमिथस work-in-progress (recovery for the scheduled finalize run)
+/.used_glyphs.tmp
+/.pramithas_wip/
