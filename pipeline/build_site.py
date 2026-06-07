@@ -173,6 +173,9 @@ a{color:var(--link)}
 h1{font-size:1.7rem;line-height:1.3;margin:.5rem 0 .25rem}
 .byline{color:var(--mut);margin:.1rem 0}
 .meta{color:var(--mut);font-size:.85rem;margin:.4rem 0 0}
+.readpdf{margin:.9rem 0 .1rem}
+.pdfbtn{display:inline-block;font-size:.9rem;padding:.32rem .8rem;border:1px solid var(--line);border-radius:6px;color:var(--accent);text-decoration:none;transition:background .15s,color .15s,border-color .15s}
+.pdfbtn:hover{border-color:var(--accent);background:var(--accent);color:#fff}
 .crumb{font-size:.85rem;margin:0 0 .75rem}
 .crumb a{color:var(--mut);text-decoration:none}
 .crumb a:hover{color:var(--accent)}
@@ -453,6 +456,21 @@ def build(archive_base: str):
             if i < len(arecs) - 1:
                 nid = arecs[i+1][0]["id"]; nt = arecs[i+1][1]["title"]
                 nav_seq.append(f'<a class="nx" href="../{esc(nid)}/"><span class="lbl">अर्को</span>{esc(nt)} →</a>')
+            # Prominent "read the original PDF" action, shown at the TOP of the page,
+            # opening in a new tab so the browser streams it (no full download before
+            # reading) and the reader keeps their place. Size shown so heavy scans are flagged.
+            pdf_fn = fmts.get("pdf")
+            read_pdf = ""
+            if pdf_fn:
+                pdf_href = (f'{archive_base.rstrip("/")}/{rel}/{esc(pdf_fn)}'
+                            if archive_base else esc(pdf_fn))
+                pf = src_dir / pdf_fn
+                sztxt = ""
+                if pf.exists():
+                    b = pf.stat().st_size
+                    sztxt = f" ({b/1048576:.1f} MB)" if b >= 1048576 else f" ({max(1, b // 1024)} KB)"
+                read_pdf = (f'\n  <p class="readpdf"><a class="pdfbtn" href="{pdf_href}" '
+                            f'target="_blank" rel="noopener">\U0001F4D6 मूल PDF{sztxt}</a></p>')
             ld = json.dumps({"@context": "https://schema.org", "@type": "CreativeWork",
                              "name": meta["title"], "author": {"@type": "Person", "name": meta["author"]["name"]},
                              "inLanguage": "ne", "isAccessibleForFree": True,
@@ -462,7 +480,7 @@ def build(archive_base: str):
 <article>
   <h1>{esc(meta['title'])}</h1>
   <p class="byline">{esc(meta['author']['name'])}</p>
-  <p class="meta">{" · ".join(b for b in meta_bits if b)}</p>
+  <p class="meta">{" · ".join(b for b in meta_bits if b)}</p>{read_pdf}
   <div class="work {'verse' if verse else 'prose'}">
 {work_html(text, verse)}
   </div>
