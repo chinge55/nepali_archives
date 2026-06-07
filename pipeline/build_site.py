@@ -99,6 +99,44 @@ def work_html(text: str, verse: bool) -> str:
     return "\n".join(out)
 
 
+# --- pagination for very long works: split into per-section pages + a contents page ---
+CHAPTER_RE = re.compile(r'काण्ड|सर्ग|सगैँ|अध्याय|विश्राम|विश्वाम|परिच्छेद|अङ्क|उल्लास|खण्ड|सोपान|परिशिष्ट')
+_DEVNUM = str.maketrans('0123456789', '०१२३४५६७८९')
+def _dev(n): return str(n).translate(_DEVNUM)
+
+def paginate_work(text, balance=False):
+    """For a long work, return [(label, content_text), …] — one entry per section — or
+    None to keep a single page. Splits on 'chapter' headings (काण्ड/सर्ग/अध्याय/विश्राम/…),
+    including a heading with a title on the next line (e.g. 'अध्याय २\\nबालचिन्ता'); the
+    heading becomes the label (shown as the page h1, dropped from its body). Only when
+    `balance` is set (a huge work with no chapter headings) does it size-balance into भाग."""
+    blocks = [b.strip("\n") for b in text.replace("\r\n", "\n").split("\n\n") if b.strip()]
+    def is_chap(b):
+        first = b.split("\n", 1)[0].strip()
+        return len(b.splitlines()) <= 2 and _is_heading(first) and CHAPTER_RE.search(first)
+    idx = [i for i, b in enumerate(blocks) if is_chap(b)]
+    if len(idx) >= 2 and len(text) > 8000:
+        front = blocks[:idx[0]]
+        bounds = idx + [len(blocks)]
+        pages = []
+        for j, s in enumerate(idx):
+            body_blocks = blocks[s + 1:bounds[j + 1]]
+            if j == 0 and front:
+                body_blocks = front + body_blocks
+            pages.append((blocks[s].replace("\n", " — "), "\n\n".join(body_blocks)))
+        return pages
+    if balance:
+        TARGET, pages, cur, sz, n = 20000, [], [], 0, 1
+        for b in blocks:
+            cur.append(b); sz += len(b)
+            if sz >= TARGET:
+                pages.append((f"भाग {_dev(n)}", "\n\n".join(cur))); cur, sz, n = [], 0, n + 1
+        if cur:
+            pages.append((f"भाग {_dev(n)}", "\n\n".join(cur)))
+        return pages if len(pages) >= 2 else None
+    return None
+
+
 def page(title, body, *, desc="", css_depth=0, extra_head="", active="", canon=""):
     up = "../" * css_depth
     canon_url = SITE_URL + canon
@@ -176,6 +214,10 @@ h1{font-size:1.7rem;line-height:1.3;margin:.5rem 0 .25rem}
 .readpdf{margin:.9rem 0 .1rem}
 .pdfbtn{display:inline-block;font-size:.9rem;padding:.32rem .8rem;border:1px solid var(--line);border-radius:6px;color:var(--accent);text-decoration:none;transition:background .15s,color .15s,border-color .15s}
 .pdfbtn:hover{border-color:var(--accent);background:var(--accent);color:#fff}
+.tochint{color:var(--mut);font-size:.9rem;margin:1.6rem 0 .4rem}
+.toc{margin:.3rem 0 0;padding-left:1.3rem;line-height:2.1;font-size:1.05rem}
+.toc a{color:var(--link);text-decoration:none}
+.toc a:hover{text-decoration:underline}
 .crumb{font-size:.85rem;margin:0 0 .75rem}
 .crumb a{color:var(--mut);text-decoration:none}
 .crumb a:hover{color:var(--accent)}
@@ -476,24 +518,71 @@ def build(archive_base: str):
                              "inLanguage": "ne", "isAccessibleForFree": True,
                              "license": "https://creativecommons.org/publicdomain/mark/1.0/",
                              "url": SITE_URL + str(rel) + "/"}, ensure_ascii=False)
-            body = f"""<nav class="crumb"><a href="{up}authors/{aslug_}/index.html">← {esc(aname)}</a></nav>
+            downloads = (f'<p class="downloads">डाउनलोड: {" ".join(dls) if dls else "—"}<br>'
+                         f'<span style="font-size:.78rem">स्रोत: {src_html} · सार्वजनिक डोमेन (असत्यापित)</span></p>')
+            seqnav = f'<nav class="seqnav">{"".join(nav_seq)}</nav>'
+            title_full = f"{meta['title']} — {meta['author']['name']}"
+            full_html = work_html(text, verse)
+            # Very long works: split into a contents page + one page per section, so the
+            # browser never loads (or scrolls) the whole epic at once.
+            pages = paginate_work(text, balance=len(full_html) > 150000)
+            if not pages:
+                body = f"""<nav class="crumb"><a href="{up}authors/{aslug_}/index.html">← {esc(aname)}</a></nav>
 <article>
   <h1>{esc(meta['title'])}</h1>
   <p class="byline">{esc(meta['author']['name'])}</p>
   <p class="meta">{" · ".join(b for b in meta_bits if b)}</p>{read_pdf}
   <div class="work {'verse' if verse else 'prose'}">
-{work_html(text, verse)}
+{full_html}
   </div>
-  <p class="downloads">डाउनलोड: {' '.join(dls) if dls else '—'}<br>
-  <span style="font-size:.78rem">स्रोत: {src_html} · सार्वजनिक डोमेन (असत्यापित)</span></p>
+  {downloads}
 </article>
-<nav class="seqnav">{''.join(nav_seq)}</nav>"""
-            (out_dir / "index.html").write_text(
-                page(f"{meta['title']} — {meta['author']['name']}", body,
-                     desc=f"{meta['title']} — {meta['author']['name']}", css_depth=depth,
-                     active="works", canon=str(rel) + "/",
-                     extra_head=f'<script type="application/ld+json">{ld}</script>\n'),
-                encoding="utf-8")
+{seqnav}"""
+                (out_dir / "index.html").write_text(
+                    page(title_full, body, desc=title_full, css_depth=depth,
+                         active="works", canon=str(rel) + "/",
+                         extra_head=f'<script type="application/ld+json">{ld}</script>\n'),
+                    encoding="utf-8")
+            else:
+                N = len(pages)
+                toc = "".join(f'<li><a href="{k+1}/">{esc(lbl)}</a></li>'
+                              for k, (lbl, _) in enumerate(pages))
+                toc_body = f"""<nav class="crumb"><a href="{up}authors/{aslug_}/index.html">← {esc(aname)}</a></nav>
+<article>
+  <h1>{esc(meta['title'])}</h1>
+  <p class="byline">{esc(meta['author']['name'])}</p>
+  <p class="meta">{" · ".join(b for b in meta_bits if b)}</p>{read_pdf}
+  <p class="tochint">{_dev(N)} खण्डमा विभाजित — कुनै पनि खण्ड छानेर पढ्नुहोस् :</p>
+  <ol class="toc">{toc}</ol>
+  {downloads}
+</article>
+{seqnav}"""
+                (out_dir / "index.html").write_text(
+                    page(title_full, toc_body, desc=title_full, css_depth=depth,
+                         active="works", canon=str(rel) + "/",
+                         extra_head=f'<script type="application/ld+json">{ld}</script>\n'),
+                    encoding="utf-8")
+                for k, (lbl, content) in enumerate(pages):
+                    cdir = out_dir / str(k + 1); cdir.mkdir(parents=True, exist_ok=True)
+                    cdepth = depth + 1; cup = "../" * cdepth
+                    cnav = [(f'<a class="pv" href="../{k}/"><span class="lbl">अघिल्लो</span>← {esc(pages[k-1][0])}</a>'
+                             if k > 0 else
+                             '<a class="pv" href="../"><span class="lbl">सूची</span>← सूची</a>')]
+                    if k < N - 1:
+                        cnav.append(f'<a class="nx" href="../{k+2}/"><span class="lbl">अर्को</span>{esc(pages[k+1][0])} →</a>')
+                    cbody = f"""<nav class="crumb"><a href="{cup}authors/{aslug_}/index.html">← {esc(aname)}</a> · <a href="../">{esc(meta['title'])} (सूची)</a></nav>
+<article>
+  <h1>{esc(lbl)}</h1>
+  <p class="byline"><a href="../">{esc(meta['title'])}</a> · {esc(meta['author']['name'])} · {_dev(k+1)}/{_dev(N)}</p>
+  <div class="work {'verse' if verse else 'prose'}">
+{work_html(content, verse)}
+  </div>
+</article>
+<nav class="seqnav">{''.join(cnav)}</nav>"""
+                    (cdir / "index.html").write_text(
+                        page(f"{lbl} — {title_full}", cbody, desc=f"{lbl} — {title_full}",
+                             css_depth=cdepth, active="works", canon=str(rel) + f"/{k+1}/"),
+                        encoding="utf-8")
             search_rows.append({"t": meta["title"], "r": meta.get("title_roman") or "",
                                 "s": w["id"].replace("_", " "),
                                 "a": meta["author"].get("name_roman") or "",

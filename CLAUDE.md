@@ -90,6 +90,13 @@ mismatch; every work has its declared format files; `build_site.py` runs clean.
   - a trailing line matching `वि./बि. सं. <digit>…` renders as a muted source colophon.
   - stanza/श्लोक numbers go on their own line adjacent to the stanza, exactly as
     printed; section/canto headers on their own line.
+  - **Long works auto-paginate** (`paginate_work`): a work whose rendered HTML > 100 KB
+    is split into a contents (सूची) page + one page per section, when it has ≥2 "chapter"
+    headings matching `काण्ड|सर्ग|अध्याय|विश्राम|…` (the heading becomes the section page's
+    h1). Each section page gets prev/next + ← सूची. Huge works with no such headings
+    (>150 KB) size-balance into भाग pages; everything else stays a single page. So section
+    titles in text.txt should use those keywords to paginate cleanly (a bare ordinal like
+    "प्रथम" won't trigger it). The top मूल-PDF button + bottom downloads live on the सूची page.
 
 ## Git / deploy
 
