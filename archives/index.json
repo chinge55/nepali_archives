@@ -1,7 +1,7 @@
 {
  "archive": "Nepali Archives",
  "generated": "2026-06-07",
- "count": 199,
+ "count": 200,
  "works": [
   {
    "id": "kantipuri_nagari",
@@ -4039,6 +4039,26 @@
    "proofread": false,
    "source": null,
    "path": "archives/authors/lekhnath_paudyal/buddhi_binod_prashna",
+   "formats": [
+    "txt",
+    "html",
+    "epub"
+   ]
+  },
+  {
+   "id": "chariko_bilap",
+   "title": "चरीको विलाप",
+   "title_roman": "Chariko Bilap",
+   "author": "Lekhnath Paudyal",
+   "genre": [
+    "kavita",
+    "poem"
+   ],
+   "collection": null,
+   "rights": "public-domain",
+   "proofread": false,
+   "source": null,
+   "path": "archives/authors/lekhnath_paudyal/chariko_bilap",
    "formats": [
     "txt",
     "html",

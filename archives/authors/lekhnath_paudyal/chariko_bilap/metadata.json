@@ -1,0 +1,50 @@
+{
+  "id": "chariko_bilap",
+  "title": "चरीको विलाप",
+  "title_roman": "Chariko Bilap",
+  "subtitle": null,
+  "author": {
+    "id": "lekhnath_paudyal",
+    "name": "लेखनाथ पौड्याल",
+    "name_roman": "Lekhnath Paudyal"
+  },
+  "language": "ne",
+  "script": "Devanagari",
+  "genre": [
+    "kavita",
+    "poem"
+  ],
+  "first_published": {
+    "bs": null,
+    "ad": null
+  },
+  "edition": null,
+  "publisher": null,
+  "description": "A celebrated passage from Lekhnath Paudyal's तरुण तपसी, widely anthologized on its own as 'चरीको विलाप' (The Bird's Lament): a bird struck by a hunter cries out — pleading the cruelty done to its mate and orphaned chicks — and exalts दया (compassion) as the true soul of humanity.",
+  "rights": {
+    "status": "public-domain",
+    "basis": "Author died 1966; public domain since 2016 (Nepal's Copyright Act 2059: life + 50 years). Verify before publishing.",
+    "verified": false
+  },
+  "source": {
+    "name": "तरुण तपसी (लेखनाथ पौड्याल)",
+    "url": null,
+    "pdf": null,
+    "html": null
+  },
+  "pages": null,
+  "text": {
+    "extraction_method": "manual",
+    "ocr_status": "born-digital",
+    "proofread": false,
+    "quality": "good"
+  },
+  "formats": {
+    "pdf": null,
+    "txt": "text.txt",
+    "html": "reader.html",
+    "epub": "reader.epub"
+  },
+  "added": "2026-06-07",
+  "updated": "2026-06-07"
+}
