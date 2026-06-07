@@ -119,6 +119,11 @@ def paginate_work(text, balance=False):
         front = blocks[:idx[0]]
         bounds = idx + [len(blocks)]
         pages = []
+        # Substantial heading-led front matter (e.g. an author's own बक्तव्य/भूमिका) gets
+        # its own contents entry; a short stray byline/invocation rides on the first section.
+        if front and len("\n\n".join(front)) > 400 and _is_heading(front[0].split("\n", 1)[0].strip()):
+            pages.append((front[0].split("\n", 1)[0].strip(), "\n\n".join(front)))
+            front = []
         for j, s in enumerate(idx):
             body_blocks = blocks[s + 1:bounds[j + 1]]
             if j == 0 and front:
