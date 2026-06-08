@@ -17,8 +17,10 @@ Usage:
     python3 pipeline/build_site.py --archive-base https://archive.example.org
 """
 import argparse, hashlib, html, json, re, shutil, sys
+from collections import Counter, defaultdict
 from datetime import date
 from pathlib import Path
+from urllib.parse import quote
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from devanagari_slug import slugify as cslugify, romanize as cromanize
@@ -390,6 +392,31 @@ body{transition:background-color .25s ease,color .25s ease}
  .prog{transition:width .12s linear}
  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 }
+/* home link to the stats page */
+.statlink{margin:1.6rem 0 0;font-size:.92rem}
+.statlink a{text-decoration:none;color:var(--mut)}
+.statlink a:hover{color:var(--accent)}
+/* "अभिलेख एक नजरमा" stats page */
+.stats h2{font-size:1.12rem;margin:2rem 0 .7rem;border-top:1px solid var(--line);padding-top:1.25rem}
+.stats h2 .sh{font-size:.78rem;color:var(--mut);font-weight:400;margin-left:.4rem}
+.snums{display:flex;flex-wrap:wrap;gap:1.4rem;margin:1.2rem 0 .5rem}
+.snums .snum{display:flex;flex-direction:column}
+.snums .snum b{font-size:1.9rem;line-height:1.05;color:var(--accent);font-variant-numeric:tabular-nums}
+.snums .snum span{font-size:.8rem;color:var(--mut);margin-top:.15rem}
+.schart{margin:.4rem 0}
+.srow{display:grid;grid-template-columns:minmax(7rem,34%) 1fr auto;align-items:center;gap:.65rem;margin:.32rem 0;font-size:.95rem}
+.srow .slab{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.srow .slab a{text-decoration:none}
+.srow .slab small{color:var(--mut);font-size:.8rem;margin-left:.25rem}
+.srow .sbar{background:color-mix(in srgb,var(--line) 55%,transparent);border-radius:3px;height:.7rem;overflow:hidden}
+.srow .sbar i{display:block;height:100%;background:var(--accent);border-radius:3px}
+.srow .sval{color:var(--mut);font-size:.85rem;font-variant-numeric:tabular-nums}
+.cloud{display:flex;flex-wrap:wrap;gap:.15rem .75rem;align-items:baseline;line-height:1.55;margin:1rem 0}
+.cloud .cw{text-decoration:none;color:var(--link)}
+.cloud .cw:hover{color:var(--accent);text-decoration:underline}
+ul.trivia{padding-left:1.1rem;margin:.5rem 0}
+ul.trivia li{margin:.45rem 0}
+.statnote{margin-top:1.6rem;font-size:.8rem}
 @media print{
  header.site,footer.site,.crumb,.seqnav,.downloads,.toc{display:none}
  body{font-size:12pt;color:#000;background:#fff}
@@ -571,6 +598,9 @@ SEARCH_JS = """(function(){
  }
  q.addEventListener('input',search);
  q.addEventListener('focus',function(){load(function(){if(!q.value)H.textContent=idx.length+' कृति';});});
+ // deep link: /?q=term (e.g. a word clicked on the stats page) runs the search on load
+ var dl=location.search.match(/[?&]q=([^&]*)/);
+ if(dl){ try{q.value=decodeURIComponent(dl[1].replace(/\\+/g,' '));}catch(e){} q.focus(); search(); }
 })();
 """
 
@@ -614,6 +644,137 @@ UI_JS = """(function(){
 # returning visitors (phones especially) never get served a stale CSS/JS.
 def _ver(s): return hashlib.sha1(s.encode("utf-8")).hexdigest()[:8]
 CSS_VER, UI_VER, SEARCH_VER = _ver(CSS), _ver(UI_JS), _ver(SEARCH_JS)
+
+
+# ── "अभिलेख एक नजरमा" — a fun statistics page. Everything below is computed at BUILD
+# time and baked into one static HTML file (inline CSS bars + a sized-span word cloud,
+# no charting library, no page-specific JS, not indexed by Pagefind), so it cannot affect
+# the performance of any other page; it only loads when visited. ──
+
+# Curated Nepali stopwords so the word-frequency cloud shows evocative content words
+# (परी, सुन्दर, मन, हृदय, फूल …) rather than grammar: pronouns, postpositions, copula/
+# auxiliaries, conjunctions, common participles/gerunds, quantifiers + period/OCR variants.
+STATS_STOP = set("""
+र छ छन् छ् छु छौ छस् छिन् छैन छन हो होइन हुन् हुन हुने हुन्छ हुन्छन् हुनु हुँदैन हुन्थ्यो हुँदो भो भयो भै भई भइ भए भएको भएकी भएका भएर हुँदा रह्यो रहे रहन्छ रहन्थ्यो होला
+न ना का की को के मा ले लाई बाट सँग संग देखि सम्म माथि मुनि भित्र बाहिर अघि पछि नेर तिर पट्टि वरिपरि लगायत पर
+पनी पनि नै त ता तर वा कि अनि अथवा तथा एवं किन्तु परन्तु अझ बरु कारण किनभने
+यो त्यो यी ती ति यस त्यस यसको त्यसको यिनी तिनी यिनको तिनको यिनै तिनै यही जो जे जुन जब तब जहाँ तहाँ तहिं यहाँ त्यहाँ कहाँ जति तति कति किन कुन कसरी जसरी जसै
+म मेरो मेरा मलाई मैले ममा हामी हाम्रो हामीले हामीलाई तिमी तिम्रो तिमीलाई तँ तेरो उ ऊ उनी उनको उनले उसको उसले उसैले आफू आफ्नो आफैं आफैँ कोही कसैले केही कुनै हरेक प्रत्येक
+भनी भन्ने भन्छ भन्छन् भने भनेर भन्दा भन्नु भन्थे गर्ने गरी गरेको गरे गर्छ गर्छन् गर्न गर्दछ गर्दा गर्यो गर्या गया गई गयो गइन् गर्थे लागेको लाग्छ लाग्यो लागे दिई दिने दिन्छ लिई लिने आउँछ आयो जान्छ
+सब सब् सबै सारा सम्पूर्ण भरी अरू अरु कुरा एक एउटा दुई तीन धेरै थोरै अति निकै सधैं फेरि मात्र मात्रै खाली अनेक खुप्
+जस्तो जस्तै कस्तो कस्तै कन बनी बनेको झैं झैँ सरि बिना अनुसार बारे लागि निम्ति हुकुम्
+हे ओ अरे क्या नि है ल नत्र अब उहिले रे यस्तो त्यस्तो थिए थियो थिएन थिइन् भइन् लौ
+""".split())
+_SWORD = re.compile(r"[ऀ-ॣ०-ॿ]+")
+_SNUM = re.compile(r"^[०-९]+$")
+
+def _grp(n):
+    """Indian digit grouping: 262936 -> '2,62,936'."""
+    s = str(n)
+    if len(s) <= 3:
+        return s
+    head, tail, parts = s[:-3], s[-3:], []
+    while len(head) > 2:
+        parts.insert(0, head[-2:]); head = head[:-2]
+    if head:
+        parts.insert(0, head)
+    return ",".join(parts) + "," + tail
+
+def _dnum(n):
+    return _grp(n).translate(_DEVNUM)
+
+def _sbars(rows, maxv):
+    """rows: list of (label_html, value, href|None) -> CSS bar rows."""
+    out = []
+    for lab, v, href in rows:
+        pct = (v / maxv * 100) if maxv else 0
+        lh = f'<a href="{href}">{lab}</a>' if href else lab
+        out.append(f'<div class="srow"><span class="slab">{lh}</span>'
+                   f'<span class="sbar"><i style="width:{pct:.1f}%"></i></span>'
+                   f'<span class="sval">{_dnum(v)}</span></div>')
+    return "".join(out)
+
+def write_stats_page(recs, collections):
+    total_words = total_lines = prose_w = verse_w = 0
+    uniq = set(); aw = defaultdict(int); ak = defaultdict(int)
+    gc = Counter(); freq = Counter(); wcw = []; years = []
+    for w, meta, text in recs:
+        toks = [t for t in _SWORD.findall(text) if not _SNUM.match(t)]
+        total_words += len(toks); uniq.update(toks)
+        total_lines += sum(1 for l in text.splitlines() if l.strip())
+        nm = meta["author"]["name"]; aw[nm] += len(toks); ak[nm] += 1
+        g = meta["genre"][0] if meta.get("genre") else ""
+        if g:
+            gc[g] += 1
+        if g in PROSE_GENRES:
+            prose_w += len(toks)
+        else:
+            verse_w += len(toks)
+        wcw.append((len(toks), meta["title"], Path(w["path"]).relative_to("archives").as_posix()))
+        for t in toks:
+            if len(t) > 1 and t not in STATS_STOP:
+                freq[t] += 1
+        y = (meta.get("first_published") or {}).get("bs")
+        if y:
+            years.append(y)
+    # fold inflectional variants (फूल/फूलको…) by romanization, label by the commonest surface form
+    fold = defaultdict(Counter)
+    for word, c in freq.items():
+        fold[cromanize(word)][word] = c
+    topw = []
+    for cc in fold.values():
+        lead = cc.most_common(1)[0][0]
+        if lead not in STATS_STOP:
+            topw.append((sum(cc.values()), lead))
+    topw.sort(reverse=True); topw = topw[:40]
+
+    hero = [("कृति", len(recs)), ("शब्द", total_words), ("अद्वितीय शब्द", len(uniq)),
+            ("हरफ", total_lines), ("लेखक", len(aw))]
+    hero_html = "".join(f'<div class="snum"><b>{_dnum(v)}</b><span>{lab}</span></div>' for lab, v in hero)
+    authors_html = _sbars([(f'{esc(nm)} <small>{_dnum(ak[nm])} कृति</small>', aw[nm], None)
+                           for nm in sorted(aw, key=lambda x: -aw[x])], max(aw.values()))
+    genres_html = _sbars([(esc(GENRE.get(g, (g, ""))[0]), c, None) for g, c in gc.most_common()],
+                         max(gc.values()))
+    wcw.sort(reverse=True)
+    longest_html = _sbars([(esc(t), n, f"../{rel}/") for n, t, rel in wcw[:8]], wcw[0][0])
+    colls = sorted(collections.items(), key=lambda kv: -len(kv[1]))[:6]
+    colls_html = _sbars([(esc(cn), len(items), f"../collections/{cslugify(cn)}/") for cn, items in colls],
+                        len(colls[0][1]) if colls else 1)
+    mx, mn = (topw[0][0], topw[-1][0]) if topw else (1, 1)
+    cloud = " ".join(
+        f'<a class="cw" style="font-size:{0.95 + ((n - mn) / (mx - mn) if mx > mn else 1) * 1.85:.2f}rem" '
+        f'href="../?q={quote(word)}" title="{_dnum(n)} पटक">{esc(word)}</a>' for n, word in topw)
+
+    rt_hr = round(total_words / 130 / 60)        # ~130 words/min recited aloud
+    vpct = round(verse_w / total_words * 100) if total_words else 0
+    short = min(wcw) if wcw else (0, "", "")
+    trivia = [f"सबै कृति एकपटक सुनाउन झन्डै <b>{_dnum(rt_hr)} घण्टा</b> लाग्छ (~१३० शब्द/मिनेटका दरले)।",
+              f"शब्दको हिसाबले करिब <b>{_dnum(vpct)}%</b> पद्य र <b>{_dnum(100 - vpct)}%</b> गद्य।",
+              f"सबैभन्दा छोटो कृति <b>{esc(short[1])}</b> — जम्मा {_dnum(short[0])} शब्द।"]
+    if years:
+        trivia.append(f"मिति थाहा भएका {_dnum(len(years))} कृतिको प्रकाशन वि.सं. "
+                      f"<b>{_dev(min(years))}–{_dev(max(years))}</b> मा फैलिएको।")
+
+    body = f"""<nav class="crumb"><a href="../index.html">← {esc(SITE_NAME)}</a></nav>
+<article class="stats">
+<h1>अभिलेख एक नजरमा</h1>
+<p class="lead">तथ्याङ्क र रोचक तथ्यहरू।</p>
+<div class="snums">{hero_html}</div>
+<h2>लेखकहरू <span class="sh">शब्दको हिसाबले</span></h2><div class="schart">{authors_html}</div>
+<h2>विधा <span class="sh">कृति सङ्ख्या</span></h2><div class="schart">{genres_html}</div>
+<h2>अभिलेखको शब्द-संसार</h2>
+<p class="meta">सबैभन्दा धेरै दोहोरिने शब्दहरू (व्याकरणका शब्द हटाएर, रूपभेद जोडेर)। कुनै शब्दमा क्लिक गरेर खोज्न सकिन्छ।</p>
+<div class="cloud">{cloud}</div>
+<h2>सबैभन्दा लामा कृति <span class="sh">शब्दमा</span></h2><div class="schart">{longest_html}</div>
+<h2>ठूला सङ्ग्रह <span class="sh">कृति सङ्ख्या</span></h2><div class="schart">{colls_html}</div>
+<h2>रोचक तथ्य</h2><ul class="trivia">{"".join(f"<li>{t}</li>" for t in trivia)}</ul>
+<p class="meta statnote">यी आँकडा OCR/स्क्यान गरिएका पाठमा आधारित र प्रुफरिड हुन बाँकी भएकाले अनुमानित हुन्; हरेक build मा स्वतः गणना हुन्छन्।</p>
+</article>"""
+    (SITE / "stats").mkdir(parents=True, exist_ok=True)
+    (SITE / "stats" / "index.html").write_text(
+        page("अभिलेख एक नजरमा — " + SITE_NAME, body,
+             desc="नेपाली अभिलेखका तथ्याङ्क र रोचक तथ्यहरू।", css_depth=1, active="", canon="stats/"),
+        encoding="utf-8")
 
 
 def build(archive_base: str):
@@ -900,6 +1061,7 @@ def build(archive_base: str):
 <ul class="works" id="results" data-base=""></ul>
 <div id="ft"></div>
 <div class="home-sec"><h2>लेखकहरू</h2><ul class="works">{"".join(author_li(a, "") for a in author_order)}</ul></div>
+<p class="statlink"><a href="stats/">📊 अभिलेख एक नजरमा — तथ्याङ्क र रोचक तथ्य →</a></p>
 <script src="search.js?v={SEARCH_VER}" defer></script>"""
     (SITE / "index.html").write_text(
         page(SITE_NAME, home_body, desc=SITE_TAGLINE, css_depth=0, active="home", canon=""),
@@ -930,8 +1092,11 @@ Internet Archive, sahityasangraha.com। प्रत्येक कृति H
         page("बारेमा — " + SITE_NAME, about_body, css_depth=0, active="about", canon="about.html"),
         encoding="utf-8")
 
+    # ---- stats page (fun, build-time, isolated) ----
+    write_stats_page(recs, collections)
+
     # ---- sitemap (full URLs) + robots ----
-    urls = (["", "about.html", "authors/index.html"]
+    urls = (["", "about.html", "authors/index.html", "stats/"]
             + [f"authors/{a}/index.html" for a in author_order]
             + [f"collections/{cslug[cn]}/" for cn in collections]
             + [r["p"] for r in search_rows])
