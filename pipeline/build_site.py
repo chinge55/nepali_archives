@@ -21,7 +21,7 @@ from datetime import date
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from devanagari_slug import slugify as cslugify
+from devanagari_slug import slugify as cslugify, romanize as cromanize
 
 ROOT = Path(__file__).resolve().parent.parent
 ARCHIVES = ROOT / "archives"
@@ -365,6 +365,17 @@ ul.works li .r{color:var(--mut);font-size:.82rem;margin-left:.5rem}
 #results li .snip{display:block;color:var(--mut);font-size:.8rem;white-space:nowrap;
  overflow:hidden;text-overflow:ellipsis}
 .hint{color:var(--mut);font-size:.85rem;margin:.4rem 0 0}
+/* full-text (in-poem) search results */
+#ft{margin:.5rem 0 0}
+.fthead{font-size:.95rem;color:var(--mut);font-weight:600;border-top:1px solid var(--line);padding-top:1rem;margin:1.4rem 0 .6rem}
+.ftmsg{color:var(--mut);font-size:.85rem;margin:1rem 0}
+ul.ftlist{list-style:none;padding:0;margin:0}
+ul.ftlist li{margin:0 0 1.15rem;padding:0}
+ul.ftlist li a{text-decoration:none;font-size:1.05rem}
+ul.ftlist .ex{margin:.25rem 0 0;color:var(--mut);font-size:.93rem;line-height:1.75}
+ul.ftlist .ex mark{background:color-mix(in srgb,var(--accent) 26%,transparent);color:inherit;border-radius:2px;padding:0 .12em}
+/* arrived-from-search highlight on the work page (Pagefind highlighter) */
+.work mark.pagefind-highlight,.work mark[data-pagefind-highlight]{background:color-mix(in srgb,var(--accent) 32%,transparent);color:inherit;border-radius:2px;padding:0 .1em;scroll-margin-top:4rem}
 .prog{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:50}
 .themebtn{font-size:1.05rem;line-height:1}
 body{transition:background-color .25s ease,color .25s ease}
@@ -390,9 +401,11 @@ body{transition:background-color .25s ease,color .25s ease}
 
 SEARCH_JS = """(function(){
  var q=document.getElementById('q'),R=document.getElementById('results'),
-     H=document.getElementById('hint'),BASE=R.getAttribute('data-base')||'';
+     H=document.getElementById('hint'),FT=document.getElementById('ft'),
+     BASE=R.getAttribute('data-base')||'';
  var idx=null,loading=false;
  function norm(s){return (s||'').normalize('NFD').replace(/[\\u0300-\\u036f]/g,'').toLowerCase().trim();}
+ function isDev(s){return /[\\u0900-\\u097f]/.test(s);}
 
  // Levenshtein distance, bounded: returns >max as soon as the best path exceeds max.
  function lev(a,b,max){
@@ -458,23 +471,103 @@ SEARCH_JS = """(function(){
      idx=d.works; for(var k=0;k<idx.length;k++){var w=idx[k];
        w._r=norm(w.r); w._s=norm(w.s); w._c=norm(w.c); w._a=norm(w.a);}    // precompute once
      cb();});}
- function render(list){
+ function renderWorks(list){
    var rows=list.slice(0,60).map(function(w){
-     var sub=[w.a,w.c].filter(Boolean).join(' · ');
+     var sub=[w.a,w.c].filter(Boolean).join(' \\u00b7 ');
      return '<li><a href="'+BASE+w.p+'">'+w.t+'</a>'+(w.r?' <span class=r>'+w.r+'</span>':'')+
             (sub?'<span class=snip>'+sub+'</span>':'')+'</li>';}).join('');
-   R.innerHTML=rows||'<li class=hint>केही फेला परेन</li>';
-   H.textContent=list.length+' मिल्यो';
+   R.innerHTML=rows;
+   H.textContent=list.length+' शीर्षक';
  }
+
+ // ---- tier-2: full-text via Pagefind, bridged from roman when needed ----
+ var pfP=null;
+ function pagefind(){ if(pfP) return pfP;
+   pfP=import(new URL(BASE+'pagefind/pagefind.js',location.href).href).catch(function(){return null;});
+   return pfP; }
+ var shard={};
+ function getShard(L){ if(shard[L]) return shard[L];
+   shard[L]=fetch(BASE+'searchroman/'+L+'.json').then(function(r){return r.ok?r.json():{};},function(){return {};});
+   return shard[L]; }
+ // roman token -> up to 6 Devanagari candidates (exact > prefix > fuzzy)
+ function bridge(tok){ var L=tok.charAt(0);
+   if(!/[a-z]/.test(L)) return Promise.resolve([]);
+   return getShard(L).then(function(map){
+     if(map[tok]) return map[tok].slice(0,6);
+     var keys=Object.keys(map),i,pre=[];
+     for(i=0;i<keys.length;i++) if(keys[i].lastIndexOf(tok,0)===0) pre.push(keys[i]);
+     if(pre.length){ pre.sort(function(a,b){return a.length-b.length;});
+       var out=[]; for(i=0;i<pre.length&&out.length<6;i++) out=out.concat(map[pre[i]]); return out.slice(0,6); }
+     if(tok.length>=3){ var t=tol(tok.length),best=99,bk=null;
+       for(i=0;i<keys.length;i++){ var d=lev(tok,keys[i],t); if(d<best){best=d;bk=keys[i];} }
+       if(bk&&best<=t) return map[bk].slice(0,6); }
+     return [];
+   });
+ }
+ // raw query -> array of Pagefind query strings
+ function buildQueries(qraw){
+   if(isDev(qraw)) return Promise.resolve([qraw]);
+   var toks=norm(qraw).split(' ').filter(Boolean);
+   if(!toks.length) return Promise.resolve([]);
+   return Promise.all(toks.map(bridge)).then(function(per){
+     if(toks.length===1) return per[0].slice(0,4);             // OR each candidate
+     return [per.map(function(c){return c[0]||'';}).filter(Boolean).join(' ')]; // best-per-token, AND
+   });
+ }
+ var ftSeq=0;
+ function fullText(qraw){
+   var my=++ftSeq;
+   if(!isDev(qraw) && norm(qraw).length<2){FT.innerHTML='';return;}
+   FT.innerHTML='<p class=ftmsg>पाठभित्र खोज्दै…</p>';
+   Promise.all([pagefind(),buildQueries(qraw)]).then(function(a){
+     var pf=a[0],qs=a[1]; if(my!==ftSeq)return; if(!pf){FT.innerHTML='';return;}
+     if(!qs.length){FT.innerHTML='<p class=ftmsg>पाठभित्र केही फेला परेन।</p>';return;}
+     Promise.all(qs.map(function(s){return pf.search(s);})).then(function(arr){
+       if(my!==ftSeq) return;
+       var seen={},merged=[];
+       arr.forEach(function(res){ if(res&&res.results) res.results.forEach(function(r){
+         if(!seen[r.id]){seen[r.id]=1;merged.push(r);} }); });
+       Promise.all(merged.slice(0,10).map(function(r){return r.data();})).then(function(ds){
+         if(my!==ftSeq) return; renderFT(ds);
+       });
+     });
+   });
+ }
+ // append ?pagefind-highlight=… using the SURFACE words Pagefind marked in the excerpt
+ // (the real on-page forms — not the stemmed query), so the work page can scroll+highlight.
+ function hlUrl(url,excerpt){
+   var seen={},m,re=/<mark>([\\s\\S]*?)<\\/mark>/g;
+   while((m=re.exec(excerpt))){
+     var w=m[1].replace(/<[^>]*>/g,'').replace(/[^\\u0900-\\u097f ]/g,' ').trim();
+     w.split(/\\s+/).forEach(function(t){if(t)seen[t]=1;});
+   }
+   var ks=Object.keys(seen).slice(0,6);
+   if(!ks.length) return url;
+   var qp=ks.map(function(t){return 'pagefind-highlight='+encodeURIComponent(t);}).join('&');
+   return url+(url.indexOf('?')<0?'?':'&')+qp;
+ }
+ function renderFT(ds){
+   if(!ds||!ds.length){FT.innerHTML='<p class=ftmsg>पाठभित्र केही फेला परेन।</p>';return;}
+   var h='<h2 class=fthead>पाठभित्र खोजी</h2><ul class=ftlist>';
+   ds.forEach(function(d){
+     var t=(d.meta&&d.meta.title)||d.url;
+     h+='<li><a href="'+hlUrl(d.url,d.excerpt)+'">'+t+'</a><p class=ex>'+d.excerpt+'</p></li>';
+   });
+   FT.innerHTML=h+'</ul>';
+ }
+
+ var ftTimer=null;
  function search(){
    var qraw=q.value.trim(),qn=norm(qraw);
-   if(!qn){R.innerHTML='';H.textContent=idx?(idx.length+' कृति'):''; return;}
+   if(!qn){R.innerHTML='';FT.innerHTML='';H.textContent=idx?(idx.length+' कृति'):''; return;}
    load(function(){
-     var hit=[];
-     for(var k=0;k<idx.length;k++){var sc=score(idx[k],qn,qraw); if(sc>0)hit.push([sc,idx[k]]);}
+     var hit=[],k;
+     for(k=0;k<idx.length;k++){var sc=score(idx[k],qn,qraw); if(sc>0)hit.push([sc,idx[k]]);}
      hit.sort(function(a,b){return b[0]-a[0];});
-     render(hit.map(function(x){return x[1];}));
+     renderWorks(hit.map(function(x){return x[1];}));
    });
+   if(ftTimer)clearTimeout(ftTimer);
+   ftTimer=setTimeout(function(){fullText(qraw);},250);
  }
  q.addEventListener('input',search);
  q.addEventListener('focus',function(){load(function(){if(!q.value)H.textContent=idx.length+' कृति';});});
@@ -503,6 +596,16 @@ UI_JS = """(function(){
      bar.style.width=(m>0?(y/m*100):0)+'%';};
    addEventListener('scroll',function(){if(!pend){pend=true;requestAnimationFrame(upd);}},{passive:true});
    addEventListener('resize',upd); upd();
+ }
+ // Arrived from a search result (?pagefind-highlight=…) → load Pagefind's highlighter,
+ // which marks + scrolls to the match inside [data-pagefind-body]. Otherwise pages stay JS-free.
+ if(location.search.indexOf('pagefind-highlight=')>=0){
+   import('/pagefind/pagefind-highlight.js').then(function(m){
+     var P=m&&(m.default||window.PagefindHighlight); if(!P) return;
+     new P({highlightParam:'pagefind-highlight'});
+     setTimeout(function(){var f=document.querySelector('mark.pagefind-highlight');
+       if(f) f.scrollIntoView({block:'center'});},60);   // land on the matched passage
+   }).catch(function(){});
  }
 })();
 """
@@ -583,9 +686,13 @@ def build(archive_base: str):
 
     # ---- per-work reading pages (prev/next within the same author) ----
     search_rows = []
+    # roman→Devanagari bridge: every Devanagari word in the poem bodies (excl. danda)
+    _DEVWORD = re.compile(r"[ऀ-ॣ०-ॿ]+")
+    ft_words = set()
     for aslug_, arecs in by_author.items():
         aname = ainfo(aslug_, arecs[0][1])[0]
         for i, (w, meta, text) in enumerate(arecs):
+            ft_words.update(_DEVWORD.findall(text))          # bridge vocab (poem body)
             rel = Path(w["path"]).relative_to("archives")    # authors/<author>/<slug>
             out_dir = SITE / rel
             out_dir.mkdir(parents=True, exist_ok=True)
@@ -640,7 +747,7 @@ def build(archive_base: str):
   <h1>{esc(meta['title'])}</h1>
   <p class="byline">{esc(meta['author']['name'])}</p>
   <p class="meta">{" · ".join(b for b in meta_bits if b)}</p>{pdfbtn}
-  <div class="work {'verse' if verse else 'prose'}">
+  <div class="work {'verse' if verse else 'prose'}" data-pagefind-body>
 {full_html}
   </div>
   {downloads}
@@ -682,7 +789,7 @@ def build(archive_base: str):
 <article>
   <h1>{esc(lbl)}</h1>
   <p class="byline"><a href="../">{esc(meta['title'])}</a> · {esc(meta['author']['name'])} · {_dev(k+1)}/{_dev(N)}</p>
-  <div class="work {'verse' if verse else 'prose'}">
+  <div class="work {'verse' if verse else 'prose'}" data-pagefind-body>
 {work_html(content, verse)}
   </div>
 </article>
@@ -704,6 +811,23 @@ def build(archive_base: str):
     (SITE / "search-index.json").write_text(
         json.dumps({"works": search_rows}, ensure_ascii=False, separators=(",", ":")),
         encoding="utf-8")
+
+    # ---- roman→Devanagari bridge shards (turns a roman full-text query into the
+    # Devanagari term(s) we feed Pagefind). Sharded by first roman letter so a query
+    # downloads only its shard (~tens of KB), not the whole ~2 MB map. ----
+    rmap = {}
+    for wword in ft_words:
+        r = cromanize(wword)
+        if r:
+            rmap.setdefault(r, set()).add(wword)
+    shards = {}
+    for r, ws in rmap.items():
+        key = r[0] if r[:1].isalpha() else "_"
+        shards.setdefault(key, {})[r] = sorted(ws)[:12]      # cap candidates per key
+    rdir = SITE / "searchroman"; rdir.mkdir(exist_ok=True)
+    for key, m in shards.items():
+        (rdir / f"{key}.json").write_text(
+            json.dumps(m, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
 
     # ---- collection pages ----
     cdir = SITE / "collections"
@@ -771,9 +895,10 @@ def build(archive_base: str):
     # ---- home: search + authors ----
     home_body = f"""<h1>{SITE_NAME}</h1>
 <p class="lead">{SITE_TAGLINE}। नि:शुल्क, सधैँभरि — दर्ता छैन, विज्ञापन छैन।</p>
-<p><input id="q" type="search" placeholder="खोज्नुहोस् — शीर्षक वा रोमन (जस्तै: pagal, ramayana)" autocomplete="off" aria-label="खोज"></p>
+<p><input id="q" type="search" placeholder="खोज्नुहोस् — शीर्षक, पाठ वा रोमन (जस्तै: pagal, sundari, फूल)" autocomplete="off" aria-label="खोज"></p>
 <p class="hint" id="hint"></p>
 <ul class="works" id="results" data-base=""></ul>
+<div id="ft"></div>
 <div class="home-sec"><h2>लेखकहरू</h2><ul class="works">{"".join(author_li(a, "") for a in author_order)}</ul></div>
 <script src="search.js?v={SEARCH_VER}" defer></script>"""
     (SITE / "index.html").write_text(
