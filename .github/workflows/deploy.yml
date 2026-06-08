@@ -22,9 +22,16 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      # build_site.py is pure Python stdlib; everything it reads is committed
-      # (archives/, assets/fonts/, the Act PDF). No dependencies to install.
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      # build_site.py is pure Python stdlib (archives/, assets/fonts/, the Act PDF are
+      # all committed); it also emits the roman→Devanagari search-bridge shards.
       - run: python3 pipeline/build_site.py
+      # Full-text search: Pagefind indexes the built HTML in place, writing site/pagefind/.
+      # Pinned prebuilt binary, fetched at build time. Must run AFTER build_site.py
+      # (which wipes & rebuilds site/). Together these power the home-page in-text search.
+      - run: npx -y pagefind@1.5.2 --site site
       - uses: actions/upload-pages-artifact@v3
         with:
           path: site
