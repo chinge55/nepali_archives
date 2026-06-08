@@ -797,7 +797,10 @@ def build(archive_base: str):
 <p class="meta">पूरा ऐन यहाँ हेर्न/डाउनलोड गर्न सकिन्छ: <a href="docs/pratilipi-adhikar-ain-2059.pdf">प्रतिलिपि अधिकार ऐन, २०५९ (PDF)</a>।</p>
 <p>हाल यहाँ {len(by_author)} लेखकका {len(recs)} कृति छन्। स्रोत: Kavita Kosh, inepal.org,
 Internet Archive, sahityasangraha.com। प्रत्येक कृति HTML, मूल पाठ (TXT){' र EPUB' if any(m.get('formats',{}).get('epub') for _,m,_ in recs) else ''} मा उपलब्ध छ।</p>
-<p class="meta">सबै कृति प्रुफरिड र अधिकार-सत्यापन हुन बाँकी छ।</p>"""
+<p class="meta">सबै कृति प्रुफरिड र अधिकार-सत्यापन हुन बाँकी छ।</p>
+<h2>आफ्ना कृति थप्न चाहनुहुन्छ?</h2>
+<p>यदि तपाईं आफ्ना कृति यस अभिलेखमा थप्न चाहनुहुन्छ भने <a href="mailto:mail@nepaliarchives.org">mail@nepaliarchives.org</a> मा इमेल गर्नुहोस्।</p>
+<p>तर ध्यान दिनुहोस् — यसरी कृति पठाएपछि तपाईंले त्यस कृतिमाथिको आफ्ना सम्पूर्ण अधिकार र लाइसेन्स पूर्ण रूपमा त्याग्नुहुनेछ। यस अभिलेखको नीति <strong>“कुनै लाइसेन्स छैन” (No license)</strong> हो — यहाँ राखिएका सबै कृति कुनै पनि अधिकार सुरक्षित नराखी, जोसुकैले स्वतन्त्र रूपमा पढ्न, प्रतिलिपि गर्न, वितरण गर्न र प्रयोग गर्न पाउने गरी राखिएका छन्। तपाईंले पठाउनुभएको कृति पनि ठ्याक्कै सोही नीति अन्तर्गत — कुनै लाइसेन्स बिना — सार्वजनिक गरिनेछ। यो निर्णय फिर्ता हुँदैन।</p>"""
     (SITE / "about.html").write_text(
         page("बारेमा — " + SITE_NAME, about_body, css_depth=0, active="about", canon="about.html"),
         encoding="utf-8")
