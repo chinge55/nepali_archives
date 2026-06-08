@@ -51,10 +51,14 @@ python3 pipeline/subset_fonts.py            # only if new glyphs; reads built si
 python3 pipeline/build_site.py             # regenerate site/ from index.json + metadata + text.txt
 ```
 
-`build_site.py` is what CI runs (`.github/workflows/deploy.yml`, on push to `main`)
-to deploy GitHub Pages → **www.nepaliarchives.org**. `--archive-base <url>` makes
-download links point at an external store instead of bundling files (default =
-self-contained site).
+`build_site.py` is what CI runs (`.github/workflows/deploy.yml`, on push to `main`,
+which also runs `npx pagefind --site site` for full-text search) to deploy GitHub
+Pages → **www.nepaliarchives.org**. `--archive-base <url>` makes download links point
+at an external store instead of bundling files (default = self-contained site).
+`build_site.py` also calls `pipeline/stats.py` to (re)generate the `/stats/` page
+("अभिलेख एक नजरमा" — corpus graphs/word-frequency, build-time SVG/CSS only) on **every**
+build, so it stays current with the texts automatically. Adding a new *author*? skim
+`stats.STATS_STOP` so its register's function words don't pollute the word cloud.
 
 **Verify** before committing: all `metadata.json` validate against
 `metadata.schema.json`; `index.json` count == number of work dirs == no path

@@ -94,6 +94,13 @@ file exists, `build_site.py` clean, sections render right (verse/prose, headings
 contiguous numbering). Then commit per book (style: see git log; Co-Authored-By
 trailer). Push only when asked (SSH — see CLAUDE.md).
 
+**Stats page** (`pipeline/stats.py` → `site/stats/`, "अभिलेख एक नजरमा"): `build_site.py`
+**regenerates it on every run** (so it's recomputed before each commit/deploy and can
+never go stale — CI rebuilds it too). After adding a NEW work, just rebuild and eyeball
+`/stats/`; after adding a NEW AUTHOR, also skim `stats.STATS_STOP` and the signature-words
+column — a new author's register may surface a few function/archaic words that belong in
+the stopword list so the word cloud stays evocative.
+
 ## Reference
 
 The worked example, scripts, and full lesson list are in the project memory entry
