@@ -58,6 +58,11 @@ def _is_heading(b: str) -> bool:
     if "\n" in b or len(b) > 40:
         return False
     s = b.strip()
+    # A lone parenthesized single Devanagari letter — (क), (ख), (ङ) … — is a canto/
+    # section marker (NOT a stanza number like (१)); render it as a heading.
+    m = re.fullmatch(r"\(([ऀ-ॿ])\)", s)
+    if m and not m.group(1).isdigit():
+        return True
     if not s or s[0] in "0123456789०१२३४५६७८९([‘’\"":
         return False
     if s[-1] in "।॥!?,.;:—–…‘’":
