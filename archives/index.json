@@ -1,7 +1,7 @@
 {
  "archive": "Nepali Archives",
- "generated": "2026-06-07",
- "count": 200,
+ "generated": "2026-06-08",
+ "count": 201,
  "works": [
   {
    "id": "kantipuri_nagari",
@@ -2023,6 +2023,27 @@
    "proofread": false,
    "source": null,
    "path": "archives/authors/devkota/lekhne_bani",
+   "formats": [
+    "pdf",
+    "txt",
+    "html",
+    "epub"
+   ]
+  },
+  {
+   "id": "luni",
+   "title": "लूनी",
+   "title_roman": "Luni",
+   "author": "Laxmi Prasad Devkota",
+   "genre": [
+    "khandakavya",
+    "gitikavya"
+   ],
+   "collection": null,
+   "rights": "public-domain",
+   "proofread": false,
+   "source": null,
+   "path": "archives/authors/devkota/luni",
    "formats": [
     "pdf",
     "txt",
