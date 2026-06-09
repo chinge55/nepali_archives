@@ -1,8 +1,88 @@
 {
  "archive": "Nepali Archives",
- "generated": "2026-06-08",
- "count": 201,
+ "generated": "2026-06-09",
+ "count": 210,
  "works": [
+  {
+   "id": "badhushiksha",
+   "title": "वधूशिक्षा",
+   "title_roman": "Badhushiksha",
+   "author": "Bhanubhakta Acharya",
+   "genre": [
+    "kavita",
+    "poem"
+   ],
+   "collection": null,
+   "rights": "public-domain",
+   "proofread": false,
+   "source": "iNepal (inepal.org)",
+   "path": "archives/authors/bhanubhakta_acharya/badhushiksha",
+   "formats": [
+    "txt",
+    "html",
+    "epub"
+   ]
+  },
+  {
+   "id": "balaji",
+   "title": "बालाजी",
+   "title_roman": "Balaji",
+   "author": "Bhanubhakta Acharya",
+   "genre": [
+    "kavita",
+    "poem"
+   ],
+   "collection": null,
+   "rights": "public-domain",
+   "proofread": false,
+   "source": "iNepal (inepal.org)",
+   "path": "archives/authors/bhanubhakta_acharya/balaji",
+   "formats": [
+    "txt",
+    "html",
+    "epub"
+   ]
+  },
+  {
+   "id": "bhaktamala",
+   "title": "भक्तमाला",
+   "title_roman": "Bhaktamala",
+   "author": "Bhanubhakta Acharya",
+   "genre": [
+    "kavita",
+    "poem"
+   ],
+   "collection": null,
+   "rights": "public-domain",
+   "proofread": false,
+   "source": "iNepal (inepal.org)",
+   "path": "archives/authors/bhanubhakta_acharya/bhaktamala",
+   "formats": [
+    "txt",
+    "html",
+    "epub"
+   ]
+  },
+  {
+   "id": "ghasi",
+   "title": "घाँसी",
+   "title_roman": "Ghasi",
+   "author": "Bhanubhakta Acharya",
+   "genre": [
+    "kavita",
+    "poem"
+   ],
+   "collection": null,
+   "rights": "public-domain",
+   "proofread": false,
+   "source": "Nepali Kitab (nepalikitab.org)",
+   "path": "archives/authors/bhanubhakta_acharya/ghasi",
+   "formats": [
+    "txt",
+    "html",
+    "epub"
+   ]
+  },
   {
    "id": "kantipuri_nagari",
    "title": "कान्तिपुरी नगरी",
@@ -17,6 +97,66 @@
    "proofread": false,
    "source": null,
    "path": "archives/authors/bhanubhakta_acharya/kantipuri_nagari",
+   "formats": [
+    "txt",
+    "html",
+    "epub"
+   ]
+  },
+  {
+   "id": "khwamit_giridharile",
+   "title": "ख्वामित् यस् गिरिधारीले",
+   "title_roman": "Khwamit Yas Giridharile",
+   "author": "Bhanubhakta Acharya",
+   "genre": [
+    "kavita",
+    "poem"
+   ],
+   "collection": null,
+   "rights": "public-domain",
+   "proofread": false,
+   "source": "iNepal (inepal.org)",
+   "path": "archives/authors/bhanubhakta_acharya/khwamit_giridharile",
+   "formats": [
+    "txt",
+    "html",
+    "epub"
+   ]
+  },
+  {
+   "id": "ma_bhanubhakta",
+   "title": "म भानुभक्त",
+   "title_roman": "Ma Bhanubhakta",
+   "author": "Bhanubhakta Acharya",
+   "genre": [
+    "kavita",
+    "poem"
+   ],
+   "collection": null,
+   "rights": "public-domain",
+   "proofread": false,
+   "source": "iNepal (inepal.org)",
+   "path": "archives/authors/bhanubhakta_acharya/ma_bhanubhakta",
+   "formats": [
+    "txt",
+    "html",
+    "epub"
+   ]
+  },
+  {
+   "id": "prashnottaramala",
+   "title": "प्रश्नोत्तरमाला",
+   "title_roman": "Prashnottarmala",
+   "author": "Bhanubhakta Acharya",
+   "genre": [
+    "kavita",
+    "poem"
+   ],
+   "collection": null,
+   "rights": "public-domain",
+   "proofread": false,
+   "source": "Nepali Kitab (nepalikitab.org)",
+   "path": "archives/authors/bhanubhakta_acharya/prashnottaramala",
    "formats": [
     "txt",
     "html",
@@ -39,6 +179,46 @@
    "path": "archives/authors/bhanubhakta_acharya/ramayana",
    "formats": [
     "pdf",
+    "txt",
+    "html",
+    "epub"
+   ]
+  },
+  {
+   "id": "roj_roj_darshan",
+   "title": "रोज रोज दर्शन पाउँछु",
+   "title_roman": "Roj Roj Darshan Paunchhu",
+   "author": "Bhanubhakta Acharya",
+   "genre": [
+    "kavita",
+    "poem"
+   ],
+   "collection": null,
+   "rights": "public-domain",
+   "proofread": false,
+   "source": "iNepal (inepal.org)",
+   "path": "archives/authors/bhanubhakta_acharya/roj_roj_darshan",
+   "formats": [
+    "txt",
+    "html",
+    "epub"
+   ]
+  },
+  {
+   "id": "sun_priye",
+   "title": "सुन प्रिये",
+   "title_roman": "Suna Priye",
+   "author": "Bhanubhakta Acharya",
+   "genre": [
+    "kavita",
+    "poem"
+   ],
+   "collection": null,
+   "rights": "public-domain",
+   "proofread": false,
+   "source": "Nepali Kitab (nepalikitab.org)",
+   "path": "archives/authors/bhanubhakta_acharya/sun_priye",
+   "formats": [
     "txt",
     "html",
     "epub"

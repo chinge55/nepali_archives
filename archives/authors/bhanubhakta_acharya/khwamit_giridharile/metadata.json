@@ -1,0 +1,50 @@
+{
+  "id": "khwamit_giridharile",
+  "title": "ख्वामित् यस् गिरिधारीले",
+  "title_roman": "Khwamit Yas Giridharile",
+  "subtitle": null,
+  "author": {
+    "id": "bhanubhakta_acharya",
+    "name": "भानुभक्त आचार्य",
+    "name_roman": "Bhanubhakta Acharya"
+  },
+  "language": "ne",
+  "script": "Devanagari",
+  "genre": [
+    "kavita",
+    "poem"
+  ],
+  "first_published": {
+    "bs": null,
+    "ad": null
+  },
+  "edition": null,
+  "publisher": null,
+  "description": "भानुभक्त आचार्यको कविता 'ख्वामित् यस् गिरिधारीले'। iNepal (inepal.org) बाट सङ्कलित।",
+  "rights": {
+    "status": "public-domain",
+    "basis": "Author died 1868; long in the public domain (Nepal's Copyright Act 2059: life + 50 years).",
+    "verified": false
+  },
+  "source": {
+    "name": "iNepal (inepal.org)",
+    "url": "https://inepal.org/nepalipoems/10499/bhanubhakta-acharya-khwamit-yas-giridhaari-le/",
+    "pdf": null,
+    "html": "extracted/index.html"
+  },
+  "pages": null,
+  "text": {
+    "extraction_method": "html",
+    "ocr_status": "born-digital",
+    "proofread": false,
+    "quality": "good"
+  },
+  "formats": {
+    "pdf": null,
+    "txt": "text.txt",
+    "html": "reader.html",
+    "epub": "reader.epub"
+  },
+  "added": "2026-06-09",
+  "updated": "2026-06-09"
+}
