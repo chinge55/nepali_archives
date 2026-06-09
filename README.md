@@ -66,8 +66,7 @@ the full guide and the rights policy.
 Every work has a `metadata.json` conforming to [`metadata.schema.json`](./metadata.schema.json).
 Key fields:
 
-- `rights.status` — only `public-domain` or `permission-granted` works may be published;
-  `rights.verified` records whether a human has confirmed it.
+- `rights.status` — only `public-domain` or `permission-granted` works may be published.
 - `text.extraction_method` — `extract` (PDF text layer), `ocr`, `html` (scraped), or `manual`.
 - `text.ocr_status` — `ocr-done` or `born-digital` (web/embedded text).
 - `text.proofread` — whether the text has been human-corrected (OCR fixes only; never modernized).
@@ -131,8 +130,9 @@ Wikisource (Bhanubhakta's *रामायण*), and साझा प्रक�
 anthologies (*भिखारी*, *लक्ष्मी कवितासङ्ग्रह*, *लक्ष्मी निबन्ध सङ्ग्रह*, *सुनको बिहान*) aren't
 duplicated — each member is a standalone work whose description names its collection.
 
-Per the mission, **no work is proofread or rights-verified yet** (`proofread: false`,
-`rights.verified: false`) — clearing that gate is the next milestone.
+Per the mission, **no work is proofread yet** (`proofread: false`) — crowdsourced
+proofreading is the next milestone. (The archive's rights position is stated in
+[`Rights.md`](./Rights.md) and [`LICENSE`](./LICENSE).)
 
 ## Environment
 
@@ -149,5 +149,5 @@ fonttools as build steps.
 3. Reader website on GitHub Pages → **live**.
 4. Full-text search (Devanagari + roman) and the corpus stats page. **done**
 5. Source-only repo + CI build + PR validation + contribution guide. **done**
-6. **Proofreading + rights verification** — correct each `text.txt` against its source and
-   flip `text.proofread` / `rights.verified`. *The open gate before works are publication-ready.*
+6. **Proofreading** — correct each `text.txt` against its source and flip `text.proofread`.
+   *The open gate before works are publication-ready.*

@@ -59,8 +59,7 @@
           "enum": ["public-domain", "permission-granted", "unknown", "restricted"],
           "description": "Per mission, only public-domain or permission-granted works are published."
         },
-        "basis": { "type": ["string", "null"], "description": "Reasoning, e.g. 'Author d.1959; Nepal copyright = life + 50 yrs'." },
-        "verified": { "type": "boolean", "default": false, "description": "Has a human confirmed the rights status?" }
+        "basis": { "type": ["string", "null"], "description": "Reasoning, e.g. 'Author d.1959; Nepal copyright = life + 50 yrs'." }
       }
     },
     "source": {
