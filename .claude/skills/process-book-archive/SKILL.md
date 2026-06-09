@@ -80,18 +80,18 @@ prose; else verse); `first_published.bs` from the colophon; `source.name` =
 - **Author's own preface** (भूमिका/author note): include it as prose (unwrap wrapped
   lines into flowing paragraphs); a heading + its subtitle need a blank line between.
 
-## 5. Build, verify, commit
+## 5. Verify, commit (CI builds the rest)
 
-```bash
-python3 pipeline/build_formats.py <each new dir>   # reader.html + reader.epub (per dir, NOT --all)
-python3 pipeline/build_index.py                    # archives/index.json
-python3 pipeline/subset_fonts.py && python3 pipeline/build_site.py   # if new glyphs; else just build_site
-```
+**Source-only repo:** you commit `metadata.json` + `text.txt` + the source file. The
+build artifacts (`reader.html`, `reader.epub`, `archives/index.json`, the font subset,
+`site/`) are **git-ignored and rebuilt by CI** — do NOT commit them.
 
-⚠️ `build_formats.py --all` rewrites `updated` on **every** work → huge diff. Run it
-per new dir. Verify: all metadata schema-valid, index count == #dirs, every format
-file exists, `build_site.py` clean, sections render right (verse/prose, headings,
-contiguous numbering). Then commit per book (style: see git log; Co-Authored-By
+Verify before committing (same checks as `pipeline/validate.py`): metadata schema-valid;
+dir name == `id`, author dir == `author.id`; `text.txt` non-empty Devanagari;
+`rights.status` ∈ {public-domain, permission-granted}; sections render right (verse/prose,
+headings, contiguous numbering). To eyeball rendering locally, optionally run
+`build_index.py` → `build_formats.py <dir>` → `build_site.py` and serve `site/` — but
+those outputs stay un-committed. Then commit per book (style: see git log; Co-Authored-By
 trailer). Push only when asked (SSH — see CLAUDE.md).
 
 **Stats page** (`pipeline/stats.py` → `site/stats/`, "अभिलेख एक नजरमा"): `build_site.py`

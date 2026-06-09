@@ -42,27 +42,30 @@ Per-work text extraction (Stage 1): `extract.py` (PDF text layer) · `ocr.py`
 `process-book-archive` skill — that's the proven render→OCR→agent-reconcile→
 materialize method.
 
-After adding/editing/removing any work, run **in this order**:
+**The repo holds ONLY sources** — `text.txt`, `metadata.json`, the source PDF/HTML.
+Every build artifact (`reader.html`, `reader.epub`, `archives/index.json`, the
+`assets/fonts/*.woff2` subset, `site/`) is **git-ignored and rebuilt by CI on every push**
+(`.github/workflows/deploy.yml`), so **you never commit build output** — just the sources.
+After editing/adding a work, the only tracked changes should be `text.txt` / `metadata.json`
+/ the source file.
 
-```bash
-python3 pipeline/build_index.py            # regenerate archives/index.json  (NOTHING else writes it)
-python3 pipeline/build_formats.py <dir>     # reader.html + reader.epub for that work  (or --all)
-python3 pipeline/subset_fonts.py            # only if new glyphs; reads built site, writes assets/fonts
-python3 pipeline/build_site.py             # regenerate site/ from index.json + metadata + text.txt
+CI deploy runs the **full pipeline** from sources → GitHub Pages → **www.nepaliarchives.org**:
 ```
+build_index.py → build_formats.py --all → build_site.py → subset_fonts.py → build_site.py → npx pagefind
+```
+`build_site.py` also calls `pipeline/stats.py` to regenerate the `/stats/` page
+("अभिलेख एक नजरमा" — corpus graphs/word-frequency, build-time SVG/CSS only) every build.
+Adding a new *author*? skim `stats.STATS_STOP` so its register's function words don't
+pollute the word cloud. `--archive-base <url>` makes downloads point at an external store
+(default = self-contained site).
 
-`build_site.py` is what CI runs (`.github/workflows/deploy.yml`, on push to `main`,
-which also runs `npx pagefind --site site` for full-text search) to deploy GitHub
-Pages → **www.nepaliarchives.org**. `--archive-base <url>` makes download links point
-at an external store instead of bundling files (default = self-contained site).
-`build_site.py` also calls `pipeline/stats.py` to (re)generate the `/stats/` page
-("अभिलेख एक नजरमा" — corpus graphs/word-frequency, build-time SVG/CSS only) on **every**
-build, so it stays current with the texts automatically. Adding a new *author*? skim
-`stats.STATS_STOP` so its register's function words don't pollute the word cloud.
+To **preview locally** (optional — CI is authoritative), run that same sequence; or just the
+relevant subset (`build_index.py` then `build_formats.py <dir>` then `build_site.py`).
 
-**Verify** before committing: all `metadata.json` validate against
-`metadata.schema.json`; `index.json` count == number of work dirs == no path
-mismatch; every work has its declared format files; `build_site.py` runs clean.
+**Verify** (CI does this on PRs via `pipeline/validate.py` + a dry-run build): all
+`metadata.json` validate against `metadata.schema.json`; dir name == `id` == `[a-z0-9_-]`,
+author dir == `author.id`; `text.txt` non-empty Devanagari; `rights.status` ∈
+{public-domain, permission-granted}; `build_site.py` runs clean.
 
 ## Conventions you must follow
 
@@ -114,9 +117,11 @@ mismatch; every work has its declared format files; `build_site.py` runs clean.
 
 ## Git / deploy
 
-- `site/` is **git-ignored** — CI regenerates it. Don't commit it. Tracked artifacts
-  per work: `metadata.json`, `text.txt`, `reader.html`, `reader.epub`, the source
-  PDF/HTML, plus `archives/index.json` and `assets/fonts/` (the subset).
+- **Source-only repo.** Tracked per work: `metadata.json`, `text.txt`, the source
+  PDF/HTML (`extracted/`). **Git-ignored (CI rebuilds — never commit):** `reader.html`,
+  `reader.epub`, `archives/index.json`, `assets/fonts/*.woff2` (subset), `site/`.
+  Still tracked globally: `assets/fonts/fontface.css` + `assets/fonts-full/` (subset
+  inputs). See `CONTRIBUTING.md`; `build_formats.py` no longer stamps `updated`.
 - **Commit or push only when the user asks.** Commit per logical batch with messages
   in the existing style (end with the Co-Authored-By trailer).
 - Pushing: the configured `origin` is HTTPS and has **no working credentials here**;

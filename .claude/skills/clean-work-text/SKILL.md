@@ -73,9 +73,11 @@ if a line contains any real Devanagari words it is content, not noise.
    cantos, each followed by content, none doubled). Then overwrite `text.txt`.
 4. Update metadata if now inaccurate (e.g. description still says "OCR pending";
    `first_published` you can read from the preface), bump `updated`.
-5. Rebuild + verify + commit (CLAUDE.md order): `build_formats.py <dir>` →
-   `build_index.py` → `build_site.py`; confirm schema-valid, the rendered page has
-   no leaked footers/cataloguing, and the work renders right. Commit (per work).
+5. Verify + commit. Source-only repo: commit just the changed `text.txt` (and
+   `metadata.json` if edited) — `reader.*`, `index.json`, the font subset and `site/` are
+   git-ignored and rebuilt by CI; do NOT commit them. To eyeball locally (optional),
+   run `build_index.py` → `build_formats.py <dir>` → `build_site.py` and serve `site/`;
+   confirm schema-valid and no leaked footers/cataloguing. Commit (per work).
 
 ## Gotchas
 
