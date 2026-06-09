@@ -146,12 +146,17 @@ def process_work(work_dir: Path) -> dict:
     html_path = work_dir / "reader.html"
     html_path.write_text(page, encoding="utf-8")
 
-    meta.setdefault("formats", {})["html"] = "reader.html"
+    # Record which formats exist. `updated` is author-controlled metadata, NOT a build
+    # side-effect, so build_formats no longer stamps it — this keeps the repo churn-free
+    # when reader.* are regenerated. Write metadata back only if formats actually changed.
+    fmts = meta.setdefault("formats", {})
+    before = dict(fmts)
+    fmts["html"] = "reader.html"
     epub = build_epub(work_dir, meta, html_path)
     if epub:
-        meta["formats"]["epub"] = epub
-    meta["updated"] = date.today().isoformat()
-    meta_path.write_text(json.dumps(meta, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        fmts["epub"] = epub
+    if fmts != before:
+        meta_path.write_text(json.dumps(meta, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
     return {"name": name, "status": "built", "epub": bool(epub)}
 

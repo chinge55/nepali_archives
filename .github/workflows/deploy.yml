@@ -25,13 +25,16 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
-      # build_site.py is pure Python stdlib (archives/, assets/fonts/, the Act PDF are
-      # all committed); it also emits the roman→Devanagari search-bridge shards.
-      - run: python3 pipeline/build_site.py
-      # Full-text search: Pagefind indexes the built HTML in place, writing site/pagefind/.
-      # Pinned prebuilt binary, fetched at build time. Must run AFTER build_site.py
-      # (which wipes & rebuilds site/). Together these power the home-page in-text search.
-      - run: npx -y pagefind@1.5.2 --site site
+      - uses: r-lib/actions/setup-pandoc@v2      # for reader.epub
+      - run: pip install fonttools brotli         # for the font subset
+      # The repo holds ONLY sources (metadata.json, text.txt, source PDF/HTML). Every
+      # derived artifact below is rebuilt here, so contributors never commit build output.
+      - run: python3 pipeline/build_index.py             # archives/index.json
+      - run: python3 pipeline/build_formats.py --all      # reader.html + reader.epub per work
+      - run: python3 pipeline/build_site.py               # site/ (pass 1 — HTML for glyph scan)
+      - run: python3 pipeline/subset_fonts.py             # assets/fonts/*.woff2 (subset to used glyphs)
+      - run: python3 pipeline/build_site.py               # site/ (pass 2 — embed the subset)
+      - run: npx -y pagefind@1.5.2 --site site            # full-text search index → site/pagefind/
       - uses: actions/upload-pages-artifact@v3
         with:
           path: site
