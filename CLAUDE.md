@@ -122,30 +122,25 @@ author dir == `author.id`; `text.txt` non-empty Devanagari; `rights.status` ∈
   `reader.epub`, `archives/index.json`, `assets/fonts/*.woff2` (subset), `site/`.
   Still tracked globally: `assets/fonts/fontface.css` + `assets/fonts-full/` (subset
   inputs). See `CONTRIBUTING.md`; `build_formats.py` no longer stamps `updated`.
-- **Commit or push only when the user asks.** Commit per logical batch with messages
-  in the existing style (end with the Co-Authored-By trailer).
-- Pushing: the configured `origin` is HTTPS and has **no working credentials here**;
-  push over SSH instead — `git push git@github.com:chinge55/nepali_archives.git main`
-  (the local `~/.ssh/id_ed25519` is authenticated as repo owner `chinge55`).
+- **Commit or push only when the user asks.** Shipping (verify → commit style →
+  SSH push, `origin` is broken → confirm the live deploy) is the **`ship` skill** —
+  use it; don't re-derive the ritual.
 
-## Hard-won gotchas
+## Gotchas (the two that bite everywhere)
 
-- **Numbered verse + chunked OCR workflows**: if you fan out OCR reconciliation over
-  fixed page windows, stanza/श्लोक numbers get dropped, merged, or mis-labeled at the
-  window **seams** — and verse can even be lost. **Chunk by section (one agent per
-  सर्ग/canto/poem), not by fixed page count.** Always re-check per-section numbering
-  contiguity (1..N) afterward.
-- Agents over-preserve garbled OCR numerals (`रर`, Latin-mixed `3१`) — instruct them
-  to emit the correct **sequential Devanagari** numeral instead.
-- Genuine **manuscript lacunae** exist (e.g. प्रमिथस: चतुर्थ सर्ग starts at श्लोक १४,
-  षष्ठ jumps १०→३३) — preserve the printed numbering gaps; they are faithful, not bugs.
-- श्लोक numbers often sit in the **left margin**; OCR reads them detached at page-top.
-  Trust the page image for which verse each number belongs to (crop/upscale margins).
-- The full Devkota glyph repertoire is already in the font subset (~196 glyphs); new
-  Devkota works rarely change it. Re-run `subset_fonts.py` anyway and check.
+- Genuine **manuscript lacunae** exist (e.g. प्रमिथस: षष्ठ सर्ग jumps श्लोक १०→३३) —
+  printed numbering gaps are faithful, not bugs. Preserve them.
+- Agents mangle numbered verse in both directions: they **over-preserve garbled OCR
+  numerals** (`रर`, `3१`) *and* **hallucinate numbers onto unnumbered sections**.
+  Always verify numbering against the page image. (Full OCR-workflow lessons —
+  chunk-by-section, folio checks, footnote sweeps — live in the skills.)
 
-Skills: **`process-book-archive`** (digitize a folder of scanned book PDFs) and
-**`clean-work-text`** (strip editorial/front/back matter + page furniture from a
-work's text.txt, keeping only the author's own writing). See the project memory for
-worked examples (the 2026-06 `001_book_archive` batch, +40 works 155→195; and the
-तरुण तपसी text cleanup).
+## Skills (use them — they encode the proven workflows)
+
+- **`process-book-archive`** — digitize a folder of scanned book PDFs.
+- **`add-web-work`** — scrape poem(s) from a website into works (dedupe first!).
+- **`clean-work-text`** — strip editorial/front/back matter from a text.txt.
+- **`proofread-work`** — proofread against the source, flip `text.proofread`.
+- **`add-author`** — onboard a new author (registry, rights basis, STATS_STOP).
+- **`verify-site-change`** — local build + headless-browser verification.
+- **`ship`** — verify → commit → push → confirm the live deploy.

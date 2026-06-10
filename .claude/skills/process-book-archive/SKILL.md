@@ -27,6 +27,12 @@ For each PDF: `pdfinfo` (page count) and `pdftotext -f 1 -l 8 … -` (image-only
   front matter (other people's forewords/intros); **keep** the author's own prefaces.
 - **Structure**: find the TOC. Note the **printed→PDF page offset** (e.g. printed p.1
   = PDF p.10 → +9) and per-piece page ranges. Note section/canto structure.
+- **⚠️ Verify the folios BEFORE chunking**: read the printed page number from every
+  page's header/footer and confirm the sequence is contiguous — scans can have pages
+  **physically out of order** (लुनी: PDF 12,13,14 = printed 8,9,7; the canto agents
+  silently dropped 6 stanzas and a "repair" agent invented a false lacuna). OCR mangles
+  single digits — montage the footer strips (bottom ~6% of each page, 8–12 per image)
+  and read them by eye.
 
 ## 2. Render + OCR (300 dpi)
 
@@ -61,6 +67,15 @@ manuscript lacunae (printed numbering that genuinely jumps) are faithful — pre
 them and note in the description. Everything else is a transcription defect: re-run
 that one section as a single agent (cleanest), or surgically insert/renumber against
 the scan if it's a clean single-marker drop.
+
+Two more agent failure modes to QA for (both hit लुनी):
+- **Hallucinated structure** — an agent ADDED stanza numbers (१)–(७) to a canto the
+  print leaves unnumbered. If a section looks unnumbered, verify against the image
+  and keep it unnumbered.
+- **Dropped footnotes** — short glosses (`*` or `१.` at page bottoms) get silently
+  discarded, markers and all. Run a dedicated footnote sweep (a few agents scanning
+  every page bottom), collate into a `टिप्पणी` endnote section after the text, and
+  clean stray inline asterisks. OCR alone cannot find footnotes reliably.
 
 ## 4. Materialize each work
 
@@ -103,6 +118,6 @@ the stopword list so the word cloud stays evocative.
 
 ## Reference
 
-The worked example, scripts, and full lesson list are in the project memory entry
-("2026-06-07 Devkota `001_book_archive` batch"). The site rendering contract and
-git/deploy details are in CLAUDE.md.
+Worked examples: the 2026-06 Devkota `001_book_archive` batch (+40 works) and लुनी
+(shuffled-folio scan). The site rendering contract is in CLAUDE.md; shipping is the
+`ship` skill.
