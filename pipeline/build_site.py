@@ -80,6 +80,15 @@ PROSE_GENRES = {"upanyas", "nibandha"}
 _COLOPHON_RE = re.compile(r"^\s*(वि|बि)\.?\s*सं\.?\s*[०-९]")
 
 
+# Spaced end-punctuation (e.g. "झोलुङ्गो ।") makes the space a legal break point, so a
+# lone danda can wrap onto its own line on narrow phones. Glue it with a no-break space.
+_NBSP_PUNCT = re.compile(r" ([।॥!?])")
+
+
+def _nb(s: str) -> str:
+    return _NBSP_PUNCT.sub(" \\1", s)
+
+
 def work_html(text: str, verse: bool) -> str:
     """Blank-line blocks become stanzas/paragraphs; word-like standalone lines
     become section headings. For verse, each line is its own block so wrapped
@@ -96,11 +105,11 @@ def work_html(text: str, verse: bool) -> str:
         elif _is_heading(b):
             out.append(f'<h2 class="sec">{esc(b)}</h2>')
         elif verse:
-            lines = "".join(f'<span class="ln">{esc(l)}</span>'
+            lines = "".join(f'<span class="ln">{_nb(esc(l))}</span>'
                             for l in b.split("\n") if l.strip() or True)
             out.append(f'<div class="stanza">{lines}</div>')
         else:
-            para = esc(b).replace("\n", " ")
+            para = _nb(esc(b).replace("\n", " "))
             out.append(f'<p class="stanza">{para}</p>')
     return "\n".join(out)
 
@@ -337,8 +346,16 @@ h1{font-size:1.7rem;line-height:1.3;margin:.5rem 0 .25rem}
 .crumb a:hover{color:var(--accent)}
 .work{margin-top:2rem;font-size:1.12rem;line-height:1.95}
 .stanza{margin:0 0 1.5rem}
-.work.verse .ln{display:block;padding-left:1.6em;text-indent:-1.6em}  /* hanging indent: wraps stay clear of new lines */
-.work.prose .stanza{text-align:left}
+.work.verse .ln{display:block;padding-left:1.6em;text-indent:-1.6em;text-wrap:pretty}  /* hanging indent + avoid 1-word orphan wraps */
+.work.prose .stanza{text-align:left;text-wrap:pretty}
+/* Narrow phones: long classical verse lines were wrapping their last word/danda as a
+   2-char orphan. Step the base size down + trim gutters so most lines simply fit. */
+@media(max-width:480px){
+ html{font-size:17px}
+ main,header.site{padding-left:.9rem;padding-right:.9rem}
+ .work{line-height:1.85}
+ .work.verse .ln{padding-left:1.25em;text-indent:-1.25em}
+}
 .work h2.sec{font-size:1.05rem;font-weight:600;color:var(--accent);margin:2.4rem 0 1rem}
 .work .colophon{font-size:.82rem;font-style:italic;color:var(--mut);margin:1.8rem 0 0;opacity:.9}
 .seqnav{display:flex;gap:1rem;margin-top:2.5rem;padding-top:1rem;border-top:1px solid var(--line);font-size:.92rem}
