@@ -467,7 +467,12 @@ ul.refrains .rc{display:inline-block;min-width:2.2rem;color:var(--accent);font-v
 SEARCH_JS = """(function(){
  var q=document.getElementById('q'),R=document.getElementById('results'),
      H=document.getElementById('hint'),FT=document.getElementById('ft'),
-     BASE=R.getAttribute('data-base')||'';
+     BASE=(R&&R.getAttribute('data-base'))||(FT&&FT.getAttribute('data-base'))||'';
+ // Scoped mode (author/collection pages): tier-1 filters the on-page works list,
+ // tier-2 passes a Pagefind filter. Home (no scope attrs) keeps the global behavior.
+ var SCOPE=null;
+ if(FT){var sa=FT.getAttribute('data-scope-author'),sc=FT.getAttribute('data-scope-collection');
+   if(sa||sc){SCOPE={};if(sa)SCOPE.author=sa;if(sc)SCOPE.collection=sc;}}
  var idx=null,loading=false;
  function norm(s){return (s||'').normalize('NFD').replace(/[\\u0300-\\u036f]/g,'').toLowerCase().trim();}
  function isDev(s){return /[\\u0900-\\u097f]/.test(s);}
@@ -545,6 +550,22 @@ SEARCH_JS = """(function(){
    H.textContent=list.length+' शीर्षक';
  }
 
+ // ---- scoped tier-1: live-filter the works list already on the page ----
+ var LIS=null;
+ function domFilter(qn,qraw){
+   if(!LIS) LIS=[].map.call(document.querySelectorAll('ul.works li'),function(li){
+     return {li:li,t:li.textContent||'',n:norm(li.textContent||'')};});
+   var shown=0;
+   LIS.forEach(function(o){
+     var hit=!qn||(qraw&&o.t.indexOf(qraw)>=0)||scoreField(qn,o.n)>0;
+     o.li.style.display=hit?'':'none'; if(hit)shown++;
+   });
+   [].forEach.call(document.querySelectorAll('.group'),function(g){   // hide emptied genre groups
+     g.style.display=g.querySelector('ul.works li:not([style*="none"])')?'':'none';
+   });
+   H.textContent=qn?(shown+' कृति मिल्यो'):'';
+ }
+
  // ---- tier-2: full-text via Pagefind, bridged from roman when needed ----
  var pfP=null;
  function pagefind(){ if(pfP) return pfP;
@@ -587,7 +608,8 @@ SEARCH_JS = """(function(){
    Promise.all([pagefind(),buildQueries(qraw)]).then(function(a){
      var pf=a[0],qs=a[1]; if(my!==ftSeq)return; if(!pf){FT.innerHTML='';return;}
      if(!qs.length){FT.innerHTML='<p class=ftmsg>पाठभित्र केही फेला परेन।</p>';return;}
-     Promise.all(qs.map(function(s){return pf.search(s);})).then(function(arr){
+     var opts=SCOPE?{filters:SCOPE}:undefined;
+     Promise.all(qs.map(function(s){return pf.search(s,opts);})).then(function(arr){
        if(my!==ftSeq) return;
        var seen={},merged=[];
        arr.forEach(function(res){ if(res&&res.results) res.results.forEach(function(r){
@@ -624,18 +646,25 @@ SEARCH_JS = """(function(){
  var ftTimer=null;
  function search(){
    var qraw=q.value.trim(),qn=norm(qraw);
-   if(!qn){R.innerHTML='';FT.innerHTML='';H.textContent=idx?(idx.length+' कृति'):''; return;}
-   load(function(){
-     var hit=[],k;
-     for(k=0;k<idx.length;k++){var sc=score(idx[k],qn,qraw); if(sc>0)hit.push([sc,idx[k]]);}
-     hit.sort(function(a,b){return b[0]-a[0];});
-     renderWorks(hit.map(function(x){return x[1];}));
-   });
+   if(!qn){
+     if(SCOPE){domFilter('','');}else{R.innerHTML='';H.textContent=idx?(idx.length+' कृति'):'';}
+     FT.innerHTML=''; return;
+   }
+   if(SCOPE){
+     domFilter(qn,qraw);                          // tier-1: narrow the visible list
+   }else{
+     load(function(){
+       var hit=[],k;
+       for(k=0;k<idx.length;k++){var sc=score(idx[k],qn,qraw); if(sc>0)hit.push([sc,idx[k]]);}
+       hit.sort(function(a,b){return b[0]-a[0];});
+       renderWorks(hit.map(function(x){return x[1];}));
+     });
+   }
    if(ftTimer)clearTimeout(ftTimer);
    ftTimer=setTimeout(function(){fullText(qraw);},250);
  }
  q.addEventListener('input',search);
- q.addEventListener('focus',function(){load(function(){if(!q.value)H.textContent=idx.length+' कृति';});});
+ q.addEventListener('focus',function(){if(SCOPE)return;load(function(){if(!q.value)H.textContent=idx.length+' कृति';});});
  // deep link: /?q=term (e.g. a word clicked on the stats page) runs the search on load
  var dl=location.search.match(/[?&]q=([^&]*)/);
  if(dl){ try{q.value=decodeURIComponent(dl[1].replace(/\\+/g,' '));}catch(e){} q.focus(); search(); }
@@ -766,6 +795,14 @@ def build(archive_base: str):
             out_dir.mkdir(parents=True, exist_ok=True)
             depth = len(rel.parts); up = "../" * depth
             coll = w.get("collection") or []
+            # Pagefind filters power the author/collection-scoped search. One EMPTY span
+            # per filter using the filter[attribute] value syntax — empty elements add
+            # nothing to the searchable content. (The inline "name:value" comma syntax is
+            # NOT supported — tried; everything lands in one polluted value.)
+            pf_spans = (f'<span data-pagefind-filter="author[data-v]" '
+                        f'data-v="{esc(meta["author"]["name"])}"></span>')
+            pf_spans += "".join(f'<span data-pagefind-filter="collection[data-v]" '
+                                f'data-v="{esc(cn)}"></span>' for cn in coll)
             verse = (meta["genre"][0] if meta["genre"] else "") not in PROSE_GENRES
             gdev = GENRE.get(meta["genre"][0], (meta["genre"][0], ""))[0] if meta["genre"] else ""
             meta_bits = [f'<a href="{up}authors/{aslug_}/index.html#{meta["genre"][0]}">{esc(gdev)}</a>' if gdev else ""]
@@ -815,7 +852,7 @@ def build(archive_base: str):
   <h1>{esc(meta['title'])}</h1>
   <p class="byline">{esc(meta['author']['name'])}</p>
   <p class="meta">{" · ".join(b for b in meta_bits if b)}</p>{pdfbtn}
-  <div class="work {'verse' if verse else 'prose'}" data-pagefind-body>
+  <div class="work {'verse' if verse else 'prose'}" data-pagefind-body>{pf_spans}
 {full_html}
   </div>
   {downloads}
@@ -857,7 +894,7 @@ def build(archive_base: str):
 <article>
   <h1>{esc(lbl)}</h1>
   <p class="byline"><a href="../">{esc(meta['title'])}</a> · {esc(meta['author']['name'])} · {_dev(k+1)}/{_dev(N)}</p>
-  <div class="work {'verse' if verse else 'prose'}" data-pagefind-body>
+  <div class="work {'verse' if verse else 'prose'}" data-pagefind-body>{pf_spans}
 {work_html(content, verse)}
   </div>
 </article>
@@ -906,7 +943,11 @@ def build(archive_base: str):
             f'<span class="r">{esc(meta.get("title_roman") or "")}</span></li>' for w, meta in items)
         cb = (f'<nav class="crumb"><a href="../../index.html">← {esc(SITE_NAME)}</a></nav>'
               f'<h1>{esc(cn)}</h1><p class="lead">{len(items)} कृति।</p>'
-              f'<ul class="works">{lis}</ul>')
+              f'<p><input id="q" type="search" placeholder="यस सङ्ग्रहभित्र खोज्नुहोस् — शीर्षक वा पाठ" '
+              f'autocomplete="off" aria-label="खोज"></p><p class="hint" id="hint"></p>'
+              f'<div id="ft" data-base="../../" data-scope-collection="{esc(cn)}"></div>'
+              f'<ul class="works">{lis}</ul>'
+              f'<script src="../../search.js?v={SEARCH_VER}" defer></script>')
         (d / "index.html").write_text(
             page(f"{cn} — सङ्ग्रह", cb, css_depth=2, active="works",
                  desc=f"{cn} — {len(items)} कृति", canon=f"collections/{cslug[cn]}/"), encoding="utf-8")
@@ -938,9 +979,13 @@ def build(archive_base: str):
 <h1>{esc(aname)}</h1>
 <p class="byline">{esc(aroman)}{' · ' + adates if adates else ''}</p>
 <p class="lead">{len(arecs)} कृति।</p>
+<p><input id="q" type="search" placeholder="{esc(aname)}का कृतिभित्र खोज्नुहोस् — शीर्षक वा पाठ (रोमनमा पनि)" autocomplete="off" aria-label="खोज"></p>
+<p class="hint" id="hint"></p>
+<div id="ft" data-base="../../" data-scope-author="{esc(aname)}"></div>
 <p class="toc">{toc}</p>
 {f'<p class="meta">सङ्ग्रह: {coll_links}</p>' if coll_links else ''}
-{''.join(groups_html)}"""
+{''.join(groups_html)}
+<script src="../../search.js?v={SEARCH_VER}" defer></script>"""
         adir = SITE / "authors" / aslug_; adir.mkdir(parents=True, exist_ok=True)
         (adir / "index.html").write_text(
             page(f"{aname} — कृतिहरू", author_body, css_depth=2, active="works",
