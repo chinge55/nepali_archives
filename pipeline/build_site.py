@@ -190,7 +190,7 @@ def page(title, body, *, desc="", css_depth=0, extra_head="", active="", canon="
 <body>
 <div id="prog" class="prog"></div>
 <header class="site">
-  <a class="brand" href="{up}index.html">{SITE_NAME}</a>
+  <a class="brand" href="{up}index.html"><span>{SITE_NAME}</span></a>
   <nav>{nav}<button id="themed" class="themebtn" type="button" aria-label="उज्यालो/अँध्यारो"></button></nav>
 </header>
 <main>
@@ -319,9 +319,24 @@ body{margin:0;background:var(--bg);color:var(--fg);
  font-family:"Noto Serif Devanagari","Mukta","Kalimati",Georgia,"Times New Roman",serif;
  line-height:1.85;-webkit-text-size-adjust:100%}
 header.site,footer.site{max-width:44rem;margin:0 auto;padding:1rem 1.25rem;display:flex;
- gap:1rem;align-items:baseline;justify-content:space-between;flex-wrap:wrap}
+ gap:1rem;align-items:center;justify-content:space-between;flex-wrap:wrap}
 footer.site{display:block;border-top:1px solid var(--line);margin-top:3rem;color:var(--mut);font-size:.8rem}
-.brand{font-size:1.15rem;font-weight:600;text-decoration:none;color:var(--fg)}
+/* brand = the न mark (::before image, swaps to its pressed frame on hover) + the
+   site name as live text — only the mark animates, the text never moves and picks
+   up theme colors by itself. url() resolves against root-level style.css. */
+.brand{display:flex;flex:none;align-items:center;gap:.5rem;
+ font-size:1.15rem;font-weight:600;text-decoration:none;color:var(--fg)}
+.brand::before{content:"";flex:none;width:1.3rem;height:1.75rem;
+ background:url(logo.png) no-repeat center bottom/contain}
+.brand span{position:relative;top:.3rem}
+.brand:hover::before,.brand:active::before{background-image:url(logo-pressed.png)}
+.brand:focus-visible{outline:2px solid color-mix(in srgb,var(--accent) 45%,transparent);outline-offset:2px;border-radius:.3rem}
+@media(prefers-color-scheme:dark){.brand::before{background-image:url(logo-dark.png)}
+ .brand:hover::before,.brand:active::before{background-image:url(logo-pressed-dark.png)}}
+:root[data-theme=light] .brand::before{background-image:url(logo.png)}
+:root[data-theme=light] .brand:hover::before,:root[data-theme=light] .brand:active::before{background-image:url(logo-pressed.png)}
+:root[data-theme=dark] .brand::before{background-image:url(logo-dark.png)}
+:root[data-theme=dark] .brand:hover::before,:root[data-theme=dark] .brand:active::before{background-image:url(logo-pressed-dark.png)}
 nav a,.themebtn{color:var(--mut);text-decoration:none;font-size:.95rem;font-family:inherit;
  padding:.34rem .6rem;margin-left:.2rem;border-radius:.45rem;background:none;border:0;cursor:pointer}
 nav a:hover,.themebtn:hover{color:var(--accent);background:color-mix(in srgb,var(--accent) 9%,transparent)}
@@ -740,11 +755,16 @@ def build(archive_base: str):
     if act_src.exists():
         (SITE / "docs").mkdir(exist_ok=True)
         shutil.copy(act_src, SITE / "docs" / "pratilipi-adhikar-ain-2059.pdf")
-    # logo: favicon (tab icon) + apple-touch + an About-page image. Pre-sized in
-    # assets/logo/ so the build stays pure-stdlib (no PIL in CI).
+    # logo: favicons + the header न mark in its four states (light/dark ×
+    # normal/pressed). Pre-sized/recolored in assets/logo/ by make_logo_assets.py
+    # so the build stays pure-stdlib (no PIL in CI).
     logo = ROOT / "assets" / "logo"
     for src, dst in [("favicon-48.png", "favicon.png"),
-                     ("favicon-180.png", "apple-touch-icon.png")]:
+                     ("favicon-180.png", "apple-touch-icon.png"),
+                     ("final-logo.png", "logo.png"),
+                     ("logo-pressed.png", "logo-pressed.png"),
+                     ("final-logo-dark.png", "logo-dark.png"),
+                     ("logo-pressed-dark.png", "logo-pressed-dark.png")]:
         if (logo / src).exists():
             shutil.copy(logo / src, SITE / dst)
     # vendored pdf.js — lazy, range-loading reader for works that have a source PDF
@@ -1006,8 +1026,8 @@ def build(archive_base: str):
         encoding="utf-8")
 
     # ---- home: search + authors ----
-    home_body = f"""<h1>{SITE_NAME}</h1>
-<p class="lead">{SITE_TAGLINE}। नि:शुल्क, सधैँभरि — दर्ता छैन, विज्ञापन छैन।</p>
+    home_body = f"""<h1>{SITE_TAGLINE}</h1>
+<p class="lead">{str(len(by_author)).translate(_DEVNUM)} लेखकका {str(len(recs)).translate(_DEVNUM)} कृति — नि:शुल्क, सधैँभरि। दर्ता छैन, विज्ञापन छैन।</p>
 <p><input id="q" type="search" placeholder="खोज्नुहोस् — शीर्षक, पाठ वा रोमन (जस्तै: pagal, sundari, फूल)" autocomplete="off" aria-label="खोज"></p>
 <p class="hint" id="hint"></p>
 <ul class="works" id="results" data-base=""></ul>
