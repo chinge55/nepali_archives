@@ -248,7 +248,7 @@ def build_stats_page(recs, collections, *, page, GENRE, PROSE_GENRES, site, site
         trivia.append(f"मिति थाहा भएका {_dnum(len(years))} कृतिको प्रकाशन वि.सं. "
                       f"<b>{_dev(min(years))}–{_dev(max(years))}</b> मा फैलिएको।")
 
-    body = f"""<nav class="crumb"><a href="../index.html">← {esc(site_name)}</a></nav>
+    body = f"""<nav class="crumb"><a href="../">← {esc(site_name)}</a></nav>
 <article class="stats">
 <h1>अभिलेख एक नजरमा</h1>
 <p class="lead">तथ्याङ्क, ग्राफ र रोचक तथ्यहरू।</p>

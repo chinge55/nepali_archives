@@ -157,20 +157,21 @@ def paginate_work(text, balance=False):
     return None
 
 
-def page(title, body, *, desc="", css_depth=0, extra_head="", active="", canon=""):
+def page(title, body, *, desc="", css_depth=0, extra_head="", active="", canon="", noindex=False):
     up = "../" * css_depth
     canon_url = SITE_URL + canon
+    robots = '<meta name="robots" content="noindex,follow">\n' if noindex else ""
     og = (f'<link rel="canonical" href="{esc(canon_url)}">\n'
-          f'<meta property="og:type" content="{"article" if active=="works" and canon not in ("","authors/devkota/index.html") else "website"}">\n'
+          f'<meta property="og:type" content="{"article" if active=="works" and canon.startswith("authors/") and canon.rstrip("/").count("/") >= 2 else "website"}">\n'
           f'<meta property="og:title" content="{esc(title)}">\n'
           f'<meta property="og:description" content="{esc(desc)}">\n'
           f'<meta property="og:url" content="{esc(canon_url)}">\n'
           f'<meta property="og:site_name" content="{SITE_NAME}">\n')
     nav = "".join(
-        f'<a href="{up}{href}"{" class=on" if active==key else ""}>{label}</a>'
+        f'<a href="{(up + href) or "./"}"{" class=on" if active==key else ""}>{label}</a>'
         for key, href, label in [
-            ("home", "index.html", "गृह"),
-            ("works", "authors/index.html", "लेखकहरू"),
+            ("home", "", "गृह"),
+            ("works", "authors/", "लेखकहरू"),
             ("about", "about.html", "बारेमा"),
         ])
     return f"""<!DOCTYPE html>
@@ -181,7 +182,7 @@ def page(title, body, *, desc="", css_depth=0, extra_head="", active="", canon="
 <script>(function(){{try{{var t=localStorage.getItem('theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);}}catch(e){{}}}})();</script>
 <title>{esc(title)}</title>
 <meta name="description" content="{esc(desc)}">
-<link rel="icon" type="image/png" href="{up}favicon.png">
+{robots}<link rel="icon" type="image/png" href="{up}favicon.png">
 <link rel="apple-touch-icon" href="{up}apple-touch-icon.png">
 <link rel="preload" as="font" type="font/woff2" href="{up}fonts/nsd-devanagari-400.woff2" crossorigin>
 <link rel="stylesheet" href="{up}style.css?v={CSS_VER}">
@@ -190,7 +191,7 @@ def page(title, body, *, desc="", css_depth=0, extra_head="", active="", canon="
 <body>
 <div id="prog" class="prog"></div>
 <header class="site">
-  <a class="brand" href="{up}index.html"><span>{SITE_NAME}</span></a>
+  <a class="brand" href="{up or './'}"><span>{SITE_NAME}</span></a>
   <nav>{nav}<button id="themed" class="themebtn" type="button" aria-label="उज्यालो/अँध्यारो"></button></nav>
 </header>
 <main>
@@ -292,7 +293,7 @@ def write_pdf_reader(out_dir, depth, rel, pdf_fn, meta, aslug_, aname, archive_b
     head = (f'<script src="{up}pdfjs/pdf.min.js"></script>\n'
             f'<style>{READER_CSS}</style>\n')
     js = READER_JS.replace("__WORKER_URL__", f"{up}pdfjs/pdf.worker.min.js")
-    body = f"""<nav class="crumb"><a href="{up}authors/{aslug_}/index.html">← {esc(aname)}</a> · <a href="../">{esc(title)}</a></nav>
+    body = f"""<nav class="crumb"><a href="{up}authors/{aslug_}/">← {esc(aname)}</a> · <a href="../">{esc(title)}</a></nav>
 <div class="pdftop">
   <h1 class="pdfh1">{esc(title)} — मूल पृष्ठ</h1>
   <div class="pdfbar"><a class="pdfback" href="../">← पाठ पढ्नुहोस्</a><span id="pdfstatus" class="pdfstat"></span><span class="pdfzoom"><button id="pdfminus" type="button" aria-label="सानो">−</button><button id="pdfplus" type="button" aria-label="ठूलो">+</button></span></div>
@@ -304,7 +305,7 @@ def write_pdf_reader(out_dir, depth, rel, pdf_fn, meta, aslug_, aname, archive_b
     pdir.mkdir(parents=True, exist_ok=True)
     (pdir / "index.html").write_text(
         page(title_full, body, desc=title_full, css_depth=rdepth, active="works",
-             canon=rel.as_posix() + "/pdf/", extra_head=head),
+             canon=rel.as_posix() + "/pdf/", extra_head=head, noindex=True),
         encoding="utf-8")
 
 
@@ -825,7 +826,7 @@ def build(archive_base: str):
                                 f'data-v="{esc(cn)}"></span>' for cn in coll)
             verse = (meta["genre"][0] if meta["genre"] else "") not in PROSE_GENRES
             gdev = GENRE.get(meta["genre"][0], (meta["genre"][0], ""))[0] if meta["genre"] else ""
-            meta_bits = [f'<a href="{up}authors/{aslug_}/index.html#{meta["genre"][0]}">{esc(gdev)}</a>' if gdev else ""]
+            meta_bits = [f'<a href="{up}authors/{aslug_}/#{meta["genre"][0]}">{esc(gdev)}</a>' if gdev else ""]
             for cn in coll:
                 meta_bits.append(f'सङ्ग्रह: <a href="{up}collections/{cslug[cn]}/">{esc(cn)}</a>')
             # Downloads: link to --archive-base if set (lean site), else bundle in.
@@ -867,7 +868,7 @@ def build(archive_base: str):
             # browser never loads (or scrolls) the whole epic at once.
             pages = paginate_work(text, balance=len(full_html) > 150000)
             if not pages:
-                body = f"""<nav class="crumb"><a href="{up}authors/{aslug_}/index.html">← {esc(aname)}</a></nav>
+                body = f"""<nav class="crumb"><a href="{up}authors/{aslug_}/">← {esc(aname)}</a></nav>
 <article>
   <h1>{esc(meta['title'])}</h1>
   <p class="byline">{esc(meta['author']['name'])}</p>
@@ -887,7 +888,7 @@ def build(archive_base: str):
                 N = len(pages)
                 toc = "".join(f'<li><a href="{k+1}/">{esc(lbl)}</a></li>'
                               for k, (lbl, _) in enumerate(pages))
-                toc_body = f"""<nav class="crumb"><a href="{up}authors/{aslug_}/index.html">← {esc(aname)}</a></nav>
+                toc_body = f"""<nav class="crumb"><a href="{up}authors/{aslug_}/">← {esc(aname)}</a></nav>
 <article>
   <h1>{esc(meta['title'])}</h1>
   <p class="byline">{esc(meta['author']['name'])}</p>
@@ -910,7 +911,7 @@ def build(archive_base: str):
                              '<a class="pv" href="../"><span class="lbl">सूची</span>← सूची</a>')]
                     if k < N - 1:
                         cnav.append(f'<a class="nx" href="../{k+2}/"><span class="lbl">अर्को</span>{esc(pages[k+1][0])} →</a>')
-                    cbody = f"""<nav class="crumb"><a href="{cup}authors/{aslug_}/index.html">← {esc(aname)}</a> · <a href="../">{esc(meta['title'])} (सूची)</a></nav>
+                    cbody = f"""<nav class="crumb"><a href="{cup}authors/{aslug_}/">← {esc(aname)}</a> · <a href="../">{esc(meta['title'])} (सूची)</a></nav>
 <article>
   <h1>{esc(lbl)}</h1>
   <p class="byline"><a href="../">{esc(meta['title'])}</a> · {esc(meta['author']['name'])} · {_dev(k+1)}/{_dev(N)}</p>
@@ -961,7 +962,7 @@ def build(archive_base: str):
         lis = "".join(
             f'<li><a href="../../{esc(Path(w["path"]).relative_to("archives").as_posix())}/">{esc(meta["title"])}</a>'
             f'<span class="r">{esc(meta.get("title_roman") or "")}</span></li>' for w, meta in items)
-        cb = (f'<nav class="crumb"><a href="../../index.html">← {esc(SITE_NAME)}</a></nav>'
+        cb = (f'<nav class="crumb"><a href="../../">← {esc(SITE_NAME)}</a></nav>'
               f'<h1>{esc(cn)}</h1><p class="lead">{len(items)} कृति।</p>'
               f'<p><input id="q" type="search" placeholder="यस सङ्ग्रहभित्र खोज्नुहोस् — शीर्षक वा पाठ" '
               f'autocomplete="off" aria-label="खोज"></p><p class="hint" id="hint"></p>'
@@ -995,7 +996,7 @@ def build(archive_base: str):
             groups_html.append(
                 f'<div class="group" id="{g}"><h2>{esc(dev)} <span class="count">{en} · {len(items)}</span></h2>'
                 f'<ul class="works">{lis}</ul></div>')
-        author_body = f"""<nav class="crumb"><a href="../../index.html">← {esc(SITE_NAME)}</a></nav>
+        author_body = f"""<nav class="crumb"><a href="../../">← {esc(SITE_NAME)}</a></nav>
 <h1>{esc(aname)}</h1>
 <p class="byline">{esc(aroman)}{' · ' + adates if adates else ''}</p>
 <p class="lead">{len(arecs)} कृति।</p>
@@ -1009,20 +1010,20 @@ def build(archive_base: str):
         adir = SITE / "authors" / aslug_; adir.mkdir(parents=True, exist_ok=True)
         (adir / "index.html").write_text(
             page(f"{aname} — कृतिहरू", author_body, css_depth=2, active="works",
-                 desc=f"{aname}का {len(arecs)} कृति", canon=f"authors/{aslug_}/index.html"),
+                 desc=f"{aname}का {len(arecs)} कृति", canon=f"authors/{aslug_}/"),
             encoding="utf-8")
 
     # ---- authors index ----
     def author_li(a, base):
         n, r, d = ainfo(a, by_author[a][0][1])
-        return (f'<li><a href="{base}authors/{a}/index.html">{esc(n)}</a>'
+        return (f'<li><a href="{base}authors/{a}/">{esc(n)}</a>'
                 f'<span class="r">{esc(r)} · {len(by_author[a])} कृति</span></li>')
     ai_body = (f'<h1>लेखकहरू</h1><p class="lead">{len(by_author)} लेखक · {len(recs)} कृति।</p>'
                f'<ul class="works">{"".join(author_li(a, "../") for a in author_order)}</ul>')
     (SITE / "authors").mkdir(parents=True, exist_ok=True)
     (SITE / "authors" / "index.html").write_text(
         page("लेखकहरू — " + SITE_NAME, ai_body, css_depth=1, active="works",
-             desc=f"{len(by_author)} लेखक · {len(recs)} कृति", canon="authors/index.html"),
+             desc=f"{len(by_author)} लेखक · {len(recs)} कृति", canon="authors/"),
         encoding="utf-8")
 
     # ---- home: search + authors ----
@@ -1069,8 +1070,8 @@ Internet Archive, sahityasangraha.com। प्रत्येक कृति H
                            PROSE_GENRES=PROSE_GENRES, site=SITE, site_name=SITE_NAME)
 
     # ---- sitemap (full URLs) + robots ----
-    urls = (["", "about.html", "authors/index.html", "stats/"]
-            + [f"authors/{a}/index.html" for a in author_order]
+    urls = (["", "about.html", "authors/", "stats/"]
+            + [f"authors/{a}/" for a in author_order]
             + [f"collections/{cslug[cn]}/" for cn in collections]
             + [r["p"] for r in search_rows])
     (SITE / "sitemap.txt").write_text(
