@@ -29,6 +29,7 @@ ARCHIVES = ROOT / "archives"
 SITE = ROOT / "site"
 SITE_NAME = "नेपाली अभिलेख"          # "Nepali Archives"
 SITE_TAGLINE = "स्वतन्त्र, सार्वजनिक नेपाली साहित्य"  # free, public-domain Nepali literature
+SITE_TAGLINE_EN = "A public-domain archive of Nepali literature"
 SITE_URL = "https://www.nepaliarchives.org/"
 
 # Display names for genre tags (Devanagari · English), and a browse order.
@@ -160,6 +161,8 @@ def paginate_work(text, balance=False):
 def page(title, body, *, desc="", css_depth=0, extra_head="", active="", canon="", noindex=False):
     up = "../" * css_depth
     canon_url = SITE_URL + canon
+    # every description carries the English tagline too, for non-Nepali SERP snippets
+    desc = f"{desc} · {SITE_TAGLINE_EN}" if desc else f"{SITE_TAGLINE} — {SITE_TAGLINE_EN}"
     robots = '<meta name="robots" content="noindex,follow">\n' if noindex else ""
     og = (f'<link rel="canonical" href="{esc(canon_url)}">\n'
           f'<meta property="og:type" content="{"article" if active=="works" and canon.startswith("authors/") and canon.rstrip("/").count("/") >= 2 else "website"}">\n'
@@ -199,6 +202,7 @@ def page(title, body, *, desc="", css_depth=0, extra_head="", active="", canon="
 </main>
 <footer class="site">
   <p>{SITE_NAME} — {SITE_TAGLINE}. सार्वजनिक डोमेन।</p>
+  <p class="foot-en">{SITE_TAGLINE_EN}</p>
 </footer>
 </body>
 </html>
@@ -310,11 +314,23 @@ def write_pdf_reader(out_dir, depth, rel, pdf_fn, meta, aslug_, aname, archive_b
 
 
 # ---------------------------------------------------------------- CSS / JS
-CSS = """:root{--bg:#fbfaf7;--fg:#1a1a1a;--mut:#6b675e;--line:#e3ded3;--link:#6a4b16;--accent:#8a5a00}
-@media(prefers-color-scheme:dark){:root{--bg:#15140f;--fg:#e7e3da;--mut:#9a948a;--line:#2c2a22;--link:#d8b15f;--accent:#e0b65f}}
+CSS = """:root{--bg:#fbfaf7;--fg:#1a1a1a;--mut:#6b675e;--line:#e3ded3;--link:#6a4b16;--accent:#8a5a00;
+ --g-mahakavya:#7a3b2e;--g-khandakavya:#96522a;--g-upanyas:#6b6b2a;--g-nibandha:#4e6472;
+ --g-kavita:#8a5a00;--g-balkavita:#4e7345;--g-git:#6d4a6e;--g-gazal:#3f6f6a}
+@media(prefers-color-scheme:dark){:root{--bg:#15140f;--fg:#e7e3da;--mut:#9a948a;--line:#2c2a22;--link:#d8b15f;--accent:#e0b65f;
+ --g-mahakavya:#cf8a76;--g-khandakavya:#d69a6b;--g-upanyas:#b5b36a;--g-nibandha:#8fa9b8;
+ --g-kavita:#e0b65f;--g-balkavita:#93b98a;--g-git:#b58ab4;--g-gazal:#86b3ae}}
 /* manual override — :root[...] (0,2,0) outranks the media query's :root (0,1,0), so it wins on any system theme */
-:root[data-theme=light]{--bg:#fbfaf7;--fg:#1a1a1a;--mut:#6b675e;--line:#e3ded3;--link:#6a4b16;--accent:#8a5a00}
-:root[data-theme=dark]{--bg:#15140f;--fg:#e7e3da;--mut:#9a948a;--line:#2c2a22;--link:#d8b15f;--accent:#e0b65f}
+:root[data-theme=light]{--bg:#fbfaf7;--fg:#1a1a1a;--mut:#6b675e;--line:#e3ded3;--link:#6a4b16;--accent:#8a5a00;
+ --g-mahakavya:#7a3b2e;--g-khandakavya:#96522a;--g-upanyas:#6b6b2a;--g-nibandha:#4e6472;
+ --g-kavita:#8a5a00;--g-balkavita:#4e7345;--g-git:#6d4a6e;--g-gazal:#3f6f6a}
+:root[data-theme=dark]{--bg:#15140f;--fg:#e7e3da;--mut:#9a948a;--line:#2c2a22;--link:#d8b15f;--accent:#e0b65f;
+ --g-mahakavya:#cf8a76;--g-khandakavya:#d69a6b;--g-upanyas:#b5b36a;--g-nibandha:#8fa9b8;
+ --g-kavita:#e0b65f;--g-balkavita:#93b98a;--g-git:#b58ab4;--g-gazal:#86b3ae}
+.g-mahakavya{--gc:var(--g-mahakavya)}.g-khandakavya{--gc:var(--g-khandakavya)}
+.g-upanyas{--gc:var(--g-upanyas)}.g-nibandha{--gc:var(--g-nibandha)}
+.g-kavita{--gc:var(--g-kavita)}.g-balkavita{--gc:var(--g-balkavita)}
+.g-git{--gc:var(--g-git)}.g-gazal{--gc:var(--g-gazal)}
 *{box-sizing:border-box}html{font-size:19px}
 body{margin:0;background:var(--bg);color:var(--fg);
  font-family:"Noto Serif Devanagari","Mukta","Kalimati",Georgia,"Times New Roman",serif;
@@ -371,6 +387,7 @@ h1{font-size:1.7rem;line-height:1.3;margin:.5rem 0 .25rem}
  main,header.site{padding-left:.9rem;padding-right:.9rem}
  .work{line-height:1.85}
  .work.verse .ln{padding-left:1.25em;text-indent:-1.25em}
+ .wmeta .chip{display:none}   /* keep list rows one line on phones */
 }
 .work h2.sec{font-size:1.05rem;font-weight:600;color:var(--accent);margin:2.4rem 0 1rem}
 .work .colophon{font-size:.82rem;font-style:italic;color:var(--mut);margin:1.8rem 0 0;opacity:.9}
@@ -393,7 +410,26 @@ ul.works li a{text-decoration:none;font-size:1.1rem}
 ul.works li .r{color:var(--mut);font-size:.82rem;margin-left:.5rem}
 .group h2{font-size:1rem;color:var(--mut);font-weight:600;margin:2rem 0 .25rem;
  text-transform:none;border-bottom:2px solid var(--line);padding-bottom:.2rem}
+.group h2 a,.home-sec h2 a{color:inherit;text-decoration:none}
+.group h2 a:hover,.home-sec h2 a:hover{color:var(--accent)}
 .count{color:var(--mut);font-weight:400;font-size:.85rem}
+/* right-floated catalogue bits on work list items: genre chip · reading time · 📖 scan */
+.wmeta{float:right;color:var(--mut);font-size:.72rem;white-space:nowrap;margin-left:.6rem;line-height:2.1}
+.wmeta .chip{border:1px solid var(--line);border-left:3px solid var(--gc,var(--accent));
+ border-radius:.3rem;padding:0 .35rem;margin-right:.5rem}
+.wmeta .rt{margin-right:.35rem}
+/* shelves: typographic cover cards (home विधा/सङ्ग्रह sections, /genres/) */
+.shelf{display:grid;grid-template-columns:repeat(auto-fill,minmax(9.5rem,1fr));gap:.7rem;margin:1rem 0}
+.card{display:block;text-decoration:none;color:var(--fg);border:1px solid var(--line);
+ border-left:4px solid var(--gc,var(--accent));border-radius:.45rem;padding:.65rem .8rem;
+ background:color-mix(in srgb,var(--gc,var(--accent)) 5%,var(--bg))}
+.card b{display:block;font-weight:600;font-size:1.06rem;line-height:1.5;overflow:hidden;text-overflow:ellipsis}
+.card .en{color:var(--mut);font-size:.76rem;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.card .n{display:block;color:var(--mut);font-size:.78rem;margin-top:.3rem}
+.card:hover{border-color:var(--gc,var(--accent));
+ background:color-mix(in srgb,var(--gc,var(--accent)) 11%,var(--bg))}
+.tagline-en{color:var(--mut);font-size:.95rem;margin:.1rem 0 .8rem}
+.foot-en{margin:.2rem 0 0}
 #q{width:100%;font:inherit;font-size:1.05rem;padding:.6rem .8rem;border:1px solid var(--line);
  border-radius:.4rem;background:var(--bg);color:var(--fg)}
 #results li .snip{display:block;color:var(--mut);font-size:.8rem;white-space:nowrap;
@@ -420,6 +456,7 @@ body{transition:background-color .25s ease,color .25s ease}
  nav a:active,.themebtn:active{transform:translateY(1px)}
  ul.works li{transition:background-color .15s ease}
  ul.works li:hover{background:color-mix(in srgb,var(--accent) 7%,transparent)}
+ .card{transition:background-color .15s ease,border-color .15s ease}
  main{animation:fade .35s ease both}
  .prog{transition:width .12s linear}
  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
@@ -484,11 +521,12 @@ SEARCH_JS = """(function(){
  var q=document.getElementById('q'),R=document.getElementById('results'),
      H=document.getElementById('hint'),FT=document.getElementById('ft'),
      BASE=(R&&R.getAttribute('data-base'))||(FT&&FT.getAttribute('data-base'))||'';
- // Scoped mode (author/collection pages): tier-1 filters the on-page works list,
- // tier-2 passes a Pagefind filter. Home (no scope attrs) keeps the global behavior.
+ // Scoped mode (author/collection/genre pages): tier-1 filters the on-page works
+ // list, tier-2 passes a Pagefind filter. Home (no scope attrs) keeps the global behavior.
  var SCOPE=null;
- if(FT){var sa=FT.getAttribute('data-scope-author'),sc=FT.getAttribute('data-scope-collection');
-   if(sa||sc){SCOPE={};if(sa)SCOPE.author=sa;if(sc)SCOPE.collection=sc;}}
+ if(FT){var sa=FT.getAttribute('data-scope-author'),sc=FT.getAttribute('data-scope-collection'),
+   sg=FT.getAttribute('data-scope-genre');
+   if(sa||sc||sg){SCOPE={};if(sa)SCOPE.author=sa;if(sc)SCOPE.collection=sc;if(sg)SCOPE.genre=sg;}}
  var idx=null,loading=false;
  function norm(s){return (s||'').normalize('NFD').replace(/[\\u0300-\\u036f]/g,'').toLowerCase().trim();}
  function isDev(s){return /[\\u0900-\\u097f]/.test(s);}
@@ -557,10 +595,15 @@ SEARCH_JS = """(function(){
      idx=d.works; for(var k=0;k<idx.length;k++){var w=idx[k];
        w._r=norm(w.r); w._s=norm(w.s); w._c=norm(w.c); w._a=norm(w.a);}    // precompute once
      cb();});}
+ var G=__GENRE_MAP__;
+ function dev(n){return String(n).replace(/[0-9]/g,function(d){return '\\u0966\\u0967\\u0968\\u0969\\u096a\\u096b\\u096c\\u096d\\u096e\\u096f'[d];});}
  function renderWorks(list){
    var rows=list.slice(0,60).map(function(w){
      var sub=[w.a,w.c].filter(Boolean).join(' \\u00b7 ');
-     return '<li><a href="'+BASE+w.p+'">'+w.t+'</a>'+(w.r?' <span class=r>'+w.r+'</span>':'')+
+     var wm=(w.g&&G[w.g]?'<span class="chip g-'+w.g+'">'+G[w.g]+'</span>':'')+
+            '<span class=rt>'+(w.m?'~'+dev(w.m)+' \\u092e\\u093f\\u0928\\u0947\\u091f':'\\u091b\\u094b\\u091f\\u094b')+'</span>'+
+            (w.f?'<span class=scan>\\ud83d\\udcd6</span>':'');
+     return '<li><span class=wmeta>'+wm+'</span><a href="'+BASE+w.p+'">'+w.t+'</a>'+(w.r?' <span class=r>'+w.r+'</span>':'')+
             (sub?'<span class=snip>'+sub+'</span>':'')+'</li>';}).join('');
    R.innerHTML=rows;
    H.textContent=list.length+' शीर्षक';
@@ -723,6 +766,11 @@ UI_JS = """(function(){
 })();
 """
 
+# genre-id -> Devanagari name, injected into the search JS for result chips
+# (substituted BEFORE hashing so SEARCH_VER tracks the final text)
+SEARCH_JS = SEARCH_JS.replace(
+    "__GENRE_MAP__", json.dumps({g: v[0] for g, v in GENRE.items()}, ensure_ascii=False))
+
 # content-hash cache-busting: bumps automatically whenever the asset changes, so
 # returning visitors (phones especially) never get served a stale CSS/JS.
 def _ver(s): return hashlib.sha1(s.encode("utf-8")).hexdigest()[:8]
@@ -733,11 +781,14 @@ def build(archive_base: str):
     works = json.loads((ARCHIVES / "index.json").read_text(encoding="utf-8"))["works"]
     # load metadata + text per work
     recs = []
+    extras = {}   # path -> reading time (~200 wpm) + has-scan flag, for list items
     for w in works:
         wd = ROOT / w["path"]
         meta = json.loads((wd / "metadata.json").read_text(encoding="utf-8"))
         text = (wd / "text.txt").read_text(encoding="utf-8")
         recs.append((w, meta, text))
+        extras[w["path"]] = {"min": round(len(text.split()) / 200),
+                             "pdf": bool(meta.get("formats", {}).get("pdf"))}
 
     if SITE.exists():
         shutil.rmtree(SITE)
@@ -793,6 +844,20 @@ def build(archive_base: str):
         au = sample_meta["author"]
         return (au["name"], au.get("name_roman") or "", "")
 
+    # one list item for every browse list: title + roman + right-floated catalogue
+    # bits (genre chip where the list isn't already genre-grouped, reading time,
+    # 📖 when a source scan exists). .wmeta floats right, so it goes FIRST in the
+    # <li> — ul.works is shared with the home search results, whose .snip is a block.
+    def work_li(w, meta, href, *, chip=False):
+        ex = extras[w["path"]]
+        g = meta["genre"][0] if meta["genre"] else ""
+        rt = "छोटो" if ex["min"] == 0 else f"~{_dev(ex['min'])} मिनेट"
+        wm = ((f'<span class="chip g-{g}">{esc(GENRE.get(g, (g, ""))[0])}</span>' if chip and g else "")
+              + f'<span class="rt">{rt}</span>'
+              + ('<span class="scan" title="मूल पृष्ठ स्क्यान उपलब्ध">\U0001F4D6</span>' if ex["pdf"] else ""))
+        return (f'<li><span class="wmeta">{wm}</span><a href="{href}">{esc(meta["title"])}</a>'
+                f'<span class="r">{esc(meta.get("title_roman") or "")}</span></li>')
+
     # collections (only some authors have them): name -> [(w,meta)], with a URL slug
     collections, cslug = {}, {}
     for w, meta, _ in recs:
@@ -824,6 +889,9 @@ def build(archive_base: str):
                         f'data-v="{esc(meta["author"]["name"])}"></span>')
             pf_spans += "".join(f'<span data-pagefind-filter="collection[data-v]" '
                                 f'data-v="{esc(cn)}"></span>' for cn in coll)
+            if meta["genre"]:
+                pf_spans += (f'<span data-pagefind-filter="genre[data-v]" '
+                             f'data-v="{esc(meta["genre"][0])}"></span>')
             verse = (meta["genre"][0] if meta["genre"] else "") not in PROSE_GENRES
             gdev = GENRE.get(meta["genre"][0], (meta["genre"][0], ""))[0] if meta["genre"] else ""
             meta_bits = [f'<a href="{up}authors/{aslug_}/#{meta["genre"][0]}">{esc(gdev)}</a>' if gdev else ""]
@@ -931,6 +999,8 @@ def build(archive_base: str):
                                 "a": meta["author"].get("name_roman") or "",
                                 "c": "; ".join(coll) if coll else "",
                                 "g": meta["genre"][0] if meta["genre"] else "",
+                                "m": extras[w["path"]]["min"],
+                                "f": 1 if extras[w["path"]]["pdf"] else 0,
                                 "p": str(rel) + "/"})
 
     # ---- search index ----
@@ -960,8 +1030,8 @@ def build(archive_base: str):
     for cn, items in collections.items():
         d = cdir / cslug[cn]; d.mkdir(parents=True, exist_ok=True)
         lis = "".join(
-            f'<li><a href="../../{esc(Path(w["path"]).relative_to("archives").as_posix())}/">{esc(meta["title"])}</a>'
-            f'<span class="r">{esc(meta.get("title_roman") or "")}</span></li>' for w, meta in items)
+            work_li(w, meta, f'../../{esc(Path(w["path"]).relative_to("archives").as_posix())}/',
+                    chip=True) for w, meta in items)
         cb = (f'<nav class="crumb"><a href="../../">← {esc(SITE_NAME)}</a></nav>'
               f'<h1>{esc(cn)}</h1><p class="lead">{len(items)} कृति।</p>'
               f'<p><input id="q" type="search" placeholder="यस सङ्ग्रहभित्र खोज्नुहोस् — शीर्षक वा पाठ" '
@@ -972,6 +1042,57 @@ def build(archive_base: str):
         (d / "index.html").write_text(
             page(f"{cn} — सङ्ग्रह", cb, css_depth=2, active="works",
                  desc=f"{cn} — {len(items)} कृति", canon=f"collections/{cslug[cn]}/"), encoding="utf-8")
+
+    # ---- genre pages (corpus-wide shelves: /genres/<gid>/, grouped by author) ----
+    by_genre = {}
+    for w, meta, _ in recs:
+        by_genre.setdefault(meta["genre"][0] if meta["genre"] else "kavita", []).append((w, meta))
+    genres_present = [g for g in ORDER + sorted(k for k in by_genre if k not in ORDER)
+                      if by_genre.get(g)]
+
+    def genre_cards(base):
+        cards = "".join(
+            f'<a class="card g-{g}" href="{base}genres/{g}/">'
+            f'<b>{esc(GENRE.get(g, (g, ""))[0])}</b><span class="en">{esc(GENRE.get(g, (g, ""))[1])}</span>'
+            f'<span class="n">{_dev(len(by_genre[g]))} कृति</span></a>' for g in genres_present)
+        return f'<div class="shelf">{cards}</div>'
+
+    for g in genres_present:
+        gdev, gen = GENRE.get(g, (g, ""))
+        gitems = by_genre[g]
+        groups_html = []
+        for a in author_order:
+            aitems = sorted((x for x in gitems if aslug(x[0]) == a), key=lambda x: x[1]["title"])
+            if not aitems:
+                continue
+            aname = ainfo(a, aitems[0][1])[0]
+            lis = "".join(work_li(w, meta, f'../../authors/{a}/{esc(w["id"])}/') for w, meta in aitems)
+            groups_html.append(
+                f'<div class="group"><h2><a href="../../authors/{a}/">{esc(aname)}</a> '
+                f'<span class="count">{len(aitems)}</span></h2><ul class="works">{lis}</ul></div>')
+        gb = (f'<nav class="crumb"><a href="../../">← {esc(SITE_NAME)}</a></nav>'
+              f'<h1>{esc(gdev)}</h1><p class="byline">{esc(gen)}</p>'
+              f'<p class="lead">{_dev(len(gitems))} कृति।</p>'
+              f'<p><input id="q" type="search" placeholder="{esc(gdev)}भित्र खोज्नुहोस् — शीर्षक वा पाठ" '
+              f'autocomplete="off" aria-label="खोज"></p><p class="hint" id="hint"></p>'
+              f'<div id="ft" data-base="../../" data-scope-genre="{g}"></div>'
+              f'{"".join(groups_html)}'
+              f'<script src="../../search.js?v={SEARCH_VER}" defer></script>')
+        gdir = SITE / "genres" / g; gdir.mkdir(parents=True, exist_ok=True)
+        (gdir / "index.html").write_text(
+            page(f"{gdev} — {SITE_NAME}", gb, css_depth=2, active="works",
+                 desc=f"{gdev} ({gen}) — {len(gitems)} कृति", canon=f"genres/{g}/"),
+            encoding="utf-8")
+
+    # ---- genres index (/genres/): the full shelf wall ----
+    gi_body = (f'<nav class="crumb"><a href="../">← {esc(SITE_NAME)}</a></nav>'
+               f'<h1>विधा</h1><p class="lead">{_dev(len(genres_present))} विधा · {_dev(len(recs))} कृति।</p>'
+               + genre_cards("../"))
+    (SITE / "genres").mkdir(parents=True, exist_ok=True)
+    (SITE / "genres" / "index.html").write_text(
+        page("विधा — " + SITE_NAME, gi_body, css_depth=1, active="works",
+             desc=f"विधा अनुसार ब्राउज गर्नुहोस् — {len(recs)} कृति", canon="genres/"),
+        encoding="utf-8")
 
     # ---- per-author pages (browse: TOC + collections + genre groups) ----
     for aslug_ in author_order:
@@ -990,11 +1111,10 @@ def build(archive_base: str):
         for g in present:
             items = sorted(bg[g], key=lambda x: x[1]["title"])
             dev, en = GENRE.get(g, (g, ""))
-            lis = "".join(
-                f'<li><a href="{esc(w["id"])}/">{esc(meta["title"])}</a>'
-                f'<span class="r">{esc(meta.get("title_roman") or "")}</span></li>' for w, meta in items)
+            lis = "".join(work_li(w, meta, f'{esc(w["id"])}/') for w, meta in items)
             groups_html.append(
-                f'<div class="group" id="{g}"><h2>{esc(dev)} <span class="count">{en} · {len(items)}</span></h2>'
+                f'<div class="group" id="{g}"><h2><a href="../../genres/{g}/">{esc(dev)}</a> '
+                f'<span class="count">{en} · {len(items)}</span></h2>'
                 f'<ul class="works">{lis}</ul></div>')
         author_body = f"""<nav class="crumb"><a href="../../">← {esc(SITE_NAME)}</a></nav>
 <h1>{esc(aname)}</h1>
@@ -1028,16 +1148,23 @@ def build(archive_base: str):
 
     # ---- home: search + authors ----
     home_body = f"""<h1>{SITE_TAGLINE}</h1>
+<p class="tagline-en">{SITE_TAGLINE_EN}</p>
 <p class="lead">{str(len(by_author)).translate(_DEVNUM)} लेखकका {str(len(recs)).translate(_DEVNUM)} कृति — नि:शुल्क, सधैँभरि। दर्ता छैन, विज्ञापन छैन।</p>
 <p><input id="q" type="search" placeholder="खोज्नुहोस् — शीर्षक, पाठ वा रोमन (जस्तै: pagal, sundari, फूल)" autocomplete="off" aria-label="खोज"></p>
 <p class="hint" id="hint"></p>
 <ul class="works" id="results" data-base=""></ul>
 <div id="ft"></div>
+<div class="home-sec"><h2><a href="genres/">विधा</a></h2>{genre_cards("")}</div>
+<div class="home-sec"><h2>सङ्ग्रह</h2><div class="shelf">{"".join(
+        f'<a class="card g-{items[0][1]["genre"][0] if items[0][1]["genre"] else "kavita"}" href="collections/{cslug[cn]}/">'
+        f'<b>{esc(cn)}</b><span class="en">{esc(ainfo(aslug(items[0][0]), items[0][1])[0])}</span>'
+        f'<span class="n">{_dev(len(items))} कृति</span></a>'
+        for cn, items in sorted(collections.items(), key=lambda x: -len(x[1])))}</div></div>
 <div class="home-sec"><h2>लेखकहरू</h2><ul class="works">{"".join(author_li(a, "") for a in author_order)}</ul></div>
 <p class="statlink"><a href="stats/">📊 अभिलेख एक नजरमा — तथ्याङ्क र रोचक तथ्य →</a></p>
 <script src="search.js?v={SEARCH_VER}" defer></script>"""
     (SITE / "index.html").write_text(
-        page(SITE_NAME, home_body, desc=SITE_TAGLINE, css_depth=0, active="home", canon=""),
+        page(SITE_NAME, home_body, desc="", css_depth=0, active="home", canon=""),
         encoding="utf-8")
 
     # ---- about ----
@@ -1070,8 +1197,9 @@ Internet Archive, sahityasangraha.com। प्रत्येक कृति H
                            PROSE_GENRES=PROSE_GENRES, site=SITE, site_name=SITE_NAME)
 
     # ---- sitemap (full URLs) + robots ----
-    urls = (["", "about.html", "authors/", "stats/"]
+    urls = (["", "about.html", "authors/", "genres/", "stats/"]
             + [f"authors/{a}/" for a in author_order]
+            + [f"genres/{g}/" for g in genres_present]
             + [f"collections/{cslug[cn]}/" for cn in collections]
             + [r["p"] for r in search_rows])
     (SITE / "sitemap.txt").write_text(
@@ -1084,7 +1212,7 @@ Internet Archive, sahityasangraha.com। प्रत्येक कृति H
     domain = SITE_URL.split("//", 1)[-1].strip("/")          # www.nepaliarchives.org
     (SITE / "CNAME").write_text(domain + "\n", encoding="utf-8")
 
-    pages = 3 + len(author_order) + len(collections) + len(recs)   # home+about+authors-index + per-author + collections + works
+    pages = 4 + len(author_order) + len(genres_present) + len(collections) + len(recs)   # home+about+authors-index+genres-index + per-author + genres + collections + works
     print(f"built site/ : {pages} pages ({len(recs)} works), "
           f"search index {(SITE/'search-index.json').stat().st_size//1024} KB")
     if archive_base:
