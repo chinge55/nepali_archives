@@ -368,6 +368,8 @@ h1{font-size:1.7rem;line-height:1.3;margin:.5rem 0 .25rem}
 .byline{color:var(--mut);margin:.1rem 0}
 .meta{color:var(--mut);font-size:.85rem;margin:.4rem 0 0}
 .pdfread{display:inline-block;margin:.7rem 0 .1rem;font-size:.9rem;padding:.34rem .85rem;border:1px solid var(--line);border-radius:6px;color:var(--accent);text-decoration:none;transition:background .15s,color .15s,border-color .15s}
+.pdfacts{display:flex;gap:.6rem;flex-wrap:wrap}
+.pdfacts .pdfread{margin:.7rem 0 .1rem}
 .pdfread:hover{border-color:var(--accent);background:var(--accent);color:#fff}
 .tochint{color:var(--mut);font-size:.9rem;margin:1.6rem 0 .4rem}
 .toc{margin:.3rem 0 0;padding-left:1.3rem;line-height:2.1;font-size:1.05rem}
@@ -898,19 +900,29 @@ def build(archive_base: str):
             for cn in coll:
                 meta_bits.append(f'सङ्ग्रह: <a href="{up}collections/{cslug[cn]}/">{esc(cn)}</a>')
             # Downloads: link to --archive-base if set (lean site), else bundle in.
-            fmts = meta.get("formats", {}); src_dir = ROOT / w["path"]; dls = []
+            # The PDF is always bundled/resolved even though it isn't in the bottom
+            # downloads line — the pdf/ viewer range-loads ../<fn>, and the top
+            # "PDF डाउनलोड" button links it.
+            fmts = meta.get("formats", {}); src_dir = ROOT / w["path"]
             pdf_fn = fmts.get("pdf")
-            pdfbtn = ('\n  <p><a class="pdfread" href="pdf/">\U0001F4D6 मूल पृष्ठ हेर्नुहोस्</a></p>'
-                      if pdf_fn else "")
-            for k, lab in [("pdf", "PDF"), ("epub", "EPUB"), ("txt", "मूल पाठ (TXT)")]:
+            fhref = {}
+            for k in ("pdf", "epub", "txt"):
                 fn = fmts.get(k)
                 if not fn:
                     continue
                 if archive_base:
-                    dls.append(f'<a href="{archive_base.rstrip("/")}/{rel}/{esc(fn)}">{lab}</a>')
+                    fhref[k] = f'{archive_base.rstrip("/")}/{rel}/{esc(fn)}'
                 elif (src_dir / fn).exists():
                     shutil.copy(src_dir / fn, out_dir / fn)
-                    dls.append(f'<a href="{esc(fn)}">{lab}</a>')
+                    fhref[k] = esc(fn)
+            dls = [f'<a href="{fhref[k]}">{lab}</a>'
+                   for k, lab in [("epub", "EPUB"), ("txt", "मूल पाठ (TXT)")] if k in fhref]
+            pdfbtn = ""
+            if pdf_fn:
+                dlbtn = (f'\n  <a class="pdfread" href="{fhref["pdf"]}" download>⬇ PDF डाउनलोड</a>'
+                         if "pdf" in fhref else "")
+                pdfbtn = ('\n  <p class="pdfacts"><a class="pdfread" href="pdf/">\U0001F4D6 मूल पृष्ठ हेर्नुहोस्</a>'
+                          f'{dlbtn}</p>')
             src_name = meta["source"].get("name") or ""
             src_url = meta["source"].get("url") or ""
             src_html = (f'<a href="{esc(src_url)}" rel="nofollow">{esc(src_name or src_url)}</a>'
