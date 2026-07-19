@@ -48,6 +48,7 @@ AUTHORS = {
     "devkota": ("लक्ष्मीप्रसाद देवकोटा", "Laxmi Prasad Devkota", "1909–1959"),
     "bhanubhakta_acharya": ("भानुभक्त आचार्य", "Bhanubhakta Acharya", "1814–1868"),
     "lekhnath_paudyal": ("लेखनाथ पौड्याल", "Lekhnath Paudyal", "1885–1966"),
+    "bhimnidhi_tiwari": ("भीमनिधि तिवारी", "Bhimnidhi Tiwari", "1911–1973"),
 }
 
 

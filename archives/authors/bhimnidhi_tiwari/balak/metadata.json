@@ -1,0 +1,49 @@
+{
+  "id": "balak",
+  "title": "बालक",
+  "title_roman": "Balak",
+  "subtitle": null,
+  "author": {
+    "id": "bhimnidhi_tiwari",
+    "name": "भीमनिधि तिवारी",
+    "name_roman": "Bhimnidhi Tiwari"
+  },
+  "language": "ne",
+  "script": "Devanagari",
+  "genre": [
+    "kavita",
+    "poem"
+  ],
+  "first_published": {
+    "bs": null,
+    "ad": null
+  },
+  "edition": null,
+  "publisher": null,
+  "description": "From the collection कवितानन्द.",
+  "rights": {
+    "status": "public-domain",
+    "basis": "Author died 1973; Nepal's Copyright Act 2059 grants life + 50 years."
+  },
+  "source": {
+    "name": "Kavita Kosh (kavitakosh.org)",
+    "url": "https://kavitakosh.org/kk/बालक_/_भीमनिधि_तिवारी",
+    "pdf": null,
+    "html": "extracted/index.html"
+  },
+  "pages": null,
+  "text": {
+    "extraction_method": "html",
+    "ocr_status": "born-digital",
+    "proofread": false,
+    "quality": "good"
+  },
+  "formats": {
+    "pdf": null,
+    "txt": "text.txt",
+    "html": "reader.html",
+    "epub": "reader.epub"
+  },
+  "added": "2026-07-20",
+  "updated": "2026-07-20"
+}
