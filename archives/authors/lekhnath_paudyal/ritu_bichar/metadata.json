@@ -1,0 +1,49 @@
+{
+  "id": "ritu_bichar",
+  "title": "ऋतुविचार",
+  "title_roman": "Ritu Bichar",
+  "subtitle": null,
+  "author": {
+    "id": "lekhnath_paudyal",
+    "name": "लेखनाथ पौड्याल",
+    "name_roman": "Lekhnath Paudyal"
+  },
+  "language": "ne",
+  "script": "Devanagari",
+  "genre": [
+    "khandakavya",
+    "poetry"
+  ],
+  "first_published": {
+    "bs": 1973,
+    "ad": 1916
+  },
+  "edition": "तेइसौं संस्करण, वि. सं. २०६५",
+  "publisher": "साझा प्रकाशन",
+  "description": "Lekhnath Paudyal's खण्डकाव्य on the six ऋतु (seasons) — often called the first modern Nepali खण्डकाव्य — first published 1973 BS by निर्णयसागर-प्रेस, बम्बई. Six sections in rhyming couplets, each turning nature into a meditation on kingship and virtue: वसन्त-विचार, ग्रीष्म-विचार, वर्षा-विचार, शरद्-विचार, हेमन्त-विचार, and शिशिर-विचार. Opens with the author's own भूमिका (dated २०२० साल) and the invocation श्रीगौरीशङ्कराभ्यां नमः, closing at समाप्तं शुभम्. OCR'd from the साझा प्रकाशन scan (तेइसौं संस्करण, वि. सं. २०६५) and reconciled section-by-section against the page images; the front-matter cataloguing/colophon and the back-cover publisher catalogue were removed, and the traditional अथ/इति section markers folded into the section headings. Pending proofreading.",
+  "rights": {
+    "status": "public-domain",
+    "basis": "Author died 1966; public domain since 2016 (Nepal's Copyright Act 2059: life + 50 years)."
+  },
+  "source": {
+    "name": "ऋतुविचार (साझा प्रकाशन)",
+    "url": null,
+    "pdf": "LekhanathPoudyal1973BS_RituBichar.pdf",
+    "html": null
+  },
+  "pages": 78,
+  "text": {
+    "extraction_method": "ocr",
+    "ocr_status": "ocr-done",
+    "proofread": false,
+    "quality": "fair"
+  },
+  "formats": {
+    "pdf": "LekhanathPoudyal1973BS_RituBichar.pdf",
+    "txt": "text.txt",
+    "html": "reader.html",
+    "epub": "reader.epub"
+  },
+  "added": "2026-07-20",
+  "updated": "2026-07-20"
+}
