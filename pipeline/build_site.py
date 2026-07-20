@@ -24,6 +24,21 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from devanagari_slug import slugify as cslugify, romanize as cromanize
 import stats   # the build-time /stats/ page (pipeline/stats.py)
 
+# the search bridge shares the /type/ tool's normalization contract (search.js
+# xnorm() is its JS twin — keep in sync). NOTE: this import patches
+# devanagari_slug.SIGN['ँ']->'n', so romanize() everywhere in this build (incl.
+# stats roman labels) writes chandrabindu as the 'n' people actually type —
+# required for those labels' ?q= deep-links to hit the normalized shard keys.
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent
+                       / "roman_nepali_transliteration" / "pipeline"))
+from translit_keys import word_keys as translit_word_keys
+from translit_keys import key_romanize as _tk_rom, normalize as _tk_norm
+
+
+def normalize_key(w):
+    """A word's primary shard key: normalize(key_romanize(w))."""
+    return _tk_norm(_tk_rom(w))
+
 ROOT = Path(__file__).resolve().parent.parent
 ARCHIVES = ROOT / "archives"
 SITE = ROOT / "site"
@@ -733,17 +748,30 @@ SEARCH_JS = """(function(){
  function getShard(L){ if(shard[L]) return shard[L];
    shard[L]=fetch(BASE+'searchroman/'+L+'.json').then(function(r){return r.ok?r.json():{};},function(){return {};});
    return shard[L]; }
- // roman token -> up to 6 Devanagari candidates (exact > prefix > fuzzy)
- function bridge(tok){ var L=tok.charAt(0);
+ // xnorm(): the /type/ tool's normalization contract (pipeline translit_keys
+ // .normalize / assets/type/engine.js — keep all three in sync). Shard keys are
+ // built with the same fold, so naam/nam, chha/cha/xa, shabda/sabda hit exactly.
+ var XSUB={ksh:'kC',chh:'C',ch:'C',gy:'J',sh:'s',ph:'P',ee:'i',oo:'u',c:'C',x:'C',f:'P',z:'j',w:'b',v:'b',q:'k'};
+ var XRE=/ksh|chh|ch|gy|sh|ph|ee|oo|[cxfzwvq]/g;
+ function xnorm(w){
+   w=w.toLowerCase().replace(/[^a-z]/g,'').replace(XRE,function(m){return XSUB[m];});
+   var o='',i;
+   for(i=0;i<w.length;i++) if(w.charAt(i)!==o.charAt(o.length-1)) o+=w.charAt(i);
+   if(o.length>1&&o.charAt(o.length-1)==='a') o=o.slice(0,-1);
+   return o;
+ }
+ // roman token -> up to 6 Devanagari candidates (exact > prefix > fuzzy),
+ // all matched on normalized keys
+ function bridge(tok){ var key=xnorm(tok), L=key.charAt(0).toLowerCase();
    if(!/[a-z]/.test(L)) return Promise.resolve([]);
    return getShard(L).then(function(map){
-     if(map[tok]) return map[tok].slice(0,6);
+     if(map[key]) return map[key].slice(0,6);
      var keys=Object.keys(map),i,pre=[];
-     for(i=0;i<keys.length;i++) if(keys[i].lastIndexOf(tok,0)===0) pre.push(keys[i]);
+     for(i=0;i<keys.length;i++) if(keys[i].lastIndexOf(key,0)===0) pre.push(keys[i]);
      if(pre.length){ pre.sort(function(a,b){return a.length-b.length;});
        var out=[]; for(i=0;i<pre.length&&out.length<6;i++) out=out.concat(map[pre[i]]); return out.slice(0,6); }
-     if(tok.length>=3){ var t=tol(tok.length),best=99,bk=null;
-       for(i=0;i<keys.length;i++){ var d=lev(tok,keys[i],t); if(d<best){best=d;bk=keys[i];} }
+     if(key.length>=3){ var t=tol(key.length),best=99,bk=null;
+       for(i=0;i<keys.length;i++){ var d=lev(key,keys[i],t); if(d<best){best=d;bk=keys[i];} }
        if(bk&&best<=t) return map[bk].slice(0,6); }
      return [];
    });
@@ -970,7 +998,8 @@ def build(archive_base: str):
     search_rows = []
     # roman→Devanagari bridge: every Devanagari word in the poem bodies (excl. danda)
     _DEVWORD = re.compile(r"[ऀ-ॣ०-ॿ]+")
-    ft_words = set()
+    from collections import Counter
+    ft_words = Counter()                                     # word -> corpus count
     for aslug_, arecs in by_author.items():
         aname = ainfo(aslug_, arecs[0][1])[0]
         for i, (w, meta, text) in enumerate(arecs):
@@ -1122,13 +1151,20 @@ def build(archive_base: str):
     # downloads only its shard (~tens of KB), not the whole ~2 MB map. ----
     rmap = {}
     for wword in ft_words:
-        r = cromanize(wword)
-        if r:
-            rmap.setdefault(r, set()).add(wword)
+        # every word is filed under its normalized keys (translit_keys.word_keys:
+        # normalize(romanize(w)) + medial-schwa and क्ष aliases), so spelling
+        # variants — naam/nam, chha/cha/xa, devkota — hit as EXACT key matches.
+        # The word's PRIMARY key ranks its bucket entry above alias hits.
+        keys = translit_word_keys(wword)
+        primary = normalize_key(wword)
+        for r in keys:
+            if r:
+                rmap.setdefault(r, {})[wword] = (r != primary)
     shards = {}
     for r, ws in rmap.items():
-        key = r[0] if r[:1].isalpha() else "_"
-        shards.setdefault(key, {})[r] = sorted(ws)[:12]      # cap candidates per key
+        key = r[0].lower() if r[:1].isalpha() else "_"       # keys may start with C/J/P sentinels
+        ranked = sorted(ws, key=lambda w: (ws[w], -ft_words[w], w))   # primary first, then corpus freq
+        shards.setdefault(key, {})[r] = ranked[:12]          # cap candidates per key
     rdir = SITE / "searchroman"; rdir.mkdir(exist_ok=True)
     for key, m in shards.items():
         (rdir / f"{key}.json").write_text(
