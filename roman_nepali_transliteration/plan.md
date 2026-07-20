@@ -20,6 +20,11 @@ page written by `build_site.write_type_page` with site chrome/theme; mobile-robu
 commits via input events (space lands in buffer even when Android keydown is 229);
 punctuation tails map through literals (`.`→।); attribution footer per rules.md.
 Headless-verified light/dark/mobile. poc/ is now just the node test harness.
+Shipped 2026-07-20 (commits 4d3e69b/192a4dd/ecba068, live on
+www.nepaliarchives.org/type/). Post-ship fixes: digit/danda-only input converts
+(२०८१/।; esc keeps literal), 1–5 pick candidates only when the buffer has
+letters, and keyboard mode (body.kbd via visualViewport) keeps output +
+candidates + input visible while the phone keyboard is open (fits 330px).
 Still open in Stage 4: bigram re-rank wiring, real-device mobile testing,
 IndexedDB caching, selection learning (localStorage), suffix-join.
 
