@@ -30,18 +30,19 @@ cd site && python3 -m http.server <port> &   # pick a fresh port (8137/8141/… 
 curl -sI http://localhost:<port>/ | head -1   # confirm 200 before driving a browser
 ```
 
-## 3. Headless browser (no playwright/puppeteer package needed beyond puppeteer-core)
+## 3. Headless browser
 
-A chromium already exists in the Playwright cache. Recipe:
+A chromium lives in the puppeteer cache (`~/.cache/puppeteer/chrome/...`,
+installed 2026-07-20; the old ms-playwright cache is GONE). Recipe:
 
 ```bash
-mkdir -p /tmp/sitetest && cd /tmp/sitetest && npm i puppeteer-core@21
-EXE=$(find ~/.cache/ms-playwright -path '*chrome-linux/chrome' | head -1)
+mkdir -p /tmp/sitetest && cd /tmp/sitetest && npm i puppeteer@21   # reuses the cached chromium
+# if the cache is ever missing, this npm i re-downloads it (~10 min)
 ```
 
 ```js
-const puppeteer = require('puppeteer-core');
-const b = await puppeteer.launch({executablePath: EXE, headless: 'new', args: ['--no-sandbox']});
+const puppeteer = require('puppeteer');
+const b = await puppeteer.launch({headless: 'new', args: ['--no-sandbox']});
 const p = await b.newPage();
 p.on('pageerror', e => console.log('PAGEERROR', e.message));   // always capture
 await p.goto('http://localhost:<port>/…', {waitUntil: 'networkidle2'});
