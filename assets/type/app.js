@@ -3,7 +3,7 @@
  * Mobile note: commits are driven by BOTH keydown (desktop) and the input event
  * (Android IMEs often skip/mangle keydown — keyCode 229 — but space still lands
  * in the field, so the input handler catches it). */
-import { createEngine } from './engine.js';
+import { createEngine, romanize } from './engine.js';
 
 const $ = id => document.getElementById(id);
 const V = document.currentScript?.dataset?.v || document.querySelector('script[data-v]')?.dataset?.v || '';
@@ -40,9 +40,11 @@ $('out').addEventListener('click', () => { if ($('out').readOnly) $('inp').focus
 // highlight of the word being re-edited (backspace-reopen): a backdrop layer
 // mirrors the textarea text and marks the range in the accent colour
 const escHtml = t => t.replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
+let hlRange = null;   // [start, end] of the word being re-edited
 function setHighlight(start, end) {
   const out = $('out'), bg = $('outbg');
-  if (start == null || start >= end) { bg.innerHTML = ''; return; }
+  if (start == null || start >= end) { bg.innerHTML = ''; hlRange = null; return; }
+  hlRange = [start, end];
   const v = out.value;
   bg.innerHTML = escHtml(v.slice(0, start)) + '<mark>' + escHtml(v.slice(start, end)) + '</mark>' + escHtml(v.slice(end));
   bg.scrollTop = out.scrollTop;
@@ -144,23 +146,42 @@ $('inp').addEventListener('keydown', e => {
   } else if (/^[1-5]$/.test(e.key) && splitBuffer(buf).word && cands[+e.key - 1]) {
     e.preventDefault();
     commit(cands[+e.key - 1].d);
-  } else if (e.key === 'Backspace' && !buf && history.length) {
+  } else if (e.key === 'Backspace' && !buf) {
     const out = $('out');
-    const last = history[history.length - 1];
-    if (out.value.endsWith(last.text)) {          // reopen only if tail unedited
-      e.preventDefault();
-      history.pop();
-      // keep the word visible and HIGHLIGHTED (native selection) — committing
-      // a candidate replaces the selection in place
-      const t = last.text;
-      const lead = t.length - t.trimStart().length;
-      const base = out.value.length - t.length;
-      out.setSelectionRange(base + lead, base + lead + t.trim().length);
-      out.scrollTop = out.scrollHeight;
-      setHighlight(base + lead, base + lead + t.trim().length);
-      $('inp').value = last.roman || '';
+    if (!out.value.trim()) return;
+    e.preventDefault();
+    if (hlRange) {
+      // second backspace on an already-highlighted word: delete it entirely
+      const [hs, he] = hlRange;
+      const after = out.value.slice(he).replace(/^ /, '');
+      out.value = out.value.slice(0, hs) + after;
+      out.setSelectionRange(hs, hs);
+      setHighlight(null);
+      syncEditable();
       render();
+      return;
     }
+    // reopen the LAST word of the output — works for anything already written
+    // (flow-typed, hand-edited or pasted): highlight + select it, put its roman
+    // back in the input; the session history supplies the exact roman when the
+    // tail is untouched, the reverse romanizer covers everything else.
+    const m = out.value.match(/(\S+)(\s*)$/);
+    if (!m) return;
+    const start = m.index, end = start + m[1].length;
+    let roman = null;
+    const last = history[history.length - 1];
+    if (last && out.value.endsWith(last.text) && last.roman) {
+      history.pop();
+      roman = last.roman;
+    } else {
+      history.length = 0;
+      roman = romanize(m[1]);
+    }
+    out.setSelectionRange(start, end);
+    out.scrollTop = out.scrollHeight;
+    setHighlight(start, end);
+    $('inp').value = roman || '';
+    render();
   }
 });
 

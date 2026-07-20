@@ -28,6 +28,66 @@ export function normalize(s) {
   }).join(' ');
 }
 
+// ---- reverse romanizer (JS port of pipeline devanagari_slug + translit_keys
+// key_romanize: chandrabindu -> n). Feeds backspace-reopen for ANY output word;
+// parity with Python is asserted in test_engine.mjs. ------------------------
+const R_VOW = { 'अ':'a','आ':'a','इ':'i','ई':'i','उ':'u','ऊ':'u','ऋ':'ri','ॠ':'ri',
+  'ए':'e','ऐ':'ai','ओ':'o','औ':'au','ऎ':'e','ऒ':'o','ॲ':'a','ऍ':'e','ऑ':'o' };
+const R_MAT = { 'ा':'a','ि':'i','ी':'i','ु':'u','ू':'u','ृ':'ri','ॄ':'ri',
+  'े':'e','ै':'ai','ो':'o','ौ':'au','ॅ':'e','ॉ':'o','ॆ':'e','ॊ':'o' };
+const R_CON = { 'क':'k','ख':'kh','ग':'g','घ':'gh','ङ':'ng','च':'ch','छ':'chh','ज':'j',
+  'झ':'jh','ञ':'ny','ट':'t','ठ':'th','ड':'d','ढ':'dh','ण':'n','त':'t','थ':'th','द':'d',
+  'ध':'dh','न':'n','प':'p','फ':'ph','ब':'b','भ':'bh','म':'m','य':'y','र':'r','ल':'l',
+  'व':'b','श':'sh','ष':'sh','स':'s','ह':'h','ळ':'l' };
+const R_SIGN = { 'ं':'n','ँ':'n','ः':'h','ऽ':'','ॐ':'om' };
+const R_DIGRAPH = [['क्ष','ksh'],['त्र','tr'],['ज्ञ','gya'],['श्र','shr'],
+  ['ड़','r'],['ढ़','rh'],['फ़','f'],['ज़','z'],['य़','y'],['क़','k'],['ख़','kh'],['ग़','g']];
+const R_LIT = { '।':'.','॥':'.','०':'0','१':'1','२':'2','३':'3','४':'4',
+  '५':'5','६':'6','७':'7','८':'8','९':'9' };
+
+export function romanize(word) {
+  for (const [d, r] of R_DIGRAPH) word = word.split(d).join('\x00' + r + '\x01');
+  const toks = [];   // {r, schwa, conj}
+  let prevVirama = false;
+  for (let i = 0; i < word.length; i++) {
+    const ch = word[i];
+    if (ch === '\x00') {
+      const j = word.indexOf('\x01', i);
+      toks.push({ r: word.slice(i + 1, j), schwa: true, conj: prevVirama });
+      prevVirama = false; i = j; continue;
+    }
+    if (ch === '\u200c' || ch === '\u200d') continue;
+    if (R_CON[ch]) { toks.push({ r: R_CON[ch], schwa: true, conj: prevVirama }); prevVirama = false; continue; }
+    if (R_MAT[ch]) {
+      if (toks.length) { toks[toks.length - 1].r += R_MAT[ch]; toks[toks.length - 1].schwa = false; }
+      else toks.push({ r: R_MAT[ch], schwa: false, conj: false });
+      continue;
+    }
+    if (ch === '\u094d') { if (toks.length) toks[toks.length - 1].schwa = false; prevVirama = true; continue; }
+    if (R_VOW[ch]) { toks.push({ r: R_VOW[ch], schwa: false, conj: false }); prevVirama = false; continue; }
+    if (ch in R_SIGN) {
+      if (R_SIGN[ch]) {
+        const t = toks[toks.length - 1];
+        if (t) {
+          if (t.schwa) { t.r += 'a'; t.schwa = false; }
+          t.r += R_SIGN[ch];
+        } else toks.push({ r: R_SIGN[ch], schwa: false, conj: false });
+      }
+      continue;
+    }
+    if (R_LIT[ch]) { toks.push({ r: R_LIT[ch], schwa: false, conj: false }); continue; }
+    if (/[a-z0-9]/i.test(ch)) toks.push({ r: ch, schwa: false, conj: false });
+  }
+  // word-final schwa: drop unless the final consonant follows a conjunct
+  let lastReal = -1;
+  for (let k = toks.length - 1; k >= 0; k--) if (toks[k].r !== '') { lastReal = k; break; }
+  return toks.map((t, k) => {
+    if (t.schwa && k !== lastReal) return t.r + 'a';
+    if (t.schwa && k === lastReal && t.conj) return t.r + 'a';
+    return t.r;
+  }).join('');
+}
+
 // ---- rule layer: greedy-fanout token DP ------------------------------------
 const VIRAMA = '्';
 const SIGNS = new Set(['ं', 'ँ']); // ं ँ attach without virama

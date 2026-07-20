@@ -2,7 +2,7 @@
 // Run: node poc/test_engine.mjs   (after build_lexicon.py)
 import { readFileSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
-import { createEngine, normalize } from '../../assets/type/engine.js';
+import { createEngine, normalize, romanize } from '../../assets/type/engine.js';
 
 const here = new URL('.', import.meta.url).pathname;
 const A = here + '../../assets/type/';
@@ -23,6 +23,17 @@ for w in ${JSON.stringify(words)}: print(normalize(w))
 let bad = 0;
 words.forEach((w, i) => {
   if (normalize(w) !== py[i]) { console.error(`parity FAIL ${w}: js=${normalize(w)} py=${py[i]}`); bad++; }
+});
+
+// 1b. reverse-romanizer parity with Python key_romanize (feeds backspace-reopen)
+const rwords = ['नाम','सँगै','वसन्त','देवकोटा','पागल','गर्छन्','क्षमा','ज्ञान','हुन्छ','राम्रो','लक्ष्मी','काठमाडौं','पृथ्वी','सम्झना'];
+const rpy = execFileSync('python3', ['-c', `
+import sys; sys.path.insert(0, ${JSON.stringify(here + '../pipeline')})
+from translit_keys import key_romanize
+for w in ${JSON.stringify(rwords)}: print(key_romanize(w))
+`]).toString().trim().split('\n');
+rwords.forEach((w, i) => {
+  if (romanize(w) !== rpy[i]) { console.error(`romanize parity FAIL ${w}: js=${romanize(w)} py=${rpy[i]}`); bad++; }
 });
 
 // 2. top-1 expectations (the "path exists" sanity set)
