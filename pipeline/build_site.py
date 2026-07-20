@@ -220,9 +220,15 @@ def page(title, body, *, desc="", css_depth=0, extra_head="", active="", canon="
 # 70 MB training data per deploy). JS loads ONLY on this page. Design decisions:
 # roman_nepali_transliteration/{plan.md,rules.md}.
 TYPE_CSS = """main{max-width:44rem}
-#out{width:100%;min-height:7.5rem;background:none;color:var(--fg);border:1px solid var(--line);
- border-radius:10px;padding:.9rem;font-size:1.3rem;line-height:2rem;font-family:inherit;resize:vertical}
+.outwrap{position:relative}
+#out{position:relative;z-index:1;width:100%;min-height:7.5rem;background:none;color:var(--fg);
+ border:1px solid var(--line);border-radius:10px;padding:.9rem;font-size:1.3rem;line-height:2rem;
+ font-family:inherit;resize:vertical}
 #out:focus{outline:2px solid color-mix(in srgb,var(--accent) 45%,transparent)}
+#outbg{position:absolute;inset:0;z-index:0;border:1px solid transparent;border-radius:10px;
+ padding:.9rem;font-size:1.3rem;line-height:2rem;font-family:inherit;white-space:pre-wrap;
+ word-break:break-word;color:transparent;overflow:hidden;pointer-events:none}
+#outbg mark{background:color-mix(in srgb,var(--accent) 32%,transparent);color:transparent;border-radius:4px}
 .tbar{display:flex;gap:.6rem;margin:.7rem 0;align-items:center;flex-wrap:wrap}
 .tbar button{font-family:inherit;font-size:.95rem;padding:.6rem 1.1rem;min-height:48px;
  border-radius:8px;border:1px solid var(--line);background:none;color:var(--accent);cursor:pointer}
@@ -253,6 +259,7 @@ body.kbd header.site,body.kbd h1,body.kbd .lead,body.kbd .thelp,body.kbd #status
 body.kbd footer.site{display:none}
 body.kbd main{padding-top:.4rem}
 body.kbd #out{min-height:3rem;max-height:7.5rem;overflow-y:auto;font-size:1.15rem;line-height:1.7rem}
+body.kbd #outbg{font-size:1.15rem;line-height:1.7rem}
 body.kbd .tbar{display:none}  /* copy/clear return when the keyboard closes */
 body.kbd #cands{min-height:48px;margin:.4rem 0}
 body.kbd .tcand{min-height:44px;font-size:1.15rem}"""
@@ -271,8 +278,9 @@ def write_type_page():
     body = f"""<h1>नेपालीमा टाइप गर्नुहोस्</h1>
 <p class="lead">रोमनमा लेख्नुहोस् (mero naam…) — नेपाली युनिकोडमा पाउनुहोस्। Type in Nepali:
 Roman to Nepali Unicode, free and offline-capable.</p>
-<textarea id="out" readonly aria-label="नेपाली पाठ (सच्याउन मिल्छ)"
- placeholder="नेपाली यहाँ आउँछ — सच्याउन यहीँ मिल्छ (editable)"></textarea>
+<div class="outwrap"><div id="outbg" aria-hidden="true"></div><textarea id="out" readonly
+ aria-label="नेपाली पाठ (सच्याउन मिल्छ)"
+ placeholder="नेपाली यहाँ आउँछ — सच्याउन यहीँ मिल्छ (editable)"></textarea></div>
 <div class="tbar">
   <button id="copy" type="button">कपी गर्नुहोस् · Copy</button>
   <button id="clear" type="button">मेट्नुहोस् · Clear</button>

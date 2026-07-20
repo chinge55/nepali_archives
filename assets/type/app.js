@@ -37,6 +37,19 @@ function syncEditable() {
 $('out').addEventListener('input', syncEditable);
 $('out').addEventListener('click', () => { if ($('out').readOnly) $('inp').focus(); });
 
+// highlight of the word being re-edited (backspace-reopen): a backdrop layer
+// mirrors the textarea text and marks the range in the accent colour
+const escHtml = t => t.replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
+function setHighlight(start, end) {
+  const out = $('out'), bg = $('outbg');
+  if (start == null || start >= end) { bg.innerHTML = ''; return; }
+  const v = out.value;
+  bg.innerHTML = escHtml(v.slice(0, start)) + '<mark>' + escHtml(v.slice(start, end)) + '</mark>' + escHtml(v.slice(end));
+  bg.scrollTop = out.scrollTop;
+}
+$('out').addEventListener('scroll', () => { $('outbg').scrollTop = $('out').scrollTop; });
+$('out').addEventListener('input', () => setHighlight(null));
+
 // trailing punctuation/digits typed with a word ("ho." "1.") map through literals
 const LITS = rules.literals || {};
 function splitBuffer(v) {
@@ -90,6 +103,7 @@ function commit(d, romanOverride, opts = {}) {
   out.value = before + text + out.value.slice(e);
   out.selectionStart = out.selectionEnd = s + text.length;
   if (atEnd) out.scrollTop = out.scrollHeight;   // keep the newest text visible
+  setHighlight(null);
   syncEditable();
   if (atEnd) history.push({ roman: raw.trim(), text }); else history.length = 0;
   if (romanOverride === undefined) $('inp').value = '';
@@ -136,8 +150,14 @@ $('inp').addEventListener('keydown', e => {
     if (out.value.endsWith(last.text)) {          // reopen only if tail unedited
       e.preventDefault();
       history.pop();
-      out.value = out.value.slice(0, -last.text.length);
-      syncEditable();
+      // keep the word visible and HIGHLIGHTED (native selection) — committing
+      // a candidate replaces the selection in place
+      const t = last.text;
+      const lead = t.length - t.trimStart().length;
+      const base = out.value.length - t.length;
+      out.setSelectionRange(base + lead, base + lead + t.trim().length);
+      out.scrollTop = out.scrollHeight;
+      setHighlight(base + lead, base + lead + t.trim().length);
       $('inp').value = last.roman || '';
       render();
     }
@@ -161,7 +181,7 @@ $('copy').addEventListener('click', async () => {
 
 $('clear').addEventListener('click', () => {
   if ($('out').value && !confirm('सबै मेट्ने? Clear all?')) return;
-  history.length = 0; $('out').value = ''; $('inp').value = ''; syncEditable(); render(); $('inp').focus();
+  history.length = 0; $('out').value = ''; $('inp').value = ''; setHighlight(null); syncEditable(); render(); $('inp').focus();
 });
 
 // keyboard mode: when the on-screen keyboard shrinks the visual viewport,
