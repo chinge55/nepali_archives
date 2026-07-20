@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "comment": "Layer 4 (riti autocorrect.json pattern): normalized-roman -> Devanagari pins for words whose common Roman spelling diverges from Nepali pronunciation (exonyms, brands, honorifics). Checked before the lexicon; keys MUST be normalize()d forms. Grows from Stage-3 error analysis.",
+  "map": {
+    "k": "के",
+    "kina": "किन",
+    "tapai": "तपाईं",
+    "tapain": "तपाईं",
+    "tpai": "तपाईं",
+    "kathmandu": "काठमाडौं",
+    "ktm": "काठमाडौं",
+    "kahtmandu": "काठमाडौं",
+    "everest": "सगरमाथा",
+    "sagarmatha": "सगरमाथा",
+    "namaste": "नमस्ते",
+    "namaskar": "नमस्कार",
+    "dhanyabad": "धन्यवाद",
+    "dhanybad": "धन्यवाद"
+  }
+}

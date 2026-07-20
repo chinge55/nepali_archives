@@ -177,6 +177,7 @@ def page(title, body, *, desc="", css_depth=0, extra_head="", active="", canon="
         for key, href, label in [
             ("home", "", "गृह"),
             ("works", "authors/", "लेखकहरू"),
+            ("type", "type/", "टाइप"),
             ("about", "about.html", "बारेमा"),
         ])
     return f"""<!DOCTYPE html>
@@ -209,6 +210,84 @@ def page(title, body, *, desc="", css_depth=0, extra_head="", active="", canon="
 </body>
 </html>
 """
+
+
+# ---------------------------------------------------------------- typing tool
+# /type/ — Roman→Devanagari typing tool ("mero naam" → मेरो नाम), the archive's
+# first tool page. Engine + data are TRACKED at assets/type/ (pdfjs precedent:
+# the lexicons are built by roman_nepali_transliteration/pipeline/build_lexicon.py
+# from Aksharantar + this corpus, and vendored because CI can't re-download the
+# 70 MB training data per deploy). JS loads ONLY on this page. Design decisions:
+# roman_nepali_transliteration/{plan.md,rules.md}.
+TYPE_CSS = """main{max-width:44rem}
+#out{width:100%;min-height:7.5rem;background:none;color:var(--fg);border:1px solid var(--line);
+ border-radius:10px;padding:.9rem;font-size:1.3rem;line-height:2rem;font-family:inherit;resize:vertical}
+#out:focus{outline:2px solid color-mix(in srgb,var(--accent) 45%,transparent)}
+.tbar{display:flex;gap:.6rem;margin:.7rem 0;align-items:center;flex-wrap:wrap}
+.tbar button{font-family:inherit;font-size:.95rem;padding:.6rem 1.1rem;min-height:48px;
+ border-radius:8px;border:1px solid var(--line);background:none;color:var(--accent);cursor:pointer}
+.tbar button:hover{border-color:var(--accent)}
+#copy{background:var(--accent);color:var(--bg);border-color:var(--accent);font-weight:600}
+#toast{visibility:hidden;color:var(--mut);font-size:.85rem}
+#toast.show{visibility:visible}
+.ttog{margin-left:auto;font-size:.85rem;color:var(--mut);display:flex;align-items:center;
+ gap:.45rem;min-height:48px;cursor:pointer}
+.ttog input{width:1.15rem;height:1.15rem;accent-color:var(--accent)}
+#cands{display:flex;gap:.5rem;margin:.7rem 0;min-height:56px;flex-wrap:wrap}
+.tcand{font-family:inherit;font-size:1.25rem;min-height:48px;min-width:48px;padding:.4rem .9rem;
+ border-radius:8px;border:1px solid var(--line);background:none;color:var(--fg);cursor:pointer}
+.tcand:hover{border-color:var(--accent)}
+.tcand.first{border:2px solid var(--accent);font-weight:600}
+.tcand .n{color:var(--mut);font-size:.68rem;vertical-align:super;margin-right:.25rem}
+.tcand.lit{border-style:dashed;color:var(--mut)}
+#inp{width:100%;font-size:1.25rem;padding:.75rem;border-radius:10px;color:var(--fg);
+ border:2px solid var(--accent);background:none;font-family:inherit}
+#inp:focus{outline:none;box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 25%,transparent)}
+.thelp{color:var(--mut);font-size:.85rem;line-height:1.7;margin-top:.8rem}
+.thelp kbd{background:color-mix(in srgb,var(--line) 55%,transparent);border-radius:4px;
+ padding:0 .35rem;font-size:.85em;font-family:inherit}
+#status{color:var(--mut);font-size:.75rem;min-height:1rem;margin:.6rem 0 0}
+@media(max-width:480px){#cands{position:sticky;bottom:0;background:var(--bg);padding:.3rem 0}}"""
+
+
+def write_type_page():
+    """Copy assets/type/ → SITE/type/ and write the /type/ page."""
+    src = ROOT / "assets" / "type"
+    tdir = SITE / "type"
+    tdir.mkdir(exist_ok=True)
+    for f in sorted(src.glob("*")):
+        if f.is_file() and f.name != "package.json":   # node-ESM marker, not a site asset
+            shutil.copy(f, tdir / f.name)
+    ver = _ver((src / "app.js").read_text(encoding="utf-8")
+               + (src / "engine.js").read_text(encoding="utf-8"))
+    body = f"""<h1>नेपालीमा टाइप गर्नुहोस्</h1>
+<p class="lead">रोमनमा लेख्नुहोस् (mero naam…) — नेपाली युनिकोडमा पाउनुहोस्। Type in Nepali:
+Roman to Nepali Unicode, free and offline-capable.</p>
+<textarea id="out" readonly aria-label="नेपाली पाठ (सच्याउन मिल्छ)"
+ placeholder="नेपाली यहाँ आउँछ — सच्याउन यहीँ मिल्छ (editable)"></textarea>
+<div class="tbar">
+  <button id="copy" type="button">कपी गर्नुहोस् · Copy</button>
+  <button id="clear" type="button">मेट्नुहोस् · Clear</button>
+  <span id="toast" role="status" aria-live="polite"></span>
+  <label class="ttog"><input type="checkbox" id="engmode" checked> English शब्द English मै</label>
+</div>
+<div id="cands"></div>
+<input id="inp" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false"
+ enterkeyhint="done" placeholder="yahan lekhnus… (space = पहिलो रोज्ने)" aria-label="रोमन नेपाली इनपुट">
+<p class="thelp">
+<kbd>space</kbd>/<kbd>enter</kbd> पहिलो उम्मेदवार रोज्छ · <kbd>1</kbd>–<kbd>5</kbd> अरू रोज्ने ·
+<kbd>backspace</kbd> (खाली इनपुटमा) अघिल्लो शब्द सच्याउने · <kbd>esc</kbd> जस्ताको तस्तै राख्ने<br>
+माथिको नेपाली सीधै सच्याउन मिल्छ — शब्द select गरेर रोमनमा फेरि लेखे त्यहीँ बस्छ।<br>
+Optional: <kbd>T</kbd>=ट <kbd>Th</kbd>=ठ <kbd>D</kbd>=ड <kbd>Dh</kbd>=ढ <kbd>N</kbd>=ण <kbd>S</kbd>=ष
+(bheTaula → भेटौला)</p>
+<p id="status"></p>
+<script type="module" src="app.js?v={ver}" data-v="{ver}"></script>"""
+    (tdir / "index.html").write_text(
+        page("नेपालीमा टाइप गर्नुहोस् — रोमनबाट नेपाली युनिकोड · " + SITE_NAME, body,
+             desc="रोमनमा लेखेर नेपाली युनिकोडमा पाउनुहोस् (mero naam → मेरो नाम) — Type in Nepali online, Roman to Nepali Unicode converter",
+             css_depth=1, extra_head=f"<style>{TYPE_CSS}</style>\n",
+             active="type", canon="type/"),
+        encoding="utf-8")
 
 
 # ---------------------------------------------------------------- PDF reader
@@ -1198,6 +1277,9 @@ def build(archive_base: str):
 <p class="meta">पूरा ऐन यहाँ हेर्न/डाउनलोड गर्न सकिन्छ: <a href="docs/pratilipi-adhikar-ain-2059.pdf">प्रतिलिपि अधिकार ऐन, २०५९ (PDF)</a>।</p>
 <p>हाल यहाँ {len(by_author)} लेखकका {len(recs)} कृति छन्। स्रोत: Kavita Kosh, inepal.org,
 Internet Archive, sahityasangraha.com। प्रत्येक कृति HTML, मूल पाठ (TXT){' र EPUB' if any(m.get('formats',{}).get('epub') for _,m,_ in recs) else ''} मा उपलब्ध छ।</p>
+<p class="meta"><a href="type/">टाइप उपकरण</a>को शब्द-तथ्याङ्क: यही अभिलेखका कृतिहरू +
+<a href="https://huggingface.co/datasets/ai4bharat/Aksharantar" rel="external">AI4Bharat Aksharantar</a> (CC-BY)।
+सबै रूपान्तरण ब्राउजरमै हुन्छ — केही पनि कतै पठाइँदैन।</p>
 <p class="meta">सबै कृति प्रुफरिड र अधिकार-सत्यापन हुन बाँकी छ।</p>
 <h2>आफ्ना कृति थप्न चाहनुहुन्छ?</h2>
 <p>यदि तपाईं आफ्ना कृति यस अभिलेखमा थप्न चाहनुहुन्छ भने <a href="mailto:mail@nepaliarchives.org">mail@nepaliarchives.org</a> मा इमेल गर्नुहोस्।</p>
@@ -1206,12 +1288,15 @@ Internet Archive, sahityasangraha.com। प्रत्येक कृति H
         page("बारेमा — " + SITE_NAME, about_body, css_depth=0, active="about", canon="about.html"),
         encoding="utf-8")
 
+    # ---- typing tool ----
+    write_type_page()
+
     # ---- stats page (fun, build-time, isolated) ----
     stats.build_stats_page(recs, collections, page=page, GENRE=GENRE,
                            PROSE_GENRES=PROSE_GENRES, site=SITE, site_name=SITE_NAME)
 
     # ---- sitemap (full URLs) + robots ----
-    urls = (["", "about.html", "authors/", "genres/", "stats/"]
+    urls = (["", "about.html", "authors/", "genres/", "stats/", "type/"]
             + [f"authors/{a}/" for a in author_order]
             + [f"genres/{g}/" for g in genres_present]
             + [f"collections/{cslug[cn]}/" for cn in collections]
@@ -1226,7 +1311,7 @@ Internet Archive, sahityasangraha.com। प्रत्येक कृति H
     domain = SITE_URL.split("//", 1)[-1].strip("/")          # www.nepaliarchives.org
     (SITE / "CNAME").write_text(domain + "\n", encoding="utf-8")
 
-    pages = 4 + len(author_order) + len(genres_present) + len(collections) + len(recs)   # home+about+authors-index+genres-index + per-author + genres + collections + works
+    pages = 5 + len(author_order) + len(genres_present) + len(collections) + len(recs)   # home+about+authors-index+genres-index+type + per-author + genres + collections + works
     print(f"built site/ : {pages} pages ({len(recs)} works), "
           f"search index {(SITE/'search-index.json').stat().st_size//1024} KB")
     if archive_base:

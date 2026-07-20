@@ -114,6 +114,15 @@ author dir == `author.id`; `text.txt` non-empty Devanagari; `rights.status` ∈
   JS-free. Range loading needs `Accept-Ranges` (GitHub Pages provides it); under
   `--archive-base` the external host must send CORS + Range or the reader falls back to a
   direct-PDF link.
+- **Typing tool** (`write_type_page`): `/type/` — Roman→Devanagari typing
+  ("mero naam" → मेरो नाम, top-5 candidates, English pass-through toggle, editable
+  output). In the site nav (टाइप). Sources tracked at `assets/type/` (engine.js +
+  app.js + rules/autocorrect JSON, hand-authored) **plus the built lexicons**
+  (`lexicon-*.json`, `english.json` — vendored like pdfjs: CI can't re-download the
+  70 MB Aksharantar per deploy; regenerate with `roman_nepali_transliteration/
+  pipeline/build_lexicon.py --install`). JS loads only on `/type/`. Project docs,
+  research, evals: `roman_nepali_transliteration/` (plan.md is the roadmap; the
+  Aksharantar test split is HELD OUT for evaluation — never feed it to a build).
 
 ## Git / deploy
 
