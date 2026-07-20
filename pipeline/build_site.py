@@ -117,7 +117,7 @@ def work_html(text: str, verse: bool) -> str:
 
 
 # --- pagination for very long works: split into per-section pages + a contents page ---
-CHAPTER_RE = re.compile(r'काण्ड|सर्ग|सगैँ|अध्याय|विश्राम|विश्वाम|परिच्छेद|अङ्क|उल्लास|खण्ड|सोपान|परिशिष्ट')
+CHAPTER_RE = re.compile(r'काण्ड|सर्ग|सगैँ|अध्याय|विश्राम|विश्वाम|परिच्छेद|अङ्क|उल्लास|खण्ड|सोपान|परिशिष्ट|विचार')
 _DEVNUM = str.maketrans('0123456789', '०१२३४५६७८९')
 def _dev(n): return str(n).translate(_DEVNUM)
 
@@ -137,9 +137,10 @@ def paginate_work(text, balance=False):
         bounds = idx + [len(blocks)]
         pages = []
         # Substantial heading-led front matter (e.g. an author's own बक्तव्य/भूमिका) gets
-        # its own contents entry; a short stray byline/invocation rides on the first section.
+        # its own contents entry; the heading becomes its label (dropped from the body, like
+        # a chapter heading); a short stray byline/invocation rides on the first section.
         if front and len("\n\n".join(front)) > 400 and _is_heading(front[0].split("\n", 1)[0].strip()):
-            pages.append((front[0].split("\n", 1)[0].strip(), "\n\n".join(front)))
+            pages.append((front[0].split("\n", 1)[0].strip(), "\n\n".join(front[1:])))
             front = []
         for j, s in enumerate(idx):
             body_blocks = blocks[s + 1:bounds[j + 1]]
