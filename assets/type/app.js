@@ -46,8 +46,9 @@ function splitBuffer(v) {
 }
 
 function render() {
-  const { word } = splitBuffer($('inp').value);
-  cands = word ? engine.candidates(word) : [];
+  const { word, tail } = splitBuffer($('inp').value);
+  cands = word ? engine.candidates(word)
+        : tail ? [{ d: tail, src: 'lit' }] : [];   // digits/danda-only buffer
   const box = $('cands');
   box.innerHTML = '';
   cands.forEach((c, i) => {
@@ -58,31 +59,37 @@ function render() {
     b.onclick = () => { commit(c.d); $('inp').focus(); };
     box.appendChild(b);
   });
-  if (word && !cands.some(c => c.d === word)) {
+  const rawBuf = $('inp').value.trim();
+  if (rawBuf && !cands.some(c => c.d === rawBuf)) {
     const lit = document.createElement('button');
     lit.type = 'button';
     lit.className = 'tcand lit';
-    lit.innerHTML = `<span class="n">esc</span>${word}`;
-    lit.onclick = () => { commit(word); $('inp').focus(); };
+    lit.innerHTML = `<span class="n">esc</span>${rawBuf}`;
+    lit.onclick = () => { commit(null, undefined, { literal: true }); $('inp').focus(); };
     box.appendChild(lit);
   }
 }
 
 // insert at the output's cursor/selection — the no-Devanagari-keyboard fix path:
 // select a wrong word in the output, retype it in roman, pick a candidate.
-function commit(d, romanOverride) {
+function commit(d, romanOverride, opts = {}) {
   const raw = romanOverride ?? $('inp').value;
   const { tail } = splitBuffer(raw);
-  if (!d) return;
+  let body;
+  if (opts.literal) body = raw.trim();      // esc: exactly as typed
+  else if (d) body = d + tail;
+  else if (tail) body = tail;               // digits/danda-only buffer
+  else return;
   const out = $('out');
   const s = out.selectionStart ?? out.value.length;
   const e = out.selectionEnd ?? out.value.length;
   const atEnd = e === out.value.length && s === e;
   const before = out.value.slice(0, s);
   const sep = (before && !/\s$/.test(before) && s === e) ? ' ' : '';
-  const text = sep + d + tail + (atEnd ? ' ' : '');
+  const text = sep + body + (atEnd ? ' ' : '');
   out.value = before + text + out.value.slice(e);
   out.selectionStart = out.selectionEnd = s + text.length;
+  if (atEnd) out.scrollTop = out.scrollHeight;   // keep the newest text visible
   syncEditable();
   if (atEnd) history.push({ roman: raw.trim(), text }); else history.length = 0;
   if (romanOverride === undefined) $('inp').value = '';
@@ -90,9 +97,9 @@ function commit(d, romanOverride) {
 }
 
 function commitBuffer() {
-  const { word } = splitBuffer($('inp').value);
-  if (!word) { $('inp').value = ''; render(); return; }
-  commit(cands.length ? cands[0].d : word);
+  const { word, tail } = splitBuffer($('inp').value);
+  if (!word && !tail) { $('inp').value = ''; render(); return; }
+  commit(word ? (cands.length ? cands[0].d : word) : null);
 }
 
 $('inp').addEventListener('input', () => {
@@ -105,7 +112,7 @@ $('inp').addEventListener('input', () => {
     const rest = endsOpen ? parts.pop() : '';
     for (const w of parts) {
       const { word } = splitBuffer(w);
-      commit(word ? (engine.candidates(word)[0]?.d ?? word) : w, w);
+      commit(word ? (engine.candidates(word)[0]?.d ?? word) : null, w);
     }
     $('inp').value = rest || '';
   }
@@ -119,8 +126,8 @@ $('inp').addEventListener('keydown', e => {
     commitBuffer();
   } else if (e.key === 'Escape' && buf.trim()) {
     e.preventDefault();
-    commit(splitBuffer(buf).word || buf.trim());
-  } else if (/^[1-5]$/.test(e.key) && buf.trim() && cands[+e.key - 1]) {
+    commit(null, undefined, { literal: true });
+  } else if (/^[1-5]$/.test(e.key) && splitBuffer(buf).word && cands[+e.key - 1]) {
     e.preventDefault();
     commit(cands[+e.key - 1].d);
   } else if (e.key === 'Backspace' && !buf && history.length) {
@@ -156,6 +163,27 @@ $('clear').addEventListener('click', () => {
   if ($('out').value && !confirm('सबै मेट्ने? Clear all?')) return;
   history.length = 0; $('out').value = ''; $('inp').value = ''; syncEditable(); render(); $('inp').focus();
 });
+
+// keyboard mode: when the on-screen keyboard shrinks the visual viewport,
+// compress the page (CSS body.kbd) and pin the tool to the top of what's left,
+// so the output, candidates and input are all visible while typing.
+if (window.visualViewport) {
+  const vv = window.visualViewport;
+  let t = 0;
+  const sync = () => {
+    const kbd = vv.height < window.innerHeight * 0.8;
+    if (document.body.classList.toggle('kbd', kbd) || kbd) {
+      clearTimeout(t);
+      t = setTimeout(() => {
+        if (document.body.classList.contains('kbd')) {
+          window.scrollTo({ top: $('out').getBoundingClientRect().top + window.scrollY - vv.offsetTop - 4 });
+        }
+      }, 60);
+    }
+  };
+  vv.addEventListener('resize', sync);
+  $('inp').addEventListener('focus', () => setTimeout(sync, 350));
+}
 
 render();
 if (matchMedia('(hover: hover)').matches) $('inp').focus();  // don't pop the keyboard on phones

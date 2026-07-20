@@ -247,7 +247,15 @@ TYPE_CSS = """main{max-width:44rem}
 .thelp kbd{background:color-mix(in srgb,var(--line) 55%,transparent);border-radius:4px;
  padding:0 .35rem;font-size:.85em;font-family:inherit}
 #status{color:var(--mut);font-size:.75rem;min-height:1rem;margin:.6rem 0 0}
-@media(max-width:480px){#cands{position:sticky;bottom:0;background:var(--bg);padding:.3rem 0}}"""
+/* keyboard mode (body.kbd, set via visualViewport when the on-screen keyboard is
+   up): compress everything so output + candidates + input all stay visible */
+body.kbd header.site,body.kbd h1,body.kbd .lead,body.kbd .thelp,body.kbd #status,
+body.kbd footer.site{display:none}
+body.kbd main{padding-top:.4rem}
+body.kbd #out{min-height:3rem;max-height:7.5rem;overflow-y:auto;font-size:1.15rem;line-height:1.7rem}
+body.kbd .tbar{display:none}  /* copy/clear return when the keyboard closes */
+body.kbd #cands{min-height:48px;margin:.4rem 0}
+body.kbd .tcand{min-height:44px;font-size:1.15rem}"""
 
 
 def write_type_page():
