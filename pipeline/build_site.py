@@ -122,9 +122,15 @@ def work_html(text: str, verse: bool) -> str:
         elif _is_heading(b):
             out.append(f'<h2 class="sec">{esc(b)}</h2>')
         elif verse:
-            lines = "".join(f'<span class="ln">{_nb(esc(l))}</span>'
-                            for l in b.split("\n") if l.strip() or True)
-            out.append(f'<div class="stanza">{lines}</div>')
+            ls = b.split("\n")
+            # a stanza/श्लोक number — its own block OR the first line of its
+            # stanza (both occur in print) — hangs in the margin (.snum)
+            if len(ls) > 1 and re.fullmatch(r"[०-९0-9]{1,4}", ls[0].strip()):
+                out.append(f'<div class="stanza snum"><span class="ln">{esc(ls[0].strip())}</span></div>')
+                ls = ls[1:]
+            lines = "".join(f'<span class="ln">{_nb(esc(l))}</span>' for l in ls)
+            cls = "stanza snum" if re.fullmatch(r"[०-९0-9]{1,4}", b.strip()) else "stanza"
+            out.append(f'<div class="{cls}">{lines}</div>')
         else:
             para = _nb(esc(b).replace("\n", " "))
             out.append(f'<p class="stanza">{para}</p>')
@@ -476,7 +482,7 @@ main h2{font-size:1.05rem;font-weight:600;margin:2rem 0 .5rem}
 blockquote.law{margin:1.2rem 0;padding:.7rem 0 .7rem 1.1rem;border-left:3px solid var(--accent)}
 blockquote.law .cite{display:block;margin-top:.6rem;color:var(--mut);font-size:.85rem}
 a{color:var(--link)}
-h1{font-size:1.7rem;line-height:1.3;margin:.5rem 0 .25rem}
+h1{font-size:2.35rem;line-height:1.25;margin:.7rem 0 .3rem}
 .byline{color:var(--mut);margin:.1rem 0}
 .meta{color:var(--mut);font-size:.85rem;margin:.4rem 0 0}
 .pdfread{display:inline-block;margin:.7rem 0 .1rem;font-size:.9rem;padding:.34rem .85rem;border:1px solid var(--line);border-radius:6px;color:var(--accent);text-decoration:none;transition:background .15s,color .15s,border-color .15s}
@@ -490,8 +496,15 @@ h1{font-size:1.7rem;line-height:1.3;margin:.5rem 0 .25rem}
 .crumb{font-size:.85rem;margin:0 0 .75rem}
 .crumb a{color:var(--mut);text-decoration:none}
 .crumb a:hover{color:var(--accent)}
-.work{margin-top:2rem;font-size:1.12rem;line-height:1.95}
-.stanza{margin:0 0 1.5rem}
+.work{margin-top:2.6rem;font-size:1.22rem;line-height:2.05}
+.stanza{margin:0 0 1.7rem}
+/* stanza numbers hang in the margin, in the accent — like numbered श्लोक.
+   work_html tags numeral-only blocks with .snum */
+.stanza.snum{position:relative;margin:0;height:0}
+.stanza.snum .ln{position:absolute;left:-3.1rem;top:.35em;width:2.2rem;text-align:right;
+ color:var(--accent);font-weight:700;font-size:1rem;padding:0;text-indent:0}
+@media(max-width:900px){.stanza.snum{height:auto;margin:0 0 .3rem}
+ .stanza.snum .ln{position:static;width:auto;text-align:left;padding:0;text-indent:0}}
 .work.verse .ln{display:block;padding-left:1.6em;text-indent:-1.6em;text-wrap:pretty}  /* hanging indent + avoid 1-word orphan wraps */
 .work.prose .stanza{text-align:left;text-wrap:pretty}
 /* Narrow phones: long classical verse lines were wrapping their last word/danda as a
@@ -516,8 +529,8 @@ h1{font-size:1.7rem;line-height:1.3;margin:.5rem 0 .25rem}
 .lead{color:var(--mut);font-size:1.05rem}
 .toc{font-size:.9rem;margin:1rem 0 1.5rem;color:var(--mut)}
 .toc a{text-decoration:none;margin-right:1rem;white-space:nowrap;display:inline-block}
-.home-sec{margin:2rem 0}
-.home-sec h2{font-size:1rem;color:var(--mut);font-weight:600;border-bottom:2px solid var(--line);padding-bottom:.2rem}
+.home-sec{margin:2.7rem 0}
+.home-sec h2{font-size:1.05rem;color:var(--fg);font-weight:600;border-bottom:2px solid var(--line);padding-bottom:.2rem}
 ul.works{list-style:none;padding:0;margin:1rem 0}
 ul.works li{margin:.15rem 0;padding:.35rem 0;border-bottom:1px solid var(--line)}
 ul.works li a{text-decoration:none;font-size:1.1rem}
@@ -535,20 +548,23 @@ ul.works li .r{color:var(--mut);font-size:.82rem;margin-left:.5rem}
 /* shelves: typographic cover cards (home विधा/सङ्ग्रह sections, /genres/) */
 .shelf{display:grid;grid-template-columns:repeat(auto-fill,minmax(9.5rem,1fr));gap:.7rem;margin:1rem 0}
 .card{display:block;text-decoration:none;color:var(--fg);border:1px solid var(--line);
- border-left:4px solid var(--gc,var(--accent));border-radius:.45rem;padding:.65rem .8rem;
+ border-left:4px solid var(--gc,var(--accent));border-radius:.45rem;padding:1rem 1.1rem;
  background:color-mix(in srgb,var(--gc,var(--accent)) 5%,var(--bg))}
-.card b{display:block;font-weight:600;font-size:1.06rem;line-height:1.5;overflow:hidden;text-overflow:ellipsis}
-.card .en{color:var(--mut);font-size:.76rem;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.card .n{display:block;color:var(--mut);font-size:.78rem;margin-top:.3rem}
+.card b{display:block;font-weight:600;font-size:1.22rem;line-height:1.4;overflow:hidden;text-overflow:ellipsis}
+.card .en{color:var(--mut);font-size:.8rem;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.card .n{display:block;color:var(--gc,var(--accent));font-weight:600;font-size:.82rem;margin-top:.35rem}
 .card:hover{border-color:var(--gc,var(--accent));
  background:color-mix(in srgb,var(--gc,var(--accent)) 11%,var(--bg))}
 .tagline-en{color:var(--mut);font-size:.95rem;margin:.1rem 0 .8rem}
 .foot-en{margin:.2rem 0 0}
-#q{width:100%;font:inherit;font-size:1.05rem;padding:.6rem .8rem;border:1px solid var(--line);
- border-radius:.4rem;background:var(--bg);color:var(--fg)}
+#q{width:100%;font:inherit;font-size:1.05rem;padding:.75rem .9rem;border:1.5px solid var(--line);
+ border-radius:9px;background:var(--bg);color:var(--fg);transition:border-color .15s}
+#q:focus{border-color:var(--accent);outline:none;
+ box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 18%,transparent)}
 #results li .snip{display:block;color:var(--mut);font-size:.8rem;white-space:nowrap;
  overflow:hidden;text-overflow:ellipsis}
 .hint{color:var(--mut);font-size:.85rem;margin:.4rem 0 0}
+.hint a{color:var(--accent);text-decoration:none;margin-right:.8rem}
 /* full-text (in-poem) search results */
 #ft{margin:.5rem 0 0}
 .fthead{font-size:.95rem;color:var(--mut);font-weight:600;border-top:1px solid var(--line);padding-top:1rem;margin:1.4rem 0 .6rem}
@@ -1295,8 +1311,8 @@ def build(archive_base: str):
     home_body = f"""<h1>{SITE_TAGLINE}</h1>
 <p class="tagline-en">{SITE_TAGLINE_EN}</p>
 <p class="lead">{str(len(by_author)).translate(_DEVNUM)} लेखकका {str(len(recs)).translate(_DEVNUM)} कृति — नि:शुल्क, सधैँभरि। दर्ता छैन, विज्ञापन छैन।</p>
-<p><input id="q" type="search" placeholder="खोज्नुहोस् — शीर्षक, पाठ वा रोमन (जस्तै: pagal, sundari, फूल)" autocomplete="off" aria-label="खोज"></p>
-<p class="hint" id="hint"></p>
+<p><input id="q" type="search" placeholder="खोज्नुहोस् — शीर्षक, पाठ वा रोमन" autocomplete="off" aria-label="खोज"></p>
+<p class="hint" id="hint">जस्तै: <a href="?q=pagal">pagal</a><a href="?q=muna madan">muna madan</a><a href="?q=hunxa">hunxa</a><a href="?q=फूल">फूल</a></p>
 <ul class="works" id="results" data-base=""></ul>
 <div id="ft"></div>
 <div class="home-sec"><h2><a href="genres/">विधा</a></h2>{genre_cards("")}</div>
