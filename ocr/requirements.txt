@@ -1,0 +1,5 @@
+# server env (conda: ocr_env). Engines bring their own envs/binaries — see README.
+fastapi>=0.115
+uvicorn[standard]>=0.30
+python-multipart>=0.0.9
+httpx2>=0.1        # TestClient dependency (tests only)

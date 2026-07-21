@@ -1,0 +1,6 @@
+{
+  "source_pdf": "archives/authors/devkota/001_book_archive/LaxmiPrasadDevkota2028BS_Prometheus.pdf",
+  "notes": "PDF page 30 (printed p.22). Built 2026-07-21 by adjudicating every Surya-2 vs Tesseract vs shipped-text disagreement against the 300dpi page scan (15 lines checked by eye). Convention: running headers/footers excluded; margin श्लोक numbers on their own line; ZWNJ never used; dashes as printed.",
+  "draft": true,
+  "draft_reason": "needs native-speaker sign-off before being cited as ground truth"
+}
