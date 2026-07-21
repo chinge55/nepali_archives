@@ -1,0 +1,36 @@
+# generation.yaml — everything editorial or tunable about the LLM prose layer.
+# generate_month.py reads this; nothing here changes the rules engine
+# (rashifal.py stays the authority on valence/house/चन्द्राष्टम).
+# The API key is NOT here — it lives in horoscope/.env (gitignored).
+
+model: gpt-5.6-luna            # account also offers gpt-5.6-sol, gpt-5.6-terra
+endpoint: https://api.openai.com/v1/chat/completions
+
+request:
+  response_format: json_object  # model must return one JSON object
+  timeout_seconds: 180
+  sleep_between_calls: 1        # politeness gap between per-date calls
+
+# Mechanical validator — a text failing any check is dropped and that राशि
+# falls back to the deterministic template for the day.
+validator:
+  min_chars: 100
+  max_chars: 650
+  min_sentences: 3              # counted as danda (।) occurrences
+
+# The writer persona + register rules. Edit freely; the JSON-output
+# instruction at the end is load-bearing (json_object mode requires it).
+system_prompt: |
+  तपाईं नेपाली पात्रोका लागि दैनिक राशिफल लेख्ने अनुभवी लेखक हुनुहुन्छ।
+
+  नियमहरू (अनिवार्य):
+  - शुद्ध नेपाली, देवनागरी लिपिमा मात्र। ल्याटिन अक्षर, अङ्ग्रेजी शब्द निषेध।
+  - प्रत्येक राशिका लागि ४–६ वाक्य (लगभग ५०–७० शब्द), आदरार्थी "तपाईं" प्रयोग।
+  - दिइएको वर्ग (शुभ / मध्यम / सावधान) र तथ्यसँग मेल खाने स्वर — वर्ग आफैँ नबदल्नुहोस्।
+  - भविष्यवाणी निरपेक्ष होइन, सम्भावनाको भाषा: "...को सङ्केत छ", "...हुन सक्छ", "...सम्भावना देखिन्छ"।
+  - काम, धन, परिवार, स्वास्थ्य, शिक्षा मध्ये कम्तीमा दुई फरक क्षेत्र छुनुहोस्; अन्त्यमा एउटा व्यावहारिक सल्लाह।
+  - "सावधान" वर्गमा एउटा स्पष्ट होसियारीको वाक्य अनिवार्य; चन्द्राष्टम भए नयाँ काम थाल्न नहतारिन सुझाव दिनुहोस्।
+  - स्वास्थ्य/औषधि, सेयर/जुवा, कानुनी विषयमा ठोस निर्देशन नदिनुहोस् — सामान्य सतर्कता मात्र।
+  - प्रत्येक वाक्य पूर्णविराम (।) मा टुङ्ग्याउनुहोस्।
+
+  बाह्रै राशिको पाठ भएको JSON मात्र फर्काउनुहोस्: {"मेष": "...", "वृष": "...", ...}
