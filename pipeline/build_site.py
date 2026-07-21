@@ -236,16 +236,16 @@ def page(title, body, *, desc="", css_depth=0, extra_head="", active="", canon="
 # roman_nepali_transliteration/{plan.md,rules.md}.
 TYPE_CSS = """main{max-width:44rem}
 .outwrap{position:relative}
-#out{position:relative;z-index:1;width:100%;min-height:7.5rem;background:none;color:var(--fg);
- border:1px solid var(--line);border-radius:10px;padding:.9rem;font-size:1.3rem;line-height:2rem;
+#out{position:relative;z-index:1;width:100%;min-height:6.5rem;background:none;color:var(--fg);
+ border:1px solid var(--line);border-radius:10px;padding:.8rem;font-size:1.15rem;line-height:1.85rem;
  font-family:inherit;resize:vertical}
 #out:focus{outline:2px solid color-mix(in srgb,var(--accent) 45%,transparent)}
 #outbg{position:absolute;inset:0;z-index:0;border:1px solid transparent;border-radius:10px;
- padding:.9rem;font-size:1.3rem;line-height:2rem;font-family:inherit;white-space:pre-wrap;
+ padding:.8rem;font-size:1.15rem;line-height:1.85rem;font-family:inherit;white-space:pre-wrap;
  word-break:break-word;color:transparent;overflow:hidden;pointer-events:none}
 #outbg mark{background:color-mix(in srgb,var(--accent) 32%,transparent);color:transparent;border-radius:4px}
 .tbar{display:flex;gap:.6rem;margin:.7rem 0;align-items:center;flex-wrap:wrap}
-.tbar button{font-family:inherit;font-size:.95rem;padding:.6rem 1.1rem;min-height:48px;
+.tbar button{font-family:inherit;font-size:.9rem;padding:.5rem 1rem;min-height:44px;
  border-radius:8px;border:1px solid var(--line);background:none;color:var(--accent);cursor:pointer}
 .tbar button:hover{border-color:var(--accent)}
 #copy{background:var(--accent);color:var(--bg);border-color:var(--accent);font-weight:600}
@@ -255,13 +255,13 @@ TYPE_CSS = """main{max-width:44rem}
  gap:.45rem;min-height:48px;cursor:pointer}
 .ttog input{width:1.15rem;height:1.15rem;accent-color:var(--accent)}
 #cands{display:flex;gap:.5rem;margin:.7rem 0;min-height:56px;flex-wrap:wrap}
-.tcand{font-family:inherit;font-size:1.25rem;min-height:48px;min-width:48px;padding:.4rem .9rem;
+.tcand{font-family:inherit;font-size:1.1rem;min-height:48px;min-width:48px;padding:.3rem .75rem;
  border-radius:8px;border:1px solid var(--line);background:none;color:var(--fg);cursor:pointer}
 .tcand:hover{border-color:var(--accent)}
 .tcand.first{border:2px solid var(--accent);font-weight:600}
 .tcand .n{color:var(--mut);font-size:.68rem;vertical-align:super;margin-right:.25rem}
 .tcand.lit{border-style:dashed;color:var(--mut)}
-#inp{width:100%;font-size:1.25rem;padding:.75rem;border-radius:10px;color:var(--fg);
+#inp{width:100%;font-size:1.1rem;padding:.65rem .75rem;border-radius:10px;color:var(--fg);
  border:2px solid var(--accent);background:none;font-family:inherit}
 #inp:focus{outline:none;box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 25%,transparent)}
 .thelp{color:var(--mut);font-size:.85rem;line-height:1.7;margin-top:.8rem}
@@ -273,11 +273,11 @@ TYPE_CSS = """main{max-width:44rem}
 body.kbd header.site,body.kbd h1,body.kbd .lead,body.kbd .thelp,body.kbd #status,
 body.kbd footer.site{display:none}
 body.kbd main{padding-top:.4rem}
-body.kbd #out{min-height:3rem;max-height:7.5rem;overflow-y:auto;font-size:1.15rem;line-height:1.7rem}
-body.kbd #outbg{font-size:1.15rem;line-height:1.7rem}
+body.kbd #out{min-height:3rem;max-height:7.5rem;overflow-y:auto;font-size:1.05rem;line-height:1.6rem}
+body.kbd #outbg{font-size:1.05rem;line-height:1.6rem}
 body.kbd .tbar{display:none}  /* copy/clear return when the keyboard closes */
 body.kbd #cands{min-height:48px;margin:.4rem 0}
-body.kbd .tcand{min-height:44px;font-size:1.15rem}"""
+body.kbd .tcand{min-height:44px;font-size:1.05rem}"""
 
 
 def write_type_page():
