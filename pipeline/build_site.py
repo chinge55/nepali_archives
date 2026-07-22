@@ -423,7 +423,12 @@ PATRO_JS = """
 
 
 def write_patro_page():
-    """Render /patro/ from horoscope/content/*.json; True if written."""
+    """Render /patro/ (today NPT) + one archived page per committed date
+    (/patro/YYYY-MM-DD/). /patro/ carries a client-side NPT-date check that
+    redirects to the right dated page if the static build is stale — the
+    date can never be wrong for a JS visitor even if the daily cron slips;
+    the cron keeps the static baseline fresh for everyone else.
+    Returns True if written."""
     from datetime import datetime, timedelta, timezone
     content = ROOT / "horoscope" / "content"
     days = {}
@@ -432,38 +437,44 @@ def write_patro_page():
     if not days:
         print("patro: no committed panchanga data — page skipped")
         return False
+    prose_all = {}
+    for f in sorted(content.glob("20??-??.json")):
+        prose_all.update(json.loads(f.read_text(encoding="utf-8"))["days"])
     npt_today = (datetime.now(timezone.utc) + timedelta(hours=5, minutes=45)
                  ).date().isoformat()
-    iso = max((d for d in days if d <= npt_today), default=min(days))
-    p = days[iso]
-    prose_f = content / f"{iso[:7]}.json"
-    prose = (json.loads(prose_f.read_text(encoding="utf-8"))["days"].get(iso, {})
-             if prose_f.exists() else {})
+    today_iso = max((d for d in days if d <= npt_today), default=min(days))
 
-    def anga_cell(label, a):
-        end_d, end_t = a["ends"].split("T")
-        when = end_t.translate(_DEVNUM) + ("" if end_d == iso else " (भोलिपल्ट)")
-        return (f'<div><span class="lbl">{label}</span><b>{esc(a["name"])}</b>'
-                f'<span class="end">समाप्ति {when}</span></div>')
+    def render(iso, *, dated):
+        p = days[iso]
+        prose = prose_all.get(iso, {})
+        depth = 2 if dated else 1
 
-    cards, tiles = [], []
-    for r in p["rashis"]:
-        flag = ('<span class="flag">चन्द्राष्टम — सोच-विचार गरेर मात्र नयाँ काम '
-                'थाल्नुहोस्।</span>' if r["chandrashtama"] else "")
-        rule = r["rule"].replace(str(r["house"]), _dev(r["house"]), 1)
-        text = prose.get(r["rashi"], r["text"])
-        cards.append(f"""<div class="pt-card v-{r['valence']}" data-rashi="{esc(r['rashi'])}">
+        def anga_cell(label, a):
+            end_d, end_t = a["ends"].split("T")
+            when = end_t.translate(_DEVNUM) + ("" if end_d == iso else " (भोलिपल्ट)")
+            return (f'<div><span class="lbl">{label}</span><b>{esc(a["name"])}</b>'
+                    f'<span class="end">समाप्ति {when}</span></div>')
+
+        cards, tiles = [], []
+        for r in p["rashis"]:
+            flag = ('<span class="flag">चन्द्राष्टम — सोच-विचार गरेर मात्र नयाँ काम '
+                    'थाल्नुहोस्।</span>' if r["chandrashtama"] else "")
+            rule = r["rule"].replace(str(r["house"]), _dev(r["house"]), 1)
+            text = prose.get(r["rashi"], r["text"])
+            cards.append(f"""<div class="pt-card v-{r['valence']}" data-rashi="{esc(r['rashi'])}">
 <h3>{esc(r['rashi'])} <span class="val">{r['valence']}</span></h3>
 <p class="nam">नामाक्षर: {esc(r['namakshar'])}</p>
 {flag}
 <p>{esc(text)}</p>
 <p class="rule">{esc(rule)}</p>
 </div>""")
-        letters = " ".join(r["namakshar"].split()[:3]) + " …"
-        tiles.append(f"""<button class="zt" type="button" data-rashi="{esc(r['rashi'])}" aria-pressed="false">
+            letters = " ".join(r["namakshar"].split()[:3]) + " …"
+            tiles.append(f"""<button class="zt" type="button" data-rashi="{esc(r['rashi'])}" aria-pressed="false">
 {esc(r['rashi'])}<span class="dot v-{r['valence']}"></span><span class="ltr">{esc(letters)}</span></button>""")
 
-    body = f"""<h1 class="pt">पात्रो</h1>
+        crumb = ('<nav class="crumb"><a href="../">← आजको पात्रो</a></nav>\n'
+                 if dated else "")
+        body = f"""{crumb}<h1 class="pt">पात्रो</h1>
 <p class="pt-bs">{esc(p['bs_str'])} <span class="yr">{_dev(p['bs'].split('-')[0])} वि.सं.</span> · {esc(p['vara'])}</p>
 <p class="pt-date">{esc(p['ad'])} · सूर्योदय {p['sunrise'].translate(_DEVNUM)} · सूर्यास्त {p['sunset'].translate(_DEVNUM)} (काठमाडौं)</p>
 
@@ -492,15 +503,32 @@ def write_patro_page():
 प्रयोग नगर्नुहोस्।</p>
 <script>{PATRO_JS}</script>"""
 
+        # /patro/ only: client-side NPT date check — if this build is stale
+        # (or the visitor crossed midnight), jump to the correct dated page
+        # before paint. 20700000 ms = UTC+5:45.
+        fresh = ("" if dated else
+                 "<script>(function(){var D=" + json.dumps(sorted(days)) +
+                 ";var t=new Date(Date.now()+20700000).toISOString().slice(0,10);"
+                 f'if(t!=="{iso}"&&D.indexOf(t)>=0)location.replace("/patro/"+t+"/");'
+                 "})()</script>\n")
+        return page(f"पात्रो — {p['bs_str']} · " + SITE_NAME, body,
+                    desc="आजको पञ्चाङ्ग र राशिफल — तिथि, नक्षत्र, योग, करण, चन्द्र राशि (काठमाडौं, वि.सं. मितिमा)",
+                    css_depth=depth,
+                    extra_head=(fresh +
+                                "<script>document.documentElement.classList.add('js')</script>\n"
+                                f"<style>{PATRO_CSS}</style>\n"),
+                    active="patro",
+                    canon=f"patro/{iso}/" if dated else "patro/",
+                    noindex=dated)
+
     out = SITE / "patro"
     out.mkdir(exist_ok=True)
-    (out / "index.html").write_text(
-        page(f"पात्रो — {p['bs_str']} · " + SITE_NAME, body,
-             desc="आजको पञ्चाङ्ग र राशिफल — तिथि, नक्षत्र, योग, करण, चन्द्र राशि (काठमाडौं, वि.सं. मितिमा)",
-             css_depth=1,
-             extra_head=f"<script>document.documentElement.classList.add('js')</script>\n<style>{PATRO_CSS}</style>\n",
-             active="patro", canon="patro/"),
-        encoding="utf-8")
+    (out / "index.html").write_text(render(today_iso, dated=False),
+                                    encoding="utf-8")
+    for iso in days:
+        d = out / iso
+        d.mkdir(exist_ok=True)
+        (d / "index.html").write_text(render(iso, dated=True), encoding="utf-8")
     return True
 
 

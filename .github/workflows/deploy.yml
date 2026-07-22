@@ -3,6 +3,12 @@ name: Deploy site to GitHub Pages
 on:
   push:
     branches: [main]
+  schedule:
+    # /patro/ renders "today" (NPT = UTC+5:45) from committed JSON at build
+    # time, so rebuild daily just after Kathmandu midnight, with a backup run
+    # after sunrise in case the first is skipped (GH cron is best-effort).
+    - cron: "31 18 * * *"   # 00:16 NPT
+    - cron: "7 1 * * *"     # 06:52 NPT (backup)
   workflow_dispatch:
 
 permissions:
