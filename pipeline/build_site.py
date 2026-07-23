@@ -64,6 +64,7 @@ AUTHORS = {
     "bhanubhakta_acharya": ("भानुभक्त आचार्य", "Bhanubhakta Acharya", "1814–1868"),
     "lekhnath_paudyal": ("लेखनाथ पौड्याल", "Lekhnath Paudyal", "1885–1966"),
     "bhimnidhi_tiwari": ("भीमनिधि तिवारी", "Bhimnidhi Tiwari", "1911–1973"),
+    "motiram_bhatta": ("मोतीराम भट्ट", "Motiram Bhatta", "1866–1896"),
 }
 
 
