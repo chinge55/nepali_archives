@@ -232,9 +232,6 @@ def expand_approved_plan(
         or plan.author_id != run.author_id
     ):
         raise InvalidTransition("approved structure plan does not identify this run")
-    if any(node.role == TaskRole.reconcile for node in run.nodes.values()):
-        raise InvalidTransition("approved structure plan is already expanded")
-
     worker_nodes: list[Node] = []
     for section in plan.sections:
         if not section.include:
@@ -272,16 +269,42 @@ def expand_approved_plan(
         )
 
     worker_ids = [node.id for node in worker_nodes]
-    worker_nodes.append(
-        _task_node(
-            "qa_0",
-            TaskRole.qa,
-            worker_ids,
-            "Run deterministic completeness, numbering, footnote, and OCR disagreement checks.",
-            inputs={"round": 0, "structure_plan": artifact.name},
-        )
+    qa_node = _task_node(
+        "qa_0",
+        TaskRole.qa,
+        worker_ids,
+        "Run deterministic completeness, numbering, footnote, and OCR disagreement checks.",
+        inputs={"round": 0, "structure_plan": artifact.name},
     )
-    workflow.add_nodes(run_id, worker_nodes)
+    expected_worker_ids = set(worker_ids)
+    present_worker_ids = expected_worker_ids.intersection(run.nodes)
+    if present_worker_ids:
+        if present_worker_ids != expected_worker_ids:
+            raise InvalidTransition(
+                "expanded graph is missing approved section workers"
+            )
+        for expected in worker_nodes:
+            existing = run.nodes[expected.id]
+            if (
+                existing.kind != expected.kind
+                or existing.role != expected.role
+                or existing.depends_on != expected.depends_on
+                or existing.task != expected.task
+            ):
+                raise InvalidTransition(
+                    f"expanded graph node differs from approved plan: {expected.id}"
+                )
+        if qa_node.id in run.nodes:
+            raise InvalidTransition("approved structure plan is already expanded")
+        # A cascade reset of a section removes its generated QA descendants.
+        # Recreate only the missing deterministic fan-in node; never rerun or
+        # replace the already accepted section workers.
+        workflow.add_nodes(run_id, [qa_node])
+        return plan
+    if qa_node.id in run.nodes:
+        raise InvalidTransition("expanded graph has QA without section workers")
+
+    workflow.add_nodes(run_id, [*worker_nodes, qa_node])
     return plan
 
 

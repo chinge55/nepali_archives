@@ -249,6 +249,28 @@ def approve_and_expand(
     return plan
 
 
+def test_expand_repairs_qa_after_cascade_reset(root: Path) -> None:
+    workflow, source = make_workflow(root)
+    run = workflow.create_run(source, "known_author", run_id="repair-expanded")
+    complete_initial_planning(workflow, run.id)
+    plan = approve_and_expand(workflow, run.id)
+
+    workflow.reset_task(run.id, "reconcile_section_one", cascade=True)
+    reset_graph = workflow.load_run(run.id).nodes
+    assert "qa_0" not in reset_graph
+    assert reset_graph["reconcile_section_one"].status == NodeStatus.pending
+    assert reset_graph["footnotes_section_one"].status == NodeStatus.pending
+
+    assert expand_approved_plan(workflow, run.id) == plan
+    repaired_graph = workflow.load_run(run.id).nodes
+    assert set(repaired_graph["qa_0"].depends_on) == {
+        "reconcile_section_one",
+        "footnotes_section_one",
+    }
+    with expect(InvalidTransition):
+        expand_approved_plan(workflow, run.id)
+
+
 def issue(round_number: int) -> QAReport:
     return QAReport(
         run_id="known-run",
