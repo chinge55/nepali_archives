@@ -1,0 +1,46 @@
+{
+  "id": "satya_harishchandra_katha",
+  "title": "सत्य हरिश्चन्द्र कथा",
+  "title_roman": "Satya Harishchandra Katha",
+  "subtitle": null,
+  "author": {
+    "id": "motiram_bhatta",
+    "name": "मोतीराम भट्ट",
+    "name_roman": "Motiram Bhatta"
+  },
+  "language": "ne",
+  "script": "Devanagari",
+  "genre": [
+    "khandakavya",
+    "poetry"
+  ],
+  "first_published": null,
+  "edition": null,
+  "publisher": "रत्न पुस्तक भण्डार",
+  "description": "मोतीराम भट्टको पद्यकृति; सत्यनिष्ठ राजा हरिश्चन्द्रको कथा।",
+  "rights": {
+    "status": "public-domain",
+    "basis": "Author died 1896; long in the public domain (Nepal's Copyright Act 2059: life + 50 years)."
+  },
+  "source": {
+    "name": "सत्य हरिश्चन्द्र कथा (रत्न पुस्तक भण्डार)",
+    "url": null,
+    "pdf": "satya_harishchandra_katha.pdf",
+    "html": null
+  },
+  "pages": 45,
+  "text": {
+    "extraction_method": "ocr",
+    "ocr_status": "ocr-done",
+    "proofread": false,
+    "quality": "good"
+  },
+  "formats": {
+    "pdf": "satya_harishchandra_katha.pdf",
+    "txt": "text.txt",
+    "html": "reader.html",
+    "epub": "reader.epub"
+  },
+  "added": "2026-07-23",
+  "updated": "2026-07-23"
+}
