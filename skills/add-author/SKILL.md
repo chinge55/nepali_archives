@@ -4,7 +4,7 @@ description: >-
   Onboard a NEW author into the archive: author dir + registry entry in
   build_site.py, rights-basis string, first works, and the stats stopword pass
   for their register. Use the first time works are added for an author that has
-  no directory under archives/authors/ yet. Read CLAUDE.md first.
+  no directory under archives/authors/ yet. Read AGENTS.md first.
 ---
 
 # Add a new author

@@ -40,13 +40,13 @@ pipeline/
   devanagari_slug.py       # Devanagari -> slug / romanization helper
   validate.py              # contribution checks (run on every PR)
 .github/workflows/         # validate.yml (on PRs) · deploy.yml (build full pipeline + deploy)
-CONTRIBUTING.md · CLAUDE.md · Rights.md · LICENSE
+CONTRIBUTING.md · AGENTS.md · Rights.md · LICENSE
 ```
 
 Slugs are lowercase `[a-z0-9_-]`; a work's directory name == its `id`, the author
 directory == `author.id`. Slugs come from `devanagari_slug.py` — best-effort
 **natural-Nepali romanization** (drop word-final inherent schwa unless after a conjunct;
-व→b, श/ष→sh) — review them, they're a starting point. Agents working here: [`CLAUDE.md`](./CLAUDE.md).
+व→b, श/ष→sh) — review them, they're a starting point. Agents working here: [`AGENTS.md`](./AGENTS.md).
 
 ## Contributing
 

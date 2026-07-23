@@ -4,7 +4,7 @@ description: >-
   Add poem(s)/work(s) scraped from a website (inepal.org, nepalikitab.org,
   Kavita Kosh, Wikisource, …) as born-digital archive works: discover → DEDUPE →
   fetch → materialize via from_html.py → validate. Use when the user gives a
-  poems/author URL to ingest. Read CLAUDE.md first.
+  poems/author URL to ingest. Read AGENTS.md first.
 ---
 
 # Add born-digital works from a website

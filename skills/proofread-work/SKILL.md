@@ -4,7 +4,7 @@ description: >-
   Proofread a work's text.txt against its source and flip text.proofread to true —
   the archive's one remaining pre-public gate (faithful OCR/scrape-error fixes
   ONLY, never modernize). Use when asked to proofread/verify a work, or to work
-  through the proofreading backlog. Read CLAUDE.md first.
+  through the proofreading backlog. Read AGENTS.md first.
 ---
 
 # Proofread a work (the pre-public gate)
@@ -28,8 +28,9 @@ spellings stay as printed (जूवा, गौरीशंकर, एक् म
 ## 2. Compare systematically
 
 Work section-by-section (per सर्ग/canto/essay — never skim). For long verse works,
-fan out one agent per section with the page images + that section of text.txt,
-returning corrections; verse can ALSO be checked structurally first:
+fan out one agent per section (or, without subagent support, one sequential pass per
+section) with the page images + that section of text.txt, returning corrections;
+verse can ALSO be checked structurally first:
 
 - **stanza/श्लोक numbering contiguous 1..N per section** (printed gaps = lacunae, keep);
 - no page furniture leaked (running headers, `N / शीर्षक` footers, page numbers);

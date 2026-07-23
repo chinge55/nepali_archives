@@ -6,13 +6,13 @@ description: >-
   title blocks), publisher colophons, back-cover catalogues/ads, running
   headers/footers, and OCR-symbol noise — keeping ONLY the author's own writing
   and its structure. Use when a work's extracted text is padded with junk around
-  the actual poem/essay/novel. Read CLAUDE.md first.
+  the actual poem/essay/novel. Read AGENTS.md first.
 ---
 
 # Clean a work's text to the author's own writing
 
 What scanned/OCR'd (and some scraped) works accumulate around the real text, and
-which of it to strip. Cardinal rule (CLAUDE.md): **preserve, don't rewrite** — this
+which of it to strip. Cardinal rule (AGENTS.md): **preserve, don't rewrite** — this
 skill removes *non-content* only; it does NOT fix OCR spelling in the work itself
 (that's the separate proofread stage). Worked example: the तरुण तपसी cleanup
 (3905 → 3334 lines).

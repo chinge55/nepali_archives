@@ -26,11 +26,14 @@ you intended — any `reader.*`/`index.json`/`*.woff2` showing up means gitignor
 ## 2. Commit
 
 Per logical batch (one book / one feature / one fix). Style: imperative summary line,
-a body that explains *what and why* (counts, dedup decisions, gotchas hit), ending:
+a body that explains *what and why* (counts, dedup decisions, gotchas hit), ending
+with your tool's standard AI co-author trailer, e.g.:
 
 ```
-Co-Authored-By: Claude <model name> <noreply@anthropic.com>
+Co-Authored-By: <assistant/model name> <noreply@<vendor domain>>
 ```
+
+(Claude Code: `Co-Authored-By: Claude <model name> <noreply@anthropic.com>`.)
 
 **Commit or push only when the user asks.**
 

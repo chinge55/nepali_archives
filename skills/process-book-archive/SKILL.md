@@ -5,14 +5,14 @@ description: >-
   + per-section agent reconciliation against the page scans → metadata.json +
   text.txt + per-work PDF + reader formats, then rebuild & verify). Use when a
   `book_archive`/source-PDF folder is dropped under archives/authors/<author>/ and
-  needs to become public-domain works. Read CLAUDE.md first.
+  needs to become public-domain works. Read AGENTS.md first.
 ---
 
 # Process a scanned book_archive into archive works
 
 The proven method (used for the Lekhnath `book_archive` and the Devkota
 `001_book_archive` batch, +40 works). Cardinal rule: **preserve, don't rewrite**
-(see CLAUDE.md). Work autonomously only after the user has approved a plan.
+(see AGENTS.md). Work autonomously only after the user has approved a plan.
 
 ## 1. Assess (before any OCR)
 
@@ -52,6 +52,8 @@ source of truth** for reconciliation.
 This is the #1 lesson. Fixed page-window chunks drop/merge/mis-number stanzas (and
 lose verse) at window **seams**. Use **one agent per section** (poem / सर्ग / canto /
 essay), each given that section's full page range. For prose, one agent per essay.
+(Parallel subagents if your tool has them; otherwise one sequential pass per section
+with a fresh context — the section boundary is what matters, not the parallelism.)
 
 Per-agent rules (put in the prompt): source of truth = images; faithfully reproduce
 verse lines / paragraphs as printed; **stanza/श्लोक numbers are sequential — emit the
@@ -107,7 +109,7 @@ dir name == `id`, author dir == `author.id`; `text.txt` non-empty Devanagari;
 headings, contiguous numbering). To eyeball rendering locally, optionally run
 `build_index.py` → `build_formats.py <dir>` → `build_site.py` and serve `site/` — but
 those outputs stay un-committed. Then commit per book (style: see git log; Co-Authored-By
-trailer). Push only when asked (SSH — see CLAUDE.md).
+trailer). Push only when asked (SSH — see AGENTS.md).
 
 **Stats page** (`pipeline/stats.py` → `site/stats/`, "अभिलेख एक नजरमा"): `build_site.py`
 **regenerates it on every run** (so it's recomputed before each commit/deploy and can
@@ -119,5 +121,5 @@ the stopword list so the word cloud stays evocative.
 ## Reference
 
 Worked examples: the 2026-06 Devkota `001_book_archive` batch (+40 works) and लुनी
-(shuffled-folio scan). The site rendering contract is in CLAUDE.md; shipping is the
+(shuffled-folio scan). The site rendering contract is in AGENTS.md; shipping is the
 `ship` skill.
