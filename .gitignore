@@ -27,6 +27,9 @@ __pycache__/
 /.used_glyphs.tmp
 /.pramithas_wip/
 
+# Resumable scanned-book DAG state (heavy OCR artifacts live in OCR_WORK_DIR)
+/.ocr-work/
+
 # API keys — never commit
 .env
 **/.env

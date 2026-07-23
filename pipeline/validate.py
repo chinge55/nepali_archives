@@ -15,6 +15,7 @@ Needs jsonschema (`pip install jsonschema`); everything else is stdlib.
 import json
 import re
 import sys
+import argparse
 from pathlib import Path
 
 try:
@@ -31,15 +32,19 @@ DEVANAGARI = re.compile(r"[ऀ-ॿ]")
 PUBLISHABLE_RIGHTS = {"public-domain", "permission-granted"}
 
 
-def main() -> int:
+def validate_authors(authors: Path = AUTHORS) -> tuple[int, int, list[str]]:
+    """Validate the canonical authors tree or an isolated staged mirror."""
     errors: list[str] = []
     seen: dict[str, set] = {}        # author dir -> ids (uniqueness within an author)
     nworks = 0
 
-    for meta_path in sorted(AUTHORS.glob("*/*/metadata.json")):
+    for meta_path in sorted(authors.glob("*/*/metadata.json")):
         work = meta_path.parent
         author_dir, slug = work.parent.name, work.name
-        rel = work.relative_to(ROOT)
+        try:
+            rel = work.relative_to(ROOT)
+        except ValueError:
+            rel = work
         nworks += 1
 
         def err(msg):
@@ -86,7 +91,16 @@ def main() -> int:
             err(f"rights.status '{status}' is not publishable — must be one of "
                 f"{sorted(PUBLISHABLE_RIGHTS)} (see Rights.md / CONTRIBUTING.md)")
 
-    print(f"validated {nworks} works across {len(seen)} authors")
+    return nworks, len(seen), errors
+
+
+def main(argv: list[str] | None = None) -> int:
+    ap = argparse.ArgumentParser(description="Validate archive source contributions.")
+    ap.add_argument("--authors-root", type=Path, default=AUTHORS,
+                    help="alternate staged archives/authors tree")
+    args = ap.parse_args(argv)
+    nworks, nauthors, errors = validate_authors(args.authors_root.resolve())
+    print(f"validated {nworks} works across {nauthors} authors")
     if errors:
         print(f"\n✗ {len(errors)} problem(s) found:\n")
         for e in errors:

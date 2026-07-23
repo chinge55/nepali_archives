@@ -1,7 +1,7 @@
 """CLI entry points.
 
     python -m archive_ocr serve [--port 8100]
-    python -m archive_ocr run book.pdf [--engines tesseract,surya] [--first N --last M]
+    python -m archive_ocr run book.pdf [--engines ensemble] [--first N --last M]
     python -m archive_ocr health
 """
 from __future__ import annotations
@@ -23,12 +23,15 @@ def main() -> None:
 
     run = sub.add_parser("run", help="run a job locally, wait, print summary")
     run.add_argument("pdf", type=Path)
-    run.add_argument("--engines", default="tesseract,surya")
+    run.add_argument("--engines", default="ensemble")
     run.add_argument("--dpi", type=int, default=None)
     run.add_argument("--first", type=int, default=None)
     run.add_argument("--last", type=int, default=None)
 
     sub.add_parser("health", help="report engine availability")
+    book = sub.add_parser("book", help="manage resumable scanned-book workflows")
+    from .book_cli import configure_parser
+    configure_parser(book)
 
     args = parser.parse_args()
 
@@ -58,6 +61,10 @@ def main() -> None:
         print(json.dumps(job.model_dump(mode="json"), indent=2, ensure_ascii=False))
         print(f"artifacts: {storage.job_dir(job.id)}")
         sys.exit(0 if job.status == "done" else 1)
+
+    elif args.command == "book":
+        from .book_cli import run as run_book_command
+        sys.exit(run_book_command(args))
 
 
 if __name__ == "__main__":
