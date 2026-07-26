@@ -14,6 +14,7 @@ from pydantic import ValidationError
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
+from archive_ocr.agent_profiles import FAST_READER, STRONG_READER, active_profile_name
 from archive_ocr.book_graph import (
     ApprovedStructurePlan,
     PlannedSection,
@@ -239,9 +240,10 @@ def approve_and_expand(
     assert "reconcile_modern_preface" not in graph
     assert "footnotes_modern_preface" not in graph
     assert graph["reconcile_section_one"].role == TaskRole.reconcile
-    assert graph["reconcile_section_one"].task.preferred_model == "gpt-5.6-sol"
+    assert graph["reconcile_section_one"].task.capability == STRONG_READER
+    assert graph["reconcile_section_one"].task.preferred_model is None
     assert graph["footnotes_section_one"].role == TaskRole.footnote
-    assert graph["footnotes_section_one"].task.preferred_model == "gpt-5.6-terra"
+    assert graph["footnotes_section_one"].task.capability == FAST_READER
     assert set(graph["qa_0"].depends_on) == {
         "reconcile_section_one",
         "footnotes_section_one",
@@ -269,6 +271,34 @@ def test_expand_repairs_qa_after_cascade_reset(root: Path) -> None:
     }
     with expect(InvalidTransition):
         expand_approved_plan(workflow, run.id)
+
+
+def test_expand_accepts_a_legacy_model_pinned_run(root: Path) -> None:
+    """A pre-capability run still matches its approved plan after the upgrade.
+
+    Routing is advisory, so a stored task pinned to an old vendor model must not
+    read as "differs from approved plan" when the graph is rebuilt.
+    """
+    workflow, source = make_workflow(root)
+    run = workflow.create_run(source, "known_author", run_id="legacy-pinned")
+    complete_initial_planning(workflow, run.id)
+    plan = approve_and_expand(workflow, run.id)
+    workflow.reset_task(run.id, "reconcile_section_one", cascade=True)
+
+    # Rewrite state the way the pre-capability code would have persisted it.
+    state_path = workflow.run_dir(run.id) / "run.json"
+    state = json.loads(state_path.read_text(encoding="utf-8"))
+    legacy = state["nodes"]["reconcile_section_one"]["task"]
+    legacy["capability"] = None
+    legacy["preferred_model"] = "legacy-strong-model"
+    legacy["reasoning_effort"] = "high"
+    state_path.write_text(json.dumps(state), encoding="utf-8")
+
+    assert expand_approved_plan(workflow, run.id) == plan
+    repaired = workflow.load_run(run.id).nodes
+    assert "qa_0" in repaired
+    # The legacy pin survives untouched, and still wins at packet time.
+    assert repaired["reconcile_section_one"].task.preferred_model == "legacy-strong-model"
 
 
 def issue(round_number: int) -> QAReport:
@@ -350,6 +380,14 @@ def test_packet_uses_validated_custom_ocr_root(root: Path) -> None:
     for page in expected_pages:
         assert str(page.resolve()) in packet["prompt"]
     assert str(expected_root / "fixture-job" / "ocr" / "ensemble") in packet["prompt"]
+    # The packet is where a capability becomes a concrete model, and the only
+    # place a vendor name may legitimately appear.
+    assert packet["capability"] == STRONG_READER
+    assert packet["agent_profile"] == "ocr_structure"
+    assert packet["profile_set"] == active_profile_name()
+    assert set(packet) >= {"model", "reasoning_effort", "profile_set", "capability"}
+    # A model ID must never have been persisted into run state to get here.
+    assert workflow.load_run(run.id).nodes["plan_structure"].task.preferred_model is None
 
 
 def test_gate_one_expansion_and_two_round_verifier_cap(root: Path) -> None:
@@ -681,6 +719,8 @@ def main() -> None:
         test_initial_dag_and_unknown_author(root / "initial")
         test_packet_uses_validated_custom_ocr_root(root / "packet")
         test_gate_one_expansion_and_two_round_verifier_cap(root / "graph")
+        test_expand_repairs_qa_after_cascade_reset(root / "cascade-repair")
+        test_expand_accepts_a_legacy_model_pinned_run(root / "legacy-pin")
         test_stage_manifest_create_update_and_safe_paths(root / "manifest")
         test_dynamic_nodes_are_pristine_and_promotion_is_canonical(root / "node-safety")
         test_artifact_change_blocks_claim_approval_and_advancement(root / "integrity")

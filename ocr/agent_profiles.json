@@ -1,0 +1,28 @@
+{
+  "_comment": [
+    "Capability -> model bindings for the scanned-book workflow. The graph",
+    "records only a capability tier (strong_reader / fast_reader); this file",
+    "says what that means for the agent CLI you are driving with, so no vendor",
+    "model ID is ever written into .ocr-work run state.",
+    "Switch tools with OCR_AGENT_PROFILE=<name> or by editing 'active'.",
+    "An empty binding {} means: let the tool use its own default model.",
+    "Role guardrails live in .codex/agents/*.toml and .claude/agents/*.md;",
+    "the authoritative task instructions are always the packet prompt built by",
+    "archive_ocr/book_prompts.py."
+  ],
+  "active": "codex",
+  "profiles": {
+    "codex": {
+      "strong_reader": { "model": "gpt-5.6-sol", "reasoning_effort": "high" },
+      "fast_reader": { "model": "gpt-5.6-terra", "reasoning_effort": "medium" }
+    },
+    "claude-code": {
+      "strong_reader": { "model": "opus", "reasoning_effort": "high" },
+      "fast_reader": { "model": "sonnet", "reasoning_effort": "medium" }
+    },
+    "default": {
+      "strong_reader": {},
+      "fast_reader": {}
+    }
+  }
+}

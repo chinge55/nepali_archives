@@ -2,8 +2,9 @@
 
 The persistent workflow starts with planning and Gate 1.  This module turns the
 exact approved structure plan into bounded section tasks, then extends the DAG
-after each deterministic QA pass.  It still does not launch a model: the Codex
-coordinator claims ready tasks and delegates them to built-in sub-agents.
+after each deterministic QA pass.  It still does not launch a model: the lead
+coordinator claims ready tasks and delegates them to its tool's built-in
+sub-agents.
 """
 from __future__ import annotations
 
@@ -13,6 +14,7 @@ from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 
+from .agent_profiles import FAST_READER, ROUTING_FIELDS, STRONG_READER
 from .book_workflow import (
     ApprovalGate,
     BookWorkflow,
@@ -182,8 +184,7 @@ def _task_node(
     summary: str,
     *,
     inputs: dict[str, object] | None = None,
-    preferred_model: str | None = None,
-    reasoning_effort: str | None = None,
+    capability: str | None = None,
 ) -> Node:
     task = Task(
         id=node_id,
@@ -191,8 +192,7 @@ def _task_node(
         role=role,
         summary=summary,
         inputs=inputs or {},
-        preferred_model=preferred_model,
-        reasoning_effort=reasoning_effort,
+        capability=capability,
     )
     return Node(
         id=node_id,
@@ -201,6 +201,18 @@ def _task_node(
         depends_on=dependencies,
         task=task,
     )
+
+
+def _approved_task_shape(task: Task | None) -> dict[str, object] | None:
+    """The part of a task Gate 1 actually approved — routing excluded.
+
+    Model routing is advisory and may change between sessions (a different tool,
+    a different profile).  Comparing it would block the cascade-reset repair path
+    for no archival reason, so only role, pages, inputs, and summary are compared.
+    """
+    if task is None:
+        return None
+    return task.model_dump(mode="json", exclude=set(ROUTING_FIELDS))
 
 
 def _approved_artifact(
@@ -252,8 +264,7 @@ def expand_approved_plan(
                 ["approve_structure"],
                 f"Reconcile the complete semantic section {section.title_printed!r}.",
                 inputs=common,
-                preferred_model="gpt-5.6-sol",
-                reasoning_effort="high",
+                capability=STRONG_READER,
             )
         )
         worker_nodes.append(
@@ -263,8 +274,7 @@ def expand_approved_plan(
                 ["approve_structure"],
                 f"Independently sweep every page of {section.title_printed!r} for footnotes.",
                 inputs=common,
-                preferred_model="gpt-5.6-terra",
-                reasoning_effort="medium",
+                capability=FAST_READER,
             )
         )
 
@@ -289,7 +299,8 @@ def expand_approved_plan(
                 existing.kind != expected.kind
                 or existing.role != expected.role
                 or existing.depends_on != expected.depends_on
-                or existing.task != expected.task
+                or _approved_task_shape(existing.task)
+                != _approved_task_shape(expected.task)
             ):
                 raise InvalidTransition(
                     f"expanded graph node differs from approved plan: {expected.id}"
@@ -389,8 +400,7 @@ def advance_after_qa(
                 "issue_ids": [issue.id for issue in report.issues],
                 "pages": pages,
             },
-            preferred_model="gpt-5.6-sol",
-            reasoning_effort="high",
+            capability=STRONG_READER,
         ),
         _task_node(
             next_qa_id,

@@ -1,9 +1,10 @@
-"""Versioned contracts for subscription-backed Codex OCR sub-agents.
+"""Versioned contracts for subscription-backed OCR sub-agents.
 
-This module does not call a model.  It builds bounded prompts for Codex's
-built-in sub-agents and validates the JSON artifacts they leave in the
-filesystem-backed book run.  Keeping the contract here makes a paused run
-resumable without an API key or a model API dependency.
+This module does not call a model.  It builds bounded prompts for the built-in
+sub-agents of whichever agent CLI is driving the run, and validates the JSON
+artifacts they leave in the filesystem-backed book run.  Keeping the contract
+here — rather than in any one vendor's agent config — makes a paused run
+resumable by a different tool, without an API key or a model API dependency.
 """
 from __future__ import annotations
 
@@ -27,6 +28,9 @@ class AgentRole(str, Enum):
     targeted_verifier = "targeted_verifier"
 
 
+# Logical profile names, bound per tool (e.g. .codex/agents/ocr-*.toml or
+# .claude/agents/ocr-*.md).  A tool with no profile system can ignore these and
+# run the packet's prompt directly — build_prompt() output is self-contained.
 AGENT_PROFILE_BY_ROLE: dict[AgentRole, str] = {
     AgentRole.structure: "ocr_structure",
     AgentRole.folio: "ocr_support",
@@ -374,14 +378,15 @@ numbering, and never silently complete damaged or absent print.
 Work only on the assigned pages and task. Read canonical archive files only
 when this role calls for comparison. Never edit archives/, metadata.json,
 text.txt, source PDFs, Git state, or any other canonical/project file. Write
-exactly one JSON result to the assigned isolated result path. Do not call an
-OpenAI API, use an API key, install dependencies, access the network, or spawn
-another agent. Record uncertainty instead of guessing.
+exactly one JSON result to the assigned isolated result path. While executing
+this task you must not call any model API, use an API key, install
+dependencies, access the network, or spawn another agent. Record uncertainty
+instead of guessing.
 """
 
 
 def build_prompt(request: AgentPromptRequest) -> str:
-    """Return a self-contained, versioned prompt for a built-in Codex sub-agent."""
+    """Return a self-contained, versioned prompt for one built-in sub-agent."""
     model = RESULT_MODELS[request.role]
     pages = [page.model_dump(mode="json") for page in request.pages]
     inputs = {

@@ -2,22 +2,21 @@
 name: process-book-archive
 description: >-
   Digitize a scanned Nepali book with the resumable archive_ocr book DAG:
-  ensemble OCR, Codex sub-agent reconciliation, two approval gates, staging,
+  ensemble OCR, sub-agent reconciliation, two approval gates, staging,
   and one local commit. Read AGENTS.md first.
 ---
 
 # Process a scanned book into archive works
 
 Cardinal rule: **preserve, don't rewrite**. Page images are the source of truth;
-ensemble OCR is only a transcription hint. Before any model task, run:
+ensemble OCR is only a transcription hint.
 
-```bash
-codex login status
-```
-
-Proceed only when Codex reports ChatGPT sign-in on the intended Plus/Pro account.
-If it reports API-key authentication, stop; this workflow makes no model API calls
-but repository code cannot change which Codex account is active. Graph state lives in ignored
+Before any model task, confirm with your tool's own status command that its
+sub-agents are **subscription-backed, not a metered API** — `codex login status`
+(must report ChatGPT sign-in, not API-key auth), `/status` in Claude Code, the
+equivalent elsewhere. Stop if it reports API-key authentication: this workflow
+makes no model API calls itself, but repository code cannot change which account
+your tool is signed in as. Graph state lives in ignored
 `.ocr-work/book-runs/<run-id>/`; heavy images/OCR stay in `OCR_WORK_DIR`.
 
 ## 1. Initialize and approve structure
@@ -27,7 +26,7 @@ Run from `ocr/`:
 ```bash
 python -m archive_ocr book init "/absolute/path/book.pdf" --author <author-id>
 python -m archive_ocr book status <run-id>
-python -m archive_ocr book ready <run-id> --limit 3
+python -m archive_ocr book ready <run-id> --limit <worker-slots>
 
 # Claim each coordinator node and substitute its returned token.
 python -m archive_ocr book claim <run-id> preflight --worker coordinator
@@ -60,18 +59,28 @@ python -m archive_ocr book expand <run-id>
 Approve only when rights/exclusions, folios, page mapping, semantic sections,
 duplicate actions, and all-page coverage are correct.
 
-## 2. Drive ready tasks with built-in Codex sub-agents
+## 2. Drive ready tasks with your tool's built-in sub-agents
 
-Run inside an interactive Codex Plus/Pro session. Use only built-in sub-agents:
-no API key, OpenAI SDK, Agents SDK, or metered model API. Reserve one slot for
-the lead/coordinator and use the remaining available slots.
+Run inside an interactive session of an agent CLI whose sub-agents your
+subscription covers. Use only those built-in sub-agents: no API key, vendor SDK,
+or metered model API. Reserve one slot for the lead/coordinator and use the
+remaining available slots. A tool with **no** sub-agent system runs the same
+packets sequentially in fresh contexts — the task boundary is what matters, not
+the parallelism.
 
 Repeatedly fetch `book ready`, claim a task with `book claim`, emit its immutable
 packet with `book prompt <run> <node> --token <claim-token>`, spawn the named
-sub-agent profile with that prompt, then validate/record the isolated
+sub-agent profile with that prompt (the profile name is **logical** — bind it in
+`.codex/agents/` or `.claude/agents/`; with no profile system, run the packet's
+prompt as-is, it is self-contained), then validate/record the isolated
 result with `book complete --artifact <artifact_ref>` (or `book fail`). The
 packet supplies both an absolute `result_path` for the worker and the exact run-relative
-`artifact_ref` for completion. Agents write only to their result paths, never `archives/`. Use `python -m archive_ocr book --help`
+`artifact_ref` for completion. It also reports the task's `capability`
+(`strong_reader` / `fast_reader`) resolved to a `model` + `reasoning_effort` for
+your tool via `ocr/agent_profiles.json` — switch bindings with
+`OCR_AGENT_PROFILE=<name>`; the graph itself stores no vendor model ID, so a
+paused run can resume under a different tool. Agents write only to their result
+paths, never `archives/`. Use `python -m archive_ocr book --help`
 and each subcommand's `--help` for exact arguments.
 
 Schedule the largest independent semantic sections first. The DAG fans in
@@ -120,7 +129,7 @@ Claim the ready QA node, run `book qa <run-id> --round N --token <token>`, then 
 coverage, numbering, footnotes, suspicious loss, and furniture, then adds either a
 targeted verifier or staging nodes.
 
-If the Codex session or subscription allowance ends, stop cleanly:
+If the agent session or subscription allowance ends, stop cleanly:
 
 ```bash
 python -m archive_ocr book resume <run-id>

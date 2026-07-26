@@ -1,8 +1,9 @@
-"""Build immutable prompt packets for claimed built-in Codex sub-agent tasks."""
+"""Build immutable prompt packets for claimed built-in sub-agent tasks."""
 from __future__ import annotations
 
 from pathlib import Path
 
+from .agent_profiles import resolve as resolve_routing
 from .book_ocr import validate_ocr_job
 from .book_prompts import (
     AGENT_PROFILE_BY_ROLE,
@@ -104,11 +105,20 @@ def build_task_packet(
         ),
         task_payload=node.task.inputs,
     )
+    routing = resolve_routing(
+        node.task.capability,
+        preferred_model=node.task.preferred_model,
+        reasoning_effort=node.task.reasoning_effort,
+    )
     return {
         "run_id": run.id,
         "node_id": node.id,
         "agent_role": agent_role.value,
         "agent_profile": AGENT_PROFILE_BY_ROLE[agent_role],
+        "profile_set": routing.profile,
+        "capability": routing.capability,
+        "model": routing.model,
+        "reasoning_effort": routing.reasoning_effort,
         "result_path": relative_result,
         "artifact_ref": artifact_ref.as_posix(),
         "prompt": build_prompt(request),

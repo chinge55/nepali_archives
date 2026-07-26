@@ -33,6 +33,16 @@ class Settings:
     # Page rendering
     dpi: int = field(default_factory=lambda: int(os.environ.get("OCR_DPI", "300")))
 
+    # Capability -> model bindings for the book workflow's sub-agent tasks.
+    # See archive_ocr/agent_profiles.py; missing file means "pin nothing".
+    agent_profiles_path: Path = field(
+        default_factory=lambda: _env_path(
+            "OCR_AGENT_PROFILES",
+            Path(__file__).resolve().parent.parent / "agent_profiles.json"))
+    # Overrides the bindings file's "active" set (e.g. codex, claude-code).
+    agent_profile: str = field(
+        default_factory=lambda: os.environ.get("OCR_AGENT_PROFILE", ""))
+
     # Engine binaries. Engines whose binaries are missing report unavailable
     # instead of crashing the server.
     tesseract_bin: Path = field(

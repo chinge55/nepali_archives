@@ -1,10 +1,10 @@
 """Persistent, resumable workflow graph for scanned-book digitization.
 
 This module is deliberately an orchestration *state machine*, not an agent
-runner.  Codex (or a future CLI) asks for ready tasks, claims them, runs local
-OCR or subscription-backed sub-agents, and records their results here.  No
-OpenAI API client is imported and no method in this module writes to canonical
-``archives/`` paths.
+runner.  Whichever agent CLI is driving the run asks for ready tasks, claims
+them, runs local OCR or subscription-backed sub-agents, and records their
+results here.  No model API client is imported and no method in this module
+writes to canonical ``archives/`` paths.
 
 Run state is stored as inspectable JSON under ``BOOK_WORK_DIR`` when that
 environment variable is set, otherwise under ``.ocr-work/book-runs`` in the
@@ -29,6 +29,8 @@ from pathlib import Path
 from typing import Any, Iterator, Mapping, Sequence
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
+
+from .agent_profiles import FAST_READER, STRONG_READER
 
 
 GRAPH_VERSION = 1
@@ -116,7 +118,7 @@ class ApprovalGate(str, Enum):
 
 
 class Task(StrictModel):
-    """Immutable instructions handed to a coordinator or Codex sub-agent."""
+    """Immutable instructions handed to a coordinator or sub-agent."""
 
     id: str
     node_id: str
@@ -125,6 +127,12 @@ class Task(StrictModel):
     summary: str
     inputs: dict[str, Any] = Field(default_factory=dict)
     expected_result: dict[str, Any] = Field(default_factory=dict)
+    # What kind of reader this task needs.  Vendor model IDs are NOT recorded
+    # here: ``agent_profiles.py`` binds a capability to a concrete model at
+    # packet-build time, so a paused run can resume under a different tool.
+    capability: str | None = None
+    # Legacy explicit pins.  Runs created before capabilities carry these and
+    # still route exactly as they did; new graph code leaves them unset.
     preferred_model: str | None = None
     reasoning_effort: str | None = None
 
@@ -435,8 +443,7 @@ def _initial_nodes(source_path: str, source_sha: str, author_id: str) -> dict[st
         summary: str,
         *,
         inputs: Mapping[str, Any] | None = None,
-        preferred_model: str | None = None,
-        reasoning_effort: str | None = None,
+        capability: str | None = None,
     ) -> Node:
         task = Task(
             id=node_id,
@@ -444,8 +451,7 @@ def _initial_nodes(source_path: str, source_sha: str, author_id: str) -> dict[st
             role=role,
             summary=summary,
             inputs={**common, **dict(inputs or {})},
-            preferred_model=preferred_model,
-            reasoning_effort=reasoning_effort,
+            capability=capability,
         )
         return Node(
             id=node_id,
@@ -477,8 +483,7 @@ def _initial_nodes(source_path: str, source_sha: str, author_id: str) -> dict[st
             NodeKind.agent,
             ["ocr"],
             "Classify pages, identify semantic sections, and flag front matter.",
-            preferred_model="gpt-5.6-sol",
-            reasoning_effort="high",
+            capability=STRONG_READER,
         ),
         task_node(
             "plan_folios",
@@ -486,8 +491,7 @@ def _initial_nodes(source_path: str, source_sha: str, author_id: str) -> dict[st
             NodeKind.agent,
             ["ocr"],
             "Verify physical folio order and printed-page to PDF-page mapping.",
-            preferred_model="gpt-5.6-terra",
-            reasoning_effort="medium",
+            capability=FAST_READER,
         ),
         task_node(
             "plan_dedupe",
@@ -495,8 +499,7 @@ def _initial_nodes(source_path: str, source_sha: str, author_id: str) -> dict[st
             NodeKind.agent,
             ["ocr"],
             "Check proposed works against the archive and catalogue metadata.",
-            preferred_model="gpt-5.6-terra",
-            reasoning_effort="medium",
+            capability=FAST_READER,
         ),
         task_node(
             "merge_structure",

@@ -4,7 +4,7 @@ This directory has two layers:
 
 1. **Page OCR** turns a PDF into page images and engine text.
 2. **Book workflow** turns those artifacts into reviewed archive sources using
-   a persistent DAG of built-in Codex sub-agent tasks.
+   a persistent DAG of built-in sub-agent tasks.
 
 Page OCR is mechanical extraction, not an archive-ready transcription. A book
 must still pass structure, folio, reconciliation, footnote, metadata, and
@@ -90,12 +90,12 @@ silently repair the source.
 ### People, programs, and trust boundaries
 
 There are three kinds of participant. Local programs perform repeatable
-mechanical work. Built-in Codex sub-agents perform bounded reading tasks. A
-human makes the two decisions that change the shape or destination of the work.
+mechanical work. Built-in sub-agents perform bounded reading tasks. A human
+makes the two decisions that change the shape or destination of the work.
 
 ```text
-                         INTERACTIVE CODEX SESSION
-                    (signed in with ChatGPT Plus/Pro)
+                     INTERACTIVE AGENT SESSION
+                  (subscription-backed sub-agents)
 
                   +----------------------------------+
                   | lead/coordinator                 |
@@ -104,7 +104,7 @@ human makes the two decisions that change the shape or destination of the work.
                   | - merges typed results           |
                   +----------------+-----------------+
                                    |
-                     up to 3 worker slots in parallel
+                    up to N-1 worker slots in parallel
                     +--------------+--------------+
                     |              |              |
               +-----v-----+  +-----v-----+  +-----v-----+
@@ -130,10 +130,12 @@ human makes the two decisions that change the shape or destination of the work.
 ```
 
 The repository contains no model-network client for this workflow. Before
-starting, `codex login status` must report ChatGPT sign-in on the intended
-Plus/Pro account. Stop if Codex is using API-key authentication. The command
-can confirm ChatGPT authentication, but the operator must know that the signed-in
-account is the intended subscription.
+starting, confirm with your tool's own status command that its sub-agents are
+covered by a subscription rather than a metered API — `codex login status` must
+report ChatGPT sign-in (stop if it reports API-key authentication), `/status` in
+Claude Code, the equivalent elsewhere. Such a command can confirm *how* the tool
+authenticates, but the operator must know that the signed-in account is the
+intended subscription.
 
 ### End-to-end lifecycle
 
@@ -142,7 +144,7 @@ The complete path for one scanned book is:
 ```text
  +-----------------------------+
  | 0. AUTH                     |
- | ChatGPT login on Plus/Pro   |
+ | subscription sign-in check  |
  +-------------+---------------+
                |
                v
@@ -204,8 +206,8 @@ their hashes.
 ### The graph and its parallel work
 
 The workflow is a dependency graph, not a long prompt. A node becomes runnable
-only when all of its parents are complete. The coordinator keeps one Codex slot
-for scheduling and uses the other available slots for independent work.
+only when all of its parents are complete. The coordinator keeps one slot for
+scheduling and uses the other available slots for independent work.
 
 ```text
  preflight
@@ -270,6 +272,29 @@ lines or corrupt stanza numbering. A separate footnote task examines the same
 section’s page bottoms. Excluded modern/editorial sections do not create
 transcription tasks.
 
+### Which model reads a page
+
+The graph records only a **capability tier** — `strong_reader` (planning,
+section reconciliation, targeted verification) or `fast_reader` (folios,
+dedupe, footnote sweeps). No vendor model ID is ever written into run state.
+`ocr/agent_profiles.json` binds a tier to a concrete model for the tool you are
+driving with, and `archive_ocr/agent_profiles.py` resolves it at packet-build
+time, so `book prompt` reports `capability`, `profile_set`, `model`, and
+`reasoning_effort` alongside the prompt:
+
+```bash
+OCR_AGENT_PROFILE=claude-code python -m archive_ocr book prompt <run> <node> --token <t>
+```
+
+Precedence is: a legacy explicit `preferred_model` stored on the task (runs made
+before tiers existed keep routing exactly as they did) → the active profile's
+binding → nothing, meaning the tool's own default. An empty binding `{}` is a
+legitimate choice, and a missing bindings file degrades to "pin nothing" rather
+than failing. Because routing is advisory it is excluded when a rebuilt graph is
+compared against its approved plan — that is what lets a paused run resume under
+a different tool. Role guardrails live in `.codex/agents/*.toml` and
+`.claude/agents/*.md`; the packet prompt is always authoritative.
+
 Every agent result is schema-bound to the claimed task, role, assigned source
 pages, evidence pages, and uncertainties. Role-specific contracts add fields
 such as folio state, duplicate decisions, section numbering, or footnotes. A
@@ -311,9 +336,9 @@ Task leases make interruption safe:
                                FAILED -> run BLOCKED
 ```
 
-Restarting Codex does not discard accepted OCR or agent results. `book resume`
-expires stale claims and returns safe tasks to the ready queue. `book abort`
-stops scheduling without deleting evidence.
+Restarting the agent session does not discard accepted OCR or agent results.
+`book resume` expires stale claims and returns safe tasks to the ready queue.
+`book abort` stops scheduling without deleting evidence.
 
 ### The two human gates
 
@@ -368,7 +393,8 @@ approved manifest.
 Start from `ocr/`:
 
 ```bash
-codex login status
+# First: confirm subscription-backed sub-agents with your tool's status command
+# (codex login status / /status in Claude Code / …). See the trust boundary above.
 python -m archive_ocr book init "/absolute/path/book.pdf" --author <author-id>
 python -m archive_ocr book status <run-id>
 
@@ -377,7 +403,7 @@ python -m archive_ocr book preflight <run-id> --token <claim-token>
 python -m archive_ocr book claim <run-id> ocr --worker coordinator --lease 86400
 python -m archive_ocr book ocr <run-id> --token <claim-token>
 
-python -m archive_ocr book ready <run-id> --limit 3 --kind agent
+python -m archive_ocr book ready <run-id> --limit <worker-slots> --kind agent
 python -m archive_ocr book claim <run-id> <node-id> --worker <worker-id>
 python -m archive_ocr book prompt <run-id> <node-id> --token <claim-token>
 # Spawn the built-in sub-agent with packet.prompt. It writes packet.result_path.
@@ -419,7 +445,7 @@ python -m archive_ocr book claim <run-id> qa_0 --worker coordinator
 python -m archive_ocr book qa <run-id> --round 0 --token <claim-token>
 python -m archive_ocr book advance-qa <run-id> artifacts/qa-0-report.json
 python -m archive_ocr book status <run-id>
-python -m archive_ocr book ready <run-id> --limit 3
+python -m archive_ocr book ready <run-id> --limit <worker-slots>
 ```
 
 If the report is not ready to stage, `advance-qa` creates `verify_1` and
@@ -471,7 +497,8 @@ folio, numbering, front-matter, footnote, staging, and promotion rules.
 ## Environment knobs (defaults fit this workstation)
 
 `OCR_WORK_DIR`, `OCR_GOLD_DIR`, `OCR_DPI`, `TESSERACT_BIN`, `TESSERACT_LANG`,
-`SURYA_BIN`, `LLAMA_CPP_BINARY`, `HF_HOME` — see `archive_ocr/config.py`.
+`SURYA_BIN`, `LLAMA_CPP_BINARY`, `HF_HOME`, `OCR_AGENT_PROFILES`,
+`OCR_AGENT_PROFILE` — see `archive_ocr/config.py`.
 
 ## Accuracy roadmap
 
