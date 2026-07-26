@@ -1,0 +1,48 @@
+{
+  "id": "chadbad",
+  "title": "चाडबाड",
+  "title_roman": "Chadbad",
+  "subtitle": "२०२७ दसैं",
+  "author": {
+    "id": "bhimnidhi_tiwari",
+    "name": "भीमनिधि तिवारी",
+    "name_roman": "Bhimnidhi Tiwari"
+  },
+  "language": "ne",
+  "script": "Devanagari",
+  "genre": [
+    "kavita",
+    "poem"
+  ],
+  "first_published": {
+    "bs": 2027,
+    "ad": null
+  },
+  "edition": null,
+  "publisher": "कौवा प्रकाशन",
+  "description": "भीमनिधि तिवारीको व्यङ्ग्य कविता; वर्षभरिका चाडपर्वको क्रम पछ्याउँदै समाज र राजनीतिको चित्रण गर्ने बत्तीस श्लोकको रचना।",
+  "rights": {
+    "status": "public-domain",
+    "basis": "Author died 1973; Nepal's Copyright Act 2059 grants life + 50 years."
+  },
+  "source": {
+    "name": "चाडबाड (२०२७ दसैं) — कौवा प्रकाशन",
+    "url": null,
+    "pdf": "chadbad.pdf",
+    "html": null
+  },
+  "pages": 8,
+  "text": {
+    "extraction_method": "ocr",
+    "ocr_status": "ocr-done",
+    "proofread": false,
+    "quality": "good"
+  },
+  "formats": {
+    "pdf": "chadbad.pdf",
+    "txt": "text.txt",
+    "html": "reader.html",
+    "epub": "reader.epub"
+  },
+  "added": "2026-07-26"
+}
