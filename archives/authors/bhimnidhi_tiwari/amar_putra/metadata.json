@@ -1,0 +1,45 @@
+{
+  "id": "amar_putra",
+  "title": "अमर पुत्र",
+  "title_roman": "Amar Putra",
+  "subtitle": null,
+  "author": {
+    "id": "bhimnidhi_tiwari",
+    "name": "भीमनिधि तिवारी",
+    "name_roman": "Bhimnidhi Tiwari"
+  },
+  "language": "ne",
+  "script": "Devanagari",
+  "genre": [
+    "katha",
+    "story"
+  ],
+  "first_published": null,
+  "edition": null,
+  "publisher": null,
+  "description": "भीमनिधि तिवारीको कथा; मूर्तिकार भाजुलालले मरेको छोराको सादृश्यमा हस्तीहाडको कृष्णमूर्ति कुँदेपछि त्यसलाई कसैलाई नदिने अठोट गर्छन्।",
+  "rights": {
+    "status": "public-domain",
+    "basis": "Author died 1973; Nepal's Copyright Act 2059 grants life + 50 years."
+  },
+  "source": {
+    "name": "अमर पुत्र — मूल छापा प्रति (प्रकाशक र साल अनुल्लिखित)",
+    "url": null,
+    "pdf": "amar_putra.pdf",
+    "html": null
+  },
+  "pages": 9,
+  "text": {
+    "extraction_method": "ocr",
+    "ocr_status": "ocr-done",
+    "proofread": false,
+    "quality": "good"
+  },
+  "formats": {
+    "pdf": "amar_putra.pdf",
+    "txt": "text.txt",
+    "html": "reader.html",
+    "epub": "reader.epub"
+  },
+  "added": "2026-07-26"
+}
