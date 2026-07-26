@@ -50,11 +50,12 @@ SITE_URL = "https://www.nepaliarchives.org/"
 # Display names for genre tags (Devanagari · English), and a browse order.
 GENRE = {
     "mahakavya": ("महाकाव्य", "epic"), "khandakavya": ("खण्डकाव्य", "narrative poem"),
-    "upanyas": ("उपन्यास", "novel"), "nibandha": ("निबन्ध", "essay"),
+    "upanyas": ("उपन्यास", "novel"), "katha": ("कथा", "story"),
+    "nibandha": ("निबन्ध", "essay"),
     "kavita": ("कविता", "poems"), "balkavita": ("बालकविता", "children's poems"),
     "git": ("गीत", "song"), "gazal": ("गजल", "ghazal"),
 }
-ORDER = ["mahakavya", "khandakavya", "upanyas", "nibandha", "kavita",
+ORDER = ["mahakavya", "khandakavya", "upanyas", "katha", "nibandha", "kavita",
          "balkavita", "git", "gazal"]
 
 # Author display registry (name in Devanagari, romanized, life dates). Authors not
@@ -73,7 +74,9 @@ def esc(s): return html.escape(s or "")
 
 def _is_heading(b: str) -> bool:
     """A standalone, word-like line that introduces a section (समर्पण, प्रथम सर्ग) —
-    NOT a stanza number (१, (१), क.) or a verse line (ends in danda/!/?/—)."""
+    NOT a stanza number (१, (१), क.), a verse line (ends in danda/!/?/—), or a
+    quoted line. Quoted dialogue is never a heading: a short line of speech is
+    exactly the shape this heuristic would otherwise mistake for a section title."""
     if "\n" in b or len(b) > 40:
         return False
     s = b.strip()
@@ -82,15 +85,15 @@ def _is_heading(b: str) -> bool:
     m = re.fullmatch(r"\(([ऀ-ॿ])\)", s)
     if m and not m.group(1).isdigit():
         return True
-    if not s or s[0] in "0123456789०१२३४५६७८९([‘’\"":
+    if not s or s[0] in "0123456789०१२३४५६७८९([‘’“”\"":
         return False
-    if s[-1] in "।॥!?,.;:—–…‘’":
+    if s[-1] in "।॥!?,.;:—–…‘’“”":
         return False
     letters = len(re.findall(r"[ऀ-ॿ]", s))
     return letters >= 3 and (" " in s or letters >= 4)
 
 
-PROSE_GENRES = {"upanyas", "nibandha"}
+PROSE_GENRES = {"upanyas", "katha", "nibandha"}
 
 # A source colophon: the small attribution line printed at a poem's end giving
 # its original publication, e.g. "वि. सं. १९६९ ... लालित्यबाट". Rendered as a
@@ -639,20 +642,20 @@ def write_pdf_reader(out_dir, depth, rel, pdf_fn, meta, aslug_, aname, archive_b
 
 # ---------------------------------------------------------------- CSS / JS
 CSS = """:root{--bg:#fbfaf7;--fg:#1a1a1a;--mut:#6b675e;--line:#e3ded3;--link:#6a4b16;--accent:#8a5a00;
- --g-mahakavya:#7a3b2e;--g-khandakavya:#96522a;--g-upanyas:#6b6b2a;--g-nibandha:#4e6472;
+ --g-mahakavya:#7a3b2e;--g-khandakavya:#96522a;--g-upanyas:#6b6b2a;--g-katha:#8a4a55;--g-nibandha:#4e6472;
  --g-kavita:#8a5a00;--g-balkavita:#4e7345;--g-git:#6d4a6e;--g-gazal:#3f6f6a}
 @media(prefers-color-scheme:dark){:root{--bg:#15140f;--fg:#e7e3da;--mut:#9a948a;--line:#2c2a22;--link:#d8b15f;--accent:#e0b65f;
- --g-mahakavya:#cf8a76;--g-khandakavya:#d69a6b;--g-upanyas:#b5b36a;--g-nibandha:#8fa9b8;
+ --g-mahakavya:#cf8a76;--g-khandakavya:#d69a6b;--g-upanyas:#b5b36a;--g-katha:#c9909a;--g-nibandha:#8fa9b8;
  --g-kavita:#e0b65f;--g-balkavita:#93b98a;--g-git:#b58ab4;--g-gazal:#86b3ae}}
 /* manual override — :root[...] (0,2,0) outranks the media query's :root (0,1,0), so it wins on any system theme */
 :root[data-theme=light]{--bg:#fbfaf7;--fg:#1a1a1a;--mut:#6b675e;--line:#e3ded3;--link:#6a4b16;--accent:#8a5a00;
- --g-mahakavya:#7a3b2e;--g-khandakavya:#96522a;--g-upanyas:#6b6b2a;--g-nibandha:#4e6472;
+ --g-mahakavya:#7a3b2e;--g-khandakavya:#96522a;--g-upanyas:#6b6b2a;--g-katha:#8a4a55;--g-nibandha:#4e6472;
  --g-kavita:#8a5a00;--g-balkavita:#4e7345;--g-git:#6d4a6e;--g-gazal:#3f6f6a}
 :root[data-theme=dark]{--bg:#15140f;--fg:#e7e3da;--mut:#9a948a;--line:#2c2a22;--link:#d8b15f;--accent:#e0b65f;
- --g-mahakavya:#cf8a76;--g-khandakavya:#d69a6b;--g-upanyas:#b5b36a;--g-nibandha:#8fa9b8;
+ --g-mahakavya:#cf8a76;--g-khandakavya:#d69a6b;--g-upanyas:#b5b36a;--g-katha:#c9909a;--g-nibandha:#8fa9b8;
  --g-kavita:#e0b65f;--g-balkavita:#93b98a;--g-git:#b58ab4;--g-gazal:#86b3ae}
 .g-mahakavya{--gc:var(--g-mahakavya)}.g-khandakavya{--gc:var(--g-khandakavya)}
-.g-upanyas{--gc:var(--g-upanyas)}.g-nibandha{--gc:var(--g-nibandha)}
+.g-upanyas{--gc:var(--g-upanyas)}.g-katha{--gc:var(--g-katha)}.g-nibandha{--gc:var(--g-nibandha)}
 .g-kavita{--gc:var(--g-kavita)}.g-balkavita{--gc:var(--g-balkavita)}
 .g-git{--gc:var(--g-git)}.g-gazal{--gc:var(--g-gazal)}
 *{box-sizing:border-box}html{font-size:19px}
