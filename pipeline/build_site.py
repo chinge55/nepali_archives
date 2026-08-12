@@ -253,83 +253,101 @@ def write_ocr_page():
 शब्द, विरामचिह्न वा शैलीलाई आधुनिक बनाउने अधिकार तिनलाई छैन। अस्पष्ट अंश अनुमानले
 भरिँदैन; जाँच नसकिए काम रोकिन्छ।</p>
 
-<h2 id="graph-title">कार्यान्वयन ग्राफ</h2>
-<p class="meta">बाकसभित्र code मा देखिएका नाम वास्तविक DAG का node ID वा त्यसलाई चलाउने आदेश हुन्।
-समान तहका बाकसहरू स्वतन्त्र रूपमा, समानान्तर वा छुट्टाछुट्टै सन्दर्भमा चल्न सक्छन्।</p>
+<h2>कसले के गर्छ?</h2>
+<p>यस प्रक्रियामा सबै काम एआई एजेन्टले गर्दैनन्। जिम्मेवारी चार भागमा छुट्याइएको छ:</p>
+<div class="ocr-roles">
+  <div class="role-agent"><h3>पाठ-पठन एजेन्ट</h3><p>पृष्ठको बनोट बुझ्ने, मुद्रित पानाको क्रम जाँच्ने,
+  अभिलेखमा कृति दोहोरिए/नदोहोरिएको हेर्ने, पृष्ठसँग पाठ मिलाउने, पादटिप्पणी खोज्ने र
+  जोखिमपूर्ण अंश फेरि पढ्ने।</p></div>
+  <div class="role-coord"><h3>समन्वय एजेन्ट</h3><p>छुट्टाछुट्टै जाँचका प्रमाण मिलाएर संरचना योजना बनाउने
+  र स्वीकृत पाठबाट प्रस्तावित कृति फाइल तयार गर्ने। यी फाइल मुख्य अभिलेखबाहिर रहन्छन्।</p></div>
+  <div class="role-software"><h3>स्थानीय सफ्टवेयर</h3><p>PDF का पृष्ठचित्र बनाउने, OCR चलाउने, फाइल नबदलिएको प्रमाण राख्ने,
+  नियममा आधारित गुणस्तर जाँच गर्ने, फाइलको ढाँचा जाँच्ने र स्वीकृत फाइल मात्र अभिलेखमा सार्ने।</p></div>
+  <div class="role-human"><h3>मानिस</h3><p>कुन पृष्ठ राख्ने वा हटाउने भन्ने संरचना योजना स्वीकृत गर्ने,
+  प्रकाशनअघि ठ्याक्कै प्रस्तावित फाइल स्वीकृत गर्ने र दुई पुनःजाँचपछि पनि नसुल्झिएको अंश सच्याउने।</p></div>
+</div>
+
+<h3 class="ocr-subhead">एजेन्टले के गर्दैन?</h3>
+<ul class="ocr-checks">
+  <li>लेखकको हिज्जे, शब्द, विरामचिह्न वा शैली आधुनिक बनाउँदैन।</li>
+  <li>नदेखिएको श्लोक अङ्क, हराएको पाठ वा अस्पष्ट अक्षर अनुमान गरेर थप्दैन।</li>
+  <li>मुख्य अभिलेखमा सीधै लेख्दैन र आफैँ प्रकाशन स्वीकृत गर्दैन।</li>
+  <li>कुनै पाठलाई आफैँ प्रुफरिड भएको घोषणा गर्दैन (<code>proofread: true</code>)।</li>
+</ul>
+
+<h2 id="graph-title">कामको क्रम</h2>
+<p class="meta">हरेक बाकसमा काम गर्ने जिम्मेवार पक्ष लेखिएको छ। समान तहका बाकसहरू
+एकै समयमा वा पालैपालो चल्न सक्छन्।</p>
+<div class="flow-legend" aria-label="जिम्मेवारी सङ्केत">
+  <span class="who agent">पाठ-पठन एजेन्ट</span>
+  <span class="who coord">समन्वय एजेन्ट</span>
+  <span class="who software">स्थानीय सफ्टवेयर</span>
+  <span class="who human">मानिस</span>
+</div>
 <figure class="ocr-graph" aria-labelledby="graph-title graph-caption">
-  <div class="flow-node source"><strong>स्रोत स्क्यान</strong><code>PDF</code></div>
+  <div class="flow-node source"><strong>स्रोत पुस्तकको PDF</strong></div>
   {arrow}
-  <div class="flow-node operation"><strong>कार्य आरम्भ र स्रोत पहिचान</strong><code>book init</code><small>स्रोतको ह्यास र पुनःसुरु गर्न मिल्ने ग्राफ अवस्था</small></div>
+  <div class="flow-node operation"><span class="who software">स्थानीय सफ्टवेयर</span><strong>काम आरम्भ र स्रोत पहिचान</strong><small>बीचमा रोकिए पनि फेरि सुरु गर्न मिल्ने अभिलेख</small></div>
   {arrow}
-  <div class="flow-node coordinator"><strong>पूर्वजाँच</strong><code>preflight</code><small>PDF, लेखक र अभिलेखसँगको द्वन्द्व; अज्ञात लेखकमा रोक</small></div>
+  <div class="flow-node operation"><span class="who software">स्थानीय सफ्टवेयर</span><strong>सुरुआती जाँच</strong><small>PDF, लेखक र अभिलेखमा सम्भावित द्वन्द्व</small></div>
   {arrow}
-  <div class="flow-node coordinator"><strong>स्थानीय बहु-OCR</strong><code>ocr</code><small>३०० DPI पृष्ठचित्र र OCR का अनेक परिणाम</small></div>
+  <div class="flow-node operation"><span class="who software">स्थानीय सफ्टवेयर</span><strong>पृष्ठचित्र र बहु-OCR तयार</strong><small>प्रत्येक पृष्ठको उच्च गुणस्तरको चित्र र एकभन्दा बढी OCR परिणाम</small></div>
   {arrow}
 
   <div class="flow-band">
     <span class="flow-band-label">तीन स्वतन्त्र योजना</span>
     <div class="flow-grid three">
-      <div class="flow-node agent-strong"><strong>पृष्ठ र संरचना</strong><code>plan_structure</code><small>कृति, खण्ड र बहिष्करण</small></div>
-      <div class="flow-node agent-fast"><strong>मुद्रित पृष्ठाङ्क</strong><code>plan_folios</code><small>भौतिक क्रम र PDF पृष्ठसँगको सम्बन्ध</small></div>
-      <div class="flow-node agent-fast"><strong>दोहोरोपन जाँच</strong><code>plan_dedupe</code><small>विद्यमान कृति र सूची विवरण</small></div>
+      <div class="flow-node agent-strong"><span class="who agent">गहिरो पठन एजेन्ट</span><strong>पुस्तकको बनोट बुझ्ने</strong><small>हरेक पृष्ठ, कृति, खण्ड र हटाउनुपर्ने सम्पादकीय सामग्री</small></div>
+      <div class="flow-node agent-fast"><span class="who agent">द्रुत जाँच एजेन्ट</span><strong>मुद्रित पानाको क्रम मिलाउने</strong><small>स्क्यान उल्टापुल्टा भए पत्ता लगाउने र PDF पृष्ठसँग जोड्ने</small></div>
+      <div class="flow-node agent-fast"><span class="who agent">द्रुत जाँच एजेन्ट</span><strong>दोहोरोपन जाँच्ने</strong><small>यही कृति अभिलेखमा पहिले छ कि छैन भन्ने खोज्ने</small></div>
     </div>
   </div>
   {arrow}
-  <div class="flow-node coordinator"><strong>योजना मिलान</strong><code>merge_structure</code><small>book-plan/v1</small></div>
+  <div class="flow-node coordinator"><span class="who coord">समन्वय एजेन्ट</span><strong>तीनै योजना मिलाउने</strong><small>सबै पृष्ठ समेटिएको एउटै संरचना योजना</small></div>
   {arrow}
-  <div class="flow-node gate"><strong>संरचना स्वीकृति</strong><code>approve_structure</code><small>योजना र त्यसको SHA-256 ह्याससँग बाँधिएको</small></div>
+  <div class="flow-node gate"><span class="who human">मानिस</span><strong>पहिलो स्वीकृति</strong><small>पृष्ठक्रम, कृति, खण्ड र हटाइएका सामग्री हेरेर संरचना स्वीकार</small></div>
   {arrow}
-  <div class="flow-node operation"><strong>स्वीकृत योजनाबाट ग्राफ विस्तार</strong><code>book expand</code><small>समावेश प्रत्येक अर्थपूर्ण खण्डका लागि काम</small></div>
+  <div class="flow-node operation"><span class="who software">स्थानीय सफ्टवेयर</span><strong>हरेक स्वीकृत खण्डका काम खोल्ने</strong></div>
   {arrow}
 
   <div class="flow-band">
     <span class="flow-band-label">प्रत्येक खण्डमा दुई स्वतन्त्र पढाइ</span>
     <div class="flow-grid two">
-      <div class="flow-node agent-strong"><strong>पाठ मिलान</strong><code>reconcile_&lt;section&gt;</code><small>पूरै खण्ड, पृष्ठचित्रसँग अक्षरशः</small></div>
-      <div class="flow-node agent-fast"><strong>पादटिप्पणी खोज</strong><code>footnotes_&lt;section&gt;</code><small>हरेक पृष्ठको तल्लो भाग छुट्टै जाँच</small></div>
+      <div class="flow-node agent-strong"><span class="who agent">गहिरो पठन एजेन्ट</span><strong>पृष्ठसँग पाठ अक्षरशः मिलाउने</strong><small>मनलाग्दी पृष्ठ टुक्रा होइन, पूरा कविता, सर्ग वा निबन्ध एकैचोटि</small></div>
+      <div class="flow-node agent-fast"><span class="who agent">द्रुत जाँच एजेन्ट</span><strong>पादटिप्पणी छुट्टै खोज्ने</strong><small>हरेक पृष्ठको तल्लो भाग र पाठमा भएको सङ्केत</small></div>
     </div>
   </div>
   {arrow}
-  <div class="flow-node coordinator"><strong>नियतात्मक गुणस्तर जाँच</strong><code>qa_0 … qa_2</code><small>सबै पृष्ठ, अङ्क, पादटिप्पणी, असहमति र छुटेको पाठ</small></div>
+  <div class="flow-node operation"><span class="who software">स्थानीय सफ्टवेयर</span><strong>नियममा आधारित गुणस्तर जाँच</strong><small>सबै पृष्ठ, अङ्क, पादटिप्पणी, असहमति र छुटेको पाठ</small></div>
   {arrow}
-  <div class="flow-node decision"><strong>उच्च जोखिम बाँकी छ?</strong><code>book-qa/v1</code></div>
+  <div class="flow-node decision"><strong>ठूलो जोखिम बाँकी छ?</strong></div>
 
   <div class="flow-grid two branches">
     <div class="flow-branch">
       <span class="branch-label">छैन</span>
-      <div class="flow-node ok"><strong>अलग तयारीतर्फ</strong><code>ready_to_stage: true</code><small>अर्को काम खोल्ने QA निर्णय</small></div>
+      <div class="flow-node ok"><strong>कृति फाइल तयार गर्न जाने</strong></div>
     </div>
     <div class="flow-branch">
       <span class="branch-label">छ</span>
-      <div class="flow-node agent-strong"><strong>लक्षित स्वतन्त्र पुनःजाँच</strong><code>verify_1 / verify_2</code><small>QA ले देखाएका पृष्ठ मात्र</small></div>
-      <div class="flow-loop" aria-label="पुनः गुणस्तर जाँच">↺ <code>qa_1 / qa_2</code> मा फर्कने</div>
-      <div class="flow-node stop"><strong>दुई चक्रपछि पनि नसुल्झिए रोक</strong><small>मानवीय सुधार आवश्यक</small></div>
+      <div class="flow-node agent-strong"><span class="who agent">अर्को गहिरो पठन एजेन्ट</span><strong>शङ्का भएका पृष्ठ मात्र फेरि पढ्ने</strong></div>
+      <div class="flow-loop" aria-label="पुनः गुणस्तर जाँच">↺ सफ्टवेयरले फेरि गुणस्तर जाँच्ने</div>
+      <div class="flow-node stop"><span class="who human">मानिस</span><strong>दुई चक्रपछि पनि नसुल्झिए रोक</strong><small>मानवीय सुधार नभएसम्म अगाडि नबढ्ने</small></div>
     </div>
   </div>
 
   <div class="flow-converge"><span>जोखिम हटेपछि मात्र</span></div>
-  <div class="flow-node coordinator"><strong>अलग स्रोत रूख तयार</strong><code>stage</code><small>text.txt, metadata.json, स्रोत PDF र परिवर्तन सूची</small></div>
+  <div class="flow-node coordinator"><span class="who coord">समन्वय एजेन्ट</span><strong>प्रस्तावित कृति फाइल तयार</strong><small>मुख्य अभिलेखभन्दा अलग ठाउँमा पाठ, विवरण र स्रोत PDF</small></div>
   {arrow}
-  <div class="flow-node operation"><strong>अलग स्रोत रूखको पूर्ण जाँच</strong><code>book verify-stage</code><small>ढाँचा, मार्ग, PDF, ह्यास र अपेक्षित परिवर्तन</small></div>
+  <div class="flow-node operation"><span class="who software">स्थानीय सफ्टवेयर</span><strong>प्रस्तावित फाइलको पूर्ण जाँच</strong><small>ढाँचा, फाइलको ठाउँ, PDF, नबदलिएको प्रमाण र अपेक्षित परिवर्तन</small></div>
   {arrow}
-  <div class="flow-node gate"><strong>प्रकाशन स्वीकृति</strong><code>approve_promotion</code><small>ठ्याक्कै परिवर्तन सूची र SHA-256 ह्याससँग बाँधिएको</small></div>
+  <div class="flow-node gate"><span class="who human">मानिस</span><strong>दोस्रो स्वीकृति</strong><small>ठ्याक्कै कुन फाइल अभिलेखमा जाने हो हेरेर प्रकाशन स्वीकार</small></div>
   {arrow}
-  <div class="flow-node coordinator"><strong>अभिलेखमा सार्ने</strong><code>promote</code><small>फेरि जाँच र निश्चित मार्गको स्थानीय commit</small></div>
+  <div class="flow-node operation"><span class="who software">स्थानीय सफ्टवेयर</span><strong>स्वीकृत फाइल अभिलेखमा सार्ने</strong><small>फेरि जाँच गरी निश्चित फाइल मात्र सार्ने र परिवर्तन अभिलेख बनाउने</small></div>
   {arrow}
-  <div class="flow-node source"><strong>अभिलेखका स्रोत फाइल</strong><code>text.txt · metadata.json · PDF</code></div>
-  <figcaption id="graph-caption">स्वीकृत परिणाम बदलिए स्वीकृति अमान्य हुन्छ। मुख्य अभिलेखमा
-  <code>promote</code> अघि कुनै एजेन्टले सीधै लेख्दैन।</figcaption>
+  <div class="flow-node source"><strong>अभिलेखका स्रोत फाइल</strong><small>पाठ · विवरण · स्रोत PDF</small></div>
+  <figcaption id="graph-caption">स्वीकृत फाइल बदलिए स्वीकृति अमान्य हुन्छ। दोस्रो स्वीकृतिअघि
+  कुनै एजेन्टले मुख्य अभिलेखमा सीधै लेख्दैन।</figcaption>
 </figure>
-
-<h2>एजेन्टका भूमिका</h2>
-<div class="ocr-roles">
-  <div><code>strong_reader</code><p>जटिल पृष्ठ संरचना, अक्षरशः पाठ मिलान र जोखिमपूर्ण अंशको स्वतन्त्र पुनःजाँच।</p></div>
-  <div><code>fast_reader</code><p>पृष्ठाङ्क, दोहोरोपन र पादटिप्पणी जस्ता सीमित तथा दोहोरिने जाँच।</p></div>
-  <div><strong>समन्वय</strong><p>काम बाँड्ने, परिणाम मिलाउने र नियतात्मक जाँच चलाउने।</p></div>
-  <div><strong>स्वीकृति</strong><p>ह्यासले बाँधिएको निश्चित योजना वा परिवर्तन सूची हेरेर मात्र अर्को चरण खोल्ने।</p></div>
-</div>
-<p>यी क्षमता कुनै निश्चित कम्पनी, उत्पादन वा मोडेलका नाम होइनन्। एउटै निर्देशन प्याकेट नयाँ स्वतन्त्र
-सन्दर्भमा चलाउन सक्ने उपयुक्त एजेन्ट भए काम समानान्तर वा क्रमशः दुवै तरिकाले चलाउन सकिन्छ।</p>
 
 <h2>हामी विशेष गरी के जाँच्छौँ?</h2>
 <ul class="ocr-checks">
@@ -342,7 +360,7 @@ def write_ocr_page():
 
 <aside class="ocr-status">
   <h2>OCR सम्पन्न हुनु प्रुफरिड हुनु होइन</h2>
-  <p><code>ocr-done</code> ले माथिको स्रोत-मिलान र QA पूरा भएको जनाउँछ। कुनै कृतिलाई मूल
+  <p><code>ocr-done</code> ले माथिको स्रोत-मिलान र गुणस्तर जाँच पूरा भएको जनाउँछ। कुनै कृतिलाई मूल
   स्रोतसँग औपचारिक रूपमा फेरि प्रुफरिड गरेपछि मात्र <code>proofread: true</code> गरिन्छ।</p>
 </aside>
 
@@ -352,20 +370,41 @@ def write_ocr_page():
 वातावरण, Python र स्वतन्त्र निर्देशन प्याकेट चलाउन सक्ने एजेन्ट चाहिन्छ।</p>
 <details class="ocr-tech">
   <summary>प्राविधिक विवरण र स्रोत</summary>
+  <h3>चित्र र वास्तविक नामको सम्बन्ध</h3>
+  <div class="ocr-table-wrap"><table class="ocr-map">
+    <thead><tr><th>चित्रमा देखिएको काम</th><th>वास्तविक नाम</th><th>चलाउने पक्ष</th></tr></thead>
+    <tbody>
+      <tr><td>काम आरम्भ</td><td><code>book init</code></td><td>स्थानीय सफ्टवेयर</td></tr>
+      <tr><td>सुरुआती जाँच र OCR</td><td><code>preflight</code> · <code>ocr</code></td><td>स्थानीय सफ्टवेयर</td></tr>
+      <tr><td>बनोट, पृष्ठक्रम र दोहोरोपन</td><td><code>plan_structure</code> · <code>plan_folios</code> · <code>plan_dedupe</code></td><td>पाठ-पठन एजेन्ट</td></tr>
+      <tr><td>योजना मिलान</td><td><code>merge_structure</code></td><td>समन्वय एजेन्ट</td></tr>
+      <tr><td>पहिलो स्वीकृति</td><td><code>approve_structure</code></td><td>मानिस</td></tr>
+      <tr><td>खण्डका काम खोल्ने</td><td><code>book expand</code></td><td>स्थानीय सफ्टवेयर</td></tr>
+      <tr><td>पाठ र पादटिप्पणी पढ्ने</td><td><code>reconcile_&lt;section&gt;</code> · <code>footnotes_&lt;section&gt;</code></td><td>पाठ-पठन एजेन्ट</td></tr>
+      <tr><td>गुणस्तर जाँच र पुनःपठन</td><td><code>qa_0 … qa_2</code> · <code>verify_1 / verify_2</code></td><td>सफ्टवेयर · एजेन्ट</td></tr>
+      <tr><td>प्रस्तावित फाइल तयार</td><td><code>stage</code></td><td>समन्वय एजेन्ट · सफ्टवेयर</td></tr>
+      <tr><td>फाइलको पूर्ण जाँच</td><td><code>book verify-stage</code></td><td>स्थानीय सफ्टवेयर</td></tr>
+      <tr><td>दोस्रो स्वीकृति</td><td><code>approve_promotion</code></td><td>मानिस</td></tr>
+      <tr><td>अभिलेखमा सार्ने</td><td><code>promote</code></td><td>स्थानीय सफ्टवेयर</td></tr>
+    </tbody>
+  </table></div>
+  <p>गहिरो पठन एजेन्टको प्राविधिक क्षमता <code>strong_reader</code> र द्रुत जाँच एजेन्टको
+  क्षमता <code>fast_reader</code> हो। यी कुनै कम्पनी वा मोडेलका नाम होइनन्।</p>
+  <h3>ढाँचाका संस्करण</h3>
   <ul>
-    <li>Graph state: <code>graph_version: 1</code></li>
-    <li>Agent contract: <code>book-agent/v1</code></li>
-    <li>Structure plan: <code>book-plan/v1</code></li>
-    <li>QA report: <code>book-qa/v1</code></li>
+    <li>कामको ग्राफ: <code>graph_version: 1</code></li>
+    <li>एजेन्टको काम र नतिजा: <code>book-agent/v1</code></li>
+    <li>संरचना योजना: <code>book-plan/v1</code></li>
+    <li>गुणस्तर जाँचको प्रतिवेदन: <code>book-qa/v1</code></li>
   </ul>
   <pre><code>cd ocr
 python -m archive_ocr book init BOOK.pdf --author AUTHOR_ID
 python -m archive_ocr book status RUN_ID
 python -m archive_ocr book ready RUN_ID</code></pre>
   <p><a href="{REPO_URL}/blob/main/docs/ocr-workflow.md" rel="external">प्रदायक-निरपेक्ष पुनरुत्पादन विधि</a> ·
-  <a href="{REPO_URL}/blob/main/ocr/archive_ocr/book_workflow.py" rel="external">स्थायी DAG</a> ·
-  <a href="{REPO_URL}/blob/main/ocr/archive_ocr/book_graph.py" rel="external">dynamic expansion र QA branch</a> ·
-  <a href="{REPO_URL}/blob/main/ocr/archive_ocr/book_prompts.py" rel="external">agent task contract</a></p>
+  <a href="{REPO_URL}/blob/main/ocr/archive_ocr/book_workflow.py" rel="external">स्थायी कार्यग्राफ</a> ·
+  <a href="{REPO_URL}/blob/main/ocr/archive_ocr/book_graph.py" rel="external">काम थप्ने र पुनःजाँचको शाखा</a> ·
+  <a href="{REPO_URL}/blob/main/ocr/archive_ocr/book_prompts.py" rel="external">एजेन्टको काम र नतिजाको ढाँचा</a></p>
 </details>
 <p class="meta ocr-version">कार्यप्रवाह संस्करण १ · पछिल्लो संशोधन: २०२६-०८-१२</p>
 </article>"""
@@ -953,11 +992,17 @@ body{transition:background-color .25s ease,color .25s ease}
 .flow-node{max-width:27rem;margin:0 auto;padding:.72rem .9rem;border:1px solid var(--line);
  border-left:4px solid var(--mut);border-radius:.5rem;background:var(--bg);text-align:center;
  line-height:1.42;box-shadow:0 1px 0 color-mix(in srgb,var(--line) 60%,transparent)}
-.flow-node strong,.flow-node code,.flow-node small{display:block}
+.flow-node strong,.flow-node small{display:block}
 .flow-node strong{font-size:.95rem}
-.flow-node code{margin:.12rem 0;color:var(--accent);font-size:.72rem;line-height:1.5;
- overflow-wrap:anywhere}
 .flow-node small{color:var(--mut);font-size:.72rem;line-height:1.45}
+.who{display:inline-flex;align-items:center;width:max-content;max-width:100%;padding:.06rem .42rem;
+ border-radius:2rem;font-size:.62rem;font-weight:700;line-height:1.55;letter-spacing:.01em}
+.who.agent{color:var(--g-mahakavya);background:color-mix(in srgb,var(--g-mahakavya) 11%,transparent)}
+.who.coord{color:var(--g-nibandha);background:color-mix(in srgb,var(--g-nibandha) 12%,transparent)}
+.who.software{color:var(--mut);background:color-mix(in srgb,var(--mut) 10%,transparent)}
+.who.human{color:var(--accent);background:color-mix(in srgb,var(--accent) 12%,transparent)}
+.flow-node .who{margin:0 auto .28rem}
+.flow-legend{display:flex;flex-wrap:wrap;gap:.35rem .5rem;margin:.75rem 0}
 .flow-node.source{border-left-color:var(--accent);background:color-mix(in srgb,var(--accent) 6%,var(--bg))}
 .flow-node.coordinator{border-left-color:var(--g-nibandha)}
 .flow-node.agent-strong{border-left-color:var(--g-mahakavya)}
@@ -978,7 +1023,6 @@ body{transition:background-color .25s ease,color .25s ease}
 .flow-grid.branches{margin:.15rem 0 0}
 .flow-branch{min-width:0;padding-top:.6rem;border-top:2px solid var(--line)}
 .flow-loop{text-align:center;color:var(--mut);font-size:.76rem;line-height:1.5;margin:.5rem 0}
-.flow-loop code{font-size:.72rem;color:var(--accent)}
 .flow-converge{height:2.8rem;text-align:center;color:var(--mut);font-size:.7rem;
  border-bottom:2px solid var(--line);position:relative;margin:0 auto 1rem;max-width:27rem}
 .flow-converge span{position:relative;top:1.55rem;background:var(--bg);padding:0 .5rem}
@@ -986,8 +1030,14 @@ body{transition:background-color .25s ease,color .25s ease}
  line-height:1.6;text-align:center}
 .ocr-roles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.7rem;margin:1rem 0}
 .ocr-roles>div{border:1px solid var(--line);border-radius:.45rem;padding:.7rem .8rem}
-.ocr-roles code,.ocr-roles strong{color:var(--accent);font-size:.84rem}
+.ocr-roles>div{border-left-width:4px}
+.ocr-roles .role-agent{border-left-color:var(--g-mahakavya)}
+.ocr-roles .role-coord{border-left-color:var(--g-nibandha)}
+.ocr-roles .role-software{border-left-color:var(--mut)}
+.ocr-roles .role-human{border-left-color:var(--accent)}
+.ocr-roles h3{margin:0;color:var(--accent);font-size:.9rem}
 .ocr-roles p{margin:.25rem 0 0;color:var(--mut);font-size:.82rem;line-height:1.6}
+.ocr-subhead{font-size:.95rem;margin:1.5rem 0 .4rem}
 .ocr-checks{padding-left:1.15rem}
 .ocr-checks li{margin:.42rem 0}
 .ocr-status{margin:2.2rem 0;padding:.2rem 1rem .8rem;border-left:4px solid var(--accent);
@@ -999,6 +1049,13 @@ body{transition:background-color .25s ease,color .25s ease}
 .ocr-tech pre{overflow:auto;padding:.75rem;background:color-mix(in srgb,var(--line) 42%,var(--bg));
  border-radius:.35rem;font-size:.72rem;line-height:1.55}
 .ocr-tech p,.ocr-tech li{font-size:.84rem}
+.ocr-tech h3{font-size:.9rem;margin:1.2rem 0 .4rem}
+.ocr-table-wrap{overflow-x:auto;margin:.5rem 0 1rem}
+.ocr-map{width:100%;min-width:34rem;border-collapse:collapse;font-size:.72rem;line-height:1.5}
+.ocr-map th,.ocr-map td{padding:.45rem .5rem;text-align:left;vertical-align:top;
+ border-bottom:1px solid var(--line)}
+.ocr-map th{color:var(--mut);font-weight:600}
+.ocr-map code{font-size:.68rem;overflow-wrap:anywhere}
 .ocr-version{text-align:right;margin-top:1.5rem}
 @media(max-width:650px){
  .ocr-graph{padding:.8rem;margin-left:-.15rem;margin-right:-.15rem}
