@@ -46,6 +46,7 @@ SITE_NAME = "नेपाली अभिलेख"          # "Nepali Archives"
 SITE_TAGLINE = "स्वतन्त्र, सार्वजनिक नेपाली साहित्य"  # free, public-domain Nepali literature
 SITE_TAGLINE_EN = "A public-domain archive of Nepali literature"
 SITE_URL = "https://www.nepaliarchives.org/"
+REPO_URL = "https://github.com/chinge55/nepali_archives"
 
 # Display names for genre tags (Devanagari · English), and a browse order.
 GENRE = {
@@ -236,6 +237,143 @@ def page(title, body, *, desc="", css_depth=0, extra_head="", active="", canon="
 </body>
 </html>
 """
+
+
+def write_ocr_page():
+    """Write the provider-neutral account of the scanned-book DAG in Nepali."""
+    out = SITE / "ocr"
+    out.mkdir(parents=True, exist_ok=True)
+    arrow = '<div class="flow-arrow" aria-hidden="true">↓</div>'
+    body = f"""<nav class="crumb"><a href="../about.html">← बारेमा</a></nav>
+<article class="ocr-page">
+<h1>स्क्यानदेखि पाठसम्म</h1>
+<p class="lead">हामी स्क्यान गरिएको पुस्तकलाई OCR, निश्चित जिम्मेवारी भएका एआई एजेन्ट र
+दुई स्वीकृति ढोकाबाट अभिलेखयोग्य डिजिटल पाठमा बदल्छौँ।</p>
+<p>पृष्ठचित्र नै अन्तिम प्रमाण हो। OCR र एजेन्टले पढ्न सघाउँछन्, तर लेखकको हिज्जे,
+शब्द, विरामचिह्न वा शैलीलाई आधुनिक बनाउने अधिकार तिनलाई छैन। अस्पष्ट अंश अनुमानले
+भरिँदैन; जाँच नसकिए काम रोकिन्छ।</p>
+
+<h2 id="graph-title">कार्यान्वयन ग्राफ</h2>
+<p class="meta">बाकसभित्र code मा देखिएका नाम वास्तविक DAG का node ID वा त्यसलाई चलाउने आदेश हुन्।
+समान तहका बाकसहरू स्वतन्त्र रूपमा, समानान्तर वा छुट्टाछुट्टै सन्दर्भमा चल्न सक्छन्।</p>
+<figure class="ocr-graph" aria-labelledby="graph-title graph-caption">
+  <div class="flow-node source"><strong>स्रोत स्क्यान</strong><code>PDF</code></div>
+  {arrow}
+  <div class="flow-node operation"><strong>कार्य आरम्भ र स्रोत पहिचान</strong><code>book init</code><small>स्रोतको ह्यास र पुनःसुरु गर्न मिल्ने ग्राफ अवस्था</small></div>
+  {arrow}
+  <div class="flow-node coordinator"><strong>पूर्वजाँच</strong><code>preflight</code><small>PDF, लेखक र अभिलेखसँगको द्वन्द्व; अज्ञात लेखकमा रोक</small></div>
+  {arrow}
+  <div class="flow-node coordinator"><strong>स्थानीय बहु-OCR</strong><code>ocr</code><small>३०० DPI पृष्ठचित्र र OCR का अनेक परिणाम</small></div>
+  {arrow}
+
+  <div class="flow-band">
+    <span class="flow-band-label">तीन स्वतन्त्र योजना</span>
+    <div class="flow-grid three">
+      <div class="flow-node agent-strong"><strong>पृष्ठ र संरचना</strong><code>plan_structure</code><small>कृति, खण्ड र बहिष्करण</small></div>
+      <div class="flow-node agent-fast"><strong>मुद्रित पृष्ठाङ्क</strong><code>plan_folios</code><small>भौतिक क्रम र PDF पृष्ठसँगको सम्बन्ध</small></div>
+      <div class="flow-node agent-fast"><strong>दोहोरोपन जाँच</strong><code>plan_dedupe</code><small>विद्यमान कृति र सूची विवरण</small></div>
+    </div>
+  </div>
+  {arrow}
+  <div class="flow-node coordinator"><strong>योजना मिलान</strong><code>merge_structure</code><small>book-plan/v1</small></div>
+  {arrow}
+  <div class="flow-node gate"><strong>संरचना स्वीकृति</strong><code>approve_structure</code><small>योजना र त्यसको SHA-256 ह्याससँग बाँधिएको</small></div>
+  {arrow}
+  <div class="flow-node operation"><strong>स्वीकृत योजनाबाट ग्राफ विस्तार</strong><code>book expand</code><small>समावेश प्रत्येक अर्थपूर्ण खण्डका लागि काम</small></div>
+  {arrow}
+
+  <div class="flow-band">
+    <span class="flow-band-label">प्रत्येक खण्डमा दुई स्वतन्त्र पढाइ</span>
+    <div class="flow-grid two">
+      <div class="flow-node agent-strong"><strong>पाठ मिलान</strong><code>reconcile_&lt;section&gt;</code><small>पूरै खण्ड, पृष्ठचित्रसँग अक्षरशः</small></div>
+      <div class="flow-node agent-fast"><strong>पादटिप्पणी खोज</strong><code>footnotes_&lt;section&gt;</code><small>हरेक पृष्ठको तल्लो भाग छुट्टै जाँच</small></div>
+    </div>
+  </div>
+  {arrow}
+  <div class="flow-node coordinator"><strong>नियतात्मक गुणस्तर जाँच</strong><code>qa_0 … qa_2</code><small>सबै पृष्ठ, अङ्क, पादटिप्पणी, असहमति र छुटेको पाठ</small></div>
+  {arrow}
+  <div class="flow-node decision"><strong>उच्च जोखिम बाँकी छ?</strong><code>book-qa/v1</code></div>
+
+  <div class="flow-grid two branches">
+    <div class="flow-branch">
+      <span class="branch-label">छैन</span>
+      <div class="flow-node ok"><strong>अलग तयारीतर्फ</strong><code>ready_to_stage: true</code><small>अर्को काम खोल्ने QA निर्णय</small></div>
+    </div>
+    <div class="flow-branch">
+      <span class="branch-label">छ</span>
+      <div class="flow-node agent-strong"><strong>लक्षित स्वतन्त्र पुनःजाँच</strong><code>verify_1 / verify_2</code><small>QA ले देखाएका पृष्ठ मात्र</small></div>
+      <div class="flow-loop" aria-label="पुनः गुणस्तर जाँच">↺ <code>qa_1 / qa_2</code> मा फर्कने</div>
+      <div class="flow-node stop"><strong>दुई चक्रपछि पनि नसुल्झिए रोक</strong><small>मानवीय सुधार आवश्यक</small></div>
+    </div>
+  </div>
+
+  <div class="flow-converge"><span>जोखिम हटेपछि मात्र</span></div>
+  <div class="flow-node coordinator"><strong>अलग स्रोत रूख तयार</strong><code>stage</code><small>text.txt, metadata.json, स्रोत PDF र परिवर्तन सूची</small></div>
+  {arrow}
+  <div class="flow-node operation"><strong>अलग स्रोत रूखको पूर्ण जाँच</strong><code>book verify-stage</code><small>ढाँचा, मार्ग, PDF, ह्यास र अपेक्षित परिवर्तन</small></div>
+  {arrow}
+  <div class="flow-node gate"><strong>प्रकाशन स्वीकृति</strong><code>approve_promotion</code><small>ठ्याक्कै परिवर्तन सूची र SHA-256 ह्याससँग बाँधिएको</small></div>
+  {arrow}
+  <div class="flow-node coordinator"><strong>अभिलेखमा सार्ने</strong><code>promote</code><small>फेरि जाँच र निश्चित मार्गको स्थानीय commit</small></div>
+  {arrow}
+  <div class="flow-node source"><strong>अभिलेखका स्रोत फाइल</strong><code>text.txt · metadata.json · PDF</code></div>
+  <figcaption id="graph-caption">स्वीकृत परिणाम बदलिए स्वीकृति अमान्य हुन्छ। मुख्य अभिलेखमा
+  <code>promote</code> अघि कुनै एजेन्टले सीधै लेख्दैन।</figcaption>
+</figure>
+
+<h2>एजेन्टका भूमिका</h2>
+<div class="ocr-roles">
+  <div><code>strong_reader</code><p>जटिल पृष्ठ संरचना, अक्षरशः पाठ मिलान र जोखिमपूर्ण अंशको स्वतन्त्र पुनःजाँच।</p></div>
+  <div><code>fast_reader</code><p>पृष्ठाङ्क, दोहोरोपन र पादटिप्पणी जस्ता सीमित तथा दोहोरिने जाँच।</p></div>
+  <div><strong>समन्वय</strong><p>काम बाँड्ने, परिणाम मिलाउने र नियतात्मक जाँच चलाउने।</p></div>
+  <div><strong>स्वीकृति</strong><p>ह्यासले बाँधिएको निश्चित योजना वा परिवर्तन सूची हेरेर मात्र अर्को चरण खोल्ने।</p></div>
+</div>
+<p>यी क्षमता कुनै निश्चित कम्पनी, उत्पादन वा मोडेलका नाम होइनन्। एउटै निर्देशन प्याकेट नयाँ स्वतन्त्र
+सन्दर्भमा चलाउन सक्ने उपयुक्त एजेन्ट भए काम समानान्तर वा क्रमशः दुवै तरिकाले चलाउन सकिन्छ।</p>
+
+<h2>हामी विशेष गरी के जाँच्छौँ?</h2>
+<ul class="ocr-checks">
+  <li>स्क्यानको भौतिक क्रम र मुद्रित पृष्ठाङ्क ठीक छ कि छैन।</li>
+  <li>श्लोक वा पद्यखण्डका अङ्क छापिएअनुसार छन् कि छैनन्—नदेखिएको अङ्क थपिँदैन।</li>
+  <li>पादटिप्पणी, शीर्षक वा पृष्ठको अन्त्यमा पाठ छुटेको छ कि छैन।</li>
+  <li>हरेक पृष्ठमा दोहोरिने शीर्षक, पृष्ठाङ्क र अन्य सजावट पाठमा मिसिएको छ कि छैन।</li>
+  <li>आधुनिक सम्पादकीय सामग्री हटेको र लेखकको आफ्नै भूमिका सुरक्षित रहेको छ कि छैन।</li>
+</ul>
+
+<aside class="ocr-status">
+  <h2>OCR सम्पन्न हुनु प्रुफरिड हुनु होइन</h2>
+  <p><code>ocr-done</code> ले माथिको स्रोत-मिलान र QA पूरा भएको जनाउँछ। कुनै कृतिलाई मूल
+  स्रोतसँग औपचारिक रूपमा फेरि प्रुफरिड गरेपछि मात्र <code>proofread: true</code> गरिन्छ।</p>
+</aside>
+
+<h2>यो प्रक्रिया पुनःचलाउन</h2>
+<p>कार्यान्वयन खुला छ। ग्राफका काम, निर्भरता, निर्धारित ढाँचाका परिणाम, निर्देशन प्याकेट,
+जाँच र पुनःप्रयास सीमा स्रोत कोडमै परिभाषित छन्। सुरु गर्न नेपाली PDF, स्थानीय OCR
+वातावरण, Python र स्वतन्त्र निर्देशन प्याकेट चलाउन सक्ने एजेन्ट चाहिन्छ।</p>
+<details class="ocr-tech">
+  <summary>प्राविधिक विवरण र स्रोत</summary>
+  <ul>
+    <li>Graph state: <code>graph_version: 1</code></li>
+    <li>Agent contract: <code>book-agent/v1</code></li>
+    <li>Structure plan: <code>book-plan/v1</code></li>
+    <li>QA report: <code>book-qa/v1</code></li>
+  </ul>
+  <pre><code>cd ocr
+python -m archive_ocr book init BOOK.pdf --author AUTHOR_ID
+python -m archive_ocr book status RUN_ID
+python -m archive_ocr book ready RUN_ID</code></pre>
+  <p><a href="{REPO_URL}/blob/main/docs/ocr-workflow.md" rel="external">प्रदायक-निरपेक्ष पुनरुत्पादन विधि</a> ·
+  <a href="{REPO_URL}/blob/main/ocr/archive_ocr/book_workflow.py" rel="external">स्थायी DAG</a> ·
+  <a href="{REPO_URL}/blob/main/ocr/archive_ocr/book_graph.py" rel="external">dynamic expansion र QA branch</a> ·
+  <a href="{REPO_URL}/blob/main/ocr/archive_ocr/book_prompts.py" rel="external">agent task contract</a></p>
+</details>
+<p class="meta ocr-version">कार्यप्रवाह संस्करण १ · पछिल्लो संशोधन: २०२६-०८-१२</p>
+</article>"""
+    (out / "index.html").write_text(
+        page("स्क्यानदेखि पाठसम्म — " + SITE_NAME, body,
+             desc="नेपाली अभिलेखको प्रदायक-निरपेक्ष OCR र एआई एजेन्ट कार्यप्रवाह",
+             css_depth=1, active="about", canon="ocr/"),
+        encoding="utf-8")
 
 
 # ---------------------------------------------------------------- typing tool
@@ -804,6 +942,71 @@ body{transition:background-color .25s ease,color .25s ease}
 .statlink{margin:1.6rem 0 0;font-size:.92rem}
 .statlink a{text-decoration:none;color:var(--mut)}
 .statlink a:hover{color:var(--accent)}
+.aboutcall{margin:1.3rem 0;padding:.8rem 1rem;border-left:4px solid var(--accent);
+ background:color-mix(in srgb,var(--accent) 6%,var(--bg));font-size:.92rem}
+.aboutcall a{font-weight:600;text-decoration:none}
+.aboutcall a:hover{text-decoration:underline}
+/* provider-neutral scanned-book workflow page: semantic HTML graph, no graph JS */
+.ocr-page>h2{border-top:1px solid var(--line);padding-top:1.25rem;margin-top:2.5rem}
+.ocr-graph{margin:1.4rem 0 2.2rem;padding:1.25rem;border:1px solid var(--line);
+ border-radius:.7rem;background:color-mix(in srgb,var(--accent) 2.5%,var(--bg))}
+.flow-node{max-width:27rem;margin:0 auto;padding:.72rem .9rem;border:1px solid var(--line);
+ border-left:4px solid var(--mut);border-radius:.5rem;background:var(--bg);text-align:center;
+ line-height:1.42;box-shadow:0 1px 0 color-mix(in srgb,var(--line) 60%,transparent)}
+.flow-node strong,.flow-node code,.flow-node small{display:block}
+.flow-node strong{font-size:.95rem}
+.flow-node code{margin:.12rem 0;color:var(--accent);font-size:.72rem;line-height:1.5;
+ overflow-wrap:anywhere}
+.flow-node small{color:var(--mut);font-size:.72rem;line-height:1.45}
+.flow-node.source{border-left-color:var(--accent);background:color-mix(in srgb,var(--accent) 6%,var(--bg))}
+.flow-node.coordinator{border-left-color:var(--g-nibandha)}
+.flow-node.agent-strong{border-left-color:var(--g-mahakavya)}
+.flow-node.agent-fast{border-left-color:var(--g-balkavita)}
+.flow-node.operation{border-style:dashed;border-left-style:solid}
+.flow-node.gate{border:2px solid var(--accent);background:color-mix(in srgb,var(--accent) 7%,var(--bg))}
+.flow-node.decision{border-radius:2rem;border-style:dashed;margin-bottom:.85rem}
+.flow-node.ok{border-left-color:var(--g-balkavita)}
+.flow-node.stop{border-left-color:var(--g-mahakavya);margin-top:.6rem}
+.flow-arrow{text-align:center;color:var(--accent);font-size:1.25rem;line-height:1.35;height:1.7rem}
+.flow-band{padding:.8rem;border:1px dashed var(--line);border-radius:.6rem}
+.flow-band-label,.branch-label{display:block;text-align:center;color:var(--mut);font-size:.72rem;
+ font-weight:600;margin:0 0 .55rem}
+.flow-grid{display:grid;gap:.75rem;align-items:start}
+.flow-grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+.flow-grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+.flow-grid .flow-node{max-width:none;width:100%;height:100%;margin:0}
+.flow-grid.branches{margin:.15rem 0 0}
+.flow-branch{min-width:0;padding-top:.6rem;border-top:2px solid var(--line)}
+.flow-loop{text-align:center;color:var(--mut);font-size:.76rem;line-height:1.5;margin:.5rem 0}
+.flow-loop code{font-size:.72rem;color:var(--accent)}
+.flow-converge{height:2.8rem;text-align:center;color:var(--mut);font-size:.7rem;
+ border-bottom:2px solid var(--line);position:relative;margin:0 auto 1rem;max-width:27rem}
+.flow-converge span{position:relative;top:1.55rem;background:var(--bg);padding:0 .5rem}
+.ocr-graph figcaption{margin:1.2rem auto 0;max-width:33rem;color:var(--mut);font-size:.75rem;
+ line-height:1.6;text-align:center}
+.ocr-roles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.7rem;margin:1rem 0}
+.ocr-roles>div{border:1px solid var(--line);border-radius:.45rem;padding:.7rem .8rem}
+.ocr-roles code,.ocr-roles strong{color:var(--accent);font-size:.84rem}
+.ocr-roles p{margin:.25rem 0 0;color:var(--mut);font-size:.82rem;line-height:1.6}
+.ocr-checks{padding-left:1.15rem}
+.ocr-checks li{margin:.42rem 0}
+.ocr-status{margin:2.2rem 0;padding:.2rem 1rem .8rem;border-left:4px solid var(--accent);
+ background:color-mix(in srgb,var(--accent) 6%,var(--bg))}
+.ocr-status h2{border:0;padding:0;margin:1rem 0 .35rem}
+.ocr-status p{margin:.25rem 0}
+.ocr-tech{border:1px solid var(--line);border-radius:.5rem;padding:.7rem .9rem;margin:1rem 0}
+.ocr-tech summary{cursor:pointer;color:var(--accent);font-weight:600}
+.ocr-tech pre{overflow:auto;padding:.75rem;background:color-mix(in srgb,var(--line) 42%,var(--bg));
+ border-radius:.35rem;font-size:.72rem;line-height:1.55}
+.ocr-tech p,.ocr-tech li{font-size:.84rem}
+.ocr-version{text-align:right;margin-top:1.5rem}
+@media(max-width:650px){
+ .ocr-graph{padding:.8rem;margin-left:-.15rem;margin-right:-.15rem}
+ .flow-grid.two,.flow-grid.three,.ocr-roles{grid-template-columns:1fr}
+ .flow-grid{gap:.6rem}
+ .flow-branch{padding:.6rem 0 .15rem}
+ .flow-node{padding:.68rem .72rem}
+}
 /* "अभिलेख एक नजरमा" stats page */
 .stats h2{font-size:1.12rem;margin:2rem 0 .7rem;border-top:1px solid var(--line);padding-top:1.25rem}
 .stats h2 .sh{font-size:.78rem;color:var(--mut);font-weight:400;margin-left:.4rem}
@@ -1543,6 +1746,9 @@ def build(archive_base: str):
 <p>यो अभिलेखले सार्वजनिक डोमेनमा रहेका नेपाली साहित्यिक कृतिहरूलाई संरक्षण, डिजिटलीकरण र
 नि:शुल्क पहुँच प्रदान गर्ने लक्ष्य राख्छ। पाठहरू मूल रूपमै राखिएका छन्; OCR/स्क्यान त्रुटि मात्र
 सच्याइन्छ, लेखकका शब्द बदलिँदैनन्।</p>
+<p class="aboutcall">स्क्यान गरिएका पुस्तकबाट पाठ तयार गर्दा हामी बहु-OCR, निश्चित भूमिकाका
+एआई एजेन्ट, स्वतन्त्र पुनःजाँच र दुई स्वीकृति ढोका प्रयोग गर्छौँ।
+<a href="ocr/">हाम्रो OCR प्रक्रिया र कार्यान्वयन ग्राफ हेर्नुहोस् →</a></p>
 <h2>सार्वजनिक डोमेन</h2>
 <p>नेपालको प्रतिलिपि अधिकार ऐन, २०५९ अनुसार कुनै कृतिको प्रतिलिपि अधिकार रचयिताको जीवनभर
 र निजको मृत्यु भएको वर्षदेखि थप ५० वर्षसम्म कायम रहन्छ। यो अवधि पूरा भएपछि कृति
@@ -1557,13 +1763,17 @@ Internet Archive, sahityasangraha.com। प्रत्येक कृति H
 <p class="meta"><a href="type/">टाइप उपकरण</a>को शब्द-तथ्याङ्क: यही अभिलेखका कृतिहरू +
 <a href="https://huggingface.co/datasets/ai4bharat/Aksharantar" rel="external">AI4Bharat Aksharantar</a> (CC-BY)।
 सबै रूपान्तरण ब्राउजरमै हुन्छ — केही पनि कतै पठाइँदैन।</p>
-<p class="meta">सबै कृति प्रुफरिड र अधिकार-सत्यापन हुन बाँकी छ।</p>
+<p class="meta">OCR सम्पन्न पाठ र प्रुफरिड पाठ फरक अवस्था हुन्। मूल स्रोतसँग औपचारिक रूपमा
+फेरि जाँच गरेपछि मात्र कुनै कृतिलाई प्रुफरिड मानिन्छ।</p>
 <h2>आफ्ना कृति थप्न चाहनुहुन्छ?</h2>
 <p>यदि तपाईं आफ्ना कृति यस अभिलेखमा थप्न चाहनुहुन्छ भने <a href="mailto:mail@nepaliarchives.org">mail@nepaliarchives.org</a> मा इमेल गर्नुहोस्।</p>
 <p>तर ध्यान दिनुहोस् — यसरी कृति पठाएपछि तपाईंले त्यस कृतिमाथिको आफ्ना सम्पूर्ण अधिकार र लाइसेन्स पूर्ण रूपमा त्याग्नुहुनेछ। यस अभिलेखको नीति <strong>“कुनै लाइसेन्स छैन” (No license)</strong> हो — यहाँ राखिएका सबै कृति कुनै पनि अधिकार सुरक्षित नराखी, जोसुकैले स्वतन्त्र रूपमा पढ्न, प्रतिलिपि गर्न, वितरण गर्न र प्रयोग गर्न पाउने गरी राखिएका छन्। तपाईंले पठाउनुभएको कृति पनि ठ्याक्कै सोही नीति अन्तर्गत — कुनै लाइसेन्स बिना — सार्वजनिक गरिनेछ। यो निर्णय फिर्ता हुँदैन।</p>"""
     (SITE / "about.html").write_text(
         page("बारेमा — " + SITE_NAME, about_body, css_depth=0, active="about", canon="about.html"),
         encoding="utf-8")
+
+    # ---- scanned-book OCR process ----
+    write_ocr_page()
 
     # ---- typing tool ----
     write_type_page()
@@ -1576,7 +1786,7 @@ Internet Archive, sahityasangraha.com। प्रत्येक कृति H
                            PROSE_GENRES=PROSE_GENRES, site=SITE, site_name=SITE_NAME)
 
     # ---- sitemap (full URLs) + robots ----
-    urls = (["", "about.html", "authors/", "genres/", "stats/", "type/"]
+    urls = (["", "about.html", "ocr/", "authors/", "genres/", "stats/", "type/"]
             + (["patro/"] if patro_ok else [])
             + [f"authors/{a}/" for a in author_order]
             + [f"genres/{g}/" for g in genres_present]
@@ -1592,7 +1802,7 @@ Internet Archive, sahityasangraha.com। प्रत्येक कृति H
     domain = SITE_URL.split("//", 1)[-1].strip("/")          # www.nepaliarchives.org
     (SITE / "CNAME").write_text(domain + "\n", encoding="utf-8")
 
-    pages = 5 + len(author_order) + len(genres_present) + len(collections) + len(recs)   # home+about+authors-index+genres-index+type + per-author + genres + collections + works
+    pages = 6 + len(author_order) + len(genres_present) + len(collections) + len(recs)   # home+about+ocr+authors-index+genres-index+type + per-author + genres + collections + works
     print(f"built site/ : {pages} pages ({len(recs)} works), "
           f"search index {(SITE/'search-index.json').stat().st_size//1024} KB")
     if archive_base:
