@@ -246,167 +246,146 @@ def write_ocr_page():
     arrow = '<div class="flow-arrow" aria-hidden="true">↓</div>'
     body = f"""<nav class="crumb"><a href="../about.html">← बारेमा</a></nav>
 <article class="ocr-page">
-<h1>स्क्यानदेखि पाठसम्म</h1>
-<p class="lead">हामी स्क्यान गरिएको पुस्तकलाई OCR, निश्चित जिम्मेवारी भएका एआई एजेन्ट र
-दुई स्वीकृति ढोकाबाट अभिलेखयोग्य डिजिटल पाठमा बदल्छौँ।</p>
-<p>पृष्ठचित्र नै अन्तिम प्रमाण हो। OCR र एजेन्टले पढ्न सघाउँछन्, तर लेखकको हिज्जे,
-शब्द, विरामचिह्न वा शैलीलाई आधुनिक बनाउने अधिकार तिनलाई छैन। अस्पष्ट अंश अनुमानले
-भरिँदैन; जाँच नसकिए काम रोकिन्छ।</p>
+<header class="ocr-hero">
+  <p class="ocr-kicker">हाम्रो OCR विधि</p>
+  <h1>स्क्यानदेखि पाठसम्म</h1>
+  <p class="ocr-dek">एउटा पुरानो पुस्तक, धेरै सावधान पढाइ—र एउटै नियम: मूलप्रति इमानदार।</p>
+</header>
+<p>स्क्यानमा भेटिएको नेपाली पुस्तकलाई पढ्न मिल्ने डिजिटल पाठमा उतार्नु केवल OCR चलाउनु होइन।
+पहिले मेसिनले सम्भावित अक्षर देखाउँछ; त्यसपछि अलग-अलग एजेन्टले पृष्ठ हेरेर पुस्तकको बनोट,
+पानाको क्रम, मूल पाठ र पादटिप्पणी मिलाउँछन्।</p>
+<aside class="ocr-principle">
+  <span aria-hidden="true">“</span>
+  <p><strong>हाम्रा लागि छापिएको पृष्ठ नै प्रमाण हो।</strong> OCR ले बाटो देखाउँछ, एजेन्टले पढ्छन्;
+  तर नदेखिएको कुरा अनुमान गरेर भरिँदैन।</p>
+</aside>
+<p>त्यसैले पुरानो हिज्जे, विरामचिह्न, अनौठो शब्द र मूलमै भएका खाली ठाउँ जस्ताको तस्तै रहन्छन्।
+कुनै अंशमा भरोसा गर्न नसकिए काम अघि बढ्दैन—त्यहीँ रोकिन्छ।</p>
 
-<h2>कसले के गर्छ?</h2>
-<p>यस प्रक्रियामा सबै काम एआई एजेन्टले गर्दैनन्। जिम्मेवारी चार भागमा छुट्याइएको छ:</p>
+<h2>काम बाँडिएको छ—जिम्मेवारी पनि</h2>
+<p class="section-intro">कुनै एउटै एजेन्टले पुस्तक उठाएर सीधै अभिलेखमा राख्दैन। हरेक पक्षले
+आफ्नो सीमाभित्रको काम गर्छ, र अर्को पक्षले त्यसलाई जाँच्छ।</p>
 <div class="ocr-roles">
-  <div class="role-agent"><h3>पाठ-पठन एजेन्ट</h3><p>पृष्ठको बनोट बुझ्ने, मुद्रित पानाको क्रम जाँच्ने,
-  अभिलेखमा कृति दोहोरिए/नदोहोरिएको हेर्ने, पृष्ठसँग पाठ मिलाउने, पादटिप्पणी खोज्ने र
-  जोखिमपूर्ण अंश फेरि पढ्ने।</p></div>
-  <div class="role-coord"><h3>समन्वय एजेन्ट</h3><p>छुट्टाछुट्टै जाँचका प्रमाण मिलाएर संरचना योजना बनाउने
-  र स्वीकृत पाठबाट प्रस्तावित कृति फाइल तयार गर्ने। यी फाइल मुख्य अभिलेखबाहिर रहन्छन्।</p></div>
-  <div class="role-software"><h3>स्थानीय सफ्टवेयर</h3><p>PDF का पृष्ठचित्र बनाउने, OCR चलाउने, फाइल नबदलिएको प्रमाण राख्ने,
-  नियममा आधारित गुणस्तर जाँच गर्ने, फाइलको ढाँचा जाँच्ने र स्वीकृत फाइल मात्र अभिलेखमा सार्ने।</p></div>
-  <div class="role-human"><h3>मानिस</h3><p>कुन पृष्ठ राख्ने वा हटाउने भन्ने संरचना योजना स्वीकृत गर्ने,
-  प्रकाशनअघि ठ्याक्कै प्रस्तावित फाइल स्वीकृत गर्ने र दुई पुनःजाँचपछि पनि नसुल्झिएको अंश सच्याउने।</p></div>
+  <div class="role-agent"><span class="role-mark" aria-hidden="true">प</span><h3>पठन एजेन्ट</h3>
+  <p>पृष्ठ हेर्छन्, पुस्तकको बनोट बुझ्छन्, मुद्रित पानाको क्रम मिलाउँछन् र मूल पाठ तथा
+  पादटिप्पणी पढ्छन्। शङ्का परेको अंश अर्को एजेन्टले फेरि हेर्छ।</p></div>
+  <div class="role-coord"><span class="role-mark" aria-hidden="true">स</span><h3>समन्वय एजेन्ट</h3>
+  <p>फरक पढाइका प्रमाण जोडेर एउटै संरचना योजना बनाउँछ र स्वीकृत सामग्रीबाट प्रस्तावित
+  कृति फाइल तयार गर्छ। ती फाइल मुख्य अभिलेखबाहिरै रहन्छन्।</p></div>
+  <div class="role-software"><span class="role-mark" aria-hidden="true">औ</span><h3>स्थानीय औजार</h3>
+  <p>पृष्ठचित्र र OCR बनाउँछन्, नियमले गुणस्तर जाँच्छन्, फाइल नबदलिएको प्रमाण राख्छन्
+  र स्वीकृत फाइल मात्र अभिलेखमा सार्छन्।</p></div>
+  <div class="role-human"><span class="role-mark" aria-hidden="true">म</span><h3>मानिस</h3>
+  <p>कुन सामग्री राख्ने भन्ने योजना र प्रकाशनमा जाने ठ्याक्कै फाइल—दुवै छुट्टाछुट्टै
+  स्वीकृत गर्छ। दुई पुनःजाँचले नसुल्झाएको अंश पनि मानिसकै लागि रोकिन्छ।</p></div>
 </div>
 
-<h3 class="ocr-subhead">एजेन्टले के गर्दैन?</h3>
-<ul class="ocr-checks">
-  <li>लेखकको हिज्जे, शब्द, विरामचिह्न वा शैली आधुनिक बनाउँदैन।</li>
-  <li>नदेखिएको श्लोक अङ्क, हराएको पाठ वा अस्पष्ट अक्षर अनुमान गरेर थप्दैन।</li>
-  <li>मुख्य अभिलेखमा सीधै लेख्दैन र आफैँ प्रकाशन स्वीकृत गर्दैन।</li>
-  <li>कुनै पाठलाई आफैँ प्रुफरिड भएको घोषणा गर्दैन (<code>proofread: true</code>)।</li>
-</ul>
+<aside class="agent-boundary">
+  <p class="boundary-label">एजेन्टको सीमा</p>
+  <p>एजेन्टले लेखकको भाषा “सुधार्दैन”, नदेखिएको श्लोक वा अक्षर थप्दैन, आफैँ प्रकाशन
+  स्वीकृत गर्दैन र कुनै पाठलाई प्रुफरिड भएको घोषणा गर्दैन।</p>
+</aside>
 
-<h2 id="graph-title">कामको क्रम</h2>
-<p class="meta">हरेक बाकसमा काम गर्ने जिम्मेवार पक्ष लेखिएको छ। समान तहका बाकसहरू
-एकै समयमा वा पालैपालो चल्न सक्छन्।</p>
+<h2 id="graph-title">एउटा पुस्तकले हिँड्ने बाटो</h2>
+<p class="section-intro">तलको नक्सा हाम्रो वास्तविक कामकै सरल रूप हो। समान तहका पढाइहरू
+सँगसँगै वा पालैपालो चल्न सक्छन्।</p>
 <div class="flow-legend" aria-label="जिम्मेवारी सङ्केत">
-  <span class="who agent">पाठ-पठन एजेन्ट</span>
+  <span class="who agent">पठन एजेन्ट</span>
   <span class="who coord">समन्वय एजेन्ट</span>
-  <span class="who software">स्थानीय सफ्टवेयर</span>
+  <span class="who software">स्थानीय औजार</span>
   <span class="who human">मानिस</span>
 </div>
-<figure class="ocr-graph" aria-labelledby="graph-title graph-caption">
-  <div class="flow-node source"><strong>स्रोत पुस्तकको PDF</strong></div>
+<figure class="ocr-journey" aria-labelledby="graph-title graph-caption">
+  <div class="journey-source"><span>मूल</span><strong>स्रोत पुस्तकको PDF</strong><small>पृष्ठचित्र नै अन्तिम प्रमाण</small></div>
   {arrow}
-  <div class="flow-node operation"><span class="who software">स्थानीय सफ्टवेयर</span><strong>काम आरम्भ र स्रोत पहिचान</strong><small>बीचमा रोकिए पनि फेरि सुरु गर्न मिल्ने अभिलेख</small></div>
-  {arrow}
-  <div class="flow-node operation"><span class="who software">स्थानीय सफ्टवेयर</span><strong>सुरुआती जाँच</strong><small>PDF, लेखक र अभिलेखमा सम्भावित द्वन्द्व</small></div>
-  {arrow}
-  <div class="flow-node operation"><span class="who software">स्थानीय सफ्टवेयर</span><strong>पृष्ठचित्र र बहु-OCR तयार</strong><small>प्रत्येक पृष्ठको उच्च गुणस्तरको चित्र र एकभन्दा बढी OCR परिणाम</small></div>
-  {arrow}
-
-  <div class="flow-band">
-    <span class="flow-band-label">तीन स्वतन्त्र योजना</span>
+  <section class="journey-phase phase-one">
+    <header class="phase-head"><span class="phase-number">१</span><div><p>पहिलो चरण</p><h3>पुस्तक चिन्नु</h3>
+    <small>पाठ उतार्नुअघि पुस्तककै नक्सा बनाइन्छ।</small></div></header>
+    <div class="mechanical-run">
+      <div><span class="who software">स्थानीय औजार</span><strong>स्रोत दर्ता</strong><small>बीचमा रोकिए पनि फेरि सुरु गर्न मिल्ने गरी</small></div>
+      <i aria-hidden="true">→</i>
+      <div><span class="who software">स्थानीय औजार</span><strong>सुरुआती जाँच</strong><small>PDF, स्रोत र लेखकको आधारभूत विवरण</small></div>
+      <i aria-hidden="true">→</i>
+      <div><span class="who software">स्थानीय औजार</span><strong>पृष्ठचित्र र धेरै OCR पढाइ</strong><small>हरेक पृष्ठलाई एकभन्दा बढीपटक पढाइन्छ</small></div>
+    </div>
+    <p class="fan-label">त्यसपछि तीन स्वतन्त्र नजर</p>
     <div class="flow-grid three">
-      <div class="flow-node agent-strong"><span class="who agent">गहिरो पठन एजेन्ट</span><strong>पुस्तकको बनोट बुझ्ने</strong><small>हरेक पृष्ठ, कृति, खण्ड र हटाउनुपर्ने सम्पादकीय सामग्री</small></div>
-      <div class="flow-node agent-fast"><span class="who agent">द्रुत जाँच एजेन्ट</span><strong>मुद्रित पानाको क्रम मिलाउने</strong><small>स्क्यान उल्टापुल्टा भए पत्ता लगाउने र PDF पृष्ठसँग जोड्ने</small></div>
-      <div class="flow-node agent-fast"><span class="who agent">द्रुत जाँच एजेन्ट</span><strong>दोहोरोपन जाँच्ने</strong><small>यही कृति अभिलेखमा पहिले छ कि छैन भन्ने खोज्ने</small></div>
+      <div class="flow-card agent"><span class="who agent">गहिरो पठन</span><strong>भित्र के-के छ?</strong><small>कृति, खण्ड, लेखकको आफ्नै भूमिका र हटाउनुपर्ने आधुनिक सामग्री</small></div>
+      <div class="flow-card agent"><span class="who agent">द्रुत जाँच</span><strong>पाना सही क्रममा छन्?</strong><small>मुद्रित पृष्ठाङ्क पढेर उल्टापुल्टा स्क्यान पत्ता लगाउने</small></div>
+      <div class="flow-card agent"><span class="who agent">द्रुत जाँच</span><strong>कृति पहिल्यै छ?</strong><small>अभिलेखसँग नाम र विवरण मिलाएर दोहोरोपन रोक्ने</small></div>
     </div>
-  </div>
-  {arrow}
-  <div class="flow-node coordinator"><span class="who coord">समन्वय एजेन्ट</span><strong>तीनै योजना मिलाउने</strong><small>सबै पृष्ठ समेटिएको एउटै संरचना योजना</small></div>
-  {arrow}
-  <div class="flow-node gate"><span class="who human">मानिस</span><strong>पहिलो स्वीकृति</strong><small>पृष्ठक्रम, कृति, खण्ड र हटाइएका सामग्री हेरेर संरचना स्वीकार</small></div>
-  {arrow}
-  <div class="flow-node operation"><span class="who software">स्थानीय सफ्टवेयर</span><strong>हरेक स्वीकृत खण्डका काम खोल्ने</strong></div>
+    {arrow}
+    <div class="flow-card coord wide"><span class="who coord">समन्वय एजेन्ट</span><strong>तीनै पढाइ जोडेर पुस्तकको एउटै नक्सा</strong><small>हरेक पृष्ठ राखिएको, हटाइएको वा कुनै कृतिसँग जोडिएको हुन्छ।</small></div>
+    {arrow}
+    <div class="approval-card"><span class="approval-seal" aria-hidden="true">✓</span><div><span class="who human">मानिस</span><strong>पहिलो स्वीकृति</strong><small>पृष्ठक्रम, कृति-विभाजन र हटाइने सामग्री हेरेर मात्र योजना स्वीकार हुन्छ।</small></div></div>
+  </section>
   {arrow}
 
-  <div class="flow-band">
-    <span class="flow-band-label">प्रत्येक खण्डमा दुई स्वतन्त्र पढाइ</span>
+  <section class="journey-phase phase-two">
+    <header class="phase-head"><span class="phase-number">२</span><div><p>दोस्रो चरण</p><h3>पाठ उतार्नु</h3>
+    <small>स्वीकृत प्रत्येक कविता, सर्ग वा निबन्ध पूरा खण्डका रूपमा पढिन्छ।</small></div></header>
+    <div class="phase-note"><span class="who software">स्थानीय औजार</span> हरेक खण्डका लागि छुट्टै काम खोल्छ</div>
+    <p class="fan-label">एउटै खण्डमाथि दुई छुट्टाछुट्टै नजर</p>
     <div class="flow-grid two">
-      <div class="flow-node agent-strong"><span class="who agent">गहिरो पठन एजेन्ट</span><strong>पृष्ठसँग पाठ अक्षरशः मिलाउने</strong><small>मनलाग्दी पृष्ठ टुक्रा होइन, पूरा कविता, सर्ग वा निबन्ध एकैचोटि</small></div>
-      <div class="flow-node agent-fast"><span class="who agent">द्रुत जाँच एजेन्ट</span><strong>पादटिप्पणी छुट्टै खोज्ने</strong><small>हरेक पृष्ठको तल्लो भाग र पाठमा भएको सङ्केत</small></div>
+      <div class="flow-card agent"><span class="who agent">गहिरो पठन</span><strong>पृष्ठसँग पाठ मिलाउने</strong><small>OCR लाई सङ्केत मानेर पूरा खण्ड अक्षरशः उतार्ने; लेखकको भाषा नछुने</small></div>
+      <div class="flow-card agent"><span class="who agent">द्रुत जाँच</span><strong>पादटिप्पणी खोज्ने</strong><small>हरेक पृष्ठको पुछार र पाठमा भएका टिपोटका सङ्केत छुट्टै हेर्ने</small></div>
     </div>
-  </div>
+    {arrow}
+    <div class="flow-card software wide"><span class="who software">स्थानीय औजार</span><strong>नियमले फेरि जाँच्छ</strong><small>सबै पृष्ठ समेटिए? अङ्क बिग्रिए? पादटिप्पणी छुट्यो? अनावश्यक शीर्षक मिसियो?</small></div>
+    <div class="decision-card">
+      <p>ठूलो शङ्का बाँकी छ?</p>
+      <div class="decision-paths">
+        <div class="pass-path"><span>छैन</span><strong>अर्को चरणमा जान्छ</strong></div>
+        <div class="review-path"><span>छ</span><strong>अर्को पठन एजेन्टले शङ्का लागेको पृष्ठ फेरि हेर्छ</strong>
+        <small>औजारले पुनः जाँच्छ—बढीमा दुई चक्र। त्यसपछि पनि नसुल्झिए मानिसका लागि रोकिन्छ।</small></div>
+      </div>
+    </div>
+    <p class="phase-exit">जोखिम हटेपछि मात्रै अभिलेखका फाइल तयार हुन्छन्।</p>
+  </section>
   {arrow}
-  <div class="flow-node operation"><span class="who software">स्थानीय सफ्टवेयर</span><strong>नियममा आधारित गुणस्तर जाँच</strong><small>सबै पृष्ठ, अङ्क, पादटिप्पणी, असहमति र छुटेको पाठ</small></div>
-  {arrow}
-  <div class="flow-node decision"><strong>ठूलो जोखिम बाँकी छ?</strong></div>
 
-  <div class="flow-grid two branches">
-    <div class="flow-branch">
-      <span class="branch-label">छैन</span>
-      <div class="flow-node ok"><strong>कृति फाइल तयार गर्न जाने</strong></div>
-    </div>
-    <div class="flow-branch">
-      <span class="branch-label">छ</span>
-      <div class="flow-node agent-strong"><span class="who agent">अर्को गहिरो पठन एजेन्ट</span><strong>शङ्का भएका पृष्ठ मात्र फेरि पढ्ने</strong></div>
-      <div class="flow-loop" aria-label="पुनः गुणस्तर जाँच">↺ सफ्टवेयरले फेरि गुणस्तर जाँच्ने</div>
-      <div class="flow-node stop"><span class="who human">मानिस</span><strong>दुई चक्रपछि पनि नसुल्झिए रोक</strong><small>मानवीय सुधार नभएसम्म अगाडि नबढ्ने</small></div>
-    </div>
-  </div>
-
-  <div class="flow-converge"><span>जोखिम हटेपछि मात्र</span></div>
-  <div class="flow-node coordinator"><span class="who coord">समन्वय एजेन्ट</span><strong>प्रस्तावित कृति फाइल तयार</strong><small>मुख्य अभिलेखभन्दा अलग ठाउँमा पाठ, विवरण र स्रोत PDF</small></div>
+  <section class="journey-phase phase-three">
+    <header class="phase-head"><span class="phase-number">३</span><div><p>तेस्रो चरण</p><h3>अभिलेखमा राख्नु</h3>
+    <small>पाठ तयार हुनु र प्रकाशनका लागि स्वीकार हुनु फरक कुरा हुन्।</small></div></header>
+    <div class="flow-card coord wide"><span class="who coord">समन्वय एजेन्ट</span><strong>कृति फाइलको मस्यौदा बनाउँछ</strong><small>पाठ, विवरण र स्रोत PDF मुख्य अभिलेखभन्दा बाहिरको सुरक्षित ठाउँमा तयार हुन्छन्।</small></div>
+    {arrow}
+    <div class="flow-card software wide"><span class="who software">स्थानीय औजार</span><strong>मस्यौदा पूरै जाँच्छ</strong><small>ढाँचा, फाइलको ठाउँ, स्रोत PDF र बदलिन लागेका फाइल—सबै मिल्नुपर्छ।</small></div>
+    {arrow}
+    <div class="approval-card"><span class="approval-seal" aria-hidden="true">✓</span><div><span class="who human">मानिस</span><strong>दोस्रो स्वीकृति</strong><small>अभिलेखमा जाने ठ्याक्कै फाइल हेरेर मात्रै प्रकाशन स्वीकार हुन्छ।</small></div></div>
+    {arrow}
+    <div class="flow-card software wide"><span class="who software">स्थानीय औजार</span><strong>स्वीकृत फाइल मात्र सार्छ</strong><small>फेरि एकपटक जाँचेर मुख्य अभिलेखमा राख्छ र परिवर्तनको अभिलेख बनाउँछ।</small></div>
+  </section>
   {arrow}
-  <div class="flow-node operation"><span class="who software">स्थानीय सफ्टवेयर</span><strong>प्रस्तावित फाइलको पूर्ण जाँच</strong><small>ढाँचा, फाइलको ठाउँ, PDF, नबदलिएको प्रमाण र अपेक्षित परिवर्तन</small></div>
-  {arrow}
-  <div class="flow-node gate"><span class="who human">मानिस</span><strong>दोस्रो स्वीकृति</strong><small>ठ्याक्कै कुन फाइल अभिलेखमा जाने हो हेरेर प्रकाशन स्वीकार</small></div>
-  {arrow}
-  <div class="flow-node operation"><span class="who software">स्थानीय सफ्टवेयर</span><strong>स्वीकृत फाइल अभिलेखमा सार्ने</strong><small>फेरि जाँच गरी निश्चित फाइल मात्र सार्ने र परिवर्तन अभिलेख बनाउने</small></div>
-  {arrow}
-  <div class="flow-node source"><strong>अभिलेखका स्रोत फाइल</strong><small>पाठ · विवरण · स्रोत PDF</small></div>
-  <figcaption id="graph-caption">स्वीकृत फाइल बदलिए स्वीकृति अमान्य हुन्छ। दोस्रो स्वीकृतिअघि
-  कुनै एजेन्टले मुख्य अभिलेखमा सीधै लेख्दैन।</figcaption>
+  <div class="journey-finish"><span aria-hidden="true">अ</span><div><strong>अभिलेखका स्रोत फाइल</strong><small>पाठ · विवरण · स्रोत PDF</small></div></div>
+  <figcaption id="graph-caption">स्वीकृत फाइल पछि बदलियो भने स्वीकृति आफैँ अमान्य हुन्छ।
+  दोस्रो स्वीकृतिअघि कुनै एजेन्टले मुख्य अभिलेखमा सीधै लेख्दैन।</figcaption>
 </figure>
 
-<h2>हामी विशेष गरी के जाँच्छौँ?</h2>
-<ul class="ocr-checks">
-  <li>स्क्यानको भौतिक क्रम र मुद्रित पृष्ठाङ्क ठीक छ कि छैन।</li>
-  <li>श्लोक वा पद्यखण्डका अङ्क छापिएअनुसार छन् कि छैनन्—नदेखिएको अङ्क थपिँदैन।</li>
-  <li>पादटिप्पणी, शीर्षक वा पृष्ठको अन्त्यमा पाठ छुटेको छ कि छैन।</li>
-  <li>हरेक पृष्ठमा दोहोरिने शीर्षक, पृष्ठाङ्क र अन्य सजावट पाठमा मिसिएको छ कि छैन।</li>
-  <li>आधुनिक सम्पादकीय सामग्री हटेको र लेखकको आफ्नै भूमिका सुरक्षित रहेको छ कि छैन।</li>
-</ul>
+<h2>जहाँ गल्ती सजिलै लुक्छ</h2>
+<p class="section-intro">OCR को ठूलो भूल प्रायः ठूलो देखिँदैन। एउटा उल्टिएको पाना, हराएको
+श्लोक अङ्क वा छुटेको सानो पादटिप्पणीले नै पाठको अर्थ बिगार्न सक्छ। त्यसैले यी ठाउँमा हामी
+छुट्टै नजर लगाउँछौँ:</p>
+<div class="audit-grid">
+  <div><strong>पानाको क्रम</strong><span>मुद्रित पृष्ठाङ्क आफैँ पढेर</span></div>
+  <div><strong>श्लोकका अङ्क</strong><span>छापिएको छ भने मात्र राखेर</span></div>
+  <div><strong>पृष्ठको पुछार</strong><span>छोटा पादटिप्पणी नछुटाई</span></div>
+  <div><strong>पाठ र सजावट</strong><span>दोहोरिने शीर्षक र पृष्ठाङ्क हटाएर</span></div>
+  <div><strong>कुन अंश राख्ने?</strong><span>लेखकको भूमिका राखी आधुनिक सम्पादकीय अंश हटाएर</span></div>
+</div>
 
 <aside class="ocr-status">
-  <h2>OCR सम्पन्न हुनु प्रुफरिड हुनु होइन</h2>
-  <p><code>ocr-done</code> ले माथिको स्रोत-मिलान र गुणस्तर जाँच पूरा भएको जनाउँछ। कुनै कृतिलाई मूल
-  स्रोतसँग औपचारिक रूपमा फेरि प्रुफरिड गरेपछि मात्र <code>proofread: true</code> गरिन्छ।</p>
+  <p class="status-label">एउटा महत्त्वपूर्ण फरक</p>
+  <h2>OCR सम्पन्न ≠ प्रुफरिड</h2>
+  <p>यो प्रक्रियाले स्रोतसँग मिलाइएको, जाँचिएको OCR पाठ दिन्छ। तर सुरुदेखि अन्त्यसम्म मूलसँग
+  फेरि औपचारिक जाँच नभएसम्म हामी त्यसलाई “प्रुफरिड” भन्दैनौँ। त्यसपछि मात्रै विवरणमा
+  <code>proofread: true</code> लेखिन्छ।</p>
 </aside>
 
 <h2>यो प्रक्रिया पुनःचलाउन</h2>
-<p>कार्यान्वयन खुला छ। ग्राफका काम, निर्भरता, निर्धारित ढाँचाका परिणाम, निर्देशन प्याकेट,
-जाँच र पुनःप्रयास सीमा स्रोत कोडमै परिभाषित छन्। सुरु गर्न नेपाली PDF, स्थानीय OCR
-वातावरण, Python र स्वतन्त्र निर्देशन प्याकेट चलाउन सक्ने एजेन्ट चाहिन्छ।</p>
-<details class="ocr-tech">
-  <summary>प्राविधिक विवरण र स्रोत</summary>
-  <h3>चित्र र वास्तविक नामको सम्बन्ध</h3>
-  <div class="ocr-table-wrap"><table class="ocr-map">
-    <thead><tr><th>चित्रमा देखिएको काम</th><th>वास्तविक नाम</th><th>चलाउने पक्ष</th></tr></thead>
-    <tbody>
-      <tr><td>काम आरम्भ</td><td><code>book init</code></td><td>स्थानीय सफ्टवेयर</td></tr>
-      <tr><td>सुरुआती जाँच र OCR</td><td><code>preflight</code> · <code>ocr</code></td><td>स्थानीय सफ्टवेयर</td></tr>
-      <tr><td>बनोट, पृष्ठक्रम र दोहोरोपन</td><td><code>plan_structure</code> · <code>plan_folios</code> · <code>plan_dedupe</code></td><td>पाठ-पठन एजेन्ट</td></tr>
-      <tr><td>योजना मिलान</td><td><code>merge_structure</code></td><td>समन्वय एजेन्ट</td></tr>
-      <tr><td>पहिलो स्वीकृति</td><td><code>approve_structure</code></td><td>मानिस</td></tr>
-      <tr><td>खण्डका काम खोल्ने</td><td><code>book expand</code></td><td>स्थानीय सफ्टवेयर</td></tr>
-      <tr><td>पाठ र पादटिप्पणी पढ्ने</td><td><code>reconcile_&lt;section&gt;</code> · <code>footnotes_&lt;section&gt;</code></td><td>पाठ-पठन एजेन्ट</td></tr>
-      <tr><td>गुणस्तर जाँच र पुनःपठन</td><td><code>qa_0 … qa_2</code> · <code>verify_1 / verify_2</code></td><td>सफ्टवेयर · एजेन्ट</td></tr>
-      <tr><td>प्रस्तावित फाइल तयार</td><td><code>stage</code></td><td>समन्वय एजेन्ट · सफ्टवेयर</td></tr>
-      <tr><td>फाइलको पूर्ण जाँच</td><td><code>book verify-stage</code></td><td>स्थानीय सफ्टवेयर</td></tr>
-      <tr><td>दोस्रो स्वीकृति</td><td><code>approve_promotion</code></td><td>मानिस</td></tr>
-      <tr><td>अभिलेखमा सार्ने</td><td><code>promote</code></td><td>स्थानीय सफ्टवेयर</td></tr>
-    </tbody>
-  </table></div>
-  <p>गहिरो पठन एजेन्टको प्राविधिक क्षमता <code>strong_reader</code> र द्रुत जाँच एजेन्टको
-  क्षमता <code>fast_reader</code> हो। यी कुनै कम्पनी वा मोडेलका नाम होइनन्।</p>
-  <h3>ढाँचाका संस्करण</h3>
-  <ul>
-    <li>कामको ग्राफ: <code>graph_version: 1</code></li>
-    <li>एजेन्टको काम र नतिजा: <code>book-agent/v1</code></li>
-    <li>संरचना योजना: <code>book-plan/v1</code></li>
-    <li>गुणस्तर जाँचको प्रतिवेदन: <code>book-qa/v1</code></li>
-  </ul>
-  <pre><code>cd ocr
-python -m archive_ocr book init BOOK.pdf --author AUTHOR_ID
-python -m archive_ocr book status RUN_ID
-python -m archive_ocr book ready RUN_ID</code></pre>
-  <p><a href="{REPO_URL}/blob/main/docs/ocr-workflow.md" rel="external">प्रदायक-निरपेक्ष पुनरुत्पादन विधि</a> ·
-  <a href="{REPO_URL}/blob/main/ocr/archive_ocr/book_workflow.py" rel="external">स्थायी कार्यग्राफ</a> ·
-  <a href="{REPO_URL}/blob/main/ocr/archive_ocr/book_graph.py" rel="external">काम थप्ने र पुनःजाँचको शाखा</a> ·
-  <a href="{REPO_URL}/blob/main/ocr/archive_ocr/book_prompts.py" rel="external">एजेन्टको काम र नतिजाको ढाँचा</a></p>
-</details>
-<p class="meta ocr-version">कार्यप्रवाह संस्करण १ · पछिल्लो संशोधन: २०२६-०८-१२</p>
+<p>यो नक्सा देखाउनका लागि मात्र होइन। हरेक कामको सामग्री, अपेक्षित नतिजा, पुनःजाँचको सीमा
+र मानवीय स्वीकृतिका ठाउँ स्रोत कोडमै खुला छन्। यसका लागि कुनै खास कम्पनीको सेवा अनिवार्य छैन;
+आफ्नो जिम्मा पूरा गर्न सक्ने एजेन्ट भए यही विधि अरूले पनि चलाउन सक्छन्।</p>
+<p class="meta ocr-version">कार्यप्रवाह संस्करण १ · पछिल्लो संशोधन: २०२६-०८-१३</p>
 </article>"""
     (out / "index.html").write_text(
         page("स्क्यानदेखि पाठसम्म — " + SITE_NAME, body,
@@ -985,84 +964,160 @@ body{transition:background-color .25s ease,color .25s ease}
  background:color-mix(in srgb,var(--accent) 6%,var(--bg));font-size:.92rem}
 .aboutcall a{font-weight:600;text-decoration:none}
 .aboutcall a:hover{text-decoration:underline}
-/* provider-neutral scanned-book workflow page: semantic HTML graph, no graph JS */
-.ocr-page>h2{border-top:1px solid var(--line);padding-top:1.25rem;margin-top:2.5rem}
-.ocr-graph{margin:1.4rem 0 2.2rem;padding:1.25rem;border:1px solid var(--line);
- border-radius:.7rem;background:color-mix(in srgb,var(--accent) 2.5%,var(--bg))}
-.flow-node{max-width:27rem;margin:0 auto;padding:.72rem .9rem;border:1px solid var(--line);
- border-left:4px solid var(--mut);border-radius:.5rem;background:var(--bg);text-align:center;
- line-height:1.42;box-shadow:0 1px 0 color-mix(in srgb,var(--line) 60%,transparent)}
-.flow-node strong,.flow-node small{display:block}
-.flow-node strong{font-size:.95rem}
-.flow-node small{color:var(--mut);font-size:.72rem;line-height:1.45}
-.who{display:inline-flex;align-items:center;width:max-content;max-width:100%;padding:.06rem .42rem;
- border-radius:2rem;font-size:.62rem;font-weight:700;line-height:1.55;letter-spacing:.01em}
-.who.agent{color:var(--g-mahakavya);background:color-mix(in srgb,var(--g-mahakavya) 11%,transparent)}
-.who.coord{color:var(--g-nibandha);background:color-mix(in srgb,var(--g-nibandha) 12%,transparent)}
-.who.software{color:var(--mut);background:color-mix(in srgb,var(--mut) 10%,transparent)}
-.who.human{color:var(--accent);background:color-mix(in srgb,var(--accent) 12%,transparent)}
-.flow-node .who{margin:0 auto .28rem}
-.flow-legend{display:flex;flex-wrap:wrap;gap:.35rem .5rem;margin:.75rem 0}
-.flow-node.source{border-left-color:var(--accent);background:color-mix(in srgb,var(--accent) 6%,var(--bg))}
-.flow-node.coordinator{border-left-color:var(--g-nibandha)}
-.flow-node.agent-strong{border-left-color:var(--g-mahakavya)}
-.flow-node.agent-fast{border-left-color:var(--g-balkavita)}
-.flow-node.operation{border-style:dashed;border-left-style:solid}
-.flow-node.gate{border:2px solid var(--accent);background:color-mix(in srgb,var(--accent) 7%,var(--bg))}
-.flow-node.decision{border-radius:2rem;border-style:dashed;margin-bottom:.85rem}
-.flow-node.ok{border-left-color:var(--g-balkavita)}
-.flow-node.stop{border-left-color:var(--g-mahakavya);margin-top:.6rem}
-.flow-arrow{text-align:center;color:var(--accent);font-size:1.25rem;line-height:1.35;height:1.7rem}
-.flow-band{padding:.8rem;border:1px dashed var(--line);border-radius:.6rem}
-.flow-band-label,.branch-label{display:block;text-align:center;color:var(--mut);font-size:.72rem;
- font-weight:600;margin:0 0 .55rem}
-.flow-grid{display:grid;gap:.75rem;align-items:start}
+/* OCR workflow: an editorial account with a visual map of the actual DAG */
+.ocr-page{--paper:color-mix(in srgb,var(--accent) 3.5%,var(--bg));--agent:var(--g-mahakavya);
+ --coord:var(--g-nibandha);--human:var(--accent)}
+.ocr-page>p{max-width:40rem;line-height:1.85}
+.ocr-page>h2{border-top:1px solid var(--line);padding-top:1.35rem;margin-top:3.2rem;
+ font-size:1.35rem;letter-spacing:-.012em}
+.ocr-hero{position:relative;margin:1rem 0 1.6rem;padding:2.2rem 2.1rem 2rem;overflow:hidden;
+ border:1px solid var(--line);border-radius:1rem;
+ background:linear-gradient(145deg,color-mix(in srgb,var(--accent) 13%,var(--bg)),var(--bg) 68%)}
+.ocr-hero:after{content:'अ';position:absolute;right:-.3rem;bottom:-3.3rem;color:var(--accent);
+ opacity:.07;font-size:12rem;font-weight:700;line-height:1;pointer-events:none}
+.ocr-kicker{margin:0 0 .6rem;color:var(--accent);font-size:.7rem;font-weight:800;
+ letter-spacing:.11em;text-transform:uppercase}
+.ocr-hero h1{position:relative;z-index:1;margin:0;font-size:clamp(2rem,7vw,3.2rem);
+ line-height:1.16;letter-spacing:-.04em}
+.ocr-dek{position:relative;z-index:1;max-width:31rem;margin:.75rem 0 0;color:var(--mut);
+ font-size:1.03rem;line-height:1.72}
+.ocr-principle{display:grid;grid-template-columns:auto 1fr;gap:.25rem .75rem;align-items:start;
+ margin:1.8rem 0;padding:1.05rem 1.2rem;border-block:1px solid var(--line)}
+.ocr-principle>span{color:var(--accent);font-family:Georgia,serif;font-size:3.5rem;line-height:.9}
+.ocr-principle p{margin:0;font-size:1.02rem;line-height:1.75}
+.section-intro{margin-top:-.35rem;color:var(--mut);font-size:.92rem}
+.ocr-roles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.85rem;margin:1.2rem 0}
+.ocr-roles>div{position:relative;min-height:9.2rem;padding:1.05rem 1rem 1rem 3.7rem;
+ border:1px solid var(--line);border-radius:.8rem;background:var(--paper)}
+.ocr-roles .role-agent{--role:var(--agent)}
+.ocr-roles .role-coord{--role:var(--coord)}
+.ocr-roles .role-software{--role:var(--mut)}
+.ocr-roles .role-human{--role:var(--human)}
+.role-mark{position:absolute;left:1rem;top:1rem;display:grid;place-items:center;width:2rem;height:2rem;
+ border-radius:50%;color:var(--role);background:color-mix(in srgb,var(--role) 12%,var(--bg));
+ font-size:.72rem;font-weight:800}
+.ocr-roles h3{margin:0;color:var(--role);font-size:.96rem}
+.ocr-roles p{margin:.32rem 0 0;color:var(--mut);font-size:.82rem;line-height:1.65}
+.agent-boundary{margin:1.5rem 0 0;padding:.9rem 1.1rem;border-left:4px solid var(--agent);
+ border-radius:0 .55rem .55rem 0;background:color-mix(in srgb,var(--agent) 6%,var(--bg))}
+.agent-boundary p{margin:.2rem 0;font-size:.88rem;line-height:1.68}
+.agent-boundary .boundary-label{color:var(--agent);font-size:.7rem;font-weight:800;letter-spacing:.06em}
+.who{display:inline-flex;align-items:center;width:max-content;max-width:100%;padding:.11rem .48rem;
+ border-radius:2rem;font-size:.61rem;font-weight:800;line-height:1.55;letter-spacing:.015em}
+.who.agent{color:var(--agent);background:color-mix(in srgb,var(--agent) 11%,transparent)}
+.who.coord{color:var(--coord);background:color-mix(in srgb,var(--coord) 13%,transparent)}
+.who.software{color:var(--mut);background:color-mix(in srgb,var(--mut) 11%,transparent)}
+.who.human{color:var(--human);background:color-mix(in srgb,var(--human) 12%,transparent)}
+.flow-legend{display:flex;flex-wrap:wrap;gap:.4rem .5rem;margin:.85rem 0 1.1rem}
+.ocr-journey{margin:0 0 2.8rem;padding:1.2rem;border:1px solid var(--line);border-radius:1rem;
+ background:radial-gradient(circle at 50% 0,color-mix(in srgb,var(--accent) 8%,transparent),transparent 20rem),var(--paper)}
+.journey-source,.journey-finish{display:flex;align-items:center;gap:.75rem;width:max-content;
+ max-width:100%;margin:0 auto;padding:.8rem 1.1rem;border:1px solid var(--line);border-radius:4rem;
+ background:var(--bg);box-shadow:0 .25rem 1rem color-mix(in srgb,var(--fg) 5%,transparent)}
+.journey-source>span,.journey-finish>span{display:grid;place-items:center;flex:0 0 2.1rem;height:2.1rem;
+ border-radius:50%;background:color-mix(in srgb,var(--accent) 13%,var(--bg));color:var(--accent);
+ font-size:.68rem;font-weight:800}
+.journey-source strong,.journey-source small,.journey-finish strong,.journey-finish small{display:block}
+.journey-source strong,.journey-finish strong{font-size:.88rem}
+.journey-source small,.journey-finish small{color:var(--mut);font-size:.66rem}
+.flow-arrow{text-align:center;color:var(--accent);font-size:1.2rem;line-height:2.15rem;height:2.15rem}
+.journey-phase{--phase:var(--accent);position:relative;padding:1.15rem;border:1px solid var(--line);
+ border-top:4px solid var(--phase);border-radius:.85rem;background:var(--bg);
+ box-shadow:0 .35rem 1.35rem color-mix(in srgb,var(--fg) 4%,transparent)}
+.journey-phase.phase-two{--phase:var(--agent)}
+.journey-phase.phase-three{--phase:var(--g-balkavita)}
+.phase-head{display:flex;align-items:flex-start;gap:.85rem;margin:0 0 1.2rem;padding:0 0 1rem;
+ border-bottom:1px solid var(--line)}
+.phase-number{display:grid;place-items:center;flex:0 0 2.55rem;height:2.55rem;border-radius:50%;
+ background:color-mix(in srgb,var(--phase) 13%,var(--bg));color:var(--phase);font-weight:800}
+.phase-head p{margin:0 0 .05rem;color:var(--phase);font-size:.64rem;font-weight:800;letter-spacing:.06em}
+.phase-head h3{margin:0;font-size:1.35rem;line-height:1.25}
+.phase-head small{display:block;margin-top:.18rem;color:var(--mut);font-size:.74rem;line-height:1.5}
+.mechanical-run{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:.45rem;align-items:center}
+.mechanical-run>div{height:100%;padding:.7rem;border:1px dashed var(--line);border-radius:.55rem;
+ background:color-mix(in srgb,var(--mut) 3%,var(--bg));text-align:center}
+.mechanical-run strong,.mechanical-run small{display:block}
+.mechanical-run strong{margin:.28rem 0 .12rem;font-size:.78rem}
+.mechanical-run small{color:var(--mut);font-size:.62rem;line-height:1.45}
+.mechanical-run i{color:var(--mut);font-size:.75rem;font-style:normal}
+.fan-label{position:relative;margin:1.3rem 0 .65rem;color:var(--mut);font-size:.69rem;
+ font-weight:700;text-align:center}
+.fan-label:before,.fan-label:after{content:'';display:inline-block;width:2.5rem;margin:0 .5rem;
+ border-top:1px solid var(--line);vertical-align:middle}
+.flow-grid{display:grid;gap:.7rem;align-items:stretch}
 .flow-grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}
 .flow-grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}
-.flow-grid .flow-node{max-width:none;width:100%;height:100%;margin:0}
-.flow-grid.branches{margin:.15rem 0 0}
-.flow-branch{min-width:0;padding-top:.6rem;border-top:2px solid var(--line)}
-.flow-loop{text-align:center;color:var(--mut);font-size:.76rem;line-height:1.5;margin:.5rem 0}
-.flow-converge{height:2.8rem;text-align:center;color:var(--mut);font-size:.7rem;
- border-bottom:2px solid var(--line);position:relative;margin:0 auto 1rem;max-width:27rem}
-.flow-converge span{position:relative;top:1.55rem;background:var(--bg);padding:0 .5rem}
-.ocr-graph figcaption{margin:1.2rem auto 0;max-width:33rem;color:var(--mut);font-size:.75rem;
- line-height:1.6;text-align:center}
-.ocr-roles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.7rem;margin:1rem 0}
-.ocr-roles>div{border:1px solid var(--line);border-radius:.45rem;padding:.7rem .8rem}
-.ocr-roles>div{border-left-width:4px}
-.ocr-roles .role-agent{border-left-color:var(--g-mahakavya)}
-.ocr-roles .role-coord{border-left-color:var(--g-nibandha)}
-.ocr-roles .role-software{border-left-color:var(--mut)}
-.ocr-roles .role-human{border-left-color:var(--accent)}
-.ocr-roles h3{margin:0;color:var(--accent);font-size:.9rem}
-.ocr-roles p{margin:.25rem 0 0;color:var(--mut);font-size:.82rem;line-height:1.6}
-.ocr-subhead{font-size:.95rem;margin:1.5rem 0 .4rem}
-.ocr-checks{padding-left:1.15rem}
-.ocr-checks li{margin:.42rem 0}
-.ocr-status{margin:2.2rem 0;padding:.2rem 1rem .8rem;border-left:4px solid var(--accent);
- background:color-mix(in srgb,var(--accent) 6%,var(--bg))}
-.ocr-status h2{border:0;padding:0;margin:1rem 0 .35rem}
-.ocr-status p{margin:.25rem 0}
-.ocr-tech{border:1px solid var(--line);border-radius:.5rem;padding:.7rem .9rem;margin:1rem 0}
-.ocr-tech summary{cursor:pointer;color:var(--accent);font-weight:600}
-.ocr-tech pre{overflow:auto;padding:.75rem;background:color-mix(in srgb,var(--line) 42%,var(--bg));
- border-radius:.35rem;font-size:.72rem;line-height:1.55}
-.ocr-tech p,.ocr-tech li{font-size:.84rem}
-.ocr-tech h3{font-size:.9rem;margin:1.2rem 0 .4rem}
-.ocr-table-wrap{overflow-x:auto;margin:.5rem 0 1rem}
-.ocr-map{width:100%;min-width:34rem;border-collapse:collapse;font-size:.72rem;line-height:1.5}
-.ocr-map th,.ocr-map td{padding:.45rem .5rem;text-align:left;vertical-align:top;
- border-bottom:1px solid var(--line)}
-.ocr-map th{color:var(--mut);font-weight:600}
-.ocr-map code{font-size:.68rem;overflow-wrap:anywhere}
+.flow-card{position:relative;padding:.78rem .8rem;border:1px solid var(--line);border-radius:.58rem;
+ background:color-mix(in srgb,var(--card,var(--mut)) 3.5%,var(--bg));text-align:left}
+.flow-card.agent{--card:var(--agent)}
+.flow-card.coord{--card:var(--coord)}
+.flow-card.software{--card:var(--mut)}
+.flow-card:before{content:'';position:absolute;inset:.55rem auto .55rem 0;width:3px;border-radius:3px;
+ background:var(--card,var(--mut))}
+.flow-card strong,.flow-card small{display:block}
+.flow-card strong{margin:.34rem 0 .18rem;font-size:.82rem;line-height:1.4}
+.flow-card small{color:var(--mut);font-size:.67rem;line-height:1.52}
+.flow-card.wide{max-width:30rem;margin-inline:auto;padding:.9rem 1rem;text-align:center}
+.flow-card.wide:before{inset:0 .6rem auto;height:3px;width:auto}
+.phase-note{margin:.2rem 0 .8rem;padding:.65rem .75rem;border-radius:.5rem;
+ background:color-mix(in srgb,var(--mut) 7%,var(--bg));color:var(--mut);font-size:.73rem;text-align:center}
+.phase-note .who{margin-right:.35rem}
+.approval-card{display:flex;align-items:center;gap:.8rem;max-width:30rem;margin:0 auto;padding:.85rem 1rem;
+ border:1.5px solid var(--human);border-radius:.7rem;background:color-mix(in srgb,var(--human) 7%,var(--bg))}
+.approval-card .approval-seal{display:grid;place-items:center;flex:0 0 2.15rem;height:2.15rem;
+ border-radius:50%;background:var(--human);color:var(--bg);font-weight:800}
+.approval-card strong,.approval-card small{display:block}
+.approval-card strong{margin:.25rem 0 .1rem;font-size:.86rem}
+.approval-card small{color:var(--mut);font-size:.67rem;line-height:1.5}
+.decision-card{margin:1.1rem 0 .3rem;padding:.85rem;border:1px solid var(--line);border-radius:.7rem;
+ background:color-mix(in srgb,var(--accent) 3%,var(--bg))}
+.decision-card>p{margin:0 0 .65rem;font-size:.82rem;font-weight:800;text-align:center}
+.decision-paths{display:grid;grid-template-columns:.7fr 1.3fr;gap:.65rem}
+.decision-paths>div{padding:.68rem .75rem;border-radius:.5rem;background:var(--bg)}
+.decision-paths span{display:inline-block;margin-bottom:.25rem;padding:.05rem .38rem;border-radius:1rem;
+ font-size:.6rem;font-weight:800}
+.decision-paths strong,.decision-paths small{display:block}
+.decision-paths strong{font-size:.75rem;line-height:1.45}
+.decision-paths small{margin-top:.2rem;color:var(--mut);font-size:.64rem;line-height:1.5}
+.pass-path{border:1px solid color-mix(in srgb,var(--g-balkavita) 45%,var(--line))}
+.pass-path span{color:var(--g-balkavita);background:color-mix(in srgb,var(--g-balkavita) 12%,transparent)}
+.review-path{border:1px solid color-mix(in srgb,var(--agent) 35%,var(--line))}
+.review-path span{color:var(--agent);background:color-mix(in srgb,var(--agent) 11%,transparent)}
+.phase-exit{margin:.75rem 0 0;color:var(--mut);font-size:.69rem;font-weight:600;text-align:center}
+.journey-finish{border-color:color-mix(in srgb,var(--g-balkavita) 55%,var(--line))}
+.journey-finish>span{color:var(--g-balkavita);background:color-mix(in srgb,var(--g-balkavita) 13%,var(--bg))}
+.ocr-journey figcaption{max-width:34rem;margin:1.15rem auto 0;color:var(--mut);font-size:.7rem;
+ line-height:1.65;text-align:center}
+.audit-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.7rem;margin:1.1rem 0}
+.audit-grid>div{padding:.8rem;border-top:2px solid var(--accent);
+ background:linear-gradient(180deg,color-mix(in srgb,var(--accent) 6%,var(--bg)),transparent)}
+.audit-grid strong,.audit-grid span{display:block}
+.audit-grid strong{font-size:.8rem}
+.audit-grid span{margin-top:.2rem;color:var(--mut);font-size:.7rem;line-height:1.5}
+.ocr-status{position:relative;margin:2.7rem 0;padding:1.25rem 1.35rem 1.2rem;border:1px solid var(--line);
+ border-radius:.8rem;background:linear-gradient(120deg,color-mix(in srgb,var(--accent) 10%,var(--bg)),var(--bg))}
+.ocr-status:before{content:'≠';position:absolute;right:1rem;top:.2rem;color:var(--accent);opacity:.1;
+ font-size:5.5rem;font-weight:800;line-height:1}
+.ocr-status .status-label{position:relative;margin:0;color:var(--accent);font-size:.67rem;font-weight:800;
+ letter-spacing:.06em}
+.ocr-status h2{position:relative;border:0;padding:0;margin:.25rem 0 .4rem;font-size:1.3rem}
+.ocr-status p{position:relative;margin:.25rem 0;font-size:.86rem;line-height:1.7}
 .ocr-version{text-align:right;margin-top:1.5rem}
 @media(max-width:650px){
- .ocr-graph{padding:.8rem;margin-left:-.15rem;margin-right:-.15rem}
- .flow-grid.two,.flow-grid.three,.ocr-roles{grid-template-columns:1fr}
- .flow-grid{gap:.6rem}
- .flow-branch{padding:.6rem 0 .15rem}
- .flow-node{padding:.68rem .72rem}
+ .ocr-hero{padding:1.65rem 1.25rem 1.55rem}
+ .ocr-hero:after{right:-1rem;font-size:9rem}
+ .ocr-principle{padding-inline:.25rem}
+ .ocr-roles,.flow-grid.two,.flow-grid.three,.audit-grid,.decision-paths{grid-template-columns:1fr}
+ .ocr-roles>div{min-height:0}
+ .ocr-journey{padding:.7rem;margin-inline:-.35rem;border-radius:.75rem}
+ .journey-phase{padding:.85rem}
+ .mechanical-run{grid-template-columns:1fr;gap:.35rem}
+ .mechanical-run i{transform:rotate(90deg);justify-self:center}
+ .fan-label:before,.fan-label:after{width:1.25rem}
+ .flow-grid{gap:.55rem}
+ .flow-card.wide{width:100%}
+ .audit-grid{gap:.45rem}
+ .audit-grid>div{padding:.7rem .8rem}
 }
 /* "अभिलेख एक नजरमा" stats page */
 .stats h2{font-size:1.12rem;margin:2rem 0 .7rem;border-top:1px solid var(--line);padding-top:1.25rem}
