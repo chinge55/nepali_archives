@@ -1,0 +1,1 @@
+"""Specialized static page generators."""

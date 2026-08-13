@@ -1,0 +1,13 @@
+main{max-width:64rem}
+.pdftop{margin:.2rem 0 1rem}
+.pdfh1{font-size:1.3rem;margin:.3rem 0}
+.pdfbar{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;color:var(--mut);font-size:.9rem;margin:.5rem 0 0}
+.pdfback{text-decoration:none}
+.pdfstat{margin-left:auto}
+.pdfzoom button{font-family:inherit;font-size:1rem;line-height:1;width:2rem;height:2rem;border:1px solid var(--line);background:none;color:var(--accent);border-radius:6px;cursor:pointer;margin-left:.3rem}
+.pdfzoom button:hover{border-color:var(--accent);background:var(--accent);color:#fff}
+.pdfpages{margin:0 auto;max-width:760px}
+.pdfpage{position:relative;margin:0 auto 1rem;min-height:200px;background:#fff;box-shadow:0 1px 6px rgba(0,0,0,.18)}
+.pdfpage canvas{display:block;width:100%;height:auto}
+.pdferr{color:var(--mut);padding:1rem;border:1px solid var(--line);border-radius:8px}
+@media(prefers-color-scheme:dark){.pdfpage{box-shadow:0 1px 6px rgba(0,0,0,.5)}}

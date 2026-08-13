@@ -25,6 +25,9 @@ jobs:
       - run: python3 pipeline/check_public_tree.py
       # 3) archived pages contain no executable or comment data
       - run: python3 pipeline/sanitize_extracted_html.py --check
-      # 4) dry-run the build so broken rendering/pagination is caught (nothing is deployed)
+      # 4) site-generator unit and fixture-build tests
+      - run: python3 -m unittest discover -s pipeline/tests
+      # 5) dry-run the real build and audit generated links (nothing is deployed)
       - run: python3 pipeline/build_index.py
       - run: python3 pipeline/build_site.py
+      - run: python3 pipeline/check_site_links.py site

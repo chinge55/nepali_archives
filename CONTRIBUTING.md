@@ -40,8 +40,9 @@ source file, then open a PR. Conventions the validator checks for you:
   standalone line is a section heading (put a blank line before the next block); verse vs prose
   is decided by `genre[0]` (`nibandha`/`upanyas` → prose, else verse).
 
-Adding a **new author** currently also needs a small maintainer code change (the author
-display registry lives in `pipeline/build_site.py`) — please open an issue and we'll wire it.
+Adding a **new author** may also need a small maintainer code change when custom life dates
+are wanted (the optional display registry lives in `pipeline/sitegen/config.py`) — please
+open an issue and we'll wire it. Names otherwise fall back to the work metadata automatically.
 
 ## Rights — read before submitting
 
@@ -58,8 +59,8 @@ Lekhnath d. 1966, Devkota d. 1959). Set `rights.status` to `public-domain` accor
 
 ## What happens to your PR
 
-- **On the PR:** `validate.yml` runs `pipeline/validate.py` (schema, slug/id, text, rights) and
-  a dry-run build, so you get ✅/❌ immediately.
+- **On the PR:** `validate.yml` runs `pipeline/validate.py` (schema, slug/id, text, rights),
+  site-generator tests, a dry-run build, and an internal-link audit, so you get ✅/❌ immediately.
 - **On merge:** `deploy.yml` regenerates everything (`build_index` → `build_formats` →
   `build_site` → `subset_fonts` → Pagefind) and deploys to GitHub Pages.
 
@@ -73,6 +74,8 @@ python3 pipeline/validate.py                 # the same checks CI runs on your P
 python3 pipeline/build_index.py
 python3 pipeline/build_formats.py <work_dir>  # reader.html + reader.epub (per dir, not --all)
 python3 pipeline/build_site.py
+python3 -m unittest discover -s pipeline/tests
+python3 pipeline/check_site_links.py site
 cd site && python3 -m http.server 8000        # http://localhost:8000
 ```
 

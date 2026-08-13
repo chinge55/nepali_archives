@@ -25,6 +25,7 @@ archives/
   index.json               # catalogue of every work               [GENERATED — git-ignored]
 metadata.schema.json       # JSON Schema for every metadata.json
 assets/
+  site/                    # tracked CSS/JS sources used by the static-site generator
   fonts-full/              # full Noto Serif Devanagari woff2 (subset inputs)       [tracked]
   fonts/fontface.css       # @font-face CSS                                          [tracked]
   fonts/*.woff2            # subset to the glyphs the site uses    [GENERATED — git-ignored]
@@ -36,7 +37,10 @@ pipeline/
   kavitakosh_build.py      # Stage 1d: assemble a crawled tree into work dirs
   build_index.py           # archives/index.json from every metadata.json
   build_formats.py         # text.txt -> reader.html / reader.epub
-  build_site.py            # the static site/ (reading pages, downloads, /stats/)
+  build_site.py            # stable CLI entry point for the static-site build
+  sitegen/                 # rendering, assets, page generators, and build orchestration
+  tests/                   # dependency-free unit + fixture-build tests for sitegen
+  check_site_links.py      # generated-site internal href/src audit
   subset_fonts.py          # subset the woff2 to glyphs the built site uses
   stats.py                 # the /stats/ "अभिलेख एक नजरमा" page (build-time, called by build_site)
   devanagari_slug.py       # Devanagari -> slug / romanization helper
@@ -62,8 +66,8 @@ deploys everything else, so you never touch build output. Two ways to help:
 2. **Add a work** — add a `metadata.json` + `text.txt` + source under `archives/authors/…/`.
 
 Every PR runs [`pipeline/validate.py`](./pipeline/validate.py) (schema, slug/id rules, text
-sanity, rights gate) plus a dry-run build. See **[`CONTRIBUTING.md`](./CONTRIBUTING.md)** for
-the full guide and the rights policy.
+sanity, rights gate), the site-generator test suite, a dry-run build, and an internal-link
+audit. See **[`CONTRIBUTING.md`](./CONTRIBUTING.md)** for the full guide and rights policy.
 
 ## Metadata
 
@@ -97,6 +101,8 @@ preview:
 python3 pipeline/build_index.py            # archives/index.json
 python3 pipeline/build_formats.py --all     # reader.html + reader.epub (pandoc)
 python3 pipeline/build_site.py              # site/ (reading pages, downloads, /stats/)
+python3 -m unittest discover -s pipeline/tests
+python3 pipeline/check_site_links.py site
 python3 pipeline/subset_fonts.py            # font subset (fonttools+brotli)
 python3 pipeline/build_site.py              # second pass embeds the subset
 npx pagefind --site site                    # full-text search index
@@ -140,7 +146,7 @@ proofreading is the next milestone. (The archive's rights position is stated in
 
 ## Environment
 
-Core pipeline + `build_site.py` are pure Python stdlib. `ocr.py` runs in conda env
+Core pipeline + `build_site.py`/`sitegen` are pure Python stdlib. `ocr.py` runs in conda env
 **`archive_env`** (Tesseract 5.5 with the `nep` model, `pytesseract`, `pdf2image`, `pillow`,
 `poppler`). `from_html.py` / `kavitakosh_*` need `beautifulsoup4`+`lxml`; `build_formats.py`
 needs `pandoc` (EPUB); `subset_fonts.py` needs `fonttools`+`brotli`. CI installs pandoc +

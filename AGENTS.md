@@ -53,7 +53,9 @@ CI deploy runs the **full pipeline** from sources → GitHub Pages → **www.nep
 ```
 build_index.py → build_formats.py --all → build_site.py → subset_fonts.py → build_site.py → npx pagefind
 ```
-`build_site.py` also calls `pipeline/stats.py` to regenerate the `/stats/` page
+`build_site.py` is the stable CLI; its implementation is split by responsibility under
+`pipeline/sitegen/`, with tracked web sources under `assets/site/`. The builder also calls
+`pipeline/stats.py` to regenerate the `/stats/` page
 ("अभिलेख एक नजरमा" — corpus graphs/word-frequency, build-time SVG/CSS only) every build.
 Adding a new *author*? skim `stats.STATS_STOP` so its register's function words don't
 pollute the word cloud. `--archive-base <url>` makes downloads point at an external store
@@ -62,7 +64,8 @@ pollute the word cloud. `--archive-base <url>` makes downloads point at an exter
 To **preview locally** (optional — CI is authoritative), run that same sequence; or just the
 relevant subset (`build_index.py` then `build_formats.py <dir>` then `build_site.py`).
 
-**Verify** (CI does this on PRs via `pipeline/validate.py` + a dry-run build): all
+**Verify** (CI does this on PRs via `pipeline/validate.py`, sitegen unit/fixture tests,
+a dry-run build, and `pipeline/check_site_links.py site`): all
 `metadata.json` validate against `metadata.schema.json`; dir name == `id` == `[a-z0-9_-]`,
 author dir == `author.id`; `text.txt` non-empty Devanagari; `rights.status` ∈
 {public-domain, permission-granted}; `build_site.py` runs clean.
@@ -88,7 +91,7 @@ author dir == `author.id`; `text.txt` non-empty Devanagari; `rights.status` ∈
   are NOT made into a work — each member is a standalone work whose description names
   the collection. Don't duplicate a work already in the archive; add the collection
   tag to its existing description instead.
-- **text.txt rendering** (`build_site.py work_html`):
+- **text.txt rendering** (`pipeline/sitegen/text.py`):
   - verse vs prose is decided by `genre[0]`: prose = `{upanyas, nibandha}`, everything
     else renders as verse. So an essay must have `genre[0]=="nibandha"`.
   - blank-line-separated blocks = stanzas/paragraphs; a short standalone word-like
