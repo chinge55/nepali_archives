@@ -383,8 +383,14 @@ def write_ocr_page():
 
 <h2>यो प्रक्रिया पुनःचलाउन</h2>
 <p>यो नक्सा देखाउनका लागि मात्र होइन। हरेक कामको सामग्री, अपेक्षित नतिजा, पुनःजाँचको सीमा
-र मानवीय स्वीकृतिका ठाउँ स्रोत कोडमै खुला छन्। यसका लागि कुनै खास कम्पनीको सेवा अनिवार्य छैन;
-आफ्नो जिम्मा पूरा गर्न सक्ने एजेन्ट भए यही विधि अरूले पनि चलाउन सक्छन्।</p>
+र मानवीय स्वीकृतिका ठाउँ सार्वजनिक स्रोतमा खुला छन्। यसका लागि कुनै खास कम्पनीको सेवा
+अनिवार्य छैन; आफ्नो जिम्मा पूरा गर्न सक्ने एजेन्ट भए यही विधि अरूले पनि चलाउन सक्छन्।</p>
+<a class="ocr-source" href="https://github.com/chinge55/nepali_archives/blob/main/docs/ocr-workflow.md"
+   target="_blank" rel="noopener">
+  <span class="source-mark" aria-hidden="true">&lt;/&gt;</span>
+  <span><strong>स्रोत कोड र चलाउने विधि</strong><small>कार्यप्रवाह · जिम्मेवारी · जाँचका नियम</small></span>
+  <span class="source-arrow" aria-hidden="true">↗</span>
+</a>
 <p class="meta ocr-version">कार्यप्रवाह संस्करण १ · पछिल्लो संशोधन: २०२६-०८-१३</p>
 </article>"""
     (out / "index.html").write_text(
@@ -1102,6 +1108,19 @@ body{transition:background-color .25s ease,color .25s ease}
  letter-spacing:.06em}
 .ocr-status h2{position:relative;border:0;padding:0;margin:.25rem 0 .4rem;font-size:1.3rem}
 .ocr-status p{position:relative;margin:.25rem 0;font-size:.86rem;line-height:1.7}
+.ocr-source{display:grid;grid-template-columns:auto 1fr auto;gap:.85rem;align-items:center;
+ max-width:40rem;margin:1.1rem 0 0;padding:.9rem 1rem;border:1px solid var(--line);border-radius:.75rem;
+ background:linear-gradient(125deg,color-mix(in srgb,var(--accent) 9%,var(--bg)),var(--bg));
+ color:var(--fg);text-decoration:none}
+.ocr-source:hover{border-color:color-mix(in srgb,var(--accent) 48%,var(--line));
+ background:linear-gradient(125deg,color-mix(in srgb,var(--accent) 13%,var(--bg)),var(--bg))}
+.ocr-source .source-mark{display:grid;place-items:center;width:2.4rem;height:2.4rem;border-radius:.6rem;
+ background:color-mix(in srgb,var(--accent) 13%,var(--bg));color:var(--accent);
+ font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.7rem;font-weight:800}
+.ocr-source strong,.ocr-source small{display:block}
+.ocr-source strong{font-size:.88rem}
+.ocr-source small{margin-top:.16rem;color:var(--mut);font-size:.68rem;line-height:1.45}
+.ocr-source .source-arrow{color:var(--accent);font-size:1.1rem}
 .ocr-version{text-align:right;margin-top:1.5rem}
 @media(max-width:650px){
  .ocr-hero{padding:1.65rem 1.25rem 1.55rem}
