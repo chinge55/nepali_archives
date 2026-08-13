@@ -1,4 +1,4 @@
-# Review 2: Products & UX (Opus 4.8 agent, 2026-07-20)
+# Review 2: Products & UX (agent review, 2026-07-20)
 
 ## Comparison of existing Roman→Devanagari transliteration products
 

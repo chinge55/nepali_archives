@@ -2,7 +2,7 @@
 
 This module is deliberately an orchestration *state machine*, not an agent
 runner.  Whichever agent CLI is driving the run asks for ready tasks, claims
-them, runs local OCR or subscription-backed sub-agents, and records their
+them, runs local OCR or bounded sub-agents, and records their
 results here.  No model API client is imported and no method in this module
 writes to canonical ``archives/`` paths.
 
@@ -127,9 +127,8 @@ class Task(StrictModel):
     summary: str
     inputs: dict[str, Any] = Field(default_factory=dict)
     expected_result: dict[str, Any] = Field(default_factory=dict)
-    # What kind of reader this task needs.  Vendor model IDs are NOT recorded
-    # here: ``agent_profiles.py`` binds a capability to a concrete model at
-    # packet-build time, so a paused run can resume under a different tool.
+    # What kind of reader this task needs. Concrete agent IDs are never recorded
+    # here; an optional local profile resolves them only at packet-build time.
     capability: str | None = None
     # Legacy explicit pins.  Runs created before capabilities carry these and
     # still route exactly as they did; new graph code leaves them unset.

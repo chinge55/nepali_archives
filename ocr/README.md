@@ -21,15 +21,15 @@ PDF ──render──▶ pages/*.png ──engine A──▶ ocr/A/*.txt ─┐
 
 - **Engines are plugins** (`archive_ocr/engines/`): `tesseract` (classical
   baseline, fails *differently* from VLMs — that diversity is the point),
-  `surya` (Surya-2 VLM via llama.cpp/Vulkan; the vLLM/docker path needs
-  CUDA ≥ 13 which this machine's driver lacks), and **`ensemble` — the
+  `surya` (Surya-2 VLM via llama.cpp/Vulkan; alternative GPU deployments may
+  require a newer CUDA stack), and **`ensemble` — the
   default and the archive's scanning formula**: Surya's text verbatim,
   Tesseract as shadow, disagreeing lines written to `review.json` with
   lexicon-OOV annotation (the adjudication queue; verified to catch 4/4
   known Surya errors on the gold page). The ensemble never auto-corrects —
   a shadow can be confidently wrong; fixes happen at adjudication against
   the scan. Adding an engine = one module + one registry line.
-- **Jobs are directories** (`/mnt/disk_sda2/sangam/ocr_jobs/jobs/<id>/`):
+- **Jobs are directories** (`OCR_WORK_DIR/jobs/<id>/`):
   source.pdf + job.json + pages/ + ocr/<engine>/. No database; a job dir is
   complete, portable, hand-inspectable. All heavy artifacts live on the
   free disk (never `~` — it's nearly full).
@@ -95,7 +95,7 @@ makes the two decisions that change the shape or destination of the work.
 
 ```text
                      INTERACTIVE AGENT SESSION
-                  (subscription-backed sub-agents)
+                     (built-in sub-agents)
 
                   +----------------------------------+
                   | lead/coordinator                 |
@@ -130,12 +130,9 @@ makes the two decisions that change the shape or destination of the work.
 ```
 
 The repository contains no model-network client for this workflow. Before
-starting, confirm with your tool's own status command that its sub-agents are
-covered by a subscription rather than a metered API — `codex login status` must
-report ChatGPT sign-in (stop if it reports API-key authentication), `/status` in
-Claude Code, the equivalent elsewhere. Such a command can confirm *how* the tool
-authenticates, but the operator must know that the signed-in account is the
-intended subscription.
+starting, confirm that the local agent runner can launch bounded sub-agents in
+the current interactive session. Account, vendor, and concrete model choices
+remain local and are never written to the repository or DAG state.
 
 ### End-to-end lifecycle
 
@@ -143,8 +140,8 @@ The complete path for one scanned book is:
 
 ```text
  +-----------------------------+
- | 0. AUTH                     |
- | subscription sign-in check  |
+ | 0. READY                    |
+ | local agent capacity check  |
  +-------------+---------------+
                |
                v
@@ -272,18 +269,19 @@ lines or corrupt stanza numbering. A separate footnote task examines the same
 section’s page bottoms. Excluded modern/editorial sections do not create
 transcription tasks.
 
-### Which model reads a page
+### Which capability reads a page
 
 The graph records only a **capability tier** — `strong_reader` (planning,
 section reconciliation, targeted verification) or `fast_reader` (folios,
-dedupe, footnote sweeps). No vendor model ID is ever written into run state.
-`ocr/agent_profiles.json` binds a tier to a concrete model for the tool you are
-driving with, and `archive_ocr/agent_profiles.py` resolves it at packet-build
-time, so `book prompt` reports `capability`, `profile_set`, `model`, and
+dedupe, footnote sweeps). No provider or concrete agent ID is written into run
+state. The tracked `ocr/agent_profiles.json` publishes neutral effort defaults.
+Operators may privately bind tiers in ignored `ocr/agent_profiles.local.json`;
+`archive_ocr/agent_profiles.py` resolves that file only at packet-build time.
+Thus `book prompt` reports `capability`, `profile_set`, optional `model`, and
 `reasoning_effort` alongside the prompt:
 
 ```bash
-OCR_AGENT_PROFILE=claude-code python -m archive_ocr book prompt <run> <node> --token <t>
+OCR_AGENT_PROFILE=primary python -m archive_ocr book prompt <run> <node> --token <t>
 ```
 
 Precedence is: a legacy explicit `preferred_model` stored on the task (runs made
@@ -292,8 +290,8 @@ binding → nothing, meaning the tool's own default. An empty binding `{}` is a
 legitimate choice, and a missing bindings file degrades to "pin nothing" rather
 than failing. Because routing is advisory it is excluded when a rebuilt graph is
 compared against its approved plan — that is what lets a paused run resume under
-a different tool. Role guardrails live in `.codex/agents/*.toml` and
-`.claude/agents/*.md`; the packet prompt is always authoritative.
+a different tool. Provider-neutral role guardrails live in `ocr/agent_roles/`;
+the packet prompt is always authoritative.
 
 Every agent result is schema-bound to the claimed task, role, assigned source
 pages, evidence pages, and uncertainties. Role-specific contracts add fields
@@ -393,8 +391,7 @@ approved manifest.
 Start from `ocr/`:
 
 ```bash
-# First: confirm subscription-backed sub-agents with your tool's status command
-# (codex login status / /status in Claude Code / …). See the trust boundary above.
+# First: confirm that the local runner can launch the required built-in agents.
 python -m archive_ocr book init "/absolute/path/book.pdf" --author <author-id>
 python -m archive_ocr book status <run-id>
 

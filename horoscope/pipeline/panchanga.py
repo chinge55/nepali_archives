@@ -63,10 +63,16 @@ VARA = ["आइतबार", "सोमबार", "मङ्गलबार", 
 
 @lru_cache(maxsize=1)
 def _sky():
-    """Ephemeris + timescale, cached; data lives on the free disk."""
-    load = Loader(os.environ.get("SKYFIELD_DATA",
-                                 "/mnt/disk_sda2/sangam/model_cache/skyfield"),
-                  verbose=False)
+    """Ephemeris + timescale, cached in a portable user-cache location."""
+    cache_root = Path(
+        os.environ.get("XDG_CACHE_HOME", str(Path.home() / ".cache"))
+    ).expanduser()
+    data_dir = Path(
+        os.environ.get(
+            "SKYFIELD_DATA", str(cache_root / "nepali-archives" / "skyfield")
+        )
+    ).expanduser()
+    load = Loader(str(data_dir), verbose=False)
     eph = load("de440s.bsp")
     return load.timescale(), eph
 

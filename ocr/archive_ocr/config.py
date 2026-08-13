@@ -1,20 +1,47 @@
-"""Environment-driven configuration for the OCR infrastructure.
-
-Every path can be overridden with an environment variable so the same code
-runs on any machine. Defaults match this workstation (see ocr/README.md):
-big artifacts (jobs, model weights) live on the free disk, never in ~.
-"""
+"""Portable, environment-driven configuration for the OCR infrastructure."""
 from __future__ import annotations
 
+import json
 import os
 from dataclasses import dataclass, field
 from pathlib import Path
 
-_FREE_DISK = Path("/mnt/disk_sda2/sangam")
+_OCR_ROOT = Path(__file__).resolve().parent.parent
+_REPO_ROOT = _OCR_ROOT.parent
+_CACHE_ROOT = Path(
+    os.environ.get("XDG_CACHE_HOME", str(Path.home() / ".cache"))
+).expanduser()
+
+
+def _read_local_paths() -> dict[str, str]:
+    """Load ignored workstation paths without publishing them in source."""
+    path = _OCR_ROOT / "local_paths.json"
+    if not path.is_file():
+        return {}
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return {}
+    if not isinstance(data, dict):
+        return {}
+    return {
+        key: value
+        for key, value in data.items()
+        if isinstance(key, str) and isinstance(value, str) and value
+    }
+
+
+_LOCAL_PATHS = _read_local_paths()
 
 
 def _env_path(name: str, default: Path) -> Path:
-    return Path(os.environ.get(name, str(default))).expanduser()
+    value = os.environ.get(name) or _LOCAL_PATHS.get(name) or str(default)
+    return Path(value).expanduser()
+
+
+def _default_agent_profiles() -> Path:
+    local = _OCR_ROOT / "agent_profiles.local.json"
+    return local if local.is_file() else _OCR_ROOT / "agent_profiles.json"
 
 
 @dataclass(frozen=True)
@@ -23,7 +50,8 @@ class Settings:
 
     # Where job artifacts live: jobs/<job_id>/{source.pdf, job.json, pages/, ocr/}
     work_dir: Path = field(
-        default_factory=lambda: _env_path("OCR_WORK_DIR", _FREE_DISK / "ocr_jobs"))
+        default_factory=lambda: _env_path(
+            "OCR_WORK_DIR", _REPO_ROOT / ".ocr-work" / "jobs"))
 
     # Gold-standard pages (tracked in git): gold/<book>/pg-NNN.txt
     gold_dir: Path = field(
@@ -33,13 +61,12 @@ class Settings:
     # Page rendering
     dpi: int = field(default_factory=lambda: int(os.environ.get("OCR_DPI", "300")))
 
-    # Capability -> model bindings for the book workflow's sub-agent tasks.
-    # See archive_ocr/agent_profiles.py; missing file means "pin nothing".
+    # Optional private capability bindings for the book workflow's agent tasks.
+    # The tracked fallback contains provider-neutral effort defaults only.
     agent_profiles_path: Path = field(
         default_factory=lambda: _env_path(
-            "OCR_AGENT_PROFILES",
-            Path(__file__).resolve().parent.parent / "agent_profiles.json"))
-    # Overrides the bindings file's "active" set (e.g. codex, claude-code).
+            "OCR_AGENT_PROFILES", _default_agent_profiles()))
+    # Overrides the bindings file's active profile name.
     agent_profile: str = field(
         default_factory=lambda: os.environ.get("OCR_AGENT_PROFILE", ""))
 
@@ -52,7 +79,7 @@ class Settings:
     tesseract_lang: str = field(
         default_factory=lambda: os.environ.get("TESSERACT_LANG", "nep"))
 
-    # The ensemble formula's roles. Swapping the base model (e.g. a future
+    # The ensemble formula's roles. Swapping the base engine (e.g. a future
     # Surya-3 or CHURRO engine module) is a config change, not a code change.
     primary_engine: str = field(
         default_factory=lambda: os.environ.get("OCR_PRIMARY_ENGINE", "surya"))
@@ -62,14 +89,15 @@ class Settings:
     surya_bin: Path = field(
         default_factory=lambda: _env_path(
             "SURYA_BIN", Path("~/miniconda3/envs/surya_env/bin/surya_ocr")))
-    # Surya runs its VLM through llama.cpp (Vulkan build) — the vLLM/docker
-    # path needs CUDA >= 13 which this machine's driver does not provide.
+    # Surya runs its vision-language engine through llama.cpp (Vulkan build);
+    # alternative GPU deployments may require a newer CUDA stack.
     llama_cpp_binary: Path = field(
         default_factory=lambda: _env_path(
-            "LLAMA_CPP_BINARY", _FREE_DISK / "tools/llama-b10075/llama-server"))
+            "LLAMA_CPP_BINARY",
+            _CACHE_ROOT / "nepali-archives" / "llama" / "llama-server"))
     hf_home: Path = field(
         default_factory=lambda: _env_path(
-            "HF_HOME", _FREE_DISK / "model_cache/huggingface"))
+            "HF_HOME", _CACHE_ROOT / "huggingface"))
 
     def surya_env(self) -> dict[str, str]:
         """Environment for spawning the surya CLI (llama.cpp backend)."""

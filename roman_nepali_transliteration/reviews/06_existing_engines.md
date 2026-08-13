@@ -1,4 +1,4 @@
-# Review 6: Existing engines & cross-language implementations (Opus 4.8 agent, 2026-07-20)
+# Review 6: Existing engines & cross-language implementations (agent review, 2026-07-20)
 
 **Scope.** We want fuzzy *natural* typing ("mero naam ho" → मेरो नाम हो), a top-5 candidate dropdown, and next-word conversion with short-context re-ranking, running **entirely on a static site** (no server). That constraint is what separates "reuse this" from "overkill" below.
 

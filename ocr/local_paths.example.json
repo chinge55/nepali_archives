@@ -1,0 +1,6 @@
+{
+  "_comment": "Optional local overrides. Copy to local_paths.json; that file is ignored.",
+  "OCR_WORK_DIR": "/path/to/ocr_jobs",
+  "LLAMA_CPP_BINARY": "/path/to/llama-server",
+  "HF_HOME": "/path/to/model_cache"
+}

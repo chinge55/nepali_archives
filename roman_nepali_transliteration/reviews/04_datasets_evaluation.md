@@ -1,4 +1,4 @@
-# Review 4: Datasets & evaluation (Opus 4.8 agent, 2026-07-20)
+# Review 4: Datasets & evaluation (agent review, 2026-07-20)
 
 ## Dataset inventory
 

@@ -1,4 +1,4 @@
-# Review 2: Products & market (Opus 4.8 agent, 2026-07-21)
+# Review 2: Products & market (agent review, 2026-07-21)
 
 ## Product comparison table
 
@@ -39,7 +39,7 @@ This is the most important market signal for our purposes.
 - **The Nepali daily-prediction text is overwhelmingly re-syndicated, not originally authored.** Hamro Patro is the de-facto source of truth, and a whole ecosystem of unofficial scrapers/APIs pulls the rashifal text straight off hamropatro.com: [prabincankod/rashifal-api](https://github.com/prabincankod/rashifal-api) ("scrapes rashifal on every request"), [mrjudiyt/np-rashifal.api](https://github.com/mrjudiyt/np-rashifal.api), [milancodess/hamro-patro-scraper](https://github.com/milancodess/hamro-patro-scraper), [ankurgajurel/rashifal-api](https://github.com/ankurgajurel/rashifal-api). Many small Nepali sites/apps therefore display Hamro Patro's predictions.
 - **Ashesh.com.np is the other syndication rail** — official free embeddable widgets (iframe + JS, customizable width/height/header color) for rashifal, calendar, panchang, forex, and gold, explicitly meant for "blogs, news portals, or personal websites," monetized only by a required attribution backlink ([ashesh.com.np/rashifal](https://www.ashesh.com.np/rashifal/), [widget page](https://www.ashesh.com.np/nepali-calendar/widget/)). So a large share of Nepali sites don't author rashifal at all — they embed Ashesh's widget or scrape Hamro Patro.
 - **No authoritative single author to emulate.** Almost no Nepali site publishes a bylined daily astrologer. News portals (Ratopati /rashifal, Onlinekhabar /rashifal — "from renowned astrologers," ekantipur) run daily columns with no visible per-day byline, implying in-house/agency/syndicated copy. Named jyotishi columnists exist in print (a Devmani Basyal / देवमणि बस्याल surfaced, weakly sourced), but the online norm is anonymous.
-- **AI-generation is the rising pattern.** The global astrology-app market is ~USD 3–4B (2024) heading to ~USD 9B by 2030; India's ~USD 163M (2024) → ~USD 1.8B (2030), and vendors (AstroSage "AI Astrology," Om.AI, Astroficial) now market chart-specific AI predictions rather than mass sun-sign text ([astrosage.com](https://www.astrosage.com/), [developerbazaar list](https://developerbazaar.com/10-best-ai-powered-astrology-apps/)). Template/rule-generated → increasingly LLM-generated is the trajectory for the written layer.
+- **AI-generation is the rising pattern.** The global astrology-app market is ~USD 3–4B (2024) heading to ~USD 9B by 2030; India's ~USD 163M (2024) → ~USD 1.8B (2030), and vendors (AstroSage "AI Astrology," Om.AI, Astroficial) now market chart-specific AI predictions rather than mass sun-sign text ([astrosage.com](https://www.astrosage.com/), [developerbazaar list](https://developerbazaar.com/10-best-ai-powered-astrology-apps/)). Template/rule-generated → increasingly agent-generated is the trajectory for the written layer.
 
 ## Demand evidence
 

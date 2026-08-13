@@ -16,7 +16,8 @@ import json, re, sys
 from pathlib import Path
 from bs4 import BeautifulSoup
 
-DEVK = Path("/mnt/disk_sda2/sangam/nepali_archive/archives/authors/devkota")
+ROOT = Path(__file__).resolve().parent.parent
+DEVK = ROOT / "archives/authors/devkota"
 KK = Path("/tmp/kk")
 
 def clean_poem_text(html: str) -> str:

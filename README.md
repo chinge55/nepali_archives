@@ -3,6 +3,8 @@
 Free, public-domain Nepali literature — preserved, digitized, searchable.
 **Live at [www.nepaliarchives.org](https://www.nepaliarchives.org).**
 See [`mission.MD`](./mission.MD) for the charter and [`CONTRIBUTING.md`](./CONTRIBUTING.md) to help.
+Report credentials or personal-data exposure privately; see
+[`SECURITY.md`](./SECURITY.md).
 
 This repository is **source-only**: it holds the texts, their metadata, and the
 digitization pipeline. The reader website — reading pages, downloads, full-text search,
@@ -39,6 +41,8 @@ pipeline/
   stats.py                 # the /stats/ "अभिलेख एक नजरमा" page (build-time, called by build_site)
   devanagari_slug.py       # Devanagari -> slug / romanization helper
   validate.py              # contribution checks (run on every PR)
+  check_public_tree.py     # public-source privacy boundary
+  sanitize_extracted_html.py # remove scripts/comments from captured HTML
 .github/workflows/         # validate.yml (on PRs) · deploy.yml (build full pipeline + deploy)
 CONTRIBUTING.md · AGENTS.md · Rights.md · LICENSE
 ```

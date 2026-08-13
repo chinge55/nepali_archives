@@ -31,5 +31,13 @@ __pycache__/
 /.ocr-work/
 
 # API keys — never commit
+
+# Local agent/tool bindings — public files describe capabilities, not vendors
+/ocr/agent_profiles.local.json
+/ocr/local_paths.json
+/horoscope/generation.local.yaml
+
+# Private research workspace — not part of Nepali Archives
+/economic_analysis/
 .env
 **/.env

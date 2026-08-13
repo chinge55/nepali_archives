@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Plain-assert regression spec for subscription-only agent contracts."""
+"""Plain-assert regression spec for bounded agent contracts."""
 import sys
 from contextlib import contextmanager
 from pathlib import Path

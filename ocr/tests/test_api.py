@@ -35,7 +35,7 @@ check(set(r.json()["engines"]) >= {"tesseract", "surya", "ensemble"},
 
 # unknown engine is rejected before anything is written
 r = client.post("/jobs", files={"file": ("x.pdf", b"%PDF-1.4 junk")},
-                data={"engines": "gpt9000"})
+                data={"engines": "missing-engine"})
 check(r.status_code == 422, f"unknown engine -> 422, got {r.status_code}")
 check(client.get("/jobs").json() == [], "rejected submit must write nothing")
 

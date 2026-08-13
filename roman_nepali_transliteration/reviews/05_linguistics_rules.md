@@ -1,4 +1,4 @@
-# Review 5: Nepali romanization linguistics & rule design (Opus 4.8 agent, 2026-07-20)
+# Review 5: Nepali romanization linguistics & rule design (agent review, 2026-07-20)
 
 ## 1. `pipeline/devanagari_slug.py` — the reverse map, documented
 

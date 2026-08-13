@@ -126,6 +126,19 @@ author dir == `author.id`; `text.txt` non-empty Devanagari; `rights.status` ∈
 
 ## Git / deploy
 
+- **This repository is public. Treat every commit as permanent publication.**
+  Before staging or pushing, inspect `git status --short`, the complete staged
+  path list, and `git diff --cached`; run `pipeline/check_public_tree.py`.
+  Never use `git add -A` in a dirty worktree. Stage only explicit intended
+  paths, and leave unrelated or unreviewed files untracked.
+- Never publish credentials, `.env` files, private research, local machine
+  paths, authenticated remotes, SSH details, account/subscription arrangements,
+  vendor names, or concrete agent/model identifiers. Public workflow material
+  should describe logical roles and capability tiers only; actual bindings
+  belong in the ignored local files documented by `SECURITY.md`.
+- Removing something in a later commit does not erase public Git history.
+  If sensitive data is ever committed, stop: revoke/rotate the credential first
+  and assess history cleanup before making another push.
 - **Source-only repo.** Tracked per work: `metadata.json`, `text.txt`, the source
   PDF/HTML (`extracted/`). **Git-ignored (CI rebuilds — never commit):** `reader.html`,
   `reader.epub`, `archives/index.json`, `assets/fonts/*.woff2` (subset), `site/`.
@@ -147,8 +160,7 @@ author dir == `author.id`; `text.txt` non-empty Devanagari; `rights.status` ∈
 ## Skills (use them — they encode the proven workflows)
 
 Each skill is a `skills/<name>/SKILL.md` (YAML frontmatter + markdown — the open
-Agent Skills format). `.claude/skills` is a symlink to `skills/` so Claude Code
-auto-discovers them; if your tool has no skill auto-discovery, read the relevant
+Agent Skills format). If your tool has no skill auto-discovery, read the relevant
 `skills/<name>/SKILL.md` before starting that kind of task — they are plain
 markdown and encode hard-won lessons you should not re-derive.
 

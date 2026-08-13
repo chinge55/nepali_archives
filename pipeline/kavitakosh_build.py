@@ -25,7 +25,7 @@ from urllib.parse import unquote
 from indic_transliteration import sanscript
 from indic_transliteration.sanscript import transliterate
 
-ROOT = Path("/mnt/disk_sda2/sangam/nepali_archive")
+ROOT = Path(__file__).resolve().parent.parent
 DEVK = ROOT / "archives/authors/devkota"
 KK = Path("/tmp/kk")
 TODAY = date.today().isoformat()

@@ -3,7 +3,7 @@ name: ship
 description: >-
   Verify → commit → push → confirm-live for this archive. Use whenever a change
   (works, pipeline, site, docs) is ready to land: runs the contribution checks,
-  commits in the repo's style, pushes over SSH (origin is broken — see below),
+  commits in the repo's style, pushes to the configured repository,
   and verifies the CI deploy actually reached www.nepaliarchives.org.
 ---
 
@@ -25,29 +25,19 @@ you intended — any `reader.*`/`index.json`/`*.woff2` showing up means gitignor
 
 ## 2. Commit
 
-Per logical batch (one book / one feature / one fix). Style: imperative summary line,
-a body that explains *what and why* (counts, dedup decisions, gotchas hit), ending
-with your tool's standard AI co-author trailer, e.g.:
-
-```
-Co-Authored-By: <assistant/model name> <noreply@<vendor domain>>
-```
-
-(Claude Code: `Co-Authored-By: Claude <model name> <noreply@anthropic.com>`.)
+Per logical batch (one book / one feature / one fix). Style: imperative summary
+line and a body that explains *what and why* (counts, dedup decisions, gotchas
+hit). Do not add vendor or concrete model names to commit messages or trailers.
 
 **Commit or push only when the user asks.**
 
-## 3. Push — SSH, never `origin`
+## 3. Push
 
-`origin` is credential-less HTTPS: pushes fail, and its stale tracking ref makes
-`git status` show a bogus `[ahead N]`. Ignore it. Push:
+Push through a locally configured authenticated remote. Repository URLs,
+account names, and key paths belong in ignored DEPLOY_NOTES.md, never this
+skill. Use the authenticated push command recorded there:
 
-```bash
-git push git@github.com:chinge55/nepali_archives.git main
-```
-
-(`~/.ssh/id_ed25519` is authenticated as repo owner `chinge55`.) To check what the
-remote really has: `git ls-remote git@github.com:chinge55/nepali_archives.git main`.
+See DEPLOY_NOTES.md.
 
 ## 4. Confirm the deploy (background poll)
 

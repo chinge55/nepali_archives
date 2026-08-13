@@ -1,4 +1,4 @@
-"""Versioned contracts for subscription-backed OCR sub-agents.
+"""Versioned contracts for bounded OCR sub-agents.
 
 This module does not call a model.  It builds bounded prompts for the built-in
 sub-agents of whichever agent CLI is driving the run, and validates the JSON
@@ -28,9 +28,8 @@ class AgentRole(str, Enum):
     targeted_verifier = "targeted_verifier"
 
 
-# Logical profile names, bound per tool (e.g. .codex/agents/ocr-*.toml or
-# .claude/agents/ocr-*.md).  A tool with no profile system can ignore these and
-# run the packet's prompt directly — build_prompt() output is self-contained.
+# Logical profile names documented in ocr/agent_roles/. A runner with no
+# profile system can ignore these and run the self-contained packet prompt.
 AGENT_PROFILE_BY_ROLE: dict[AgentRole, str] = {
     AgentRole.structure: "ocr_structure",
     AgentRole.folio: "ocr_support",

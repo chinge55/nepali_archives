@@ -17,7 +17,7 @@
 - NO AGPL in the pipeline or requirements (swisseph/pyswisseph/drik-panchanga/
   PyJHora). A local swetest binary may serve as an OFFLINE validation oracle;
   it is never shipped, never imported, never in CI.
-- No LLM on the critical path. Template prose is committed source, reviewed.
+- No agent on the critical path. Template prose is committed source, reviewed.
 - Pages are JS-free, static, fail-soft (a missed daily build leaves the
   newest dated page up with an honest banner — never blank, never wrong-date
   without saying so).

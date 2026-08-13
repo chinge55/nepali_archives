@@ -1,9 +1,9 @@
-"""Bind a task's capability tier to a concrete model for the driving tool.
+"""Resolve a task's capability tier for the operator's local agent runner.
 
 The workflow graph records only *what kind of reader* a task needs
-(``strong_reader`` / ``fast_reader``).  This module resolves that to a model
-name and reasoning effort using ``ocr/agent_profiles.json``, so switching agent
-CLIs is a config change and no vendor model ID is ever written into run state.
+(``strong_reader`` / ``fast_reader``). The tracked configuration supplies only
+provider-neutral effort defaults. An ignored local file may bind those tiers to
+concrete agents without publishing that choice or writing it into run state.
 
 Resolution precedence, highest first:
 

@@ -1,8 +1,8 @@
-# Review 3: Browser-side implementation technology (Opus 4.8 agent, 2026-07-20)
+# Review 3: Browser-side implementation technology (agent review, 2026-07-20)
 
 Scope: how to *build* the client-side suggestion engine on a static (GitHub Pages / `www.nepaliarchives.org`) site — libraries, data structures, inference runtimes, loading, and input plumbing — with real size/latency numbers. The linguistic pipeline (rules → lexicon → normalized lookup → neural fallback → re-rank) is assumed; this covers what runs it in the browser.
 
-Grounding note: this repo already ships a Rust→WASM search engine (Pagefind, invoked as `npx pagefind` in CI per `CLAUDE.md`), subsets fonts to `woff2`, and its PDF reader depends on GitHub Pages honoring `Accept-Ranges`/Range requests. So "lazy-loaded WASM + compact binary assets + range-served static files on GH Pages" is already proven infrastructure here, not a new bet.
+Grounding note: this repo already ships a Rust→WASM search engine (Pagefind, invoked as `npx pagefind` in CI per `AGENTS.md`), subsets fonts to `woff2`, and its PDF reader depends on GitHub Pages honoring `Accept-Ranges`/Range requests. So "lazy-loaded WASM + compact binary assets + range-served static files on GH Pages" is already proven infrastructure here, not a new bet.
 
 ## 1. JS transliteration libraries — deterministic mapping ≠ suggestion typing
 

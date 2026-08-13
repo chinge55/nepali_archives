@@ -276,7 +276,7 @@ def test_expand_repairs_qa_after_cascade_reset(root: Path) -> None:
 def test_expand_accepts_a_legacy_model_pinned_run(root: Path) -> None:
     """A pre-capability run still matches its approved plan after the upgrade.
 
-    Routing is advisory, so a stored task pinned to an old vendor model must not
+    Routing is advisory, so a stored task pinned to an old local agent must not
     read as "differs from approved plan" when the graph is rebuilt.
     """
     workflow, source = make_workflow(root)
@@ -380,13 +380,12 @@ def test_packet_uses_validated_custom_ocr_root(root: Path) -> None:
     for page in expected_pages:
         assert str(page.resolve()) in packet["prompt"]
     assert str(expected_root / "fixture-job" / "ocr" / "ensemble") in packet["prompt"]
-    # The packet is where a capability becomes a concrete model, and the only
-    # place a vendor name may legitimately appear.
+    # The packet is where a capability may receive a private local binding.
     assert packet["capability"] == STRONG_READER
     assert packet["agent_profile"] == "ocr_structure"
     assert packet["profile_set"] == active_profile_name()
     assert set(packet) >= {"model", "reasoning_effort", "profile_set", "capability"}
-    # A model ID must never have been persisted into run state to get here.
+    # A concrete agent ID must never have persisted into run state to get here.
     assert workflow.load_run(run.id).nodes["plan_structure"].task.preferred_model is None
 
 

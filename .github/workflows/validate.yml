@@ -21,6 +21,10 @@ jobs:
       - run: pip install jsonschema
       # 1) metadata schema, slug/id rules, text.txt sanity, rights gate
       - run: python3 pipeline/validate.py
-      # 2) dry-run the build so broken rendering/pagination is caught (nothing is deployed)
+      # 2) public-source hygiene: private local bindings stay private
+      - run: python3 pipeline/check_public_tree.py
+      # 3) archived pages contain no executable or comment data
+      - run: python3 pipeline/sanitize_extracted_html.py --check
+      # 4) dry-run the build so broken rendering/pagination is caught (nothing is deployed)
       - run: python3 pipeline/build_index.py
       - run: python3 pipeline/build_site.py

@@ -7,6 +7,10 @@ this isolates the article body, strips site chrome (nav, sidebars, share/like
 widgets, related posts, comments), and writes clean text.txt preserving
 paragraph and chapter structure. No OCR; the text is already Unicode.
 
+Before committing a newly captured source page, run
+pipeline/sanitize_extracted_html.py on it. The sanitizer removes executable
+elements and reader comments while retaining the source content used here.
+
 Needs BeautifulSoup: `pip install beautifulsoup4 lxml` (in conda env archive_env).
 
 Usage:

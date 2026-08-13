@@ -1,17 +1,28 @@
 # पात्रो/राशिफल: Project Plan
 
-**Status (2026-07-21b):** Stage 2.5 DONE — LLM prose layer, per the user's
-API-key + cron + rules direction, reconciled with principle 2: the rules
-engine stays the authority (valence/house/चन्द्राष्टम computed, never
-LLM-decided); `pipeline/generate_month.py` (stdlib urllib) calls OpenAI
-**gpt-5.6-luna** (key in `horoscope/.env`, GITIGNORED) in monthly batches →
+**Status (2026-08-13):** Monthly coverage extended. Computed panchanga now
+covers 2026-07-01 through 2026-09-30 (92 dated pages), and reviewed prose
+covers 2026-07-21 through 2026-09-30 (72 days, 864 राशि readings). The new
+August and September batches produced 732/732 mechanically valid entries.
+The editorial audit found no exact duplicated readings, verified every
+explicit house reference against the computed state, checked every
+चन्द्राष्टम caution, and found no concrete medical, financial, or legal
+instruction. Seven awkward literal caution phrases were corrected, and the
+writer prompt now rejects that robotic construction. Daily builds still make
+zero agent calls; committed prose remains an optional layer over the
+deterministic fallback.
+
+**Status (2026-07-21b):** Stage 2.5 DONE — offline agent prose layer, reconciled
+with principle 2: the rules engine stays the authority
+(valence/house/चन्द्राष्टम computed, never agent-decided);
+`pipeline/generate_month.py` uses a private local execution binding in monthly batches →
 mechanical validator (Devanagari-only charset, no Latin, 100–650 chars,
 ≥3 sentences, final danda; failures dropped) → `content/YYYY-MM.json`
 committed as reviewed source. `build_patro_page.py` prefers committed prose,
 falls back per-राशि to the deterministic templates — daily build makes ZERO
 API calls. First batch: 2026-07-21/22, 24/24 texts passed, quality verified
 against computed facts (houses correct, कुम्भ सावधान+चन्द्राष्टम caution
-present). "No LLM on the critical path" holds: the LLM is an offline batch
+present). "No agent on the critical path" holds: the agent is an offline batch
 stylist; templates remain the always-working floor.
 
 **Status (2026-07-21):** literature review approved ("I like this, go ahead").
@@ -34,7 +45,7 @@ deferred to Stage 2 (no classical basis — leaning drop or clearly-marked).
 1. Authenticity contract: चन्द्र-राशि/गोचर system, नामाक्षर table, sunrise-
    reckoned Kathmandu panchanga, BS-date-first, classical citations quoted
    only for what they actually say. Never a birth-month picker.
-2. Deterministic everything on the critical path. No LLM. No AGPL anywhere
+2. Deterministic everything on the critical path. No agent. No AGPL anywhere
    near the pipeline (swisseph allowed ONLY as a local validation oracle,
    never in requirements, never shipped).
 3. Static, JS-free pages; fail-soft daily loop; committed dated sources.

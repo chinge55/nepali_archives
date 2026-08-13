@@ -26,7 +26,7 @@ DEVNUM = str.maketrans("0123456789", "०१२३४५६७८९")
 
 
 def prose_for(date: dt.date) -> dict:
-    """Reviewed-and-committed LLM prose for the date (content/YYYY-MM.json),
+    """Reviewed-and-committed agent prose for the date (content/YYYY-MM.json),
     empty dict when absent — each राशि falls back to the template text."""
     path = CONTENT / f"{date.strftime('%Y-%m')}.json"
     if not path.exists():

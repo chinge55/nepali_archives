@@ -1,4 +1,4 @@
-# Review 3: Computation & licensing (Opus 4.8 agent, 2026-07-21)
+# Review 3: Computation & licensing (agent review, 2026-07-21)
 
 Scope: what computes the sky, what turns it into panchanga, what handles Bikram Sambat — under the clean-license rule (MPL/MIT/BSD/Apache/CC only, **no (A)GPL**), run at build time in Python, publishing only output text.
 

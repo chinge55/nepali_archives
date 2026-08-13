@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Plain-assert spec for capability -> model resolution.
+"""Plain-assert spec for capability -> local execution-binding resolution.
 
-The graph must never carry a vendor model ID; this module is the only place a
-capability becomes a concrete model, so its precedence rules are load-bearing.
+The graph must never carry a concrete agent ID; this module is the only place a
+capability may receive a local binding, so its precedence rules are load-bearing.
 """
 import json
 import sys
@@ -26,13 +26,13 @@ from archive_ocr.agent_profiles import (
 
 
 PROFILES = {
-    "active": "vendor-a",
+    "active": "profile-a",
     "profiles": {
-        "vendor-a": {
+        "profile-a": {
             "strong_reader": {"model": "a-strong", "reasoning_effort": "high"},
             "fast_reader": {"model": "a-fast", "reasoning_effort": "medium"},
         },
-        "vendor-b": {
+        "profile-b": {
             "strong_reader": {"model": "b-strong", "reasoning_effort": "high"},
             "fast_reader": {},
         },
@@ -66,9 +66,9 @@ def profile_override(name: str):
 
 
 def test_active_profile_prefers_env_override_then_file() -> None:
-    assert active_profile_name(PROFILES) == "vendor-a"
-    with profile_override("vendor-b"):
-        assert active_profile_name(PROFILES) == "vendor-b"
+    assert active_profile_name(PROFILES) == "profile-a"
+    with profile_override("profile-b"):
+        assert active_profile_name(PROFILES) == "profile-b"
     # A file with no "active" key falls back to the neutral default.
     assert active_profile_name({}) == DEFAULT_PROFILE
 
@@ -76,11 +76,11 @@ def test_active_profile_prefers_env_override_then_file() -> None:
 def test_capability_resolves_through_the_active_profile() -> None:
     strong = resolve(STRONG_READER, profiles=PROFILES)
     assert (strong.profile, strong.model, strong.reasoning_effort) == (
-        "vendor-a", "a-strong", "high",
+        "profile-a", "a-strong", "high",
     )
-    with profile_override("vendor-b"):
+    with profile_override("profile-b"):
         assert resolve(STRONG_READER, profiles=PROFILES).model == "b-strong"
-        # vendor-b deliberately pins nothing for fast_reader.
+        # profile-b deliberately pins nothing for fast_reader.
         empty = resolve(FAST_READER, profiles=PROFILES)
         assert empty.model is None and empty.reasoning_effort is None
         assert empty.capability == FAST_READER
@@ -96,7 +96,7 @@ def test_legacy_preferred_model_wins_over_the_profile() -> None:
     assert routed.model == "legacy-pin"
     assert routed.reasoning_effort == "high"
     # Still reports which profile set was in force, for the packet.
-    assert routed.profile == "vendor-a"
+    assert routed.profile == "profile-a"
 
 
 def test_missing_capability_and_missing_bindings_pin_nothing() -> None:

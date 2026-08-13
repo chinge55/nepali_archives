@@ -1,4 +1,4 @@
-# Review 1: ज्योतिष domain & Nepali tradition (Opus 4.8 agent, 2026-07-21)
+# Review 1: ज्योतिष domain & Nepali tradition (agent review, 2026-07-21)
 
 ## 1. What a दैनिक राशिफल actually is: चन्द्र राशि, not sun signs
 

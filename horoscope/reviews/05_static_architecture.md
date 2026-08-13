@@ -1,12 +1,12 @@
-# Review 5: Daily content on the static architecture (Opus 4.8 agent, 2026-07-21)
+# Review 5: Daily content on the static architecture (agent review, 2026-07-21)
 
 Facet: how daily-changing content fits this repo's static/GitHub-Pages/JS-frugal architecture. Grounded in the actual pipeline (`.github/workflows/deploy.yml`, `pipeline/build_site.py`) and the existing `/type/` tool precedent.
 
 ## The decisive architectural fact for THIS repo
 
-`deploy.yml` already **computes every derived byte at build time from sources and publishes `site/` as a Pages artifact via `actions/deploy-pages@v4` — it never commits build output** (the repo is "source-only" by charter, CLAUDE.md). That single fact settles the "daily commit vs no commit" question: **a scheduled run of the existing build produces a fresh page with ZERO repo commits.** "Today" is just the build machine's clock at run time. No bot-commit history pollution is required — the daily change lives only in the deployed artifact, exactly like `reader.html` or `index.json` do today.
+`deploy.yml` already **computes every derived byte at build time from sources and publishes `site/` as a Pages artifact via `actions/deploy-pages@v4` — it never commits build output** (the repo is "source-only" by charter, AGENTS.md). That single fact settles the "daily commit vs no commit" question: **a scheduled run of the existing build produces a fresh page with ZERO repo commits.** "Today" is just the build machine's clock at run time. No bot-commit history pollution is required — the daily change lives only in the deployed artifact, exactly like `reader.html` or `index.json` do today.
 
-The only thing that *can't* be conjured from the clock is **daily prose** (an LLM step). Prose generated fresh at build time and never stored is ephemeral and non-reproducible — which collides head-on with the archive's identity (permanent, reproducible sources). That tension, not the astro math, is what picks the architecture.
+The only thing that *can't* be conjured from the clock is **daily prose** (an agent step). Prose generated fresh at build time and never stored is ephemeral and non-reproducible — which collides head-on with the archive's identity (permanent, reproducible sources). That tension, not the astro math, is what picks the architecture.
 
 ## Three regeneration architectures compared
 
@@ -19,19 +19,19 @@ The only thing that *can't* be conjured from the clock is **daily prose** (an LL
 | **SEO (static HTML text)** | Strong | Strong | Weak (JS-rendered, no static text) |
 | **Archive persistence** | None unless dated pages also kept | Native — dated pages ARE the archive | None (nothing stored) |
 | **Reproducible / mission-coherent** | Only if prose is deterministic/templated | Yes — content is a committed source like `text.txt` | Prose must be template-only |
-| **Fresh LLM prose possible?** | Yes (build-time), but ephemeral | Yes, in batches (monthly), archived | No (templates only) |
+| **Fresh agent prose possible?** | Yes (build-time), but ephemeral | Yes, in batches (monthly), archived | No (templates only) |
 | **Failure blast radius** | Cron miss → stale/blank today | Cron miss → yesterday's *real* page persists | None, but a JS bug blanks the page for everyone |
 
 **Recommendation for this repo: B as the substrate + a thin A on top.**
 
 Concretely:
-1. **Treat the rashifal corpus as archived source, not ephemeral output.** Panchanga (tithi/nakshatra/yoga/karana/vaar) is deterministic given date+location, so it can be precomputed arbitrarily far ahead. The prose is authored/LLM-generated in **batches (e.g. a month at a time), reviewed, and committed** as a source file per date — the same discipline the archive already applies to `text.txt`. This makes the daily content *reproducible and permanent*, which is the whole point of the site, and sidesteps "an LLM can't precompute a year of fresh-feeling prose": you top up monthly, which is fresh enough for horoscope prose and requires no daily automation.
+1. **Treat the rashifal corpus as archived source, not ephemeral output.** Panchanga (tithi/nakshatra/yoga/karana/vaar) is deterministic given date+location, so it can be precomputed arbitrarily far ahead. The prose is authored/agent-generated in **batches (e.g. a month at a time), reviewed, and committed** as a source file per date — the same discipline the archive already applies to `text.txt`. This makes the daily content *reproducible and permanent*, which is the whole point of the site, and sidesteps "an agent can't precompute a year of fresh-feeling prose": you top up monthly, which is fresh enough for horoscope prose and requires no daily automation.
 2. **Build dated archive pages** `/rashifal/YYYY-MM-DD/` for every date that has a source → a persistent राशिफल archive, which *fits the site's archival identity* and costs trivial storage.
 3. **`/rashifal/` (canonical "today") is produced by a light daily scheduled build** that reads the machine clock and renders today's dated content into the `/rashifal/` index (canonical link + `dateModified`). No commit; the cron only re-deploys. If today's source is missing, the build falls back to the most recent available dated page with an honest "पुरानो" banner — never blank.
 
 This keeps **every reading page JS-free** (matching the `/type/` precedent where JS loads *only* on its own page), keeps **git history clean** (no daily bot commits — content arrives in reviewed monthly batches), and makes **cron failure a soft failure** (yesterday's page is a real, committed, deployed page that simply stays up).
 
-Reject **C**: a browser ephemeris is exactly the kind of heavy client-side JS the archive avoids, it produces no server-rendered text for search engines, and it stores nothing — the opposite of an archive. Reject **pure A** (fresh LLM prose at build time, nothing stored): simplest to wire, but ephemeral and non-reproducible, violating the cardinal preserve-don't-rewrite ethos.
+Reject **C**: a browser ephemeris is exactly the kind of heavy client-side JS the archive avoids, it produces no server-rendered text for search engines, and it stores nothing — the opposite of an archive. Reject **pure A** (fresh agent prose at build time, nothing stored): simplest to wire, but ephemeral and non-reproducible, violating the cardinal preserve-don't-rewrite ethos.
 
 *(Licensing note bordering the computation facet: if precomputing panchanga, prefer an MIT-licensed engine — `skyfield` + public-domain JPL ephemeris, or `astronomy-engine` — over Swiss Ephemeris, which is dual AGPL-3.0/commercial and would sit awkwardly beside the "clean licenses" constraint even though build-time use producing static data is defensible.)*
 
@@ -100,7 +100,7 @@ News-portal page structure to mirror (all twelve signs on one page with anchor l
 
 ## The 3 most load-bearing findings
 
-1. **No daily commit is needed — and shouldn't be used.** `deploy.yml` already builds `site/` in-workflow and publishes via `actions/deploy-pages@v4` with no repo commit, so a scheduled build regenerates "today" for free with a clean git history. The right model is **precompute panchanga (deterministic) + commit LLM prose in reviewed monthly batches as archive source, with a thin daily cron only re-pointing `/rashifal/` at today** — reproducible, permanent, JS-free, and mission-coherent, instead of ephemeral build-time prose.
+1. **No daily commit is needed — and shouldn't be used.** `deploy.yml` already builds `site/` in-workflow and publishes via `actions/deploy-pages@v4` with no repo commit, so a scheduled build regenerates "today" for free with a clean git history. The right model is **precompute panchanga (deterministic) + commit agent prose in reviewed monthly batches as archive source, with a thin daily cron only re-pointing `/rashifal/` at today** — reproducible, permanent, JS-free, and mission-coherent, instead of ephemeral build-time prose.
 
 2. **GitHub cron is unreliable-by-design, so the architecture must fail soft, not the cron be trusted.** Runs are commonly delayed 5–30 min and occasionally dropped. Target **~00:45–01:37 UTC (after Kathmandu's latest sunrise ≈06:30 NPT, since panchanga is sunrise-reckoned), at off-peak odd minutes, with two crons + `workflow_dispatch` + a Healthchecks.io dead-man's-switch** — and lean on committed dated pages so a missed run just leaves yesterday's real page up. The 10-min Pages cache makes daily freshness a non-issue.
 

@@ -22,6 +22,8 @@ from pathlib import Path
 from urllib.parse import urljoin, unquote, urlparse
 from urllib.request import urlopen, Request
 
+from sanitize_extracted_html import sanitize
+
 BASE = "https://kavitakosh.org"
 UA = "Mozilla/5.0 (NepaliArchives/1.0; +archival; contact sangam)"
 DEV = re.compile(r"[ऀ-ॿ]")
@@ -40,8 +42,9 @@ def fetch(url: str, cache_dir: Path, delay=1.0) -> str:
     req = Request(url, headers={"User-Agent": UA})
     with urlopen(req, timeout=60) as r:
         raw = r.read().decode("utf-8", errors="replace")
-    p.write_text(raw, encoding="utf-8")
-    return raw
+    archived = sanitize(raw)
+    p.write_text(archived, encoding="utf-8")
+    return archived
 
 def norm_title(t: str) -> str:
     # strip trailing " / author", whitespace, trailing dot

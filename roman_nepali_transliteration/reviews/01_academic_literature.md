@@ -1,4 +1,4 @@
-# Review 1: Academic literature — Roman→Indic back-transliteration (Opus 4.8 agent, 2026-07-20)
+# Review 1: Academic literature — Roman→Indic back-transliteration (agent review, 2026-07-20)
 
 Scope note: "back-transliteration" here = Latin/Roman script → native Brahmic (Devanagari) script. Accuracy figures are as reported by the authors; transliteration is usually scored as **word-level top-1 accuracy** or **CER/WER** (lower is better).
 

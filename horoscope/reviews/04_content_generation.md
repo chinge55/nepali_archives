@@ -1,6 +1,6 @@
-# Review 4: Content generation (Opus 4.8 agent, 2026-07-21)
+# Review 4: Content generation (agent review, 2026-07-21)
 
-*Facet: how to GENERATE the daily text — rule-based vs. template vs. LLM vs. hybrid, with an authenticity-first recommendation.*
+*Facet: how to GENERATE the daily text — rule-based vs. template vs. agent vs. hybrid, with an authenticity-first recommendation.*
 
 ## 1. Rule-based generation from classical transits (गोचर)
 
@@ -104,14 +104,14 @@ Sources: **Hamro Patro**, **Ratopati**, **DCNepal**.
 |---|---|---|---|---|---|
 | **Astrologer-written** | High (if real jyotishi) | Low | Ongoing human labour | Yes | N/A |
 | **Rule + template pool** | High (facts real; prose framed) | Low **if keyed to daily panchanga state** | ~zero | **Yes — deterministic, rebuildable** | **Yes** |
-| **Pure LLM** | **Low** — hallucinates, non-reproducible | Low | Trivial | **No** | No |
-| **Hybrid (rules compute → LLM/template renders)** | Medium-High | Low | Trivial | Partial | Only with template fallback |
+| **Pure agent** | **Low** — hallucinates, non-reproducible | Low | Trivial | **No** | No |
+| **Hybrid (rules compute → agent/template renders)** | Medium-High | Low | Trivial | Partial | Only with template fallback |
 
-### LLM specifics
-- Frontier LLMs handle Nepali blurbs fine; small Nepali models (NepaliGPT, perplexity ~21–26) are weak.
-- Build-time daily call ≈ **$0.005–0.05/day → a few dollars/year on Haiku**. Cost is a non-issue.
-- **The real blocker is the repo's own charter**: "repo holds ONLY sources… CI rebuilds every build" + "faithful to the source." LLM output is non-deterministic and non-reproducible — **LLM-as-centerpiece is architecturally and philosophically off-charter.**
-- If used anyway: cron CI call with **mandatory deterministic template fallback** on any failure — meaning templates must exist regardless; LLM is at best enrichment.
+### agent specifics
+- High-intelligence agents handle short Nepali prose better than smaller agents.
+- Batch-generation cost is operationally minor; reproducibility is the real issue.
+- **The real blocker is the repo's own charter**: "repo holds ONLY sources… CI rebuilds every build" + "faithful to the source." agent output is non-deterministic and non-reproducible — **agent-as-centerpiece is architecturally and philosophically off-charter.**
+- If used anyway: cron CI call with **mandatory deterministic template fallback** on any failure — meaning templates must exist regardless; agent is at best enrichment.
 
 ## 7. Disclaimer / ethics norms
 
@@ -121,18 +121,18 @@ Sources: **Hamro Patro**, **Ratopati**, **DCNepal**.
 
 ## 8. Opinionated recommendation
 
-**Build a deterministic, offline, rule-driven "पञ्चाङ्ग + शास्त्रीय उद्धरण" feature; per-rashi prose as clearly-labelled template output; NO LLM on the critical path.**
+**Build a deterministic, offline, rule-driven "पञ्चाङ्ग + शास्त्रीय उद्धरण" feature; per-rashi prose as clearly-labelled template output; NO agent on the critical path.**
 
 1. **Compute daily at build time (deterministic):** tithi, vara, nakshatra(+pada), yoga, karana; per rashi: Chandra-gochara house, Chandrabala, Tarabala.
 2. **Lead with authenticity:** panchanga facts + a **daily public-domain classical citation** (Bṛhat Saṁhitā/Bṛhat Jātaka verse in Devanāgarī + Nepali translation) chosen by today's nakshatra/yoga. Quote classics only for what they actually say.
 3. **Render per-rashi prose from a valence-tagged template pool** keyed to (weekday lord × Tarabala × tithi/yoga valence), Hamro-Patro register: 3–4 sentences, rotate काम/स्वास्थ्य/प्रेम/आम्दानी, optional शुभ रंग/अंक.
 4. **Label मनोरञ्जन** with a cultural-framing disclaimer.
-5. **LLM only as optional non-blocking enrichment** (skip initially).
+5. **agent only as optional non-blocking enrichment** (skip initially).
 
 ## The 3 most load-bearing findings
 
 1. **The Moon's sign changes only every ~2.25 days — honest daily variation must be driven by the faster panchanga limbs, above all today's *nakshatra → per-rashi Tarabala* (plus weekday lord, tithi, yoga).** That computed combination changes every day and yields thousands of distinct, citable per-rashi states — varied text with zero invention.
 
-2. **A deterministic rule+template engine is the only approach that fits this archive's charter; LLM-as-generator is off-charter.** Non-reproducible output clashes with "sources only, CI rebuilds" and "faithful to the source." Cost is negligible either way — the decision is philosophical, not financial.
+2. **A deterministic rule+template engine is the only approach that fits this archive's charter; agent-as-generator is off-charter.** Non-reproducible output clashes with "sources only, CI rebuilds" and "faithful to the source." Cost is negligible either way — the decision is philosophical, not financial.
 
 3. **The winning move is "computed panchanga + genuine public-domain classical citation" (a real product category — cf. the Bṛhat Saṁhitā-quoting *Candra Gocara Dīpikā*), with per-rashi prediction reduced to clearly-labelled entertainment** — but only if citations quote the classics for what they actually say, since commercial per-house "outcome" sentences are modern editorializing.

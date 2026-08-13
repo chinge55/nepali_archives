@@ -27,7 +27,7 @@ valence-tagged template pool, clearly labelled, with a daily classical
 citation as the archive's signature. Frame the whole thing as **पात्रो/पञ्चाङ्ग
 heritage** (राशिफल as a section within), not as a fortune-telling page.
 
-What this is NOT: not an LLM writing daily predictions (off-charter:
+What this is NOT: not an agent writing daily predictions (off-charter:
 non-reproducible, uncitable — and unnecessary), not scraping/syndicating
 anyone's feed, not a fight with Hamro Patro over "आजको राशिफल" (unwinnable
 head term; identity-corroding to chase).
@@ -89,10 +89,10 @@ per-राशि states — varied daily text with **zero invention**.
 
 ## 5. Content generation (from the content review)
 
-- **Deterministic rule + template pool on the critical path; no LLM.** LLM
+- **Deterministic rule + template pool on the critical path; no agent.** agent
   output is non-reproducible and uncitable — off-charter for a repo whose
   rule is "sources only, CI rebuilds, faithful to the source." (Cost was
-  never the issue: ~$2/yr on Haiku. The decision is philosophical.)
+  never the issue: operationally minor. The decision is philosophical.)
 - Prose register (from real Hamro Patro/Ratopati samples, quoted in
   reviews/04): 3–4 sentences, ~45–60 words, future/potential mood (-नेछ,
   -होला, -ला), rotate काम/स्वास्थ्य/प्रेम/आम्दानी/परिवार + one hedged caution,
