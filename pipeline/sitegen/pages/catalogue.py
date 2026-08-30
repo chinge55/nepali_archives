@@ -218,9 +218,9 @@ def write_catalogue_pages(context, page, assets, catalogue):
             author, catalogue.by_author[author][0][1]
         )
         return (
-            f'<li><a href="{base}authors/{author}/">{esc(name)}</a>'
+            f'<li><a class="row-link" href="{base}authors/{author}/">{esc(name)}'
             f'<span class="r">{esc(roman)} · '
-            f"{len(catalogue.by_author[author])} कृति</span></li>"
+            f"{len(catalogue.by_author[author])} कृति</span></a></li>"
         )
 
     authors_body = (
@@ -248,13 +248,18 @@ def write_catalogue_pages(context, page, assets, catalogue):
         encoding="utf-8",
     )
 
-    home_body = f"""<h1>{SITE_TAGLINE}</h1>
+    home_body = f"""<div class="home-hero">
+<h1 class="home-title">{SITE_TAGLINE}</h1>
 <p class="tagline-en">{SITE_TAGLINE_EN}</p>
-<p class="lead">{str(len(catalogue.by_author)).translate(DEVNUM)} लेखकका {str(len(catalogue.records)).translate(DEVNUM)} कृति — नि:शुल्क, सधैँभरि। दर्ता छैन, विज्ञापन छैन।</p>
-<p><input id="q" type="search" placeholder="खोज्नुहोस् — शीर्षक, पाठ वा रोमन" autocomplete="off" aria-label="खोज"></p>
+</div>
+<div class="home-discovery">
+<p class="lead home-summary">{str(len(catalogue.by_author)).translate(DEVNUM)} लेखकका {str(len(catalogue.records)).translate(DEVNUM)} कृति — नि:शुल्क, सधैँभरि। दर्ता छैन, विज्ञापन छैन।</p>
+<p class="home-search"><input id="q" type="search" placeholder="खोज्नुहोस् — शीर्षक, पाठ वा रोमन" autocomplete="off" aria-label="खोज"></p>
 <p class="hint" id="hint">जस्तै: <a href="?q=pagal">pagal</a><a href="?q=muna madan">muna madan</a><a href="?q=hunxa">hunxa</a><a href="?q=फूल">फूल</a></p>
 <ul class="works" id="results" data-base=""></ul>
 <div id="ft"></div>
+</div>
+<div class="home-browse">
 <div class="home-sec"><h2><a href="genres/">विधा</a></h2>{catalogue.genre_cards("")}</div>
 <div class="home-sec"><h2>सङ्ग्रह</h2><div class="shelf">{"".join(
         f'<a class="card g-{items[0][1]["genre"][0] if items[0][1]["genre"] else "kavita"}" href="collections/{catalogue.collection_slugs[collection]}/">'
@@ -263,6 +268,7 @@ def write_catalogue_pages(context, page, assets, catalogue):
         for collection, items in sorted(catalogue.collections.items(), key=lambda item: -len(item[1])))}</div></div>
 <div class="home-sec"><h2>लेखकहरू</h2><ul class="works">{"".join(author_list_item(author, "") for author in catalogue.author_order)}</ul></div>
 <p class="statlink"><a href="stats/">📊 अभिलेख एक नजरमा — तथ्याङ्क र रोचक तथ्य →</a></p>
+</div>
 <script src="search.js?v={assets.search_version}" defer></script>"""
     (site / "index.html").write_text(
         page(

@@ -63,9 +63,9 @@ class Catalogue:
             )
         )
         return (
-            f'<li><span class="wmeta">{metadata}</span>'
-            f'<a href="{href}">{esc(meta["title"])}</a>'
-            f'<span class="r">{esc(meta.get("title_roman") or "")}</span></li>'
+            f'<li><a class="row-link" href="{href}">'
+            f'<span class="wmeta">{metadata}</span>{esc(meta["title"])}'
+            f'<span class="r">{esc(meta.get("title_roman") or "")}</span></a></li>'
         )
 
     def genre_cards(self, base: str) -> str:

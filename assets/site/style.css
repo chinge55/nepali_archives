@@ -98,8 +98,10 @@ h1{font-size:2.35rem;line-height:1.25;margin:.7rem 0 .3rem}
 .home-sec{margin:2.7rem 0}
 .home-sec h2{font-size:1.05rem;color:var(--fg);font-weight:600;border-bottom:2px solid var(--line);padding-bottom:.2rem}
 ul.works{list-style:none;padding:0;margin:1rem 0}
-ul.works li{margin:.15rem 0;padding:.35rem 0;border-bottom:1px solid var(--line)}
-ul.works li a{text-decoration:none;font-size:1.1rem}
+ul.works li{margin:.15rem 0;padding:0;border-bottom:1px solid var(--line)}
+ul.works li .row-link{display:block;padding:.35rem 0;text-decoration:none;font-size:1.1rem}
+ul.works li .row-link:hover,ul.works li .row-link:focus-visible{background:color-mix(in srgb,var(--accent) 7%,transparent)}
+ul.works li .row-link:focus-visible{outline:2px solid color-mix(in srgb,var(--accent) 45%,transparent);outline-offset:2px}
 ul.works li .r{color:var(--mut);font-size:.82rem;margin-left:.5rem}
 .group h2{font-size:1rem;color:var(--mut);font-weight:600;margin:2rem 0 .25rem;
  text-transform:none;border-bottom:2px solid var(--line);padding-bottom:.2rem}
@@ -121,7 +123,19 @@ ul.works li .r{color:var(--mut);font-size:.82rem;margin-left:.5rem}
 .card .n{display:block;color:var(--gc,var(--accent));font-weight:600;font-size:.82rem;margin-top:.35rem}
 .card:hover{border-color:var(--gc,var(--accent));
  background:color-mix(in srgb,var(--gc,var(--accent)) 11%,var(--bg))}
-.tagline-en{color:var(--mut);font-size:.95rem;margin:.1rem 0 .8rem}
+.home-hero{margin:1.5rem 0 0}
+.home-title{margin:0}
+.tagline-en{color:var(--mut);font-size:.95rem;line-height:1.45;margin:.1rem 0 0}
+.home-discovery{margin-top:2.4rem}
+.home-summary{margin:0 0 .35rem}
+.home-search{margin:0}
+.home-discovery #results:empty,.home-discovery #ft:empty{margin:0}
+.home-browse{margin-top:4rem}
+.home-browse .home-sec{margin:0}
+.home-browse .home-sec+.home-sec{margin-top:4.5rem}
+.home-browse .home-sec h2{margin:0 0 1.2rem}
+.home-browse .shelf,.home-browse ul.works{margin-top:0;margin-bottom:0}
+.home-browse .statlink{margin:3.25rem 0 0}
 .foot-en{margin:.2rem 0 0}
 #q{width:100%;font:inherit;font-size:1.05rem;padding:.75rem .9rem;border:1.5px solid var(--line);
  border-radius:9px;background:var(--bg);color:var(--fg);transition:border-color .15s}
@@ -137,7 +151,10 @@ ul.works li .r{color:var(--mut);font-size:.82rem;margin-left:.5rem}
 .ftmsg{color:var(--mut);font-size:.85rem;margin:1rem 0}
 ul.ftlist{list-style:none;padding:0;margin:0}
 ul.ftlist li{margin:0 0 1.15rem;padding:0}
-ul.ftlist li a{text-decoration:none;font-size:1.05rem}
+ul.ftlist li .ftlink{display:block;padding:.35rem 0;text-decoration:none}
+ul.ftlist li .ftlink:hover,ul.ftlist li .ftlink:focus-visible{background:color-mix(in srgb,var(--accent) 7%,transparent)}
+ul.ftlist li .ftlink:focus-visible{outline:2px solid color-mix(in srgb,var(--accent) 45%,transparent);outline-offset:2px}
+ul.ftlist .fttitle{font-size:1.05rem}
 ul.ftlist .ex{margin:.25rem 0 0;color:var(--mut);font-size:.93rem;line-height:1.75}
 ul.ftlist .ex mark{background:color-mix(in srgb,var(--accent) 26%,transparent);color:inherit;border-radius:2px;padding:0 .12em}
 /* arrived-from-search highlight on the work page (Pagefind highlighter) */
@@ -150,8 +167,7 @@ body{transition:background-color .25s ease,color .25s ease}
  a{transition:color .15s ease}
  nav a,.themebtn{transition:color .15s ease,background-color .15s ease,transform .06s ease}
  nav a:active,.themebtn:active{transform:translateY(1px)}
- ul.works li{transition:background-color .15s ease}
- ul.works li:hover{background:color-mix(in srgb,var(--accent) 7%,transparent)}
+ ul.works li .row-link,ul.ftlist li .ftlink{transition:background-color .15s ease}
  .card{transition:background-color .15s ease,border-color .15s ease}
  main{animation:fade .35s ease both}
  .prog{transition:width .12s linear}

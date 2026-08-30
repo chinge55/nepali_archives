@@ -84,8 +84,8 @@
      var wm=(w.g&&G[w.g]?'<span class="chip g-'+w.g+'">'+G[w.g]+'</span>':'')+
             '<span class=rt>'+(w.m?'~'+dev(w.m)+' \u092e\u093f\u0928\u0947\u091f':'\u091b\u094b\u091f\u094b')+'</span>'+
             (w.f?'<span class=scan>\ud83d\udcd6</span>':'');
-     return '<li><span class=wmeta>'+wm+'</span><a href="'+BASE+w.p+'">'+w.t+'</a>'+(w.r?' <span class=r>'+w.r+'</span>':'')+
-            (sub?'<span class=snip>'+sub+'</span>':'')+'</li>';}).join('');
+     return '<li><a class=row-link href="'+BASE+w.p+'"><span class=wmeta>'+wm+'</span>'+w.t+(w.r?' <span class=r>'+w.r+'</span>':'')+
+            (sub?'<span class=snip>'+sub+'</span>':'')+'</a></li>';}).join('');
    R.innerHTML=rows;
    H.textContent=list.length+' शीर्षक';
  }
@@ -191,7 +191,7 @@
    var h='<h2 class=fthead>पाठभित्र खोजी</h2><ul class=ftlist>';
    ds.forEach(function(d){
      var t=(d.meta&&d.meta.title)||d.url;
-     h+='<li><a href="'+hlUrl(d.url,d.excerpt)+'">'+t+'</a><p class=ex>'+d.excerpt+'</p></li>';
+     h+='<li><a class=ftlink href="'+hlUrl(d.url,d.excerpt)+'"><span class=fttitle>'+t+'</span><p class=ex>'+d.excerpt+'</p></a></li>';
    });
    FT.innerHTML=h+'</ul>';
  }

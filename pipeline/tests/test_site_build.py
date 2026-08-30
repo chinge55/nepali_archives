@@ -237,6 +237,23 @@ class FullBuildTests(unittest.TestCase):
         self.assertIn("pdfjs/pdf.min.js", pdf_reader)
         self.assertIn('data-url="../source.pdf"', pdf_reader)
 
+        author_browse = (
+            context.site / "authors/test_author/index.html"
+        ).read_text(encoding="utf-8")
+        home_browse = (context.site / "index.html").read_text(encoding="utf-8")
+        search_source = (context.site / "search.js").read_text(encoding="utf-8")
+        self.assertEqual(author_browse.count('<li><a class="row-link"'), 3)
+        self.assertIn(
+            '<li><a class="row-link" href="verse_work/">'
+            '<span class="wmeta">',
+            author_browse,
+        )
+        self.assertIn(
+            '<li><a class="row-link" href="authors/test_author/">',
+            home_browse,
+        )
+        self.assertIn("<li><a class=row-link", search_source)
+        self.assertIn("<li><a class=ftlink", search_source)
         search = json.loads(
             (context.site / "search-index.json").read_text(encoding="utf-8")
         )
