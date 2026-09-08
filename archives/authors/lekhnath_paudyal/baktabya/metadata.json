@@ -27,10 +27,31 @@
   "source": {
     "name": "Sahitya Ras (sahityaras.com)",
     "url": "https://sahityaras.com/book/lalitya-bhag-1/baktabya/",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-lalitya-bhag-1.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-lalitya-bhag-1",
+        "file": "sahityaras-lalitya-bhag-1.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · लालित्य भाग १",
+        "sha256": "d1af10c1bbb314e92d350674c8b6bb8744b507d6e36198ea947ec9a08aa6a1f7",
+        "page_count": 2,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=lalitya-bhag-1&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "वक्तव्य",
+            "page_start": 1,
+            "page_end": 2
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 2,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -38,7 +59,7 @@
     "quality": null
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-lalitya-bhag-1.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"

@@ -27,10 +27,31 @@
   "source": {
     "name": "Sahitya Ras (sahityaras.com)",
     "url": "https://sahityaras.com/book/putali/cha-bahini/",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-putali.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-putali",
+        "file": "sahityaras-putali.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · पुतली",
+        "sha256": "3fcc9c590d7b3018f962ca8b6012699836e138e320db3b1da3bc9c3614af5170",
+        "page_count": 4,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=putali&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "छ बहिनी",
+            "page_start": 1,
+            "page_end": 4
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 4,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -38,7 +59,7 @@
     "quality": null
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-putali.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"

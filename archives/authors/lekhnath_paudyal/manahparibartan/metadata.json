@@ -27,10 +27,31 @@
   "source": {
     "name": "Sahitya Ras (sahityaras.com)",
     "url": "https://sahityaras.com/book/lalitya-bhag-1/manaparibartan/",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-lalitya-bhag-1.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-lalitya-bhag-1",
+        "file": "sahityaras-lalitya-bhag-1.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · लालित्य भाग १",
+        "sha256": "b205054fb43fe29ed509c026e24fba03e8b22a27d193bf12bd57cc9b98cb39a0",
+        "page_count": 5,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=lalitya-bhag-1&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "मनःपरिवर्तन",
+            "page_start": 1,
+            "page_end": 5
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 5,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -38,7 +59,7 @@
     "quality": null
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-lalitya-bhag-1.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"

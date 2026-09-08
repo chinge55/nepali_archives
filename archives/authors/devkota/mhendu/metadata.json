@@ -29,7 +29,53 @@
     "name": "म्हेन्दु (साझा प्रकाशन)",
     "url": null,
     "pdf": "mhendu.pdf",
-    "html": null
+    "html": null,
+    "pdf_editions": [
+      {
+        "id": "sahityaras-mhendu",
+        "file": "sahityaras-mhendu.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · म्हेन्दु",
+        "sha256": "9661ae4ea5dbdbc282e16c1f7e04c748bc0dd5d563a6af2ea4deaf0778ef47cf",
+        "page_count": 60,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=mhendu&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "म्हेन्दुको विषयमा",
+            "page_start": 1,
+            "page_end": 2
+          },
+          {
+            "label": "प्रथम",
+            "page_start": 3,
+            "page_end": 10
+          },
+          {
+            "label": "द्वितीय",
+            "page_start": 11,
+            "page_end": 22
+          },
+          {
+            "label": "तृतीय",
+            "page_start": 23,
+            "page_end": 30
+          },
+          {
+            "label": "चतुर्थ",
+            "page_start": 31,
+            "page_end": 48
+          },
+          {
+            "label": "पञ्चम",
+            "page_start": 49,
+            "page_end": 60
+          }
+        ]
+      }
+    ]
   },
   "pages": 30,
   "text": {
@@ -45,5 +91,5 @@
     "epub": "reader.epub"
   },
   "added": "2026-06-07",
-  "updated": "2026-06-07"
+  "updated": "2026-09-08"
 }

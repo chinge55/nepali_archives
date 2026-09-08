@@ -29,7 +29,28 @@
     "name": "लक्ष्मी निबन्ध सङ्ग्रह (साझा प्रकाशन)",
     "url": null,
     "pdf": "masalako_botale_ke_herchha.pdf",
-    "html": null
+    "html": null,
+    "pdf_editions": [
+      {
+        "id": "sahityaras-laxmi-nibandhasangraha",
+        "file": "sahityaras-laxmi-nibandhasangraha.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · लक्ष्मी निबन्धसङ्ग्रह",
+        "sha256": "b5eec37ec278d3eeea526cdbafd9e8ef2ee2d679c4ee55ebd951012a2dea7f43",
+        "page_count": 5,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=laxmi-nibandhasangraha&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "मसलाको बोटले के हेर्छ ?",
+            "page_start": 1,
+            "page_end": 5
+          }
+        ]
+      }
+    ]
   },
   "pages": 5,
   "text": {
@@ -45,5 +66,5 @@
     "epub": "reader.epub"
   },
   "added": "2026-06-07",
-  "updated": "2026-06-07"
+  "updated": "2026-09-08"
 }

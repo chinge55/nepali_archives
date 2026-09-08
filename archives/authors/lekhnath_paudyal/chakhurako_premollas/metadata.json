@@ -27,10 +27,31 @@
   "source": {
     "name": "Sahitya Ras (sahityaras.com)",
     "url": "https://sahityaras.com/book/lalitya-bhag-1/chakhurako-premollas/",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-lalitya-bhag-1.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-lalitya-bhag-1",
+        "file": "sahityaras-lalitya-bhag-1.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · लालित्य भाग १",
+        "sha256": "aac6f4c351ad61ca3862e03788e248db07489131db5a3b47ee55aeeb4e40ca5b",
+        "page_count": 3,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=lalitya-bhag-1&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "चाखुराको प्रेमोल्लास",
+            "page_start": 1,
+            "page_end": 3
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 3,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -38,7 +59,7 @@
     "quality": null
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-lalitya-bhag-1.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"

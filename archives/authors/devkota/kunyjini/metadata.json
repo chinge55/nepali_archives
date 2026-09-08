@@ -27,10 +27,151 @@
   "source": {
     "name": "Sahitya Ras (sahityaras.com)",
     "url": "https://sahityaras.com/book/kunjini/",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-kunjini.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-kunjini",
+        "file": "sahityaras-kunjini.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · कुञ्जिनी",
+        "sha256": "00b32953237cd6012f237c79d7e1ffb2bd1db80662ce709ab9dc9c5dd5273a16",
+        "page_count": 104,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=kunjini&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "घाँस काटेर घर फर्कंदा गोरे राहुतले गीत गाएको",
+            "page_start": 1,
+            "page_end": 5
+          },
+          {
+            "label": "गोरेले कुञ्जिनीलाई पर्खेर बस्ता मनमनै गीत गाएको",
+            "page_start": 6,
+            "page_end": 7
+          },
+          {
+            "label": "गोरे र कुञ्जिनीको संवाद",
+            "page_start": 8,
+            "page_end": 14
+          },
+          {
+            "label": "कुञ्जिनीले प्रेम-प्रकट गरिन् भनेर गोरेको हर्षोद्गार",
+            "page_start": 15,
+            "page_end": 18
+          },
+          {
+            "label": "गोरेले कुञ्जिनीलाई माग्न आँउदा बाबु ठालूसिङ् रिसाउँछ",
+            "page_start": 19,
+            "page_end": 20
+          },
+          {
+            "label": "कुञ्जिनी कोल्पूपारि मावलबाट नआइपुग्दा बाबुको मनमा चिन्ता उठ्दछ",
+            "page_start": 21,
+            "page_end": 24
+          },
+          {
+            "label": "कोल्पूतीर बसेर गोरे कुञ्जिनीको प्रतीक्षा गर्दछ",
+            "page_start": 25,
+            "page_end": 27
+          },
+          {
+            "label": "कुञ्जिनीको बाबु गोरेलाई कुञ्जिनी दिन मन्जुर गर्दछ",
+            "page_start": 28,
+            "page_end": 29
+          },
+          {
+            "label": "कुञ्जिनीसँग बिहा हुने आशाले गोरे आनन्द प्रकट गर्दछ",
+            "page_start": 30,
+            "page_end": 32
+          },
+          {
+            "label": "कुञ्जिनी पनि खुशी बनेर सानीमा सिन्धुसँग आनन्द प्रकट गर्दछिन्",
+            "page_start": 33,
+            "page_end": 36
+          },
+          {
+            "label": "तर त्यसै बेला जर्मनको लडाइँमा गोरेलाई जानुपर्दछ",
+            "page_start": 37,
+            "page_end": 39
+          },
+          {
+            "label": "गोरे कुञ्जिनीलाई लडाइँ जाने बेलामा सम्झाउँछ",
+            "page_start": 40,
+            "page_end": 44
+          },
+          {
+            "label": "गोरे गएपछि कुञ्जिनीको विरह",
+            "page_start": 45,
+            "page_end": 52
+          },
+          {
+            "label": "पल्टन चन्द्रगिरीमा पुग्छन्",
+            "page_start": 53,
+            "page_end": 58
+          },
+          {
+            "label": "गोरे हिन्दूस्तान गयो, अब फर्कदैन भन्ने डरले कुञ्जिनीको बाबुले छोरीलाई ऊसँग बिहा नगर भन्दछ",
+            "page_start": 59,
+            "page_end": 62
+          },
+          {
+            "label": "कुञ्जिनी भने बाबुको वचनले हृदय विदीर्ण भएर विष खाएर मरूँ झैँ गर्छिन्",
+            "page_start": 63,
+            "page_end": 68
+          },
+          {
+            "label": "कुञ्जिनीको दयनीय दशा देखेर सानीमा सिन्धु गजुरी पिँडामा बिहा छिन्न गएका बाबुचाहिँलाई बताउन हिँड्छिन्",
+            "page_start": 69,
+            "page_end": 71
+          },
+          {
+            "label": "कुञ्जिनीको बिहा लख्खन लेप्टेनको छोरो सेतेसँग छिन्ने काम बहादुर खड्काको घरमा हुन्छ",
+            "page_start": 72,
+            "page_end": 74
+          },
+          {
+            "label": "विवाह हुने कुरा बुझेर कुञ्जिनीको कलेजा छियाछिया हुन्छ",
+            "page_start": 75,
+            "page_end": 77
+          },
+          {
+            "label": "बजिरिस्तानमा पठानसँग गोर्खालीको जम्काभेट हुन्छ र गोरे घाइते हुन्छ",
+            "page_start": 78,
+            "page_end": 82
+          },
+          {
+            "label": "बजिरिस्तानमा अस्पतालमा गोरे र मानवीर गुरुङ दुई घाइते साथी नेपाल सम्झन्छन्, गोरे कुञ्जिनीलाई सम्झेर भन्छन्",
+            "page_start": 83,
+            "page_end": 91
+          },
+          {
+            "label": "बिहाको दिनको घटना (क)",
+            "page_start": 92,
+            "page_end": 96
+          },
+          {
+            "label": "बिहाको दिनको घटना (ख)",
+            "page_start": 97,
+            "page_end": 99
+          },
+          {
+            "label": "बिहाको दिनको घटना (ग)",
+            "page_start": 100,
+            "page_end": 101
+          },
+          {
+            "label": "बिहाको दिनको घटना (घ)",
+            "page_start": 102,
+            "page_end": 104
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 104,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -38,7 +179,7 @@
     "quality": null
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-kunjini.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"

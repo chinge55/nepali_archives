@@ -1,4 +1,5 @@
 import json
+from copy import deepcopy
 import tempfile
 import unittest
 from pathlib import Path
@@ -107,6 +108,31 @@ class CatalogueTests(unittest.TestCase):
             self.assertEqual(metadata["genre"][0], "nibandha")
             self.assertEqual(catalogue.write(outputs, manifest, root, apply=True), len(outputs))
             self.assertEqual(catalogue.write(outputs, manifest, root, apply=True), 0)
+
+    def test_shared_document_members_are_complete_and_uniquely_assigned(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root, cache = Path(temp) / 'root', Path(temp) / 'cache'
+            root.mkdir(); cache.mkdir()
+            data = xhtml('फुटकर रचना', '१<br/>पहिलो पाठ<br/><br/>२<br/>दोस्रो पाठ')
+            members = [{'id': f'member-{n}', 'numbers': [n], 'decision': 'include',
+                        'reason': 'Reviewed piece', 'destination': f'archives/authors/test_author/work{n}'}
+                       for n in [1, 2]]
+            book = book_record(cache, 'book', [('EPUB/text/a.xhtml', data, 'split', 'Numbered members',
+                                              {'member_count': 2, 'members': members})])
+            works = [base_work(f'work{n}', {'book': 'book', 'path': 'src/EPUB/text/a.xhtml', 'member': f'member-{n}'})
+                     for n in [1, 2]]
+            for work in works:
+                work['outputs'] = {k: digest(v) for k, v in catalogue.included_files(work, {'book': book}, cache).items()}
+            manifest = {'schema_version': 2, 'books': [book], 'works': works}
+            outputs = catalogue.plan(manifest, cache, root)
+            self.assertEqual(outputs['archives/authors/test_author/work1/text.txt'].decode(), '१\nपहिलो पाठ\n')
+            self.assertNotIn('दोस्रो', outputs['archives/authors/test_author/work1/extracted/index.html'].decode())
+            for mutation in ['missing', 'duplicate', 'wrong_destination']:
+                invalid = deepcopy(manifest)
+                if mutation == 'missing': invalid['works'].pop()
+                elif mutation == 'duplicate': invalid['works'][1]['sources'] = invalid['works'][0]['sources']
+                else: invalid['books'][0]['documents'][0]['members'][0]['destination'] = 'archives/authors/test_author/other'
+                with self.assertRaises(SourceError): catalogue.plan(invalid, cache, root)
 
     def test_hash_drift_is_rejected_before_output(self):
         with tempfile.TemporaryDirectory() as temp:

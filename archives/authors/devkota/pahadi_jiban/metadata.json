@@ -29,7 +29,28 @@
     "name": "लक्ष्मी निबन्ध सङ्ग्रह (साझा प्रकाशन)",
     "url": null,
     "pdf": "pahadi_jiban.pdf",
-    "html": null
+    "html": null,
+    "pdf_editions": [
+      {
+        "id": "sahityaras-laxmi-nibandhasangraha",
+        "file": "sahityaras-laxmi-nibandhasangraha.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · लक्ष्मी निबन्धसङ्ग्रह",
+        "sha256": "bdab02d25d48d4a79c2e309fd0fa869a1c908bd6891e2d0362ea9c64ec063092",
+        "page_count": 10,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=laxmi-nibandhasangraha&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "पहाडी जीवन",
+            "page_start": 1,
+            "page_end": 10
+          }
+        ]
+      }
+    ]
   },
   "pages": 9,
   "text": {
@@ -45,5 +66,5 @@
     "epub": "reader.epub"
   },
   "added": "2026-06-07",
-  "updated": "2026-06-07"
+  "updated": "2026-09-08"
 }

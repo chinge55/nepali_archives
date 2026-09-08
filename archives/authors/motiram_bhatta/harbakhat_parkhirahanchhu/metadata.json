@@ -27,10 +27,31 @@
   "source": {
     "name": "Sahitya Ras (sahityaras.com)",
     "url": "https://sahityaras.com/book/motiram-bhattaka-gajal-tatha-git/harbakhat-parkhirahanchu/",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-motiram-bhattaka-gajal-tatha-git.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-motiram-bhattaka-gajal-tatha-git",
+        "file": "sahityaras-motiram-bhattaka-gajal-tatha-git.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · मोतीराम भट्टका गजल तथा गीत",
+        "sha256": "0fbe1485f4cdd636371c03cc5980b181f61082ac5e94899ab24738b2a4477b5f",
+        "page_count": 1,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=motiram-bhattaka-gajal-tatha-git&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "हर्‌बखत् पर्खीरहन्छू…",
+            "page_start": 1,
+            "page_end": 1
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 1,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -38,7 +59,7 @@
     "quality": null
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-motiram-bhattaka-gajal-tatha-git.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"

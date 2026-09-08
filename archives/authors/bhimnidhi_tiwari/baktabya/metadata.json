@@ -27,10 +27,31 @@
   "source": {
     "name": "Sahitya Ras (sahityaras.com)",
     "url": "https://sahityaras.com/book/bisfot/vaktavya/",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-bisfot.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-bisfot",
+        "file": "sahityaras-bisfot.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · विस्फोट",
+        "sha256": "047d06bbaf9e20ce04d173ce1120c8329ec72fd679d38f3f11cf5b1357aa234d",
+        "page_count": 1,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=bisfot&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "वक्तव्य",
+            "page_start": 1,
+            "page_end": 1
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 1,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -38,7 +59,7 @@
     "quality": null
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-bisfot.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"

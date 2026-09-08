@@ -29,7 +29,28 @@
     "name": "लेखनाथका प्रमुख कविता (साझा प्रकाशन)",
     "url": null,
     "pdf": "sarasbati_smriti.pdf",
-    "html": null
+    "html": null,
+    "pdf_editions": [
+      {
+        "id": "sahityaras-lalitya-bhag-1",
+        "file": "sahityaras-lalitya-bhag-1.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · लालित्य भाग १",
+        "sha256": "4296e077fa423abde5344be0b35912cdf5df87d02b5b204ac58e09162cc474ba",
+        "page_count": 2,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=lalitya-bhag-1&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "सरस्वती-स्मृति",
+            "page_start": 1,
+            "page_end": 2
+          }
+        ]
+      }
+    ]
   },
   "pages": 2,
   "text": {
@@ -45,5 +66,5 @@
     "epub": "reader.epub"
   },
   "added": "2026-06-07",
-  "updated": "2026-06-07"
+  "updated": "2026-09-08"
 }

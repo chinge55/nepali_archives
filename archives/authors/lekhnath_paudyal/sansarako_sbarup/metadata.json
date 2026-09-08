@@ -27,10 +27,31 @@
   "source": {
     "name": "Sahitya Ras (sahityaras.com)",
     "url": "https://sahityaras.com/book/lalitya-bhag-1/sansarko-swarup/",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-lalitya-bhag-1.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-lalitya-bhag-1",
+        "file": "sahityaras-lalitya-bhag-1.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · लालित्य भाग १",
+        "sha256": "695da75b1bd3682297300f057778879f979b8e8141847cd1aafeeb2bcd295831",
+        "page_count": 1,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=lalitya-bhag-1&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "संसारको स्वरूप",
+            "page_start": 1,
+            "page_end": 1
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 1,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -38,7 +59,7 @@
     "quality": null
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-lalitya-bhag-1.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"

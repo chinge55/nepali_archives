@@ -27,10 +27,61 @@
   "source": {
     "name": "Sahitya Ras (sahityaras.com)",
     "url": "https://sahityaras.com/book/maina/",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-maina.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-maina",
+        "file": "sahityaras-maina.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · मैना",
+        "sha256": "25e1d888994728e04c67e6c9a2c9d0e92dc371348517c7d4bde81383e56eaec3",
+        "page_count": 24,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=maina&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "भूमिका",
+            "page_start": 1,
+            "page_end": 2
+          },
+          {
+            "label": "क",
+            "page_start": 3,
+            "page_end": 7
+          },
+          {
+            "label": "ख",
+            "page_start": 8,
+            "page_end": 9
+          },
+          {
+            "label": "ग",
+            "page_start": 10,
+            "page_end": 15
+          },
+          {
+            "label": "घ",
+            "page_start": 16,
+            "page_end": 17
+          },
+          {
+            "label": "ङ",
+            "page_start": 18,
+            "page_end": 20
+          },
+          {
+            "label": "च",
+            "page_start": 21,
+            "page_end": 24
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 24,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -38,7 +89,7 @@
     "quality": null
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-maina.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"

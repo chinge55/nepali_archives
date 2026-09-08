@@ -29,7 +29,79 @@
     "name": "Wikisource (wikisource.org)",
     "url": "https://wikisource.org/wiki/भानुभक्तीय_रामायण",
     "pdf": null,
-    "html": "extracted/wikisource/"
+    "html": "extracted/wikisource/",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-bhanubhaktako-ramayan",
+        "file": "sahityaras-bhanubhaktako-ramayan.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · भानुभक्तको रामायण",
+        "sha256": "9ddf6e19ebab0bcfd819ddc6050650fc9bf56f74b573389417397fded29abac8",
+        "page_count": 259,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=bhanubhaktako-ramayan&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "श्रीबालकाण्ड",
+            "page_start": 1,
+            "page_end": 28,
+            "aliases": [
+              "बाल काण्ड"
+            ]
+          },
+          {
+            "label": "श्रीअयोध्याकाण्ड",
+            "page_start": 29,
+            "page_end": 52,
+            "aliases": [
+              "अयोध्या काण्ड"
+            ]
+          },
+          {
+            "label": "श्रीअरण्यकाण्ड",
+            "page_start": 53,
+            "page_end": 76,
+            "aliases": [
+              "अरण्य काण्ड"
+            ]
+          },
+          {
+            "label": "श्रीकिष्किन्धाकाण्ड",
+            "page_start": 77,
+            "page_end": 104,
+            "aliases": [
+              "किष्किन्धा काण्ड"
+            ]
+          },
+          {
+            "label": "श्रीसुन्दरकाण्ड",
+            "page_start": 105,
+            "page_end": 134,
+            "aliases": [
+              "सुन्दर काण्ड"
+            ]
+          },
+          {
+            "label": "श्रीयुद्धकाण्ड",
+            "page_start": 135,
+            "page_end": 208,
+            "aliases": [
+              "युद्ध काण्ड"
+            ]
+          },
+          {
+            "label": "श्रीउत्तरकाण्ड",
+            "page_start": 209,
+            "page_end": 259,
+            "aliases": [
+              "उत्तर काण्ड"
+            ]
+          }
+        ]
+      }
+    ]
   },
   "pages": 344,
   "text": {
@@ -45,5 +117,5 @@
     "epub": "reader.epub"
   },
   "added": "2026-06-05",
-  "updated": "2026-06-07"
+  "updated": "2026-09-08"
 }

@@ -29,7 +29,28 @@
     "name": "लेखनाथका प्रमुख कविता (साझा प्रकाशन)",
     "url": null,
     "pdf": "patitapabani_shri_ganggajiko_jhaki.pdf",
-    "html": null
+    "html": null,
+    "pdf_editions": [
+      {
+        "id": "sahityaras-lalitya-bhag-2",
+        "file": "sahityaras-lalitya-bhag-2.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · लालित्य भाग २",
+        "sha256": "c0780d13a326aaafddb2702a17afdf9a4be1b6cc77aa44be98c20da82d1b03d5",
+        "page_count": 1,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=lalitya-bhag-2&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "पतित-पावनी गङ्गाजीको झाँकी",
+            "page_start": 1,
+            "page_end": 1
+          }
+        ]
+      }
+    ]
   },
   "pages": 1,
   "text": {
@@ -45,5 +66,5 @@
     "epub": "reader.epub"
   },
   "added": "2026-06-07",
-  "updated": "2026-06-07"
+  "updated": "2026-09-08"
 }

@@ -29,7 +29,28 @@
     "name": "लक्ष्मी निबन्ध सङ्ग्रह (साझा प्रकाशन)",
     "url": null,
     "pdf": "bairagya.pdf",
-    "html": null
+    "html": null,
+    "pdf_editions": [
+      {
+        "id": "sahityaras-laxmi-nibandhasangraha",
+        "file": "sahityaras-laxmi-nibandhasangraha.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · लक्ष्मी निबन्धसङ्ग्रह",
+        "sha256": "8c9ba19e303f0ff537ba98f14109ea9133a96f7eaa5975fc16c4c75b48f9fd5b",
+        "page_count": 5,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=laxmi-nibandhasangraha&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "वैराग्य",
+            "page_start": 1,
+            "page_end": 5
+          }
+        ]
+      }
+    ]
   },
   "pages": 5,
   "text": {
@@ -45,5 +66,5 @@
     "epub": "reader.epub"
   },
   "added": "2026-06-07",
-  "updated": "2026-06-07"
+  "updated": "2026-09-08"
 }

@@ -27,10 +27,31 @@
   "source": {
     "name": "Sahitya Ras (sahityaras.com)",
     "url": "https://sahityaras.com/book/lalitya-bhag-1/sharanagati/",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-lalitya-bhag-1.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-lalitya-bhag-1",
+        "file": "sahityaras-lalitya-bhag-1.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · लालित्य भाग १",
+        "sha256": "5d020d49770526412d8fb69fa803b5f09c86482ae05f2eb72b63a801238188f2",
+        "page_count": 1,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=lalitya-bhag-1&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "शरणाऽऽगति",
+            "page_start": 1,
+            "page_end": 1
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 1,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -38,7 +59,7 @@
     "quality": null
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-lalitya-bhag-1.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"

@@ -27,10 +27,31 @@
   "source": {
     "name": "Sahitya Ras (sahityaras.com)",
     "url": "https://sahityaras.com/book/motiram-bhattaka-gajal-tatha-git/yi-sanai-umeradekhi/",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-motiram-bhattaka-gajal-tatha-git.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-motiram-bhattaka-gajal-tatha-git",
+        "file": "sahityaras-motiram-bhattaka-gajal-tatha-git.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · मोतीराम भट्टका गजल तथा गीत",
+        "sha256": "0c95c07225b3fc206ee45fe50d77d9c0d89c698ca41d59b8a6d9cefb438009a0",
+        "page_count": 2,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=motiram-bhattaka-gajal-tatha-git&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "यि सानै उमेरदेखि…",
+            "page_start": 1,
+            "page_end": 2
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 2,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -38,7 +59,7 @@
     "quality": null
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-motiram-bhattaka-gajal-tatha-git.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"

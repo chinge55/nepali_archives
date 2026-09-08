@@ -28,10 +28,31 @@
   "source": {
     "name": "Sahitya Ras (sahityaras.com)",
     "url": "https://sahityaras.com/book/chilla-patharu/gahuko-samjhana/",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-chilla-patharu.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-chilla-patharu",
+        "file": "sahityaras-chilla-patharu.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · चिल्ला पातहरू",
+        "sha256": "1e5a169abd023a4ac3ea9622d71dc121d32df1e3007e6ba7f2adc96b01abbe70",
+        "page_count": 1,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=chilla-patharu&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "गहूँको संझना",
+            "page_start": 1,
+            "page_end": 1
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 1,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -39,7 +60,7 @@
     "quality": null
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-chilla-patharu.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"

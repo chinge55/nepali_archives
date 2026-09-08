@@ -28,10 +28,31 @@
   "source": {
     "name": "Sahitya Ras (sahityaras.com)",
     "url": "https://sahityaras.com/book/chilla-patharu/chilla-pataharu/",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-chilla-patharu.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-chilla-patharu",
+        "file": "sahityaras-chilla-patharu.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · चिल्ला पातहरू",
+        "sha256": "ea0337152194bd2feff01e03bb3842e232d84a85d796c6807368a0bc3654caff",
+        "page_count": 2,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=chilla-patharu&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "चिल्ला पातहरू",
+            "page_start": 1,
+            "page_end": 2
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 2,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -39,7 +60,7 @@
     "quality": null
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-chilla-patharu.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"

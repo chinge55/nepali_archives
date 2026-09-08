@@ -29,7 +29,154 @@
   "source": {
     "name": null,
     "url": null,
-    "pdf": "LaxmiPrasadDevkota2025BS_ShakuntalaMahakavya.pdf"
+    "pdf": "LaxmiPrasadDevkota2025BS_ShakuntalaMahakavya.pdf",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-shakuntala",
+        "file": "sahityaras-shakuntala.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · शाकुन्तल",
+        "sha256": "447a332cabe448077f8a3ab858c937967b95a86586595b68bfad624dbcdb043a",
+        "page_count": 521,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=shakuntala&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "वक्तव्य",
+            "page_start": 1,
+            "page_end": 2,
+            "aliases": [
+              "बक्तव्य"
+            ]
+          },
+          {
+            "label": "प्रथम सर्ग",
+            "page_start": 3,
+            "page_end": 15
+          },
+          {
+            "label": "द्वितीय सर्ग",
+            "page_start": 16,
+            "page_end": 27
+          },
+          {
+            "label": "तृतीय सर्ग",
+            "page_start": 28,
+            "page_end": 48
+          },
+          {
+            "label": "चतुर्थ सर्ग",
+            "page_start": 49,
+            "page_end": 72
+          },
+          {
+            "label": "पञ्चम सर्ग",
+            "page_start": 73,
+            "page_end": 83
+          },
+          {
+            "label": "षष्ठ सर्ग",
+            "page_start": 84,
+            "page_end": 96
+          },
+          {
+            "label": "सप्तम सर्ग",
+            "page_start": 97,
+            "page_end": 110
+          },
+          {
+            "label": "अष्टम सर्ग",
+            "page_start": 111,
+            "page_end": 120
+          },
+          {
+            "label": "नवम सर्ग",
+            "page_start": 121,
+            "page_end": 131
+          },
+          {
+            "label": "दशम सर्ग",
+            "page_start": 132,
+            "page_end": 144
+          },
+          {
+            "label": "एकादश सर्ग",
+            "page_start": 145,
+            "page_end": 158
+          },
+          {
+            "label": "द्वादश सर्ग",
+            "page_start": 159,
+            "page_end": 190
+          },
+          {
+            "label": "त्रयोदश सर्ग",
+            "page_start": 191,
+            "page_end": 209
+          },
+          {
+            "label": "चतुर्दश सर्ग",
+            "page_start": 210,
+            "page_end": 236
+          },
+          {
+            "label": "पञ्चदश सर्ग",
+            "page_start": 237,
+            "page_end": 284
+          },
+          {
+            "label": "षोडश सर्ग",
+            "page_start": 285,
+            "page_end": 298
+          },
+          {
+            "label": "सप्तदश सर्ग",
+            "page_start": 299,
+            "page_end": 310
+          },
+          {
+            "label": "अष्टादश सर्ग",
+            "page_start": 311,
+            "page_end": 324
+          },
+          {
+            "label": "एकोनविंशतितम सर्ग",
+            "page_start": 325,
+            "page_end": 350
+          },
+          {
+            "label": "विंशतितम सर्ग",
+            "page_start": 351,
+            "page_end": 376
+          },
+          {
+            "label": "एकविंशतितम सर्ग",
+            "page_start": 377,
+            "page_end": 434,
+            "aliases": [
+              "एकवबिंशतितम सर्ग"
+            ]
+          },
+          {
+            "label": "द्वाविंशतितम सर्ग",
+            "page_start": 435,
+            "page_end": 448
+          },
+          {
+            "label": "त्रयोविंशतितम सर्ग",
+            "page_start": 449,
+            "page_end": 501
+          },
+          {
+            "label": "चतुर्विंशतितम सर्ग",
+            "page_start": 502,
+            "page_end": 521
+          }
+        ]
+      }
+    ]
   },
   "pages": 378,
   "text": {
@@ -45,5 +192,5 @@
     "epub": "reader.epub"
   },
   "added": "2026-06-05",
-  "updated": "2026-06-07"
+  "updated": "2026-09-08"
 }

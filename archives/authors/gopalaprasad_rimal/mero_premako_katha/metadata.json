@@ -27,10 +27,31 @@
   "source": {
     "name": "Sahitya Ras (sahityaras.com)",
     "url": "https://sahityaras.com/book/aamako-sapana/mero-premako-katha/",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-aamako-sapana.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-aamako-sapana",
+        "file": "sahityaras-aamako-sapana.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · आमाको सपना",
+        "sha256": "f10eec2daecba816fa7c26810f7479522b70a5d8e1f2980612436c4129efdd7b",
+        "page_count": 2,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=aamako-sapana&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "मेरो प्रेमको कथा",
+            "page_start": 1,
+            "page_end": 2
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 2,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -38,7 +59,7 @@
     "quality": null
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-aamako-sapana.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"

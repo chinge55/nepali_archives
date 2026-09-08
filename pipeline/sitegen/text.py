@@ -97,6 +97,7 @@ def paginate_work(
         return (
             len(block.splitlines()) <= 2
             and is_heading(first)
+            and not re.match(r"^इति(?:\s|$)", first)
             and bool(CHAPTER_RE.search(first))
         )
 

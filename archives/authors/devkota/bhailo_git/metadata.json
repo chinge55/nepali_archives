@@ -27,10 +27,31 @@
   "source": {
     "name": "Sahitya Ras (sahityaras.com)",
     "url": "https://sahityaras.com/book/laxmi-giti-sangraha/bhailo-gita/",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-laxmi-giti-sangraha.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-laxmi-giti-sangraha",
+        "file": "sahityaras-laxmi-giti-sangraha.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · लक्ष्मी गीति-सङ्ग्रह",
+        "sha256": "39033923e83765a24441c5ebfd57b20374604e727c1a4b4aac13a366cb579338",
+        "page_count": 3,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=laxmi-giti-sangraha&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "भैलो गीत",
+            "page_start": 1,
+            "page_end": 3
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 3,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -38,7 +59,7 @@
     "quality": null
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-laxmi-giti-sangraha.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"

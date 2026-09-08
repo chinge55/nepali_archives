@@ -27,10 +27,31 @@
   "source": {
     "name": "Sahitya Ras (sahityaras.com)",
     "url": "https://sahityaras.com/book/lalitya-bhag-2/parashuramko-dronacharyasanga-ukti/",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-lalitya-bhag-2.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-lalitya-bhag-2",
+        "file": "sahityaras-lalitya-bhag-2.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · लालित्य भाग २",
+        "sha256": "280232eb1bfb6cab3349378db089b34b3117a9ff8be66aad1887dcbf4fa4bbcb",
+        "page_count": 2,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=lalitya-bhag-2&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "परशुरामको द्रोणाचार्यसँग उक्ति",
+            "page_start": 1,
+            "page_end": 2
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 2,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -38,7 +59,7 @@
     "quality": null
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-lalitya-bhag-2.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"

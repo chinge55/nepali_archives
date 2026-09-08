@@ -29,7 +29,28 @@
     "name": "लक्ष्मी निबन्ध सङ्ग्रह (साझा प्रकाशन)",
     "url": null,
     "pdf": "shriganeshay_namah.pdf",
-    "html": null
+    "html": null,
+    "pdf_editions": [
+      {
+        "id": "sahityaras-laxmi-nibandhasangraha",
+        "file": "sahityaras-laxmi-nibandhasangraha.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · लक्ष्मी निबन्धसङ्ग्रह",
+        "sha256": "99a57d4216158cc824396d85048fcf5c3bdb0420655d711a450595bd95274ae4",
+        "page_count": 6,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=laxmi-nibandhasangraha&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "श्री गणेशाय नमः",
+            "page_start": 1,
+            "page_end": 6
+          }
+        ]
+      }
+    ]
   },
   "pages": 5,
   "text": {
@@ -45,5 +66,5 @@
     "epub": "reader.epub"
   },
   "added": "2026-06-07",
-  "updated": "2026-06-07"
+  "updated": "2026-09-08"
 }

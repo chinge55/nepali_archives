@@ -27,10 +27,36 @@
   "source": {
     "name": "Sahitya Ras (sahityaras.com)",
     "url": "https://sahityaras.com/book/tyag-ra-udayako-yugal-prakash/",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-tyag-ra-udayako-yugal-prakash.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-tyag-ra-udayako-yugal-prakash",
+        "file": "sahityaras-tyag-ra-udayako-yugal-prakash.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · त्याग र उदयको युगल प्रकाश",
+        "sha256": "2d614e9ff3f997ba87e38f18ec00e95bc258e018331a6811d09cbdf9f79d2930",
+        "page_count": 12,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=tyag-ra-udayako-yugal-prakash&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "राजर्षि श्री ३ महाराजको राज्य-त्याग",
+            "page_start": 1,
+            "page_end": 6
+          },
+          {
+            "label": "राजर्षिपुत्र श्री ३ महाराजको उदय",
+            "page_start": 7,
+            "page_end": 12
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 12,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -38,7 +64,7 @@
     "quality": null
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-tyag-ra-udayako-yugal-prakash.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"

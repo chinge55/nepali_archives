@@ -1,7 +1,7 @@
 book,repository,source_url,revision,new_works,matched_works,included_documents,mapped_documents,excluded_documents,deferred_documents,status,defer_reasons
 नेपाली मेघदूत,nepali-meghadut,https://sahityaras.com/book/nepali-meghadut/,750c66b76188b5a1b1b7248d995a9616ebc90b02,1,0,1,0,7,0,accounted; existing editions retained,
 सृजामाता,srijamata,https://sahityaras.com/book/srijamata/,5868e0c39ec611f719ba71cd05308e80e3bc986a,1,0,5,0,7,0,accounted; existing editions retained,
-मायाविनी सर्सी,mayavini-sarsi,https://sahityaras.com/book/mayavini-sarsi/,721d1a4e7646f74d2833562b94d5b6483e2cdea1,0,0,0,0,8,5,deferred,Long unsigned glossary apparatus has unresolved authorship; preserve the whole work in the review cache until attribution is resolved.
+मायाविनी सर्सी,mayavini-sarsi,https://sahityaras.com/book/mayavini-sarsi/,721d1a4e7646f74d2833562b94d5b6483e2cdea1,1,0,5,0,8,0,accounted; existing editions retained,
 पहाडी पुकार,pahadi-pukar,https://sahityaras.com/book/pahadi-pukar/,8ea478a1278603d26f991365df630f3c53e9640d,1,0,1,0,7,0,accounted; existing editions retained,
 झंझा वर्णन,jhanjha-barnan,https://sahityaras.com/book/jhanjha-barnan/,7db829bd23453bfccc180376e9b69b0b162bf41a,1,0,1,0,7,0,accounted; existing editions retained,
 मैना,maina,https://sahityaras.com/book/maina/,172ea684792066a388525a114990835c0dd6e4da,1,0,7,0,7,0,accounted; existing editions retained,
@@ -14,7 +14,7 @@ book,repository,source_url,revision,new_works,matched_works,included_documents,m
 दाडिमको रूखनेर,dadimko-rukhnera,https://sahityaras.com/book/dadimko-rukhnera/,e07c5e86afdfe93d0c22980dd78c3f151ff70855,18,0,18,0,6,0,accounted; existing editions retained,
 पिकदूत,pikdut,https://sahityaras.com/book/pikdut/,0e1b52a09866fb22a3ed8e941e5c960cf46f2b76,1,0,1,0,7,0,accounted; existing editions retained,
 आमाको सपना,aamako-sapana,https://sahityaras.com/book/aamako-sapana/,99ed167b896307642c2f3da065e75bf2eca98690,41,0,41,0,7,0,accounted; existing editions retained,
-चिल्ला पातहरू,chilla-patharu,https://sahityaras.com/book/chilla-patharu/,ad7c67f1eefe42485f3cba9bf7a3c365fb74f069,0,21,0,21,7,1,partial; deferred material recorded,Possible authorial variant of existing प्रेमपत्र; retain separately for edition comparison.
+चिल्ला पातहरू,chilla-patharu,https://sahityaras.com/book/chilla-patharu/,ad7c67f1eefe42485f3cba9bf7a3c365fb74f069,1,21,1,21,7,0,accounted; existing editions retained,
 मोतीराम भट्टका गजल तथा गीत,motiram-bhattaka-gajal-tatha-git,https://sahityaras.com/book/motiram-bhattaka-gajal-tatha-git/,9b806bb158c244fca3e08cadc39b15348ff9bb14,37,0,37,0,7,0,accounted; existing editions retained,
 तिप्लिङ्गी,tiplingi,https://sahityaras.com/book/tiplingi/,c7ceda9b700e6bf487046d46e06aacb430c9c43d,1,0,13,0,6,0,accounted; existing editions retained,
 रावण जटायु युद्ध,ravan-jatayu-yuddha,https://sahityaras.com/book/ravan-jatayu-yuddha/,826d95b9a25ecd77465e1021e22e9c3e4a58b59e,1,0,2,0,6,0,accounted; existing editions retained,
@@ -47,7 +47,7 @@ book,repository,source_url,revision,new_works,matched_works,included_documents,m
 कवि भानुभक्तको जीवनचरित्र,kavi-bhanubhaktako-jivancharitra,https://sahityaras.com/book/kavi-bhanubhaktako-jivancharitra/,294cb17f2eef337341a0a19137643d141c421dc5,1,0,2,0,6,0,accounted; existing editions retained,
 चाडबाड,chadbad,https://sahityaras.com/book/chadbad/,0bac54609c69ead9b4c19b409f79294bcb3d6f8b,0,1,0,1,6,0,accounted; existing editions retained,
 भानुभक्तको रामायण,bhanubhaktako-ramayan,https://sahityaras.com/book/bhanubhaktako-ramayan/,febcaa02154c3f73f088c56d9d3370e8d8fee4c8,0,1,0,7,6,0,accounted; existing editions retained,
-भानुभक्तका फुटकर रचनाहरू,bhanubhaktaka-futkar-rachanaharu,https://sahityaras.com/book/bhanubhaktaka-futkar-rachanaharu/,3de23ee4e31cef6841c1e002d7ebd39913dec70a,0,0,0,0,6,1,deferred,Multiple untitled occasional poems in one file overlap existing works; semantic member boundaries need edition comparison.
+भानुभक्तका फुटकर रचनाहरू,bhanubhaktaka-futkar-rachanaharu,https://sahityaras.com/book/bhanubhaktaka-futkar-rachanaharu/,3de23ee4e31cef6841c1e002d7ebd39913dec70a,30,7,30,8,6,0,accounted; existing editions retained,
 भक्तमाला,bhaktamala,https://sahityaras.com/book/bhaktamala/,d489b7a770d1480086203144086478804263656b,0,1,0,1,6,0,accounted; existing editions retained,
 वधूशिक्षा,badhusiksha,https://sahityaras.com/book/badhusiksha/,33a1f590096c156995cb3b6e6f68b06437ed137b,0,1,0,1,6,0,accounted; existing editions retained,
 मुनामदन,munamadan,https://sahityaras.com/book/munamadan/,f5ed8db70ce2c23d9cca0d31e37b49856ad34ecc,0,1,0,5,6,0,accounted; existing editions retained,

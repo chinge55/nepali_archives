@@ -29,7 +29,28 @@
     "name": "लक्ष्मी निबन्ध सङ्ग्रह (साझा प्रकाशन)",
     "url": null,
     "pdf": "chhanda_r_lay.pdf",
-    "html": null
+    "html": null,
+    "pdf_editions": [
+      {
+        "id": "sahityaras-laxmi-nibandhasangraha",
+        "file": "sahityaras-laxmi-nibandhasangraha.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · लक्ष्मी निबन्धसङ्ग्रह",
+        "sha256": "e6a0d020d0a08a274875b5c38d474f0128c3c6a7af30df237036f1d200a52a43",
+        "page_count": 8,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=laxmi-nibandhasangraha&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "छन्द र लय",
+            "page_start": 1,
+            "page_end": 8
+          }
+        ]
+      }
+    ]
   },
   "pages": 8,
   "text": {
@@ -45,5 +66,5 @@
     "epub": "reader.epub"
   },
   "added": "2026-06-07",
-  "updated": "2026-06-07"
+  "updated": "2026-09-08"
 }

@@ -29,7 +29,113 @@
     "name": "लूनी (साझा प्रकाशन)",
     "url": null,
     "pdf": "luni.pdf",
-    "html": null
+    "html": null,
+    "pdf_editions": [
+      {
+        "id": "sahityaras-luni",
+        "file": "sahityaras-luni.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · लूनी",
+        "sha256": "e69fc91b1c21f79a191acde3b2086e24e383edb5ecd7fa7ca13df0e359dd8676",
+        "page_count": 73,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=luni&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "क",
+            "page_start": 1,
+            "page_end": 7
+          },
+          {
+            "label": "ख",
+            "page_start": 8,
+            "page_end": 12
+          },
+          {
+            "label": "ग",
+            "page_start": 13,
+            "page_end": 16
+          },
+          {
+            "label": "घ",
+            "page_start": 17,
+            "page_end": 23
+          },
+          {
+            "label": "ङ",
+            "page_start": 24,
+            "page_end": 26
+          },
+          {
+            "label": "च",
+            "page_start": 27,
+            "page_end": 32
+          },
+          {
+            "label": "छ",
+            "page_start": 33,
+            "page_end": 34
+          },
+          {
+            "label": "ज",
+            "page_start": 35,
+            "page_end": 36
+          },
+          {
+            "label": "झ",
+            "page_start": 37,
+            "page_end": 38
+          },
+          {
+            "label": "ञ",
+            "page_start": 39,
+            "page_end": 45
+          },
+          {
+            "label": "ट",
+            "page_start": 46,
+            "page_end": 47
+          },
+          {
+            "label": "ठ",
+            "page_start": 48,
+            "page_end": 49
+          },
+          {
+            "label": "ड",
+            "page_start": 50,
+            "page_end": 51
+          },
+          {
+            "label": "ढ",
+            "page_start": 52,
+            "page_end": 54
+          },
+          {
+            "label": "ण",
+            "page_start": 55,
+            "page_end": 60
+          },
+          {
+            "label": "त",
+            "page_start": 61,
+            "page_end": 66
+          },
+          {
+            "label": "थ",
+            "page_start": 67,
+            "page_end": 71
+          },
+          {
+            "label": "द",
+            "page_start": 72,
+            "page_end": 73
+          }
+        ]
+      }
+    ]
   },
   "pages": 66,
   "text": {
@@ -45,5 +151,5 @@
     "epub": "reader.epub"
   },
   "added": "2026-06-08",
-  "updated": "2026-06-08"
+  "updated": "2026-09-08"
 }

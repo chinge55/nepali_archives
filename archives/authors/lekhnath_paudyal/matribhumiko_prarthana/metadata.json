@@ -27,10 +27,31 @@
   "source": {
     "name": "Sahitya Ras (sahityaras.com)",
     "url": "https://sahityaras.com/book/lalitya-bhag-2/matribhumiko-prarthana/",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-lalitya-bhag-2.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-lalitya-bhag-2",
+        "file": "sahityaras-lalitya-bhag-2.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · लालित्य भाग २",
+        "sha256": "3671b4977687bdbb87e4e2c9bce527bcddbe006faec9bcf9e8859445ee6e9ffa",
+        "page_count": 2,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=lalitya-bhag-2&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "मातृभूमिको प्रार्थना",
+            "page_start": 1,
+            "page_end": 2
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 2,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -38,7 +59,7 @@
     "quality": null
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-lalitya-bhag-2.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"

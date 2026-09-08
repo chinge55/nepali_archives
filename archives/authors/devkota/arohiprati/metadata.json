@@ -28,10 +28,31 @@
   "source": {
     "name": "Kavita Kosh (kavitakosh.org)",
     "url": "https://kavitakosh.org/kk/आरोहीप्रति_/_लक्ष्मीप्रसाद_देवकोटा",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-chilla-patharu.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-chilla-patharu",
+        "file": "sahityaras-chilla-patharu.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · चिल्ला पातहरू",
+        "sha256": "a6a163186080d84192ad9ce08c161954c7e34e97ad9a9d7c84d4e86093556c4c",
+        "page_count": 4,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=chilla-patharu&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "आरोही प्रति",
+            "page_start": 1,
+            "page_end": 4
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 4,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -39,11 +60,11 @@
     "quality": "good"
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-chilla-patharu.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"
   },
   "added": "2026-06-05",
-  "updated": "2026-06-05"
+  "updated": "2026-09-08"
 }

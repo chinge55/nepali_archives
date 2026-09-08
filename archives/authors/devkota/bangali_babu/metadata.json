@@ -27,10 +27,31 @@
   "source": {
     "name": "Sahitya Ras (sahityaras.com)",
     "url": "https://sahityaras.com/book/laxmi-kathasangraha/bangali-babu/",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-laxmi-kathasangraha.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-laxmi-kathasangraha",
+        "file": "sahityaras-laxmi-kathasangraha.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · लक्ष्मी कथासङ्ग्रह",
+        "sha256": "04c222391117ba819e704c071779d8a64125a62d70c4b1af83df523cec93aae8",
+        "page_count": 11,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=laxmi-kathasangraha&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "बंगाली बाबू",
+            "page_start": 1,
+            "page_end": 11
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 11,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -38,7 +59,7 @@
     "quality": null
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-laxmi-kathasangraha.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"

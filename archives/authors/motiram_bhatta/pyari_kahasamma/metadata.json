@@ -27,10 +27,31 @@
   "source": {
     "name": "Sahitya Ras (sahityaras.com)",
     "url": "https://sahityaras.com/book/motiram-bhattaka-gajal-tatha-git/pyari-kahasamma/",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-motiram-bhattaka-gajal-tatha-git.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-motiram-bhattaka-gajal-tatha-git",
+        "file": "sahityaras-motiram-bhattaka-gajal-tatha-git.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · मोतीराम भट्टका गजल तथा गीत",
+        "sha256": "58088329979995b8b8a9492575662110e5dddbcdec2d48c3ef14585e0ddb219f",
+        "page_count": 1,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=motiram-bhattaka-gajal-tatha-git&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "प्यारी ! काहाँसम्म…",
+            "page_start": 1,
+            "page_end": 1
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 1,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -38,7 +59,7 @@
     "quality": null
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-motiram-bhattaka-gajal-tatha-git.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"

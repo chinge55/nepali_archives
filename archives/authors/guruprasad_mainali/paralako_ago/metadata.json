@@ -27,10 +27,31 @@
   "source": {
     "name": "Sahitya Ras (sahityaras.com)",
     "url": "https://sahityaras.com/book/naaso/paralko-aago/",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-naaso.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-naaso",
+        "file": "sahityaras-naaso.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · नासो",
+        "sha256": "1b20ce0bd7500871c3fd5cbfc2bb8959853dba564f689f990aa9c4db410ebd73",
+        "page_count": 10,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=naaso&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "परालको आगो",
+            "page_start": 1,
+            "page_end": 10
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 10,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -38,7 +59,7 @@
     "quality": null
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-naaso.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"

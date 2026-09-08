@@ -29,7 +29,28 @@
     "name": "लेखनाथका प्रमुख कविता (साझा प्रकाशन)",
     "url": null,
     "pdf": "basanta_kokil.pdf",
-    "html": null
+    "html": null,
+    "pdf_editions": [
+      {
+        "id": "sahityaras-lalitya-bhag-1",
+        "file": "sahityaras-lalitya-bhag-1.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · लालित्य भाग १",
+        "sha256": "288ad165065ab8f6ac69dfe96b6458aa05af690bd49d595a079f307ce91d235c",
+        "page_count": 3,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=lalitya-bhag-1&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "वसन्त कोकिल",
+            "page_start": 1,
+            "page_end": 3
+          }
+        ]
+      }
+    ]
   },
   "pages": 2,
   "text": {
@@ -45,5 +66,5 @@
     "epub": "reader.epub"
   },
   "added": "2026-06-07",
-  "updated": "2026-06-07"
+  "updated": "2026-09-08"
 }

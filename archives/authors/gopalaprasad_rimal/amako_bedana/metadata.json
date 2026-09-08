@@ -27,10 +27,31 @@
   "source": {
     "name": "Sahitya Ras (sahityaras.com)",
     "url": "https://sahityaras.com/book/aamako-sapana/amako-vedana/",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-aamako-sapana.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-aamako-sapana",
+        "file": "sahityaras-aamako-sapana.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · आमाको सपना",
+        "sha256": "7be5a7fbc718af2878c1237bbf6003b22f0959cb291033595a9d1d58ded2fdfc",
+        "page_count": 3,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=aamako-sapana&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "आमाको वेदना",
+            "page_start": 1,
+            "page_end": 3
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 3,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -38,7 +59,7 @@
     "quality": null
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-aamako-sapana.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"

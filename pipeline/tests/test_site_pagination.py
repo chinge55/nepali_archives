@@ -31,6 +31,14 @@ class PaginationTests(unittest.TestCase):
         self.assertEqual(pages[0][0], "भूमिका")
         self.assertIn("लेखकको आफ्नै कुरा", pages[0][1])
 
+    def test_closing_colophons_stay_with_their_canto(self):
+        text = ('प्रथम सर्ग\n\n' + 'क' * 4100 + '\n\nइति प्रथम सर्ग'
+                + '\n\nद्वितीय सर्ग\n\n' + 'ख' * 4100 + '\n\nइति द्वितीय सर्ग')
+        pages = paginate_work(text)
+        self.assertEqual([label for label, _ in pages], ['प्रथम सर्ग', 'द्वितीय सर्ग'])
+        self.assertTrue(pages[0][1].endswith('इति प्रथम सर्ग'))
+        self.assertTrue(pages[1][1].endswith('इति द्वितीय सर्ग'))
+
     def test_short_work_remains_single_page(self):
         self.assertIsNone(paginate_work(
             "प्रथम सर्ग\n\nसानो\n\nदोस्रो सर्ग\n\nसानो"

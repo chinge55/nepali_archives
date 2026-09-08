@@ -28,10 +28,31 @@
   "source": {
     "name": "Kavita Kosh (kavitakosh.org)",
     "url": "https://kavitakosh.org/kk/मास्टरजी_/_लक्ष्मीप्रसाद_देवकोटा",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-sunko-bihan.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-sunko-bihan",
+        "file": "sahityaras-sunko-bihan.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · सुनको बिहान",
+        "sha256": "f79b504f2987088306d34b36449fc9cb6bb579fdab15cefc44f7a151da75d64e",
+        "page_count": 2,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=sunko-bihan&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "मास्टरजी",
+            "page_start": 1,
+            "page_end": 2
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 2,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -39,11 +60,11 @@
     "quality": "good"
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-sunko-bihan.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"
   },
   "added": "2026-06-05",
-  "updated": "2026-06-05"
+  "updated": "2026-09-08"
 }

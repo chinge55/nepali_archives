@@ -20,7 +20,7 @@
   },
   "edition": null,
   "publisher": null,
-  "description": "भानुभक्त आचार्यको कविता 'रोज रोज दर्शन पाउँछु'। iNepal (inepal.org) बाट सङ्कलित।",
+  "description": "From the collection भानुभक्तका फुटकर रचनाहरू. भानुभक्त आचार्यको कविता 'रोज रोज दर्शन पाउँछु'। iNepal (inepal.org) बाट सङ्कलित।",
   "rights": {
     "status": "public-domain",
     "basis": "Author died 1868; long in the public domain (Nepal's Copyright Act 2059: life + 50 years)."
@@ -28,10 +28,36 @@
   "source": {
     "name": "iNepal (inepal.org)",
     "url": "https://inepal.org/nepalipoems/10511/bhanubhakta-acharya-roj-roj-darshan-paunchhu-bholi-kabita/",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-bhanubhaktaka-futkar-rachanaharu.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-bhanubhaktaka-futkar-rachanaharu",
+        "file": "sahityaras-bhanubhaktaka-futkar-rachanaharu.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · भानुभक्तका फुटकर रचनाहरू",
+        "sha256": "33995a66d44a58b904c8eba583293c5f90699ca65642dabbd1f3e0d979d4827d",
+        "page_count": 3,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=bhanubhaktaka-futkar-rachanaharu&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "रोज् रोज् दर्शन पाउँछू चरणको ताप् छैन मन्‌मा कछू",
+            "page_start": 1,
+            "page_end": 2
+          },
+          {
+            "label": "बिन्ती डिठ्‌टा विचारीसित म कति गरूँ चुप् रहन्छन् नबोली",
+            "page_start": 3,
+            "page_end": 3
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 3,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -39,11 +65,11 @@
     "quality": "good"
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-bhanubhaktaka-futkar-rachanaharu.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"
   },
   "added": "2026-06-09",
-  "updated": "2026-06-09"
+  "updated": "2026-09-08"
 }

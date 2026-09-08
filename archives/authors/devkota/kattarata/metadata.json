@@ -27,10 +27,31 @@
   "source": {
     "name": "Sahitya Ras (sahityaras.com)",
     "url": "https://sahityaras.com/book/dadimko-rukhnera/kattarata/",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-dadimko-rukhnera.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-dadimko-rukhnera",
+        "file": "sahityaras-dadimko-rukhnera.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · दाडिमको रूखनेर",
+        "sha256": "f1d0c6b3de3e075e87d5fe4354fba8857d93e1ead0fc706d8cf0de96d35c7bfd",
+        "page_count": 6,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=dadimko-rukhnera&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "कट्टरता",
+            "page_start": 1,
+            "page_end": 6
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 6,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -38,7 +59,7 @@
     "quality": null
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-dadimko-rukhnera.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"

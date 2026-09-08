@@ -27,10 +27,31 @@
   "source": {
     "name": "Sahitya Ras (sahityaras.com)",
     "url": "https://sahityaras.com/book/naaso/prayashchitta/",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-naaso.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-naaso",
+        "file": "sahityaras-naaso.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · नासो",
+        "sha256": "2ff6aaccd2feb55cfef3928d3dc06b9287feaf2c2a140b1f977057718a21b5e9",
+        "page_count": 8,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=naaso&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "प्रायश्चित्त",
+            "page_start": 1,
+            "page_end": 8
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 8,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -38,7 +59,7 @@
     "quality": null
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-naaso.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"

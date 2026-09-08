@@ -28,10 +28,31 @@
   "source": {
     "name": "Sahitya Ras (sahityaras.com)",
     "url": "https://sahityaras.com/book/chilla-patharu/kukhuro-prati/",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-chilla-patharu.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-chilla-patharu",
+        "file": "sahityaras-chilla-patharu.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · चिल्ला पातहरू",
+        "sha256": "6463d15abf04fc1ceeaf34909df697fa69bd59325c5fe81b5469957a0ff8604e",
+        "page_count": 2,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=chilla-patharu&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "कुखुरो प्रति",
+            "page_start": 1,
+            "page_end": 2
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 2,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -39,7 +60,7 @@
     "quality": null
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-chilla-patharu.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"

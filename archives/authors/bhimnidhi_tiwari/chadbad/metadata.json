@@ -29,7 +29,28 @@
     "name": "चाडबाड (२०२७ दसैं) — कौवा प्रकाशन",
     "url": null,
     "pdf": "chadbad.pdf",
-    "html": null
+    "html": null,
+    "pdf_editions": [
+      {
+        "id": "sahityaras-chadbad",
+        "file": "sahityaras-chadbad.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · चाडबाड",
+        "sha256": "1d45cd4be3904e0d1d8f053ed50176e4f4d73de2bc3c29b03ffa1831e78349ee",
+        "page_count": 8,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=chadbad&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "चाडबाड",
+            "page_start": 1,
+            "page_end": 8
+          }
+        ]
+      }
+    ]
   },
   "pages": 8,
   "text": {
@@ -44,5 +65,6 @@
     "html": "reader.html",
     "epub": "reader.epub"
   },
-  "added": "2026-07-26"
+  "added": "2026-07-26",
+  "updated": "2026-09-08"
 }

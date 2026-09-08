@@ -27,10 +27,31 @@
   "source": {
     "name": "Sahitya Ras (sahityaras.com)",
     "url": "https://sahityaras.com/book/guna-ratnamala/shriramacharitra/",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-guna-ratnamala.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-guna-ratnamala",
+        "file": "sahityaras-guna-ratnamala.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · गुण रत्नमाला",
+        "sha256": "93dd93e61ee53e415b8b2e5bad1949b734afde2f9bc014411dcd44cfe5149696",
+        "page_count": 14,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=guna-ratnamala&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "श्रीरामचरित्र",
+            "page_start": 1,
+            "page_end": 14
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 14,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -38,7 +59,7 @@
     "quality": null
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-guna-ratnamala.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"

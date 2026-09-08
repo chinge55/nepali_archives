@@ -27,10 +27,31 @@
   "source": {
     "name": "Sahitya Ras (sahityaras.com)",
     "url": "https://sahityaras.com/book/laxmi-giti-sangraha/bachchi-ra-praudha-prrithivi/",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-laxmi-giti-sangraha.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-laxmi-giti-sangraha",
+        "file": "sahityaras-laxmi-giti-sangraha.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · लक्ष्मी गीति-सङ्ग्रह",
+        "sha256": "d63c33e9b2870cb9d26c69cc4fb4eacd2a0ca0a70d4b6403fd5aad5b8d37d3e0",
+        "page_count": 1,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=laxmi-giti-sangraha&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "बच्ची र प्रौढा पृथिवी",
+            "page_start": 1,
+            "page_end": 1
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 1,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -38,7 +59,7 @@
     "quality": null
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-laxmi-giti-sangraha.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"

@@ -27,10 +27,31 @@
   "source": {
     "name": "Sahitya Ras (sahityaras.com)",
     "url": "https://sahityaras.com/book/putali/ke-ho-nepal-bhanne/",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-putali.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-putali",
+        "file": "sahityaras-putali.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · पुतली",
+        "sha256": "fa5f22128722569888f2b7273d64acf16ccdeebd58ede20686c7fb5bbfd83012",
+        "page_count": 1,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=putali&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "के हो नेपाल भन्ने ?",
+            "page_start": 1,
+            "page_end": 1
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 1,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -38,7 +59,7 @@
     "quality": null
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-putali.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"

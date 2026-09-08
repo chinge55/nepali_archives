@@ -27,10 +27,31 @@
   "source": {
     "name": "Sahitya Ras (sahityaras.com)",
     "url": "https://sahityaras.com/book/guna-ratnamala/udyoga-siddha-nabhaema-santosha-mana/",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-guna-ratnamala.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-guna-ratnamala",
+        "file": "sahityaras-guna-ratnamala.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · गुण रत्नमाला",
+        "sha256": "08cd29517c8cd2135db0cefcd0e1197ab6320fb47ffebfb1f2c49392e848472f",
+        "page_count": 2,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=guna-ratnamala&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "उद्योग सिद्ध नभएमा सन्तोष मान",
+            "page_start": 1,
+            "page_end": 2
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 2,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -38,7 +59,7 @@
     "quality": null
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-guna-ratnamala.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"

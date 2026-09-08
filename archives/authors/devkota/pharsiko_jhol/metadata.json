@@ -27,10 +27,31 @@
   "source": {
     "name": "Sahitya Ras (sahityaras.com)",
     "url": "https://sahityaras.com/book/dadimko-rukhnera/pharsiko-jhola/",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-dadimko-rukhnera.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-dadimko-rukhnera",
+        "file": "sahityaras-dadimko-rukhnera.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · दाडिमको रूखनेर",
+        "sha256": "0a0d9d6bd526d3490e843b6a9a2add522cfb5ef3ac796dc73019dcc84b96a64e",
+        "page_count": 9,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=dadimko-rukhnera&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "फर्सीको झोल",
+            "page_start": 1,
+            "page_end": 9
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 9,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -38,7 +59,7 @@
     "quality": null
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-dadimko-rukhnera.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"

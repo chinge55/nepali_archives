@@ -64,8 +64,14 @@ def write_work_pages(context, page, assets, catalogue):
                 )
 
             formats = meta.get("formats", {})
+            source_info = meta.get("source", {})
+            editions = source_info.get("pdf_editions") or []
             source_dir = context.root / work["path"]
             pdf_filename = formats.get("pdf")
+            primary_edition = next(
+                (edition for edition in editions if edition.get("file") == pdf_filename),
+                None,
+            )
             format_links = {}
             for kind in ("pdf", "epub", "txt"):
                 filename = formats.get(kind)
@@ -79,6 +85,28 @@ def write_work_pages(context, page, assets, catalogue):
                 elif (source_dir / filename).exists():
                     shutil.copy(source_dir / filename, output / filename)
                     format_links[kind] = esc(filename)
+
+            # Every declared edition is a downloadable source.  The canonical
+            # formats.pdf file is retained and copied only once when repeated.
+            def edition_display_label(edition):
+                label = edition["label"]
+                if edition.get("kind") == "typeset" and "डिजिटल संस्करण" not in label:
+                    return label + " — डिजिटल संस्करण"
+                return label
+
+            edition_links = []
+            for edition in editions:
+                filename = edition["file"]
+                if context.archive_base:
+                    direct = f'{context.archive_base.rstrip("/")}/{relative}/{esc(filename)}'
+                elif (source_dir / filename).exists():
+                    if filename != pdf_filename or "pdf" not in format_links:
+                        shutil.copy(source_dir / filename, output / filename)
+                    direct = esc(filename)
+                else:
+                    continue
+                edition_links.append((edition, direct))
+
             download_links = [
                 f'<a href="{format_links[kind]}">{label}</a>'
                 for kind, label in [
@@ -90,16 +118,47 @@ def write_work_pages(context, page, assets, catalogue):
             pdf_button = ""
             if pdf_filename:
                 direct_download = (
-                    f'\n  <a class="pdfread" href="{format_links["pdf"]}" '
-                    "download>⬇ PDF डाउनलोड</a>"
-                    if "pdf" in format_links
-                    else ""
+                    f' <a class="pdfread" href="{format_links["pdf"]}" download>⬇ PDF डाउनलोड</a>'
+                    if "pdf" in format_links else ""
                 )
-                pdf_button = (
-                    '\n  <p class="pdfacts"><a class="pdfread" href="pdf/">'
-                    "📖 मूल पृष्ठ हेर्नुहोस्</a>"
-                    f"{direct_download}</p>"
-                )
+                primary_label = edition_display_label(primary_edition) if primary_edition else "मूल पृष्ठ"
+                primary_href = "pdf/"
+                links = [
+                    f'<a class="pdfread" href="{primary_href}">📖 {esc(primary_label)} हेर्नुहोस्</a>'
+                ]
+                for edition, direct in edition_links:
+                    if edition.get("file") == pdf_filename:
+                        continue
+                    eid = edition["id"]
+                    links.append(
+                        f'<a class="pdfread" href="pdf/{esc(eid)}/">📖 {esc(edition_display_label(edition))} हेर्नुहोस्</a>'
+                        f' <a href="{direct}" download>⬇ PDF</a>'
+                    )
+                pdf_button = '\n  <p class="pdfacts">' + " ".join(links) + direct_download + "</p>"
+
+            def section_pdf_link(section_label):
+                # The reader joins a printed heading/subtitle with an em dash.
+                # Compare that layout form without changing the source label.
+                def label_key(value):
+                    return re.sub(r"\s+", " ", value.replace("\n", " — ")).strip()
+                links = []
+                seen = set()
+                for edition in editions:
+                    for section in edition.get("sections") or []:
+                        labels = [section.get("label", "")] + section.get("aliases", [])
+                        if not any(label_key(label) == label_key(section_label) for label in labels):
+                            continue
+                        eid = edition.get("id") if edition.get("file") != pdf_filename else None
+                        href = "../pdf/" if not eid else f"../pdf/{esc(eid)}/"
+                        href += f'?page={int(section["page_start"])}'
+                        if href in seen:
+                            continue
+                        seen.add(href)
+                        links.append(
+                            f'<a class="pdfread" href="{href}">'
+                            f'📖 {esc(edition_display_label(edition))} · {esc(section_label)}</a>'
+                        )
+                return '<p class="pdf-section">' + " ".join(links) + '</p>' if links else ""
 
             source_name = meta["source"].get("name") or ""
             source_url = meta["source"].get("url") or ""
@@ -244,6 +303,7 @@ def write_work_pages(context, page, assets, catalogue):
 <article>
   <h1>{esc(label)}</h1>
   <p class="byline"><a href="../">{esc(meta['title'])}</a> · {esc(meta['author']['name'])} · {devnum(section_index + 1)}/{devnum(section_count)}</p>
+  {section_pdf_link(label)}
   <div class="work {'verse' if verse else 'prose'}" data-pagefind-body>{filters}
 {work_html(content, verse)}
   </div>
@@ -266,17 +326,18 @@ def write_work_pages(context, page, assets, catalogue):
 
             if pdf_filename:
                 write_pdf_reader(
-                    context,
-                    page,
-                    assets,
-                    output,
-                    depth,
-                    relative,
-                    pdf_filename,
-                    meta,
-                    author_slug,
-                    author_name,
+                    context, page, assets, output, depth, relative,
+                    pdf_filename, meta, author_slug, author_name,
+                    reader_label=edition_display_label(primary_edition) if primary_edition else None,
                 )
+                for edition, _direct in edition_links:
+                    if edition.get("file") == pdf_filename:
+                        continue
+                    write_pdf_reader(
+                        context, page, assets, output, depth, relative,
+                        edition["file"], meta, author_slug, author_name,
+                        edition_id=edition["id"], reader_label=edition_display_label(edition),
+                    )
             search_rows.append(
                 {
                     "t": meta["title"],

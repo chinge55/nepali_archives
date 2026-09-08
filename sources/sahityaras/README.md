@@ -1,101 +1,125 @@
 # Sahitya Ras ingestion
 
-The full **66-book catalogue** has been fetched at pinned revisions, inventoried,
-compared with the archive, and assigned explicit source decisions. The larger
-batch adds **427 works**, following the 17-work pilot: **444 new works in total**.
-The local archive now contains **672 works across ten authors**.
+All **66 books** are accounted for. The archive now contains **704 works across
+ten authors**, including **476 additions** from this source: the 17-work pilot,
+427 catalogue additions, and 32 works resolved during PDF review.
 
-This is transcription reuse and source-fidelity checking, **not printed-page
-proofreading**. Every new work remains `text.proofread: false`. Existing literary
-texts are unchanged; collection associations are added where work identity is
-established. A matching archive work may represent a different or shorter edition;
-that match does not assert complete coverage of the source edition.
+The PDF batch supplies **593 work-specific editions for 589 works** from all
+**62 eligible books**. It adds a first PDF to 530 works and preserves 59 existing
+primary PDFs alongside the additional edition. Across the archive, 597 works now
+have a PDF. Works outside the matched source catalogue may still be text-only.
+The four remaining source books are recorded but remain outside the publication
+gate until 2027; see the [author records](authors.json).
 
-- [Per-book results](catalogue-status.csv): all 66 books, counts, and deferral reasons.
-- [Reviewed catalogue manifest](catalogue.json): source revisions, document hashes,
-  reading order, exclusions, repairs, destinations, and exact output hashes.
-- [Author records](authors.json): canonical identities and eligibility evidence.
-- [Original pilot manifest](chilla-patharu.json): historical record of the first
-  चिल्ला पातहरू batch. The full catalogue manifest is authoritative for reruns
-  after later collection associations have been applied.
+- [Catalogue results](catalogue-status.csv): every book and its dispositions.
+- [Text manifest](catalogue.json): pinned revisions, source decisions, repairs,
+  member selections, destinations, and output hashes.
+- [PDF manifest](pdfs.json): downloaded source hashes, complete physical-page
+  accounting, work boundaries, editorial removals, output hashes, and section links.
+- [PDF validation](pdf-validation.json): checks and their limits.
+- [Earlier text validation](validation.json) and [pilot manifest](chilla-patharu.json):
+  historical records of the preceding batches.
 
-## What is retained
+## Source fidelity and editions
 
-Collections become separate member works. Long narratives remain single works
-with source sections in reading order. Authorial prefaces, dedications, original
-wording, period spelling, punctuation, repetition, verse lines, numbering, and
-indentation are preserved. Original-author credits remain in translated essays;
-the metadata identifies Devkota as the Nepali translator. The traditional Sanskrit
-hymn in गुण रत्नमाला is labelled as Sanskrit and its collection attribution does
-not claim original composition by the compiler.
+These PDFs are **digital typeset editions**: all 66 publication pages explicitly
+state that they were originally created as EPUBs. They are labelled as digital
+editions in the reader, without presenting them as scans of historical printings.
+Existing scans and transcriptions remain intact. A matched work may have a shorter
+or differently worded existing transcription; its additional PDF preserves the
+supplied source edition rather than replacing that text.
 
-Notes are read across the whole XHTML body, including those outside the literary
-container. Reference markers stay with the text; retained notes follow their
-source section with the original reference label. Brief unsigned factual glosses
-remain source apparatus, without an assertion of authorship. Lengthier disputed
-commentary is held for attribution review. Later editorial material is excluded
-from **both literary text and public HTML captures**. Captures also omit external
-assets and executable content; original input hashes remain in the manifest.
+Collections become separate member works. Longer works retain their sections in
+reading order, with a PDF contents list and links from matching reader sections
+to the relevant PDF page. Page numbers in source decisions are one-based physical
+PDF pages; section links use the page numbers of the resulting per-work PDF.
 
-Recorded repairs remove only demonstrable wiki-template debris and identified
-later publication tails. Source gaps are preserved; missing lines are never
-supplied from a different edition. HTML formatting whitespace is normalized in
-captures. The importer rejects unknown structures, broken note references,
-unaccounted documents, source drift, and unexpected destination changes.
+Authorial prefaces, dedications, wording, period spelling, punctuation, verse
+lines, numbering, indentation, and genuine source gaps are retained. Other
+people's editorials and publication wrappers are excluded. Shared pages are
+physically redacted before publication: cropping or covering retained hidden
+content is insufficient. The public PDFs contain only the selected pages and
+remove original annotations, attachments, and executable actions.
 
-## Remaining source decisions
+The page review resolved the previously held literary material:
 
-- **Four Shankar Lamichhane books:** outside the archive's publication gate until
-  2027; see the author record and its cited evidence.
-- **मायाविनी सर्सी:** longer unsigned glossary apparatus needs attribution review.
-- **भानुभक्तका फुटकर रचनाहरू:** one XHTML contains 39 numbered members; several
-  match existing works, but remaining semantic boundaries need edition comparison.
-  It is not published as a duplicate anthology work.
-- **प्रेम in चिल्ला पातहरू:** possible variant of existing प्रेमपत्र; held for
-  edition comparison. साउन is now represented by the matching song-collection
-  transcription under साउन आउँछ, with both collection associations recorded.
+- **मायाविनी सर्सी:** the signed editorial attributes its explanatory glossary
+  to Mohan Raj Sharma. That editorial, the glossary, and its reference markers are
+  excluded. All five cantos remain. A note-only page is omitted; shared pages keep
+  the author's closing stanzas. The source also acknowledges editorial emendations
+  within the verse, which cannot be silently reversed without another witness.
+- **भानुभक्तका फुटकर रचनाहरू:** all 39 printed numbered pieces are accounted for.
+  Nine pieces map to seven existing works, including pieces 4, 5, and 10 in the
+  existing रोज रोज दर्शन पाउँछु aggregation. Thirty untitled pieces are catalogued
+  by their opening lines. Their printed numbers remain, including headings that
+  precede a page break. HTML captures reconstruct only the selected excerpts;
+  PDF slices retain the corresponding source-page content.
+- **प्रेम:** its complete three-part source version is preserved separately from
+  the longer प्रेमपत्र after comparing their wording and structure.
 
-The ledger therefore accounts for all books while making these incomplete source
-decisions visible. Excluded editorial prose and deferred texts remain only in the
-ignored working cache.
+This is source reuse and fidelity checking, not completed proofreading against
+historical printed pages. Every new work remains `text.proofread: false`.
 
-## Reproduce the reviewed batch
+## Reproduce the text stage
 
-Fetch the exact recorded revisions, without following newer upstream changes:
+These commands replay the text import against its recorded pre-PDF baseline.
+They are not needed to build or preview a current checkout. Fetch the recorded
+revisions and stage the reviewed text outputs:
 
 ```sh
 python3 pipeline/sahityaras_fetch.py --manifest sources/sahityaras/catalogue.json
-python3 pipeline/sahityaras_catalogue.py sources/sahityaras/catalogue.json .ingest-work/sahityaras/catalogue --stage .ingest-work/sahityaras/review-drafts
+python3 pipeline/sahityaras_catalogue.py sources/sahityaras/catalogue.json \
+  .ingest-work/sahityaras/catalogue --stage .ingest-work/sahityaras/text-review
 ```
 
-Inspect the staged sources, then apply the same manifest:
+To apply that stage to its recorded pre-PDF baseline:
 
 ```sh
-python3 pipeline/sahityaras_catalogue.py sources/sahityaras/catalogue.json .ingest-work/sahityaras/catalogue --apply
+python3 pipeline/sahityaras_catalogue.py sources/sahityaras/catalogue.json \
+  .ingest-work/sahityaras/catalogue --apply
 ```
 
-All outputs are checked before writing. Equal files are left alone; rerunning the
-applied batch writes zero files. Existing text and metadata baselines are pinned.
-A later deliberate correction must receive a new reviewed manifest decision;
-rerunning an old import must not undo it. Writes are atomic per file and resumable,
-not a transactional replacement of the whole archive.
+The text manifest describes the state before PDF enrichment. On the current
+checkout, its baseline guards intentionally prevent a rerun from stripping the
+new PDF metadata. Reproduction of the original catalogue batch also requires its
+recorded baseline, including the 17-work pilot. An old import must not undo later
+reviewed changes.
 
-The original 17-work pilot must already be present in a checkout using this full
-batch's 245-work baseline. Normal site builds require no source fetching, service,
-backend, or ingestion cache. Only canonical source files and public provenance
-belong in Git; reader HTML, EPUBs, fonts, search output, and `site/` are rebuilt.
+## Reproduce the PDF stage
 
-## Validation
+Fetching uses the standard library. Originals stay in an ignored cache; only
+sanitized work-specific source PDFs belong in the public archive.
 
-Source snapshots for all 66 repositories and output hashes were verified.
-Independent draft checking covered all 427 additions, followed by coordinator
-resolution of the flagged source details. All metadata validates against the
-archive schema, all new EPUBs preserve their text and meaningful stanza/line
-boundaries, and source captures pass the HTML sanitation check. The site build,
-search indexing, and internal-link audit pass. All 72 regression tests pass; the
-browser sweep covers all 427 new readers, including paginated text and mobile
-layout. Nepali/Roman title search, full-text search, and highlighting pass.
-See the [validation record](validation.json) for counts and limits.
+```sh
+python3 pipeline/sahityaras_pdf_fetch.py \
+  --manifest sources/sahityaras/pdfs.json \
+  --output .ingest-work/sahityaras/pdf/originals
+```
 
-The larger corpus exposed two reader issues fixed with this batch: explicit verse
-line breaks now survive EPUB conversion, and long contents links wrap on mobile.
+The fetcher verifies the PDF signature and pinned SHA-256 before replacing a cache
+file. Slicing requires the optional PyMuPDF 1.26.7 dependency used for this batch:
+
+```sh
+python3 -m venv .ingest-work/pdf-env
+.ingest-work/pdf-env/bin/pip install PyMuPDF==1.26.7
+.ingest-work/pdf-env/bin/python pipeline/sahityaras_pdf_batch.py \
+  sources/sahityaras/pdfs.json .ingest-work/sahityaras/pdf/originals \
+  --stage .ingest-work/sahityaras/pdf/review
+```
+
+Apply the same reviewed manifest after inspecting the staged outputs:
+
+```sh
+.ingest-work/pdf-env/bin/python pipeline/sahityaras_pdf_batch.py \
+  sources/sahityaras/pdfs.json .ingest-work/sahityaras/pdf/originals --apply
+```
+
+The materializer checks source hashes, complete source dispositions, exact member
+assignments, required editorial removals, unchanged text, metadata baselines, and
+reviewed output hashes. Every destination is checked before writing. Equal files
+are left alone; applying the same PDF batch again writes zero files. Writes are
+atomic per file and resumable, rather than one filesystem-wide transaction.
+
+Normal site builds need neither the original download cache nor PDF processing
+dependencies. The static reader copies the committed source PDFs and rebuilds
+HTML, EPUBs, fonts, and search output; no backend is needed.

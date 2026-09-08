@@ -27,10 +27,31 @@
   "source": {
     "name": "Sahitya Ras (sahityaras.com)",
     "url": "https://sahityaras.com/book/putali/saacho/",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-putali.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-putali",
+        "file": "sahityaras-putali.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · पुतली",
+        "sha256": "0ad43697cf51dd3432c0486b693e6f9e92930ecbee6cebd392387b4cb10092ea",
+        "page_count": 2,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=putali&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "साँचो",
+            "page_start": 1,
+            "page_end": 2
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 2,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -38,7 +59,7 @@
     "quality": null
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-putali.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"

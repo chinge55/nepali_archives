@@ -29,7 +29,52 @@
     "name": "साहित्य सङ्ग्रहालय (sahityasangraha.com)",
     "url": "https://sahityasangraha.com/2022/04/03/चम्पा/",
     "pdf": null,
-    "html": "extracted/index.html"
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-champa",
+        "file": "sahityaras-champa.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · चम्पा",
+        "sha256": "233d1e20177c0d8eb276326dc388fe09ef286c693d73342b05f2ffd02d071432",
+        "page_count": 55,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=champa&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "अध्याय १",
+            "page_start": 1,
+            "page_end": 11,
+            "aliases": [
+              "अध्याय १ — बालचिन्ता"
+            ]
+          },
+          {
+            "label": "अध्याय २",
+            "page_start": 12,
+            "page_end": 26
+          },
+          {
+            "label": "अध्याय ३",
+            "page_start": 27,
+            "page_end": 43,
+            "aliases": [
+              "अध्याय तीन"
+            ]
+          },
+          {
+            "label": "अध्याय ४",
+            "page_start": 44,
+            "page_end": 55,
+            "aliases": [
+              "अध्याय चार"
+            ]
+          }
+        ]
+      }
+    ]
   },
   "pages": null,
   "text": {
@@ -45,5 +90,5 @@
     "epub": "reader.epub"
   },
   "added": "2026-06-05",
-  "updated": "2026-06-07"
+  "updated": "2026-09-08"
 }

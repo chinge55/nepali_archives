@@ -27,10 +27,31 @@
   "source": {
     "name": "Sahitya Ras (sahityaras.com)",
     "url": "https://sahityaras.com/book/naaso/sahid/",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-naaso.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-naaso",
+        "file": "sahityaras-naaso.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · नासो",
+        "sha256": "72b2764074375525563a8e784d5d9d11fce62c1fb408c6eb67d440e83d37e7c6",
+        "page_count": 15,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=naaso&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "सहिद",
+            "page_start": 1,
+            "page_end": 15
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 15,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -38,7 +59,7 @@
     "quality": null
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-naaso.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"

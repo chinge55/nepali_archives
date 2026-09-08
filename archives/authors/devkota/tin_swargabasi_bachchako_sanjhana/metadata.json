@@ -28,10 +28,50 @@
   "source": {
     "name": "Sahitya Ras (sahityaras.com)",
     "url": "https://sahityaras.com/book/chilla-patharu/tina-svargavasi-bachchako-samjhana/",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-chilla-patharu.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-chilla-patharu",
+        "file": "sahityaras-chilla-patharu.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · चिल्ला पातहरू",
+        "sha256": "eb9105ed0419ca5b5b41747422c5881f05d41c20d97be7c8f1fdae3dd02db11a",
+        "page_count": 2,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=chilla-patharu&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "तीन स्वर्गवासी बच्चाको संझना",
+            "page_start": 1,
+            "page_end": 2
+          }
+        ]
+      },
+      {
+        "id": "sahityaras-laxmi-giti-sangraha",
+        "file": "sahityaras-laxmi-giti-sangraha.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · लक्ष्मी गीति-सङ्ग्रह",
+        "sha256": "f15544ded26c107a2110dd995fefedc5fa456d2dd30a9bbcbb8f153040b518af",
+        "page_count": 2,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=laxmi-giti-sangraha&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "तीन स्वर्गवासी बच्चाको संझना",
+            "page_start": 1,
+            "page_end": 2
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 2,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -39,7 +79,7 @@
     "quality": null
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-chilla-patharu.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"

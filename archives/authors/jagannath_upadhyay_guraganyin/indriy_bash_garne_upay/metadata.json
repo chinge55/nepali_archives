@@ -27,10 +27,31 @@
   "source": {
     "name": "Sahitya Ras (sahityaras.com)",
     "url": "https://sahityaras.com/book/guna-ratnamala/indriya-vasha-garne-upaya/",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-guna-ratnamala.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-guna-ratnamala",
+        "file": "sahityaras-guna-ratnamala.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · गुण रत्नमाला",
+        "sha256": "ec9fdfa97b84583fedaa0d9bc55e606d5ed9a6539f1eba17afafdb68a6e7b70e",
+        "page_count": 2,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=guna-ratnamala&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "इन्द्रिय वश गर्ने उपाय",
+            "page_start": 1,
+            "page_end": 2
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 2,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -38,7 +59,7 @@
     "quality": null
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-guna-ratnamala.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"

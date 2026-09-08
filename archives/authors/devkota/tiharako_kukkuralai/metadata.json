@@ -27,10 +27,31 @@
   "source": {
     "name": "Sahitya Ras (sahityaras.com)",
     "url": "https://sahityaras.com/book/laxmi-giti-sangraha/tiharako-kukuralai/",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-laxmi-giti-sangraha.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-laxmi-giti-sangraha",
+        "file": "sahityaras-laxmi-giti-sangraha.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · लक्ष्मी गीति-सङ्ग्रह",
+        "sha256": "a1ef19ddb2d862ee020f8ca1fa2736293faff35c16a47b6f6cde84ca0b4f9eeb",
+        "page_count": 2,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=laxmi-giti-sangraha&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "तिहारको कुकुरलाई",
+            "page_start": 1,
+            "page_end": 2
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 2,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -38,7 +59,7 @@
     "quality": null
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-laxmi-giti-sangraha.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"

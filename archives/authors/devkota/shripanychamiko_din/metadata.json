@@ -27,10 +27,31 @@
   "source": {
     "name": "Sahitya Ras (sahityaras.com)",
     "url": "https://sahityaras.com/book/dadimko-rukhnera/shripanchamiko-dina-2010/",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-dadimko-rukhnera.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-dadimko-rukhnera",
+        "file": "sahityaras-dadimko-rukhnera.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · दाडिमको रूखनेर",
+        "sha256": "ecf706ddead6ccb858f9a13446ab5061c3739491291c4066c6f911672764d26a",
+        "page_count": 5,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=dadimko-rukhnera&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "श्रीपञ्चमीको दिन २०१०",
+            "page_start": 1,
+            "page_end": 5
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 5,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -38,7 +59,7 @@
     "quality": null
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-dadimko-rukhnera.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"

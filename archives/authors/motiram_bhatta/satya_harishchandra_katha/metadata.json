@@ -26,7 +26,28 @@
     "name": "सत्य हरिश्चन्द्र कथा (रत्न पुस्तक भण्डार)",
     "url": null,
     "pdf": "satya_harishchandra_katha.pdf",
-    "html": null
+    "html": null,
+    "pdf_editions": [
+      {
+        "id": "sahityaras-satya-harishchandra-katha",
+        "file": "sahityaras-satya-harishchandra-katha.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · सत्य हरिश्चन्द्र कथा",
+        "sha256": "3a94c23a776ccd129955fa72e07326160d4716f23ac788dcb93f915f74cde3a6",
+        "page_count": 44,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=satya-harishchandra-katha&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "सत्य हरिश्चन्द्र कथा",
+            "page_start": 1,
+            "page_end": 44
+          }
+        ]
+      }
+    ]
   },
   "pages": 45,
   "text": {
@@ -42,5 +63,5 @@
     "epub": "reader.epub"
   },
   "added": "2026-07-23",
-  "updated": "2026-07-23"
+  "updated": "2026-09-08"
 }

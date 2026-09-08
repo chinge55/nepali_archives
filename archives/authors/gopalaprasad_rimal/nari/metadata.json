@@ -27,10 +27,31 @@
   "source": {
     "name": "Sahitya Ras (sahityaras.com)",
     "url": "https://sahityaras.com/book/aamako-sapana/nari/",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-aamako-sapana.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-aamako-sapana",
+        "file": "sahityaras-aamako-sapana.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · आमाको सपना",
+        "sha256": "31322a670c5918aaab04ce6a0c61af2cea416b0f73b815d9799be7bf3f55b291",
+        "page_count": 5,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=aamako-sapana&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "नारी",
+            "page_start": 1,
+            "page_end": 5
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 5,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -38,7 +59,7 @@
     "quality": null
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-aamako-sapana.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"

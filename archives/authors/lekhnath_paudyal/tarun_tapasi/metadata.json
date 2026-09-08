@@ -29,7 +29,154 @@
     "name": "तरुण तपसी (साझा प्रकाशन)",
     "url": null,
     "pdf": "000051__लेखनाथ_पौड्_याल__तरुण_तपसी_नव्यकाव्य.pdf",
-    "html": null
+    "html": null,
+    "pdf_editions": [
+      {
+        "id": "sahityaras-tarun-tapasi",
+        "file": "sahityaras-tarun-tapasi.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · तरुण तपसी",
+        "sha256": "e5a965532aee0bde15cdf6888941f1f68313334185ae2c01a7ddafbe7f9b6872",
+        "page_count": 151,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=tarun-tapasi&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "प्रथम विश्राम",
+            "page_start": 1,
+            "page_end": 9,
+            "aliases": [
+              "प्रथम विश्वाम"
+            ]
+          },
+          {
+            "label": "द्वितीय विश्राम",
+            "page_start": 10,
+            "page_end": 16,
+            "aliases": [
+              "द्वितीय विश्वाम"
+            ]
+          },
+          {
+            "label": "तृतीय विश्राम",
+            "page_start": 17,
+            "page_end": 25,
+            "aliases": [
+              "तृतीय विश्वाम"
+            ]
+          },
+          {
+            "label": "चतुर्थ विश्राम",
+            "page_start": 26,
+            "page_end": 32,
+            "aliases": [
+              "चतुर्थ विश्वाम"
+            ]
+          },
+          {
+            "label": "पञ्चम विश्राम",
+            "page_start": 33,
+            "page_end": 39
+          },
+          {
+            "label": "षष्ठ विश्राम",
+            "page_start": 40,
+            "page_end": 47,
+            "aliases": [
+              "षष्ठ विश्वाम"
+            ]
+          },
+          {
+            "label": "सप्तम विश्राम",
+            "page_start": 48,
+            "page_end": 54,
+            "aliases": [
+              "सप्तम विश्वाम"
+            ]
+          },
+          {
+            "label": "अष्टम विश्राम",
+            "page_start": 55,
+            "page_end": 62
+          },
+          {
+            "label": "नवम विश्राम",
+            "page_start": 63,
+            "page_end": 70
+          },
+          {
+            "label": "दशम विश्राम",
+            "page_start": 71,
+            "page_end": 79,
+            "aliases": [
+              "दशम विश्वाम"
+            ]
+          },
+          {
+            "label": "एकादश विश्राम",
+            "page_start": 80,
+            "page_end": 88
+          },
+          {
+            "label": "द्वादश विश्राम",
+            "page_start": 89,
+            "page_end": 95,
+            "aliases": [
+              "द्वादश विश्वाम"
+            ]
+          },
+          {
+            "label": "त्रयोदश विश्राम",
+            "page_start": 96,
+            "page_end": 103
+          },
+          {
+            "label": "चतुर्दश विश्राम",
+            "page_start": 104,
+            "page_end": 111,
+            "aliases": [
+              "चतुर्दश विश्वाम"
+            ]
+          },
+          {
+            "label": "पञ्चदश विश्राम",
+            "page_start": 112,
+            "page_end": 121
+          },
+          {
+            "label": "षोडश विश्राम",
+            "page_start": 122,
+            "page_end": 129,
+            "aliases": [
+              "षोडश विश्वाम"
+            ]
+          },
+          {
+            "label": "सप्तदश विश्राम",
+            "page_start": 130,
+            "page_end": 135
+          },
+          {
+            "label": "अष्टादश विश्राम",
+            "page_start": 136,
+            "page_end": 144,
+            "aliases": [
+              "अष्टादश विश्वाम"
+            ]
+          },
+          {
+            "label": "एकोनविंशति विश्राम",
+            "page_start": 145,
+            "page_end": 151,
+            "aliases": [
+              "एकोनविंशति विश्वाम"
+            ]
+          }
+        ]
+      }
+    ]
   },
   "pages": 130,
   "text": {
@@ -45,5 +192,5 @@
     "epub": "reader.epub"
   },
   "added": "2026-06-05",
-  "updated": "2026-06-07"
+  "updated": "2026-09-08"
 }

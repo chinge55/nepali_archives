@@ -70,6 +70,50 @@
         "name": { "type": ["string", "null"], "description": "e.g. 'Internet Archive', 'साहित्य सङ्ग्रहालय'." },
         "url": { "type": ["string", "null"], "description": "Canonical source URL." },
         "pdf": { "type": ["string", "null"], "description": "Filename of the source PDF within this directory, if any." },
+        "pdf_editions": {
+          "type": "array",
+          "description": "Optional additional source PDF editions, including the canonical PDF when it is also listed.",
+          "items": {
+            "type": "object",
+            "required": ["id", "file", "kind", "label", "sha256", "page_count", "origin"],
+            "additionalProperties": false,
+            "properties": {
+              "id": { "type": "string", "pattern": "^[a-z0-9_-]+$" },
+              "file": { "type": "string", "pattern": "^[^/\\\\]+\\.pdf$" },
+              "kind": { "type": "string", "enum": ["scan", "typeset"] },
+              "label": { "type": "string", "minLength": 1 },
+              "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+              "page_count": { "type": "integer", "minimum": 1 },
+              "origin": {
+                "type": "object",
+                "required": ["name", "url"],
+                "additionalProperties": false,
+                "properties": {
+                  "name": { "type": "string", "minLength": 1 },
+                  "url": { "type": ["string", "null"] }
+                }
+              },
+              "sections": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": ["label", "page_start", "page_end"],
+                  "additionalProperties": false,
+                  "properties": {
+                    "label": { "type": "string", "minLength": 1 },
+                    "aliases": {
+                      "type": "array", "uniqueItems": true,
+                      "items": { "type": "string", "minLength": 1 },
+                      "description": "Reviewed equivalent reader headings; the source label remains the PDF contents label."
+                    },
+                    "page_start": { "type": "integer", "minimum": 1 },
+                    "page_end": { "type": "integer", "minimum": 1 }
+                  }
+                }
+              }
+            }
+          }
+        },
         "html": { "type": ["string", "null"], "description": "Path (within this directory) of the scraped source HTML, if any." }
       }
     },

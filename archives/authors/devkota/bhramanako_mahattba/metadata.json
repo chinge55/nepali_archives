@@ -27,10 +27,31 @@
   "source": {
     "name": "Sahitya Ras (sahityaras.com)",
     "url": "https://sahityaras.com/book/dadimko-rukhnera/bhramanako-mahattva/",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-dadimko-rukhnera.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-dadimko-rukhnera",
+        "file": "sahityaras-dadimko-rukhnera.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · दाडिमको रूखनेर",
+        "sha256": "5520e92b852da24d4e8137eb11f8f1e5982e6b8fd27641de43340e53e19ba21a",
+        "page_count": 4,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=dadimko-rukhnera&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "भ्रमणको महत्त्व",
+            "page_start": 1,
+            "page_end": 4
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 4,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -38,7 +59,7 @@
     "quality": null
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-dadimko-rukhnera.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"

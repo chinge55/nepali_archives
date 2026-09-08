@@ -28,10 +28,31 @@
   "source": {
     "name": "Sahitya Ras (sahityaras.com)",
     "url": "https://sahityaras.com/book/chilla-patharu/bhotele-saikala-dekhcha/",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-chilla-patharu.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-chilla-patharu",
+        "file": "sahityaras-chilla-patharu.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · चिल्ला पातहरू",
+        "sha256": "44e62f368365c7c2a751f517d3a2270bbe07f8d59c6da97f58041f834d86101e",
+        "page_count": 3,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=chilla-patharu&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "भोटेले साईकल देख्छ",
+            "page_start": 1,
+            "page_end": 3
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 3,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -39,7 +60,7 @@
     "quality": null
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-chilla-patharu.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"

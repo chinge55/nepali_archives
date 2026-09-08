@@ -27,10 +27,31 @@
   "source": {
     "name": "Sahitya Ras (sahityaras.com)",
     "url": "https://sahityaras.com/book/naaso/chitako-jwala/",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-naaso.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-naaso",
+        "file": "sahityaras-naaso.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · नासो",
+        "sha256": "9e1cbae776901cdbbac3b386fceb65153fa8131591fec0956578c5d342012bcc",
+        "page_count": 17,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=naaso&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "चिताको ज्वाला",
+            "page_start": 1,
+            "page_end": 17
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 17,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -38,7 +59,7 @@
     "quality": null
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-naaso.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"

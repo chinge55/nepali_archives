@@ -27,10 +27,36 @@
   "source": {
     "name": "Sahitya Ras (sahityaras.com)",
     "url": "https://sahityaras.com/book/kavi-bhanubhaktako-jivancharitra/",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-kavi-bhanubhaktako-jivancharitra.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-kavi-bhanubhaktako-jivancharitra",
+        "file": "sahityaras-kavi-bhanubhaktako-jivancharitra.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · कवि भानुभक्तको जीवनचरित्र",
+        "sha256": "ed05fc647f8f4d8159feab183e46500254b5fdebd1003b0fdae82e05f022aa6c",
+        "page_count": 26,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=kavi-bhanubhaktako-jivancharitra&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "विज्ञप्तिपत्रम्‌",
+            "page_start": 1,
+            "page_end": 1
+          },
+          {
+            "label": "कवि भानुभक्तको जीवनचरित्र",
+            "page_start": 2,
+            "page_end": 26
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 26,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -38,7 +64,7 @@
     "quality": null
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-kavi-bhanubhaktako-jivancharitra.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"

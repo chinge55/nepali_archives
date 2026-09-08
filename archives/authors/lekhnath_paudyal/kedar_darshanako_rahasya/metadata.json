@@ -28,10 +28,31 @@
   "source": {
     "name": "iNepal (inepal.org)",
     "url": "https://inepal.org/nepalipoems/7236/lekhnath-paudyal-kedar-darshan-ko-rahasya/",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-lalitya-bhag-2.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-lalitya-bhag-2",
+        "file": "sahityaras-lalitya-bhag-2.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · लालित्य भाग २",
+        "sha256": "169b174e86a28de6976d08cbbbef0e43800b0725cc9b77244664e508c76fefe4",
+        "page_count": 1,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=lalitya-bhag-2&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "केदार-दर्शनको रहस्य",
+            "page_start": 1,
+            "page_end": 1
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 1,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -39,11 +60,11 @@
     "quality": "good"
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-lalitya-bhag-2.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"
   },
   "added": "2026-06-07",
-  "updated": "2026-06-07"
+  "updated": "2026-09-08"
 }

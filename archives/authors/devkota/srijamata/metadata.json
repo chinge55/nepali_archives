@@ -27,10 +27,51 @@
   "source": {
     "name": "Sahitya Ras (sahityaras.com)",
     "url": "https://sahityaras.com/book/srijamata/",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-srijamata.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-srijamata",
+        "file": "sahityaras-srijamata.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · सृजामाता",
+        "sha256": "e9a1a6edebe23e8467ee5b96df93e0b845873fda8b0b2486d946640c894a19ca",
+        "page_count": 57,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=srijamata&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "प्रथम खण्ड",
+            "page_start": 1,
+            "page_end": 12
+          },
+          {
+            "label": "द्वितीय खण्ड",
+            "page_start": 13,
+            "page_end": 22
+          },
+          {
+            "label": "तृतीय खण्ड",
+            "page_start": 23,
+            "page_end": 31
+          },
+          {
+            "label": "चतुर्थ खण्ड",
+            "page_start": 32,
+            "page_end": 43
+          },
+          {
+            "label": "अन्त्य खण्ड",
+            "page_start": 44,
+            "page_end": 57
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 57,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -38,7 +79,7 @@
     "quality": null
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-srijamata.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"

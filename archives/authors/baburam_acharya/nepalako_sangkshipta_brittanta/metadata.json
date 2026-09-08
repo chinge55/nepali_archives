@@ -27,10 +27,256 @@
   "source": {
     "name": "Sahitya Ras (sahityaras.com)",
     "url": "https://sahityaras.com/book/nepalko-sankshipta-brittanta/",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-nepalko-sankshipta-brittanta.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-nepalko-sankshipta-brittanta",
+        "file": "sahityaras-nepalko-sankshipta-brittanta.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · नेपालको सङ्क्षिप्त वृत्तान्त",
+        "sha256": "baf2b859aa4d236181e0119460baa4a91f1dd287e219b7ab29146be859832729",
+        "page_count": 526,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=nepalko-sankshipta-brittanta&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "प्रस्तावना",
+            "page_start": 1,
+            "page_end": 8
+          },
+          {
+            "label": "खण्ड एक (पूर्ववृत्तान्त) \n१.१ इतिहासकालभन्दा पहिलेको नेपाल",
+            "page_start": 9,
+            "page_end": 20
+          },
+          {
+            "label": "१.२ नेपालमा आर्यसभ्यताको प्रारम्भ",
+            "page_start": 21,
+            "page_end": 30
+          },
+          {
+            "label": "१.३ राजा मानदेव तथा यिनका उत्तराधिकारी",
+            "page_start": 31,
+            "page_end": 40
+          },
+          {
+            "label": "१.४ महासामन्त अंशुवर्मा",
+            "page_start": 41,
+            "page_end": 50
+          },
+          {
+            "label": "१.५ आभीर प्रशासकहरुको पुनरूत्थान",
+            "page_start": 51,
+            "page_end": 56
+          },
+          {
+            "label": "१.६ राजा नरेन्द्रदेव र यिनका उत्तराधिकारीहरु",
+            "page_start": 57,
+            "page_end": 64
+          },
+          {
+            "label": "१.७ अन्धकार युगको नेपाल",
+            "page_start": 65,
+            "page_end": 71
+          },
+          {
+            "label": "१.८ वैश्य ठकुरी राजवंशको उदय",
+            "page_start": 72,
+            "page_end": 82
+          },
+          {
+            "label": "१.९ अघिल्लो मल्ल राजवंशको स्थापना",
+            "page_start": 83,
+            "page_end": 90
+          },
+          {
+            "label": "१.१० नेपालमाथि आइपरेका विपत्ति",
+            "page_start": 91,
+            "page_end": 102
+          },
+          {
+            "label": "१.११ सिम्रौनगढको तिरहुत राज्य र यसको नेपालमाथि भएको सैनिक हस्तक्षेप",
+            "page_start": 103,
+            "page_end": 109
+          },
+          {
+            "label": "१.१२ सुदूरपश्चिमी नेपालको खस राज्य",
+            "page_start": 110,
+            "page_end": 117
+          },
+          {
+            "label": "१.१३ पछिल्लो मल्ल राजवंशको स्थापना",
+            "page_start": 118,
+            "page_end": 125
+          },
+          {
+            "label": "१.१४ पछिल्ला मल्ल राजाहरुको आपसी खिचातानी",
+            "page_start": 126,
+            "page_end": 140
+          },
+          {
+            "label": "खण्ड दुई \n२.१ गोरखा राज्यको स्थापना",
+            "page_start": 141,
+            "page_end": 150
+          },
+          {
+            "label": "२.२ राजा द्रव्य शाहका उत्तराधिकारीहरु",
+            "page_start": 151,
+            "page_end": 162
+          },
+          {
+            "label": "२.३ युवराज पृथ्वीनारायण शाह : विवाह तथा कार्यक्षेत्रमा प्रवेश",
+            "page_start": 163,
+            "page_end": 172
+          },
+          {
+            "label": "२.४ नेपाल अधिराज्यको एकीकरणको आरम्भ",
+            "page_start": 173,
+            "page_end": 187
+          },
+          {
+            "label": "२.५ एकीकरण कार्यमा सङ्घर्ष",
+            "page_start": 188,
+            "page_end": 202
+          },
+          {
+            "label": "२.६ मकवानपुर राज्यमा अधिकार र उपत्यकाभित्रका मल्ल राज्यहरुमाथिको नाकाबन्दी",
+            "page_start": 203,
+            "page_end": 213
+          },
+          {
+            "label": "२.७ चौबीसे राज्यहरुको दोस्रो आक्रमण, कीर्तिपुरमा भएको दोस्रो पराजय, लमजुङमा आक्रमण र कीर्तिपुरमाथि अधिकार",
+            "page_start": 214,
+            "page_end": 227
+          },
+          {
+            "label": "२.८ नेपालमाथि भएको ‘कप्तान’ किन्लाकको असफल सैनिक अभियान",
+            "page_start": 228,
+            "page_end": 239
+          },
+          {
+            "label": "२.९ उपत्यकाभित्रका तीन ओटै मल्ल राज्यको उन्मूलन",
+            "page_start": 240,
+            "page_end": 259
+          },
+          {
+            "label": "२.१० चौबीसे राज्यहरुमाथि अधिकार स्थापित गर्न असफल प्रयास र इस्ट इन्डिया कम्पनीसँगको मेल",
+            "page_start": 260,
+            "page_end": 277
+          },
+          {
+            "label": "२.११ किराँत प्रदेशका सेन राज्यहरुको उन्मूलन",
+            "page_start": 278,
+            "page_end": 292
+          },
+          {
+            "label": "२.१२ राजा पृथ्वीनारायण शाहका अन्तिम दिन तथा यिनको व्यक्तित्व",
+            "page_start": 293,
+            "page_end": 300
+          },
+          {
+            "label": "खण्ड तीन \n३.१ राजा प्रतापसिंह शाहको राज्यकाल",
+            "page_start": 301,
+            "page_end": 316
+          },
+          {
+            "label": "३.२ महारानी राजेन्द्रलक्ष्मी तथा राजकुमार बहादुर शाहबीच मेल तथा सङ्घर्ष",
+            "page_start": 317,
+            "page_end": 330
+          },
+          {
+            "label": "३.३ अब्दुल्ला बेगको कुचोद्य र कम्पनी सरकारसँग मैत्रीसम्बन्ध",
+            "page_start": 331,
+            "page_end": 335
+          },
+          {
+            "label": "३.४ नेपालमाथि सिक्किम तथा चौबीसे राज्यहरुको आक्रमण र उनीहरुमाथि गरिएको प्रत्याक्रमण",
+            "page_start": 336,
+            "page_end": 346
+          },
+          {
+            "label": "३.५ कालीगण्डकी नदीपूर्वका चौबीसे राज्यहरुमा अधिकार र महारानी राजेन्द्रलक्ष्मीको देहान्त",
+            "page_start": 347,
+            "page_end": 355
+          },
+          {
+            "label": "३.६ राजकुमार बहादुर शाहको मुख्तियारी",
+            "page_start": 356,
+            "page_end": 383
+          },
+          {
+            "label": "३.७ राजा रणबहादुर शाह : प्रमुख प्रशासक तथा वानप्रस्थी स्वामीका रुपमा",
+            "page_start": 384,
+            "page_end": 401
+          },
+          {
+            "label": "३.८ स्वामीमहाराज रणबहादुर शाहको काशीवास तथा प्रत्यागमन",
+            "page_start": 402,
+            "page_end": 419
+          },
+          {
+            "label": "३.९ स्वामीमहाराज रणबहादुर शाह : प्रशासनकालको उत्तरार्द्धमा",
+            "page_start": 420,
+            "page_end": 437
+          },
+          {
+            "label": "खण्ड चार \n४.१ तीन शाह राजाहरुको राज्यकालमा नेपाली समाजमा भएका परिवर्तन तथा राज्य प्रबन्धनको सामान्य लेखाजोखा",
+            "page_start": 438,
+            "page_end": 453
+          },
+          {
+            "label": "४.२ तीन शाह राजाहकरुको राज्यकालमा नेपाली समाजमा भएका परिवर्तन तथा प्रबन्धको थप लेखाजोखा",
+            "page_start": 454,
+            "page_end": 472
+          },
+          {
+            "label": "४.३ तात्कालिक प्रमुख प्रशासकहरुको तुलनात्मक विश्लेषण",
+            "page_start": 473,
+            "page_end": 486
+          },
+          {
+            "label": "४.४ तात्कालिक प्रमुख प्रशासकहरुबारे थप विश्लेषण",
+            "page_start": 487,
+            "page_end": 504
+          },
+          {
+            "label": "४.५ सैनिक प्रबन्धका सम्बन्धमा",
+            "page_start": 505,
+            "page_end": 516
+          },
+          {
+            "label": "४.६ राजा पृथ्वीनारायण शाहका सम्बन्धमा फैलिएको भ्रान्त धारणा सम्बन्धमा",
+            "page_start": 517,
+            "page_end": 526
+          },
+          {
+            "label": "खण्ड एक (पूर्ववृत्तान्त)",
+            "page_start": 9,
+            "page_end": 140
+          },
+          {
+            "label": "खण्ड दुई",
+            "page_start": 141,
+            "page_end": 300
+          },
+          {
+            "label": "खण्ड तीन",
+            "page_start": 301,
+            "page_end": 437
+          },
+          {
+            "label": "खण्ड चार",
+            "page_start": 438,
+            "page_end": 526
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 526,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -38,7 +284,7 @@
     "quality": null
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-nepalko-sankshipta-brittanta.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"

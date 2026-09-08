@@ -1,6 +1,7 @@
 (function(){
   var lib=window.pdfjsLib, host=document.getElementById('pdfpages'),
       statusEl=document.getElementById('pdfstatus'), url=host.getAttribute('data-url');
+  var rawPage=new URLSearchParams(window.location.search).get('page'), requestedPage=Number(rawPage);
   function fail(){ host.innerHTML='<p class="pdferr">यो ब्राउजरमा रिडर चल्न सकेन। <a href="'+url+'">सिधै PDF हेर्नुहोस् / डाउनलोड गर्नुहोस्</a>।</p>'; }
   if(!lib||!('IntersectionObserver' in window)){ fail(); return; }
   lib.GlobalWorkerOptions.workerSrc="__WORKER_URL__";
@@ -40,7 +41,9 @@
       var frag=document.createDocumentFragment();
       for(var i=1;i<=N;i++){ var d=document.createElement('div'); d.className='pdfpage'; d.dataset.page=i; d.style.aspectRatio=aspect; frag.appendChild(d); divs.push(d); }
       host.appendChild(frag);
-      statusEl.textContent='पृष्ठ १ / '+dev(N);
+      var target=Number.isFinite(requestedPage)?Math.min(N,Math.max(1,Math.floor(requestedPage))):1;
+      statusEl.textContent='पृष्ठ '+dev(target)+' / '+dev(N);
+      if(target>1) window.requestAnimationFrame(function(){ divs[target-1].scrollIntoView({block:'start'}); });
       var io=new IntersectionObserver(function(es){
         es.forEach(function(e){ var pg=+e.target.dataset.page;
           if(e.isIntersecting){ visible[pg]=true; render(pg); } else { delete visible[pg]; release(pg); } });

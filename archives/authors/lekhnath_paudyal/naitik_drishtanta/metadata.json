@@ -29,7 +29,28 @@
     "name": "लेखनाथका प्रमुख कविता (साझा प्रकाशन)",
     "url": null,
     "pdf": "naitik_drishtanta.pdf",
-    "html": null
+    "html": null,
+    "pdf_editions": [
+      {
+        "id": "sahityaras-lalitya-bhag-1",
+        "file": "sahityaras-lalitya-bhag-1.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · लालित्य भाग १",
+        "sha256": "31989f78a7e7bfceacfcfb9b758c7706c407a4a4e1eb6ec313ef5bfc0fccf6d1",
+        "page_count": 4,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=lalitya-bhag-1&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "नैतिक-दृष्टान्त",
+            "page_start": 1,
+            "page_end": 4
+          }
+        ]
+      }
+    ]
   },
   "pages": 3,
   "text": {
@@ -45,5 +66,5 @@
     "epub": "reader.epub"
   },
   "added": "2026-06-07",
-  "updated": "2026-06-07"
+  "updated": "2026-09-08"
 }

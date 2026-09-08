@@ -27,10 +27,116 @@
   "source": {
     "name": "Sahitya Ras (sahityaras.com)",
     "url": "https://sahityaras.com/book/srimadbhagvadgitako-gitasaar/",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-srimadbhagvadgitako-gitasaar.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-srimadbhagvadgitako-gitasaar",
+        "file": "sahityaras-srimadbhagvadgitako-gitasaar.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · श्रीमद्भगवद्गीताको गीतासार",
+        "sha256": "d315bfbb1a94a513968cb6c8730b515276e186ac723c86c6147337c11cb9fc50",
+        "page_count": 83,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=srimadbhagvadgitako-gitasaar&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "पहिलो अध्याय",
+            "page_start": 1,
+            "page_end": 7
+          },
+          {
+            "label": "दोस्रो अध्याय",
+            "page_start": 8,
+            "page_end": 11
+          },
+          {
+            "label": "तेस्रो अध्याय",
+            "page_start": 12,
+            "page_end": 17
+          },
+          {
+            "label": "चौथो अध्याय",
+            "page_start": 18,
+            "page_end": 21
+          },
+          {
+            "label": "पाँचौं अध्याय",
+            "page_start": 22,
+            "page_end": 24
+          },
+          {
+            "label": "छैठौं अध्याय",
+            "page_start": 25,
+            "page_end": 29
+          },
+          {
+            "label": "सातौं अध्याय",
+            "page_start": 30,
+            "page_end": 33
+          },
+          {
+            "label": "आठौं अध्याय",
+            "page_start": 34,
+            "page_end": 37
+          },
+          {
+            "label": "नवौं अध्याय",
+            "page_start": 38,
+            "page_end": 42
+          },
+          {
+            "label": "दशौं अध्याय",
+            "page_start": 43,
+            "page_end": 46
+          },
+          {
+            "label": "एघारौं अध्याय",
+            "page_start": 47,
+            "page_end": 53
+          },
+          {
+            "label": "बाह्रौं अध्याय",
+            "page_start": 54,
+            "page_end": 57
+          },
+          {
+            "label": "तेह्रौं अध्याय",
+            "page_start": 58,
+            "page_end": 61
+          },
+          {
+            "label": "चौधौं अध्याय",
+            "page_start": 62,
+            "page_end": 65
+          },
+          {
+            "label": "पन्ध्रौं अध्याय",
+            "page_start": 66,
+            "page_end": 69
+          },
+          {
+            "label": "सोह्रौं अध्याय",
+            "page_start": 70,
+            "page_end": 72
+          },
+          {
+            "label": "सत्रौं अध्याय",
+            "page_start": 73,
+            "page_end": 76
+          },
+          {
+            "label": "अठारौं अध्याय",
+            "page_start": 77,
+            "page_end": 83
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 83,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -38,7 +144,7 @@
     "quality": null
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-srimadbhagvadgitako-gitasaar.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"

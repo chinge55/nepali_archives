@@ -15,6 +15,7 @@ import tempfile
 import xml.etree.ElementTree as ET
 from sahityaras_ingest import SourceError, digest, inventory, package_path, tag, xml
 from sahityaras_text import extract_document
+from sahityaras_members import extract_member
 from sahityaras_batch import add_collection, encoded
 from devanagari_slug import romanize
 from sanitize_extracted_html import sanitize
@@ -33,14 +34,21 @@ def included_files(work: dict, books: dict, cache: Path) -> dict[str, bytes]:
     for source in work['sources']:
         book=books[source['book']]
         document=next(d for d in book['documents'] if d['path']==source['path'])
-        if document['decision']!='include':
+        if document['decision'] != ('split' if source.get('member') else 'include'):
             raise SourceError('Work includes an unapproved document')
         path=package_path(cache,cache/book['id'],source['path'])
         if digest(path.read_bytes())!=document['sha256']:
             raise SourceError('Changed literary source')
-        result=extract_document(path.read_bytes(),notes_approved=document.get('notes_approved',False),
-            remove_ids=tuple(document.get('remove_ids',[])),remove_links=tuple(document.get('remove_links',[])),
-            fallback_title=document['title'],replacements=tuple(document.get('replacements',[])))
+        if source.get('member'):
+            member = next(m for m in document['members'] if m['id'] == source['member'])
+            if member['decision'] != 'include':
+                raise SourceError('Unapproved source member')
+            result = extract_member(path.read_bytes(), numbers=member['numbers'],
+                expected_total=document['member_count'], fallback_title=work['title'])
+        else:
+            result=extract_document(path.read_bytes(),notes_approved=document.get('notes_approved',False),
+                remove_ids=tuple(document.get('remove_ids',[])),remove_links=tuple(document.get('remove_links',[])),
+                fallback_title=document['title'],replacements=tuple(document.get('replacements',[])))
         section=result.text.rstrip('\n')
         if work.get('preserve_section_titles'):
             section=result.title+'\n\n'+section
@@ -95,8 +103,18 @@ def plan(manifest: dict, cache: Path, root: Path, *, verify_outputs: bool=True) 
         for d in actual['documents']:
             e=expected['src/'+d['path']]
             if (e['sha256'],e['spine_position'])!=(d['sha256'],d['spine_position']):raise SourceError('Changed document/order')
-            if e['decision'] not in {'include','map-existing','exclude','defer'} or not e.get('reason'):
+            if e['decision'] not in {'include','map-existing','exclude','defer','split'} or not e.get('reason'):
                 raise SourceError('Missing source disposition/reason')
+            if e['decision'] == 'split':
+                members = e.get('members', [])
+                ids = [checked_id(m['id']) for m in members]
+                numbers = [n for m in members for n in m['numbers']]
+                if (not members or len(set(ids)) != len(ids)
+                        or numbers != list(range(1, e['member_count'] + 1))):
+                    raise SourceError('Incomplete numbered-member accounting')
+                for member in members:
+                    if member.get('decision') not in {'include', 'map-existing'} or not member.get('reason'):
+                        raise SourceError('Unreviewed numbered member')
     outputs={}; destinations=set(); assigned=set()
     for work in manifest['works']:
         aid=checked_id(work['author']['id']);wid=checked_id(work['id'])
@@ -106,7 +124,12 @@ def plan(manifest: dict, cache: Path, root: Path, *, verify_outputs: bool=True) 
         if work['rights']['status'] not in {'public-domain','permission-granted'}:raise SourceError('Rights gate')
         if not work.get('reviewed'):raise SourceError('Unreviewed work')
         for source in work.get('sources',[])+work.get('mapped_sources',[]):
-            key=(source['book'],source['path'])
+            key=(source['book'],source['path'],source.get('member'))
+            if source.get('member'):
+                document = next(d for d in books[source['book']]['documents'] if d['path'] == source['path'])
+                member = next(m for m in document.get('members', []) if m['id'] == source['member'])
+                if member.get('destination') != base:
+                    raise SourceError('Numbered member assigned to the wrong work')
             if key in assigned:raise SourceError('Source document assigned twice')
             assigned.add(key)
         if work['decision']=='include':
@@ -127,8 +150,13 @@ def plan(manifest: dict, cache: Path, root: Path, *, verify_outputs: bool=True) 
         if verify_outputs and {k:digest(v) for k,v in files.items()}!=work['outputs']:
             raise SourceError('Extraction differs from reviewed output: '+wid)
         for name,data in files.items():outputs[base+'/'+name]=data
-    expected_assignments={(b['id'],d['path']) for b in books.values() for d in b['documents']
-                          if d['decision'] in {'include','map-existing'}}
+    expected_assignments = set()
+    for b in books.values():
+        for d in b['documents']:
+            if d['decision'] in {'include', 'map-existing'}:
+                expected_assignments.add((b['id'], d['path'], None))
+            elif d['decision'] == 'split':
+                expected_assignments.update((b['id'], d['path'], m['id']) for m in d['members'])
     if assigned!=expected_assignments:raise SourceError('Literary source assignment incomplete')
     return outputs
 

@@ -1,0 +1,89 @@
+{
+  "id": "mayabini_sarsi",
+  "title": "मायाविनी सर्सी",
+  "title_roman": "Mayavini Sarsi",
+  "subtitle": null,
+  "author": {
+    "id": "devkota",
+    "name": "लक्ष्मीप्रसाद देवकोटा",
+    "name_roman": "Laxmi Prasad Devkota"
+  },
+  "language": "ne",
+  "script": "Devanagari",
+  "genre": [
+    "khandakavya"
+  ],
+  "first_published": {
+    "bs": null,
+    "ad": null
+  },
+  "edition": "पहिलो; २०२४",
+  "publisher": "नेपाली साहित्य घर",
+  "description": "Transcribed from the identified Sahitya Ras source edition. Source wording and literary structure retained; not checked against printed pages. Five cantos from the identified edited source edition. The signed editorial statement attributes the explanatory notes to Mohan Raj Sharma; these notes and their reference markers are excluded. Editorial emendations within the supplied verse cannot be reconstructed or silently reversed from this source.",
+  "rights": {
+    "status": "public-domain",
+    "basis": "Author died 1959; Nepal's Copyright Act 2059 grants life + 50 years, expiring 2009."
+  },
+  "source": {
+    "name": "Sahitya Ras (sahityaras.com)",
+    "url": "https://sahityaras.com/book/mayavini-sarsi/",
+    "pdf": "sahityaras-mayavini-sarsi.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-mayavini-sarsi",
+        "file": "sahityaras-mayavini-sarsi.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · मायाविनी सर्सी",
+        "sha256": "587876b3b759d3f2a02a50122e8f4a9f18754f1bb2f58233d7ff9d46b9569e31",
+        "page_count": 77,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=mayavini-sarsi&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "पहिलो खण्ड",
+            "page_start": 1,
+            "page_end": 25
+          },
+          {
+            "label": "दोस्रो खण्ड",
+            "page_start": 26,
+            "page_end": 33
+          },
+          {
+            "label": "तेस्रो खण्ड",
+            "page_start": 34,
+            "page_end": 50
+          },
+          {
+            "label": "चौथो खण्ड",
+            "page_start": 51,
+            "page_end": 59
+          },
+          {
+            "label": "पाँचौं खण्ड",
+            "page_start": 60,
+            "page_end": 77
+          }
+        ]
+      }
+    ]
+  },
+  "pages": 77,
+  "text": {
+    "extraction_method": "html",
+    "ocr_status": "born-digital",
+    "proofread": false,
+    "quality": null
+  },
+  "formats": {
+    "pdf": "sahityaras-mayavini-sarsi.pdf",
+    "txt": "text.txt",
+    "html": "reader.html",
+    "epub": "reader.epub"
+  },
+  "added": "2026-09-08",
+  "updated": "2026-09-08"
+}

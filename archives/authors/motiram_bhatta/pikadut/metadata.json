@@ -27,10 +27,31 @@
   "source": {
     "name": "Sahitya Ras (sahityaras.com)",
     "url": "https://sahityaras.com/book/pikdut/",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-pikdut.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-pikdut",
+        "file": "sahityaras-pikdut.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · पिकदूत",
+        "sha256": "91684458efd16d43f713b74c07fdf5894c6087ced911b4e1874f1886897e8679",
+        "page_count": 8,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=pikdut&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "पिकदूत",
+            "page_start": 1,
+            "page_end": 8
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 8,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -38,7 +59,7 @@
     "quality": null
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-pikdut.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"

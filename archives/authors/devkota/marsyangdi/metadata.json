@@ -27,10 +27,31 @@
   "source": {
     "name": "Sahitya Ras (sahityaras.com)",
     "url": "https://sahityaras.com/book/laxmi-kathasangraha/marsyandi/",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-laxmi-kathasangraha.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-laxmi-kathasangraha",
+        "file": "sahityaras-laxmi-kathasangraha.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · लक्ष्मी कथासङ्ग्रह",
+        "sha256": "e31315fb9bd5c9116cfd330e19d166fe9711194157e5c3dddec42bc3d2b96dea",
+        "page_count": 22,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=laxmi-kathasangraha&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "मर्स्याङ्दी",
+            "page_start": 1,
+            "page_end": 22
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 22,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -38,7 +59,7 @@
     "quality": null
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-laxmi-kathasangraha.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"

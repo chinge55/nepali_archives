@@ -27,10 +27,31 @@
   "source": {
     "name": "Sahitya Ras (sahityaras.com)",
     "url": "https://sahityaras.com/book/aamako-sapana/sapanama/",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-aamako-sapana.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-aamako-sapana",
+        "file": "sahityaras-aamako-sapana.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · आमाको सपना",
+        "sha256": "1f460560343c583bef38d09fe04dc95bbbc4f53f3aefe84f3db74c04270f140b",
+        "page_count": 2,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=aamako-sapana&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "सपनामा",
+            "page_start": 1,
+            "page_end": 2
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 2,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -38,7 +59,7 @@
     "quality": null
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-aamako-sapana.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"

@@ -1,0 +1,70 @@
+{
+  "id": "bhasha_shlok_bhanu_ta_abashya",
+  "title": "भाषा श्लोक्‌ भनु ता अवश्य अरु ता बुझ्दैन कोई पनी",
+  "title_roman": "Bhasha Shlok Bhanu Ta Abashya Aru Ta Bujhdain Koi Pani",
+  "subtitle": null,
+  "author": {
+    "id": "bhanubhakta_acharya",
+    "name": "भानुभक्त आचार्य",
+    "name_roman": "Bhanubhakta Acharya"
+  },
+  "language": "ne",
+  "script": "Devanagari",
+  "genre": [
+    "kavita",
+    "poem"
+  ],
+  "first_published": {
+    "bs": null,
+    "ad": null
+  },
+  "edition": "चौथो; २०६८",
+  "publisher": "साझा प्रकाशन",
+  "description": "From the collection भानुभक्तका फुटकर रचनाहरू. Transcribed from the identified Sahitya Ras source edition. Source wording and literary structure retained; not checked against printed pages. Untitled numbered source piece 16; catalogue title is the opening line. Printed numbering is retained. The HTML capture reconstructs only this selected excerpt.",
+  "rights": {
+    "status": "public-domain",
+    "basis": "Author died 1868; long in the public domain (Nepal's Copyright Act 2059: life + 50 years)."
+  },
+  "source": {
+    "name": "Sahitya Ras (sahityaras.com)",
+    "url": "https://sahityaras.com/book/bhanubhaktaka-futkar-rachanaharu/",
+    "pdf": "sahityaras-bhanubhaktaka-futkar-rachanaharu.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-bhanubhaktaka-futkar-rachanaharu",
+        "file": "sahityaras-bhanubhaktaka-futkar-rachanaharu.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · भानुभक्तका फुटकर रचनाहरू",
+        "sha256": "2cb1ce7932d253f62a5e57ed339d77d13c50498385f8783f3847c1c8124ba562",
+        "page_count": 1,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=bhanubhaktaka-futkar-rachanaharu&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "भाषा श्लोक्‌ भनु ता अवश्य अरु ता बुझ्दैन कोई पनी",
+            "page_start": 1,
+            "page_end": 1
+          }
+        ]
+      }
+    ]
+  },
+  "pages": 1,
+  "text": {
+    "extraction_method": "html",
+    "ocr_status": "born-digital",
+    "proofread": false,
+    "quality": null
+  },
+  "formats": {
+    "pdf": "sahityaras-bhanubhaktaka-futkar-rachanaharu.pdf",
+    "txt": "text.txt",
+    "html": "reader.html",
+    "epub": "reader.epub"
+  },
+  "added": "2026-09-08",
+  "updated": "2026-09-08"
+}

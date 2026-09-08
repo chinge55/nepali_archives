@@ -1,0 +1,70 @@
+{
+  "id": "n_pothi_patra_chhan_n",
+  "title": "न पोथी पात्रा छन्‌ न कलम मस्यानी छ सँगमा",
+  "title_roman": "N Pothi Patra Chhan N Kalam Masyani Chh Sagama",
+  "subtitle": null,
+  "author": {
+    "id": "bhanubhakta_acharya",
+    "name": "भानुभक्त आचार्य",
+    "name_roman": "Bhanubhakta Acharya"
+  },
+  "language": "ne",
+  "script": "Devanagari",
+  "genre": [
+    "kavita",
+    "poem"
+  ],
+  "first_published": {
+    "bs": null,
+    "ad": null
+  },
+  "edition": "चौथो; २०६८",
+  "publisher": "साझा प्रकाशन",
+  "description": "From the collection भानुभक्तका फुटकर रचनाहरू. Transcribed from the identified Sahitya Ras source edition. Source wording and literary structure retained; not checked against printed pages. Untitled numbered source piece 18; catalogue title is the opening line. Printed numbering is retained. The HTML capture reconstructs only this selected excerpt.",
+  "rights": {
+    "status": "public-domain",
+    "basis": "Author died 1868; long in the public domain (Nepal's Copyright Act 2059: life + 50 years)."
+  },
+  "source": {
+    "name": "Sahitya Ras (sahityaras.com)",
+    "url": "https://sahityaras.com/book/bhanubhaktaka-futkar-rachanaharu/",
+    "pdf": "sahityaras-bhanubhaktaka-futkar-rachanaharu.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-bhanubhaktaka-futkar-rachanaharu",
+        "file": "sahityaras-bhanubhaktaka-futkar-rachanaharu.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · भानुभक्तका फुटकर रचनाहरू",
+        "sha256": "2bcc84b20cc87f2d826adc9b747facc47f598c66de0891cf9fe909f72b49b8d8",
+        "page_count": 1,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=bhanubhaktaka-futkar-rachanaharu&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "न पोथी पात्रा छन्‌ न कलम मस्यानी छ सँगमा",
+            "page_start": 1,
+            "page_end": 1
+          }
+        ]
+      }
+    ]
+  },
+  "pages": 1,
+  "text": {
+    "extraction_method": "html",
+    "ocr_status": "born-digital",
+    "proofread": false,
+    "quality": null
+  },
+  "formats": {
+    "pdf": "sahityaras-bhanubhaktaka-futkar-rachanaharu.pdf",
+    "txt": "text.txt",
+    "html": "reader.html",
+    "epub": "reader.epub"
+  },
+  "added": "2026-09-08",
+  "updated": "2026-09-08"
+}

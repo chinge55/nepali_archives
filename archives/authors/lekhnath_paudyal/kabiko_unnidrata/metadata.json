@@ -27,10 +27,31 @@
   "source": {
     "name": "Sahitya Ras (sahityaras.com)",
     "url": "https://sahityaras.com/book/lalitya-bhag-2/kaviko-unnidrata/",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-lalitya-bhag-2.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-lalitya-bhag-2",
+        "file": "sahityaras-lalitya-bhag-2.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · लालित्य भाग २",
+        "sha256": "ee4863134f7c43b2b932b0d93c41de213b557b32cf6d13a62e83631803ba8632",
+        "page_count": 9,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=lalitya-bhag-2&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "कविको उन्निद्रता",
+            "page_start": 1,
+            "page_end": 9
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 9,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -38,7 +59,7 @@
     "quality": null
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-lalitya-bhag-2.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"

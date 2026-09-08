@@ -20,7 +20,7 @@
   },
   "edition": null,
   "publisher": null,
-  "description": "भानुभक्त आचार्यको कविता 'सुन प्रिये'। Nepali Kitab (nepalikitab.org) बाट सङ्कलित।",
+  "description": "From the collection भानुभक्तका फुटकर रचनाहरू. भानुभक्त आचार्यको कविता 'सुन प्रिये'। Nepali Kitab (nepalikitab.org) बाट सङ्कलित।",
   "rights": {
     "status": "public-domain",
     "basis": "Author died 1868; long in the public domain (Nepal's Copyright Act 2059: life + 50 years)."
@@ -28,10 +28,31 @@
   "source": {
     "name": "Nepali Kitab (nepalikitab.org)",
     "url": "https://nepalikitab.org/bhanubhakata-acharya-suna-priye/",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-bhanubhaktaka-futkar-rachanaharu.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-bhanubhaktaka-futkar-rachanaharu",
+        "file": "sahityaras-bhanubhaktaka-futkar-rachanaharu.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · भानुभक्तका फुटकर रचनाहरू",
+        "sha256": "1fec064db3d17cd4734d48411fc8409cfbdbc3bf54d28e08acb8d9476d7e6aa7",
+        "page_count": 2,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=bhanubhaktaka-futkar-rachanaharu&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "विन्ती एक म गर्दछू सुन प्रिये प्रीती निरन्तर् रहोस्",
+            "page_start": 1,
+            "page_end": 2
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 2,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -39,11 +60,11 @@
     "quality": "good"
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-bhanubhaktaka-futkar-rachanaharu.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"
   },
   "added": "2026-06-09",
-  "updated": "2026-06-09"
+  "updated": "2026-09-08"
 }

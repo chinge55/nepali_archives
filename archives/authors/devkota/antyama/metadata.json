@@ -28,10 +28,31 @@
   "source": {
     "name": "Kavita Kosh (kavitakosh.org)",
     "url": "https://kavitakosh.org/kk/अन्त्यमा_/_लक्ष्मीप्रसाद_देवकोटा",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-bhikari.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-bhikari",
+        "file": "sahityaras-bhikari.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · भिखारी",
+        "sha256": "096633290f2e9c050bf28433a337cff737294d2299ac83a9349ebbb28c4446e8",
+        "page_count": 1,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=bhikari&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "अन्त्यमा",
+            "page_start": 1,
+            "page_end": 1
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 1,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -39,11 +60,11 @@
     "quality": "good"
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-bhikari.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"
   },
   "added": "2026-06-05",
-  "updated": "2026-06-05"
+  "updated": "2026-09-08"
 }

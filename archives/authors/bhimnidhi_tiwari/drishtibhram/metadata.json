@@ -28,10 +28,31 @@
   "source": {
     "name": "Kavita Kosh (kavitakosh.org)",
     "url": "https://kavitakosh.org/kk/दृष्टिभ्रम_/_भीमनिधि_तिवारी",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-bisfot.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-bisfot",
+        "file": "sahityaras-bisfot.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · विस्फोट",
+        "sha256": "bf3ee4110f718de8c4487c46abffbc5a76aec54b3a60fedb9f1a28fb9dd4bd84",
+        "page_count": 2,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=bisfot&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "दृष्टिभ्रम",
+            "page_start": 1,
+            "page_end": 2
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 2,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -39,11 +60,11 @@
     "quality": "good"
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-bisfot.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"
   },
   "added": "2026-07-20",
-  "updated": "2026-07-20"
+  "updated": "2026-09-08"
 }

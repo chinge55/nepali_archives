@@ -1,0 +1,70 @@
+{
+  "id": "prem",
+  "title": "प्रेम",
+  "title_roman": "Prem",
+  "subtitle": null,
+  "author": {
+    "id": "devkota",
+    "name": "लक्ष्मीप्रसाद देवकोटा",
+    "name_roman": "Laxmi Prasad Devkota"
+  },
+  "language": "ne",
+  "script": "Devanagari",
+  "genre": [
+    "kavita",
+    "poem"
+  ],
+  "first_published": {
+    "bs": null,
+    "ad": null
+  },
+  "edition": "चौथौँ; २०२३",
+  "publisher": "श्रीमती मनदेवी देवकोटा",
+  "description": "From the collection चिल्ला पातहरू. Transcribed from the identified Sahitya Ras source edition. Source wording and literary structure retained; not checked against printed pages. This three-part source version is preserved separately from the longer प्रेमपत्र, whose wording and structure differ.",
+  "rights": {
+    "status": "public-domain",
+    "basis": "Author died 1959; Nepal's Copyright Act 2059 grants life + 50 years, expiring 2009."
+  },
+  "source": {
+    "name": "Sahitya Ras (sahityaras.com)",
+    "url": "https://sahityaras.com/book/chilla-patharu/",
+    "pdf": "sahityaras-chilla-patharu.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-chilla-patharu",
+        "file": "sahityaras-chilla-patharu.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · चिल्ला पातहरू",
+        "sha256": "e7fb106f36cde94c0a7c11a0a7f38fcdab35413840040dd3f6cbfde7953426a6",
+        "page_count": 2,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=chilla-patharu&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "प्रेम",
+            "page_start": 1,
+            "page_end": 2
+          }
+        ]
+      }
+    ]
+  },
+  "pages": 2,
+  "text": {
+    "extraction_method": "html",
+    "ocr_status": "born-digital",
+    "proofread": false,
+    "quality": null
+  },
+  "formats": {
+    "pdf": "sahityaras-chilla-patharu.pdf",
+    "txt": "text.txt",
+    "html": "reader.html",
+    "epub": "reader.epub"
+  },
+  "added": "2026-09-08",
+  "updated": "2026-09-08"
+}

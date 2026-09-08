@@ -20,7 +20,7 @@
   },
   "edition": null,
   "publisher": null,
-  "description": "भानुभक्त आचार्यको प्रसिद्ध कविता 'घाँसी' — एक घाँसीको परोपकारबाट प्रेरित आत्मचिन्तन। Nepali Kitab (nepalikitab.org) बाट सङ्कलित।",
+  "description": "From the collection भानुभक्तका फुटकर रचनाहरू. भानुभक्त आचार्यको प्रसिद्ध कविता 'घाँसी' — एक घाँसीको परोपकारबाट प्रेरित आत्मचिन्तन। Nepali Kitab (nepalikitab.org) बाट सङ्कलित।",
   "rights": {
     "status": "public-domain",
     "basis": "Author died 1868; long in the public domain (Nepal's Copyright Act 2059: life + 50 years)."
@@ -28,10 +28,31 @@
   "source": {
     "name": "Nepali Kitab (nepalikitab.org)",
     "url": "https://nepalikitab.org/bhanu-bhakta-acharya-ghaasi/",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-bhanubhaktaka-futkar-rachanaharu.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-bhanubhaktaka-futkar-rachanaharu",
+        "file": "sahityaras-bhanubhaktaka-futkar-rachanaharu.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · भानुभक्तका फुटकर रचनाहरू",
+        "sha256": "3afb0565203364a3ce6cc91a9e761da4e9dece063257d6c1d64efb125abae705",
+        "page_count": 2,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=bhanubhaktaka-futkar-rachanaharu&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "भर्-जन्म घाँस-तिर मन्-दिई धन् कमायो",
+            "page_start": 1,
+            "page_end": 2
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 2,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -39,11 +60,11 @@
     "quality": "good"
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-bhanubhaktaka-futkar-rachanaharu.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"
   },
   "added": "2026-06-09",
-  "updated": "2026-06-09"
+  "updated": "2026-09-08"
 }

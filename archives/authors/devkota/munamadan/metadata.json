@@ -29,7 +29,48 @@
     "name": "Kavita Kosh (kavitakosh.org)",
     "url": "https://kavitakosh.org/kk/मुना_मदन_/_लक्ष्मीप्रसाद_देवकोटा",
     "pdf": "MunaMadanBookLaxmiPrasadDevkota_text.pdf",
-    "html": "extracted/"
+    "html": "extracted/",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-munamadan",
+        "file": "sahityaras-munamadan.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · मुनामदन",
+        "sha256": "5b26345091ff9830ee7d08f6e4977c160f7653b28aa5a40a576aa77c53d9cc58",
+        "page_count": 49,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=munamadan&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "समर्पण",
+            "page_start": 1,
+            "page_end": 2
+          },
+          {
+            "label": "सज्जनवर्गका प्रति",
+            "page_start": 3,
+            "page_end": 5
+          },
+          {
+            "label": "मदन भोट जाने बेलामा",
+            "page_start": 6,
+            "page_end": 11
+          },
+          {
+            "label": "मदन भोट जान्छन्",
+            "page_start": 12,
+            "page_end": 26
+          },
+          {
+            "label": "मदनलाई बाटामा हैजा लाग्छ",
+            "page_start": 27,
+            "page_end": 49
+          }
+        ]
+      }
+    ]
   },
   "pages": null,
   "text": {
@@ -45,5 +86,5 @@
     "epub": "reader.epub"
   },
   "added": "2026-06-05",
-  "updated": "2026-06-05"
+  "updated": "2026-09-08"
 }

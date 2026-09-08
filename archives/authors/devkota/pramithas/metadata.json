@@ -29,7 +29,83 @@
     "name": "प्रमिथस (साझा प्रकाशन)",
     "url": null,
     "pdf": "pramithas.pdf",
-    "html": null
+    "html": null,
+    "pdf_editions": [
+      {
+        "id": "sahityaras-prometheus",
+        "file": "sahityaras-prometheus.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · प्रमिथस",
+        "sha256": "978b913edd15bc6220b6bcb04db504fb183de8ee7df45178fe358865b27e7367",
+        "page_count": 229,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=prometheus&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "प्रथम सर्ग",
+            "page_start": 1,
+            "page_end": 18
+          },
+          {
+            "label": "द्वितीय सर्ग",
+            "page_start": 19,
+            "page_end": 37
+          },
+          {
+            "label": "तृतीय सर्ग",
+            "page_start": 38,
+            "page_end": 58
+          },
+          {
+            "label": "चतुर्थ सर्ग",
+            "page_start": 59,
+            "page_end": 70
+          },
+          {
+            "label": "पञ्चम सर्ग",
+            "page_start": 71,
+            "page_end": 107
+          },
+          {
+            "label": "षष्ठ सर्ग",
+            "page_start": 108,
+            "page_end": 124
+          },
+          {
+            "label": "सप्तम सर्ग",
+            "page_start": 125,
+            "page_end": 152
+          },
+          {
+            "label": "अष्टम सर्ग",
+            "page_start": 153,
+            "page_end": 161
+          },
+          {
+            "label": "नवम सर्ग",
+            "page_start": 162,
+            "page_end": 178
+          },
+          {
+            "label": "दशम सर्ग",
+            "page_start": 179,
+            "page_end": 195
+          },
+          {
+            "label": "एकादश सर्ग",
+            "page_start": 196,
+            "page_end": 213
+          },
+          {
+            "label": "परिशिष्ट",
+            "page_start": 214,
+            "page_end": 229
+          }
+        ]
+      }
+    ]
   },
   "pages": 145,
   "text": {
@@ -45,5 +121,5 @@
     "epub": "reader.epub"
   },
   "added": "2026-06-07",
-  "updated": "2026-06-07"
+  "updated": "2026-09-08"
 }

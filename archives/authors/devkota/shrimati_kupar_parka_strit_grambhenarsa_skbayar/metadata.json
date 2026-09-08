@@ -27,10 +27,31 @@
   "source": {
     "name": "Sahitya Ras (sahityaras.com)",
     "url": "https://sahityaras.com/book/prasiddha-prabandhasangraha/shrimati-kupara-parka-strita-grambhenarsa-skvayara/",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-prasiddha-prabandhasangraha.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-prasiddha-prabandhasangraha",
+        "file": "sahityaras-prasiddha-prabandhasangraha.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · प्रसिद्ध प्रबन्धसङ्ग्रह",
+        "sha256": "eda6dac46fbb16f3e3a2ae563de4c566e6b517f9ed27bc0abcb7fa57afd3e5cb",
+        "page_count": 2,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=prasiddha-prabandhasangraha&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "श्रीमती कूपर पार्क स्ट्रिट ग्रम्भेनर्स स्क्वायर",
+            "page_start": 1,
+            "page_end": 2
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 2,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -38,7 +59,7 @@
     "quality": null
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-prasiddha-prabandhasangraha.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"

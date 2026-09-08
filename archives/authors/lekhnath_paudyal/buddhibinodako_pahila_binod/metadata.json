@@ -27,10 +27,36 @@
   "source": {
     "name": "Sahitya Ras (sahityaras.com)",
     "url": "https://sahityaras.com/book/buddhibinodko-pahila-binod/",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-buddhibinodko-pahila-binod.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-buddhibinodko-pahila-binod",
+        "file": "sahityaras-buddhibinodko-pahila-binod.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · बुद्धिविनोदको पहिला विनोद",
+        "sha256": "e9a13562e1ef809efb2255e2a4aeccfc35c1028c183b442176b0ec0634d6e6a5",
+        "page_count": 27,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=buddhibinodko-pahila-binod&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "वक्तव्य",
+            "page_start": 1,
+            "page_end": 2
+          },
+          {
+            "label": "बुद्धिविनोदको पहिला विनोद",
+            "page_start": 3,
+            "page_end": 27
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 27,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -38,7 +64,7 @@
     "quality": null
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-buddhibinodko-pahila-binod.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"

@@ -27,10 +27,31 @@
   "source": {
     "name": "Sahitya Ras (sahityaras.com)",
     "url": "https://sahityaras.com/book/buddhi-binod/",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-buddhi-binod.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-buddhi-binod",
+        "file": "sahityaras-buddhi-binod.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · बुद्धि-विनोद",
+        "sha256": "5f474c7893de35497b3fe1230dc5094fb971c87b0450dc8aaab2f234bd6dca94",
+        "page_count": 14,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=buddhi-binod&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "बुद्धि-विनोद",
+            "page_start": 1,
+            "page_end": 14
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 14,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -38,7 +59,7 @@
     "quality": null
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-buddhi-binod.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"

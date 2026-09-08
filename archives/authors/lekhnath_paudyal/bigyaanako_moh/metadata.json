@@ -29,7 +29,28 @@
     "name": "लेखनाथका प्रमुख कविता (साझा प्रकाशन)",
     "url": null,
     "pdf": "bigyaanako_moh.pdf",
-    "html": null
+    "html": null,
+    "pdf_editions": [
+      {
+        "id": "sahityaras-lalitya-bhag-1",
+        "file": "sahityaras-lalitya-bhag-1.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · लालित्य भाग १",
+        "sha256": "511a618827f84200bb01882b78d2199cfc1370fbb8b45afffe81d5419baa2978",
+        "page_count": 2,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=lalitya-bhag-1&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "विज्ञानको मोह",
+            "page_start": 1,
+            "page_end": 2
+          }
+        ]
+      }
+    ]
   },
   "pages": 2,
   "text": {
@@ -45,5 +66,5 @@
     "epub": "reader.epub"
   },
   "added": "2026-06-07",
-  "updated": "2026-06-07"
+  "updated": "2026-09-08"
 }

@@ -27,10 +27,31 @@
   "source": {
     "name": "Sahitya Ras (sahityaras.com)",
     "url": "https://sahityaras.com/book/laxmi-kathasangraha/guru-gyanasiha/",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-laxmi-kathasangraha.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-laxmi-kathasangraha",
+        "file": "sahityaras-laxmi-kathasangraha.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · लक्ष्मी कथासङ्ग्रह",
+        "sha256": "5b4e35edcb631e18ecee8fe266e7c8f3df91c306a4fb25aeb95d671f53adfdba",
+        "page_count": 16,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=laxmi-kathasangraha&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "गुरु ज्ञानसिंह",
+            "page_start": 1,
+            "page_end": 16
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 16,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -38,7 +59,7 @@
     "quality": null
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-laxmi-kathasangraha.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"

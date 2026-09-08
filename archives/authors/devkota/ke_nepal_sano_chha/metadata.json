@@ -28,7 +28,28 @@
   "source": {
     "name": "Internet Archive",
     "url": "https://archive.org/details/ke-nepal-sano-cha",
-    "pdf": "Ke Nepal Sano Cha_text.pdf"
+    "pdf": "Ke Nepal Sano Cha_text.pdf",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-laxmi-nibandhasangraha",
+        "file": "sahityaras-laxmi-nibandhasangraha.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · लक्ष्मी निबन्धसङ्ग्रह",
+        "sha256": "d889eb69ba261739582c69c8205356ba8d372a9fe82183efd3538753fd5af4e3",
+        "page_count": 8,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=laxmi-nibandhasangraha&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "के नेपाल सानो छ ?",
+            "page_start": 1,
+            "page_end": 8
+          }
+        ]
+      }
+    ]
   },
   "pages": 7,
   "text": {
@@ -44,5 +65,5 @@
     "epub": "reader.epub"
   },
   "added": "2026-06-05",
-  "updated": "2026-06-07"
+  "updated": "2026-09-08"
 }

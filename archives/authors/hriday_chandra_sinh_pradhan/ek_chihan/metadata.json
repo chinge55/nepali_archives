@@ -27,10 +27,221 @@
   "source": {
     "name": "Sahitya Ras (sahityaras.com)",
     "url": "https://sahityaras.com/book/ek-chihan/",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-ek-chihan.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-ek-chihan",
+        "file": "sahityaras-ek-chihan.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · एक चिहान",
+        "sha256": "ce97820cf03ec4870db4d74bd8d1e4dada91090cd90ed7da39dfd83ccdb9b3c2",
+        "page_count": 142,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=ek-chihan&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "एक",
+            "page_start": 1,
+            "page_end": 3
+          },
+          {
+            "label": "दुई",
+            "page_start": 4,
+            "page_end": 6
+          },
+          {
+            "label": "तिन",
+            "page_start": 7,
+            "page_end": 9
+          },
+          {
+            "label": "चार",
+            "page_start": 10,
+            "page_end": 13
+          },
+          {
+            "label": "पाँच",
+            "page_start": 14,
+            "page_end": 15
+          },
+          {
+            "label": "छ",
+            "page_start": 16,
+            "page_end": 18
+          },
+          {
+            "label": "सात",
+            "page_start": 19,
+            "page_end": 22
+          },
+          {
+            "label": "आठ",
+            "page_start": 23,
+            "page_end": 29
+          },
+          {
+            "label": "नौ",
+            "page_start": 30,
+            "page_end": 31
+          },
+          {
+            "label": "दश",
+            "page_start": 32,
+            "page_end": 35
+          },
+          {
+            "label": "एघार",
+            "page_start": 36,
+            "page_end": 43
+          },
+          {
+            "label": "बार्‍ह",
+            "page_start": 44,
+            "page_end": 46
+          },
+          {
+            "label": "तेर्‍ह",
+            "page_start": 47,
+            "page_end": 49
+          },
+          {
+            "label": "चौध",
+            "page_start": 50,
+            "page_end": 52
+          },
+          {
+            "label": "पन्ध्र",
+            "page_start": 53,
+            "page_end": 58
+          },
+          {
+            "label": "सोर्‍ह",
+            "page_start": 59,
+            "page_end": 65
+          },
+          {
+            "label": "सत्र",
+            "page_start": 66,
+            "page_end": 72
+          },
+          {
+            "label": "अठार",
+            "page_start": 73,
+            "page_end": 80
+          },
+          {
+            "label": "उन्नाइस",
+            "page_start": 81,
+            "page_end": 85
+          },
+          {
+            "label": "बिस",
+            "page_start": 86,
+            "page_end": 89
+          },
+          {
+            "label": "एक्काइस",
+            "page_start": 90,
+            "page_end": 95
+          },
+          {
+            "label": "बाइस",
+            "page_start": 96,
+            "page_end": 100
+          },
+          {
+            "label": "तेइस",
+            "page_start": 101,
+            "page_end": 104
+          },
+          {
+            "label": "चौबिस",
+            "page_start": 105,
+            "page_end": 114
+          },
+          {
+            "label": "पच्चीस",
+            "page_start": 115,
+            "page_end": 117
+          },
+          {
+            "label": "छब्बिस",
+            "page_start": 118,
+            "page_end": 123
+          },
+          {
+            "label": "सत्ताइस",
+            "page_start": 124,
+            "page_end": 127
+          },
+          {
+            "label": "अट्ठाइस",
+            "page_start": 128,
+            "page_end": 132
+          },
+          {
+            "label": "उनन्तिस",
+            "page_start": 133,
+            "page_end": 136
+          },
+          {
+            "label": "तिस",
+            "page_start": 137,
+            "page_end": 139
+          },
+          {
+            "label": "एकतिस",
+            "page_start": 140,
+            "page_end": 142
+          },
+          {
+            "label": "भाग १",
+            "page_start": 1,
+            "page_end": 22
+          },
+          {
+            "label": "भाग २",
+            "page_start": 19,
+            "page_end": 43
+          },
+          {
+            "label": "भाग ३",
+            "page_start": 36,
+            "page_end": 65
+          },
+          {
+            "label": "भाग ४",
+            "page_start": 59,
+            "page_end": 80
+          },
+          {
+            "label": "भाग ५",
+            "page_start": 73,
+            "page_end": 100
+          },
+          {
+            "label": "भाग ६",
+            "page_start": 96,
+            "page_end": 114
+          },
+          {
+            "label": "भाग ७",
+            "page_start": 105,
+            "page_end": 132
+          },
+          {
+            "label": "भाग ८",
+            "page_start": 128,
+            "page_end": 142
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 142,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -38,7 +249,7 @@
     "quality": null
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-ek-chihan.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"

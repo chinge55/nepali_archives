@@ -27,10 +27,41 @@
   "source": {
     "name": "Sahitya Ras (sahityaras.com)",
     "url": "https://sahityaras.com/book/amar-jyotiko-satya-smriti/",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-amar-jyotiko-satya-smriti.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-amar-jyotiko-satya-smriti",
+        "file": "sahityaras-amar-jyotiko-satya-smriti.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · अमर-ज्योतिको सत्य-स्मृति",
+        "sha256": "67b411c1f71f6e0a8eca5baa66b38aef76c0584228f497ab68cd23b626bba890",
+        "page_count": 24,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=amar-jyotiko-satya-smriti&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "वक्तव्य",
+            "page_start": 1,
+            "page_end": 2
+          },
+          {
+            "label": "पूर्व स्मृति",
+            "page_start": 3,
+            "page_end": 12
+          },
+          {
+            "label": "उत्तर स्मृति",
+            "page_start": 13,
+            "page_end": 24
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 24,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -38,7 +69,7 @@
     "quality": null
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-amar-jyotiko-satya-smriti.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"

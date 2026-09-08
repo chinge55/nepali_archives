@@ -27,10 +27,31 @@
   "source": {
     "name": "Sahitya Ras (sahityaras.com)",
     "url": "https://sahityaras.com/book/dadimko-rukhnera/ma-suvasinimanche-bhae-ke-garne-thie/",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-dadimko-rukhnera.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-dadimko-rukhnera",
+        "file": "sahityaras-dadimko-rukhnera.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · दाडिमको रूखनेर",
+        "sha256": "79aa25dd0a42ddebc4457838a605daf7c968db47d2693698e182eb803d478738",
+        "page_count": 6,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=dadimko-rukhnera&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "म सुवासिनीमान्छे भए के गर्ने थिएँ !",
+            "page_start": 1,
+            "page_end": 6
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 6,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -38,7 +59,7 @@
     "quality": null
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-dadimko-rukhnera.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"

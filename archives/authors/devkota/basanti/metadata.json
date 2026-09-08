@@ -27,10 +27,106 @@
   "source": {
     "name": "Sahitya Ras (sahityaras.com)",
     "url": "https://sahityaras.com/book/basanti/",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-basanti.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-basanti",
+        "file": "sahityaras-basanti.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · बसन्ती",
+        "sha256": "2aa0d25b93b5565e0537b01faff365d7a0e9665a38bc4243e36bfa6814bf0bd0",
+        "page_count": 60,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=basanti&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "प्रस्तावना",
+            "page_start": 1,
+            "page_end": 2
+          },
+          {
+            "label": "प्रथम भाग",
+            "page_start": 3,
+            "page_end": 7
+          },
+          {
+            "label": "द्वितीय भाग",
+            "page_start": 8,
+            "page_end": 10
+          },
+          {
+            "label": "तृतीया भाग",
+            "page_start": 11,
+            "page_end": 14
+          },
+          {
+            "label": "चतुर्थ भाग",
+            "page_start": 15,
+            "page_end": 15
+          },
+          {
+            "label": "पंचम भाग",
+            "page_start": 16,
+            "page_end": 20
+          },
+          {
+            "label": "षष्ठ भाग",
+            "page_start": 21,
+            "page_end": 22
+          },
+          {
+            "label": "सप्तम भाग",
+            "page_start": 23,
+            "page_end": 26
+          },
+          {
+            "label": "अष्टम भाग",
+            "page_start": 27,
+            "page_end": 28
+          },
+          {
+            "label": "नवम भाग",
+            "page_start": 29,
+            "page_end": 31
+          },
+          {
+            "label": "दशम भाग",
+            "page_start": 32,
+            "page_end": 34
+          },
+          {
+            "label": "एकादश भाग",
+            "page_start": 35,
+            "page_end": 36
+          },
+          {
+            "label": "द्वादश भाग",
+            "page_start": 37,
+            "page_end": 38
+          },
+          {
+            "label": "त्रयोदश भाग",
+            "page_start": 39,
+            "page_end": 39
+          },
+          {
+            "label": "चर्तुर्दश भाग",
+            "page_start": 40,
+            "page_end": 45
+          },
+          {
+            "label": "बसन्ती (अंश)",
+            "page_start": 46,
+            "page_end": 60
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 60,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -38,7 +134,7 @@
     "quality": null
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-basanti.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"

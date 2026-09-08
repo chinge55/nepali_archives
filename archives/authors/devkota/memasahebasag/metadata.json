@@ -27,10 +27,31 @@
   "source": {
     "name": "Sahitya Ras (sahityaras.com)",
     "url": "https://sahityaras.com/book/laxmi-kathasangraha/memasahebasaga/",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-laxmi-kathasangraha.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-laxmi-kathasangraha",
+        "file": "sahityaras-laxmi-kathasangraha.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · लक्ष्मी कथासङ्ग्रह",
+        "sha256": "4e0e145b7f2204833163525cb31ab833397e8217112d620f3a187d63fb0795b4",
+        "page_count": 8,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=laxmi-kathasangraha&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "मेमसाहेबसँग",
+            "page_start": 1,
+            "page_end": 8
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 8,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -38,7 +59,7 @@
     "quality": null
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-laxmi-kathasangraha.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"

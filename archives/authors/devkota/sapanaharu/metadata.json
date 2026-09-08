@@ -27,10 +27,31 @@
   "source": {
     "name": "Sahitya Ras (sahityaras.com)",
     "url": "https://sahityaras.com/book/putali/sapanaharu/",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-putali.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-putali",
+        "file": "sahityaras-putali.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · पुतली",
+        "sha256": "7c74e031f7806941dfd2a69a12830127a8ee39c5e33ea61802a3934fa5f13248",
+        "page_count": 2,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=putali&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "सपनाहरू",
+            "page_start": 1,
+            "page_end": 2
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 2,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -38,7 +59,7 @@
     "quality": null
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-putali.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"

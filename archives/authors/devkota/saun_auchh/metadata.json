@@ -27,10 +27,50 @@
   "source": {
     "name": "Sahitya Ras (sahityaras.com)",
     "url": "https://sahityaras.com/book/laxmi-giti-sangraha/sauna-aucha/",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-laxmi-giti-sangraha.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-laxmi-giti-sangraha",
+        "file": "sahityaras-laxmi-giti-sangraha.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · लक्ष्मी गीति-सङ्ग्रह",
+        "sha256": "9b62f1c838ef5d7f805061fcb480a94f38fc4d21345ab0a1506c887d9fd71c43",
+        "page_count": 2,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=laxmi-giti-sangraha&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "साउन आउँछ",
+            "page_start": 1,
+            "page_end": 2
+          }
+        ]
+      },
+      {
+        "id": "sahityaras-chilla-patharu",
+        "file": "sahityaras-chilla-patharu.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · चिल्ला पातहरू",
+        "sha256": "4ec3287b04d5353f770e66074072155119d5bb46771939028a5c9f23a8492b2c",
+        "page_count": 2,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=chilla-patharu&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "साउन",
+            "page_start": 1,
+            "page_end": 2
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 2,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -38,7 +78,7 @@
     "quality": null
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-laxmi-giti-sangraha.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"

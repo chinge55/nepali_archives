@@ -27,10 +27,31 @@
   "source": {
     "name": "Sahitya Ras (sahityaras.com)",
     "url": "https://sahityaras.com/book/bisfot/meri-shrimati/",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-bisfot.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-bisfot",
+        "file": "sahityaras-bisfot.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · विस्फोट",
+        "sha256": "02990585c5fc1cda6cc1a5918afd6574774a6c8e1534a1a91935e8c55367e6ea",
+        "page_count": 5,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=bisfot&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "मेरी श्रीमती",
+            "page_start": 1,
+            "page_end": 5
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 5,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -38,7 +59,7 @@
     "quality": null
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-bisfot.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"

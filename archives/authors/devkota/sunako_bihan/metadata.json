@@ -29,7 +29,28 @@
     "name": "सुनको बिहान (साझा प्रकाशन)",
     "url": null,
     "pdf": "sunako_bihan.pdf",
-    "html": null
+    "html": null,
+    "pdf_editions": [
+      {
+        "id": "sahityaras-sunko-bihan",
+        "file": "sahityaras-sunko-bihan.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · सुनको बिहान",
+        "sha256": "b4bd56d2a2c1e9efafec2a5067c5ef66bf40bd1e2a8c0580d96a63f0dba54d97",
+        "page_count": 1,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=sunko-bihan&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "सुनको बिहान",
+            "page_start": 1,
+            "page_end": 1
+          }
+        ]
+      }
+    ]
   },
   "pages": 1,
   "text": {
@@ -45,5 +66,5 @@
     "epub": "reader.epub"
   },
   "added": "2026-06-07",
-  "updated": "2026-06-07"
+  "updated": "2026-09-08"
 }

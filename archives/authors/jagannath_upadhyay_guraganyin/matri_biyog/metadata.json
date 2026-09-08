@@ -27,10 +27,31 @@
   "source": {
     "name": "Sahitya Ras (sahityaras.com)",
     "url": "https://sahityaras.com/book/guna-ratnamala/matrri-viyoga/",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-guna-ratnamala.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-guna-ratnamala",
+        "file": "sahityaras-guna-ratnamala.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · गुण रत्नमाला",
+        "sha256": "2386f5dac30b5c3317d52659b149d3b4af90a1e86a12c9c60557c3c31d2d911c",
+        "page_count": 13,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=guna-ratnamala&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "मातृ वियोग",
+            "page_start": 1,
+            "page_end": 13
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 13,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -38,7 +59,7 @@
     "quality": null
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-guna-ratnamala.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"

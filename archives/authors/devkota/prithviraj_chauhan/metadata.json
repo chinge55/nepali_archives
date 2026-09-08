@@ -28,10 +28,134 @@
   "source": {
     "name": "Kavita Kosh (kavitakosh.org)",
     "url": "https://kavitakosh.org/kk/पृथ्वीराज_चौहान_/_लक्ष्मीप्रसाद_देवकोटा",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-prithviraj-chauhan.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-prithviraj-chauhan",
+        "file": "sahityaras-prithviraj-chauhan.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · पृथ्वीराज चौहान",
+        "sha256": "d0e1511b9190d11c94d01073673cebab9c04fbb52fd3a5ac8f873a827c2fee77",
+        "page_count": 231,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=prithviraj-chauhan&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "प्रथम सर्ग",
+            "page_start": 1,
+            "page_end": 25
+          },
+          {
+            "label": "द्वितीय सर्ग",
+            "page_start": 26,
+            "page_end": 39
+          },
+          {
+            "label": "तृतीय सर्ग",
+            "page_start": 40,
+            "page_end": 53
+          },
+          {
+            "label": "चतुर्थ सर्ग",
+            "page_start": 54,
+            "page_end": 60
+          },
+          {
+            "label": "पञ्चम सर्ग",
+            "page_start": 61,
+            "page_end": 71
+          },
+          {
+            "label": "षष्ठम सर्ग",
+            "page_start": 72,
+            "page_end": 80
+          },
+          {
+            "label": "सप्तम सर्ग",
+            "page_start": 81,
+            "page_end": 95
+          },
+          {
+            "label": "अष्टम सर्ग",
+            "page_start": 96,
+            "page_end": 110
+          },
+          {
+            "label": "नवम सर्ग",
+            "page_start": 111,
+            "page_end": 119
+          },
+          {
+            "label": "दशम सर्ग",
+            "page_start": 120,
+            "page_end": 130
+          },
+          {
+            "label": "एकादश सर्ग",
+            "page_start": 131,
+            "page_end": 145
+          },
+          {
+            "label": "द्वादश सर्ग",
+            "page_start": 146,
+            "page_end": 158
+          },
+          {
+            "label": "त्रयोदश सर्ग",
+            "page_start": 159,
+            "page_end": 169
+          },
+          {
+            "label": "चतुर्दश सर्ग",
+            "page_start": 170,
+            "page_end": 184
+          },
+          {
+            "label": "पञ्चदश सर्ग",
+            "page_start": 185,
+            "page_end": 193
+          },
+          {
+            "label": "षोडश सर्ग",
+            "page_start": 194,
+            "page_end": 202
+          },
+          {
+            "label": "सप्तदश सर्ग",
+            "page_start": 203,
+            "page_end": 210
+          },
+          {
+            "label": "अष्टदश सर्ग",
+            "page_start": 211,
+            "page_end": 216
+          },
+          {
+            "label": "एकोनविंस सर्ग",
+            "page_start": 217,
+            "page_end": 222,
+            "aliases": [
+              "एकोनविस सर्ग"
+            ]
+          },
+          {
+            "label": "विंस सर्ग",
+            "page_start": 223,
+            "page_end": 227
+          },
+          {
+            "label": "एकविंस सर्ग",
+            "page_start": 228,
+            "page_end": 231
+          }
+        ]
+      }
+    ]
   },
-  "pages": 184,
+  "pages": 231,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -39,11 +163,11 @@
     "quality": "good"
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-prithviraj-chauhan.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"
   },
   "added": "2026-06-05",
-  "updated": "2026-06-05"
+  "updated": "2026-09-08"
 }

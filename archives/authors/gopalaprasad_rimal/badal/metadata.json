@@ -27,10 +27,31 @@
   "source": {
     "name": "Sahitya Ras (sahityaras.com)",
     "url": "https://sahityaras.com/book/aamako-sapana/badala/",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-aamako-sapana.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-aamako-sapana",
+        "file": "sahityaras-aamako-sapana.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · आमाको सपना",
+        "sha256": "49af133b147ebeb01a90a128a6ffab0762a5762a57660735bfad42e31ebd5e52",
+        "page_count": 3,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=aamako-sapana&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "बादल",
+            "page_start": 1,
+            "page_end": 3
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 3,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -38,7 +59,7 @@
     "quality": null
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-aamako-sapana.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"

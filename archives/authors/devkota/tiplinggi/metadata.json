@@ -27,10 +27,91 @@
   "source": {
     "name": "Sahitya Ras (sahityaras.com)",
     "url": "https://sahityaras.com/book/tiplingi/",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-tiplingi.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-tiplingi",
+        "file": "sahityaras-tiplingi.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · तिप्लिङ्गी",
+        "sha256": "01fea436ce26440a5d136f1be6210136f81ce7ccf5d1db444ddae8d16ee8b329",
+        "page_count": 57,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=tiplingi&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "प्रथम पादः",
+            "page_start": 1,
+            "page_end": 3
+          },
+          {
+            "label": "द्वितीय पादः",
+            "page_start": 4,
+            "page_end": 7
+          },
+          {
+            "label": "तृतीय पादः",
+            "page_start": 8,
+            "page_end": 15
+          },
+          {
+            "label": "चतुर्थ पादः",
+            "page_start": 16,
+            "page_end": 18
+          },
+          {
+            "label": "पञ्चम पादः",
+            "page_start": 19,
+            "page_end": 21
+          },
+          {
+            "label": "षष्ठ पादः",
+            "page_start": 22,
+            "page_end": 25
+          },
+          {
+            "label": "सप्तम पादः",
+            "page_start": 26,
+            "page_end": 28
+          },
+          {
+            "label": "अष्टम पादः",
+            "page_start": 29,
+            "page_end": 32
+          },
+          {
+            "label": "नवम पादः",
+            "page_start": 33,
+            "page_end": 39
+          },
+          {
+            "label": "दशम पादः",
+            "page_start": 40,
+            "page_end": 44
+          },
+          {
+            "label": "एकादश पादः",
+            "page_start": 45,
+            "page_end": 51
+          },
+          {
+            "label": "द्वादश पादः",
+            "page_start": 52,
+            "page_end": 55
+          },
+          {
+            "label": "त्रयोदश पादः",
+            "page_start": 56,
+            "page_end": 57
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 57,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -38,7 +119,7 @@
     "quality": null
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-tiplingi.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"

@@ -27,10 +27,31 @@
   "source": {
     "name": "Sahitya Ras (sahityaras.com)",
     "url": "https://sahityaras.com/book/bisfot/ajako-samasya/",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-bisfot.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-bisfot",
+        "file": "sahityaras-bisfot.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · विस्फोट",
+        "sha256": "f8d7b31701b2eb864723a6fa91fb53a6f1d5836a9d849a0099a4d8bbd0e99598",
+        "page_count": 2,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=bisfot&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "आजको समस्या",
+            "page_start": 1,
+            "page_end": 2
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 2,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -38,7 +59,7 @@
     "quality": null
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-bisfot.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"

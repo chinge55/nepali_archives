@@ -28,10 +28,31 @@
   "source": {
     "name": "iNepal (inepal.org)",
     "url": "https://inepal.org/nepalipoems/69/laxmi-prasad-devkota-putali/",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-putali.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-putali",
+        "file": "sahityaras-putali.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · पुतली",
+        "sha256": "b48e1f9ff9146a983aeb95a588fcaa8bdf92568414f1adddf4b3d19155e1127f",
+        "page_count": 4,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=putali&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "पुतली",
+            "page_start": 1,
+            "page_end": 4
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 4,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -39,11 +60,11 @@
     "quality": "fair"
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-putali.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"
   },
   "added": "2026-06-05",
-  "updated": "2026-06-05"
+  "updated": "2026-09-08"
 }

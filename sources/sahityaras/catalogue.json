@@ -285,48 +285,85 @@
           "spine_position": 7,
           "title": "पहिलो खण्ड",
           "sha256": "23e3d90ba4be616b8dbb821c0beb1c5fe7792b6cbd363fd05af9f867465031c5",
-          "decision": "defer",
-          "reason": "Long unsigned glossary apparatus has unresolved authorship; preserve the whole work in the review cache until attribution is resolved.",
-          "notes_approved": true,
-          "note_policy": "Retain source apparatus and original reference labels; unsigned factual glosses are not asserted to be authorial. Longer disputed commentary is deferred separately."
+          "decision": "include",
+          "reason": "Authorial canto. The signed editorial statement identifies Mohan Raj Sharma as the author of explanatory notes; those later notes and their references are excluded.",
+          "notes_approved": false,
+          "note_policy": "Retain source apparatus and original reference labels; unsigned factual glosses are not asserted to be authorial. Longer disputed commentary is deferred separately.",
+          "remove_ids": [
+            "cite_ref-1",
+            "cite_ref-2",
+            "cite_ref-3",
+            "cite_ref-4",
+            "cite_ref-5",
+            "cite_ref-6",
+            "cite_ref-7",
+            "cite_ref-8",
+            "cite_ref-9",
+            "cite_ref-10",
+            "cite_note-1",
+            "cite_note-2",
+            "cite_note-3",
+            "cite_note-4",
+            "cite_note-5",
+            "cite_note-6",
+            "cite_note-7",
+            "cite_note-8",
+            "cite_note-9",
+            "cite_note-10"
+          ],
+          "destination": "archives/authors/devkota/mayabini_sarsi"
         },
         {
           "path": "src/EPUB/text/dosro-khanda.xhtml",
           "spine_position": 8,
           "title": "दोस्रो खण्ड",
           "sha256": "165c704feceefdc481c9aa6f13384d6cc73744763b15f7dcf7935f56b17c492f",
-          "decision": "defer",
-          "reason": "Long unsigned glossary apparatus has unresolved authorship; preserve the whole work in the review cache until attribution is resolved.",
-          "notes_approved": false
+          "decision": "include",
+          "reason": "Authorial canto. The signed editorial statement identifies Mohan Raj Sharma as the author of explanatory notes; those later notes and their references are excluded.",
+          "notes_approved": false,
+          "remove_ids": [],
+          "destination": "archives/authors/devkota/mayabini_sarsi"
         },
         {
           "path": "src/EPUB/text/tesro-khanda.xhtml",
           "spine_position": 9,
           "title": "तेस्रो खण्ड",
           "sha256": "60b3101deba9ffdb85a8ffbfe667d993afab1082ad4b3310c622a2d01da1a941",
-          "decision": "defer",
-          "reason": "Long unsigned glossary apparatus has unresolved authorship; preserve the whole work in the review cache until attribution is resolved.",
-          "notes_approved": true,
-          "note_policy": "Retain source apparatus and original reference labels; unsigned factual glosses are not asserted to be authorial. Longer disputed commentary is deferred separately."
+          "decision": "include",
+          "reason": "Authorial canto. The signed editorial statement identifies Mohan Raj Sharma as the author of explanatory notes; those later notes and their references are excluded.",
+          "notes_approved": false,
+          "note_policy": "Retain source apparatus and original reference labels; unsigned factual glosses are not asserted to be authorial. Longer disputed commentary is deferred separately.",
+          "remove_ids": [
+            "cite_ref-1",
+            "cite_note-1"
+          ],
+          "destination": "archives/authors/devkota/mayabini_sarsi"
         },
         {
           "path": "src/EPUB/text/chautho-khanda.xhtml",
           "spine_position": 10,
           "title": "चौथो खण्ड",
           "sha256": "7469dc1eb755a47240c9fad5931bef02a98f273e6b6001dc11d3895b280e599f",
-          "decision": "defer",
-          "reason": "Long unsigned glossary apparatus has unresolved authorship; preserve the whole work in the review cache until attribution is resolved.",
-          "notes_approved": true,
-          "note_policy": "Retain source apparatus and original reference labels; unsigned factual glosses are not asserted to be authorial. Longer disputed commentary is deferred separately."
+          "decision": "include",
+          "reason": "Authorial canto. The signed editorial statement identifies Mohan Raj Sharma as the author of explanatory notes; those later notes and their references are excluded.",
+          "notes_approved": false,
+          "note_policy": "Retain source apparatus and original reference labels; unsigned factual glosses are not asserted to be authorial. Longer disputed commentary is deferred separately.",
+          "remove_ids": [
+            "cite_ref-1",
+            "cite_note-1"
+          ],
+          "destination": "archives/authors/devkota/mayabini_sarsi"
         },
         {
           "path": "src/EPUB/text/pachau-khanda.xhtml",
           "spine_position": 11,
           "title": "पाँचौं खण्ड",
           "sha256": "9d261ef94d7882f2e33516bd5a2abe6772c8bb77fbb68922d880eb2afef798fe",
-          "decision": "defer",
-          "reason": "Long unsigned glossary apparatus has unresolved authorship; preserve the whole work in the review cache until attribution is resolved.",
-          "notes_approved": false
+          "decision": "include",
+          "reason": "Authorial canto. The signed editorial statement identifies Mohan Raj Sharma as the author of explanatory notes; those later notes and their references are excluded.",
+          "notes_approved": false,
+          "remove_ids": [],
+          "destination": "archives/authors/devkota/mayabini_sarsi"
         },
         {
           "path": "src/EPUB/cover.xhtml",
@@ -2515,9 +2552,10 @@
           "spine_position": 14,
           "title": "प्रेम",
           "sha256": "4e4e47f8ca7d879a9e155f22f11c388c9e2865635d7905fe0805d40a91741faf",
-          "decision": "defer",
-          "reason": "Possible authorial variant of existing प्रेमपत्र; retain separately for edition comparison.",
-          "notes_approved": false
+          "decision": "include",
+          "reason": "Complete three-part source version; compared with प्रेमपत्र and retained separately because wording and structure differ.",
+          "notes_approved": false,
+          "destination": "archives/authors/devkota/prem"
         },
         {
           "path": "src/EPUB/text/gahuko-samjhana.xhtml",
@@ -9697,9 +9735,393 @@
           "spine_position": 5,
           "title": "भानुभक्तका फुटकर रचनाहरू",
           "sha256": "28d375d1e25f6b5a7e6b130b808629e4ae071e6e76c5f699392802afea450048",
-          "decision": "defer",
-          "reason": "Multiple untitled occasional poems in one file overlap existing works; semantic member boundaries need edition comparison.",
-          "notes_approved": false
+          "decision": "split",
+          "reason": "All 39 printed numbered pieces reviewed; existing identities mapped, remaining untitled pieces catalogued by incipit.",
+          "notes_approved": false,
+          "member_count": 39,
+          "members": [
+            {
+              "id": "member-1",
+              "numbers": [
+                1
+              ],
+              "title": "पाहाड्‌को अति बेस देश् तनहुँमा श्रीकृष्ण ब्राह्मण् थिया",
+              "decision": "map-existing",
+              "destination": "archives/authors/bhanubhakta_acharya/ma_bhanubhakta",
+              "reason": "Source piece matches existing literary text; preserve existing transcription and attach this edition."
+            },
+            {
+              "id": "member-2",
+              "numbers": [
+                2
+              ],
+              "title": "चपला अबलाहरु एक् सुरमा",
+              "decision": "map-existing",
+              "destination": "archives/authors/bhanubhakta_acharya/kantipuri_nagari",
+              "reason": "Source piece matches existing literary text; preserve existing transcription and attach this edition."
+            },
+            {
+              "id": "member-3",
+              "numbers": [
+                3
+              ],
+              "title": "यति दिन पछि मैले आज बालाजि देख्याँ",
+              "decision": "map-existing",
+              "destination": "archives/authors/bhanubhakta_acharya/balaji",
+              "reason": "Source piece matches existing literary text; preserve existing transcription and attach this edition."
+            },
+            {
+              "id": "member-4-5",
+              "numbers": [
+                4,
+                5
+              ],
+              "title": "रोज् रोज् दर्शन पाउँछू चरणको ताप् छैन मन्‌मा कछू",
+              "decision": "map-existing",
+              "destination": "archives/authors/bhanubhakta_acharya/roj_roj_darshan",
+              "reason": "Source piece matches existing literary text; preserve existing transcription and attach this edition."
+            },
+            {
+              "id": "member-6",
+              "numbers": [
+                6
+              ],
+              "title": "चालीस्‌ वर्ष भयाँ म पुत्र पनि एक्‌ मात्रै छ आठ् वर्षको",
+              "decision": "include",
+              "destination": "archives/authors/bhanubhakta_acharya/chalis_barsha_bhaya_m_putr",
+              "reason": "Self-contained numbered source piece; no existing literary match. Catalogue title is its incipit."
+            },
+            {
+              "id": "member-7",
+              "numbers": [
+                7
+              ],
+              "title": "शरिर छ अति कच्चा अन्न-जल्‌ले रह्याको",
+              "decision": "include",
+              "destination": "archives/authors/bhanubhakta_acharya/sharir_chh_ati_kachcha_annajalle",
+              "reason": "Self-contained numbered source piece; no existing literary match. Catalogue title is its incipit."
+            },
+            {
+              "id": "member-8",
+              "numbers": [
+                8
+              ],
+              "title": "साँचा हुन्‌ जति लेखिया सव कुरा आफ्नू व्यहोरा दरी",
+              "decision": "include",
+              "destination": "archives/authors/bhanubhakta_acharya/sacha_hun_jati_lekhiya_sab",
+              "reason": "Self-contained numbered source piece; no existing literary match. Catalogue title is its incipit."
+            },
+            {
+              "id": "member-9",
+              "numbers": [
+                9
+              ],
+              "title": "न मृत्यु टर्न्या हो यसरि झगडामा अघि सरी",
+              "decision": "include",
+              "destination": "archives/authors/bhanubhakta_acharya/n_mrityu_tarnya_ho_yasari",
+              "reason": "Self-contained numbered source piece; no existing literary match. Catalogue title is its incipit."
+            },
+            {
+              "id": "member-10",
+              "numbers": [
+                10
+              ],
+              "title": "बिन्ती डिठ्‌टा विचारीसित म कति गरूँ चुप् रहन्छन् नबोली",
+              "decision": "map-existing",
+              "destination": "archives/authors/bhanubhakta_acharya/roj_roj_darshan",
+              "reason": "Source piece matches existing literary text; preserve existing transcription and attach this edition."
+            },
+            {
+              "id": "member-11",
+              "numbers": [
+                11
+              ],
+              "title": "असल्‌ मुङ्ग्रे केरा कि त महि हवस्‌ बेस अमिलो",
+              "decision": "include",
+              "destination": "archives/authors/bhanubhakta_acharya/asal_munggre_kera_ki_t",
+              "reason": "Self-contained numbered source piece; no existing literary match. Catalogue title is its incipit."
+            },
+            {
+              "id": "member-12",
+              "numbers": [
+                12
+              ],
+              "title": "गजाधर्‌ सोतीका घर बुढि अलक्षिन्‌कि रहिछन्‌",
+              "decision": "include",
+              "destination": "archives/authors/bhanubhakta_acharya/gajadhar_sotika_ghar_budhi_alakshinki",
+              "reason": "Self-contained numbered source piece; no existing literary match. Catalogue title is its incipit."
+            },
+            {
+              "id": "member-13",
+              "numbers": [
+                13
+              ],
+              "title": "ति शालीवाहन्‌का समय षडत्रिंशत्‌ भइकन",
+              "decision": "include",
+              "destination": "archives/authors/bhanubhakta_acharya/ti_shalibahanka_samay_shadatrinshat_bhaikan",
+              "reason": "Self-contained numbered source piece; no existing literary match. Catalogue title is its incipit."
+            },
+            {
+              "id": "member-14",
+              "numbers": [
+                14
+              ],
+              "title": "खर्‌ अक्षर्‌ पर भै विसर्ग तिमिले क्याले गर्‍यौ लोप्‌ भनी",
+              "decision": "include",
+              "destination": "archives/authors/bhanubhakta_acharya/khar_akshar_par_bhai_bisarga",
+              "reason": "Self-contained numbered source piece; no existing literary match. Catalogue title is its incipit."
+            },
+            {
+              "id": "member-15",
+              "numbers": [
+                15
+              ],
+              "title": "विर्के टोपी पठाऊ भनि खबर हुँदा भेजियाको त टोपी",
+              "decision": "include",
+              "destination": "archives/authors/bhanubhakta_acharya/birke_topi_pathau_bhani_khabar",
+              "reason": "Self-contained numbered source piece; no existing literary match. Catalogue title is its incipit."
+            },
+            {
+              "id": "member-16",
+              "numbers": [
+                16
+              ],
+              "title": "भाषा श्लोक्‌ भनु ता अवश्य अरु ता बुझ्दैन कोई पनी",
+              "decision": "include",
+              "destination": "archives/authors/bhanubhakta_acharya/bhasha_shlok_bhanu_ta_abashya",
+              "reason": "Self-contained numbered source piece; no existing literary match. Catalogue title is its incipit."
+            },
+            {
+              "id": "member-17",
+              "numbers": [
+                17
+              ],
+              "title": "जस्‌द्वारा जसले जहां जसरि जो गर्छन्‌ त जुन्‌ जुन्‌ घरी",
+              "decision": "include",
+              "destination": "archives/authors/bhanubhakta_acharya/jasdbara_jasale_jahan_jasari_jo",
+              "reason": "Self-contained numbered source piece; no existing literary match. Catalogue title is its incipit."
+            },
+            {
+              "id": "member-18",
+              "numbers": [
+                18
+              ],
+              "title": "न पोथी पात्रा छन्‌ न कलम मस्यानी छ सँगमा",
+              "decision": "include",
+              "destination": "archives/authors/bhanubhakta_acharya/n_pothi_patra_chhan_n",
+              "reason": "Self-contained numbered source piece; no existing literary match. Catalogue title is its incipit."
+            },
+            {
+              "id": "member-19",
+              "numbers": [
+                19
+              ],
+              "title": "ढीटा छन्‌ सब्‌ कुरा पूरा छोरा धेर्‌ जसका तिनै",
+              "decision": "include",
+              "destination": "archives/authors/bhanubhakta_acharya/dhita_chhan_sab_kura_pura",
+              "reason": "Self-contained numbered source piece; no existing literary match. Catalogue title is its incipit."
+            },
+            {
+              "id": "member-20",
+              "numbers": [
+                20
+              ],
+              "title": "केश्‌ कञ्चेट्‌ कुहुनू कपाल्‌ र कलेजो काखी करङ्‌ कन्सिरी",
+              "decision": "include",
+              "destination": "archives/authors/bhanubhakta_acharya/kesh_kanychet_kuhunu_kapal_r",
+              "reason": "Self-contained numbered source piece; no existing literary match. Catalogue title is its incipit."
+            },
+            {
+              "id": "member-21",
+              "numbers": [
+                21
+              ],
+              "title": "मास्‌ भृङ्गी बेल दूभो बयर धतुरो तूलसीका अपाङ्‌का",
+              "decision": "include",
+              "destination": "archives/authors/bhanubhakta_acharya/mas_bhringgi_bel_dubho_bayar",
+              "reason": "Self-contained numbered source piece; no existing literary match. Catalogue title is its incipit."
+            },
+            {
+              "id": "member-22",
+              "numbers": [
+                22
+              ],
+              "title": "पाँच्‌ तोला घिउ गाइको र खसिको बोसो समानै लिनू",
+              "decision": "include",
+              "destination": "archives/authors/bhanubhakta_acharya/pach_tola_ghiu_gaiko_r",
+              "reason": "Self-contained numbered source piece; no existing literary match. Catalogue title is its incipit."
+            },
+            {
+              "id": "member-23",
+              "numbers": [
+                23
+              ],
+              "title": "पढ्नु गुन्नू खेल्न माया नगर्नु",
+              "decision": "include",
+              "destination": "archives/authors/bhanubhakta_acharya/padhnu_gunnu_khelna_maya_nagarnu",
+              "reason": "Self-contained numbered source piece; no existing literary match. Catalogue title is its incipit."
+            },
+            {
+              "id": "member-24",
+              "numbers": [
+                24
+              ],
+              "title": "कतै खरानी छरि भुस्‌ कतै ता",
+              "decision": "include",
+              "destination": "archives/authors/bhanubhakta_acharya/katai_kharani_chhari_bhus_katai",
+              "reason": "Self-contained numbered source piece; no existing literary match. Catalogue title is its incipit."
+            },
+            {
+              "id": "member-25",
+              "numbers": [
+                25
+              ],
+              "title": "तिन्‌ सात्‌ एग्घार पन्ध्रै कउडि खडि भया दाउ त्यो हुन्छ तीया",
+              "decision": "include",
+              "destination": "archives/authors/bhanubhakta_acharya/tin_sat_egghar_pandhrai_kaudi",
+              "reason": "Self-contained numbered source piece; no existing literary match. Catalogue title is its incipit."
+            },
+            {
+              "id": "member-26",
+              "numbers": [
+                26
+              ],
+              "title": "तान्यो एग्घारबाटै पनि उँडि बहुतै चक्किले दिग्‌ गरायो",
+              "decision": "include",
+              "destination": "archives/authors/bhanubhakta_acharya/tanyo_eggharabatai_pani_udi_bahutai",
+              "reason": "Self-contained numbered source piece; no existing literary match. Catalogue title is its incipit."
+            },
+            {
+              "id": "member-27",
+              "numbers": [
+                27
+              ],
+              "title": "क्या लड्छन्‌ बटई र तित्रि चखुरा साँडे पहल्मान्‌हरू",
+              "decision": "include",
+              "destination": "archives/authors/bhanubhakta_acharya/kya_ladchhan_batai_r_titri",
+              "reason": "Self-contained numbered source piece; no existing literary match. Catalogue title is its incipit."
+            },
+            {
+              "id": "member-28",
+              "numbers": [
+                28
+              ],
+              "title": "विन्ती एक म गर्दछू सुन प्रिये प्रीती निरन्तर् रहोस्",
+              "decision": "map-existing",
+              "destination": "archives/authors/bhanubhakta_acharya/sun_priye",
+              "reason": "Source piece matches existing literary text; preserve existing transcription and attach this edition."
+            },
+            {
+              "id": "member-29",
+              "numbers": [
+                29
+              ],
+              "title": "विद्वान्‌ जन्‌ले लोहलाइ बेच्नु छैन",
+              "decision": "include",
+              "destination": "archives/authors/bhanubhakta_acharya/bidban_janle_lohalai_bechnu_chhain",
+              "reason": "Self-contained numbered source piece; no existing literary match. Catalogue title is its incipit."
+            },
+            {
+              "id": "member-30",
+              "numbers": [
+                30
+              ],
+              "title": "स्वस्तिश्री पखरा-अदालतमहाँ डिट्ठा विचारीहरू",
+              "decision": "include",
+              "destination": "archives/authors/bhanubhakta_acharya/sbastishri_pakharaadalatamaha_dittha_bichariharu",
+              "reason": "Self-contained numbered source piece; no existing literary match. Catalogue title is its incipit."
+            },
+            {
+              "id": "member-31",
+              "numbers": [
+                31
+              ],
+              "title": "आयेध्या मतका कुरा चरणमा झीजो गरम्‌ क्वै भनी",
+              "decision": "include",
+              "destination": "archives/authors/bhanubhakta_acharya/ayedhya_mataka_kura_charanama_jhijo",
+              "reason": "Self-contained numbered source piece; no existing literary match. Catalogue title is its incipit."
+            },
+            {
+              "id": "member-32",
+              "numbers": [
+                32
+              ],
+              "title": "भर्-जन्म घाँस-तिर मन्-दिई धन् कमायो",
+              "decision": "map-existing",
+              "destination": "archives/authors/bhanubhakta_acharya/ghasi",
+              "reason": "Source piece matches existing literary text; preserve existing transcription and attach this edition."
+            },
+            {
+              "id": "member-33",
+              "numbers": [
+                33
+              ],
+              "title": "मानुङ्‌को सरि गाउँ उत्तम ठुलो लागेन काँहीं पनी",
+              "decision": "include",
+              "destination": "archives/authors/bhanubhakta_acharya/manungko_sari_gau_uttam_thulo",
+              "reason": "Self-contained numbered source piece; no existing literary match. Catalogue title is its incipit."
+            },
+            {
+              "id": "member-34",
+              "numbers": [
+                34
+              ],
+              "title": "ख्वामित् यस् गिरिधारिले अति पिर्‍यो व्यर्थै गर्‍यो झेल् पनी",
+              "decision": "map-existing",
+              "destination": "archives/authors/bhanubhakta_acharya/khwamit_giridharile",
+              "reason": "Source piece matches existing literary text; preserve existing transcription and attach this edition."
+            },
+            {
+              "id": "member-35",
+              "numbers": [
+                35
+              ],
+              "title": "लुच्चा हुन्‌ यस भाटका सब कुरा आँफै कुला मूनिकै",
+              "decision": "include",
+              "destination": "archives/authors/bhanubhakta_acharya/luchcha_hun_yas_bhataka_sab",
+              "reason": "Self-contained numbered source piece; no existing literary match. Catalogue title is its incipit."
+            },
+            {
+              "id": "member-36",
+              "numbers": [
+                36
+              ],
+              "title": "अघिल्ला जन्मैका पनि शरिरमा पाप्‌ कति हुनन्‌",
+              "decision": "include",
+              "destination": "archives/authors/bhanubhakta_acharya/aghilla_janmaika_pani_sharirama_pap",
+              "reason": "Self-contained numbered source piece; no existing literary match. Catalogue title is its incipit."
+            },
+            {
+              "id": "member-37",
+              "numbers": [
+                37
+              ],
+              "title": "क्वै उठ्छन्‌ त सबेरमा ति धनकै खाँतीरका काम्‌ लिई",
+              "decision": "include",
+              "destination": "archives/authors/bhanubhakta_acharya/kbai_uthchhan_t_saberama_ti",
+              "reason": "Self-contained numbered source piece; no existing literary match. Catalogue title is its incipit."
+            },
+            {
+              "id": "member-38",
+              "numbers": [
+                38
+              ],
+              "title": "यत्ती छन्‌ सब देवता भनि यहाँ गन्नै नसक्नू भई",
+              "decision": "include",
+              "destination": "archives/authors/bhanubhakta_acharya/yatti_chhan_sab_debata_bhani",
+              "reason": "Self-contained numbered source piece; no existing literary match. Catalogue title is its incipit."
+            },
+            {
+              "id": "member-39",
+              "numbers": [
+                39
+              ],
+              "title": "क्याले भुल्छौ जगत्‌मा नरहरु बहुतै दुःखले पक्रिएका",
+              "decision": "include",
+              "destination": "archives/authors/bhanubhakta_acharya/kyale_bhulchhau_jagatma_naraharu_bahutai",
+              "reason": "Self-contained numbered source piece; no existing literary match. Catalogue title is its incipit."
+            }
+          ]
         },
         {
           "path": "src/EPUB/cover.xhtml",
@@ -34598,6 +35020,1556 @@
         "text.txt": "d5655ac06612b3673933406c00ed8922f3f9ce756e074204093474d8fe9308ac",
         "metadata.json": "feaa7a6143d0c2070c5f3fcdda2c42a176c9b6ed8efe63cb24b77ebea3d172ec",
         "extracted/index.html": "9595ddbe69655286b283534012f01bdd96c42a58db4bc1d9e5f36071932a2c43"
+      }
+    },
+    {
+      "title": "मायाविनी सर्सी",
+      "title_roman": "Mayavini Sarsi",
+      "author": {
+        "id": "devkota",
+        "name": "लक्ष्मीप्रसाद देवकोटा",
+        "name_roman": "Laxmi Prasad Devkota"
+      },
+      "rights": {
+        "status": "public-domain",
+        "basis": "Author died 1959; Nepal's Copyright Act 2059 grants life + 50 years, expiring 2009."
+      },
+      "genre": [
+        "khandakavya"
+      ],
+      "sources": [
+        {
+          "book": "mayavini-sarsi",
+          "path": "src/EPUB/text/pahilo-khanda.xhtml"
+        },
+        {
+          "book": "mayavini-sarsi",
+          "path": "src/EPUB/text/dosro-khanda.xhtml"
+        },
+        {
+          "book": "mayavini-sarsi",
+          "path": "src/EPUB/text/tesro-khanda.xhtml"
+        },
+        {
+          "book": "mayavini-sarsi",
+          "path": "src/EPUB/text/chautho-khanda.xhtml"
+        },
+        {
+          "book": "mayavini-sarsi",
+          "path": "src/EPUB/text/pachau-khanda.xhtml"
+        }
+      ],
+      "collections": [],
+      "preserve_section_titles": true,
+      "description_note": "Five cantos from the identified edited source edition. The signed editorial statement attributes the explanatory notes to Mohan Raj Sharma; these notes and their reference markers are excluded. Editorial emendations within the supplied verse cannot be reconstructed or silently reversed from this source.",
+      "decision": "include",
+      "id": "mayabini_sarsi",
+      "prepared_date": "2026-09-08",
+      "reviewed": true,
+      "edition": "पहिलो; २०२४",
+      "publisher": "नेपाली साहित्य घर",
+      "source_url": "https://sahityaras.com/book/mayavini-sarsi/",
+      "outputs": {
+        "text.txt": "f72ec97b67cfe6bf09a275f2b0fd87130f6298d1e026a9746772c0547566ae20",
+        "metadata.json": "78859816720d85212d984c28e67fae9083df6b78876bad8f52fa3556f9bfe4da",
+        "extracted/index.html": "096766aedc8312e63b52a9a26aa100b458883bee5120248cb387d3cb067c6154"
+      }
+    },
+    {
+      "id": "prem",
+      "title": "प्रेम",
+      "title_roman": "Prem",
+      "author": {
+        "id": "devkota",
+        "name": "लक्ष्मीप्रसाद देवकोटा",
+        "name_roman": "Laxmi Prasad Devkota"
+      },
+      "rights": {
+        "status": "public-domain",
+        "basis": "Author died 1959; Nepal's Copyright Act 2059 grants life + 50 years, expiring 2009."
+      },
+      "genre": [
+        "kavita",
+        "poem"
+      ],
+      "sources": [
+        {
+          "book": "chilla-patharu",
+          "path": "src/EPUB/text/prema.xhtml"
+        }
+      ],
+      "collections": [
+        "चिल्ला पातहरू"
+      ],
+      "preserve_section_titles": false,
+      "description_note": "This three-part source version is preserved separately from the longer प्रेमपत्र, whose wording and structure differ.",
+      "decision": "include",
+      "prepared_date": "2026-09-08",
+      "reviewed": true,
+      "edition": "चौथौँ; २०२३",
+      "publisher": "श्रीमती मनदेवी देवकोटा",
+      "source_url": "https://sahityaras.com/book/chilla-patharu/",
+      "outputs": {
+        "text.txt": "926caef21f86a57919c8a88deab1782deb63fb482c0b9f55b6037681632ce316",
+        "metadata.json": "5a9d5a5f18da78dcb846dd6f3654865aaed36e9b305f472165f259dbf8e19a93",
+        "extracted/index.html": "ae2914624c787c46ca2346fbdef5ebc84b3bb09c7019c49bd234abdbfd5eb3a8"
+      }
+    },
+    {
+      "id": "chalis_barsha_bhaya_m_putr",
+      "title": "चालीस्‌ वर्ष भयाँ म पुत्र पनि एक्‌ मात्रै छ आठ् वर्षको",
+      "author": {
+        "id": "bhanubhakta_acharya",
+        "name": "भानुभक्त आचार्य",
+        "name_roman": "Bhanubhakta Acharya"
+      },
+      "rights": {
+        "status": "public-domain",
+        "basis": "Author died 1868; long in the public domain (Nepal's Copyright Act 2059: life + 50 years)."
+      },
+      "genre": [
+        "kavita",
+        "poem"
+      ],
+      "sources": [
+        {
+          "book": "bhanubhaktaka-futkar-rachanaharu",
+          "path": "src/EPUB/text/bhanubhaktaka-futkar-rachanaharu.xhtml",
+          "member": "member-6"
+        }
+      ],
+      "collections": [
+        "भानुभक्तका फुटकर रचनाहरू"
+      ],
+      "preserve_section_titles": false,
+      "description_note": "Untitled numbered source piece 6; catalogue title is the opening line. Printed numbering is retained. The HTML capture reconstructs only this selected excerpt.",
+      "decision": "include",
+      "prepared_date": "2026-09-08",
+      "reviewed": true,
+      "edition": "चौथो; २०६८",
+      "publisher": "साझा प्रकाशन",
+      "source_url": "https://sahityaras.com/book/bhanubhaktaka-futkar-rachanaharu/",
+      "outputs": {
+        "text.txt": "f5a60c7beeb26d52fcfaaec3beb9981ab50a455d7f8bdbe95c7e203ee4e57e12",
+        "metadata.json": "6de6fcf774c4a8d00b1dc61bb08832deb861d571625ea8c85b719e36a3d747a8",
+        "extracted/index.html": "a11ee750b618027fc517e3dce26631622e616223ff5ad517bc1fb5156c1976d6"
+      }
+    },
+    {
+      "id": "sharir_chh_ati_kachcha_annajalle",
+      "title": "शरिर छ अति कच्चा अन्न-जल्‌ले रह्याको",
+      "author": {
+        "id": "bhanubhakta_acharya",
+        "name": "भानुभक्त आचार्य",
+        "name_roman": "Bhanubhakta Acharya"
+      },
+      "rights": {
+        "status": "public-domain",
+        "basis": "Author died 1868; long in the public domain (Nepal's Copyright Act 2059: life + 50 years)."
+      },
+      "genre": [
+        "kavita",
+        "poem"
+      ],
+      "sources": [
+        {
+          "book": "bhanubhaktaka-futkar-rachanaharu",
+          "path": "src/EPUB/text/bhanubhaktaka-futkar-rachanaharu.xhtml",
+          "member": "member-7"
+        }
+      ],
+      "collections": [
+        "भानुभक्तका फुटकर रचनाहरू"
+      ],
+      "preserve_section_titles": false,
+      "description_note": "Untitled numbered source piece 7; catalogue title is the opening line. Printed numbering is retained. The HTML capture reconstructs only this selected excerpt.",
+      "decision": "include",
+      "prepared_date": "2026-09-08",
+      "reviewed": true,
+      "edition": "चौथो; २०६८",
+      "publisher": "साझा प्रकाशन",
+      "source_url": "https://sahityaras.com/book/bhanubhaktaka-futkar-rachanaharu/",
+      "outputs": {
+        "text.txt": "51dcc0f34de14ab23989925342a7b292b455b613197985162d7dc566a00865a6",
+        "metadata.json": "fed7eb416f0cd3b8c1b27f5e8d5e8691c13171f8ff60d050ba101a9138521ea1",
+        "extracted/index.html": "8d37272c4c50654d8aeac54ac35785f9d3788ad98da824c9777fd908895a8fcf"
+      }
+    },
+    {
+      "id": "sacha_hun_jati_lekhiya_sab",
+      "title": "साँचा हुन्‌ जति लेखिया सव कुरा आफ्नू व्यहोरा दरी",
+      "author": {
+        "id": "bhanubhakta_acharya",
+        "name": "भानुभक्त आचार्य",
+        "name_roman": "Bhanubhakta Acharya"
+      },
+      "rights": {
+        "status": "public-domain",
+        "basis": "Author died 1868; long in the public domain (Nepal's Copyright Act 2059: life + 50 years)."
+      },
+      "genre": [
+        "kavita",
+        "poem"
+      ],
+      "sources": [
+        {
+          "book": "bhanubhaktaka-futkar-rachanaharu",
+          "path": "src/EPUB/text/bhanubhaktaka-futkar-rachanaharu.xhtml",
+          "member": "member-8"
+        }
+      ],
+      "collections": [
+        "भानुभक्तका फुटकर रचनाहरू"
+      ],
+      "preserve_section_titles": false,
+      "description_note": "Untitled numbered source piece 8; catalogue title is the opening line. Printed numbering is retained. The HTML capture reconstructs only this selected excerpt.",
+      "decision": "include",
+      "prepared_date": "2026-09-08",
+      "reviewed": true,
+      "edition": "चौथो; २०६८",
+      "publisher": "साझा प्रकाशन",
+      "source_url": "https://sahityaras.com/book/bhanubhaktaka-futkar-rachanaharu/",
+      "outputs": {
+        "text.txt": "0c0511a21c719e595c804362ac899c2014c335530f8f26de7352027e078c7d24",
+        "metadata.json": "3477302debfaf5cbc8e28b3b8ec5fa679e377fdb76823e4a2d7cb868db6a964a",
+        "extracted/index.html": "8f9dd30252b1dec6689d626ead9f8bfdf6ae83cac4e2ea607ef5aa5b44de96c9"
+      }
+    },
+    {
+      "id": "n_mrityu_tarnya_ho_yasari",
+      "title": "न मृत्यु टर्न्या हो यसरि झगडामा अघि सरी",
+      "author": {
+        "id": "bhanubhakta_acharya",
+        "name": "भानुभक्त आचार्य",
+        "name_roman": "Bhanubhakta Acharya"
+      },
+      "rights": {
+        "status": "public-domain",
+        "basis": "Author died 1868; long in the public domain (Nepal's Copyright Act 2059: life + 50 years)."
+      },
+      "genre": [
+        "kavita",
+        "poem"
+      ],
+      "sources": [
+        {
+          "book": "bhanubhaktaka-futkar-rachanaharu",
+          "path": "src/EPUB/text/bhanubhaktaka-futkar-rachanaharu.xhtml",
+          "member": "member-9"
+        }
+      ],
+      "collections": [
+        "भानुभक्तका फुटकर रचनाहरू"
+      ],
+      "preserve_section_titles": false,
+      "description_note": "Untitled numbered source piece 9; catalogue title is the opening line. Printed numbering is retained. The HTML capture reconstructs only this selected excerpt.",
+      "decision": "include",
+      "prepared_date": "2026-09-08",
+      "reviewed": true,
+      "edition": "चौथो; २०६८",
+      "publisher": "साझा प्रकाशन",
+      "source_url": "https://sahityaras.com/book/bhanubhaktaka-futkar-rachanaharu/",
+      "outputs": {
+        "text.txt": "2576b5f2e166fd191fbef661fe7a1eb518f6a1c8c1581fdb46f8152c08d2a816",
+        "metadata.json": "f5871cffe6bdcd97001804740dee76209e8d38bbb5ff479ca29a1db6ffceb8c3",
+        "extracted/index.html": "f3485e9327ddc8a953fcd2d34d37173249d713684ec8f184edaf76c48272b7e7"
+      }
+    },
+    {
+      "id": "asal_munggre_kera_ki_t",
+      "title": "असल्‌ मुङ्ग्रे केरा कि त महि हवस्‌ बेस अमिलो",
+      "author": {
+        "id": "bhanubhakta_acharya",
+        "name": "भानुभक्त आचार्य",
+        "name_roman": "Bhanubhakta Acharya"
+      },
+      "rights": {
+        "status": "public-domain",
+        "basis": "Author died 1868; long in the public domain (Nepal's Copyright Act 2059: life + 50 years)."
+      },
+      "genre": [
+        "kavita",
+        "poem"
+      ],
+      "sources": [
+        {
+          "book": "bhanubhaktaka-futkar-rachanaharu",
+          "path": "src/EPUB/text/bhanubhaktaka-futkar-rachanaharu.xhtml",
+          "member": "member-11"
+        }
+      ],
+      "collections": [
+        "भानुभक्तका फुटकर रचनाहरू"
+      ],
+      "preserve_section_titles": false,
+      "description_note": "Untitled numbered source piece 11; catalogue title is the opening line. Printed numbering is retained. The HTML capture reconstructs only this selected excerpt.",
+      "decision": "include",
+      "prepared_date": "2026-09-08",
+      "reviewed": true,
+      "edition": "चौथो; २०६८",
+      "publisher": "साझा प्रकाशन",
+      "source_url": "https://sahityaras.com/book/bhanubhaktaka-futkar-rachanaharu/",
+      "outputs": {
+        "text.txt": "0f94e81de26da7f2aa53a1d7ade56c31c95cf22d96037d9fca19a641f9543a78",
+        "metadata.json": "e396644cd424bb0cf7c9fc526929c97c09cfdd2d106ab204f94441ebc9be2cd6",
+        "extracted/index.html": "c8e3e034870574a39d3d1acbef0357bc087e2f6f2da7a9fd463fbf4333abfb9e"
+      }
+    },
+    {
+      "id": "gajadhar_sotika_ghar_budhi_alakshinki",
+      "title": "गजाधर्‌ सोतीका घर बुढि अलक्षिन्‌कि रहिछन्‌",
+      "author": {
+        "id": "bhanubhakta_acharya",
+        "name": "भानुभक्त आचार्य",
+        "name_roman": "Bhanubhakta Acharya"
+      },
+      "rights": {
+        "status": "public-domain",
+        "basis": "Author died 1868; long in the public domain (Nepal's Copyright Act 2059: life + 50 years)."
+      },
+      "genre": [
+        "kavita",
+        "poem"
+      ],
+      "sources": [
+        {
+          "book": "bhanubhaktaka-futkar-rachanaharu",
+          "path": "src/EPUB/text/bhanubhaktaka-futkar-rachanaharu.xhtml",
+          "member": "member-12"
+        }
+      ],
+      "collections": [
+        "भानुभक्तका फुटकर रचनाहरू"
+      ],
+      "preserve_section_titles": false,
+      "description_note": "Untitled numbered source piece 12; catalogue title is the opening line. Printed numbering is retained. The HTML capture reconstructs only this selected excerpt.",
+      "decision": "include",
+      "prepared_date": "2026-09-08",
+      "reviewed": true,
+      "edition": "चौथो; २०६८",
+      "publisher": "साझा प्रकाशन",
+      "source_url": "https://sahityaras.com/book/bhanubhaktaka-futkar-rachanaharu/",
+      "outputs": {
+        "text.txt": "0bfcabb026b85c3be1b9731d724b474de397e6214fe495725a743e08a0c1a1a4",
+        "metadata.json": "29d42ae0c2f8dca1096ef4917f47a0f06f1a0f3d1f60ad4e3c2ff3c2494d8810",
+        "extracted/index.html": "ce9cd2e1239cce7a545678558372800773c7a43287910fb27eef3160f2f44849"
+      }
+    },
+    {
+      "id": "ti_shalibahanka_samay_shadatrinshat_bhaikan",
+      "title": "ति शालीवाहन्‌का समय षडत्रिंशत्‌ भइकन",
+      "author": {
+        "id": "bhanubhakta_acharya",
+        "name": "भानुभक्त आचार्य",
+        "name_roman": "Bhanubhakta Acharya"
+      },
+      "rights": {
+        "status": "public-domain",
+        "basis": "Author died 1868; long in the public domain (Nepal's Copyright Act 2059: life + 50 years)."
+      },
+      "genre": [
+        "kavita",
+        "poem"
+      ],
+      "sources": [
+        {
+          "book": "bhanubhaktaka-futkar-rachanaharu",
+          "path": "src/EPUB/text/bhanubhaktaka-futkar-rachanaharu.xhtml",
+          "member": "member-13"
+        }
+      ],
+      "collections": [
+        "भानुभक्तका फुटकर रचनाहरू"
+      ],
+      "preserve_section_titles": false,
+      "description_note": "Untitled numbered source piece 13; catalogue title is the opening line. Printed numbering is retained. The HTML capture reconstructs only this selected excerpt.",
+      "decision": "include",
+      "prepared_date": "2026-09-08",
+      "reviewed": true,
+      "edition": "चौथो; २०६८",
+      "publisher": "साझा प्रकाशन",
+      "source_url": "https://sahityaras.com/book/bhanubhaktaka-futkar-rachanaharu/",
+      "outputs": {
+        "text.txt": "0a91d8e0107d0ad57221a3d81a1f633aeb61d8de4a07eed55958cbddc4205d1b",
+        "metadata.json": "492e003582c0abc9771a0a05f3fab25e1bc4751295b4c4901cc3f56c3715163f",
+        "extracted/index.html": "5d6c4cbb3c21b0e2fb3693d10e620f7cddb6b3b637b9dc96e7433d2b22dc23bd"
+      }
+    },
+    {
+      "id": "khar_akshar_par_bhai_bisarga",
+      "title": "खर्‌ अक्षर्‌ पर भै विसर्ग तिमिले क्याले गर्‍यौ लोप्‌ भनी",
+      "author": {
+        "id": "bhanubhakta_acharya",
+        "name": "भानुभक्त आचार्य",
+        "name_roman": "Bhanubhakta Acharya"
+      },
+      "rights": {
+        "status": "public-domain",
+        "basis": "Author died 1868; long in the public domain (Nepal's Copyright Act 2059: life + 50 years)."
+      },
+      "genre": [
+        "kavita",
+        "poem"
+      ],
+      "sources": [
+        {
+          "book": "bhanubhaktaka-futkar-rachanaharu",
+          "path": "src/EPUB/text/bhanubhaktaka-futkar-rachanaharu.xhtml",
+          "member": "member-14"
+        }
+      ],
+      "collections": [
+        "भानुभक्तका फुटकर रचनाहरू"
+      ],
+      "preserve_section_titles": false,
+      "description_note": "Untitled numbered source piece 14; catalogue title is the opening line. Printed numbering is retained. The HTML capture reconstructs only this selected excerpt.",
+      "decision": "include",
+      "prepared_date": "2026-09-08",
+      "reviewed": true,
+      "edition": "चौथो; २०६८",
+      "publisher": "साझा प्रकाशन",
+      "source_url": "https://sahityaras.com/book/bhanubhaktaka-futkar-rachanaharu/",
+      "outputs": {
+        "text.txt": "354acb8dad458bc2a662279ff2d34966689b61ddd48edbc9b9b32dfbfa0559c8",
+        "metadata.json": "b8c91e34a69fd212e01adc1b547dbbb04f205df539b5def611443c7a694c2410",
+        "extracted/index.html": "706b52d9f0bd9537e43530815f9a770ba1ab09a167786a80a26911b86aa7ba75"
+      }
+    },
+    {
+      "id": "birke_topi_pathau_bhani_khabar",
+      "title": "विर्के टोपी पठाऊ भनि खबर हुँदा भेजियाको त टोपी",
+      "author": {
+        "id": "bhanubhakta_acharya",
+        "name": "भानुभक्त आचार्य",
+        "name_roman": "Bhanubhakta Acharya"
+      },
+      "rights": {
+        "status": "public-domain",
+        "basis": "Author died 1868; long in the public domain (Nepal's Copyright Act 2059: life + 50 years)."
+      },
+      "genre": [
+        "kavita",
+        "poem"
+      ],
+      "sources": [
+        {
+          "book": "bhanubhaktaka-futkar-rachanaharu",
+          "path": "src/EPUB/text/bhanubhaktaka-futkar-rachanaharu.xhtml",
+          "member": "member-15"
+        }
+      ],
+      "collections": [
+        "भानुभक्तका फुटकर रचनाहरू"
+      ],
+      "preserve_section_titles": false,
+      "description_note": "Untitled numbered source piece 15; catalogue title is the opening line. Printed numbering is retained. The HTML capture reconstructs only this selected excerpt.",
+      "decision": "include",
+      "prepared_date": "2026-09-08",
+      "reviewed": true,
+      "edition": "चौथो; २०६८",
+      "publisher": "साझा प्रकाशन",
+      "source_url": "https://sahityaras.com/book/bhanubhaktaka-futkar-rachanaharu/",
+      "outputs": {
+        "text.txt": "3946c228340a075325b47f602b5eff43063e865ff9146a3f3e87457f636fc6e8",
+        "metadata.json": "e67783aaee21d090e00e66f1d18a78d644962bf8f26fb862e4164ec234536bd5",
+        "extracted/index.html": "d979dbbb26ad3cb2e11410bba13b55726da66ba0b0c95275afc668c62a6907ea"
+      }
+    },
+    {
+      "id": "bhasha_shlok_bhanu_ta_abashya",
+      "title": "भाषा श्लोक्‌ भनु ता अवश्य अरु ता बुझ्दैन कोई पनी",
+      "author": {
+        "id": "bhanubhakta_acharya",
+        "name": "भानुभक्त आचार्य",
+        "name_roman": "Bhanubhakta Acharya"
+      },
+      "rights": {
+        "status": "public-domain",
+        "basis": "Author died 1868; long in the public domain (Nepal's Copyright Act 2059: life + 50 years)."
+      },
+      "genre": [
+        "kavita",
+        "poem"
+      ],
+      "sources": [
+        {
+          "book": "bhanubhaktaka-futkar-rachanaharu",
+          "path": "src/EPUB/text/bhanubhaktaka-futkar-rachanaharu.xhtml",
+          "member": "member-16"
+        }
+      ],
+      "collections": [
+        "भानुभक्तका फुटकर रचनाहरू"
+      ],
+      "preserve_section_titles": false,
+      "description_note": "Untitled numbered source piece 16; catalogue title is the opening line. Printed numbering is retained. The HTML capture reconstructs only this selected excerpt.",
+      "decision": "include",
+      "prepared_date": "2026-09-08",
+      "reviewed": true,
+      "edition": "चौथो; २०६८",
+      "publisher": "साझा प्रकाशन",
+      "source_url": "https://sahityaras.com/book/bhanubhaktaka-futkar-rachanaharu/",
+      "outputs": {
+        "text.txt": "70efe319cb235b035fa599b7a94ffa7d7f7b8c10c97262f62dcfc75542893bd5",
+        "metadata.json": "f019688fed626d59f4f630726c15bc9673fad01ec0834369ae9391c20b5d3301",
+        "extracted/index.html": "de471e4cd08b26cc6a28807a0ae07620d2c5590d78c64273373015e2f325a8b3"
+      }
+    },
+    {
+      "id": "jasdbara_jasale_jahan_jasari_jo",
+      "title": "जस्‌द्वारा जसले जहां जसरि जो गर्छन्‌ त जुन्‌ जुन्‌ घरी",
+      "author": {
+        "id": "bhanubhakta_acharya",
+        "name": "भानुभक्त आचार्य",
+        "name_roman": "Bhanubhakta Acharya"
+      },
+      "rights": {
+        "status": "public-domain",
+        "basis": "Author died 1868; long in the public domain (Nepal's Copyright Act 2059: life + 50 years)."
+      },
+      "genre": [
+        "kavita",
+        "poem"
+      ],
+      "sources": [
+        {
+          "book": "bhanubhaktaka-futkar-rachanaharu",
+          "path": "src/EPUB/text/bhanubhaktaka-futkar-rachanaharu.xhtml",
+          "member": "member-17"
+        }
+      ],
+      "collections": [
+        "भानुभक्तका फुटकर रचनाहरू"
+      ],
+      "preserve_section_titles": false,
+      "description_note": "Untitled numbered source piece 17; catalogue title is the opening line. Printed numbering is retained. The HTML capture reconstructs only this selected excerpt.",
+      "decision": "include",
+      "prepared_date": "2026-09-08",
+      "reviewed": true,
+      "edition": "चौथो; २०६८",
+      "publisher": "साझा प्रकाशन",
+      "source_url": "https://sahityaras.com/book/bhanubhaktaka-futkar-rachanaharu/",
+      "outputs": {
+        "text.txt": "38a20785558041024f8beef0ba890c0db0d0cf3b6d9a7e708cb67c7bd2c4ffba",
+        "metadata.json": "688cf3d250fea0f0d3d6df3ba9d236a9d0ba394397e8f7c5eb8277e1be3df373",
+        "extracted/index.html": "6a2a364355cbac64d313e43680ea64ba518e765b23622e7dcb0ed879790062e1"
+      }
+    },
+    {
+      "id": "n_pothi_patra_chhan_n",
+      "title": "न पोथी पात्रा छन्‌ न कलम मस्यानी छ सँगमा",
+      "author": {
+        "id": "bhanubhakta_acharya",
+        "name": "भानुभक्त आचार्य",
+        "name_roman": "Bhanubhakta Acharya"
+      },
+      "rights": {
+        "status": "public-domain",
+        "basis": "Author died 1868; long in the public domain (Nepal's Copyright Act 2059: life + 50 years)."
+      },
+      "genre": [
+        "kavita",
+        "poem"
+      ],
+      "sources": [
+        {
+          "book": "bhanubhaktaka-futkar-rachanaharu",
+          "path": "src/EPUB/text/bhanubhaktaka-futkar-rachanaharu.xhtml",
+          "member": "member-18"
+        }
+      ],
+      "collections": [
+        "भानुभक्तका फुटकर रचनाहरू"
+      ],
+      "preserve_section_titles": false,
+      "description_note": "Untitled numbered source piece 18; catalogue title is the opening line. Printed numbering is retained. The HTML capture reconstructs only this selected excerpt.",
+      "decision": "include",
+      "prepared_date": "2026-09-08",
+      "reviewed": true,
+      "edition": "चौथो; २०६८",
+      "publisher": "साझा प्रकाशन",
+      "source_url": "https://sahityaras.com/book/bhanubhaktaka-futkar-rachanaharu/",
+      "outputs": {
+        "text.txt": "6503414fc0e1238f703cb1ed5413eaa085e83e7ed513a3009248e904e4e47341",
+        "metadata.json": "19deb19e9ea29e73d1d6d241e7341f8d31af233d51a6e3c99b161f461c7b72b5",
+        "extracted/index.html": "f381219bbd22a30e69fa1549519b3e1298eedadc9024403e5fb91a188a7664a2"
+      }
+    },
+    {
+      "id": "dhita_chhan_sab_kura_pura",
+      "title": "ढीटा छन्‌ सब्‌ कुरा पूरा छोरा धेर्‌ जसका तिनै",
+      "author": {
+        "id": "bhanubhakta_acharya",
+        "name": "भानुभक्त आचार्य",
+        "name_roman": "Bhanubhakta Acharya"
+      },
+      "rights": {
+        "status": "public-domain",
+        "basis": "Author died 1868; long in the public domain (Nepal's Copyright Act 2059: life + 50 years)."
+      },
+      "genre": [
+        "kavita",
+        "poem"
+      ],
+      "sources": [
+        {
+          "book": "bhanubhaktaka-futkar-rachanaharu",
+          "path": "src/EPUB/text/bhanubhaktaka-futkar-rachanaharu.xhtml",
+          "member": "member-19"
+        }
+      ],
+      "collections": [
+        "भानुभक्तका फुटकर रचनाहरू"
+      ],
+      "preserve_section_titles": false,
+      "description_note": "Untitled numbered source piece 19; catalogue title is the opening line. Printed numbering is retained. The HTML capture reconstructs only this selected excerpt.",
+      "decision": "include",
+      "prepared_date": "2026-09-08",
+      "reviewed": true,
+      "edition": "चौथो; २०६८",
+      "publisher": "साझा प्रकाशन",
+      "source_url": "https://sahityaras.com/book/bhanubhaktaka-futkar-rachanaharu/",
+      "outputs": {
+        "text.txt": "54e06970be6d1f66ba01863bb199b9a2ff2ea7a33b9e1777d87e139078371941",
+        "metadata.json": "11bdfacc53a4ec1265ad8091e80f04f3954e7ebb36e4853c6e1f209ad9901972",
+        "extracted/index.html": "ccf25350dd2bf0c818ca085065fe206c05b31b64c872f3aeee694a65f8985866"
+      }
+    },
+    {
+      "id": "kesh_kanychet_kuhunu_kapal_r",
+      "title": "केश्‌ कञ्चेट्‌ कुहुनू कपाल्‌ र कलेजो काखी करङ्‌ कन्सिरी",
+      "author": {
+        "id": "bhanubhakta_acharya",
+        "name": "भानुभक्त आचार्य",
+        "name_roman": "Bhanubhakta Acharya"
+      },
+      "rights": {
+        "status": "public-domain",
+        "basis": "Author died 1868; long in the public domain (Nepal's Copyright Act 2059: life + 50 years)."
+      },
+      "genre": [
+        "kavita",
+        "poem"
+      ],
+      "sources": [
+        {
+          "book": "bhanubhaktaka-futkar-rachanaharu",
+          "path": "src/EPUB/text/bhanubhaktaka-futkar-rachanaharu.xhtml",
+          "member": "member-20"
+        }
+      ],
+      "collections": [
+        "भानुभक्तका फुटकर रचनाहरू"
+      ],
+      "preserve_section_titles": false,
+      "description_note": "Untitled numbered source piece 20; catalogue title is the opening line. Printed numbering is retained. The HTML capture reconstructs only this selected excerpt.",
+      "decision": "include",
+      "prepared_date": "2026-09-08",
+      "reviewed": true,
+      "edition": "चौथो; २०६८",
+      "publisher": "साझा प्रकाशन",
+      "source_url": "https://sahityaras.com/book/bhanubhaktaka-futkar-rachanaharu/",
+      "outputs": {
+        "text.txt": "b98fac2344ebc2667f276272b23689f0e61830238f6bbbb13343f2125637b279",
+        "metadata.json": "7a3d5522de9d23362781e7883f64038188fd6d54d1df5b35ebcabae4da881889",
+        "extracted/index.html": "495def46444f0ad6d9d10087bda8fdd43b29d8d9d3f3c100aee75bf10679260b"
+      }
+    },
+    {
+      "id": "mas_bhringgi_bel_dubho_bayar",
+      "title": "मास्‌ भृङ्गी बेल दूभो बयर धतुरो तूलसीका अपाङ्‌का",
+      "author": {
+        "id": "bhanubhakta_acharya",
+        "name": "भानुभक्त आचार्य",
+        "name_roman": "Bhanubhakta Acharya"
+      },
+      "rights": {
+        "status": "public-domain",
+        "basis": "Author died 1868; long in the public domain (Nepal's Copyright Act 2059: life + 50 years)."
+      },
+      "genre": [
+        "kavita",
+        "poem"
+      ],
+      "sources": [
+        {
+          "book": "bhanubhaktaka-futkar-rachanaharu",
+          "path": "src/EPUB/text/bhanubhaktaka-futkar-rachanaharu.xhtml",
+          "member": "member-21"
+        }
+      ],
+      "collections": [
+        "भानुभक्तका फुटकर रचनाहरू"
+      ],
+      "preserve_section_titles": false,
+      "description_note": "Untitled numbered source piece 21; catalogue title is the opening line. Printed numbering is retained. The HTML capture reconstructs only this selected excerpt.",
+      "decision": "include",
+      "prepared_date": "2026-09-08",
+      "reviewed": true,
+      "edition": "चौथो; २०६८",
+      "publisher": "साझा प्रकाशन",
+      "source_url": "https://sahityaras.com/book/bhanubhaktaka-futkar-rachanaharu/",
+      "outputs": {
+        "text.txt": "61c09ae6ebcdb86c90f0e944f0b509941cce89463c9c25d25a63847f3e2f230f",
+        "metadata.json": "e9f561c39bbd42a965b30b4828480ff52272a655f78eda0012f5a32f778acf42",
+        "extracted/index.html": "2e828a4289d3062a82beb24813caa113b5607bed873bccf901dc009b8d67fcd4"
+      }
+    },
+    {
+      "id": "pach_tola_ghiu_gaiko_r",
+      "title": "पाँच्‌ तोला घिउ गाइको र खसिको बोसो समानै लिनू",
+      "author": {
+        "id": "bhanubhakta_acharya",
+        "name": "भानुभक्त आचार्य",
+        "name_roman": "Bhanubhakta Acharya"
+      },
+      "rights": {
+        "status": "public-domain",
+        "basis": "Author died 1868; long in the public domain (Nepal's Copyright Act 2059: life + 50 years)."
+      },
+      "genre": [
+        "kavita",
+        "poem"
+      ],
+      "sources": [
+        {
+          "book": "bhanubhaktaka-futkar-rachanaharu",
+          "path": "src/EPUB/text/bhanubhaktaka-futkar-rachanaharu.xhtml",
+          "member": "member-22"
+        }
+      ],
+      "collections": [
+        "भानुभक्तका फुटकर रचनाहरू"
+      ],
+      "preserve_section_titles": false,
+      "description_note": "Untitled numbered source piece 22; catalogue title is the opening line. Printed numbering is retained. The HTML capture reconstructs only this selected excerpt.",
+      "decision": "include",
+      "prepared_date": "2026-09-08",
+      "reviewed": true,
+      "edition": "चौथो; २०६८",
+      "publisher": "साझा प्रकाशन",
+      "source_url": "https://sahityaras.com/book/bhanubhaktaka-futkar-rachanaharu/",
+      "outputs": {
+        "text.txt": "01ae8b54ffd5e2456261fc8b1d04af292f337ae076bace658841a53a60eb193c",
+        "metadata.json": "9fcb8f8637a5d7ca41292ded6ee8beaef06b85cab5b7b94325fbe14819ee0d3a",
+        "extracted/index.html": "9265bacb58f5d7959e456efa1fc2c4333d9121375fc6532eea8a43bbb50a66cd"
+      }
+    },
+    {
+      "id": "padhnu_gunnu_khelna_maya_nagarnu",
+      "title": "पढ्नु गुन्नू खेल्न माया नगर्नु",
+      "author": {
+        "id": "bhanubhakta_acharya",
+        "name": "भानुभक्त आचार्य",
+        "name_roman": "Bhanubhakta Acharya"
+      },
+      "rights": {
+        "status": "public-domain",
+        "basis": "Author died 1868; long in the public domain (Nepal's Copyright Act 2059: life + 50 years)."
+      },
+      "genre": [
+        "kavita",
+        "poem"
+      ],
+      "sources": [
+        {
+          "book": "bhanubhaktaka-futkar-rachanaharu",
+          "path": "src/EPUB/text/bhanubhaktaka-futkar-rachanaharu.xhtml",
+          "member": "member-23"
+        }
+      ],
+      "collections": [
+        "भानुभक्तका फुटकर रचनाहरू"
+      ],
+      "preserve_section_titles": false,
+      "description_note": "Untitled numbered source piece 23; catalogue title is the opening line. Printed numbering is retained. The HTML capture reconstructs only this selected excerpt.",
+      "decision": "include",
+      "prepared_date": "2026-09-08",
+      "reviewed": true,
+      "edition": "चौथो; २०६८",
+      "publisher": "साझा प्रकाशन",
+      "source_url": "https://sahityaras.com/book/bhanubhaktaka-futkar-rachanaharu/",
+      "outputs": {
+        "text.txt": "5ec64dd591a4d2a32693c7d1288638d51073e26aa76704d0b71a96dd5bcdc949",
+        "metadata.json": "345e7570bcc251a59258fa8b435c8a848f6c41dd0d4e70b16a00b0ccb21a52c6",
+        "extracted/index.html": "5bbdef00dea58e9c408a9110fc32ebba849e667fb3c2354864a51cb12799611c"
+      }
+    },
+    {
+      "id": "katai_kharani_chhari_bhus_katai",
+      "title": "कतै खरानी छरि भुस्‌ कतै ता",
+      "author": {
+        "id": "bhanubhakta_acharya",
+        "name": "भानुभक्त आचार्य",
+        "name_roman": "Bhanubhakta Acharya"
+      },
+      "rights": {
+        "status": "public-domain",
+        "basis": "Author died 1868; long in the public domain (Nepal's Copyright Act 2059: life + 50 years)."
+      },
+      "genre": [
+        "kavita",
+        "poem"
+      ],
+      "sources": [
+        {
+          "book": "bhanubhaktaka-futkar-rachanaharu",
+          "path": "src/EPUB/text/bhanubhaktaka-futkar-rachanaharu.xhtml",
+          "member": "member-24"
+        }
+      ],
+      "collections": [
+        "भानुभक्तका फुटकर रचनाहरू"
+      ],
+      "preserve_section_titles": false,
+      "description_note": "Untitled numbered source piece 24; catalogue title is the opening line. Printed numbering is retained. The HTML capture reconstructs only this selected excerpt.",
+      "decision": "include",
+      "prepared_date": "2026-09-08",
+      "reviewed": true,
+      "edition": "चौथो; २०६८",
+      "publisher": "साझा प्रकाशन",
+      "source_url": "https://sahityaras.com/book/bhanubhaktaka-futkar-rachanaharu/",
+      "outputs": {
+        "text.txt": "2feb5ee51e254948b1d292e5e74a5ae7b7a8c9b7871cd69b132e5d5cbb938f4f",
+        "metadata.json": "400ceb065499017cb7290a1d2b12bfaba9d8d4d23876b36b43717719dc21c551",
+        "extracted/index.html": "c52c346f7ff562f13850f8e434e1e46ebd28b1baa75484f6bf56b92c6dd73b75"
+      }
+    },
+    {
+      "id": "tin_sat_egghar_pandhrai_kaudi",
+      "title": "तिन्‌ सात्‌ एग्घार पन्ध्रै कउडि खडि भया दाउ त्यो हुन्छ तीया",
+      "author": {
+        "id": "bhanubhakta_acharya",
+        "name": "भानुभक्त आचार्य",
+        "name_roman": "Bhanubhakta Acharya"
+      },
+      "rights": {
+        "status": "public-domain",
+        "basis": "Author died 1868; long in the public domain (Nepal's Copyright Act 2059: life + 50 years)."
+      },
+      "genre": [
+        "kavita",
+        "poem"
+      ],
+      "sources": [
+        {
+          "book": "bhanubhaktaka-futkar-rachanaharu",
+          "path": "src/EPUB/text/bhanubhaktaka-futkar-rachanaharu.xhtml",
+          "member": "member-25"
+        }
+      ],
+      "collections": [
+        "भानुभक्तका फुटकर रचनाहरू"
+      ],
+      "preserve_section_titles": false,
+      "description_note": "Untitled numbered source piece 25; catalogue title is the opening line. Printed numbering is retained. The HTML capture reconstructs only this selected excerpt.",
+      "decision": "include",
+      "prepared_date": "2026-09-08",
+      "reviewed": true,
+      "edition": "चौथो; २०६८",
+      "publisher": "साझा प्रकाशन",
+      "source_url": "https://sahityaras.com/book/bhanubhaktaka-futkar-rachanaharu/",
+      "outputs": {
+        "text.txt": "40e237b9e0e1aad4dc5f82159016651b0c3691349f480682cfa6132153e046ff",
+        "metadata.json": "54d23703ddbe4911629b169291c6ac81875dd038b0b18e7fc024cf23c0bf37d3",
+        "extracted/index.html": "d7d14bd1f479b7714c6a45b79a24d53583b76178747d44c589baaad987b087de"
+      }
+    },
+    {
+      "id": "tanyo_eggharabatai_pani_udi_bahutai",
+      "title": "तान्यो एग्घारबाटै पनि उँडि बहुतै चक्किले दिग्‌ गरायो",
+      "author": {
+        "id": "bhanubhakta_acharya",
+        "name": "भानुभक्त आचार्य",
+        "name_roman": "Bhanubhakta Acharya"
+      },
+      "rights": {
+        "status": "public-domain",
+        "basis": "Author died 1868; long in the public domain (Nepal's Copyright Act 2059: life + 50 years)."
+      },
+      "genre": [
+        "kavita",
+        "poem"
+      ],
+      "sources": [
+        {
+          "book": "bhanubhaktaka-futkar-rachanaharu",
+          "path": "src/EPUB/text/bhanubhaktaka-futkar-rachanaharu.xhtml",
+          "member": "member-26"
+        }
+      ],
+      "collections": [
+        "भानुभक्तका फुटकर रचनाहरू"
+      ],
+      "preserve_section_titles": false,
+      "description_note": "Untitled numbered source piece 26; catalogue title is the opening line. Printed numbering is retained. The HTML capture reconstructs only this selected excerpt.",
+      "decision": "include",
+      "prepared_date": "2026-09-08",
+      "reviewed": true,
+      "edition": "चौथो; २०६८",
+      "publisher": "साझा प्रकाशन",
+      "source_url": "https://sahityaras.com/book/bhanubhaktaka-futkar-rachanaharu/",
+      "outputs": {
+        "text.txt": "ca326dc70b22de49ec42c11f2409c805404eee3af6bdc1e53922ef4489b496aa",
+        "metadata.json": "802bc0a5b71168123c50145acdbc22ff9bf53a387f5c8a3dd04a5bb28535cd07",
+        "extracted/index.html": "9e01bc842cf1453949f02ccd8d0822e9f78623e33cff520a5a6d06b7fb49185b"
+      }
+    },
+    {
+      "id": "kya_ladchhan_batai_r_titri",
+      "title": "क्या लड्छन्‌ बटई र तित्रि चखुरा साँडे पहल्मान्‌हरू",
+      "author": {
+        "id": "bhanubhakta_acharya",
+        "name": "भानुभक्त आचार्य",
+        "name_roman": "Bhanubhakta Acharya"
+      },
+      "rights": {
+        "status": "public-domain",
+        "basis": "Author died 1868; long in the public domain (Nepal's Copyright Act 2059: life + 50 years)."
+      },
+      "genre": [
+        "kavita",
+        "poem"
+      ],
+      "sources": [
+        {
+          "book": "bhanubhaktaka-futkar-rachanaharu",
+          "path": "src/EPUB/text/bhanubhaktaka-futkar-rachanaharu.xhtml",
+          "member": "member-27"
+        }
+      ],
+      "collections": [
+        "भानुभक्तका फुटकर रचनाहरू"
+      ],
+      "preserve_section_titles": false,
+      "description_note": "Untitled numbered source piece 27; catalogue title is the opening line. Printed numbering is retained. The HTML capture reconstructs only this selected excerpt.",
+      "decision": "include",
+      "prepared_date": "2026-09-08",
+      "reviewed": true,
+      "edition": "चौथो; २०६८",
+      "publisher": "साझा प्रकाशन",
+      "source_url": "https://sahityaras.com/book/bhanubhaktaka-futkar-rachanaharu/",
+      "outputs": {
+        "text.txt": "8d0423584d8d2f68a6e6564072c6b0c3b7d0fc48b0f94d3b5a57293116a9a8ec",
+        "metadata.json": "3ed5d6919f857baa6bfab968157ef3f0139c57c108a20992927cc1c469c1fb2a",
+        "extracted/index.html": "7d2317e9d17d8b5fa79e2426d5eb3fcce042d077851b5a3f7cd63e93d4dbbbce"
+      }
+    },
+    {
+      "id": "bidban_janle_lohalai_bechnu_chhain",
+      "title": "विद्वान्‌ जन्‌ले लोहलाइ बेच्नु छैन",
+      "author": {
+        "id": "bhanubhakta_acharya",
+        "name": "भानुभक्त आचार्य",
+        "name_roman": "Bhanubhakta Acharya"
+      },
+      "rights": {
+        "status": "public-domain",
+        "basis": "Author died 1868; long in the public domain (Nepal's Copyright Act 2059: life + 50 years)."
+      },
+      "genre": [
+        "kavita",
+        "poem"
+      ],
+      "sources": [
+        {
+          "book": "bhanubhaktaka-futkar-rachanaharu",
+          "path": "src/EPUB/text/bhanubhaktaka-futkar-rachanaharu.xhtml",
+          "member": "member-29"
+        }
+      ],
+      "collections": [
+        "भानुभक्तका फुटकर रचनाहरू"
+      ],
+      "preserve_section_titles": false,
+      "description_note": "Untitled numbered source piece 29; catalogue title is the opening line. Printed numbering is retained. The HTML capture reconstructs only this selected excerpt.",
+      "decision": "include",
+      "prepared_date": "2026-09-08",
+      "reviewed": true,
+      "edition": "चौथो; २०६८",
+      "publisher": "साझा प्रकाशन",
+      "source_url": "https://sahityaras.com/book/bhanubhaktaka-futkar-rachanaharu/",
+      "outputs": {
+        "text.txt": "ab4a06ae6ed939088257b38ffad0645cef9758f9d4f48401e6d40156c415c659",
+        "metadata.json": "f6e599a4c4976f734c96e113f4006e1f7f237d1a6c400f497612d8a5ac2f3697",
+        "extracted/index.html": "9c90ad18c3806f3bca5870dc41236473081ae74608b2e1a7605172a016bc9d5d"
+      }
+    },
+    {
+      "id": "sbastishri_pakharaadalatamaha_dittha_bichariharu",
+      "title": "स्वस्तिश्री पखरा-अदालतमहाँ डिट्ठा विचारीहरू",
+      "author": {
+        "id": "bhanubhakta_acharya",
+        "name": "भानुभक्त आचार्य",
+        "name_roman": "Bhanubhakta Acharya"
+      },
+      "rights": {
+        "status": "public-domain",
+        "basis": "Author died 1868; long in the public domain (Nepal's Copyright Act 2059: life + 50 years)."
+      },
+      "genre": [
+        "kavita",
+        "poem"
+      ],
+      "sources": [
+        {
+          "book": "bhanubhaktaka-futkar-rachanaharu",
+          "path": "src/EPUB/text/bhanubhaktaka-futkar-rachanaharu.xhtml",
+          "member": "member-30"
+        }
+      ],
+      "collections": [
+        "भानुभक्तका फुटकर रचनाहरू"
+      ],
+      "preserve_section_titles": false,
+      "description_note": "Untitled numbered source piece 30; catalogue title is the opening line. Printed numbering is retained. The HTML capture reconstructs only this selected excerpt.",
+      "decision": "include",
+      "prepared_date": "2026-09-08",
+      "reviewed": true,
+      "edition": "चौथो; २०६८",
+      "publisher": "साझा प्रकाशन",
+      "source_url": "https://sahityaras.com/book/bhanubhaktaka-futkar-rachanaharu/",
+      "outputs": {
+        "text.txt": "03ef65111fb39210a99cc7491cf4ca6db0b43fdb17965c4b926a9ce5b612023c",
+        "metadata.json": "0924fe3c36a788a966414a1337c5a6ec2b879e80645a79670e06d56a99c23b7b",
+        "extracted/index.html": "9030ed4e2b3def4ece086394286b956b45a47a81e58fa4330b983cbb1aab99ed"
+      }
+    },
+    {
+      "id": "ayedhya_mataka_kura_charanama_jhijo",
+      "title": "आयेध्या मतका कुरा चरणमा झीजो गरम्‌ क्वै भनी",
+      "author": {
+        "id": "bhanubhakta_acharya",
+        "name": "भानुभक्त आचार्य",
+        "name_roman": "Bhanubhakta Acharya"
+      },
+      "rights": {
+        "status": "public-domain",
+        "basis": "Author died 1868; long in the public domain (Nepal's Copyright Act 2059: life + 50 years)."
+      },
+      "genre": [
+        "kavita",
+        "poem"
+      ],
+      "sources": [
+        {
+          "book": "bhanubhaktaka-futkar-rachanaharu",
+          "path": "src/EPUB/text/bhanubhaktaka-futkar-rachanaharu.xhtml",
+          "member": "member-31"
+        }
+      ],
+      "collections": [
+        "भानुभक्तका फुटकर रचनाहरू"
+      ],
+      "preserve_section_titles": false,
+      "description_note": "Untitled numbered source piece 31; catalogue title is the opening line. Printed numbering is retained. The HTML capture reconstructs only this selected excerpt.",
+      "decision": "include",
+      "prepared_date": "2026-09-08",
+      "reviewed": true,
+      "edition": "चौथो; २०६८",
+      "publisher": "साझा प्रकाशन",
+      "source_url": "https://sahityaras.com/book/bhanubhaktaka-futkar-rachanaharu/",
+      "outputs": {
+        "text.txt": "79ee77f91266d9fe2b14c606af6ad1317b9d3c0a5bd464a39dbacc8fa54002bb",
+        "metadata.json": "05a64f5aa6958f44326936b6e3b99f0f9d9d77769f0dd3ab86e46a6aa9ffc436",
+        "extracted/index.html": "ad51746f10bd5c79a1eae3a3aa61baf4a0bc56b2b867433aab2d6dc7628f8470"
+      }
+    },
+    {
+      "id": "manungko_sari_gau_uttam_thulo",
+      "title": "मानुङ्‌को सरि गाउँ उत्तम ठुलो लागेन काँहीं पनी",
+      "author": {
+        "id": "bhanubhakta_acharya",
+        "name": "भानुभक्त आचार्य",
+        "name_roman": "Bhanubhakta Acharya"
+      },
+      "rights": {
+        "status": "public-domain",
+        "basis": "Author died 1868; long in the public domain (Nepal's Copyright Act 2059: life + 50 years)."
+      },
+      "genre": [
+        "kavita",
+        "poem"
+      ],
+      "sources": [
+        {
+          "book": "bhanubhaktaka-futkar-rachanaharu",
+          "path": "src/EPUB/text/bhanubhaktaka-futkar-rachanaharu.xhtml",
+          "member": "member-33"
+        }
+      ],
+      "collections": [
+        "भानुभक्तका फुटकर रचनाहरू"
+      ],
+      "preserve_section_titles": false,
+      "description_note": "Untitled numbered source piece 33; catalogue title is the opening line. Printed numbering is retained. The HTML capture reconstructs only this selected excerpt.",
+      "decision": "include",
+      "prepared_date": "2026-09-08",
+      "reviewed": true,
+      "edition": "चौथो; २०६८",
+      "publisher": "साझा प्रकाशन",
+      "source_url": "https://sahityaras.com/book/bhanubhaktaka-futkar-rachanaharu/",
+      "outputs": {
+        "text.txt": "9434b3ca992ac08a3b23a2be5d63200fa90ebcb49f41a51dbeca072e5eb10ab3",
+        "metadata.json": "d69ce81d96cc2f2a8cbb6db71fc0d810cb482ff24d52435e23797ee4d042d889",
+        "extracted/index.html": "d2f70277e521feae2b9158b2691a5831bedc7c615255e6667254ffe611ef33ef"
+      }
+    },
+    {
+      "id": "luchcha_hun_yas_bhataka_sab",
+      "title": "लुच्चा हुन्‌ यस भाटका सब कुरा आँफै कुला मूनिकै",
+      "author": {
+        "id": "bhanubhakta_acharya",
+        "name": "भानुभक्त आचार्य",
+        "name_roman": "Bhanubhakta Acharya"
+      },
+      "rights": {
+        "status": "public-domain",
+        "basis": "Author died 1868; long in the public domain (Nepal's Copyright Act 2059: life + 50 years)."
+      },
+      "genre": [
+        "kavita",
+        "poem"
+      ],
+      "sources": [
+        {
+          "book": "bhanubhaktaka-futkar-rachanaharu",
+          "path": "src/EPUB/text/bhanubhaktaka-futkar-rachanaharu.xhtml",
+          "member": "member-35"
+        }
+      ],
+      "collections": [
+        "भानुभक्तका फुटकर रचनाहरू"
+      ],
+      "preserve_section_titles": false,
+      "description_note": "Untitled numbered source piece 35; catalogue title is the opening line. Printed numbering is retained. The HTML capture reconstructs only this selected excerpt.",
+      "decision": "include",
+      "prepared_date": "2026-09-08",
+      "reviewed": true,
+      "edition": "चौथो; २०६८",
+      "publisher": "साझा प्रकाशन",
+      "source_url": "https://sahityaras.com/book/bhanubhaktaka-futkar-rachanaharu/",
+      "outputs": {
+        "text.txt": "eee8583f647ac5b86b6f91bcde750bc383ca9c1195c03140a6e40b15332ad5a8",
+        "metadata.json": "4b24944a7d2ef22b1031ef5e24c857f129964b2cc64ea0f1f99b7b1a57d8276f",
+        "extracted/index.html": "3183fc744067c96945364fb6b50b770348db1007e32b7bb41cce2202e12ad2ef"
+      }
+    },
+    {
+      "id": "aghilla_janmaika_pani_sharirama_pap",
+      "title": "अघिल्ला जन्मैका पनि शरिरमा पाप्‌ कति हुनन्‌",
+      "author": {
+        "id": "bhanubhakta_acharya",
+        "name": "भानुभक्त आचार्य",
+        "name_roman": "Bhanubhakta Acharya"
+      },
+      "rights": {
+        "status": "public-domain",
+        "basis": "Author died 1868; long in the public domain (Nepal's Copyright Act 2059: life + 50 years)."
+      },
+      "genre": [
+        "kavita",
+        "poem"
+      ],
+      "sources": [
+        {
+          "book": "bhanubhaktaka-futkar-rachanaharu",
+          "path": "src/EPUB/text/bhanubhaktaka-futkar-rachanaharu.xhtml",
+          "member": "member-36"
+        }
+      ],
+      "collections": [
+        "भानुभक्तका फुटकर रचनाहरू"
+      ],
+      "preserve_section_titles": false,
+      "description_note": "Untitled numbered source piece 36; catalogue title is the opening line. Printed numbering is retained. The HTML capture reconstructs only this selected excerpt.",
+      "decision": "include",
+      "prepared_date": "2026-09-08",
+      "reviewed": true,
+      "edition": "चौथो; २०६८",
+      "publisher": "साझा प्रकाशन",
+      "source_url": "https://sahityaras.com/book/bhanubhaktaka-futkar-rachanaharu/",
+      "outputs": {
+        "text.txt": "3ff81df4c8af1b50b6a1db4e19ccdfc8212cf290c0c265f9b0bed276ce3ac109",
+        "metadata.json": "960d49ba820a1a6ff7168d094e212489a41b34b6baabebc7d915e011e0644e00",
+        "extracted/index.html": "cae721bb01ec65a94f7825eed07c1228a366c54d001d7066afb2009a1fe1055f"
+      }
+    },
+    {
+      "id": "kbai_uthchhan_t_saberama_ti",
+      "title": "क्वै उठ्छन्‌ त सबेरमा ति धनकै खाँतीरका काम्‌ लिई",
+      "author": {
+        "id": "bhanubhakta_acharya",
+        "name": "भानुभक्त आचार्य",
+        "name_roman": "Bhanubhakta Acharya"
+      },
+      "rights": {
+        "status": "public-domain",
+        "basis": "Author died 1868; long in the public domain (Nepal's Copyright Act 2059: life + 50 years)."
+      },
+      "genre": [
+        "kavita",
+        "poem"
+      ],
+      "sources": [
+        {
+          "book": "bhanubhaktaka-futkar-rachanaharu",
+          "path": "src/EPUB/text/bhanubhaktaka-futkar-rachanaharu.xhtml",
+          "member": "member-37"
+        }
+      ],
+      "collections": [
+        "भानुभक्तका फुटकर रचनाहरू"
+      ],
+      "preserve_section_titles": false,
+      "description_note": "Untitled numbered source piece 37; catalogue title is the opening line. Printed numbering is retained. The HTML capture reconstructs only this selected excerpt.",
+      "decision": "include",
+      "prepared_date": "2026-09-08",
+      "reviewed": true,
+      "edition": "चौथो; २०६८",
+      "publisher": "साझा प्रकाशन",
+      "source_url": "https://sahityaras.com/book/bhanubhaktaka-futkar-rachanaharu/",
+      "outputs": {
+        "text.txt": "7d11bea116946fbedc15ca0db6b443c30ce64d8a4bfbaef52381925892c3c8c9",
+        "metadata.json": "c1c4f2b4c1e74d72880ef19164bc7c4c47aacdc93da10eef817120a03adff80e",
+        "extracted/index.html": "416ed1032246b3e10e35d9a5a5b66b7c2b189b00397451e109759835521c70de"
+      }
+    },
+    {
+      "id": "yatti_chhan_sab_debata_bhani",
+      "title": "यत्ती छन्‌ सब देवता भनि यहाँ गन्नै नसक्नू भई",
+      "author": {
+        "id": "bhanubhakta_acharya",
+        "name": "भानुभक्त आचार्य",
+        "name_roman": "Bhanubhakta Acharya"
+      },
+      "rights": {
+        "status": "public-domain",
+        "basis": "Author died 1868; long in the public domain (Nepal's Copyright Act 2059: life + 50 years)."
+      },
+      "genre": [
+        "kavita",
+        "poem"
+      ],
+      "sources": [
+        {
+          "book": "bhanubhaktaka-futkar-rachanaharu",
+          "path": "src/EPUB/text/bhanubhaktaka-futkar-rachanaharu.xhtml",
+          "member": "member-38"
+        }
+      ],
+      "collections": [
+        "भानुभक्तका फुटकर रचनाहरू"
+      ],
+      "preserve_section_titles": false,
+      "description_note": "Untitled numbered source piece 38; catalogue title is the opening line. Printed numbering is retained. The HTML capture reconstructs only this selected excerpt.",
+      "decision": "include",
+      "prepared_date": "2026-09-08",
+      "reviewed": true,
+      "edition": "चौथो; २०६८",
+      "publisher": "साझा प्रकाशन",
+      "source_url": "https://sahityaras.com/book/bhanubhaktaka-futkar-rachanaharu/",
+      "outputs": {
+        "text.txt": "529e79afa5f873e07101373de9127bf6ac92e79789dc196acae1dd3057b7cf4d",
+        "metadata.json": "fd8f0cf0b7c6452ddad86a8da70391f009ad018c36b99bebc855543ec224fadd",
+        "extracted/index.html": "84354e2363aea9c40dc8e57862dd1e041e78dbb1d715437a98475fd66788dc99"
+      }
+    },
+    {
+      "id": "kyale_bhulchhau_jagatma_naraharu_bahutai",
+      "title": "क्याले भुल्छौ जगत्‌मा नरहरु बहुतै दुःखले पक्रिएका",
+      "author": {
+        "id": "bhanubhakta_acharya",
+        "name": "भानुभक्त आचार्य",
+        "name_roman": "Bhanubhakta Acharya"
+      },
+      "rights": {
+        "status": "public-domain",
+        "basis": "Author died 1868; long in the public domain (Nepal's Copyright Act 2059: life + 50 years)."
+      },
+      "genre": [
+        "kavita",
+        "poem"
+      ],
+      "sources": [
+        {
+          "book": "bhanubhaktaka-futkar-rachanaharu",
+          "path": "src/EPUB/text/bhanubhaktaka-futkar-rachanaharu.xhtml",
+          "member": "member-39"
+        }
+      ],
+      "collections": [
+        "भानुभक्तका फुटकर रचनाहरू"
+      ],
+      "preserve_section_titles": false,
+      "description_note": "Untitled numbered source piece 39; catalogue title is the opening line. Printed numbering is retained. The HTML capture reconstructs only this selected excerpt.",
+      "decision": "include",
+      "prepared_date": "2026-09-08",
+      "reviewed": true,
+      "edition": "चौथो; २०६८",
+      "publisher": "साझा प्रकाशन",
+      "source_url": "https://sahityaras.com/book/bhanubhaktaka-futkar-rachanaharu/",
+      "outputs": {
+        "text.txt": "c080b86e448ca1ad88929c6f8bbf778406cfa16a91f5aab15b0f7625178803a5",
+        "metadata.json": "9800bf7212b470adfda0f95a9bd9d46fd04544912030c64840ad65d8e725bb6c",
+        "extracted/index.html": "fc549242887fe0cfb606678e9124f636f3900199ab47588ed6a96dc9d4996e8d"
+      }
+    },
+    {
+      "id": "ma_bhanubhakta",
+      "title": "म भानुभक्त",
+      "title_roman": "Ma Bhanubhakta",
+      "author": {
+        "id": "bhanubhakta_acharya",
+        "name": "भानुभक्त आचार्य",
+        "name_roman": "Bhanubhakta Acharya"
+      },
+      "rights": {
+        "status": "public-domain",
+        "basis": "Author died 1868; long in the public domain (Nepal's Copyright Act 2059: life + 50 years)."
+      },
+      "genre": [
+        "kavita",
+        "poem"
+      ],
+      "mapped_sources": [
+        {
+          "book": "bhanubhaktaka-futkar-rachanaharu",
+          "path": "src/EPUB/text/bhanubhaktaka-futkar-rachanaharu.xhtml",
+          "member": "member-1"
+        }
+      ],
+      "collections": [
+        "भानुभक्तका फुटकर रचनाहरू"
+      ],
+      "decision": "map-existing",
+      "reviewed": true,
+      "prepared_date": "2026-09-08",
+      "baseline_text_sha256": "0e975188ceb5b49a529ef8d03c50e092b9696d96b493cb70d926ecc86aad9985",
+      "baseline_metadata_sha256": "3120b3f50acc65c4406a0c75b0d88eae7777189f798daea0f7963fe59ceef536",
+      "outputs": {
+        "metadata.json": "d5685db1e365e8f5dd624d38e8f53bd3c73226006c128132f0f4613c43e30863"
+      }
+    },
+    {
+      "id": "kantipuri_nagari",
+      "title": "कान्तिपुरी नगरी",
+      "title_roman": "Kantipuri Nagari",
+      "author": {
+        "id": "bhanubhakta_acharya",
+        "name": "भानुभक्त आचार्य",
+        "name_roman": "Bhanubhakta Acharya"
+      },
+      "rights": {
+        "status": "public-domain",
+        "basis": "Author died 1868; long in the public domain (Nepal's Copyright Act 2059: life + 50 years)."
+      },
+      "genre": [
+        "kavita",
+        "poem"
+      ],
+      "mapped_sources": [
+        {
+          "book": "bhanubhaktaka-futkar-rachanaharu",
+          "path": "src/EPUB/text/bhanubhaktaka-futkar-rachanaharu.xhtml",
+          "member": "member-2"
+        }
+      ],
+      "collections": [
+        "भानुभक्तका फुटकर रचनाहरू"
+      ],
+      "decision": "map-existing",
+      "reviewed": true,
+      "prepared_date": "2026-09-08",
+      "baseline_text_sha256": "2be50a4b854c4c7b2a112ae43234a7babfcad96da2bdd91e911d8ce7acfac2eb",
+      "baseline_metadata_sha256": "95371d4e6840d11479b6c6bbe276fdd7748d14f0ad7303337fcef17bb84d887c",
+      "outputs": {
+        "metadata.json": "d4aff27a292ec0102ad24ed6be19ffa2e977c38b3c7277a4f0e4069b44461c82"
+      }
+    },
+    {
+      "id": "balaji",
+      "title": "बालाजी",
+      "title_roman": "Balaji",
+      "author": {
+        "id": "bhanubhakta_acharya",
+        "name": "भानुभक्त आचार्य",
+        "name_roman": "Bhanubhakta Acharya"
+      },
+      "rights": {
+        "status": "public-domain",
+        "basis": "Author died 1868; long in the public domain (Nepal's Copyright Act 2059: life + 50 years)."
+      },
+      "genre": [
+        "kavita",
+        "poem"
+      ],
+      "mapped_sources": [
+        {
+          "book": "bhanubhaktaka-futkar-rachanaharu",
+          "path": "src/EPUB/text/bhanubhaktaka-futkar-rachanaharu.xhtml",
+          "member": "member-3"
+        }
+      ],
+      "collections": [
+        "भानुभक्तका फुटकर रचनाहरू"
+      ],
+      "decision": "map-existing",
+      "reviewed": true,
+      "prepared_date": "2026-09-08",
+      "baseline_text_sha256": "921c0ada7a3f731f48501eed8ca1b8a3ca1045f474d6e7931d6b722652d497da",
+      "baseline_metadata_sha256": "2d930ee7c80e7a31010053804b869f0b2f2f2caf17067904834ed921c642c877",
+      "outputs": {
+        "metadata.json": "d6ec0940eb1cae2c32a4040ba73c411b2a3a83c58de676914c9e1203f8ba41f3"
+      }
+    },
+    {
+      "id": "roj_roj_darshan",
+      "title": "रोज रोज दर्शन पाउँछु",
+      "title_roman": "Roj Roj Darshan Paunchhu",
+      "author": {
+        "id": "bhanubhakta_acharya",
+        "name": "भानुभक्त आचार्य",
+        "name_roman": "Bhanubhakta Acharya"
+      },
+      "rights": {
+        "status": "public-domain",
+        "basis": "Author died 1868; long in the public domain (Nepal's Copyright Act 2059: life + 50 years)."
+      },
+      "genre": [
+        "kavita",
+        "poem"
+      ],
+      "mapped_sources": [
+        {
+          "book": "bhanubhaktaka-futkar-rachanaharu",
+          "path": "src/EPUB/text/bhanubhaktaka-futkar-rachanaharu.xhtml",
+          "member": "member-4-5"
+        },
+        {
+          "book": "bhanubhaktaka-futkar-rachanaharu",
+          "path": "src/EPUB/text/bhanubhaktaka-futkar-rachanaharu.xhtml",
+          "member": "member-10"
+        }
+      ],
+      "collections": [
+        "भानुभक्तका फुटकर रचनाहरू"
+      ],
+      "decision": "map-existing",
+      "reviewed": true,
+      "prepared_date": "2026-09-08",
+      "baseline_text_sha256": "cded95530909df37e20451761198694b3b1b2354f4e4fc6feb3138b8465c4219",
+      "baseline_metadata_sha256": "4b127452a907197c9fec52bb334d34eb64fc1d547cb5b212be30ad5cf7939d2a",
+      "outputs": {
+        "metadata.json": "a990931bd2f60f32756ac3829cc2d258b75cc1a5dfb6655b44f47cdc50ae23d9"
+      }
+    },
+    {
+      "id": "sun_priye",
+      "title": "सुन प्रिये",
+      "title_roman": "Suna Priye",
+      "author": {
+        "id": "bhanubhakta_acharya",
+        "name": "भानुभक्त आचार्य",
+        "name_roman": "Bhanubhakta Acharya"
+      },
+      "rights": {
+        "status": "public-domain",
+        "basis": "Author died 1868; long in the public domain (Nepal's Copyright Act 2059: life + 50 years)."
+      },
+      "genre": [
+        "kavita",
+        "poem"
+      ],
+      "mapped_sources": [
+        {
+          "book": "bhanubhaktaka-futkar-rachanaharu",
+          "path": "src/EPUB/text/bhanubhaktaka-futkar-rachanaharu.xhtml",
+          "member": "member-28"
+        }
+      ],
+      "collections": [
+        "भानुभक्तका फुटकर रचनाहरू"
+      ],
+      "decision": "map-existing",
+      "reviewed": true,
+      "prepared_date": "2026-09-08",
+      "baseline_text_sha256": "5ece88a159f50f914a027cd8998b314100a798a4b27f6e73df153580a45ded3e",
+      "baseline_metadata_sha256": "c4a75e9f178b591e776a8973aa1b0f2026454b4844c3a17a6a124aa9668a851d",
+      "outputs": {
+        "metadata.json": "e5904de80ca20bde443f2eb15084b894a0d3b828cbe6247fb9afb439d00d5d3d"
+      }
+    },
+    {
+      "id": "ghasi",
+      "title": "घाँसी",
+      "title_roman": "Ghasi",
+      "author": {
+        "id": "bhanubhakta_acharya",
+        "name": "भानुभक्त आचार्य",
+        "name_roman": "Bhanubhakta Acharya"
+      },
+      "rights": {
+        "status": "public-domain",
+        "basis": "Author died 1868; long in the public domain (Nepal's Copyright Act 2059: life + 50 years)."
+      },
+      "genre": [
+        "kavita",
+        "poem"
+      ],
+      "mapped_sources": [
+        {
+          "book": "bhanubhaktaka-futkar-rachanaharu",
+          "path": "src/EPUB/text/bhanubhaktaka-futkar-rachanaharu.xhtml",
+          "member": "member-32"
+        }
+      ],
+      "collections": [
+        "भानुभक्तका फुटकर रचनाहरू"
+      ],
+      "decision": "map-existing",
+      "reviewed": true,
+      "prepared_date": "2026-09-08",
+      "baseline_text_sha256": "aa756526372c7babb86d079d1ee7dce4d7479761868e92d0f9d7b56ff807e31f",
+      "baseline_metadata_sha256": "e481a228fe1679aa4a07560ab7bdd592226ef88794322aeb5a569783094fa431",
+      "outputs": {
+        "metadata.json": "1d6dfdc34cf105e30ac2a214fe4a896857c30531bc8a4818e5fe3656d35fa7ca"
+      }
+    },
+    {
+      "id": "khwamit_giridharile",
+      "title": "ख्वामित् यस् गिरिधारीले",
+      "title_roman": "Khwamit Yas Giridharile",
+      "author": {
+        "id": "bhanubhakta_acharya",
+        "name": "भानुभक्त आचार्य",
+        "name_roman": "Bhanubhakta Acharya"
+      },
+      "rights": {
+        "status": "public-domain",
+        "basis": "Author died 1868; long in the public domain (Nepal's Copyright Act 2059: life + 50 years)."
+      },
+      "genre": [
+        "kavita",
+        "poem"
+      ],
+      "mapped_sources": [
+        {
+          "book": "bhanubhaktaka-futkar-rachanaharu",
+          "path": "src/EPUB/text/bhanubhaktaka-futkar-rachanaharu.xhtml",
+          "member": "member-34"
+        }
+      ],
+      "collections": [
+        "भानुभक्तका फुटकर रचनाहरू"
+      ],
+      "decision": "map-existing",
+      "reviewed": true,
+      "prepared_date": "2026-09-08",
+      "baseline_text_sha256": "b7f2c7e5b35b5710f9903f1e1125024ebae8566f81dfa05ecd3d5f2cd979c663",
+      "baseline_metadata_sha256": "5836ff4009aa31b7388adc17833248a02c8fa249dbae9825ad89adbd770d8c63",
+      "outputs": {
+        "metadata.json": "64b0716d921180225d80e0dffdbd4efef92b5d6087fee3c6bdbb96a2a5cb2afb"
       }
     }
   ]

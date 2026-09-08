@@ -27,10 +27,31 @@
   "source": {
     "name": "Sahitya Ras (sahityaras.com)",
     "url": "https://sahityaras.com/book/prasiddha-prabandhasangraha/boksividya/",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-prasiddha-prabandhasangraha.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-prasiddha-prabandhasangraha",
+        "file": "sahityaras-prasiddha-prabandhasangraha.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · प्रसिद्ध प्रबन्धसङ्ग्रह",
+        "sha256": "6e8ee047764a66c627278c2a1b1d9e1b90a5b6790074b2333d05decddf5a317c",
+        "page_count": 4,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=prasiddha-prabandhasangraha&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "बोक्सीविद्या",
+            "page_start": 1,
+            "page_end": 4
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 4,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -38,7 +59,7 @@
     "quality": null
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-prasiddha-prabandhasangraha.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"

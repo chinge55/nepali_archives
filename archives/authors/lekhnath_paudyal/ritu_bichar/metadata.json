@@ -29,7 +29,58 @@
     "name": "ऋतुविचार (साझा प्रकाशन)",
     "url": null,
     "pdf": "LekhanathPoudyal1973BS_RituBichar.pdf",
-    "html": null
+    "html": null,
+    "pdf_editions": [
+      {
+        "id": "sahityaras-ritu-bichar",
+        "file": "sahityaras-ritu-bichar.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · ऋतु-विचार",
+        "sha256": "bf4f8ba31b9e6f1a71e629b966cdccb1dd1144d9ca132d1dfa28868784e88907",
+        "page_count": 100,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=ritu-bichar&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "भूमिका",
+            "page_start": 1,
+            "page_end": 2
+          },
+          {
+            "label": "वसन्त-विचार",
+            "page_start": 3,
+            "page_end": 19
+          },
+          {
+            "label": "ग्रीष्म-विचार",
+            "page_start": 20,
+            "page_end": 35
+          },
+          {
+            "label": "वर्षा-विचार",
+            "page_start": 36,
+            "page_end": 51
+          },
+          {
+            "label": "शरद्-विचार",
+            "page_start": 52,
+            "page_end": 67
+          },
+          {
+            "label": "हेमन्त-विचार",
+            "page_start": 68,
+            "page_end": 83
+          },
+          {
+            "label": "शिशिर-विचार",
+            "page_start": 84,
+            "page_end": 100
+          }
+        ]
+      }
+    ]
   },
   "pages": 78,
   "text": {
@@ -45,5 +96,5 @@
     "epub": "reader.epub"
   },
   "added": "2026-07-20",
-  "updated": "2026-07-20"
+  "updated": "2026-09-08"
 }

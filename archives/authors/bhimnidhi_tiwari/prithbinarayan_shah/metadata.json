@@ -27,10 +27,31 @@
   "source": {
     "name": "Sahitya Ras (sahityaras.com)",
     "url": "https://sahityaras.com/book/bisfot/prrithvinarayana-shaha/",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-bisfot.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-bisfot",
+        "file": "sahityaras-bisfot.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · विस्फोट",
+        "sha256": "b6a9db6422eb8b4ee5ea0a27e5d3ed42d57205f479dae3b18ce02cc47cfe763b",
+        "page_count": 2,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=bisfot&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "पृथ्वीनारायण शाह",
+            "page_start": 1,
+            "page_end": 2
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 2,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -38,7 +59,7 @@
     "quality": null
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-bisfot.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"

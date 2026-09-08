@@ -27,10 +27,31 @@
   "source": {
     "name": "Sahitya Ras (sahityaras.com)",
     "url": "https://sahityaras.com/book/gitanjali/",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-gitanjali.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-gitanjali",
+        "file": "sahityaras-gitanjali.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · गीताञ्जलि",
+        "sha256": "57002f0d4e7d6ceb831702052a7e1a2f00adadd008bd1b9999ef43708d8965d8",
+        "page_count": 9,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=gitanjali&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "गीताञ्जलि",
+            "page_start": 1,
+            "page_end": 9
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 9,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -38,7 +59,7 @@
     "quality": null
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-gitanjali.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"

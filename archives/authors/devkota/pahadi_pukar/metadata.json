@@ -27,10 +27,31 @@
   "source": {
     "name": "Sahitya Ras (sahityaras.com)",
     "url": "https://sahityaras.com/book/pahadi-pukar/",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "pdf": "sahityaras-pahadi-pukar.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "sahityaras-pahadi-pukar",
+        "file": "sahityaras-pahadi-pukar.pdf",
+        "kind": "typeset",
+        "label": "साहित्यरस · पहाडी पुकार",
+        "sha256": "ed41a8d98d62b18a7e9fd42ff502e7a76804915d6520c76a4c041bf192109f97",
+        "page_count": 8,
+        "origin": {
+          "name": "Sahitya Ras",
+          "url": "https://sahityaras.com/download.php?book=pahadi-pukar&format=pdf"
+        },
+        "sections": [
+          {
+            "label": "पहाडी पुकार",
+            "page_start": 1,
+            "page_end": 8
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 8,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -38,7 +59,7 @@
     "quality": null
   },
   "formats": {
-    "pdf": null,
+    "pdf": "sahityaras-pahadi-pukar.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"
