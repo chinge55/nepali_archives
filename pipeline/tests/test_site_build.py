@@ -270,6 +270,16 @@ class FullBuildTests(unittest.TestCase):
             if url.endswith("/"):
                 target /= "index.html"
             self.assertTrue(target.is_file(), url)
+        collections_page = (context.site / "collections/index.html").read_text()
+        self.assertIn("सङ्ग्रह", collections_page)
+        self.assertIn('href="collections/"', home_browse)
+        self.assertIn('class="card-intro"', home_browse)
+        self.assertIn('class="work-intro"', contents)
+        self.assertIn('class="work-intro"', author_browse)
+        self.assertNotIn('मूल पृष्ठ स्क्यान उपलब्ध', author_browse)
+        self.assertIn('PDF उपलब्ध', author_browse)
+        for row in search["works"]:
+            self.assertTrue(row['d'])
         self.assertEqual(find_broken_links(context.site), [])
 
     def test_bundled_and_external_download_modes(self):

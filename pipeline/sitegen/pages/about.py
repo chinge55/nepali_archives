@@ -22,10 +22,12 @@ def write_about_page(context, page, catalogue):
 <span class="cite">— <a href="docs/pratilipi-adhikar-ain-2059.pdf">प्रतिलिपि अधिकार ऐन, २०५९</a>, दफा १४ (प्रतिलिपि अधिकार संरक्षणको अवधि), उपदफा (१)</span></blockquote>
 <p class="meta">पूरा ऐन यहाँ हेर्न/डाउनलोड गर्न सकिन्छ: <a href="docs/pratilipi-adhikar-ain-2059.pdf">प्रतिलिपि अधिकार ऐन, २०५९ (PDF)</a>।</p>
 <p>हाल यहाँ {len(catalogue.by_author)} लेखकका {len(catalogue.records)} कृति छन्। स्रोत: Kavita Kosh, inepal.org,
-Internet Archive, sahityasangraha.com। प्रत्येक कृति HTML, मूल पाठ (TXT){' र EPUB' if any(meta.get('formats', {}).get('epub') for _, meta, _ in catalogue.records) else ''} मा उपलब्ध छ।</p>
+साहित्यरस, Internet Archive, sahityasangraha.com लगायत। स्रोतको विवरण प्रत्येक कृतिमा दिइएको छ। प्रत्येक कृति HTML, मूल पाठ (TXT){' र EPUB' if any(meta.get('formats', {}).get('epub') for _, meta, _ in catalogue.records) else ''} मा उपलब्ध छ।</p>
 <p class="meta"><a href="type/">टाइप उपकरण</a>को शब्द-तथ्याङ्क: यही अभिलेखका कृतिहरू +
 <a href="https://huggingface.co/datasets/ai4bharat/Aksharantar" rel="external">AI4Bharat Aksharantar</a> (CC-BY)।
 सबै रूपान्तरण ब्राउजरमै हुन्छ — केही पनि कतै पठाइँदैन।</p>
+<p>PDF उपलब्ध भएका कृतिमा मूल स्क्यान वा डिजिटल संस्करण पढ्न सकिन्छ। एकभन्दा बढी PDF
+भए संस्करण छानेर पढ्न वा डाउनलोड गर्न सकिन्छ। <a href="collections/">सङ्ग्रहअनुसार पनि कृति खोज्नुहोस्।</a></p>
 <p class="meta">OCR सम्पन्न पाठ र प्रुफरिड पाठ फरक अवस्था हुन्। मूल स्रोतसँग औपचारिक रूपमा
 फेरि जाँच गरेपछि मात्र कुनै कृतिलाई प्रुफरिड मानिन्छ।</p>
 <h2>आफ्ना कृति थप्न चाहनुहुन्छ?</h2>

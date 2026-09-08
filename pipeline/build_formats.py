@@ -18,6 +18,7 @@ Usage:
 import argparse
 import html
 import json
+import re
 import shutil
 import subprocess
 import sys
@@ -51,8 +52,8 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
   .meta {{ font-size: .85rem; opacity: .65; margin-top: .75rem; }}
   .downloads {{ font-size: .9rem; margin-top: .5rem; }}
   .downloads a {{ margin-right: 1rem; }}
-  .work {{ white-space: pre-wrap; }}     /* preserve verse line breaks */
-  .work p {{ margin: 0 0 1.4rem; white-space: pre-wrap; }}
+  .work {{ white-space: normal; }}     /* paragraph wrappers must not add blank lines */
+  .work p {{ margin: 0 0 1.4rem; white-space: pre-wrap; tab-size: 4; }}
   footer {{ margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #ccc4;
             font-size: .8rem; opacity: .6; }}
 </style>
@@ -78,7 +79,7 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
 
 def text_to_html_body(text: str) -> str:
     """Keep stanza and line boundaries in HTML and the EPUB conversion input."""
-    blocks = [b.strip("\n") for b in text.replace("\r\n", "\n").split("\n\n")]
+    blocks = [b.strip("\n") for b in re.split(r"\n(?:[^\S\n]*\n)+", text.replace("\r\n", "\n"))]
     # EPUB converters do not necessarily honor the reader's white-space CSS.
     # Explicit breaks survive conversion; no extra newline after <br>, because
     # the self-contained HTML also preserves literal whitespace.

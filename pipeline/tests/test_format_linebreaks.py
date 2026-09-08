@@ -19,6 +19,10 @@ class TextToHtmlBodyTests(unittest.TestCase):
             "<p>पहिलो<br>दोस्रो</p>\n<p>तेस्रो<br>चौथो</p>",
         )
 
+    def test_whitespace_only_separator_is_a_paragraph_break(self):
+        self.assertEqual(text_to_html_body('  पहिलो\n\u00a0\n\u2003दोस्रो'),
+                         '<p>  पहिलो</p>\n<p>\u2003दोस्रो</p>')
+
     def test_html_metacharacters_are_escaped_inside_preserved_lines(self):
         body = text_to_html_body('क <tag> & "उद्धरण" \'apostrophe\'\nअर्को')
         self.assertEqual(

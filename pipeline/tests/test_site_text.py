@@ -27,6 +27,18 @@ class WorkHtmlTests(unittest.TestCase):
         self.assertNotIn('<h2 class="sec">', rendered)
         self.assertIn('<div class="stanza">', rendered)
 
+    def test_ascii_quoted_dialogue_is_not_a_heading(self):
+        rendered = work_html("'प्रभु !'", verse=True)
+        self.assertNotIn('<h2', rendered)
+        self.assertIn('&#x27;प्रभु !&#x27;', rendered)
+
+    def test_whitespace_only_lines_separate_stanzas_without_stripping_indents(self):
+        for blank in [' ', '\t', '\u00a0', '\u2003']:
+            rendered = work_html('  पहिलो हरफ।\n' + blank + '\n\u2003दोस्रो हरफ।', verse=True)
+            self.assertEqual(rendered.count('<div class="stanza">'), 2)
+            self.assertIn('<span class="indent">  </span>पहिलो हरफ।</span>', rendered)
+            self.assertIn('<span class="indent">\u2003</span>दोस्रो हरफ।</span>', rendered)
+
     def test_parenthesized_devanagari_letter_is_a_heading(self):
         self.assertEqual(
             work_html("(क)", verse=True),

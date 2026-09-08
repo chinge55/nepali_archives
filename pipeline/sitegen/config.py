@@ -15,6 +15,7 @@ GENRE = {
     "kavita": ("कविता", "poems"),
     "balkavita": ("बालकविता", "children's poems"),
     "git": ("गीत", "song"),
+    "bhajan": ("भजन", "devotional song"),
     "gazal": ("गजल", "ghazal"),
 }
 
@@ -27,6 +28,7 @@ GENRE_ORDER = [
     "kavita",
     "balkavita",
     "git",
+    "bhajan",
     "gazal",
 ]
 

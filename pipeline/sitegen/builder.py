@@ -20,7 +20,7 @@ from .search import write_search_data
 
 def write_site_metadata(context, catalogue, search_rows, *, patro_written):
     urls = (
-        ["", "about.html", "ocr/", "authors/", "genres/", "stats/", "type/"]
+        ["", "about.html", "ocr/", "authors/", "genres/", "collections/", "stats/", "type/"]
         + (["patro/"] if patro_written else [])
         + [f"authors/{author}/" for author in catalogue.author_order]
         + [f"genres/{genre}/" for genre in catalogue.genres_present]
@@ -28,6 +28,7 @@ def write_site_metadata(context, catalogue, search_rows, *, patro_written):
             f"collections/{catalogue.collection_slugs[collection]}/"
             for collection in catalogue.collections
         ]
+        + [f"collections/{alias}/" for alias in catalogue.collection_aliases]
         + [row["p"] for row in search_rows]
     )
     (context.site / "sitemap.txt").write_text(
@@ -86,10 +87,11 @@ def build(
     )
 
     pages = (
-        6
+        7
         + len(catalogue.author_order)
         + len(catalogue.genres_present)
         + len(catalogue.collections)
+        + len(catalogue.collection_aliases)
         + len(catalogue.records)
     )
     return BuildStats(

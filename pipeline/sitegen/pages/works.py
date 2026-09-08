@@ -7,6 +7,7 @@ import re
 import shutil
 
 from ..config import GENRE, PROSE_GENRES, SITE_URL
+from ..introductions import work_intro
 from ..text import devnum, esc, paginate_work, work_html
 from .pdf_reader import write_pdf_reader
 from .pdf_choices import edition_display_label, pdf_edition_picker
@@ -30,6 +31,7 @@ def write_work_pages(context, page, assets, catalogue):
             depth = len(relative.parts)
             up = "../" * depth
             collections = work.get("collection") or []
+            introduction = work_intro(meta, collections)
 
             filters = (
                 '<span data-pagefind-filter="author[data-v]" '
@@ -197,6 +199,7 @@ def write_work_pages(context, page, assets, catalogue):
                         "name": meta["author"]["name"],
                     },
                     "inLanguage": "ne",
+                    "description": introduction,
                     "isAccessibleForFree": True,
                     "license": (
                         "https://creativecommons.org/publicdomain/mark/1.0/"
@@ -205,17 +208,24 @@ def write_work_pages(context, page, assets, catalogue):
                 },
                 ensure_ascii=False,
             )
+            rights_label = ("अनुमतिप्राप्त" if meta.get("rights", {}).get("status") == "permission-granted"
+                            else "सार्वजनिक डोमेन")
+            text_status = "प्रुफरिड गरिएको" if meta.get("text", {}).get("proofread") else "प्रुफरिड गर्न बाँकी"
             downloads = (
                 '<p class="downloads">डाउनलोड: '
                 f'{" ".join(download_links) if download_links else "—"}<br>'
                 '<span style="font-size:.78rem">स्रोत: '
-                f"{source_html} · सार्वजनिक डोमेन (असत्यापित)</span></p>"
+                f"{source_html} · {rights_label} · {text_status}</span></p>"
             )
             sequence_nav = f'<nav class="seqnav">{"".join(sequence)}</nav>'
             full_title = f"{meta['title']} — {meta['author']['name']}"
             rendered_text = work_html(text, verse)
+            # Indentation wrappers improve layout but add no literary content.
+            # They must not push a previously single-page work over the size limit.
+            indent_markup_size = (rendered_text.count('<span class="indent">')
+                                  * len('<span class="indent"></span>'))
             sections = paginate_work(
-                text, balance=len(rendered_text) > 150000
+                text, balance=len(rendered_text) - indent_markup_size > 150000
             )
 
             if not sections:
@@ -223,7 +233,8 @@ def write_work_pages(context, page, assets, catalogue):
 <article>
   <h1>{esc(meta['title'])}</h1>
   <p class="byline">{esc(meta['author']['name'])}</p>
-  <p class="meta">{" · ".join(bit for bit in meta_bits if bit)}</p>{pdf_button}
+  <p class="meta">{" · ".join(bit for bit in meta_bits if bit)}</p>
+  <p class="work-intro">{esc(introduction)}</p>{pdf_button}
   <div class="work {'verse' if verse else 'prose'}" data-pagefind-body>{filters}
 {rendered_text}
   </div>
@@ -234,7 +245,7 @@ def write_work_pages(context, page, assets, catalogue):
                     page(
                         full_title,
                         body,
-                        desc=full_title,
+                        desc=f"{meta['title']} — {introduction}",
                         css_depth=depth,
                         active="works",
                         canon=str(relative) + "/",
@@ -255,7 +266,8 @@ def write_work_pages(context, page, assets, catalogue):
 <article>
   <h1>{esc(meta['title'])}</h1>
   <p class="byline">{esc(meta['author']['name'])}</p>
-  <p class="meta">{" · ".join(bit for bit in meta_bits if bit)}</p>{pdf_button}
+  <p class="meta">{" · ".join(bit for bit in meta_bits if bit)}</p>
+  <p class="work-intro">{esc(introduction)}</p>{pdf_button}
   <p class="tochint">{devnum(section_count)} खण्डमा विभाजित — कुनै पनि खण्ड छानेर पढ्नुहोस् :</p>
   <ol class="toc">{contents}</ol>
   {downloads}
@@ -265,7 +277,7 @@ def write_work_pages(context, page, assets, catalogue):
                     page(
                         full_title,
                         contents_body,
-                        desc=full_title,
+                        desc=f"{meta['title']} — {introduction}",
                         css_depth=depth,
                         active="works",
                         canon=str(relative) + "/",
@@ -341,6 +353,7 @@ def write_work_pages(context, page, assets, catalogue):
             search_rows.append(
                 {
                     "t": meta["title"],
+                    "d": introduction,
                     "r": meta.get("title_roman") or "",
                     "s": work["id"].replace("_", " "),
                     "a": meta["author"].get("name_roman") or "",

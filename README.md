@@ -78,8 +78,11 @@ Key fields:
 - `text.extraction_method` — `extract` (PDF text layer), `ocr`, `html` (scraped), or `manual`.
 - `text.ocr_status` — `ocr-done` or `born-digital` (web/embedded text).
 - `text.proofread` — whether the text has been human-corrected (OCR fixes only; never modernized).
-- `genre` — free-form tags; `genre[0]` drives rendering (`nibandha`/`upanyas` = prose, else verse).
+- `genre` — free-form tags; `genre[0]` drives rendering (`nibandha`/`upanyas`/`katha` = prose, else verse).
 - `formats` — filename per available format.
+- `summary` — optional, reviewed one-line Nepali introduction for readers, separate from the literary text.
+  Describe only what the work supports; preserve collection/source notes in `description`.
+  Without a summary, the site states the author, genre, and known collection.
 
 ## Pipeline
 
@@ -122,27 +125,24 @@ bundling them.
 
 ## Current status
 
-**210 works across 3 authors** — Laxmi Prasad Devkota (175), Lekhnath Paudyal (24),
-Bhanubhakta Acharya (11). Full catalogue: [`archives/index.json`](./archives/index.json).
+The [live catalogue](https://www.nepaliarchives.org/authors/) and
+[statistics page](https://www.nepaliarchives.org/stats/) are rebuilt from work metadata
+on every deploy. Use them for current author, work, genre, and download coverage;
+this document does not maintain a separate count that can go stale.
 
-| `genre[0]` | Count | Notes |
-|---|---|---|
-| कविता — poems | 142 | individual poems (Kavita Kosh, inepal.org, nepalikitab.org, साझा scans); most Devkota poems tagged with their collection |
-| निबन्ध — essays | 38 | Devkota's *लक्ष्मी निबन्ध सङ्ग्रह* |
-| बालकविता — children's poems | 19 | *सुनको बिहान* (Devkota) |
-| महाकाव्य — epics | 5 | *शाकुन्तल*, *प्रमिथस*, *पृथ्वीराज चौहान* (Devkota) · *रामायण* (Bhanubhakta) · *तरुण तपसी* (Lekhnath) |
-| खण्डकाव्य — narrative poems | 3 | *मुना मदन*, *म्हेन्दु*, *लुनी* (Devkota) |
-| उपन्यास — novel | 1 | *चम्पा* (Devkota) |
-| गीत · गजल | 2 | Devkota |
+Browse by [genre](https://www.nepaliarchives.org/genres/) or
+[published collection](https://www.nepaliarchives.org/collections/). Anthologies are
+represented by their individual works, and collection counts refer to members
+currently available in the archive, not necessarily a complete printed volume.
 
-Sources: Kavita Kosh, inepal.org, nepalikitab.org, Internet Archive, sahityasangraha.com,
-Wikisource (Bhanubhakta's *रामायण*), and साझा प्रकाशन print scans (Tesseract OCR). Collection
-anthologies (*भिखारी*, *लक्ष्मी कवितासङ्ग्रह*, *लक्ष्मी निबन्ध सङ्ग्रह*, *सुनको बिहान*) aren't
-duplicated — each member is a standalone work whose description names its collection.
+Sources include Kavita Kosh, SahityaRas, inepal.org, nepalikitab.org, Internet Archive,
+sahityasangraha.com, Wikisource, and print scans. Each work retains its source details.
+PDFs may be original scans or digital typeset editions; where several are available,
+the reader offers an edition selector. See [the SahityaRas import record](sources/sahityaras/README.md).
 
-Per the mission, **no work is proofread yet** (`proofread: false`) — crowdsourced
-proofreading is the next milestone. (The archive's rights position is stated in
-[`Rights.md`](./Rights.md) and [`LICENSE`](./LICENSE).)
+Proofreading status belongs to each work's `text.proofread` field. Extraction and
+layout corrections alone do not mark a work proofread. The archive's rights position
+is stated in [Rights.md](Rights.md) and [LICENSE](LICENSE).
 
 ## Environment
 

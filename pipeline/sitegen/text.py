@@ -13,6 +13,8 @@ def is_heading(block: str) -> bool:
     if "\n" in block or len(block) > 40:
         return False
     text = block.strip()
+    if text.startswith("'") or text.endswith("'"):
+        return False
     marker = re.fullmatch(r"\(([ऀ-ॿ])\)", text)
     if marker and not marker.group(1).isdigit():
         return True
@@ -41,12 +43,26 @@ def _no_break_punctuation(value: str) -> str:
     return _NBSP_PUNCT.sub(" \\1", value)
 
 
+def text_blocks(text: str) -> list[str]:
+    """Whitespace-only lines separate stanzas; spacing inside lines is source text."""
+    normalized = text.replace("\r\n", "\n")
+    return [block.strip("\n") for block in re.split(r"\n(?:[^\S\n]*\n)+", normalized)
+            if block.strip()]
+
+
+def verse_line(line: str) -> str:
+    """Keep source indentation as text while letting its visual width fit the screen."""
+    match = re.match(r"^[^\S\n]+(?=\S)", line)
+    if match:
+        prefix = match.group()
+        return (f'<span class="indent">{esc(prefix)}</span>'
+                + _no_break_punctuation(esc(line[len(prefix):])))
+    return _no_break_punctuation(esc(line))
+
+
 def work_html(text: str, verse: bool) -> str:
     """Render source blocks without modernizing or filling missing text."""
-    blocks = [
-        block.strip("\n")
-        for block in text.replace("\r\n", "\n").split("\n\n")
-    ]
+    blocks = text_blocks(text)
     output = []
     for block in blocks:
         if not block.strip():
@@ -67,7 +83,7 @@ def work_html(text: str, verse: bool) -> str:
                 )
                 lines = lines[1:]
             rendered_lines = "".join(
-                f'<span class="ln">{_no_break_punctuation(esc(line))}</span>'
+                f'<span class="ln">{verse_line(line)}</span>'
                 for line in lines
             )
             css_class = (
@@ -86,11 +102,7 @@ def paginate_work(
     text: str, balance: bool = False
 ) -> list[tuple[str, str]] | None:
     """Split a long work only at printed sections, or balance huge unsectioned text."""
-    blocks = [
-        block.strip("\n")
-        for block in text.replace("\r\n", "\n").split("\n\n")
-        if block.strip()
-    ]
+    blocks = text_blocks(text)
 
     def is_chapter(block: str) -> bool:
         first = block.split("\n", 1)[0].strip()

@@ -14,7 +14,7 @@
 .g-mahakavya{--gc:var(--g-mahakavya)}.g-khandakavya{--gc:var(--g-khandakavya)}
 .g-upanyas{--gc:var(--g-upanyas)}.g-katha{--gc:var(--g-katha)}.g-nibandha{--gc:var(--g-nibandha)}
 .g-kavita{--gc:var(--g-kavita)}.g-balkavita{--gc:var(--g-balkavita)}
-.g-git{--gc:var(--g-git)}.g-gazal{--gc:var(--g-gazal)}
+.g-bhajan{--gc:var(--g-git)}.g-git{--gc:var(--g-git)}.g-gazal{--gc:var(--g-gazal)}
 *{box-sizing:border-box}html{font-size:19px}
 body{margin:0;background:var(--bg);color:var(--fg);
  font-family:"Noto Serif Devanagari","Mukta","Kalimati",Georgia,"Times New Roman",serif;
@@ -92,7 +92,7 @@ h1{font-size:2.35rem;line-height:1.25;margin:.7rem 0 .3rem}
  color:var(--accent);font-weight:700;font-size:1rem;padding:0;text-indent:0}
 @media(max-width:900px){.stanza.snum{height:auto;margin:0 0 .3rem}
  .stanza.snum .ln{position:static;width:auto;text-align:left;padding:0;text-indent:0}}
-.work.verse .ln{display:block;padding-left:1.6em;text-indent:-1.6em;text-wrap:pretty}  /* hanging indent + avoid 1-word orphan wraps */
+.work.verse .ln{display:block;white-space:pre-wrap;tab-size:4;overflow-wrap:anywhere;padding-left:1.6em;text-indent:-1.6em;text-wrap:pretty}  /* hanging indent + avoid 1-word orphan wraps */
 .work.prose .stanza{text-align:left;text-wrap:pretty}
 /* Narrow phones: long classical verse lines were wrapping their last word/danda as a
    2-char orphan. Step the base size down + trim gutters so most lines simply fit. */
@@ -422,3 +422,16 @@ ul.refrains .rc{display:inline-block;min-width:2.2rem;color:var(--accent);font-v
  a{color:#000;text-decoration:none}
  .work h2.sec{color:#000}
 }
+
+/* Catalogue introductions are editorial context, outside the preserved text. */
+.work-intro{display:block;color:var(--mut);font-size:.95rem;line-height:1.65;margin:.7rem 0}
+ul.works .work-intro{clear:both;font-size:.82rem;margin:.2rem 0 .35rem}
+.genre-intro{color:var(--mut);line-height:1.7;max-width:38rem}
+.genre-shelf{grid-template-columns:repeat(auto-fit,minmax(min(100%,14rem),1fr))}
+.card-intro{display:block;font-size:.85rem;line-height:1.65;color:var(--mut);margin:.5rem 0}
+.browse-links{display:flex;gap:.5rem 1.2rem;flex-wrap:wrap;margin:1rem 0}
+.browse-links a{margin:0;padding:0;color:var(--link)}
+
+/* Retain the source spaces, but keep long printed indents within the viewport. */
+.work.verse .ln .indent{display:inline-block;max-width:45%;overflow:hidden;
+ white-space:pre;vertical-align:bottom;text-indent:0}

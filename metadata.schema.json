@@ -49,6 +49,10 @@
     "edition": { "type": ["string", "null"] },
     "publisher": { "type": ["string", "null"] },
     "description": { "type": ["string", "null"] },
+    "summary": {
+      "type": ["string", "null"], "minLength": 1, "maxLength": 280,
+      "description": "Optional reviewed one-line reader introduction in Nepali. Separate from original text and source/collection notes; grounded in the work."
+    },
     "rights": {
       "type": "object",
       "required": ["status"],

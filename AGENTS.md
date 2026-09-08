@@ -75,8 +75,7 @@ author dir == `author.id`; `text.txt` non-empty Devanagari; `rights.status` ∈
 - **Slugs / `id`**: a work dir name == its `id` == `[a-z0-9_-]`; author dir ==
   `author.id`. Generate slugs with `pipeline/devanagari_slug.py` (`slugify`,
   `romanize`) — **natural-Nepali romanization** (drop word-final inherent schwa
-  unless after a conjunct; व→b, श/ष→sh). NOT Harvard-Kyoto (the README still says
-  Harvard-Kyoto — that's stale). Slugs are best-effort; review them.
+  unless after a conjunct; व→b, श/ष→sh). NOT Harvard-Kyoto. Slugs are best-effort; review them.
 - **metadata.json**: conform to `metadata.schema.json` (no `rights.verified` field — the
   rights-verification gate was dropped; `Rights.md` + `LICENSE` state the position). Author
   block is fixed per author; Devkota rights basis is the canonical string ("Author died
@@ -87,12 +86,15 @@ author dir == `author.id`; `text.txt` non-empty Devanagari; `rights.status` ∈
   the first sentence, rich text can follow); `source` = `source.name` only when
   `source.url` is set, else null; `formats` = non-null format keys. Order is cosmetic
   (build_site re-sorts), so don't worry if it reshuffles.
+- **Reader introductions**: optional `summary` is reviewed Nepali context, separate from the
+  original text. Without it, the site derives a factual author/genre/collection line.
+  Genre introductions live in `pipeline/sitegen/introductions.py`.
 - **Collections** (published anthologies, e.g. सुनको बिहान, लक्ष्मी निबन्ध सङ्ग्रह)
   are NOT made into a work — each member is a standalone work whose description names
   the collection. Don't duplicate a work already in the archive; add the collection
   tag to its existing description instead.
 - **text.txt rendering** (`pipeline/sitegen/text.py`):
-  - verse vs prose is decided by `genre[0]`: prose = `{upanyas, nibandha}`, everything
+  - verse vs prose is decided by `genre[0]`: prose = `{upanyas, katha, nibandha}`, everything
     else renders as verse. So an essay must have `genre[0]=="nibandha"`.
   - blank-line-separated blocks = stanzas/paragraphs; a short standalone word-like
     line = a section heading (`<h2 class=sec>`). **A heading and its subtitle need a
@@ -113,8 +115,8 @@ author dir == `author.id`; `text.txt` non-empty Devanagari; `rights.status` ∈
   renders pages on demand (IntersectionObserver) and fetches only the byte ranges for the
   pages in view (verified: an 11 MB / 378-pp scan paints page 1 after ~1% downloaded). The
   ~1.5 MB library is **vendored** at `assets/pdfjs/` (pinned v3.11.174 legacy UMD; tracked
-  in git, copied to `SITE/pdfjs/`) and loads **only** on the reader page — text pages stay
-  JS-free. Range loading needs `Accept-Ranges` (GitHub Pages provides it); under
+  in git, copied to `SITE/pdfjs/`) and loads **only** on the reader page.
+  Text pages do not load pdf.js. Range loading needs `Accept-Ranges` (GitHub Pages provides it); under
   `--archive-base` the external host must send CORS + Range or the reader falls back to a
   direct-PDF link.
 - **Typing tool** (`write_type_page`): `/type/` — Roman→Devanagari typing

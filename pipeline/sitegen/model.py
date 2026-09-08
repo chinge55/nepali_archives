@@ -4,12 +4,14 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 import json
+import hashlib
 from pathlib import Path
 
 from devanagari_slug import slugify
 
 from .config import AUTHORS, GENRE, GENRE_ORDER
 from .context import BuildContext
+from .introductions import GENRE_INTROS, work_intro
 from .text import devnum, esc
 
 
@@ -24,6 +26,7 @@ class Catalogue:
     author_order: list[str]
     collections: dict[str, list[tuple[dict, dict]]]
     collection_slugs: dict[str, str]
+    collection_aliases: dict[str, list[str]]
     by_genre: dict[str, list[tuple[dict, dict]]]
     genres_present: list[str]
 
@@ -57,7 +60,7 @@ class Catalogue:
             )
             + f'<span class="rt">{reading_time}</span>'
             + (
-                '<span class="scan" title="मूल पृष्ठ स्क्यान उपलब्ध">📖</span>'
+                '<span class="scan" title="PDF उपलब्ध">📖</span>'
                 if extra["pdf"]
                 else ""
             )
@@ -65,7 +68,8 @@ class Catalogue:
         return (
             f'<li><a class="row-link" href="{href}">'
             f'<span class="wmeta">{metadata}</span>{esc(meta["title"])}'
-            f'<span class="r">{esc(meta.get("title_roman") or "")}</span></a></li>'
+            f'<span class="r">{esc(meta.get("title_roman") or "")}</span>'
+            f'<span class="work-intro">{esc(work_intro(meta, work.get("collection") or []))}</span></a></li>'
         )
 
     def genre_cards(self, base: str) -> str:
@@ -73,10 +77,38 @@ class Catalogue:
             f'<a class="card g-{genre}" href="{base}genres/{genre}/">'
             f'<b>{esc(GENRE.get(genre, (genre, ""))[0])}</b>'
             f'<span class="en">{esc(GENRE.get(genre, (genre, ""))[1])}</span>'
+            f'<span class="card-intro">{esc(GENRE_INTROS.get(genre, ""))}</span>'
             f'<span class="n">{devnum(len(self.by_genre[genre]))} कृति</span></a>'
             for genre in self.genres_present
         )
-        return f'<div class="shelf">{cards}</div>'
+        return f'<div class="shelf genre-shelf">{cards}</div>'
+
+
+def collection_routes(names):
+    """Keep existing routes, disambiguating names whose romanization collides."""
+    groups = {}
+    for name in sorted(names):
+        groups.setdefault(slugify(name), []).append(name)
+    routes, aliases = {}, {}
+    used = set(groups)
+    digits = str.maketrans("०१२३४५६७८९", "0123456789")
+    for base, members in groups.items():
+        if len(members) == 1:
+            routes[members[0]] = base
+            continue
+        aliases[base] = members
+        for name in members:
+            candidate = slugify(name.translate(digits))
+            if candidate in used:
+                candidate = base + "_" + hashlib.sha256(name.encode()).hexdigest()[:10]
+            suffix = 2
+            unique = candidate
+            while unique in used:
+                unique = f"{candidate}_{suffix}"
+                suffix += 1
+            routes[name] = unique
+            used.add(unique)
+    return routes, aliases
 
 
 def load_catalogue(context: BuildContext) -> Catalogue:
@@ -118,9 +150,7 @@ def load_catalogue(context: BuildContext) -> Catalogue:
     for work, meta, _ in records:
         for collection in work.get("collection") or []:
             collections.setdefault(collection, []).append((work, meta))
-    collection_slugs = {
-        collection: slugify(collection) for collection in collections
-    }
+    collection_slugs, collection_aliases = collection_routes(collections)
     for collection in collections:
         collections[collection].sort(key=lambda item: item[1]["title"])
 
@@ -143,6 +173,7 @@ def load_catalogue(context: BuildContext) -> Catalogue:
         author_order=author_order,
         collections=collections,
         collection_slugs=collection_slugs,
+        collection_aliases=collection_aliases,
         by_genre=by_genre,
         genres_present=genres_present,
     )

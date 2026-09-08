@@ -80,12 +80,12 @@
  function dev(n){return String(n).replace(/[0-9]/g,function(d){return '\u0966\u0967\u0968\u0969\u096a\u096b\u096c\u096d\u096e\u096f'[d];});}
  function renderWorks(list){
    var rows=list.slice(0,60).map(function(w){
-     var sub=[w.a,w.c].filter(Boolean).join(' \u00b7 ');
+     var sub=w.d||[w.a,w.c].filter(Boolean).join(' \u00b7 ');
      var wm=(w.g&&G[w.g]?'<span class="chip g-'+w.g+'">'+G[w.g]+'</span>':'')+
             '<span class=rt>'+(w.m?'~'+dev(w.m)+' \u092e\u093f\u0928\u0947\u091f':'\u091b\u094b\u091f\u094b')+'</span>'+
             (w.f?'<span class=scan>\ud83d\udcd6</span>':'');
      return '<li><a class=row-link href="'+BASE+w.p+'"><span class=wmeta>'+wm+'</span>'+w.t+(w.r?' <span class=r>'+w.r+'</span>':'')+
-            (sub?'<span class=snip>'+sub+'</span>':'')+'</a></li>';}).join('');
+            (sub?'<span class=snip>'+sub.replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];})+'</span>':'')+'</a></li>';}).join('');
    R.innerHTML=rows;
    H.textContent=list.length+' शीर्षक';
  }

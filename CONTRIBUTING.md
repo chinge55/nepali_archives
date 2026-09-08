@@ -38,7 +38,7 @@ source file, then open a PR. Conventions the validator checks for you:
 - **`metadata.json`** must validate against `metadata.schema.json`.
 - **`text.txt`** is non-empty Devanagari; blank lines separate stanzas/paragraphs; a short
   standalone line is a section heading (put a blank line before the next block); verse vs prose
-  is decided by `genre[0]` (`nibandha`/`upanyas` → prose, else verse).
+  is decided by `genre[0]` (`nibandha`/`upanyas`/`katha` → prose, else verse).
 
 Adding a **new author** may also need a small maintainer code change when custom life dates
 are wanted (the optional display registry lives in `pipeline/sitegen/config.py`) — please
