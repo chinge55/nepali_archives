@@ -79,7 +79,7 @@ class PageRenderer:
 <body>
 <div id="prog" class="prog"></div>
 <header class="site">
-  <a class="brand" href="{up or './'}"><span>{SITE_NAME}</span></a>
+  <a class="brand" href="{up or './'}"><span class="brand-mark" aria-hidden="true"></span><span class="brand-name">{SITE_NAME}</span></a>
   <nav>{nav}<button id="themed" class="themebtn" type="button" aria-label="उज्यालो/अँध्यारो"></button></nav>
 </header>
 <main>

@@ -46,6 +46,8 @@ class FullBuildTests(unittest.TestCase):
             "logo-pressed.png",
             "final-logo-dark.png",
             "logo-pressed-dark.png",
+            "hover-mark.svg",
+            "hover-book.svg",
         ]:
             (logo_assets / filename).write_bytes(b"fixture")
         font_assets = self.root / "assets" / "fonts"

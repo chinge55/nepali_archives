@@ -103,6 +103,8 @@ def install_common_assets(context: BuildContext, assets: AssetBundle) -> None:
         ("logo-pressed.png", "logo-pressed.png"),
         ("final-logo-dark.png", "logo-dark.png"),
         ("logo-pressed-dark.png", "logo-pressed-dark.png"),
+        ("hover-mark.svg", "logo-hover-mark.svg"),
+        ("hover-book.svg", "logo-hover-book.svg"),
     ]:
         source = logo / source_name
         if source.exists():

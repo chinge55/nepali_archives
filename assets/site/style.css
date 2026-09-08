@@ -22,22 +22,34 @@ body{margin:0;background:var(--bg);color:var(--fg);
 header.site,footer.site{max-width:44rem;margin:0 auto;padding:1rem 1.25rem;display:flex;
  gap:1rem;align-items:center;justify-content:space-between;flex-wrap:wrap}
 footer.site{display:block;border-top:1px solid var(--line);margin-top:3rem;color:var(--mut);font-size:.8rem}
-/* brand = the न mark (::before image, swaps to its pressed frame on hover) + the
-   site name as live text — only the mark animates, the text never moves and picks
-   up theme colors by itself. url() resolves against root-level style.css. */
+/* The supplied animation is a pair of cropped, 16-frame SVG masks. Only the
+   mark moves; the accessible site name stays live text. URLs are CSS-relative. */
 .brand{display:flex;flex:none;align-items:center;gap:.5rem;
  font-size:1.15rem;font-weight:600;text-decoration:none;color:var(--fg)}
-.brand::before{content:"";flex:none;width:1.3rem;height:1.75rem;
+.brand-mark{position:relative;flex:none;display:block;width:1.3rem;height:1.75rem;
  background:url(logo.png) no-repeat center bottom/contain}
-.brand span{position:relative;top:.3rem}
-.brand:hover::before,.brand:active::before{background-image:url(logo-pressed.png)}
+.brand-name{position:relative;top:.3rem}
 .brand:focus-visible{outline:2px solid color-mix(in srgb,var(--accent) 45%,transparent);outline-offset:2px;border-radius:.3rem}
-@media(prefers-color-scheme:dark){.brand::before{background-image:url(logo-dark.png)}
- .brand:hover::before,.brand:active::before{background-image:url(logo-pressed-dark.png)}}
-:root[data-theme=light] .brand::before{background-image:url(logo.png)}
-:root[data-theme=light] .brand:hover::before,:root[data-theme=light] .brand:active::before{background-image:url(logo-pressed.png)}
-:root[data-theme=dark] .brand::before{background-image:url(logo-dark.png)}
-:root[data-theme=dark] .brand:hover::before,:root[data-theme=dark] .brand:active::before{background-image:url(logo-pressed-dark.png)}
+@media(prefers-color-scheme:dark){.brand-mark{background-image:url(logo-dark.png)}}
+:root[data-theme=light] .brand-mark{background-image:url(logo.png)}
+:root[data-theme=dark] .brand-mark{background-image:url(logo-dark.png)}
+@supports (mask-image:url("")) or (-webkit-mask-image:url("")){
+ .brand .brand-mark{background:none}
+ .brand-mark::before,.brand-mark::after{content:"";position:absolute;inset:auto 0 0;height:1.6343rem;
+  -webkit-mask-size:100% 1600%;mask-size:100% 1600%;
+  -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+  -webkit-mask-position:center var(--logo-position,0%);mask-position:center var(--logo-position,0%)}
+ .brand-mark::before{background:var(--fg);
+  -webkit-mask-image:url(logo-hover-mark.svg);mask-image:url(logo-hover-mark.svg)}
+ .brand-mark::after{background:#ad7d20;
+  -webkit-mask-image:url(logo-hover-book.svg);mask-image:url(logo-hover-book.svg)}
+ @media(prefers-color-scheme:dark){.brand-mark::after{background:#d8b15f}}
+ :root[data-theme=light] .brand-mark::after{background:#ad7d20}
+ :root[data-theme=dark] .brand-mark::after{background:#d8b15f}
+}
+@media(prefers-reduced-motion:reduce){
+ .brand-mark::before,.brand-mark::after{-webkit-mask-position:center top;mask-position:center top}
+}
 nav a,.themebtn{color:var(--mut);text-decoration:none;font-size:.95rem;font-family:inherit;
  padding:.34rem .6rem;margin-left:.2rem;border-radius:.45rem;background:none;border:0;cursor:pointer}
 nav a:hover,.themebtn:hover{color:var(--accent);background:color-mix(in srgb,var(--accent) 9%,transparent)}

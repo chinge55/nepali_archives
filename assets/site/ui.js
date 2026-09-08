@@ -12,6 +12,35 @@
      sync();});
    if(mq.addEventListener) mq.addEventListener('change',function(){if(!root.getAttribute('data-theme'))sync();});
  }
+ // Play the supplied 16 x 70 ms hover frames once, then restore the still mark.
+ // Explicit frame selection avoids GIF looping and works without network reloads.
+ var brand=document.querySelector('.brand'),motion=matchMedia('(prefers-reduced-motion:reduce)');
+ if(brand && window.CSS && (CSS.supports('mask-image','url("")') || CSS.supports('-webkit-mask-image','url("")'))){
+   var mark=brand.querySelector('.brand-mark'),logoTick=0;
+   var stopLogo=function(){
+     cancelAnimationFrame(logoTick);logoTick=0;
+     if(mark)mark.style.removeProperty('--logo-position');
+   };
+   var playLogo=function(){
+     if(!mark || motion.matches || logoTick || document.hidden)return;
+     var started=null,last=-1;
+     var frame=function(now){
+       if(started===null)started=now;
+       var n=Math.floor((now-started)/70);
+       if(n>=16){stopLogo();return;}
+       if(n!==last){mark.style.setProperty('--logo-position',(n*100/15)+'%');last=n;}
+       logoTick=requestAnimationFrame(frame);
+     };
+     logoTick=requestAnimationFrame(frame);
+   };
+   brand.addEventListener('pointerenter',function(e){if(e.pointerType==='mouse')playLogo();});
+   brand.addEventListener('pointerleave',stopLogo);
+   brand.addEventListener('focus',function(){if(brand.matches(':focus-visible'))playLogo();});
+   brand.addEventListener('blur',stopLogo);
+   if(motion.addEventListener)motion.addEventListener('change',stopLogo);
+   document.addEventListener('visibilitychange',function(){if(document.hidden)stopLogo();});
+   addEventListener('pagehide',stopLogo);
+ }
  var bar=document.getElementById('prog');
  if(bar){
    var pend=false,upd=function(){pend=false;
