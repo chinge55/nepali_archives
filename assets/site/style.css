@@ -34,7 +34,8 @@ footer.site{display:block;border-top:1px solid var(--line);margin-top:3rem;color
 :root[data-theme=light] .brand-mark{background-image:url(logo.png)}
 :root[data-theme=dark] .brand-mark{background-image:url(logo-dark.png)}
 @supports (mask-image:url("")) or (-webkit-mask-image:url("")){
- .brand .brand-mark{background:none}
+ /* Hide the fallback image even when a saved theme overrides its color. */
+ .brand-mark,:root[data-theme] .brand-mark{background:none}
  .brand-mark::before,.brand-mark::after{content:"";position:absolute;inset:auto 0 0;height:1.6343rem;
   -webkit-mask-size:100% 1600%;mask-size:100% 1600%;
   -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
@@ -66,6 +67,14 @@ h1{font-size:2.35rem;line-height:1.25;margin:.7rem 0 .3rem}
 .pdfread{display:inline-block;margin:.7rem 0 .1rem;font-size:.9rem;padding:.34rem .85rem;border:1px solid var(--line);border-radius:6px;color:var(--accent);text-decoration:none;transition:background .15s,color .15s,border-color .15s}
 .pdfacts{display:flex;gap:.6rem;flex-wrap:wrap}
 .pdfacts .pdfread{margin:.7rem 0 .1rem}
+.pdf-choice{margin:.8rem 0 1rem;max-width:100%}
+.pdf-choice-controls label{display:block;font-size:.85rem;color:var(--mut)}
+.pdf-edition{display:block;width:100%;max-width:30rem;min-width:0;margin-top:.25rem;
+ padding:.45rem .6rem;border:1px solid var(--line);border-radius:6px;
+ background:var(--bg);color:var(--fg);font:inherit;font-size:.95rem}
+.pdf-edition:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.pdf-choice-controls[hidden],.pdf-choice-fallback[hidden]{display:none}
+.pdf-choice-fallback{padding-left:1.2rem;font-size:.9rem}
 .pdfread:hover{border-color:var(--accent);background:var(--accent);color:#fff}
 .tochint{color:var(--mut);font-size:.9rem;margin:1.6rem 0 .4rem}
 .toc{margin:.3rem 0 0;padding-left:1.3rem;line-height:2.1;font-size:1.05rem}

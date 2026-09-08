@@ -1,6 +1,7 @@
 """Lazy, range-loading source-PDF reader pages."""
 
 from ..text import esc
+from .pdf_choices import pdf_edition_picker
 
 
 def write_pdf_reader(
@@ -45,6 +46,11 @@ def write_pdf_reader(
             f'<details class="pdftoc"><summary>विषयसूची</summary>'
             f'<ol class="toc">{items}</ol></details>\n'
         )
+    file_base = (f'{context.archive_base.rstrip("/")}/{rel.as_posix()}/'
+                 if context.archive_base else local_up)
+    picker = pdf_edition_picker(
+        meta, reader_base=local_up + "pdf/", file_base=file_base, current_file=pdf_fn,
+    )
     title_full = f"{title} — {meta['author']['name']} — {label}"
     head = (f'<script src="{up}pdfjs/pdf.min.js"></script>\n'
             f'<style>{assets.pdf_reader_css}</style>\n')
@@ -55,6 +61,7 @@ def write_pdf_reader(
   <h1 class="pdfh1">{esc(title)} — {esc(label)}</h1>
   <div class="pdfbar"><a class="pdfback" href="{back}">← पाठ पढ्नुहोस्</a><span id="pdfstatus" class="pdfstat"></span><span class="pdfzoom"><button id="pdfminus" type="button" aria-label="सानो">−</button><button id="pdfplus" type="button" aria-label="ठूलो">+</button></span></div>
 </div>
+{picker}
 {section_toc}<div id="pdfpages" class="pdfpages" data-url="{pdf_url}"></div>
 <noscript><p class="pdferr">PDF रिडरलाई JavaScript चाहिन्छ। <a href="{pdf_url}">सिधै PDF हेर्नुहोस्</a>।</p></noscript>
 <script>{js}</script>"""

@@ -41,6 +41,20 @@
    document.addEventListener('visibilitychange',function(){if(document.hidden)stopLogo();});
    addEventListener('pagehide',stopLogo);
  }
+ // Keep reading and download links on the chosen edition; navigation is explicit.
+ document.querySelectorAll('.pdf-choice').forEach(function(picker){
+   var select=picker.querySelector('select'),controls=picker.querySelector('.pdf-choice-controls');
+   var syncEdition=function(){
+     var option=select.options[select.selectedIndex];
+     picker.querySelector('.pdf-choice-view').href=option.value;
+     picker.querySelector('.pdf-choice-download').href=option.getAttribute('data-download');
+   };
+   select.addEventListener('change',syncEdition);
+   addEventListener('pageshow',syncEdition);
+   syncEdition();
+   controls.hidden=false;
+   picker.querySelector('.pdf-choice-fallback').hidden=true;
+ });
  var bar=document.getElementById('prog');
  if(bar){
    var pend=false,upd=function(){pend=false;

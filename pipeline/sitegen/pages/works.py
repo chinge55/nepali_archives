@@ -9,6 +9,7 @@ import shutil
 from ..config import GENRE, PROSE_GENRES, SITE_URL
 from ..text import devnum, esc, paginate_work, work_html
 from .pdf_reader import write_pdf_reader
+from .pdf_choices import edition_display_label, pdf_edition_picker
 
 
 DEVANAGARI_WORD = re.compile(r"[ऀ-ॣ०-ॿ]+")
@@ -88,12 +89,6 @@ def write_work_pages(context, page, assets, catalogue):
 
             # Every declared edition is a downloadable source.  The canonical
             # formats.pdf file is retained and copied only once when repeated.
-            def edition_display_label(edition):
-                label = edition["label"]
-                if edition.get("kind") == "typeset" and "डिजिटल संस्करण" not in label:
-                    return label + " — डिजिटल संस्करण"
-                return label
-
             edition_links = []
             for edition in editions:
                 filename = edition["file"]
@@ -135,6 +130,11 @@ def write_work_pages(context, page, assets, catalogue):
                         f' <a href="{direct}" download>⬇ PDF</a>'
                     )
                 pdf_button = '\n  <p class="pdfacts">' + " ".join(links) + direct_download + "</p>"
+                file_base = (f'{context.archive_base.rstrip("/")}/{relative}/'
+                             if context.archive_base else "")
+                picker = pdf_edition_picker(meta, file_base=file_base)
+                if picker:
+                    pdf_button = "\n  " + picker
 
             def section_pdf_link(section_label):
                 # The reader joins a printed heading/subtitle with an em dash.

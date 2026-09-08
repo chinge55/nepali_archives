@@ -79,12 +79,25 @@ class PdfEditionTests(FullBuildTests):
         self.assertTrue((work / "pdf/digital-edition/index.html").is_file())
         contents = (work / "index.html").read_text(encoding="utf-8")
         self.assertIn('href="pdf/digital-edition/"', contents)
+        self.assertIn('<option value="pdf/" data-download="source.pdf" selected>', contents)
+        self.assertIn('class="pdf-choice-controls" hidden', contents)
+        self.assertIn('class="pdf-choice-fallback"', contents)
         self.assertIn("साहित्यरस डिजिटल पुस्तक — डिजिटल संस्करण", contents)
         reader = (work / "pdf/digital-edition/index.html").read_text(encoding="utf-8")
         self.assertIn('data-url="../../digital.pdf"', reader)
+        self.assertIn('<option value="../../pdf/digital-edition/" data-download="../../digital.pdf" selected>', reader)
         self.assertIn("साहित्यरस डिजिटल पुस्तक — डिजिटल संस्करण", reader)
         section = (work / "1/index.html").read_text(encoding="utf-8")
         self.assertIn('href="../pdf/?page=1"', section)
+
+    def test_edition_picker_uses_external_downloads_and_local_readers(self):
+        self._add_editions()
+        context, _ = self.run_build("site-external-editions", archive_base="https://files.example/archive")
+        work = context.site / "authors/test_author/long_work"
+        contents = (work / "index.html").read_text()
+        self.assertIn('value="pdf/digital-edition/" data-download="https://files.example/archive/authors/test_author/long_work/digital.pdf"', contents)
+        reader = (work / "pdf/digital-edition/index.html").read_text()
+        self.assertIn('value="../../pdf/" data-download="https://files.example/archive/authors/test_author/long_work/source.pdf"', reader)
 
     def test_multiline_source_heading_matches_reader_subtitle(self):
         self._add_editions()
@@ -115,6 +128,7 @@ class PdfEditionTests(FullBuildTests):
         reader = (context.site / "authors/test_author/verse_work/pdf/index.html").read_text(encoding="utf-8")
         self.assertIn('data-url="../source.pdf"', reader)
         self.assertIn("मूल पृष्ठ", reader)
+        self.assertNotIn('class="pdf-edition"', reader)
         self.assertFalse((context.site / "authors/test_author/verse_work/pdf/").joinpath("anything").exists())
 
     def test_reader_clamps_requested_page(self):
