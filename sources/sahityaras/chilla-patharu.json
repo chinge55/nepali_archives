@@ -1,0 +1,918 @@
+{
+  "schema_version": 1,
+  "collection": "चिल्ला पातहरू",
+  "book_type": "collection",
+  "prepared_date": "2026-09-08",
+  "status": "first-pilot; included texts checked against source XHTML; not scan-proofread",
+  "source": {
+    "name": "Sahitya Ras (sahityaras.com)",
+    "book_url": "https://sahityaras.com/book/chilla-patharu/",
+    "repository_url": "https://github.com/sahityaras/chilla-patharu",
+    "revision": "ad7c67f1eefe42485f3cba9bf7a3c365fb74f069",
+    "package_document": "EPUB/content.opf",
+    "package_sha256": "4b20c6388cb94ef62053574c3247c17d39b8ea99f7f252f6a0bb441e8e0ac3c2",
+    "snapshot_verification": "34 cached text/package files matched the pinned repository blob IDs"
+  },
+  "author": {
+    "id": "devkota",
+    "name": "लक्ष्मीप्रसाद देवकोटा",
+    "name_roman": "Laxmi Prasad Devkota"
+  },
+  "rights": {
+    "status": "public-domain",
+    "basis": "Author died 1959; Nepal's Copyright Act 2059 grants life + 50 years, expiring 2009."
+  },
+  "edition": "चौथौँ, २०२३",
+  "publisher": "श्रीमती मनदेवी देवकोटा",
+  "bibliographic_source_url": "https://sahityaras.com/book/chilla-patharu/",
+  "review_scope": "All 22 poem transcriptions assessed for structure and overlap with the 228-work baseline. No original-page proofreading or automatic text correction.",
+  "rendering_conventions": [
+    "Explicit source double-br breaks remain stanza boundaries.",
+    "A source margin-top:-1lh marker joins the next page to the preceding stanza.",
+    "Source margin-inline-start:Nem becomes N Unicode em spaces.",
+    "The visible work title is stored in metadata and displayed by the reader; a body subtitle remains in the text.",
+    "Original Unicode joiners, narrow spaces, spellings, and inline numeral placement are retained."
+  ],
+  "documents": [
+    {
+      "path": "EPUB/text/coverpage.xhtml",
+      "manifest_id": "chapter_0",
+      "spine_position": 1,
+      "title": "आवरण पृष्ठ",
+      "sha256": "10ae7046b4ce763ec8fd1dcb0d51212c9aa1d9c8eaed158791d0e92fa24fbc22",
+      "classification": "wrapper_exclude",
+      "decision": "exclude",
+      "reason": "Publication wrapper/navigation, not literary text; bibliographic facts retained separately."
+    },
+    {
+      "path": "EPUB/text/titlepage.xhtml",
+      "manifest_id": "chapter_1",
+      "spine_position": 2,
+      "title": "शीर्षक पृष्ठ",
+      "sha256": "2fe1b0fe32203e5ff4fb26cf1c243dab6192cf80730ef7a9210996032c5ecf05",
+      "classification": "wrapper_exclude",
+      "decision": "exclude",
+      "reason": "Publication wrapper/navigation, not literary text; bibliographic facts retained separately."
+    },
+    {
+      "path": "EPUB/text/copyrightpage.xhtml",
+      "manifest_id": "chapter_2",
+      "spine_position": 3,
+      "title": "प्रतिलिपि अधिकार पृष्ठ",
+      "sha256": "462234d4fcdf0973aebcd4ceec26f2243d401a35188a6d620108937e7b45a85e",
+      "classification": "wrapper_exclude",
+      "decision": "exclude",
+      "reason": "Publication wrapper/navigation, not literary text; bibliographic facts retained separately."
+    },
+    {
+      "path": "EPUB/text/tocpage.xhtml",
+      "manifest_id": "chapter_3",
+      "spine_position": 4,
+      "title": "विषयसूची",
+      "sha256": "fd06b6e1cf48ba760ab72df925256d298b07f4f6228ab958f92b1d7488bf82c1",
+      "classification": "wrapper_exclude",
+      "decision": "exclude",
+      "reason": "Publication wrapper/navigation, not literary text; bibliographic facts retained separately."
+    },
+    {
+      "path": "EPUB/text/sampadakiya.xhtml",
+      "manifest_id": "chapter_4",
+      "spine_position": 5,
+      "title": "संपादकीय",
+      "sha256": "c778d22b0f31ee2f3b9d645d8167955e8ad006e13c21f0e06f5eccce238e4757",
+      "classification": "later_editorial_exclude",
+      "decision": "exclude",
+      "reason": "Third-party posthumous editorial signed शिवगोपाल रिसाल, dated सं. २०२१ कार्तिक १८; not an author preface."
+    },
+    {
+      "path": "EPUB/text/prarthana.xhtml",
+      "manifest_id": "chapter_5",
+      "spine_position": 6,
+      "title": "प्रार्थना",
+      "sha256": "e078df94fa5d1a3786eff7f8aeca94ea6ebbc588ea0db25eda706c9b44cff9db",
+      "classification": "poem",
+      "head_title": "प्रार्थना",
+      "source_url": "https://sahityaras.com/book/chilla-patharu/prarthana/",
+      "structural_audit": {
+        "stanzas": 5,
+        "verse_lines": 20,
+        "output_blocks": 5,
+        "continuation_markers": 0,
+        "indented_lines": 0,
+        "standalone_labels": [],
+        "inline_number_tokens": [
+          "॥१॥",
+          "॥२॥",
+          "॥३॥",
+          "॥४॥",
+          "॥५॥"
+        ]
+      },
+      "duplicate_review": [
+        "No meaningful passage-level duplicate/containment found across all 228 archived work texts using word-trigram and whitespace-free character-12-gram source containment comparisons; reviewed source boundaries and likely title aliases where applicable.",
+        "Existing प्रार्थनाको निशि is distinct: it opens पलक निमीलित आज निशि; source is five numbered Saraswati invocations opening सरस्वतीका कुमार हामि."
+      ],
+      "decision": "include",
+      "work_id": "prarthana",
+      "review": "accepted",
+      "reason": "No matching independent work or substantial containment found in the checked 228-work archive; source structure reviewed.",
+      "subtitle": null,
+      "outputs": {
+        "metadata.json": "0a293d1b88ea3babeb70e7f4268d501ef73a6687f7b1fde8e50c80b62428be83",
+        "text.txt": "933e701b35256cfb5522aaf08932deb972a4d38bfa5a6fc512fb43f7a988f560",
+        "extracted/index.html": "c8f865ae39c3e7c5b261122beb1a7d8099187396b8f782842bb801d21f8f6bb9"
+      }
+    },
+    {
+      "path": "EPUB/text/nepali-rashtriyagana.xhtml",
+      "manifest_id": "chapter_6",
+      "spine_position": 7,
+      "title": "नेपाली राष्ट्रियगान",
+      "sha256": "2166eae53573fd54dabf5e399108b68a747b8e754e7df615b24b5f73729ed575",
+      "classification": "poem",
+      "head_title": "नेपाली राष्ट्रियगान",
+      "source_url": "https://sahityaras.com/book/chilla-patharu/nepali-rashtriyagana/",
+      "structural_audit": {
+        "stanzas": 3,
+        "verse_lines": 37,
+        "output_blocks": 3,
+        "continuation_markers": 1,
+        "indented_lines": 1,
+        "standalone_labels": [
+          "(१)",
+          "(२)",
+          "(३)"
+        ],
+        "inline_number_tokens": []
+      },
+      "duplicate_review": [
+        "No meaningful passage-level duplicate/containment found across all 228 archived work texts using word-trigram and whitespace-free character-12-gram source containment comparisons; reviewed source boundaries and likely title aliases where applicable."
+      ],
+      "decision": "include",
+      "work_id": "nepali_rashtriyagan",
+      "review": "accepted",
+      "reason": "No matching independent work or substantial containment found in the checked 228-work archive; source structure reviewed.",
+      "subtitle": null,
+      "outputs": {
+        "metadata.json": "941c8ce20027c482f80889b211b0842b31feb11cbaa43a5287715e9d48150c53",
+        "text.txt": "99808d545c987050ad0a9ee5b83936769c760cfc9eb4c916a356d4a21745968a",
+        "extracted/index.html": "7c138e55c2c9ad8ec1bb76f64bd4517b81e50204fc1b629fb3afbe97285537e4"
+      }
+    },
+    {
+      "path": "EPUB/text/rashtrabhasha-nepali.xhtml",
+      "manifest_id": "chapter_7",
+      "spine_position": 8,
+      "title": "राष्ट्रभाषा नेपाली",
+      "sha256": "caf6e840f3134b2c313d69e3e5ee2fcff3f501da24efd52e27d3298003df0ea0",
+      "classification": "poem",
+      "head_title": "राष्ट्रभाषा नेपाली",
+      "source_url": "https://sahityaras.com/book/chilla-patharu/rashtrabhasha-nepali/",
+      "structural_audit": {
+        "stanzas": 6,
+        "verse_lines": 24,
+        "output_blocks": 6,
+        "continuation_markers": 0,
+        "indented_lines": 0,
+        "standalone_labels": [
+          "(१)",
+          "(२)",
+          "(३)",
+          "(४)",
+          "(५)",
+          "(६)"
+        ],
+        "inline_number_tokens": []
+      },
+      "duplicate_review": [
+        "No meaningful passage-level duplicate/containment found across all 228 archived work texts using word-trigram and whitespace-free character-12-gram source containment comparisons; reviewed source boundaries and likely title aliases where applicable."
+      ],
+      "decision": "include",
+      "work_id": "rashtrabhasha_nepali",
+      "review": "accepted",
+      "reason": "No matching independent work or substantial containment found in the checked 228-work archive; source structure reviewed.",
+      "subtitle": null,
+      "outputs": {
+        "metadata.json": "18a507dbb03588e5e57010989ec1ee172403d596f7f569643c8935db47129c0a",
+        "text.txt": "7a4fe649997434aa16cd93d69e8976c917be40953bd894ed09a29c93abba9c10",
+        "extracted/index.html": "3cbe5713d11e0c4dec7ce0ff9d612b6a7bb6287094858a94b49407cac1472112"
+      }
+    },
+    {
+      "path": "EPUB/text/matrribhumi-prati.xhtml",
+      "manifest_id": "chapter_8",
+      "spine_position": 9,
+      "title": "मातृभूमि प्रति",
+      "sha256": "1b0bc1b6414af318d9728064e6fdc3231ceb191eba8d87434d049bedeb4626a8",
+      "classification": "poem",
+      "head_title": "मातृभूमि प्रति",
+      "source_url": "https://sahityaras.com/book/chilla-patharu/matrribhumi-prati/",
+      "structural_audit": {
+        "stanzas": 1,
+        "verse_lines": 21,
+        "output_blocks": 1,
+        "continuation_markers": 0,
+        "indented_lines": 0,
+        "standalone_labels": [],
+        "inline_number_tokens": []
+      },
+      "duplicate_review": [
+        "No meaningful passage-level duplicate/containment found across all 228 archived work texts using word-trigram and whitespace-free character-12-gram source containment comparisons; reviewed source boundaries and likely title aliases where applicable.",
+        "Existing मातृभूमिको माटो रुन्छ is distinct: its refrain कसले सुन्छ ... मातृभूमिको माटो रुन्छ and corresponding body do not match this direct motherland invocation."
+      ],
+      "decision": "include",
+      "work_id": "matribhumi_prati",
+      "review": "accepted",
+      "reason": "No matching independent work or substantial containment found in the checked 228-work archive; source structure reviewed.",
+      "subtitle": null,
+      "outputs": {
+        "metadata.json": "610e1f676b742eed6afe7c1a7d33c9bbe51cfa5b7a3217e97647a3d6076b55ba",
+        "text.txt": "a332c520982bd4bcc60a9edfb55c356dbb4bf19e0f9581634ac6c44602569b32",
+        "extracted/index.html": "b033e62d807333d8eeade1fd845bbb67567b199bb913ed0f6b06a7095889b402"
+      }
+    },
+    {
+      "path": "EPUB/text/arohi-prati.xhtml",
+      "manifest_id": "chapter_9",
+      "spine_position": 10,
+      "title": "आरोही प्रति",
+      "sha256": "2d2ce4684313111bfd1e8d5c5a540225813b9ebe558fc864a0866bdfd8681f45",
+      "classification": "poem",
+      "head_title": "आरोही प्रति",
+      "source_url": "https://sahityaras.com/book/chilla-patharu/arohi-prati/",
+      "structural_audit": {
+        "stanzas": 15,
+        "verse_lines": 60,
+        "output_blocks": 15,
+        "continuation_markers": 2,
+        "indented_lines": 0,
+        "standalone_labels": [
+          "(क)",
+          "(ख)",
+          "(ग)",
+          "(घ)",
+          "(ङ)",
+          "(च)",
+          "(छ)",
+          "(ज)",
+          "(झ)",
+          "(ञ)",
+          "(ट)",
+          "(ठ)",
+          "(ड)",
+          "(ढ)",
+          "(ण)"
+        ],
+        "inline_number_tokens": []
+      },
+      "duplicate_review": [
+        "Both texts run through 15 lettered units क–ण with corresponding four-line stanzas; matching opening climb/address to Sherpa, middle summit/mountain imagery, and final विश्व उठ्ने... passage establish work identity.",
+        "Wording differs beyond punctuation: source ड has जस्ले बाल्ला जुगजुग नयाँ दोपको रात-हाँक versus archived जस्ले बाल्ला गजुग नयाँ दीपको –रातहाँक; source ढ has भूमिको जीत-चूली and पाद-धूली versus archived भूमिको–चूलीजत and लौ–धूलीपाद. Neither transcription should silently correct the other.",
+        "Source letters use parentheses; archive uses क. etc. Source page transitions split झ and ड mid-stanza. Do not create extra stanza boundaries merely at XHTML poem-container boundaries."
+      ],
+      "decision": "map-existing",
+      "work_id": "arohiprati",
+      "review": "accepted",
+      "reason": "Same literary work in a different transcription/edition; retain existing text, numbering and source. Add only the collection association.",
+      "baseline_text_sha256": "8a8b83e2e4ded9cc2fad50d00262952599e60251e51e1be8905d47c5e888384e",
+      "baseline_metadata_sha256": "5b7d5f31138667ff458d156e1d24f00ddb56d7da8f11811b2d817cead61ac90e",
+      "metadata_output_sha256": "b11e62cda2354b64307db73a8b0df5e6292963b025d847462c2d63bbfc801aed"
+    },
+    {
+      "path": "EPUB/text/minapachasa.xhtml",
+      "manifest_id": "chapter_10",
+      "spine_position": 11,
+      "title": "मीनपचास",
+      "sha256": "5bbdf5d22b2ad4729cffa11fd8a658dd85f0acd7a8740a3049b4b2e589d720db",
+      "classification": "poem",
+      "head_title": "मीनपचास",
+      "source_url": "https://sahityaras.com/book/chilla-patharu/minapachasa/",
+      "structural_audit": {
+        "stanzas": 8,
+        "verse_lines": 32,
+        "output_blocks": 8,
+        "continuation_markers": 0,
+        "indented_lines": 0,
+        "standalone_labels": [
+          "(१)",
+          "(२)",
+          "(३)",
+          "(४)",
+          "(५)",
+          "(६)",
+          "(७)",
+          "(८)"
+        ],
+        "inline_number_tokens": []
+      },
+      "duplicate_review": [
+        "No meaningful passage-level duplicate/containment found across all 228 archived work texts using word-trigram and whitespace-free character-12-gram source containment comparisons; reviewed source boundaries and likely title aliases where applicable."
+      ],
+      "decision": "include",
+      "work_id": "minapachas",
+      "review": "accepted",
+      "reason": "No matching independent work or substantial containment found in the checked 228-work archive; source structure reviewed.",
+      "subtitle": null,
+      "outputs": {
+        "metadata.json": "8b976f0db1f89ee88142ed0c218db33d6c9fba36034eb1f2631cdc54da72d54b",
+        "text.txt": "c2cb2cb14923554c517a482a1273f01b85e14ecdeb1721b43c58470e01f60b4c",
+        "extracted/index.html": "6600cad8beaf59a5574a11041cc426867e9ba05b615335a8875722b2ca502aae"
+      }
+    },
+    {
+      "path": "EPUB/text/bhotele-saikala-dekhcha.xhtml",
+      "manifest_id": "chapter_11",
+      "spine_position": 12,
+      "title": "भोटेले साईकल देख्छ",
+      "sha256": "431315cc6392405c6d600614359408b32cf775418e2580b236e9d857a9754063",
+      "classification": "poem",
+      "head_title": "भोटेले साईकल देख्छ",
+      "source_url": "https://sahityaras.com/book/chilla-patharu/bhotele-saikala-dekhcha/",
+      "structural_audit": {
+        "stanzas": 7,
+        "verse_lines": 40,
+        "output_blocks": 8,
+        "continuation_markers": 1,
+        "indented_lines": 7,
+        "standalone_labels": [
+          "(१)",
+          "(२)",
+          "(३)",
+          "(४)",
+          "(५)",
+          "(६)",
+          "(७)"
+        ],
+        "inline_number_tokens": []
+      },
+      "duplicate_review": [
+        "No meaningful passage-level duplicate/containment found across all 228 archived work texts using word-trigram and whitespace-free character-12-gram source containment comparisons; reviewed source boundaries and likely title aliases where applicable."
+      ],
+      "decision": "include",
+      "work_id": "bhotele_saikal_dekhchha",
+      "review": "accepted",
+      "reason": "No matching independent work or substantial containment found in the checked 228-work archive; source structure reviewed.",
+      "subtitle": "(हँस्यौंली )",
+      "outputs": {
+        "metadata.json": "cfea22387021aeeefdc40c58a720a582e4885308e8d13a2f5cfabd7aa09779bb",
+        "text.txt": "c6a8c4aa0fee5e4bbb3356f5022ec5fafd792d8231869c0c49ad55a4d3f5658b",
+        "extracted/index.html": "6899df40d71626216f2f09ba97cb9577c6f7ae385bc2ac8b8c38f1007cd485fe"
+      }
+    },
+    {
+      "path": "EPUB/text/vasanta-pari.xhtml",
+      "manifest_id": "chapter_12",
+      "spine_position": 13,
+      "title": "वसंत-परी",
+      "sha256": "edb71128033ba4d79739216519bdf2d130e52a1d81894d5e6a933c7f1d8f0dda",
+      "classification": "poem",
+      "head_title": "वसंत-परी",
+      "source_url": "https://sahityaras.com/book/chilla-patharu/vasanta-pari/",
+      "structural_audit": {
+        "stanzas": 7,
+        "verse_lines": 29,
+        "output_blocks": 7,
+        "continuation_markers": 1,
+        "indented_lines": 0,
+        "standalone_labels": [
+          "(१)",
+          "(२)",
+          "(३)",
+          "(४)",
+          "(५)",
+          "(६)",
+          "(७)"
+        ],
+        "inline_number_tokens": []
+      },
+      "duplicate_review": [
+        "No meaningful passage-level duplicate/containment found across all 228 archived work texts using word-trigram and whitespace-free character-12-gram source containment comparisons; reviewed source boundaries and likely title aliases where applicable.",
+        "Existing फूल-परी and वसन्त did not match body-text comparison. फूल-परी is a ten-stanza dialogue with garden flowers; source is a seven-unit spring-fairy narrative."
+      ],
+      "decision": "include",
+      "work_id": "basanta_pari",
+      "review": "accepted",
+      "reason": "No matching independent work or substantial containment found in the checked 228-work archive; source structure reviewed.",
+      "subtitle": null,
+      "outputs": {
+        "metadata.json": "d1792dddfb7d171151ef3896a7f66bf71b216d4b3bb4b07d5ccaa381c0a5950c",
+        "text.txt": "abcb220cc0bbfb339b1d3d8d96edda0deb0674ab522be479ee32c9d0e9fa45eb",
+        "extracted/index.html": "123930712f310029175a846c8807b5cc84fc3d4f1e1114080b92fb26365f8083"
+      }
+    },
+    {
+      "path": "EPUB/text/prema.xhtml",
+      "manifest_id": "chapter_13",
+      "spine_position": 14,
+      "title": "प्रेम",
+      "sha256": "4e4e47f8ca7d879a9e155f22f11c388c9e2865635d7905fe0805d40a91741faf",
+      "classification": "poem",
+      "head_title": "प्रेम",
+      "source_url": "https://sahityaras.com/book/chilla-patharu/prema/",
+      "structural_audit": {
+        "stanzas": 3,
+        "verse_lines": 22,
+        "output_blocks": 3,
+        "continuation_markers": 0,
+        "indented_lines": 0,
+        "standalone_labels": [
+          "(१)",
+          "(२)",
+          "(३)"
+        ],
+        "inline_number_tokens": []
+      },
+      "duplicate_review": [
+        "Possible substantially different variant of existing प्रेमपत्र (premapatr); identity is not confirmed. Source has 3 numbered stanzas; archive has 7 lettered sections.",
+        "Source opening तारीफ लाख झुले उपवनमा / केवल आँखा रमायो parallels archive तारीफका कति कुसुम फुलेथे, यात्राको उपवनमा / अरुले आँखा रमाए, followed in both by contrast between others and complete/personal adoption.",
+        "Source stanza 3 विश्व बिलाउनु बिन्दु बनीकन parallels archive च विश्व बिलाए बिन्दु बनी तब बिन्दु फुरे भै विश्व–ध्वनि. This ordered conceptual and lexical correspondence warrants edition review despite very low literal n-gram similarity.",
+        "Defer creation and do not merge or retitle either text until reference editions establish whether they are independent works, drafts, or variants."
+      ],
+      "decision": "defer",
+      "reason": "Possible variant/partial relationship with existing प्रेमपत्र; compare editions before creating a new work.",
+      "candidate_work_id": "premapatr"
+    },
+    {
+      "path": "EPUB/text/gahuko-samjhana.xhtml",
+      "manifest_id": "chapter_14",
+      "spine_position": 15,
+      "title": "गहूँको संझना",
+      "sha256": "4fee8aec9ed8a747228dbb4993640e6cf627b3228a0ac935809aef382f205f49",
+      "classification": "poem",
+      "head_title": "गहूँको संझना",
+      "source_url": "https://sahityaras.com/book/chilla-patharu/gahuko-samjhana/",
+      "structural_audit": {
+        "stanzas": 1,
+        "verse_lines": 16,
+        "output_blocks": 1,
+        "continuation_markers": 0,
+        "indented_lines": 0,
+        "standalone_labels": [],
+        "inline_number_tokens": []
+      },
+      "duplicate_review": [
+        "No meaningful passage-level duplicate/containment found across all 228 archived work texts using word-trigram and whitespace-free character-12-gram source containment comparisons; reviewed source boundaries and likely title aliases where applicable."
+      ],
+      "decision": "include",
+      "work_id": "gahuko_sanjhana",
+      "review": "accepted",
+      "reason": "No matching independent work or substantial containment found in the checked 228-work archive; source structure reviewed.",
+      "subtitle": null,
+      "outputs": {
+        "metadata.json": "1e12586d5ca4ae491c424c41d78c61d964285cac667bfbf1d1b8ceecd6a3d8c1",
+        "text.txt": "eeb15d73ced07e99e9c8c1df9085504da74800ce4123dcd0913d1ba79fcccdba",
+        "extracted/index.html": "a6110cb2195c928a5e198606a56282f227e276450ebe5f5f4a783a64d4366c65"
+      }
+    },
+    {
+      "path": "EPUB/text/chilla-pataharu.xhtml",
+      "manifest_id": "chapter_15",
+      "spine_position": 16,
+      "title": "चिल्ला पातहरू",
+      "sha256": "ddb8a370aea18eb27fa78c2561d6d37389d1824f50396b266b2354eed50191a5",
+      "classification": "poem",
+      "head_title": "चिल्ला पातहरू",
+      "source_url": "https://sahityaras.com/book/chilla-patharu/chilla-pataharu/",
+      "structural_audit": {
+        "stanzas": 4,
+        "verse_lines": 20,
+        "output_blocks": 4,
+        "continuation_markers": 0,
+        "indented_lines": 1,
+        "standalone_labels": [
+          "(१)",
+          "(२)",
+          "(३)",
+          "(४)"
+        ],
+        "inline_number_tokens": []
+      },
+      "duplicate_review": [
+        "No meaningful passage-level duplicate/containment found across all 228 archived work texts using word-trigram and whitespace-free character-12-gram source containment comparisons; reviewed source boundaries and likely title aliases where applicable."
+      ],
+      "decision": "include",
+      "work_id": "chilla_pataharu",
+      "review": "accepted",
+      "reason": "No matching independent work or substantial containment found in the checked 228-work archive; source structure reviewed.",
+      "subtitle": null,
+      "outputs": {
+        "metadata.json": "cb32004a91da8917d44a7ff482ab546c3e3ff493f7e296af54331a5617ea4aff",
+        "text.txt": "d87340e4eb004382da0830848ea33ac0842afb8c20bfaee3674fcb13e0abf493",
+        "extracted/index.html": "5c2bf1f1095af5b4abccc11f891a8421b54377f1edf589fa0c543c494b1a6b26"
+      }
+    },
+    {
+      "path": "EPUB/text/sauna.xhtml",
+      "manifest_id": "chapter_16",
+      "spine_position": 17,
+      "title": "साउन",
+      "sha256": "d30cb4d67059ae16853af80e799f1e58e34cf415c1c299436cca411a01339a9d",
+      "classification": "poem",
+      "head_title": "साउन",
+      "source_url": "https://sahityaras.com/book/chilla-patharu/sauna/",
+      "structural_audit": {
+        "stanzas": 4,
+        "verse_lines": 34,
+        "output_blocks": 4,
+        "continuation_markers": 0,
+        "indented_lines": 0,
+        "standalone_labels": [
+          "(१)",
+          "(२)",
+          "(३)",
+          "(४)"
+        ],
+        "inline_number_tokens": []
+      },
+      "duplicate_review": [
+        "No meaningful passage-level duplicate/containment found across all 228 archived work texts using word-trigram and whitespace-free character-12-gram source containment comparisons; reviewed source boundaries and likely title aliases where applicable.",
+        "Explicitly ruled out title alias to existing सावन (saban): source starts भोली साउन आउँछ रे ! भोलि साउन आउँछ and ends हरियोको राजमा कलकल मुजूर चढी जाउला; archive starts आज सावन पावन दिवस, धूमिल, शीतल प्रातः and consists of two sections repeating that refrain. No shared normalized word trigrams. Treat as distinct work."
+      ],
+      "decision": "defer",
+      "reason": "Two inline uncertainty annotations cannot be attributed from XHTML alone. Compare the printed source before publishing; retain all characters in the unpublished draft."
+    },
+    {
+      "path": "EPUB/text/sadeko-sukula.xhtml",
+      "manifest_id": "chapter_17",
+      "spine_position": 18,
+      "title": "सडेको सुकुल",
+      "sha256": "3fb764b81997226343185649b56c39f188baa103a9078ae0357b18a21e490917",
+      "classification": "poem",
+      "head_title": "सडेको सुकुल",
+      "source_url": "https://sahityaras.com/book/chilla-patharu/sadeko-sukula/",
+      "structural_audit": {
+        "stanzas": 5,
+        "verse_lines": 21,
+        "output_blocks": 5,
+        "continuation_markers": 0,
+        "indented_lines": 0,
+        "standalone_labels": [
+          "(१)",
+          "(२)",
+          "(३)",
+          "(४)",
+          "(५)"
+        ],
+        "inline_number_tokens": []
+      },
+      "duplicate_review": [
+        "No meaningful passage-level duplicate/containment found across all 228 archived work texts using word-trigram and whitespace-free character-12-gram source containment comparisons; reviewed source boundaries and likely title aliases where applicable.",
+        "Existing सुकुलमाथि is a prose essay on sitting/writing on a mat, not this numbered verse poem; no containment found."
+      ],
+      "decision": "include",
+      "work_id": "sadeko_sukul",
+      "review": "accepted",
+      "reason": "No matching independent work or substantial containment found in the checked 228-work archive; source structure reviewed.",
+      "subtitle": null,
+      "outputs": {
+        "metadata.json": "0898b37ae49be3b386a2363bc073a92b0cea7c22bf7415fca136b5d42a3a2bbc",
+        "text.txt": "ba0602c67bab41f3689fa83880ed7986ff3cccb9a2c60b75dfd061cb7dc14207",
+        "extracted/index.html": "61379c8737e90387d96b56ceafc7769996da92e87369e5132750b763569c36b8"
+      }
+    },
+    {
+      "path": "EPUB/text/hamro-dosha.xhtml",
+      "manifest_id": "chapter_18",
+      "spine_position": 19,
+      "title": "हाम्रो दोष",
+      "sha256": "451950622c3385314c6074bcb04be32e8ef52641dcf3ca33e7c5f10dba215406",
+      "classification": "poem",
+      "head_title": "हाम्रो दोष",
+      "source_url": "https://sahityaras.com/book/chilla-patharu/hamro-dosha/",
+      "structural_audit": {
+        "stanzas": 9,
+        "verse_lines": 68,
+        "output_blocks": 9,
+        "continuation_markers": 1,
+        "indented_lines": 0,
+        "standalone_labels": [
+          "(क)",
+          "(ख)",
+          "(ग)",
+          "(घ)",
+          "(ङ)",
+          "(च)",
+          "(छ)",
+          "(ज)",
+          "(झ)"
+        ],
+        "inline_number_tokens": []
+      },
+      "duplicate_review": [
+        "No meaningful passage-level duplicate/containment found across all 228 archived work texts using word-trigram and whitespace-free character-12-gram source containment comparisons; reviewed source boundaries and likely title aliases where applicable."
+      ],
+      "decision": "include",
+      "work_id": "hamro_dosh",
+      "review": "accepted",
+      "reason": "No matching independent work or substantial containment found in the checked 228-work archive; source structure reviewed.",
+      "subtitle": null,
+      "outputs": {
+        "metadata.json": "9bce99530d5ba896afb56efe2e44b4c5f625bd831151ec7de1e11690d9563991",
+        "text.txt": "e15bad1c740d24824a5e450dc35b61c5cf3400477067465c5ac39fdc657ce491",
+        "extracted/index.html": "ca8e25d1a78176e68f6b73d069d533ecfcb31348bcfa76a17d6d1b8be4ef6f63"
+      }
+    },
+    {
+      "path": "EPUB/text/chidiyaharu.xhtml",
+      "manifest_id": "chapter_19",
+      "spine_position": 20,
+      "title": "चिडियाहरू",
+      "sha256": "898f0b068c115b1e6d41fe558ed9ece999dbd3edb718ae35b6157fb2b045b4a7",
+      "classification": "poem",
+      "head_title": "चिडियाहरू",
+      "source_url": "https://sahityaras.com/book/chilla-patharu/chidiyaharu/",
+      "structural_audit": {
+        "stanzas": 3,
+        "verse_lines": 13,
+        "output_blocks": 3,
+        "continuation_markers": 0,
+        "indented_lines": 0,
+        "standalone_labels": [],
+        "inline_number_tokens": []
+      },
+      "duplicate_review": [
+        "No meaningful passage-level duplicate/containment found across all 228 archived work texts using word-trigram and whitespace-free character-12-gram source containment comparisons; reviewed source boundaries and likely title aliases where applicable."
+      ],
+      "decision": "include",
+      "work_id": "chidiyaharu",
+      "review": "accepted",
+      "reason": "No matching independent work or substantial containment found in the checked 228-work archive; source structure reviewed.",
+      "subtitle": null,
+      "outputs": {
+        "metadata.json": "ca9beaa1df5c5a8e90e894e5395453335bad23b75a501129a0e5a17e49d547eb",
+        "text.txt": "1deb409baffdbc745022b3429590232ef08d38f80a8024aab6a22d3b8761f6a7",
+        "extracted/index.html": "ba21368452bd3ccc8373043381056927dce9b3407c043a6df8162f59c9d19373"
+      }
+    },
+    {
+      "path": "EPUB/text/kukhuro-prati.xhtml",
+      "manifest_id": "chapter_20",
+      "spine_position": 21,
+      "title": "कुखुरो प्रति",
+      "sha256": "283a62f1978a5c8c2c52338a49392c6eaf3db5fdecb5a7c129dfcbd7359bd914",
+      "classification": "poem",
+      "head_title": "कुखुरो प्रति",
+      "source_url": "https://sahityaras.com/book/chilla-patharu/kukhuro-prati/",
+      "structural_audit": {
+        "stanzas": 7,
+        "verse_lines": 28,
+        "output_blocks": 7,
+        "continuation_markers": 0,
+        "indented_lines": 0,
+        "standalone_labels": [],
+        "inline_number_tokens": []
+      },
+      "duplicate_review": [
+        "No meaningful passage-level duplicate/containment found across all 228 archived work texts using word-trigram and whitespace-free character-12-gram source containment comparisons; reviewed source boundaries and likely title aliases where applicable.",
+        "Existing कुखुरो is a short first-person rooster poem opening रातले रोइरहिथिन् लाखन; this source directly addresses the rooster in longer metrical stanzas opening मीठो मिर्मिरको अगाडि. Distinct works."
+      ],
+      "decision": "include",
+      "work_id": "kukhuro_prati",
+      "review": "accepted",
+      "reason": "No matching independent work or substantial containment found in the checked 228-work archive; source structure reviewed.",
+      "subtitle": null,
+      "outputs": {
+        "metadata.json": "0a35a9e8e1c4b2ce2b0ab880430b011a5327a921eb8b4d24a328d89353874860",
+        "text.txt": "03ad957a559cc3a9e2b79a9f33c3ecd1cb573209eee362eeb38528d68b66966d",
+        "extracted/index.html": "7ed8759f68e450f833b3006cfaa18e7450ea6a2bd1fc0fce90abafbeb2256797"
+      }
+    },
+    {
+      "path": "EPUB/text/eka-ayare-sajha.xhtml",
+      "manifest_id": "chapter_21",
+      "spine_position": 22,
+      "title": "एक अयारे साँझ",
+      "sha256": "b4d0c5433cf7aad53e8cba918f7b0536767b683fa465f8fe56eaee54e84c333d",
+      "classification": "poem",
+      "head_title": "एक अयारे साँझ",
+      "source_url": "https://sahityaras.com/book/chilla-patharu/eka-ayare-sajha/",
+      "structural_audit": {
+        "stanzas": 2,
+        "verse_lines": 8,
+        "output_blocks": 2,
+        "continuation_markers": 0,
+        "indented_lines": 0,
+        "standalone_labels": [],
+        "inline_number_tokens": []
+      },
+      "duplicate_review": [
+        "No meaningful passage-level duplicate/containment found across all 228 archived work texts using word-trigram and whitespace-free character-12-gram source containment comparisons; reviewed source boundaries and likely title aliases where applicable.",
+        "Existing सन्ध्या is a long ornate evening address opening ललितपुरको हाइ–कलाको; this eight-line poem opens प्रयासी सन्ध्याले. No containment found."
+      ],
+      "decision": "include",
+      "work_id": "ek_ayare_sajh",
+      "review": "accepted",
+      "reason": "No matching independent work or substantial containment found in the checked 228-work archive; source structure reviewed.",
+      "subtitle": null,
+      "outputs": {
+        "metadata.json": "13e35149d35755518f33670a5a9631ceaec0c397cb8bedcfa4f4bd4393466c59",
+        "text.txt": "3289ef561919ee1c44391f7e8bf2f71ba0a9c8d0e3782518927016678d52c0a3",
+        "extracted/index.html": "0fd2adcc3840bac4aa57a543cd51b1694ee6518c558761b1a1a7f3b90ef335ac"
+      }
+    },
+    {
+      "path": "EPUB/text/maghako-khuleko-bihana.xhtml",
+      "manifest_id": "chapter_22",
+      "spine_position": 23,
+      "title": "माघको खुलेको बिहान",
+      "sha256": "f692f23cce2d1f9cf748fd6762a519bbde04fe62b82f3b40ddbfc4ad4771eeaf",
+      "classification": "poem",
+      "head_title": "माघको खुलेको बिहान",
+      "source_url": "https://sahityaras.com/book/chilla-patharu/maghako-khuleko-bihana/",
+      "structural_audit": {
+        "stanzas": 1,
+        "verse_lines": 21,
+        "output_blocks": 1,
+        "continuation_markers": 0,
+        "indented_lines": 0,
+        "standalone_labels": [],
+        "inline_number_tokens": []
+      },
+      "duplicate_review": [
+        "Same title and matching start क्या खुल्यो बिहान आज, dawn/Valmiki imagery, bird flight, and inner-bird passage establish identity.",
+        "Source contains 21 unnumbered verse lines and ends मेरो भित्री चिडिया लाग्यो कुर्लन पंख चाली. Existing archive has nine lettered sections क–झ; analogous inner-bird passage is only at ङ, followed by four further sections ending जित्न मृत्यु जाली.",
+        "Earlier source passages also differ substantially: source राम प्रात आयो and आकाश-श्वाश-लहर versus archived अभिराम क्या यो / रात प्रातः आयो and सुवर्ण ज्योति–लहर. Shorter source may reflect edition variation or loss; the audit cannot decide without scans. Preserve existing text and defer replacement."
+      ],
+      "decision": "map-existing",
+      "work_id": "maghako_khuleko_bihan",
+      "review": "accepted",
+      "reason": "Same literary work in a different transcription/edition; retain existing text, numbering and source. Add only the collection association.",
+      "baseline_text_sha256": "d72c4da60157297fcb523bebe80fdae04978613042ffb2212f2a2d111979a188",
+      "baseline_metadata_sha256": "befcbdcb06e082356fb6af46a6c7a0c4a319ea92f791f028e55eb9b3d3946f22",
+      "metadata_output_sha256": "0d1e8dd50031843a1ac3f62c5a53521ff92ff01d1125a8d77f6135b9343b3a73"
+    },
+    {
+      "path": "EPUB/text/salapate-phatyangrolai.xhtml",
+      "manifest_id": "chapter_23",
+      "spine_position": 24,
+      "title": "सालपाते फट्याङ्ग्रोलाई",
+      "sha256": "04255506b3a61fea1232899de46083b6b33cc71c44643080c10209855a39619b",
+      "classification": "poem",
+      "head_title": "सालपाते फट्याङ्ग्रोलाई",
+      "source_url": "https://sahityaras.com/book/chilla-patharu/salapate-phatyangrolai/",
+      "structural_audit": {
+        "stanzas": 3,
+        "verse_lines": 22,
+        "output_blocks": 3,
+        "continuation_markers": 0,
+        "indented_lines": 2,
+        "standalone_labels": [],
+        "inline_number_tokens": []
+      },
+      "duplicate_review": [
+        "Opening चिल्लो ताजा हरियो सुन्दर / सालको नकली पात and final जादूको ... परिणति दिनमा / दूर नसक्ला establish identity across the poem.",
+        "Existing archive labels four units क–घ; source has no lettered labels and groups the concluding passage with the previous block.",
+        "Lexical differences include source विसालको शाल versus archived विशालताका साल; source अभिष्ट आवश्यक बाबु जो versus archived अभीष्ट आवश्यक भावुक जो. These are unresolved transcription/edition differences, not authorized corrections."
+      ],
+      "decision": "map-existing",
+      "work_id": "salapate_phatyanggrolai",
+      "review": "accepted",
+      "reason": "Same literary work in a different transcription/edition; retain existing text, numbering and source. Add only the collection association.",
+      "baseline_text_sha256": "9bfb228245707b737ad6b55647822629442487b206580bd5995b5cb57942f2bc",
+      "baseline_metadata_sha256": "1b0d38c62adb478ba00131139e24f0e5e937b5b6249a88b0f38158f10dde1375",
+      "metadata_output_sha256": "7f393612c98bfff8041f618a752aef6489e4bc8134ff24824adbc10d42c578a5"
+    },
+    {
+      "path": "EPUB/text/thula-ra-sanasanga.xhtml",
+      "manifest_id": "chapter_24",
+      "spine_position": 25,
+      "title": "ठूला र सानासंग",
+      "sha256": "d77c98f15bcd1375091f77fe08b03ad96c85b660e39f6008fed8b516a5ae262e",
+      "classification": "poem",
+      "head_title": "ठुला र सानासंग",
+      "source_url": "https://sahityaras.com/book/chilla-patharu/thula-ra-sanasanga/",
+      "structural_audit": {
+        "stanzas": 3,
+        "verse_lines": 10,
+        "output_blocks": 3,
+        "continuation_markers": 0,
+        "indented_lines": 0,
+        "standalone_labels": [
+          "(क)",
+          "(ख)",
+          "(ग)"
+        ],
+        "inline_number_tokens": []
+      },
+      "duplicate_review": [
+        "No meaningful passage-level duplicate/containment found across all 228 archived work texts using word-trigram and whitespace-free character-12-gram source containment comparisons; reviewed source boundaries and likely title aliases where applicable."
+      ],
+      "decision": "include",
+      "work_id": "thula_ra_sanasang",
+      "review": "accepted",
+      "reason": "No matching independent work or substantial containment found in the checked 228-work archive; source structure reviewed.",
+      "subtitle": null,
+      "outputs": {
+        "metadata.json": "dc7d0bf70170819535102f81298fd235c3e69b0955d0cfaab36a3a0bc4c8d088",
+        "text.txt": "4c45f2ecf9a6bbaae9f03f5bb4805aa89b076bd7dd537a71b55782d8d664f8ea",
+        "extracted/index.html": "05fc21f0ceabe5f33ce83dc010295061e823ee1e4021c3ef2887fec3aa96da21"
+      }
+    },
+    {
+      "path": "EPUB/text/tina-svargavasi-bachchako-samjhana.xhtml",
+      "manifest_id": "chapter_25",
+      "spine_position": 26,
+      "title": "तीन स्वर्गवासी बच्चाको संझना",
+      "sha256": "8556d262cfdceced1c01eafba661ae6f1568aac29e18509417233773acaf16b1",
+      "classification": "poem",
+      "head_title": "तीन स्वर्गवासी बच्चाको संझना",
+      "source_url": "https://sahityaras.com/book/chilla-patharu/tina-svargavasi-bachchako-samjhana/",
+      "structural_audit": {
+        "stanzas": 4,
+        "verse_lines": 18,
+        "output_blocks": 4,
+        "continuation_markers": 0,
+        "indented_lines": 0,
+        "standalone_labels": [
+          "(क)",
+          "(ख)",
+          "(ग)",
+          "(घ)"
+        ],
+        "inline_number_tokens": []
+      },
+      "duplicate_review": [
+        "No meaningful passage-level duplicate/containment found across all 228 archived work texts using word-trigram and whitespace-free character-12-gram source containment comparisons; reviewed source boundaries and likely title aliases where applicable.",
+        "Existing पितृविलाप concerns children in an airplane accident and opens दउगका तारा; source opens सिमसिम पानी and mourns three children with घर/चरी imagery. Existing मेरी शिशु is prose. No duplicate or containment found."
+      ],
+      "decision": "include",
+      "work_id": "tin_swargabasi_bachchako_sanjhana",
+      "review": "accepted",
+      "reason": "No matching independent work or substantial containment found in the checked 228-work archive; source structure reviewed.",
+      "subtitle": null,
+      "outputs": {
+        "metadata.json": "24a3b3c88d680c3998240cd8cbb4b9e89a15f1c0daf9472c9c35bef69a3f2eea",
+        "text.txt": "9c753969b6ac97c887557c68f12d923edb7f08b60fa19b1caf731b356aca6cb9",
+        "extracted/index.html": "2a316979f290f68e5b0489d38fee205643885c24d1cdb3d38d511fa71505bbb2"
+      }
+    },
+    {
+      "path": "EPUB/text/tara.xhtml",
+      "manifest_id": "chapter_26",
+      "spine_position": 27,
+      "title": "तारा",
+      "sha256": "35394777d738e95397355b8be8cc7650e16c3843b436bb677053940a1b51df5e",
+      "classification": "poem",
+      "head_title": "तारा",
+      "source_url": "https://sahityaras.com/book/chilla-patharu/tara/",
+      "structural_audit": {
+        "stanzas": 8,
+        "verse_lines": 32,
+        "output_blocks": 8,
+        "continuation_markers": 1,
+        "indented_lines": 0,
+        "standalone_labels": [
+          "(१)",
+          "(२)",
+          "(३)",
+          "(४)",
+          "(५)",
+          "(६)",
+          "(७)",
+          "(८)"
+        ],
+        "inline_number_tokens": []
+      },
+      "duplicate_review": [
+        "No meaningful passage-level duplicate/containment found across all 228 archived work texts using word-trigram and whitespace-free character-12-gram source containment comparisons; reviewed source boundaries and likely title aliases where applicable.",
+        "Existing तारा तारा starts निशिको बेला, चल्छु अकेला and does not contain this eight-stanza star address opening झिकन, झिक चमचम तारा."
+      ],
+      "decision": "include",
+      "work_id": "tara",
+      "review": "accepted",
+      "reason": "No matching independent work or substantial containment found in the checked 228-work archive; source structure reviewed.",
+      "subtitle": null,
+      "outputs": {
+        "metadata.json": "6c19715115bd34f9abcf2881f43b22a23297fc0121aa76741abe465ab3ca374c",
+        "text.txt": "5fa7e93ff5d18f2ee6e2516f332d19699cd24db1ee79d4954e96cf314c13c3cd",
+        "extracted/index.html": "6497a939f866449bc6b26b367024a54868c6368f7adf37b1e3580c4185310d94"
+      }
+    },
+    {
+      "path": "EPUB/cover.xhtml",
+      "manifest_id": "cover",
+      "spine_position": null,
+      "title": "Cover",
+      "sha256": "b70c9815aca4998ba4f68b74731f6132fb67806a79a102a6ae823d5edb42eb93",
+      "classification": "non_spine_wrapper_exclude",
+      "decision": "exclude",
+      "reason": "Publication wrapper/navigation, not literary text; bibliographic facts retained separately."
+    },
+    {
+      "path": "EPUB/nav.xhtml",
+      "manifest_id": "nav",
+      "spine_position": null,
+      "title": "चिल्ला पातहरू",
+      "sha256": "3204328acb7ab44a8edb5e7d690c7ab46230f2396e336e5366f521bd2430a8bf",
+      "classification": "non_spine_wrapper_exclude",
+      "decision": "exclude",
+      "reason": "Publication wrapper/navigation, not literary text; bibliographic facts retained separately."
+    }
+  ],
+  "counts": {
+    "exclude": 7,
+    "include": 17,
+    "map-existing": 3,
+    "defer": 2
+  }
+}

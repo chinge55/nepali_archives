@@ -1,0 +1,48 @@
+{
+  "id": "m_arko_junima_pani_pudko_banu",
+  "title": "म अर्को जुनीमा पनि पुड्को बनूँ",
+  "title_roman": "M Arko Junima Pani Pudko Banu",
+  "subtitle": null,
+  "author": {
+    "id": "hriday_chandra_sinh_pradhan",
+    "name": "हृदयचन्द्रसिंह प्रधान",
+    "name_roman": "Hridaya Chandra Singh Pradhan"
+  },
+  "language": "ne",
+  "script": "Devanagari",
+  "genre": [
+    "nibandha"
+  ],
+  "first_published": {
+    "bs": null,
+    "ad": null
+  },
+  "edition": "पाँचौँ; २०६३",
+  "publisher": "साझा प्रकाशन",
+  "description": "From the collection तीस रुपियाँ नोट. Transcribed from the identified Sahitya Ras source edition. Source wording and literary structure retained; not checked against printed pages.",
+  "rights": {
+    "status": "public-domain",
+    "basis": "Author died 1960; long in the public domain (Nepal's Copyright Act 2059: life + 50 years)."
+  },
+  "source": {
+    "name": "Sahitya Ras (sahityaras.com)",
+    "url": "https://sahityaras.com/book/tees-rupiya-note/ma-arko-junima-pani-pudko-banu/",
+    "pdf": null,
+    "html": "extracted/index.html"
+  },
+  "pages": null,
+  "text": {
+    "extraction_method": "html",
+    "ocr_status": "born-digital",
+    "proofread": false,
+    "quality": null
+  },
+  "formats": {
+    "pdf": null,
+    "txt": "text.txt",
+    "html": "reader.html",
+    "epub": "reader.epub"
+  },
+  "added": "2026-09-08",
+  "updated": "2026-09-08"
+}

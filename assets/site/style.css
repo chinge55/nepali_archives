@@ -107,6 +107,8 @@ h1{font-size:2.35rem;line-height:1.25;margin:.7rem 0 .3rem}
 .lead{color:var(--mut);font-size:1.05rem}
 .toc{font-size:.9rem;margin:1rem 0 1.5rem;color:var(--mut)}
 .toc a{text-decoration:none;margin-right:1rem;white-space:nowrap;display:inline-block}
+/* Book chapter titles can span several lines on narrow screens. */
+ol.toc a{white-space:normal;overflow-wrap:anywhere}
 .home-sec{margin:2.7rem 0}
 .home-sec h2{font-size:1.05rem;color:var(--fg);font-weight:600;border-bottom:2px solid var(--line);padding-bottom:.2rem}
 ul.works{list-style:none;padding:0;margin:1rem 0}

@@ -1,0 +1,48 @@
+{
+  "id": "bhet",
+  "title": "भेट",
+  "title_roman": "Bhet",
+  "subtitle": null,
+  "author": {
+    "id": "gopalaprasad_rimal",
+    "name": "गोपालप्रसाद रिमाल",
+    "name_roman": "Gopal Prasad Rimal"
+  },
+  "language": "ne",
+  "script": "Devanagari",
+  "genre": [
+    "kavita"
+  ],
+  "first_published": {
+    "bs": null,
+    "ad": null
+  },
+  "edition": "नवौँ; २०७६",
+  "publisher": "साझा प्रकाशन",
+  "description": "From the collection आमाको सपना. Transcribed from the identified Sahitya Ras source edition. Source wording and literary structure retained; not checked against printed pages.",
+  "rights": {
+    "status": "public-domain",
+    "basis": "Author died 1973; Nepal's Copyright Act 2059 grants life + 50 years."
+  },
+  "source": {
+    "name": "Sahitya Ras (sahityaras.com)",
+    "url": "https://sahityaras.com/book/aamako-sapana/bheta/",
+    "pdf": null,
+    "html": "extracted/index.html"
+  },
+  "pages": null,
+  "text": {
+    "extraction_method": "html",
+    "ocr_status": "born-digital",
+    "proofread": false,
+    "quality": null
+  },
+  "formats": {
+    "pdf": null,
+    "txt": "text.txt",
+    "html": "reader.html",
+    "epub": "reader.epub"
+  },
+  "added": "2026-09-08",
+  "updated": "2026-09-08"
+}

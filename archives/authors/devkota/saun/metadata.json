@@ -1,0 +1,48 @@
+{
+  "id": "saun",
+  "title": "साउन",
+  "title_roman": "Saun",
+  "subtitle": null,
+  "author": {
+    "id": "devkota",
+    "name": "लक्ष्मीप्रसाद देवकोटा",
+    "name_roman": "Laxmi Prasad Devkota"
+  },
+  "language": "ne",
+  "script": "Devanagari",
+  "genre": [
+    "git"
+  ],
+  "first_published": {
+    "bs": null,
+    "ad": null
+  },
+  "edition": "पहिलो; २०७५",
+  "publisher": "मञ्जरी पब्लिकेशन",
+  "description": "From the collection लक्ष्मी गीति-सङ्ग्रह. Transcribed from the identified Sahitya Ras source edition. Source wording and literary structure retained; not checked against printed pages.",
+  "rights": {
+    "status": "public-domain",
+    "basis": "Author died 1959; Nepal's Copyright Act 2059 grants life + 50 years, expiring 2009."
+  },
+  "source": {
+    "name": "Sahitya Ras (sahityaras.com)",
+    "url": "https://sahityaras.com/book/laxmi-giti-sangraha/sauna/",
+    "pdf": null,
+    "html": "extracted/index.html"
+  },
+  "pages": null,
+  "text": {
+    "extraction_method": "html",
+    "ocr_status": "born-digital",
+    "proofread": false,
+    "quality": null
+  },
+  "formats": {
+    "pdf": null,
+    "txt": "text.txt",
+    "html": "reader.html",
+    "epub": "reader.epub"
+  },
+  "added": "2026-09-08",
+  "updated": "2026-09-08"
+}

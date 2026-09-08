@@ -1,0 +1,48 @@
+{
+  "date": "2026-09-08",
+  "scope": "Full reviewed Sahitya Ras catalogue batch, following the 17-work pilot",
+  "catalogue_books": 66,
+  "catalogue_documents": 1331,
+  "new_works_this_batch": 427,
+  "new_works_including_pilot": 444,
+  "archive_works": 672,
+  "archive_authors": 10,
+  "checks": {
+    "pinned_source_snapshots_verified": 66,
+    "independently_checked_new_drafts": 427,
+    "existing_text_hashes_unchanged": 245,
+    "existing_metadata_updates_limited_to_collection_descriptions": 19,
+    "regression_tests_passed": 72,
+    "metadata_validation": "passed",
+    "new_epub_text_and_meaningful_line_boundaries_verified": 427,
+    "public_source_capture_sanitation": "passed",
+    "rerun_files_written": 0,
+    "built_html_files_link_audited": 1044,
+    "search_indexed_pages": 808,
+    "new_readers_browser_checked": 427,
+    "browser_checks": [
+      "canonical text comparison including pagination",
+      "mobile contents and reader layout",
+      "Nepali and Roman title queries",
+      "full-text search and result highlighting",
+      "statistics page"
+    ],
+    "visual_samples": [
+      "verse",
+      "authorial preface",
+      "prose chapter",
+      "long contents page",
+      "statistics"
+    ],
+    "public_source_hygiene": "passed, including intended untracked sources"
+  },
+  "limitations": [
+    "Source XHTML fidelity checks do not constitute proofreading against printed pages; every addition remains proofread:false.",
+    "Existing matches retain canonical archive text and may have edition or coverage differences.",
+    "Six books and one additional poem remain deferred; see catalogue-status.csv."
+  ],
+  "related_fixes": [
+    "Preserve explicit verse line breaks in EPUB conversion.",
+    "Allow long book contents links to wrap on mobile."
+  ]
+}

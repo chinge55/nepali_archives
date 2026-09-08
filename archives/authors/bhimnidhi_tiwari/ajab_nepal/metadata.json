@@ -1,0 +1,48 @@
+{
+  "id": "ajab_nepal",
+  "title": "अजब नेपाल !",
+  "title_roman": "Ajab Nepal",
+  "subtitle": null,
+  "author": {
+    "id": "bhimnidhi_tiwari",
+    "name": "भीमनिधि तिवारी",
+    "name_roman": "Bhimnidhi Tiwari"
+  },
+  "language": "ne",
+  "script": "Devanagari",
+  "genre": [
+    "kavita"
+  ],
+  "first_published": {
+    "bs": null,
+    "ad": null
+  },
+  "edition": "पहिलो; २०७८",
+  "publisher": "फिनिक्स बुक्स",
+  "description": "From the collection विस्फोट. Transcribed from the identified Sahitya Ras source edition. Source wording and literary structure retained; not checked against printed pages.",
+  "rights": {
+    "status": "public-domain",
+    "basis": "Author died 1973; Nepal's Copyright Act 2059 grants life + 50 years."
+  },
+  "source": {
+    "name": "Sahitya Ras (sahityaras.com)",
+    "url": "https://sahityaras.com/book/bisfot/ajaba-nepala/",
+    "pdf": null,
+    "html": "extracted/index.html"
+  },
+  "pages": null,
+  "text": {
+    "extraction_method": "html",
+    "ocr_status": "born-digital",
+    "proofread": false,
+    "quality": null
+  },
+  "formats": {
+    "pdf": null,
+    "txt": "text.txt",
+    "html": "reader.html",
+    "epub": "reader.epub"
+  },
+  "added": "2026-09-08",
+  "updated": "2026-09-08"
+}

@@ -77,9 +77,13 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
 
 
 def text_to_html_body(text: str) -> str:
-    """Blank-line-separated blocks become <p>; inner newlines are preserved."""
+    """Keep stanza and line boundaries in HTML and the EPUB conversion input."""
     blocks = [b.strip("\n") for b in text.replace("\r\n", "\n").split("\n\n")]
-    paras = [f"<p>{html.escape(b)}</p>" for b in blocks if b.strip()]
+    # EPUB converters do not necessarily honor the reader's white-space CSS.
+    # Explicit breaks survive conversion; no extra newline after <br>, because
+    # the self-contained HTML also preserves literal whitespace.
+    paras = ["<p>" + html.escape(b).replace("\n", "<br>") + "</p>"
+             for b in blocks if b.strip()]
     return "\n".join(paras)
 
 

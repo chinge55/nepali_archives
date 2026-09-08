@@ -1,0 +1,48 @@
+{
+  "id": "pailhe_bhane",
+  "title": "पैल्हे भने…",
+  "title_roman": "Pailhe Bhane",
+  "subtitle": null,
+  "author": {
+    "id": "motiram_bhatta",
+    "name": "मोतीराम भट्ट",
+    "name_roman": "Motiram Bhatta"
+  },
+  "language": "ne",
+  "script": "Devanagari",
+  "genre": [
+    "kavita"
+  ],
+  "first_published": {
+    "bs": null,
+    "ad": null
+  },
+  "edition": "प्रथम; २०४५",
+  "publisher": "राष्ट्रिय युवा सेवा कोष (मोती ग्रन्थावली)",
+  "description": "From the collection मोतीराम भट्टका गजल तथा गीत. Transcribed from the identified Sahitya Ras source edition. Source wording and literary structure retained; not checked against printed pages.",
+  "rights": {
+    "status": "public-domain",
+    "basis": "Author died 1896; long in the public domain (Nepal's Copyright Act 2059: life + 50 years)."
+  },
+  "source": {
+    "name": "Sahitya Ras (sahityaras.com)",
+    "url": "https://sahityaras.com/book/motiram-bhattaka-gajal-tatha-git/pailhe-bhane/",
+    "pdf": null,
+    "html": "extracted/index.html"
+  },
+  "pages": null,
+  "text": {
+    "extraction_method": "html",
+    "ocr_status": "born-digital",
+    "proofread": false,
+    "quality": null
+  },
+  "formats": {
+    "pdf": null,
+    "txt": "text.txt",
+    "html": "reader.html",
+    "epub": "reader.epub"
+  },
+  "added": "2026-09-08",
+  "updated": "2026-09-08"
+}

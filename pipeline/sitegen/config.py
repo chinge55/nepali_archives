@@ -41,6 +41,11 @@ AUTHORS = {
     "lekhnath_paudyal": ("लेखनाथ पौड्याल", "Lekhnath Paudyal", "1885–1966"),
     "bhimnidhi_tiwari": ("भीमनिधि तिवारी", "Bhimnidhi Tiwari", "1911–1973"),
     "motiram_bhatta": ("मोतीराम भट्ट", "Motiram Bhatta", "1866–1896"),
+    "gopalaprasad_rimal": ("गोपालप्रसाद रिमाल", "Gopal Prasad Rimal", "1917–1973"),
+    "hriday_chandra_sinh_pradhan": ("हृदयचन्द्रसिंह प्रधान", "Hridaya Chandra Singh Pradhan", "1916–1960"),
+    "baburam_acharya": ("बाबुराम आचार्य", "Baburam Acharya", "1888–1972"),
+    "guruprasad_mainali": ("गुरुप्रसाद मैनाली", "Guru Prasad Mainali", "1900–1971"),
+    "jagannath_upadhyay_guraganyin": ("जगन्नाथ उपाध्याय गुरागाञीं", "Jagannath Upadhyaya Guragāñī", "1900–1966"),
 }
 
 PROSE_GENRES = {"upanyas", "katha", "nibandha"}

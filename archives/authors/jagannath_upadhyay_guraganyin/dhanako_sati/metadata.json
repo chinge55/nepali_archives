@@ -1,0 +1,48 @@
+{
+  "id": "dhanako_sati",
+  "title": "धनको सती",
+  "title_roman": "Dhanako Sati",
+  "subtitle": null,
+  "author": {
+    "id": "jagannath_upadhyay_guraganyin",
+    "name": "जगन्नाथ उपाध्याय गुरागाञीं",
+    "name_roman": "Jagannath Upadhyaya Guragāñī"
+  },
+  "language": "ne",
+  "script": "Devanagari",
+  "genre": [
+    "kavita"
+  ],
+  "first_published": {
+    "bs": null,
+    "ad": null
+  },
+  "edition": "पहिलो; २०७३",
+  "publisher": "मञ्जरी पब्लिकेशन",
+  "description": "From the collection गुण रत्नमाला. Transcribed from the identified Sahitya Ras source edition. Source wording and literary structure retained; not checked against printed pages.",
+  "rights": {
+    "status": "public-domain",
+    "basis": "Author died 1966; public domain since 2016 (Nepal's Copyright Act 2059: life + 50 years)."
+  },
+  "source": {
+    "name": "Sahitya Ras (sahityaras.com)",
+    "url": "https://sahityaras.com/book/guna-ratnamala/dhanako-sati/",
+    "pdf": null,
+    "html": "extracted/index.html"
+  },
+  "pages": null,
+  "text": {
+    "extraction_method": "html",
+    "ocr_status": "born-digital",
+    "proofread": false,
+    "quality": null
+  },
+  "formats": {
+    "pdf": null,
+    "txt": "text.txt",
+    "html": "reader.html",
+    "epub": "reader.epub"
+  },
+  "added": "2026-09-08",
+  "updated": "2026-09-08"
+}

@@ -30,6 +30,9 @@ __pycache__/
 # Resumable scanned-book DAG state (heavy OCR artifacts live in OCR_WORK_DIR)
 /.ocr-work/
 
+# Unpublished source-ingestion snapshots, editorial exclusions, and review drafts
+/.ingest-work/
+
 # API keys — never commit
 
 # Local agent/tool bindings — public files describe capabilities, not vendors
