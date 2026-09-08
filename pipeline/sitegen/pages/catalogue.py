@@ -273,6 +273,7 @@ def write_catalogue_pages(context, page, assets, catalogue):
         )
 
     authors_body = (
+        f'<nav class="crumb"><a href="../">← {esc(SITE_NAME)}</a></nav>'
         f'<h1>लेखकहरू</h1><p class="lead">{len(catalogue.by_author)} लेखक · '
         f'{len(catalogue.records)} कृति।</p><ul class="works">'
         + "".join(
