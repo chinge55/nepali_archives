@@ -82,6 +82,10 @@ def install_common_assets(context: BuildContext, assets: AssetBundle) -> None:
     (site / "search.js").write_text(assets.search_js, encoding="utf-8")
     (site / "ui.js").write_text(assets.ui_js, encoding="utf-8")
 
+    verification = root / "assets" / "BingSiteAuth.xml"
+    if verification.exists():
+        shutil.copyfile(verification, site / verification.name)
+
     font_dir = site / "fonts"
     font_dir.mkdir(exist_ok=True)
     for source in sorted((root / "assets" / "fonts").glob("*.woff2")):
