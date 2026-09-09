@@ -1,0 +1,42 @@
+[
+  {
+    "id": "brihat",
+    "name": "Nepali Brihat Sabdakosh JSON",
+    "language": "ne",
+    "repository": "https://github.com/bikashpadhikari/nepali-brihat-sabdakosh-json",
+    "revision": "9a599d0fb129c382213f142280d435d6ac1942ae",
+    "url": "https://raw.githubusercontent.com/bikashpadhikari/nepali-brihat-sabdakosh-json/9a599d0fb129c382213f142280d435d6ac1942ae/sabdakosh.json.gz",
+    "file": "brihat.json.gz",
+    "license_note": "MIT applies to code; upstream explicitly states dictionary-data licensing is uncertain. Local evaluation only; redistribution not cleared.",
+    "bytes": 4590871,
+    "sha256": "069e545570039de3260bee73a2610992feb154261361c6940f78e2e64eba03fb",
+    "downloaded_at": "2026-09-09T04:33:31.986646+00:00"
+  },
+  {
+    "id": "ltk",
+    "name": "LTK Nepali Contemporary Dictionary (refined SQLite mirror)",
+    "language": "ne",
+    "repository": "https://github.com/anuragregmi/nepali_dictionary",
+    "revision": "e9b3630090f4337158d6e0dd68b6006777c591b9",
+    "url": "https://raw.githubusercontent.com/anuragregmi/nepali_dictionary/e9b3630090f4337158d6e0dd68b6006777c591b9/nep_dict.sqlite3",
+    "file": "ltk.sqlite3",
+    "license_note": "Mirror declares GPL-3.0; original LTK database terms not independently verified. Local evaluation only; retain separate provenance.",
+    "bytes": 4628480,
+    "sha256": "17085789ed90db134f87a46ac6062aec033adefcd9f2339b394e2d95c74b3c5c",
+    "downloaded_at": "2026-09-09T04:33:22.020270+00:00"
+  },
+  {
+    "id": "wiktionary",
+    "name": "Kaikki Nepali extraction from English Wiktionary",
+    "language": "en",
+    "repository": "https://kaikki.org/dictionary/Nepali/index.html",
+    "revision": null,
+    "url": "https://kaikki.org/dictionary/Nepali/kaikki.org-dictionary-Nepali.jsonl",
+    "file": "wiktionary.jsonl",
+    "license_note": "Wiktionary definitions under CC BY-SA 4.0, subject to attribution/share-alike and additional terms for third-party content. Kaikki postprocessed download is deprecated; snapshot preserved for this evaluation.",
+    "license_url": "https://en.wiktionary.org/wiki/Wiktionary:Copyrights",
+    "bytes": 17932978,
+    "sha256": "018df4087ebf05c64bb3a36a9473377514b514c91d4fe506bfb7227245228fc9",
+    "downloaded_at": "2026-09-09T04:33:27.831287+00:00"
+  }
+]

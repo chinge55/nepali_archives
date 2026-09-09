@@ -1,0 +1,58 @@
+{
+  "status": "Narrow correction reviewed against original PDF page 6; the complete work remains unproofread.",
+  "source_pdf": "archives/authors/devkota/shakuntala/LaxmiPrasadDevkota2025BS_ShakuntalaMahakavya.pdf",
+  "source_pdf_page": 6,
+  "text_path": "archives/authors/devkota/shakuntala/text.txt",
+  "preserved_range": {
+    "through_line": 46,
+    "note": "Canonical lines 1-46 were preserved byte-for-byte."
+  },
+  "changes": [
+    {
+      "before": "त्यो आभा भर भारती, भरतको यो भारता$काशमा ॥",
+      "after": "त्यो आभा भर भारती, भरतको यो भारताऽकाशमा ॥",
+      "before_lines": [
+        47,
+        47
+      ],
+      "after_lines": [
+        47,
+        47
+      ]
+    },
+    {
+      "before": "(र)",
+      "after": "(२)",
+      "before_lines": [
+        48,
+        48
+      ],
+      "after_lines": [
+        48,
+        48
+      ]
+    },
+    {
+      "before": "",
+      "after": "(३)",
+      "before_lines": null,
+      "after_lines": [
+        53,
+        53
+      ]
+    },
+    {
+      "before": "निर्सेका पुरुखा रुखा हृदयका सुख्खा झिना सन्तति ।\n\nहामी छै \"५०१०.००% खाडल खनी हान्दा सबै सम्पति ॥\nफालेका क १००१०.०३ बली गर्दा सधैं खल्बली\n\nश्रद्धाभक्तिविहीन भरै मुटु जली लाग्यौं नि ! जानै ढली ॥",
+      "after": "बिर्सेका पुरुखा रुखा हृदयका सुख्खा झिना सन्तति ।\nहामी दुर्बल रुग्ण खाडल खनी हाल्दा सबै सम्पति ॥\nफालेका कलिकालकल्मष बली गर्दा सधैं खल्बली ।\nश्रद्धाभक्तिविहीन भै मुटु जली लाग्यौं नि ! जानै ढली ॥\n(४)",
+      "before_lines": [
+        54,
+        59
+      ],
+      "after_lines": [
+        55,
+        59
+      ]
+    }
+  ],
+  "scope_note": "No changes beyond the page-6 stanza-4 block and the page-6 printed markers. No metadata or proofread flag changed."
+}
