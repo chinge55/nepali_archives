@@ -1,3 +1,5 @@
+from html.parser import HTMLParser
+
 import sys
 import unittest
 from pathlib import Path
@@ -16,6 +18,20 @@ class WorkHtmlTests(unittest.TestCase):
         self.assertIn('<div class="stanza">', verse)
         self.assertEqual(verse.count('<span class="ln">'), 2)
         self.assertIn('<p class="stanza">पहिलो हरफ दोस्रो हरफ</p>', prose)
+
+    def test_verse_boundaries_survive_text_extraction_for_search(self):
+        class Text(HTMLParser):
+            def __init__(self):
+                super().__init__()
+                self.parts = []
+
+            def handle_data(self, data):
+                self.parts.append(data)
+
+        source = "के गर्नु धनले?\nसाग र सिस्नु खाएको वेश आनन्दी मनले!"
+        parser = Text()
+        parser.feed(work_html(source, verse=True))
+        self.assertEqual("".join(parser.parts), source)
 
     def test_source_markup_is_escaped(self):
         rendered = work_html("कविता <script>&", verse=True)

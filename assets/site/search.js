@@ -8,8 +8,8 @@
  if(FT){var sa=FT.getAttribute('data-scope-author'),sc=FT.getAttribute('data-scope-collection'),
    sg=FT.getAttribute('data-scope-genre');
    if(sa||sc||sg){SCOPE={};if(sa)SCOPE.author=sa;if(sc)SCOPE.collection=sc;if(sg)SCOPE.genre=sg;}}
- var idx=null,loading=false;
- function norm(s){return (s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim();}
+ var idx=null,indexPromise=null;
+ function norm(s){return (s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/\s+/g,' ').trim();}
  function isDev(s){return /[\u0900-\u097f]/.test(s);}
 
  // Levenshtein distance, bounded: returns >max as soon as the best path exceeds max.
@@ -71,11 +71,17 @@
    a=scoreField(qn,w._a)-6; if(a>s)s=a;           // author name
    return s;
  }
- function load(cb){ if(idx){cb();return;} if(loading)return; loading=true;
-   fetch(BASE+'search-index.json').then(function(r){return r.json();}).then(function(d){
+ function load(cb){
+   if(idx){cb();return Promise.resolve();}
+   if(!indexPromise) indexPromise=fetch(BASE+'search-index.json').then(function(r){
+     if(!r.ok)throw new Error('Title index unavailable'); return r.json();
+   }).then(function(d){
      idx=d.works; for(var k=0;k<idx.length;k++){var w=idx[k];
-       w._r=norm(w.r); w._s=norm(w.s); w._c=norm(w.c); w._a=norm(w.a);}    // precompute once
-     cb();});}
+       w._r=norm(w.r);w._s=norm(w.s);w._c=norm(w.c);w._a=norm(w.a);}
+   }).catch(function(e){indexPromise=null;throw e;});
+   return indexPromise.then(cb);
+ }
+ function escapeHtml(s){return String(s||'').replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
  var G=__GENRE_MAP__;
  function dev(n){return String(n).replace(/[0-9]/g,function(d){return '\u0966\u0967\u0968\u0969\u096a\u096b\u096c\u096d\u096e\u096f'[d];});}
  function renderWorks(list){
@@ -107,13 +113,21 @@
  }
 
  // ---- tier-2: full-text via Pagefind, bridged from roman when needed ----
- var pfP=null;
+ var pfP=null,pfAttempt=0;
  function pagefind(){ if(pfP) return pfP;
-   pfP=import(new URL(BASE+'pagefind/pagefind.js',location.href).href).catch(function(){return null;});
+   var url=new URL(BASE+'pagefind/pagefind.js',location.href);
+   // Browsers cache failed module imports; a retry needs a fresh module URL.
+   if(pfAttempt++)url.searchParams.set('retry',String(pfAttempt));
+   pfP=import(url.href).then(function(pf){
+     // Nepali vowel signs are letters, not optional Latin accents.
+     return pf.options({exactDiacritics:true}).then(function(){return pf;});
+   }).catch(function(){pfP=null;return null;});
    return pfP; }
  var shard={};
  function getShard(L){ if(shard[L]) return shard[L];
-   shard[L]=fetch(BASE+'searchroman/'+L+'.json').then(function(r){return r.ok?r.json():{};},function(){return {};});
+   shard[L]=fetch(BASE+'searchroman/'+L+'.json').then(function(r){
+     if(r.status===404)return {};if(!r.ok)throw new Error('Search dictionary unavailable');return r.json();
+   }).catch(function(e){delete shard[L];throw e;});
    return shard[L]; }
  // xnorm(): the /type/ tool's normalization contract (pipeline translit_keys
  // .normalize / assets/type/engine.js — keep all three in sync). Shard keys are
@@ -143,34 +157,74 @@
      return [];
    });
  }
- // raw query -> array of Pagefind query strings
+ // Keep ambiguity until searching the corpus. A bounded beam avoids the
+ // exponential product of all spellings without discarding whole query words.
  function buildQueries(qraw){
-   if(isDev(qraw)) return Promise.resolve([qraw]);
-   var toks=norm(qraw).split(' ').filter(Boolean);
-   if(!toks.length) return Promise.resolve([]);
-   return Promise.all(toks.map(bridge)).then(function(per){
-     if(toks.length===1) return per[0].slice(0,4);             // OR each candidate
-     return [per.map(function(c){return c[0]||'';}).filter(Boolean).join(' ')]; // best-per-token, AND
+   var quoted=/^["“][\s\S]*["”]$/.test(qraw.trim());
+   var toks=norm(qraw).match(/[a-z]+|[0-9]+|[\u0900-\u0963\u0966-\u097f]+/g)||[];
+   if(!toks.length)return Promise.resolve({queries:[],groups:[],quoted:quoted});
+   return Promise.all(toks.map(function(t){return isDev(t)||/^[0-9]+$/.test(t)?Promise.resolve([t.normalize('NFC')]):bridge(t);})).then(function(per){
+     if(per.some(function(c){return !c.length;}))return {queries:[],groups:per,quoted:quoted};
+     var beam=[{words:[],cost:0}];
+     per.forEach(function(candidates){
+       var next=[];
+       beam.forEach(function(b){candidates.forEach(function(c,i){next.push({words:b.words.concat(c),cost:b.cost+i});});});
+       next.sort(function(a,b){return a.cost-b.cost;});beam=next.slice(0,24);
+     });
+     var seen={};
+     return {queries:beam.map(function(b){return b.words.join(' ');}).filter(function(q){if(seen[q])return false;seen[q]=true;return true;}),groups:per,quoted:quoted};
    });
  }
+ function phrasePattern(groups){
+   function quote(s){return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');}
+   var parts=groups.map(function(g){return '(?:'+g.map(function(w){
+     return Array.from(w.replace(/[\u200c\u200d]/g,'')).map(quote).join('[\\u200c\\u200d]*');
+   }).join('|')+')';});
+   return new RegExp('(?:^|[^\\p{L}\\p{M}\\p{N}\\u200c\\u200d])('+parts.join('[^\\p{L}\\p{M}\\p{N}]+')+')(?=$|[^\\p{L}\\p{M}\\p{N}\\u200c\\u200d])','u');
+ }
+ // Check literal, adjacent source words before taking the first ten results.
+ // Pagefind's frequency ranking can otherwise bury a quotation beneath long
+ // pages containing common words such as र, even with exact diacritics enabled.
+ function phraseResult(data,pattern){
+   var text=data.content||'',m=pattern.exec(text);
+   var d=Object.assign({},data);d.phrase='';
+   if(!m)return d;
+   var start=m.index+m[0].length-m[1].length,end=start+m[1].length;
+   var left=Math.max(0,start-90),right=Math.min(text.length,end+140);
+   if(left)while(left<start&&!/\s/.test(text.charAt(left)))left++;
+   if(right<text.length)while(right<text.length&&!/\s/.test(text.charAt(right)))right++;
+   d.phrase=m[1];
+   d.excerpt=(left?'… ':'')+escapeHtml(text.slice(left,start))+'<mark>'+escapeHtml(m[1])+'</mark>'+escapeHtml(text.slice(end,right))+(right<text.length?' …':'');
+   return d;
+ }
  var ftSeq=0;
- function fullText(qraw){
-   var my=++ftSeq;
-   if(!isDev(qraw) && norm(qraw).length<2){FT.innerHTML='';return;}
-   FT.innerHTML='<p class=ftmsg>पाठभित्र खोज्दै…</p>';
+ function fullText(qraw,my){
+   if(my!==ftSeq)return;
+   if(!isDev(qraw)&&norm(qraw).length<2){FT.innerHTML='';return;}
    Promise.all([pagefind(),buildQueries(qraw)]).then(function(a){
-     var pf=a[0],qs=a[1]; if(my!==ftSeq)return; if(!pf){FT.innerHTML='';return;}
-     if(!qs.length){FT.innerHTML='<p class=ftmsg>पाठभित्र केही फेला परेन।</p>';return;}
+     var pf=a[0],plan=a[1];if(my!==ftSeq)return;
+     if(!pf)throw new Error('Full-text index unavailable');
+     if(!plan.queries.length){renderFT([]);return;}
      var opts=SCOPE?{filters:SCOPE}:undefined;
-     Promise.all(qs.map(function(s){return pf.search(s,opts);})).then(function(arr){
-       if(my!==ftSeq) return;
-       var seen={},merged=[];
-       arr.forEach(function(res){ if(res&&res.results) res.results.forEach(function(r){
-         if(!seen[r.id]){seen[r.id]=1;merged.push(r);} }); });
-       Promise.all(merged.slice(0,10).map(function(r){return r.data();})).then(function(ds){
-         if(my!==ftSeq) return; renderFT(ds);
+     return Promise.all(plan.queries.map(function(s){return pf.search(s,opts);})).then(function(arr){
+       if(my!==ftSeq)return;
+       var seen=new Map();
+       arr.forEach(function(res){if(res&&res.results)res.results.forEach(function(r){
+         var old=seen.get(r.id);if(!old||(r.score||0)>(old.score||0))seen.set(r.id,r);
+       });});
+       var merged=Array.from(seen.values()).sort(function(a,b){return (b.score||0)-(a.score||0);});
+       var pattern=phrasePattern(plan.groups);
+       return Promise.all(merged.slice(0,40).map(function(r){return r.data().then(function(d){return phraseResult(d,pattern);});})).then(function(ds){
+         if(my!==ftSeq)return;
+         if(plan.quoted)ds=ds.filter(function(d){return !!d.phrase;});
+         ds.sort(function(a,b){return Number(!!b.phrase)-Number(!!a.phrase);});
+         renderFT(ds.slice(0,10));
        });
      });
+   }).catch(function(){if(my!==ftSeq)return;
+     pfP=null;
+     FT.innerHTML='<p class=ftmsg>पाठभित्र खोजी लोड भएन। फेरि प्रयास गर्नुहोस्। <button type="button" class="search-retry">फेरि खोज्ने · Retry</button></p>';
+     FT.querySelector('button').onclick=search;
    });
  }
  // append ?pagefind-highlight=… using the SURFACE words Pagefind marked in the excerpt
@@ -191,14 +245,16 @@
    var h='<h2 class=fthead>पाठभित्र खोजी</h2><ul class=ftlist>';
    ds.forEach(function(d){
      var t=(d.meta&&d.meta.title)||d.url;
-     h+='<li><a class=ftlink href="'+hlUrl(d.url,d.excerpt)+'"><span class=fttitle>'+t+'</span><p class=ex>'+d.excerpt+'</p></a></li>';
+     h+='<li><a class=ftlink href="'+escapeHtml(d.phrase?d.url+(d.url.indexOf('?')<0?'?':'&')+'pagefind-highlight='+encodeURIComponent(d.phrase):hlUrl(d.url,d.excerpt))+'"><span class=fttitle>'+escapeHtml(t)+'</span><p class=ex>'+d.excerpt+'</p></a></li>';
    });
    FT.innerHTML=h+'</ul>';
  }
 
  var ftTimer=null;
  function search(){
-   var qraw=q.value.trim(),qn=norm(qraw);
+   var my=++ftSeq,qraw=q.value.trim(),qn=norm(qraw);
+   if(ftTimer)clearTimeout(ftTimer);
+   FT.innerHTML=qn?'<p class=ftmsg>पाठभित्र खोज्दै…</p>':'';
    if(!qn){
      if(SCOPE){domFilter('','');}else{R.innerHTML='';H.textContent=idx?(idx.length+' कृति'):'';}
      FT.innerHTML=''; return;
@@ -207,17 +263,17 @@
      domFilter(qn,qraw);                          // tier-1: narrow the visible list
    }else{
      load(function(){
+       if(my!==ftSeq)return;
        var hit=[],k;
        for(k=0;k<idx.length;k++){var sc=score(idx[k],qn,qraw); if(sc>0)hit.push([sc,idx[k]]);}
        hit.sort(function(a,b){return b[0]-a[0];});
        renderWorks(hit.map(function(x){return x[1];}));
-     });
+     }).catch(function(){if(my===ftSeq)H.textContent='शीर्षक लोड भएन — फेरि खोज्नुहोस्।';});
    }
-   if(ftTimer)clearTimeout(ftTimer);
-   ftTimer=setTimeout(function(){fullText(qraw);},250);
+   ftTimer=setTimeout(function(){fullText(qraw,my);},250);
  }
  q.addEventListener('input',search);
- q.addEventListener('focus',function(){if(SCOPE)return;load(function(){if(!q.value)H.textContent=idx.length+' कृति';});});
+ q.addEventListener('focus',function(){if(SCOPE)return;load(function(){if(!q.value)H.textContent=idx.length+' कृति';}).catch(function(){H.textContent='शीर्षक लोड भएन — फेरि खोज्नुहोस्।';});});
  // deep link: /?q=term (e.g. a word clicked on the stats page) runs the search on load
  var dl=location.search.match(/[?&]q=([^&]*)/);
  if(dl){ try{q.value=decodeURIComponent(dl[1].replace(/\+/g,' '));}catch(e){} q.focus(); search(); }

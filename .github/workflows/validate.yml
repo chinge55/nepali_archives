@@ -18,6 +18,9 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
       - run: pip install jsonschema fonttools brotli
       # 1) metadata schema, slug/id rules, text.txt sanity, rights gate
       - run: python3 pipeline/validate.py
@@ -34,3 +37,12 @@ jobs:
       - run: python3 pipeline/subset_fonts.py
       - run: python3 pipeline/build_site.py
       - run: python3 pipeline/check_site_links.py site
+      # 6) exercise the actual search index, including Romanized passages
+      - run: npx -y pagefind@1.5.2 --site site
+      - run: npm install --prefix "$RUNNER_TEMP/search-test" --no-save puppeteer@21.11.0
+      - name: Search browser regressions
+        run: |
+          python3 -m http.server 8262 --bind 127.0.0.1 --directory site > "$RUNNER_TEMP/search-server.log" 2>&1 &
+          search_server_pid=$!
+          trap 'kill "$search_server_pid"' EXIT
+          NODE_PATH="$RUNNER_TEMP/search-test/node_modules" node pipeline/tests/browser/search.cjs

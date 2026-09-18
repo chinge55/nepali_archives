@@ -112,14 +112,21 @@ npx pagefind --site site                    # full-text search index
 cd site && python3 -m http.server 8000      # preview at http://localhost:8000
 ```
 
+To check search against the generated Pagefind index, keep the preview server running
+and run `SEARCH_TEST_URL=http://localhost:8000/ node pipeline/tests/browser/search.cjs`
+with `puppeteer` installed (or available through `NODE_PATH`). PR validation runs this
+browser check too, covering Roman/Nepali passages, highlighting, scopes, and loading failures.
+
 ## The website
 
 Static, content-first, and fast: every work is pre-rendered to HTML, one small cached CSS,
 self-hosted (subset) Noto Serif Devanagari, dark/light toggle, and it browses with JS off.
 **Full-text search** (Pagefind) searches inside every poem in **Devanagari or roman**
-(`sundari` ≡ `सुन्दरी`, via a build-time roman→Devanagari bridge), with highlighted excerpts
-that deep-link to the passage. A build-time **stats page** (`/stats/`, "अभिलेख एक नजरमा") shows
-corpus graphs, a word cloud, and per-author signature words. The site is git-ignored and
+(`sundari` ≡ `सुन्दरी`, via a build-time roman→Devanagari bridge), including mixed-script
+queries. Search preserves Nepali vowel signs, considers alternate Romanized spellings,
+and ranks matching phrases before scattered words. Double quotes limit full-text results
+to adjacent words. Highlighted excerpts deep-link to the matching passage. A build-time
+**stats page** (`/stats/`, "अभिलेख एक नजरमा") shows corpus graphs, a word cloud, and per-author signature words. The site is git-ignored and
 rebuilt by CI — `--archive-base <url>` makes downloads point at an external store instead of
 bundling them.
 

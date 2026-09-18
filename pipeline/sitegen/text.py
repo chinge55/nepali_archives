@@ -82,7 +82,9 @@ def work_html(text: str, verse: bool) -> str:
                     f"{esc(lines[0].strip())}</span></div>"
                 )
                 lines = lines[1:]
-            rendered_lines = "".join(
+            # Text extractors do not know that .ln is displayed as a block.
+            # Keep source line boundaries in the DOM so search words cannot fuse.
+            rendered_lines = "\n".join(
                 f'<span class="ln">{verse_line(line)}</span>'
                 for line in lines
             )

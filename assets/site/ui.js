@@ -68,7 +68,10 @@
  if(location.search.indexOf('pagefind-highlight=')>=0){
    import('/pagefind/pagefind-highlight.js').then(function(m){
      var P=m&&(m.default||window.PagefindHighlight); if(!P) return;
-     new P({highlightParam:'pagefind-highlight'});
+     new P({highlightParam:'pagefind-highlight',markOptions:{
+       className:'pagefind-highlight',separateWordSearch:false,acrossElements:true,
+       exclude:['[data-pagefind-ignore]','[data-pagefind-ignore] *']
+     }});
      setTimeout(function(){var f=document.querySelector('mark.pagefind-highlight');
        if(f) f.scrollIntoView({block:'center'});},60);   // land on the matched passage
    }).catch(function(){});
