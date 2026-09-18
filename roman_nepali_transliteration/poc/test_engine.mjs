@@ -60,7 +60,7 @@ for (const [inp, want] of Object.entries(TOP5)) {
 }
 
 // 2b. english pass-through (default ON) + toggle + case hints
-for (const w of ['school', 'reply', 'sms', 'ok']) {
+for (const w of ['school', 'reply', 'sms', 'ok', 'School', 'SMS', 'OK']) {
   const got = engine.candidates(w);
   if (!got.length || got[0].d !== w || got[0].src !== 'eng') {
     console.error(`eng FAIL ${w}: got [${got.map(c => c.d).join(' ')}]`); bad++;
@@ -75,6 +75,17 @@ engine.setEnglishFirst(true);
 { const got = engine.candidates('bheTaula');  // uppercase retroflex hint
   if (!got.some(c => c.d === 'भेटौला')) { console.error(`caseHint FAIL bheTaula: [${got.map(c=>c.d).join(' ')}]`); bad++; }
   else console.log('bheTaula ->', got.map(c => c.d).join(' ')); }
+
+// Pins must use exactly the normalization used by candidate lookup.
+for (const [key, want] of Object.entries(autocorrect.map)) {
+  if (normalize(key) !== key || !engine.candidates(key).some(c => c.d === want)) {
+    console.error(`autocorrect FAIL ${key}: ${want}`); bad++;
+  }
+}
+for (const token of ['covid19', 'gopal@home', 'https://example.org', 'mero,naam']) {
+  if (engine.candidates(token)[0]?.d !== token) { console.error(`literal FAIL ${token}`); bad++; }
+}
+if (engine.candidates('kina')[0]?.d !== 'किन') { console.error('kina pin FAIL'); bad++; }
 
 // 3. rules-only fallback (OOV must never fail closed)
 const oov = engine.candidates('gajakaputra');

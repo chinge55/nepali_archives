@@ -1,44 +1,69 @@
 main{max-width:44rem}
-.outwrap{position:relative}
-#out{position:relative;z-index:1;width:100%;min-height:6.5rem;background:none;color:var(--fg);
- border:1px solid var(--line);border-radius:10px;padding:.8rem;font-size:1.15rem;line-height:1.85rem;
- font-family:inherit;resize:vertical}
-#out:focus{outline:2px solid color-mix(in srgb,var(--accent) 45%,transparent)}
-#outbg{position:absolute;inset:0;z-index:0;border:1px solid transparent;border-radius:10px;
- padding:.8rem;font-size:1.15rem;line-height:1.85rem;font-family:inherit;white-space:pre-wrap;
- word-break:break-word;color:transparent;overflow:hidden;pointer-events:none}
-#outbg mark{background:color-mix(in srgb,var(--accent) 32%,transparent);color:transparent;border-radius:4px}
-.tbar{display:flex;gap:.6rem;margin:.7rem 0;align-items:center;flex-wrap:wrap}
-.tbar button{font-family:inherit;font-size:.9rem;padding:.5rem 1rem;min-height:44px;
- border-radius:8px;border:1px solid var(--line);background:none;color:var(--accent);cursor:pointer}
-.tbar button:hover{border-color:var(--accent)}
-#copy{background:var(--accent);color:var(--bg);border-color:var(--accent);font-weight:600}
-#toast{visibility:hidden;color:var(--mut);font-size:.85rem}
-#toast.show{visibility:visible}
-.ttog{margin-left:auto;font-size:.85rem;color:var(--mut);display:flex;align-items:center;
- gap:.45rem;min-height:48px;cursor:pointer}
-.ttog input{width:1.15rem;height:1.15rem;accent-color:var(--accent)}
-#cands{display:flex;gap:.5rem;margin:.7rem 0;min-height:56px;flex-wrap:wrap}
-.tcand{font-family:inherit;font-size:1.1rem;min-height:48px;min-width:48px;padding:.3rem .75rem;
- border-radius:8px;border:1px solid var(--line);background:none;color:var(--fg);cursor:pointer}
+h1{margin-bottom:.4rem}
+.lead{margin:.4rem 0 1.1rem}
+#type-tool{min-width:0;scroll-margin-top:.5rem}
+.field-label{display:block;font-weight:600;font-size:.9rem;margin:.5rem 0 .3rem}
+.field-label span{font-weight:400;color:var(--mut);font-size:.8rem}
+#inp,#out{display:block;width:100%;font-family:inherit;background:none;color:var(--fg);border-radius:9px}
+#inp{height:3rem;min-height:3rem;resize:vertical;font-size:1.05rem;line-height:1.65rem;padding:.55rem .7rem;
+ border:2px solid var(--accent)}
+#inp:focus{outline:2px solid var(--accent);outline-offset:2px}
+.input-hint{font-size:.74rem;color:var(--mut);margin:.3rem 0}
+#cands{display:flex;gap:.45rem;height:3.8rem;padding:.2rem 0 .4rem;overflow-x:auto;overscroll-behavior-x:contain;
+ flex-wrap:nowrap;align-items:stretch;scrollbar-width:thin;scrollbar-color:var(--line) transparent}
+.tcand{flex-shrink:0;font-family:inherit;font-size:1.05rem;line-height:1.3;min-height:48px;min-width:48px;max-width:20rem;
+ padding:.15rem .7rem;border-radius:8px;border:1px solid var(--line);background:none;color:var(--fg);cursor:pointer;
+ white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .tcand:hover{border-color:var(--accent)}
 .tcand.first{border:2px solid var(--accent);font-weight:600}
-.tcand .n{color:var(--mut);font-size:.68rem;vertical-align:super;margin-right:.25rem}
-.tcand.lit{border-style:dashed;color:var(--mut)}
-#inp{width:100%;font-size:1.1rem;padding:.65rem .75rem;border-radius:10px;color:var(--fg);
- border:2px solid var(--accent);background:none;font-family:inherit}
-#inp:focus{outline:none;box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 25%,transparent)}
-.thelp{color:var(--mut);font-size:.85rem;line-height:1.7;margin-top:.8rem}
-.thelp kbd{background:color-mix(in srgb,var(--line) 55%,transparent);border-radius:4px;
- padding:0 .35rem;font-size:.85em;font-family:inherit}
-#status{color:var(--mut);font-size:.75rem;min-height:1rem;margin:.6rem 0 0}
-/* keyboard mode (body.kbd, set via visualViewport when the on-screen keyboard is
-   up): compress everything so output + candidates + input all stay visible */
-body.kbd header.site,body.kbd h1,body.kbd .lead,body.kbd .thelp,body.kbd #status,
-body.kbd footer.site{display:none}
-body.kbd main{padding-top:.4rem}
-body.kbd #out{min-height:3rem;max-height:7.5rem;overflow-y:auto;font-size:1.05rem;line-height:1.6rem}
-body.kbd #outbg{font-size:1.05rem;line-height:1.6rem}
-body.kbd .tbar{display:none}  /* copy/clear return when the keyboard closes */
-body.kbd #cands{min-height:48px;margin:.4rem 0}
-body.kbd .tcand{min-height:44px;font-size:1.05rem}
+.tcand .n{display:block;color:var(--mut);font-weight:400;font-size:.6rem;line-height:1.1}
+.tcand.lit{border-style:dashed}
+.candidate-empty{align-self:center;font-size:.8rem;color:var(--mut)}
+.outwrap{position:relative}
+#out{position:relative;z-index:1;min-height:7rem;padding:.65rem .75rem;font-size:1.15rem;line-height:1.85rem;
+ border:1px solid var(--line);resize:vertical}
+#out[readonly]{background:color-mix(in srgb,var(--line) 16%,transparent)}
+#out:focus{outline:2px solid var(--accent);outline-offset:2px}
+#outbg{position:absolute;inset:0;z-index:0;border:1px solid transparent;border-radius:9px;
+ padding:.65rem .75rem;font-size:1.15rem;line-height:1.85rem;font-family:inherit;white-space:pre-wrap;
+ word-break:break-word;color:transparent;overflow:hidden;pointer-events:none}
+#outbg mark{background:color-mix(in srgb,var(--accent) 32%,transparent);color:transparent;border-radius:4px}
+.tbar{display:flex;gap:.4rem;margin:.45rem 0;align-items:center;flex-wrap:wrap}
+.tbar button,#retry{font-family:inherit;font-size:.8rem;padding:.4rem .65rem;min-height:44px;
+ border-radius:8px;border:1px solid var(--line);background:none;color:var(--accent);cursor:pointer}
+.tbar button:hover:not(:disabled){border-color:var(--accent)}
+button:disabled{opacity:.45;cursor:default}
+#type-tool button:focus-visible,#engmode:focus-visible,.thelp summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+#copy{background:var(--accent);color:var(--bg);border-color:var(--accent);font-weight:600}
+.ttog{margin-left:auto;font-size:.8rem;color:var(--fg);display:flex;align-items:center;gap:.4rem;min-height:44px;cursor:pointer}
+.ttog input{width:1.05rem;height:1.05rem;accent-color:var(--accent)}
+.edit-actions button{font-size:.75rem;padding:.35rem .55rem}
+#clear{margin-left:auto;color:var(--mut)}
+#toast,#status,#draftstatus{color:var(--mut);font-size:.75rem;line-height:1.5;margin:.4rem 0}
+#toast:empty,#status:empty,#draftstatus:empty{display:none}
+#toast{display:none}
+#toast.show{display:block;color:var(--accent)}
+.thelp{color:var(--mut);font-size:.8rem;line-height:1.7;margin-top:1rem}
+.thelp summary{cursor:pointer;min-height:44px;padding:.4rem 0}
+.thelp p{margin:.6rem 0}
+.thelp ul{padding-left:1.3rem}
+.thelp kbd{background:color-mix(in srgb,var(--line) 55%,transparent);border-radius:4px;padding:0 .25rem;font-size:.8em}
+.type-sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
+@media(max-width:480px){
+ main{padding-left:1rem;padding-right:1rem}
+ h1{font-size:1.4rem;margin-top:.6rem}
+ .lead{font-size:.85rem;margin-bottom:.75rem}
+ .edit-actions #paragraph span{display:none}
+}
+/* Keep the task and its controls together when the on-screen keyboard opens.
+   Copy, English mode, undo, and errors stay available. */
+body.kbd header.site,body.kbd h1,body.kbd .lead,body.kbd .thelp,body.kbd footer.site{display:none}
+body.kbd main{padding-top:.2rem}
+body.kbd .field-label{font-size:.7rem;margin:.15rem 0}
+body.kbd .field-label span{font-size:.65rem}
+body.kbd #inp{height:44px;min-height:44px;padding:.3rem .65rem}
+body.kbd .input-hint{display:none}
+body.kbd #cands{height:3.35rem;padding:.1rem 0 .2rem}
+body.kbd #out{height:3.5rem;min-height:3.5rem;max-height:7rem;font-size:1.05rem;line-height:1.6rem;padding:.3rem .65rem}
+body.kbd #outbg{font-size:1.05rem;line-height:1.6rem;padding:.3rem .65rem}
+body.kbd .tbar{margin:.15rem 0}

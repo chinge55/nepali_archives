@@ -13,7 +13,7 @@ introduce new glyphs, re-run:
     python3 pipeline/subset_fonts.py      # re-subset to it
     python3 pipeline/build_site.py        # rebuild with the smaller fonts
 
-Needs (local only, NOT needed in CI): pip install fonttools brotli
+Needs locally and in CI: pip install fonttools brotli
 """
 import re, subprocess, sys
 from pathlib import Path
