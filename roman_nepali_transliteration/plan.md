@@ -1,5 +1,16 @@
 # Roman Nepali → Devanagari: Project Plan
 
+**Typing UX revision (2026-09-18):** Copy and candidate commits share one insertion
+path; candidate text is rendered inertly; loading failures preserve input and expose
+retry. Added browser-local draft recovery and session undo/redo, preserved English
+case and structured tokens, and repaired normalized autocorrect pins. Space selects;
+Enter starts a line; Shift+Enter starts a paragraph; Alt+1–Alt+5 select alternatives.
+The Roman field now precedes a stable scrolling suggestion row; Copy and English
+mode remain available in compact keyboard layout. The current behavior and regression
+commands are documented in [`poc/README.md`](./poc/README.md). Physical-device and
+screen-reader validation remain outstanding. The dated status below records the
+original rollout and its earlier shortcuts.
+
 **Status (2026-07-20):** plan approved · Stage 0 done (`rules.md`) · Stage 1 done
 (`pipeline/`, artifacts in `build/`: core 0.09 MB gz / full 1.11 MB gz / bigram
 0.73 MB gz — all within budget; agreement filter dropped 8.2% of Aksharantar as

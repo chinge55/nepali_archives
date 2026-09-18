@@ -181,7 +181,10 @@ export function createEngine(rules, autocorrect = {}, english = null) {
 
   /** top candidates for a roman buffer: [{d, src}] best-first */
   function candidates(buffer, topN = 5) {
-    const cased = buffer.replace(/[^a-zA-Z]/g, '');
+    // Structured tokens (addresses, identifiers, punctuation) must never lose
+    // characters. The controller handles ordinary word-boundary punctuation.
+    const cased = buffer.trim();
+    if (cased && !/^[a-zA-Z]+$/.test(cased)) return [{ d: cased, src: 'lit' }];
     const raw = cased.toLowerCase();
     if (!raw) return [];
     const out = [], seen = new Set();
@@ -189,7 +192,7 @@ export function createEngine(rules, autocorrect = {}, english = null) {
       if (d && !seen.has(d)) { seen.add(d); out.push({ d, src }); }
     };
     const key = normalize(raw);
-    if (englishFirst && engSet.has(raw)) push(raw, 'eng'); // english stays english
+    if (englishFirst && engSet.has(raw)) push(cased, 'eng'); // english stays english
     if (ac[key]) push(ac[key], 'ac');
     if (lexicon) {
       const idxs = lexicon.keys[key] || [];
