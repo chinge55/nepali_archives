@@ -10,6 +10,7 @@ GENRE = {
     "mahakavya": ("महाकाव्य", "epic"),
     "khandakavya": ("खण्डकाव्य", "narrative poem"),
     "upanyas": ("उपन्यास", "novel"),
+    "natak": ("नाटक", "drama"),
     "katha": ("कथा", "story"),
     "nibandha": ("निबन्ध", "essay"),
     "kavita": ("कविता", "poems"),
@@ -23,6 +24,7 @@ GENRE_ORDER = [
     "mahakavya",
     "khandakavya",
     "upanyas",
+    "natak",
     "katha",
     "nibandha",
     "kavita",
@@ -51,4 +53,4 @@ AUTHORS = {
     "shilaj_baral": ("शिलज बराल", "Shilaj Baral", ""),
 }
 
-PROSE_GENRES = {"upanyas", "katha", "nibandha"}
+PROSE_GENRES = {"upanyas", "natak", "katha", "nibandha"}
