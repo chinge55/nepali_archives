@@ -59,7 +59,7 @@ class FullBuildTests(unittest.TestCase):
         (pdfjs_assets / "pdf.min.js").write_text("", encoding="utf-8")
         (pdfjs_assets / "pdf.worker.min.js").write_text("", encoding="utf-8")
         (
-            self.root / "Pratilipi Adhikar Ain_2059(1)_1573120368.pdf"
+            self.root / "pratilipi_adhikar_ain(2059).pdf"
         ).write_bytes(b"%PDF fixture")
         type_assets = self.root / "assets" / "type"
         type_assets.mkdir(parents=True)
