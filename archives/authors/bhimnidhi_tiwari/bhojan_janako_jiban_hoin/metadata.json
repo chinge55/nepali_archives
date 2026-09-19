@@ -1,0 +1,70 @@
+{
+  "id": "bhojan_janako_jiban_hoin",
+  "title": "भोजन, जनको जीवन होइन",
+  "title_roman": "Bhojan Janako Jiban Hoin",
+  "subtitle": null,
+  "author": {
+    "id": "bhimnidhi_tiwari",
+    "name": "भीमनिधि तिवारी",
+    "name_roman": "Bhimnidhi Tiwari"
+  },
+  "language": "ne",
+  "script": "Devanagari",
+  "genre": [
+    "bhajan",
+    "hymn"
+  ],
+  "first_published": {
+    "bs": 2010,
+    "ad": null
+  },
+  "edition": "प्रथम संस्करण, २०१० वि.सं., १००० प्रति; मुद्रक श्री पशुपति प्रेस, काठमाडौँ",
+  "publisher": "भीमनिधि तिवारी",
+  "description": "From the collection बयासी भजन. पुस्तकको भजन-सूचीमा नं. १२, पृष्ठ ८।",
+  "rights": {
+    "status": "public-domain",
+    "basis": "Author died 1973; Nepal's Copyright Act 2059 grants life + 50 years."
+  },
+  "source": {
+    "name": "बयासी भजन (२०१०) — लेखक-प्रकाशक भीमनिधि तिवारी",
+    "url": null,
+    "pdf": "bhojan_janako_jiban_hoin.pdf",
+    "html": null,
+    "pdf_editions": [
+      {
+        "id": "ia-bayasi-bhajan",
+        "file": "bhojan_janako_jiban_hoin.pdf",
+        "kind": "scan",
+        "label": "बयासी भजन — भजन नं. १२ (पृ. ८)",
+        "sha256": "21c2fbc89a32e0706c8ddfdeaf86f9994eba371e1e203caa4d0ec4afa4bab13d",
+        "page_count": 2,
+        "origin": {
+          "name": "Internet Archive",
+          "url": "https://archive.org/details/fceb-bayasi-bhajan-by-bhimnidhi-tiwari-nepali-bhajan-il"
+        },
+        "sections": [
+          {
+            "label": "भोजन, जनको जीवन होइन",
+            "page_start": 1,
+            "page_end": 2
+          }
+        ]
+      }
+    ]
+  },
+  "pages": 2,
+  "text": {
+    "extraction_method": "ocr",
+    "ocr_status": "ocr-done",
+    "proofread": false,
+    "quality": "good"
+  },
+  "formats": {
+    "pdf": "bhojan_janako_jiban_hoin.pdf",
+    "txt": "text.txt",
+    "html": null,
+    "epub": null
+  },
+  "added": "2026-09-18",
+  "updated": "2026-09-19"
+}

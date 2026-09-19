@@ -1,0 +1,90 @@
+{
+  "id": "masan",
+  "title": "मसान",
+  "title_roman": "Masan",
+  "subtitle": "सामाजिक नाटक",
+  "author": {
+    "id": "gopalaprasad_rimal",
+    "name": "गोपालप्रसाद रिमाल",
+    "name_roman": "Gopal Prasad Rimal"
+  },
+  "language": "ne",
+  "script": "Devanagari",
+  "genre": [
+    "natak",
+    "drama"
+  ],
+  "first_published": {
+    "bs": 2002,
+    "ad": null
+  },
+  "edition": "सत्रौँ संस्करण, २०५८ वि.सं. (साझा प्रकाशनबाट चौधौँ पटक)",
+  "publisher": "साझा प्रकाशन",
+  "description": "रिमालको पहिलो र सर्वाधिक चर्चित नाटक, नेपाली भाषानुवाद परिषद्‌का निम्ति २००२ सालमा लेखिएको। लेखकको आफ्नै ‘दुई कुरा’ र ‘उपसंहार’ समावेश छन्; २०२९ सालको अन्य लेखकको सम्पादकीय परिचय भने समावेश गरिएको छैन। स्क्यानमा छापाका पृष्ठ ४ र ५ दुई-दुई पटक खिचिएका छन्; पाठमा एकपटक मात्र राखिएको छ।",
+  "rights": {
+    "status": "public-domain",
+    "basis": "Author died 1973; Nepal's Copyright Act 2059 grants life + 50 years."
+  },
+  "source": {
+    "name": "मसान (साझा प्रकाशन)",
+    "url": null,
+    "pdf": "masan.pdf",
+    "html": null,
+    "pdf_editions": [
+      {
+        "id": "ia-sajha-2058",
+        "file": "masan.pdf",
+        "kind": "scan",
+        "label": "साझा प्रकाशन, सत्रौँ संस्करण २०५८ — इन्टरनेट आर्काइभ प्रति",
+        "sha256": "d470e522efcd3dc38d192fcaf28fcbf56ee9c4e875207a795a7cfaf2bb21c6d2",
+        "page_count": 68,
+        "origin": {
+          "name": "Internet Archive",
+          "url": "https://archive.org/details/masan-samajik-natak-by-gopal-prasad-rimal-nepali-d"
+        },
+        "sections": [
+          {
+            "label": "दुई कुरा",
+            "page_start": 1,
+            "page_end": 1
+          },
+          {
+            "label": "पात्रहरू",
+            "page_start": 2,
+            "page_end": 2
+          },
+          {
+            "label": "अघिल्लो आधा",
+            "page_start": 3,
+            "page_end": 47
+          },
+          {
+            "label": "पछिल्लो आधा",
+            "page_start": 48,
+            "page_end": 67
+          },
+          {
+            "label": "उपसंहार",
+            "page_start": 68,
+            "page_end": 68
+          }
+        ]
+      }
+    ]
+  },
+  "pages": 68,
+  "text": {
+    "extraction_method": "ocr",
+    "ocr_status": "ocr-done",
+    "proofread": false,
+    "quality": "good"
+  },
+  "formats": {
+    "pdf": "masan.pdf",
+    "txt": "text.txt",
+    "html": null,
+    "epub": null
+  },
+  "added": "2026-09-18",
+  "updated": "2026-09-19"
+}

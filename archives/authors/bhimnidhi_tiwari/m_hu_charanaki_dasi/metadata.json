@@ -1,0 +1,70 @@
+{
+  "id": "m_hu_charanaki_dasi",
+  "title": "म हुँ चरणकी दासी",
+  "title_roman": "M Hu Charanaki Dasi",
+  "subtitle": null,
+  "author": {
+    "id": "bhimnidhi_tiwari",
+    "name": "भीमनिधि तिवारी",
+    "name_roman": "Bhimnidhi Tiwari"
+  },
+  "language": "ne",
+  "script": "Devanagari",
+  "genre": [
+    "bhajan",
+    "hymn"
+  ],
+  "first_published": {
+    "bs": 2010,
+    "ad": null
+  },
+  "edition": "प्रथम संस्करण, २०१० वि.सं., १००० प्रति; मुद्रक श्री पशुपति प्रेस, काठमाडौँ",
+  "publisher": "भीमनिधि तिवारी",
+  "description": "From the collection बयासी भजन. पुस्तकको भजन-सूचीमा नं. ५१, पृष्ठ ३५।",
+  "rights": {
+    "status": "public-domain",
+    "basis": "Author died 1973; Nepal's Copyright Act 2059 grants life + 50 years."
+  },
+  "source": {
+    "name": "बयासी भजन (२०१०) — लेखक-प्रकाशक भीमनिधि तिवारी",
+    "url": null,
+    "pdf": "m_hu_charanaki_dasi.pdf",
+    "html": null,
+    "pdf_editions": [
+      {
+        "id": "ia-bayasi-bhajan",
+        "file": "m_hu_charanaki_dasi.pdf",
+        "kind": "scan",
+        "label": "बयासी भजन — भजन नं. ५१ (पृ. ३५)",
+        "sha256": "ebb1851cbc27cf5cb01c773b4b942acd4c1da090e3519bf4508799b1d5d9b176",
+        "page_count": 1,
+        "origin": {
+          "name": "Internet Archive",
+          "url": "https://archive.org/details/fceb-bayasi-bhajan-by-bhimnidhi-tiwari-nepali-bhajan-il"
+        },
+        "sections": [
+          {
+            "label": "म हुँ चरणकी दासी",
+            "page_start": 1,
+            "page_end": 1
+          }
+        ]
+      }
+    ]
+  },
+  "pages": 1,
+  "text": {
+    "extraction_method": "ocr",
+    "ocr_status": "ocr-done",
+    "proofread": false,
+    "quality": "good"
+  },
+  "formats": {
+    "pdf": "m_hu_charanaki_dasi.pdf",
+    "txt": "text.txt",
+    "html": null,
+    "epub": null
+  },
+  "added": "2026-09-18",
+  "updated": "2026-09-19"
+}

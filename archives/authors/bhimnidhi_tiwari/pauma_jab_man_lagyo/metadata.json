@@ -1,0 +1,70 @@
+{
+  "id": "pauma_jab_man_lagyo",
+  "title": "पाउमा जब मन लाग्यो",
+  "title_roman": "Pauma Jab Man Lagyo",
+  "subtitle": null,
+  "author": {
+    "id": "bhimnidhi_tiwari",
+    "name": "भीमनिधि तिवारी",
+    "name_roman": "Bhimnidhi Tiwari"
+  },
+  "language": "ne",
+  "script": "Devanagari",
+  "genre": [
+    "bhajan",
+    "hymn"
+  ],
+  "first_published": {
+    "bs": 2010,
+    "ad": null
+  },
+  "edition": "प्रथम संस्करण, २०१० वि.सं., १००० प्रति; मुद्रक श्री पशुपति प्रेस, काठमाडौँ",
+  "publisher": "भीमनिधि तिवारी",
+  "description": "From the collection बयासी भजन. पुस्तकको भजन-सूचीमा नं. ३८, पृष्ठ २६।",
+  "rights": {
+    "status": "public-domain",
+    "basis": "Author died 1973; Nepal's Copyright Act 2059 grants life + 50 years."
+  },
+  "source": {
+    "name": "बयासी भजन (२०१०) — लेखक-प्रकाशक भीमनिधि तिवारी",
+    "url": null,
+    "pdf": "pauma_jab_man_lagyo.pdf",
+    "html": null,
+    "pdf_editions": [
+      {
+        "id": "ia-bayasi-bhajan",
+        "file": "pauma_jab_man_lagyo.pdf",
+        "kind": "scan",
+        "label": "बयासी भजन — भजन नं. ३८ (पृ. २६)",
+        "sha256": "fe83a305a7a57e3c0976f9e8b9b1e775671a35f33f7e97e0ccf886b55db56646",
+        "page_count": 2,
+        "origin": {
+          "name": "Internet Archive",
+          "url": "https://archive.org/details/fceb-bayasi-bhajan-by-bhimnidhi-tiwari-nepali-bhajan-il"
+        },
+        "sections": [
+          {
+            "label": "पाउमा जब मन लाग्यो",
+            "page_start": 1,
+            "page_end": 2
+          }
+        ]
+      }
+    ]
+  },
+  "pages": 2,
+  "text": {
+    "extraction_method": "ocr",
+    "ocr_status": "ocr-done",
+    "proofread": false,
+    "quality": "good"
+  },
+  "formats": {
+    "pdf": "pauma_jab_man_lagyo.pdf",
+    "txt": "text.txt",
+    "html": null,
+    "epub": null
+  },
+  "added": "2026-09-18",
+  "updated": "2026-09-19"
+}

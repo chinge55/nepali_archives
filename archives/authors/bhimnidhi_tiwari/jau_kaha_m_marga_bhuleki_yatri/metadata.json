@@ -1,0 +1,70 @@
+{
+  "id": "jau_kaha_m_marga_bhuleki_yatri",
+  "title": "जाऊँ कहाँ ? म मार्ग भुलेकी यात्री",
+  "title_roman": "Jau Kaha M Marga Bhuleki Yatri",
+  "subtitle": null,
+  "author": {
+    "id": "bhimnidhi_tiwari",
+    "name": "भीमनिधि तिवारी",
+    "name_roman": "Bhimnidhi Tiwari"
+  },
+  "language": "ne",
+  "script": "Devanagari",
+  "genre": [
+    "bhajan",
+    "hymn"
+  ],
+  "first_published": {
+    "bs": 2010,
+    "ad": null
+  },
+  "edition": "प्रथम संस्करण, २०१० वि.सं., १००० प्रति; मुद्रक श्री पशुपति प्रेस, काठमाडौँ",
+  "publisher": "भीमनिधि तिवारी",
+  "description": "From the collection बयासी भजन. पुस्तकको भजन-सूचीमा नं. ५२, पृष्ठ ३६।",
+  "rights": {
+    "status": "public-domain",
+    "basis": "Author died 1973; Nepal's Copyright Act 2059 grants life + 50 years."
+  },
+  "source": {
+    "name": "बयासी भजन (२०१०) — लेखक-प्रकाशक भीमनिधि तिवारी",
+    "url": null,
+    "pdf": "jau_kaha_m_marga_bhuleki_yatri.pdf",
+    "html": null,
+    "pdf_editions": [
+      {
+        "id": "ia-bayasi-bhajan",
+        "file": "jau_kaha_m_marga_bhuleki_yatri.pdf",
+        "kind": "scan",
+        "label": "बयासी भजन — भजन नं. ५२ (पृ. ३६)",
+        "sha256": "c2fd5ea2cbed271638abfb6a38a1d7b357fd10cf098151adeef3bec4b3bd7771",
+        "page_count": 1,
+        "origin": {
+          "name": "Internet Archive",
+          "url": "https://archive.org/details/fceb-bayasi-bhajan-by-bhimnidhi-tiwari-nepali-bhajan-il"
+        },
+        "sections": [
+          {
+            "label": "जाऊँ कहाँ ? म मार्ग भुलेकी यात्री",
+            "page_start": 1,
+            "page_end": 1
+          }
+        ]
+      }
+    ]
+  },
+  "pages": 1,
+  "text": {
+    "extraction_method": "ocr",
+    "ocr_status": "ocr-done",
+    "proofread": false,
+    "quality": "good"
+  },
+  "formats": {
+    "pdf": "jau_kaha_m_marga_bhuleki_yatri.pdf",
+    "txt": "text.txt",
+    "html": null,
+    "epub": null
+  },
+  "added": "2026-09-18",
+  "updated": "2026-09-19"
+}

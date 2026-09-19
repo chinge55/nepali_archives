@@ -1,0 +1,70 @@
+{
+  "id": "sab_maile_harilai_chadhae",
+  "title": "सब मैले हरिलाइ चढाएँ",
+  "title_roman": "Sab Maile Harilai Chadhae",
+  "subtitle": null,
+  "author": {
+    "id": "bhimnidhi_tiwari",
+    "name": "भीमनिधि तिवारी",
+    "name_roman": "Bhimnidhi Tiwari"
+  },
+  "language": "ne",
+  "script": "Devanagari",
+  "genre": [
+    "bhajan",
+    "hymn"
+  ],
+  "first_published": {
+    "bs": 2010,
+    "ad": null
+  },
+  "edition": "प्रथम संस्करण, २०१० वि.सं., १००० प्रति; मुद्रक श्री पशुपति प्रेस, काठमाडौँ",
+  "publisher": "भीमनिधि तिवारी",
+  "description": "From the collection बयासी भजन. पुस्तकको भजन-सूचीमा नं. ५, पृष्ठ ४।",
+  "rights": {
+    "status": "public-domain",
+    "basis": "Author died 1973; Nepal's Copyright Act 2059 grants life + 50 years."
+  },
+  "source": {
+    "name": "बयासी भजन (२०१०) — लेखक-प्रकाशक भीमनिधि तिवारी",
+    "url": null,
+    "pdf": "sab_maile_harilai_chadhae.pdf",
+    "html": null,
+    "pdf_editions": [
+      {
+        "id": "ia-bayasi-bhajan",
+        "file": "sab_maile_harilai_chadhae.pdf",
+        "kind": "scan",
+        "label": "बयासी भजन — भजन नं. ५ (पृ. ४)",
+        "sha256": "7c057f8d338b3f0682c8470ee0412ad8f57f5e546502e47b4a9a8b5b97929c73",
+        "page_count": 1,
+        "origin": {
+          "name": "Internet Archive",
+          "url": "https://archive.org/details/fceb-bayasi-bhajan-by-bhimnidhi-tiwari-nepali-bhajan-il"
+        },
+        "sections": [
+          {
+            "label": "सब मैले हरिलाइ चढाएँ",
+            "page_start": 1,
+            "page_end": 1
+          }
+        ]
+      }
+    ]
+  },
+  "pages": 1,
+  "text": {
+    "extraction_method": "ocr",
+    "ocr_status": "ocr-done",
+    "proofread": false,
+    "quality": "good"
+  },
+  "formats": {
+    "pdf": "sab_maile_harilai_chadhae.pdf",
+    "txt": "text.txt",
+    "html": null,
+    "epub": null
+  },
+  "added": "2026-09-18",
+  "updated": "2026-09-19"
+}

@@ -1,0 +1,49 @@
+{
+  "id": "paribesh_samay",
+  "title": "परिवेश-समय",
+  "title_roman": "Paribesh-Samay",
+  "subtitle": "Oblivion.",
+  "author": {
+    "id": "shilaj_baral",
+    "name": "शिलज बराल",
+    "name_roman": "Shilaj Baral"
+  },
+  "language": "ne",
+  "script": "Devanagari",
+  "genre": [
+    "kavita",
+    "poem"
+  ],
+  "first_published": {
+    "bs": null,
+    "ad": 2024
+  },
+  "edition": null,
+  "publisher": null,
+  "description": "शिलज बरालको कविता 'परिवेश-समय'। लेखकको आफ्नै वेबसाइट shilaj.com.np मा April 29, 2024 मा प्रकाशित।",
+  "rights": {
+    "status": "permission-granted",
+    "basis": "Author living; poems published by the author at shilaj.com.np and contributed to this archive by the author."
+  },
+  "source": {
+    "name": "Shilaj Baral (shilaj.com.np)",
+    "url": "https://shilaj.com.np/hobbies/poetry/2024-04-29-TimeAndSituation/",
+    "pdf": null,
+    "html": "extracted/index.html"
+  },
+  "pages": null,
+  "text": {
+    "extraction_method": "html",
+    "ocr_status": "born-digital",
+    "proofread": false,
+    "quality": "good"
+  },
+  "formats": {
+    "pdf": null,
+    "txt": "text.txt",
+    "html": null,
+    "epub": null
+  },
+  "added": "2026-09-18",
+  "updated": "2026-09-18"
+}

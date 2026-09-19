@@ -1,0 +1,49 @@
+{
+  "id": "sundarata",
+  "title": "सुन्दरता",
+  "title_roman": "Sundarata",
+  "subtitle": "Epiphany.",
+  "author": {
+    "id": "shilaj_baral",
+    "name": "शिलज बराल",
+    "name_roman": "Shilaj Baral"
+  },
+  "language": "ne",
+  "script": "Devanagari",
+  "genre": [
+    "kavita",
+    "poem"
+  ],
+  "first_published": {
+    "bs": null,
+    "ad": 2025
+  },
+  "edition": null,
+  "publisher": null,
+  "description": "शिलज बरालको कविता 'सुन्दरता'। लेखकको आफ्नै वेबसाइट shilaj.com.np मा June 6, 2025 मा प्रकाशित।",
+  "rights": {
+    "status": "permission-granted",
+    "basis": "Author living; poems published by the author at shilaj.com.np and contributed to this archive by the author."
+  },
+  "source": {
+    "name": "Shilaj Baral (shilaj.com.np)",
+    "url": "https://shilaj.com.np/hobbies/poetry/2025-06-06-beauty/",
+    "pdf": null,
+    "html": "extracted/index.html"
+  },
+  "pages": null,
+  "text": {
+    "extraction_method": "html",
+    "ocr_status": "born-digital",
+    "proofread": false,
+    "quality": "good"
+  },
+  "formats": {
+    "pdf": null,
+    "txt": "text.txt",
+    "html": null,
+    "epub": null
+  },
+  "added": "2026-09-18",
+  "updated": "2026-09-18"
+}

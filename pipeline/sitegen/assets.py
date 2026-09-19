@@ -91,7 +91,7 @@ def install_common_assets(context: BuildContext, assets: AssetBundle) -> None:
     for source in sorted((root / "assets" / "fonts").glob("*.woff2")):
         shutil.copy(source, font_dir / source.name)
 
-    copyright_act = root / "Pratilipi Adhikar Ain_2059(1)_1573120368.pdf"
+    copyright_act = root / "pratilipi_adhikar_ain(2059).pdf"
     if copyright_act.exists():
         (site / "docs").mkdir(exist_ok=True)
         shutil.copy(
