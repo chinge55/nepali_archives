@@ -1,0 +1,76 @@
+{
+  "id": "bhumika",
+  "title": "भूमिका",
+  "title_roman": "Bhumika",
+  "subtitle": null,
+  "author": {
+    "id": "bhimnidhi_tiwari",
+    "name": "भीमनिधि तिवारी",
+    "name_roman": "Bhimnidhi Tiwari"
+  },
+  "language": "ne",
+  "script": "Devanagari",
+  "genre": [
+    "nibandha",
+    "essay"
+  ],
+  "first_published": {
+    "bs": 2010,
+    "ad": null
+  },
+  "edition": "प्रथम संस्करण, २०१० वि.सं., १००० प्रति; मुद्रक श्री पशुपति प्रेस, काठमाडौँ",
+  "publisher": "भीमनिधि तिवारी",
+  "description": "From the collection बयासी भजन. लेखकको आफ्नै समर्पण र प्रस्तावना; छापामा शीर्षक नराखी ‘भक्तजन,’ सम्बोधनबाट सुरु हुन्छ, र २००६ हरिशयनी एकादशी, डिल्लीबजार मिति राखी ‘लेखक’ ले हस्ताक्षर गरेका छन्।",
+  "rights": {
+    "status": "public-domain",
+    "basis": "Author died 1973; Nepal's Copyright Act 2059 grants life + 50 years."
+  },
+  "source": {
+    "name": "बयासी भजन (२०१०) — लेखक-प्रकाशक भीमनिधि तिवारी",
+    "url": null,
+    "pdf": "bhumika.pdf",
+    "html": null,
+    "pdf_editions": [
+      {
+        "id": "ia-bayasi-bhajan",
+        "file": "bhumika.pdf",
+        "kind": "scan",
+        "label": "बयासी भजन — समर्पण र प्रस्तावना (पृ. १-४ अङ्कनरहित)",
+        "sha256": "562716867e7bee9d2f3e639be3d3d1b77cb93113d6cb2395c6f8fd5f2f0e347d",
+        "page_count": 4,
+        "origin": {
+          "name": "Internet Archive",
+          "url": "https://archive.org/details/fceb-bayasi-bhajan-by-bhimnidhi-tiwari-nepali-bhajan-il"
+        },
+        "sections": [
+          {
+            "label": "समर्पण",
+            "page_start": 1,
+            "page_end": 1
+          },
+          {
+            "label": "भक्तजन,",
+            "page_start": 3,
+            "page_end": 4
+          }
+        ]
+      }
+    ]
+  },
+  "pages": 4,
+  "text": {
+    "extraction_method": "ocr",
+    "ocr_status": "ocr-done",
+    "proofread": false,
+    "quality": "good"
+  },
+  "formats": {
+    "pdf": "bhumika.pdf",
+    "txt": "text.txt",
+    "html": null,
+    "epub": null
+  },
+  "added": "2026-09-19",
+  "updated": "2026-09-19",
+  "summary": "भक्तिरसका भजन आजको युगमा अप्रगतिशील हुन् भन्ने उपहासको जवाफ दिँदै लेखकले यो सङ्ग्रह विरक्त भक्तका निम्ति लेखेको बताएका छन्।"
+}

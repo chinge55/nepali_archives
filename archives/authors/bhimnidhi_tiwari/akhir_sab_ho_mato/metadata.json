@@ -15,23 +15,44 @@
     "hymn"
   ],
   "first_published": {
-    "bs": null,
+    "bs": 2010,
     "ad": null
   },
-  "edition": null,
-  "publisher": null,
-  "description": "From the collection बयासी भजन.",
+  "edition": "प्रथम संस्करण, २०१० वि.सं., १००० प्रति; मुद्रक श्री पशुपति प्रेस, काठमाडौँ",
+  "publisher": "भीमनिधि तिवारी",
+  "description": "From the collection बयासी भजन. पुस्तकको भजन-सूचीमा नं. १६, पृष्ठ ११ — बयासी भजन (२०१०), लेखक-प्रकाशक भीमनिधि तिवारी। पाठ छापा प्रतिबाट; कविता कोशबाट पहिले सारिएको प्रति दोस्रो साक्षीका रूपमा राखिएको।",
   "rights": {
     "status": "public-domain",
     "basis": "Author died 1973; Nepal's Copyright Act 2059 grants life + 50 years."
   },
   "source": {
-    "name": "Kavita Kosh (kavitakosh.org)",
-    "url": "https://kavitakosh.org/kk/आखिर_सब_हो_माटो_/_भीमनिधि_तिवारी",
-    "pdf": null,
-    "html": "extracted/index.html"
+    "name": "बयासी भजन (२०१०) — लेखक-प्रकाशक भीमनिधि तिवारी",
+    "url": null,
+    "pdf": "akhir_sab_ho_mato.pdf",
+    "html": "extracted/index.html",
+    "pdf_editions": [
+      {
+        "id": "ia-bayasi-bhajan",
+        "file": "akhir_sab_ho_mato.pdf",
+        "kind": "scan",
+        "label": "बयासी भजन — भजन नं. १६ (पृ. ११)",
+        "sha256": "1882170914e062db3ac201762e9cc98456fccf75f588b308e9a64c024a74d682",
+        "page_count": 2,
+        "origin": {
+          "name": "Internet Archive",
+          "url": "https://archive.org/details/fceb-bayasi-bhajan-by-bhimnidhi-tiwari-nepali-bhajan-il"
+        },
+        "sections": [
+          {
+            "label": "आखिर सब हो माटो",
+            "page_start": 1,
+            "page_end": 2
+          }
+        ]
+      }
+    ]
   },
-  "pages": null,
+  "pages": 2,
   "text": {
     "extraction_method": "html",
     "ocr_status": "born-digital",
@@ -39,12 +60,12 @@
     "quality": "good"
   },
   "formats": {
-    "pdf": null,
+    "pdf": "akhir_sab_ho_mato.pdf",
     "txt": "text.txt",
     "html": "reader.html",
     "epub": "reader.epub"
   },
   "added": "2026-07-20",
-  "updated": "2026-09-08",
+  "updated": "2026-09-19",
   "summary": "धनी–गरिब र राजा–रङ्क सबैको अन्त्य एउटै हुन्छ भन्दै अहङ्कार र भेदभावमाथि प्रश्न गर्ने भजन।"
 }
