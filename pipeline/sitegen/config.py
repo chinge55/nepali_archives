@@ -48,6 +48,7 @@ AUTHORS = {
     "baburam_acharya": ("बाबुराम आचार्य", "Baburam Acharya", "1888–1972"),
     "guruprasad_mainali": ("गुरुप्रसाद मैनाली", "Guru Prasad Mainali", "1900–1971"),
     "jagannath_upadhyay_guraganyin": ("जगन्नाथ उपाध्याय गुरागाञीं", "Jagannath Upadhyaya Guragāñī", "1900–1966"),
+    "shilaj_baral": ("शिलज बराल", "Shilaj Baral", ""),
 }
 
 PROSE_GENRES = {"upanyas", "katha", "nibandha"}
