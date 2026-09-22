@@ -44,7 +44,7 @@ def write_catalogue_pages(context, page, assets, catalogue):
     )
     (collection_dir / "index.html").write_text(
         page("सङ्ग्रह — " + SITE_NAME, collections_body, css_depth=1, active="works",
-             desc="लेखकअनुसार नेपाली साहित्यका प्रकाशित सङ्ग्रह र तिनमा उपलब्ध कृतिहरू।", canon="collections/"),
+             desc="नेपाली साहित्यका प्रकाशित सङ्ग्रह लेखकअनुसार खोज्नुहोस्। प्रत्येक सङ्ग्रहमा उपलब्ध रचनाको सूची, छोटो परिचय, मूल पाठ र डाउनलोडका विकल्प हेर्नुहोस्।", canon="collections/"),
         encoding="utf-8",
     )
     for alias, names in catalogue.collection_aliases.items():
@@ -54,7 +54,8 @@ def write_catalogue_pages(context, page, assets, catalogue):
                 '<h1>सङ्ग्रह छान्नुहोस्</h1><p class="genre-intro">पढ्न चाहनुभएको भाग छान्नुहोस्।</p>'
                 + collection_cards([(name, catalogue.collections[name]) for name in names], "../"))
         (output / "index.html").write_text(
-            page("सङ्ग्रह छान्नुहोस् — " + SITE_NAME, body, css_depth=2,
+            page(" / ".join(names) + " — सङ्ग्रह छान्नुहोस्", body, css_depth=2,
+                 desc=" र ".join(names) + " का उपलब्ध भाग र तिनका कृतिहरू हेर्नुहोस्। पढ्न चाहनुभएको सङ्ग्रहको भाग छानेर रचनाको सूची र मूल पाठमा जानुहोस्।",
                  active="works", canon=f"collections/{alias}/"), encoding="utf-8",
         )
 
@@ -93,7 +94,8 @@ def write_catalogue_pages(context, page, assets, catalogue):
                 body,
                 css_depth=2,
                 active="works",
-                desc=f"{collection} — {len(items)} कृति",
+                desc=(f"‘{collection}’ सङ्ग्रहका उपलब्ध {devnum(len(items))} कृति पढ्नुहोस्। "
+                      "रचनाको परिचय, मूल पाठ र उपलब्ध स्रोत पृष्ठ हेर्नुहोस्; शीर्षक वा पाठभित्र खोज्न सकिन्छ।"),
                 canon=(
                     f"collections/{catalogue.collection_slugs[collection]}/"
                 ),
@@ -175,8 +177,8 @@ def write_catalogue_pages(context, page, assets, catalogue):
             css_depth=1,
             active="works",
             desc=(
-                f"विधा अनुसार ब्राउज गर्नुहोस् — "
-                f"{len(catalogue.records)} कृति"
+                f"नेपाली साहित्यका {devnum(len(catalogue.records))} कृति विधाअनुसार खोज्नुहोस्। "
+                "कविता, कथा, निबन्ध, नाटक र काव्यका सूचीबाट रुचिको रचना छानेर मूल पाठ नि:शुल्क पढ्नुहोस्।"
             ),
             canon="genres/",
         ),
@@ -256,7 +258,8 @@ def write_catalogue_pages(context, page, assets, catalogue):
                 body,
                 css_depth=2,
                 active="works",
-                desc=f"{author_name}का {len(author_records)} कृति",
+                desc=(f"{author_name}का {devnum(len(author_records))} कृति नि:शुल्क पढ्नुहोस्। "
+                      "शीर्षक वा पाठभित्र खोज्नुहोस् र उपलब्ध मूल पाठ, PDF तथा EPUB डाउनलोड गर्नुहोस्।"),
                 canon=f"authors/{author}/",
             ),
             encoding="utf-8",
@@ -290,8 +293,8 @@ def write_catalogue_pages(context, page, assets, catalogue):
             css_depth=1,
             active="works",
             desc=(
-                f"{len(catalogue.by_author)} लेखक · "
-                f"{len(catalogue.records)} कृति"
+                f"{devnum(len(catalogue.by_author))} लेखकका {devnum(len(catalogue.records))} नेपाली साहित्यिक कृति खोज्नुहोस्। "
+                "लेखक छानेर रचनाको सूची, छोटो परिचय, मूल पाठ र उपलब्ध डाउनलोड हेर्नुहोस्।"
             ),
             canon="authors/",
         ),
@@ -323,7 +326,8 @@ def write_catalogue_pages(context, page, assets, catalogue):
         page(
             SITE_NAME,
             home_body,
-            desc="",
+            desc=(f"{devnum(len(catalogue.by_author))} लेखकका {devnum(len(catalogue.records))} नेपाली साहित्यिक कृति नि:शुल्क पढ्नुहोस्। "
+                  "लेखक, विधा वा सङ्ग्रहअनुसार खोज्नुहोस्; नेपाली वा रोमनमा पाठभित्र पनि खोज्न सकिन्छ।"),
             css_depth=0,
             active="home",
             canon="",

@@ -37,6 +37,7 @@ jobs:
       - run: python3 pipeline/subset_fonts.py
       - run: python3 pipeline/build_site.py
       - run: python3 pipeline/check_site_links.py site
+      - run: python3 pipeline/check_site_seo.py site
       # 6) exercise the actual search index, including Romanized passages
       - run: npx -y pagefind@1.5.2 --site site
       - run: npm install --prefix "$RUNNER_TEMP/search-test" --no-save puppeteer@21.11.0

@@ -39,6 +39,15 @@ class PaginationTests(unittest.TestCase):
         self.assertTrue(pages[0][1].endswith('इति प्रथम सर्ग'))
         self.assertTrue(pages[1][1].endswith('इति द्वितीय सर्ग'))
 
+    def test_play_splits_at_printed_halves_without_losing_the_preface(self):
+        preface = "दुई कुरा\n\n" + "लेखकको आफ्नै कुरा। " * 30
+        first, second = "कृष्ण- संवाद। " * 400, "युवति- संवाद। " * 400
+        text = preface + "\n\nअघिल्लो आधा\n\n" + first + "\n\nपछिल्लो आधा\n\n" + second
+        pages = paginate_work(text)
+        self.assertEqual([label for label, _ in pages], ['दुई कुरा', 'अघिल्लो आधा', 'पछिल्लो आधा'])
+        self.assertEqual(pages[1][1], first)
+        self.assertEqual(pages[2][1], second)
+
     def test_short_work_remains_single_page(self):
         self.assertIsNone(paginate_work(
             "प्रथम सर्ग\n\nसानो\n\nदोस्रो सर्ग\n\nसानो"

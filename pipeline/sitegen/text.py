@@ -30,7 +30,7 @@ _COLOPHON_RE = re.compile(r"^\s*(वि|बि)\.?\s*सं\.?\s*[०-९]")
 _NBSP_PUNCT = re.compile(r" ([।॥!?])")
 CHAPTER_RE = re.compile(
     r"काण्ड|सर्ग|सगैँ|अध्याय|विश्राम|विश्वाम|परिच्छेद|अङ्क|उल्लास|खण्ड|"
-    r"सोपान|परिशिष्ट|विचार"
+    r"सोपान|परिशिष्ट|विचार|अघिल्लो आधा|पछिल्लो आधा"
 )
 DEVNUM = str.maketrans("0123456789", "०१२३४५६७८९")
 
@@ -60,7 +60,7 @@ def verse_line(line: str) -> str:
     return _no_break_punctuation(esc(line))
 
 
-def work_html(text: str, verse: bool) -> str:
+def work_html(text: str, verse: bool, *, drama: bool = False) -> str:
     """Render source blocks without modernizing or filling missing text."""
     blocks = text_blocks(text)
     output = []
@@ -70,7 +70,9 @@ def work_html(text: str, verse: bool) -> str:
         if _COLOPHON_RE.match(block):
             line = re.sub(r"\s+", " ", block.replace("\n", " ")).strip()
             output.append(f'<p class="colophon">{esc(line)}</p>')
-        elif is_heading(block):
+        elif (is_heading(block) and not (
+            drama and re.match(r"^[^\n–—-]+\s*[–—-]", block)
+        )) or (drama and re.fullmatch(r"[।॥\s]*दृश्य\s+[०-९0-9]+[।॥\s]*", block)):
             output.append(f'<h2 class="sec">{esc(block)}</h2>')
         elif verse:
             lines = block.split("\n")
@@ -95,7 +97,10 @@ def work_html(text: str, verse: bool) -> str:
             )
             output.append(f'<div class="{css_class}">{rendered_lines}</div>')
         else:
-            paragraph = _no_break_punctuation(esc(block).replace("\n", " "))
+            # A play's cast and stage directions use explicit line boundaries.
+            paragraph = _no_break_punctuation(esc(block).replace(
+                "\n", "<br>\n" if drama else " "
+            ))
             output.append(f'<p class="stanza">{paragraph}</p>')
     return "\n".join(output)
 

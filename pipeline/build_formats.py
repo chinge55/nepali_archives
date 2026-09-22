@@ -70,7 +70,7 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
 </main>
 <footer>
   <p>{rights_line}</p>
-  <p>Nepali Archives — free, public-domain Nepali literature. Source: {source}</p>
+  <p>Nepali Archives — free Nepali literature. Source: {source}</p>
 </footer>
 </body>
 </html>

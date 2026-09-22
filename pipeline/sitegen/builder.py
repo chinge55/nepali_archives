@@ -16,27 +16,13 @@ from .pages.patro import write_patro_page
 from .pages.type_tool import write_type_page
 from .pages.works import write_work_pages
 from .search import write_search_data
+from .seo import write_sitemaps
 
 
-def write_site_metadata(context, catalogue, search_rows, *, patro_written):
-    urls = (
-        ["", "about.html", "ocr/", "authors/", "genres/", "collections/", "stats/", "type/"]
-        + (["patro/"] if patro_written else [])
-        + [f"authors/{author}/" for author in catalogue.author_order]
-        + [f"genres/{genre}/" for genre in catalogue.genres_present]
-        + [
-            f"collections/{catalogue.collection_slugs[collection]}/"
-            for collection in catalogue.collections
-        ]
-        + [f"collections/{alias}/" for alias in catalogue.collection_aliases]
-        + [row["p"] for row in search_rows]
-    )
-    (context.site / "sitemap.txt").write_text(
-        "\n".join(SITE_URL + url for url in urls) + "\n",
-        encoding="utf-8",
-    )
+def write_site_metadata(context):
+    write_sitemaps(context.site)
     (context.site / "robots.txt").write_text(
-        f"User-agent: *\nAllow: /\nSitemap: {SITE_URL}sitemap.txt\n",
+        f"User-agent: *\nAllow: /\nSitemap: {SITE_URL}sitemap.xml\n",
         encoding="utf-8",
     )
     (context.site / ".nojekyll").write_text("", encoding="utf-8")
@@ -69,7 +55,7 @@ def build(
     write_about_page(context, page, catalogue)
     write_ocr_page(context, page)
     write_type_page(context, page, assets)
-    patro_written = write_patro_page(context, page, assets)
+    write_patro_page(context, page, assets)
     stats.build_stats_page(
         catalogue.records,
         catalogue.collections,
@@ -79,21 +65,9 @@ def build(
         site=context.site,
         site_name=SITE_NAME,
     )
-    write_site_metadata(
-        context,
-        catalogue,
-        search_rows,
-        patro_written=patro_written,
-    )
+    write_site_metadata(context)
 
-    pages = (
-        7
-        + len(catalogue.author_order)
-        + len(catalogue.genres_present)
-        + len(catalogue.collections)
-        + len(catalogue.collection_aliases)
-        + len(catalogue.records)
-    )
+    pages = sum(1 for _ in context.site.rglob("*.html"))
     return BuildStats(
         pages=pages,
         works=len(catalogue.records),

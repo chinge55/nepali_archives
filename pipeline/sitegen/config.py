@@ -2,7 +2,7 @@
 
 SITE_NAME = "नेपाली अभिलेख"
 SITE_TAGLINE = "स्वतन्त्र, सार्वजनिक नेपाली साहित्य"
-SITE_TAGLINE_EN = "A public-domain archive of Nepali literature"
+SITE_TAGLINE_EN = "A free archive of Nepali literature"
 SITE_URL = "https://www.nepaliarchives.org/"
 REPO_URL = "https://github.com/chinge55/nepali_archives"
 

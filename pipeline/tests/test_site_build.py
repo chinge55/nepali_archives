@@ -14,6 +14,7 @@ sys.path.insert(0, str(PIPELINE))
 from check_site_links import find_broken_links
 from sitegen.builder import build
 from sitegen.context import BuildContext
+from sitegen.seo import audit_site
 
 
 def fixture_metadata(identifier, title, genre):
@@ -270,6 +271,13 @@ class FullBuildTests(unittest.TestCase):
             if url.endswith("/"):
                 target /= "index.html"
             self.assertTrue(target.is_file(), url)
+        errors, seo = audit_site(context.site)
+        self.assertEqual(errors, [])
+        self.assertEqual(result.pages, seo['html_pages'])
+        sitemap = (context.site / 'sitemap.txt').read_text()
+        self.assertIn('authors/test_author/long_work/1/', sitemap)
+        self.assertNotIn('/pdf/', sitemap)
+        self.assertNotIn('patro/2026-08-13/', sitemap)
         collections_page = (context.site / "collections/index.html").read_text()
         self.assertIn("सङ्ग्रह", collections_page)
         self.assertIn('href="collections/"', home_browse)
@@ -281,6 +289,20 @@ class FullBuildTests(unittest.TestCase):
         for row in search["works"]:
             self.assertTrue(row['d'])
         self.assertEqual(find_broken_links(context.site), [])
+
+    def test_structured_license_follows_the_recorded_rights_status(self):
+        metadata_path = self.root / 'archives/authors/test_author/verse_work/metadata.json'
+        metadata = json.loads(metadata_path.read_text())
+        for status in ['public-domain', 'permission-granted']:
+            with self.subTest(status=status):
+                metadata['rights'] = {'status': status}
+                metadata_path.write_text(json.dumps(metadata, ensure_ascii=False))
+                context, _ = self.run_build('rights-' + status)
+                html = (context.site / 'authors/test_author/verse_work/index.html').read_text()
+                import re
+                data = json.loads(re.search(r'<script type="application/ld\+json">(.*?)</script>', html).group(1))
+                self.assertEqual('license' in data, status == 'public-domain')
+                self.assertTrue(data['isAccessibleForFree'])
 
     def test_bundled_and_external_download_modes(self):
         bundled, _ = self.run_build("site-bundled")

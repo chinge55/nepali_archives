@@ -40,6 +40,7 @@ jobs:
       - run: python3 pipeline/build_site.py               # site/ (pass 1 — HTML for glyph scan)
       - run: python3 pipeline/subset_fonts.py             # assets/fonts/*.woff2 (subset to used glyphs)
       - run: python3 pipeline/build_site.py               # site/ (pass 2 — embed the subset)
+      - run: python3 pipeline/check_site_seo.py site
       - run: npx -y pagefind@1.5.2 --site site            # full-text search index → site/pagefind/
       - uses: actions/upload-pages-artifact@v3
         with:

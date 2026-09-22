@@ -285,5 +285,5 @@ def build_stats_page(recs, collections, *, page, GENRE, PROSE_GENRES, site, site
     (site / "stats").mkdir(parents=True, exist_ok=True)
     (site / "stats" / "index.html").write_text(
         page("अभिलेख एक नजरमा — " + site_name, body,
-             desc="नेपाली अभिलेखका तथ्याङ्क, ग्राफ र रोचक तथ्यहरू।", css_depth=1, active="", canon="stats/"),
+             desc="नेपाली अभिलेखमा उपलब्ध लेखक, कृति र विधाका तथ्याङ्क हेर्नुहोस्। शब्दको आवृत्ति, धेरै प्रयोग हुने शब्द, पढ्ने समय र लेखकअनुसारका ग्राफबाट सङ्ग्रह चिन्नुहोस्।", css_depth=1, active="", canon="stats/"),
         encoding="utf-8")

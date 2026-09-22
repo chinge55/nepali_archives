@@ -106,6 +106,7 @@ python3 pipeline/build_formats.py --all     # reader.html + reader.epub (pandoc)
 python3 pipeline/build_site.py              # site/ (reading pages, downloads, /stats/)
 python3 -m unittest discover -s pipeline/tests
 python3 pipeline/check_site_links.py site
+python3 pipeline/check_site_seo.py site
 python3 pipeline/subset_fonts.py            # font subset (fonttools+brotli)
 python3 pipeline/build_site.py              # second pass embeds the subset
 npx pagefind --site site                    # full-text search index
@@ -116,6 +117,11 @@ To check search against the generated Pagefind index, keep the preview server ru
 and run `SEARCH_TEST_URL=http://localhost:8000/ node pipeline/tests/browser/search.cjs`
 with `puppeteer` installed (or available through `NODE_PATH`). PR validation runs this
 browser check too, covering Roman/Nepali passages, highlighting, scopes, and loading failures.
+
+The build generates both `sitemap.xml` and `sitemap.txt` from canonical HTML pages,
+including individual chapters. PDF viewers and dated calendar pages marked `noindex`
+are excluded. The SEO audit checks HTML titles, descriptions, canonical URLs and complete
+sitemap coverage; source PDF/TXT/EPUB downloads do not have HTML title tags.
 
 ## The website
 

@@ -36,9 +36,13 @@ source file, then open a PR. Conventions the validator checks for you:
 - **slug rules:** the directory name == `metadata.id` == `[a-z0-9_-]`; the author directory ==
   `metadata.author.id`. (Generate a slug with `python3 pipeline/devanagari_slug.py "<title>"`.)
 - **`metadata.json`** must validate against `metadata.schema.json`.
+- Include a concise Nepali **`summary`** grounded in the complete work. This reader
+  introduction stays separate from the original text and from `description`, which
+  records source and collection information. Without a summary, the site can show
+  only a generic catalogue introduction.
 - **`text.txt`** is non-empty Devanagari; blank lines separate stanzas/paragraphs; a short
   standalone line is a section heading (put a blank line before the next block); verse vs prose
-  is decided by `genre[0]` (`nibandha`/`upanyas`/`katha` → prose, else verse).
+  is decided by `genre[0]` (`nibandha`/`upanyas`/`katha`/`natak` → prose, else verse).
 
 Adding a **new author** may also need a small maintainer code change when custom life dates
 are wanted (the optional display registry lives in `pipeline/sitegen/config.py`) — please
@@ -60,7 +64,8 @@ Lekhnath d. 1966, Devkota d. 1959). Set `rights.status` to `public-domain` accor
 ## What happens to your PR
 
 - **On the PR:** `validate.yml` runs `pipeline/validate.py` (schema, slug/id, text, rights),
-  site-generator tests, a dry-run build, and an internal-link audit, so you get ✅/❌ immediately.
+  site-generator tests, a dry-run build, internal-link and SEO audits, and browser search checks.
+  The SEO audit checks titles, descriptions, canonical URLs, and chapter coverage in both sitemaps.
 - **On merge:** `deploy.yml` regenerates everything (`build_index` → `build_formats` →
   `build_site` → `subset_fonts` → Pagefind) and deploys to GitHub Pages.
 
@@ -76,6 +81,7 @@ python3 pipeline/build_formats.py <work_dir>  # reader.html + reader.epub (per d
 python3 pipeline/build_site.py
 python3 -m unittest discover -s pipeline/tests
 python3 pipeline/check_site_links.py site
+python3 pipeline/check_site_seo.py site
 cd site && python3 -m http.server 8000        # http://localhost:8000
 ```
 

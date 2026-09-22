@@ -86,7 +86,7 @@ class PageRenderer:
 {body}
 </main>
 <footer class="site">
-  <p>{SITE_NAME} — {SITE_TAGLINE}. सार्वजनिक डोमेन।</p>
+  <p>{SITE_NAME} — {SITE_TAGLINE}। सार्वजनिक डोमेन तथा अनुमतिप्राप्त कृतिहरू।</p>
   <p class="foot-en">{SITE_TAGLINE_EN}</p>
 </footer>
 </body>

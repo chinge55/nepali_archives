@@ -201,9 +201,8 @@ def write_work_pages(context, page, assets, catalogue):
                     "inLanguage": "ne",
                     "description": introduction,
                     "isAccessibleForFree": True,
-                    "license": (
-                        "https://creativecommons.org/publicdomain/mark/1.0/"
-                    ),
+                    **({"license": "https://creativecommons.org/publicdomain/mark/1.0/"}
+                       if meta.get("rights", {}).get("status") == "public-domain" else {}),
                     "url": SITE_URL + str(relative) + "/",
                 },
                 ensure_ascii=False,
@@ -219,7 +218,7 @@ def write_work_pages(context, page, assets, catalogue):
             )
             sequence_nav = f'<nav class="seqnav">{"".join(sequence)}</nav>'
             full_title = f"{meta['title']} — {meta['author']['name']}"
-            rendered_text = work_html(text, verse)
+            rendered_text = work_html(text, verse, drama=genre == "natak")
             # Indentation wrappers improve layout but add no literary content.
             # They must not push a previously single-page work over the size limit.
             indent_markup_size = (rendered_text.count('<span class="indent">')
@@ -245,7 +244,7 @@ def write_work_pages(context, page, assets, catalogue):
                     page(
                         full_title,
                         body,
-                        desc=f"{meta['title']} — {introduction}",
+                        desc=f"{full_title} — {introduction}",
                         css_depth=depth,
                         active="works",
                         canon=str(relative) + "/",
@@ -277,7 +276,7 @@ def write_work_pages(context, page, assets, catalogue):
                     page(
                         full_title,
                         contents_body,
-                        desc=f"{meta['title']} — {introduction}",
+                        desc=f"{full_title} — {introduction}",
                         css_depth=depth,
                         active="works",
                         canon=str(relative) + "/",
@@ -317,7 +316,7 @@ def write_work_pages(context, page, assets, catalogue):
   <p class="byline"><a href="../">{esc(meta['title'])}</a> · {esc(meta['author']['name'])} · {devnum(section_index + 1)}/{devnum(section_count)}</p>
   {section_pdf_link(label)}
   <div class="work {'verse' if verse else 'prose'}" data-pagefind-body>{filters}
-{work_html(content, verse)}
+{work_html(content, verse, drama=genre == "natak")}
   </div>
 </article>
 <nav class="seqnav">{''.join(section_nav)}</nav>"""
@@ -325,7 +324,7 @@ def write_work_pages(context, page, assets, catalogue):
                         page(
                             f"{label} — {full_title}",
                             section_body,
-                            desc=f"{label} — {full_title}",
+                            desc=f"{full_title}को ‘{label}’ खण्ड। {introduction}",
                             css_depth=section_depth,
                             active="works",
                             canon=(

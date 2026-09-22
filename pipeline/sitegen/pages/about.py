@@ -37,6 +37,7 @@ def write_about_page(context, page, catalogue):
         page(
             "बारेमा — " + SITE_NAME,
             body,
+            desc="नेपाली अभिलेखको संरक्षण अभियान, मूल पाठप्रतिको निष्ठा, स्रोत र प्रुफरिड अवस्थाबारे जान्नुहोस्। कृति पढ्ने, डाउनलोड गर्ने र योगदान दिने तरिका हेर्नुहोस्।",
             css_depth=0,
             active="about",
             canon="about.html",

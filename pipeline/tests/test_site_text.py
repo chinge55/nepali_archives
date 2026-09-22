@@ -33,6 +33,17 @@ class WorkHtmlTests(unittest.TestCase):
         parser.feed(work_html(source, verse=True))
         self.assertEqual("".join(parser.parts), source)
 
+    def test_drama_speech_is_not_a_heading_and_cast_keeps_line_breaks(self):
+        rendered = work_html("कृष्ण- स्याबास । अनि-\n\nकृष्ण- एक शिक्षित शहरिया\nभोटु- उसको भानिज", verse=False, drama=True)
+        self.assertNotIn('<h2', rendered)
+        self.assertIn('कृष्ण- स्याबास । अनि-</p>', rendered.replace('\u00a0', ' '))
+        self.assertIn('शहरिया<br>\nभोटु-', rendered)
+
+    def test_drama_printed_scene_marker_is_a_heading(self):
+        rendered = work_html("अघिल्लो आधा\n\n॥ दृश्य १ ॥", verse=False, drama=True)
+        self.assertIn('<h2 class="sec">अघिल्लो आधा</h2>', rendered)
+        self.assertIn('<h2 class="sec">॥ दृश्य १ ॥</h2>', rendered)
+
     def test_source_markup_is_escaped(self):
         rendered = work_html("कविता <script>&", verse=True)
         self.assertIn("&lt;script&gt;&amp;", rendered)
