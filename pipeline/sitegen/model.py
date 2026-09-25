@@ -9,7 +9,7 @@ from pathlib import Path
 
 from devanagari_slug import slugify
 
-from .config import AUTHORS, GENRE, GENRE_ORDER
+from .config import AUTHORS, AUTHOR_GROUPS, AUTHOR_SECTIONS, GENRE, GENRE_ORDER
 from .context import BuildContext
 from .introductions import GENRE_INTROS, work_intro
 from .text import devnum, esc
@@ -40,6 +40,15 @@ class Catalogue:
             return AUTHORS[slug]
         author = sample_meta["author"]
         return (author["name"], author.get("name_roman") or "", "")
+
+    def author_sections(self):
+        """Partition authors once, retaining unclassified authors without guessing."""
+        groups = {key: [] for key in AUTHOR_SECTIONS}
+        for author in self.author_order:
+            group = AUTHOR_GROUPS.get(author, "other")
+            groups[group if group in groups else "other"].append(author)
+        return [(key, *AUTHOR_SECTIONS[key], authors)
+                for key, authors in groups.items() if authors]
 
     def work_list_item(
         self, work: dict, meta: dict, href: str, *, chip: bool = False

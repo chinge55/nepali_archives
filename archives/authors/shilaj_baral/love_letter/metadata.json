@@ -23,8 +23,9 @@
   "description": "शिलज बरालको कथा 'Love Letter ?'। लेखकको आफ्नै वेबसाइट shilaj.com.np मा February 11, 2018 मा प्रकाशित।",
   "summary": "प्रेममा समर्पित वक्ताले आफ्नी प्रियलाई सम्झनाले आफूलाई जीवित राखेको बताउँदै साझा भविष्य र आफ्नै प्रेमकथा रोज्न आमन्त्रण गर्छ।",
   "rights": {
-    "status": "permission-granted",
-    "basis": "Author living; poems published by the author at shilaj.com.np and contributed to this archive by the author."
+    "status": "public-domain",
+    "basis": "Author has waived all rights to these contributed works and dedicated them to the public domain.",
+    "public_domain_basis": "author-dedication"
   },
   "source": {
     "name": "Shilaj Baral (shilaj.com.np)",

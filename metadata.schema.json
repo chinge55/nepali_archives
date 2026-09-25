@@ -56,6 +56,9 @@
     "rights": {
       "type": "object",
       "required": ["status"],
+      "dependencies": {
+        "public_domain_basis": {"properties": {"status": {"const": "public-domain"}}}
+      },
       "additionalProperties": false,
       "properties": {
         "status": {
@@ -63,7 +66,12 @@
           "enum": ["public-domain", "permission-granted", "unknown", "restricted"],
           "description": "Per mission, only public-domain or permission-granted works are published."
         },
-        "basis": { "type": ["string", "null"], "description": "Reasoning, e.g. 'Author d.1959; Nepal copyright = life + 50 yrs'." }
+        "basis": { "type": ["string", "null"], "description": "Reasoning, e.g. 'Author d.1959; Nepal copyright = life + 50 yrs'." },
+        "public_domain_basis": {
+          "type": "string",
+          "enum": ["copyright-expired", "author-dedication"],
+          "description": "Optional structured basis for a public-domain work, independent of author browse grouping."
+        }
       }
     },
     "source": {

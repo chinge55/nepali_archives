@@ -23,8 +23,9 @@
   "description": "शिलज बरालको कविता 'म'। लेखकको आफ्नै वेबसाइट shilaj.com.np मा October 20, 2023 मा प्रकाशित।",
   "summary": "वक्ताले आफूभित्रका देव र दानव, डर र अन्योलसँग जुध्दै समयबाट सिक्ने एक मानवका रूपमा आफ्ना गल्ती स्वीकार गर्छ।",
   "rights": {
-    "status": "permission-granted",
-    "basis": "Author living; poems published by the author at shilaj.com.np and contributed to this archive by the author."
+    "status": "public-domain",
+    "basis": "Author has waived all rights to these contributed works and dedicated them to the public domain.",
+    "public_domain_basis": "author-dedication"
   },
   "source": {
     "name": "Shilaj Baral (shilaj.com.np)",

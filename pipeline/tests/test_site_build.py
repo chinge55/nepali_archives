@@ -304,6 +304,51 @@ class FullBuildTests(unittest.TestCase):
                 self.assertEqual('license' in data, status == 'public-domain')
                 self.assertTrue(data['isAccessibleForFree'])
 
+    def test_author_groups_and_dedication_remain_distinct_from_rights(self):
+        import re
+        from unittest.mock import patch
+        from sitegen.config import AUTHOR_GROUPS
+
+        index_path = self.root / "archives/index.json"
+        index = json.loads(index_path.read_text())
+        for slug, basis in [("heritage_fixture", "copyright-expired"),
+                            ("contributor_fixture", "author-dedication")]:
+            relative = Path("archives/authors") / slug / "sample"
+            directory = self.root / relative
+            directory.mkdir(parents=True)
+            metadata = fixture_metadata("sample", slug, "kavita")
+            metadata["author"]["id"] = slug
+            metadata["rights"] = {"status": "public-domain", "public_domain_basis": basis}
+            (directory / "metadata.json").write_text(json.dumps(metadata))
+            (directory / "text.txt").write_text("यो कविता हो।")
+            index["works"].append({"id": "sample", "path": relative.as_posix()})
+        index_path.write_text(json.dumps(index))
+        with patch.dict(AUTHOR_GROUPS, {"heritage_fixture": "heritage",
+                                       "contributor_fixture": "contributions"}):
+            context, result = self.run_build("author-groups")
+        self.assertEqual(result.works, 5)
+        for path in ["index.html", "authors/index.html"]:
+            html = (context.site / path).read_text()
+            for group, slug in [("heritage", "heritage_fixture"),
+                                ("contributions", "contributor_fixture"),
+                                ("other", "test_author")]:
+                section = re.search(r'<section[^>]+id="authors-' + group
+                                    + r'".*?</section>', html, re.S).group()
+                self.assertIn("authors/" + slug + "/", section)
+                self.assertEqual(html.count('class="row-link" href="'
+                                            + ("../" if path.startswith("authors/") else "")
+                                            + "authors/" + slug + '/"'), 1)
+        contributed = (context.site / "authors/contributor_fixture/sample/index.html").read_text()
+        inherited = (context.site / "authors/heritage_fixture/sample/index.html").read_text()
+        self.assertIn("लेखकद्वारा सार्वजनिक डोमेनमा समर्पित", contributed)
+        self.assertNotIn("लेखकद्वारा सार्वजनिक डोमेनमा समर्पित", inherited)
+        author = (context.site / "authors/contributor_fixture/index.html").read_text()
+        self.assertIn("कृति लेखकले सार्वजनिक डोमेनमा समर्पित", author)
+        # All groups remain in the common search index and retain valid routes.
+        search = json.loads((context.site / "search-index.json").read_text())
+        self.assertEqual(len(search["works"]), 5)
+        self.assertEqual(find_broken_links(context.site), [])
+
     def test_bundled_and_external_download_modes(self):
         bundled, _ = self.run_build("site-bundled")
         bundled_page = (

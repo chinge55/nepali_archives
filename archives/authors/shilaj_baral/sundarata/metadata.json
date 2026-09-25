@@ -23,8 +23,9 @@
   "description": "शिलज बरालको कविता 'सुन्दरता'। लेखकको आफ्नै वेबसाइट shilaj.com.np मा June 6, 2025 मा प्रकाशित।",
   "summary": "सुन्दरता खोज्ने क्रममा भेटिएका कुरूप विचार, सत्यबारेको अन्योल र आत्मसंघर्षलाई कविताले शब्दको खेलसँग जोड्छ।",
   "rights": {
-    "status": "permission-granted",
-    "basis": "Author living; poems published by the author at shilaj.com.np and contributed to this archive by the author."
+    "status": "public-domain",
+    "basis": "Author has waived all rights to these contributed works and dedicated them to the public domain.",
+    "public_domain_basis": "author-dedication"
   },
   "source": {
     "name": "Shilaj Baral (shilaj.com.np)",

@@ -209,6 +209,9 @@ def write_work_pages(context, page, assets, catalogue):
             )
             rights_label = ("अनुमतिप्राप्त" if meta.get("rights", {}).get("status") == "permission-granted"
                             else "सार्वजनिक डोमेन")
+            if (meta.get("rights", {}).get("status") == "public-domain"
+                    and meta["rights"].get("public_domain_basis") == "author-dedication"):
+                rights_label = "लेखकद्वारा सार्वजनिक डोमेनमा समर्पित"
             text_status = "प्रुफरिड गरिएको" if meta.get("text", {}).get("proofread") else "प्रुफरिड गर्न बाँकी"
             downloads = (
                 '<p class="downloads">डाउनलोड: '

@@ -23,8 +23,9 @@
   "description": "शिलज बरालको कविता 'गुलाम'। लेखकको आफ्नै वेबसाइट shilaj.com.np मा May 24, 2020 मा प्रकाशित।",
   "summary": "पूर्वप्रेमीको सुगन्ध र सम्झनाले इन्द्रियहरूलाई आफ्नो नियन्त्रणमा लिएको अनुभूति वक्ताले व्यक्त गर्छ।",
   "rights": {
-    "status": "permission-granted",
-    "basis": "Author living; poems published by the author at shilaj.com.np and contributed to this archive by the author."
+    "status": "public-domain",
+    "basis": "Author has waived all rights to these contributed works and dedicated them to the public domain.",
+    "public_domain_basis": "author-dedication"
   },
   "source": {
     "name": "Shilaj Baral (shilaj.com.np)",

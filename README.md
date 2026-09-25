@@ -75,6 +75,11 @@ Every work has a `metadata.json` conforming to [`metadata.schema.json`](./metada
 Key fields:
 
 - `rights.status` — only `public-domain` or `permission-granted` works may be published.
+- `rights.public_domain_basis` — optional `author-dedication` or `copyright-expired`,
+  only with `status: public-domain`. Keep the explanation in `rights.basis`.
+- Author browse groups are explicit in `pipeline/sitegen/config.py` (`AUTHOR_GROUPS`):
+  `heritage` or `contributions`, independent of rights status or lifespan. Authors
+  without a reviewed group remain visible under a neutral heading.
 - `text.extraction_method` — `extract` (PDF text layer), `ocr`, `html` (scraped), or `manual`.
 - `text.ocr_status` — `ocr-done` or `born-digital` (web/embedded text).
 - `text.proofread` — whether the text has been human-corrected (OCR fixes only; never modernized).

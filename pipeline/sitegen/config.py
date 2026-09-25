@@ -54,3 +54,31 @@ AUTHORS = {
 }
 
 PROSE_GENRES = {"upanyas", "natak", "katha", "nibandha"}
+
+# Editorial browse groups, independent of lifespan and per-work rights.
+# Unregistered authors remain visible under a neutral heading.
+AUTHOR_GROUPS = {
+    "devkota": "heritage",
+    "bhanubhakta_acharya": "heritage",
+    "lekhnath_paudyal": "heritage",
+    "bhimnidhi_tiwari": "heritage",
+    "motiram_bhatta": "heritage",
+    "gopalaprasad_rimal": "heritage",
+    "hriday_chandra_sinh_pradhan": "heritage",
+    "baburam_acharya": "heritage",
+    "guruprasad_mainali": "heritage",
+    "jagannath_upadhyay_guraganyin": "heritage",
+    "shilaj_baral": "contributions",
+}
+
+AUTHOR_SECTIONS = {
+    "heritage": (
+        "साहित्यिक सम्पदा",
+        "सार्वजनिक डोमेनमा रहेका नेपाली साहित्यका ऐतिहासिक कृति।",
+    ),
+    "contributions": (
+        "स्रष्टाको योगदान",
+        "आफ्ना कृति सार्वजनिक डोमेनमा समर्पित गर्ने स्रष्टाहरूको योगदान।",
+    ),
+    "other": ("अन्य लेखकहरू", "अभिलेखमा उपलब्ध अन्य लेखकका कृति।"),
+}

@@ -2,7 +2,7 @@
 
 from pathlib import Path
 
-from ..config import GENRE, GENRE_ORDER, SITE_NAME, SITE_TAGLINE, SITE_TAGLINE_EN
+from ..config import AUTHOR_GROUPS, GENRE, GENRE_ORDER, SITE_NAME, SITE_TAGLINE, SITE_TAGLINE_EN
 from ..introductions import GENRE_INTROS
 from ..text import DEVNUM, devnum, esc
 
@@ -239,10 +239,20 @@ def write_catalogue_pages(context, page, assets, catalogue):
                 f'<span class="count">{genre_english} · {len(items)}</span></h2>'
                 f'<ul class="works">{list_items}</ul></div>'
             )
+        contribution_note = (
+            '<p class="genre-intro">स्रष्टाको योगदान — यस अभिलेखमा रहेका आफ्ना '
+            'कृति लेखकले सार्वजनिक डोमेनमा समर्पित गर्नुभएको छ।</p>'
+            if AUTHOR_GROUPS.get(author) == "contributions"
+            and all(meta.get("rights", {}).get("status") == "public-domain"
+                    and meta["rights"].get("public_domain_basis") == "author-dedication"
+                    for _, meta, _ in author_records)
+            else ""
+        )
         body = f"""<nav class="crumb"><a href="../../">← {esc(SITE_NAME)}</a></nav>
 <h1>{esc(author_name)}</h1>
 <p class="byline">{esc(author_roman)}{' · ' + author_dates if author_dates else ''}</p>
 <p class="lead">{len(author_records)} कृति।</p>
+{contribution_note}
 <p><input id="q" type="search" placeholder="{esc(author_name)}का कृतिभित्र खोज्नुहोस् — शीर्षक वा पाठ (रोमनमा पनि)" autocomplete="off" aria-label="खोज"></p>
 <p class="hint" id="hint"></p>
 <div id="ft" data-base="../../" data-scope-author="{esc(author_name)}"></div>
@@ -275,15 +285,22 @@ def write_catalogue_pages(context, page, assets, catalogue):
             f"{len(catalogue.by_author[author])} कृति</span></a></li>"
         )
 
+    def author_sections(base):
+        return "".join(
+            f'<section class="home-sec author-section" id="authors-{key}" '
+            f'aria-labelledby="authors-{key}-title">'
+            f'<h2 id="authors-{key}-title">{esc(title)}</h2>'
+            f'<p class="genre-intro">{esc(intro)}</p><ul class="works">'
+            + "".join(author_list_item(author, base) for author in authors)
+            + '</ul></section>'
+            for key, title, intro, authors in catalogue.author_sections()
+        )
+
     authors_body = (
         f'<nav class="crumb"><a href="../">← {esc(SITE_NAME)}</a></nav>'
         f'<h1>लेखकहरू</h1><p class="lead">{len(catalogue.by_author)} लेखक · '
-        f'{len(catalogue.records)} कृति।</p><ul class="works">'
-        + "".join(
-            author_list_item(author, "../")
-            for author in catalogue.author_order
-        )
-        + "</ul>"
+        f'{len(catalogue.records)} कृति।</p>'
+        + author_sections("../")
     )
     (site / "authors").mkdir(parents=True, exist_ok=True)
     (site / "authors" / "index.html").write_text(
@@ -318,7 +335,7 @@ def write_catalogue_pages(context, page, assets, catalogue):
 <div class="home-sec"><h2><a href="collections/">सङ्ग्रह</a></h2>
 {collection_cards(sorted(catalogue.collections.items(), key=lambda item: (-len(item[1]), item[0]))[:6], "collections/")}
 <p><a href="collections/">सबै {devnum(len(catalogue.collections))} सङ्ग्रह हेर्नुहोस् →</a></p></div>
-<div class="home-sec"><h2>लेखकहरू</h2><ul class="works">{"".join(author_list_item(author, "") for author in catalogue.author_order)}</ul></div>
+{author_sections("")}
 <p class="statlink"><a href="stats/">📊 अभिलेख एक नजरमा — तथ्याङ्क र रोचक तथ्य →</a></p>
 </div>
 <script src="search.js?v={assets.search_version}" defer></script>"""
