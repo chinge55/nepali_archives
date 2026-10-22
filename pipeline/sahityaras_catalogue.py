@@ -50,7 +50,13 @@ def included_files(work: dict, books: dict, cache: Path) -> dict[str, bytes]:
                 remove_ids=tuple(document.get('remove_ids',[])),remove_links=tuple(document.get('remove_links',[])),
                 fallback_title=document['title'],replacements=tuple(document.get('replacements',[])))
         section=result.text.rstrip('\n')
-        if work.get('preserve_section_titles'):
+        if source.get('section_title_in_body'):
+            # Explicitly reviewed source exception: keep the printed heading,
+            # without adding a second copy from the navigation title.
+            opening = [re.sub(r'\s+', ' ', b).strip() for b in section.split('\n\n')[:4]]
+            if re.sub(r'\s+', ' ', result.title).strip() not in opening:
+                raise SourceError('Reviewed section title missing from opening text')
+        elif work.get('preserve_section_titles'):
             section=result.title+'\n\n'+section
         sections.append(section)
         captures.append(result.capture)

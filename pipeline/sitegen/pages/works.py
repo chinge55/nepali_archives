@@ -8,7 +8,7 @@ import shutil
 
 from ..config import GENRE, PROSE_GENRES, SITE_URL
 from ..introductions import work_intro
-from ..text import devnum, esc, paginate_work, work_html
+from ..text import devnum, esc, paginate_sections, work_html
 from .pdf_reader import write_pdf_reader
 from .pdf_choices import edition_display_label, pdf_edition_picker
 
@@ -226,7 +226,7 @@ def write_work_pages(context, page, assets, catalogue):
             # They must not push a previously single-page work over the size limit.
             indent_markup_size = (rendered_text.count('<span class="indent">')
                                   * len('<span class="indent"></span>'))
-            sections = paginate_work(
+            sections = paginate_sections(
                 text, balance=len(rendered_text) - indent_markup_size > 150000
             )
 
@@ -261,8 +261,8 @@ def write_work_pages(context, page, assets, catalogue):
             else:
                 section_count = len(sections)
                 contents = "".join(
-                    f'<li><a href="{section_index + 1}/">{esc(label)}</a></li>'
-                    for section_index, (label, _) in enumerate(sections)
+                    f'<li><a href="{section.number}/">{esc(section.label)}</a></li>'
+                    for section in sections
                 )
                 contents_body = f"""<nav class="crumb"><a href="{up}authors/{author_slug}/">← {esc(author_name)}</a></nav>
 <article>
@@ -290,16 +290,17 @@ def write_work_pages(context, page, assets, catalogue):
                     ),
                     encoding="utf-8",
                 )
-                for section_index, (label, content) in enumerate(sections):
-                    section_dir = output / str(section_index + 1)
+                for section_index, section in enumerate(sections):
+                    label, content = section.label, section.content
+                    section_dir = output / str(section.number)
                     section_dir.mkdir(parents=True, exist_ok=True)
                     section_depth = depth + 1
                     section_up = "../" * section_depth
                     section_nav = [
                         (
-                            f'<a class="pv" href="../{section_index}/">'
+                            f'<a class="pv" href="../{sections[section_index - 1].number}/">'
                             '<span class="lbl">अघिल्लो</span>← '
-                            f"{esc(sections[section_index - 1][0])}</a>"
+                            f"{esc(sections[section_index - 1].label)}</a>"
                             if section_index > 0
                             else (
                                 '<a class="pv" href="../">'
@@ -309,9 +310,9 @@ def write_work_pages(context, page, assets, catalogue):
                     ]
                     if section_index < section_count - 1:
                         section_nav.append(
-                            f'<a class="nx" href="../{section_index + 2}/">'
+                            f'<a class="nx" href="../{sections[section_index + 1].number}/">'
                             '<span class="lbl">अर्को</span>'
-                            f"{esc(sections[section_index + 1][0])} →</a>"
+                            f"{esc(sections[section_index + 1].label)} →</a>"
                         )
                     section_body = f"""<nav class="crumb"><a href="{section_up}authors/{author_slug}/">← {esc(author_name)}</a> · <a href="../">{esc(meta['title'])} (सूची)</a></nav>
 <article>
@@ -332,11 +333,30 @@ def write_work_pages(context, page, assets, catalogue):
                             active="works",
                             canon=(
                                 str(relative)
-                                + f"/{section_index + 1}/"
+                                + f"/{section.number}/"
                             ),
                         ),
                         encoding="utf-8",
                     )
+
+                    for alias in section.aliases:
+                        alias_dir = output / str(alias)
+                        alias_dir.mkdir(parents=True, exist_ok=True)
+                        destination = f"../{section.number}/"
+                        alias_body = (
+                            f'<h1>{esc(label)}</h1><p>यस खण्डको पाठ '
+                            f'<a href="{destination}">यहाँ पढ्नुहोस् →</a></p>'
+                        )
+                        (alias_dir / "index.html").write_text(
+                            page(
+                                f"{label} — {full_title}", alias_body,
+                                desc="यस खण्डको शीर्षक र पाठ एउटै पृष्ठमा राखिएको छ।",
+                                css_depth=section_depth, active="works", noindex=True,
+                                canon=str(relative) + f"/{section.number}/",
+                                extra_head=(f'<meta http-equiv="refresh" content="0;url={destination}">'
+                                            '<meta name="archive-redirect" content="chapter-merge">'),
+                            ), encoding="utf-8",
+                        )
 
             if pdf_filename:
                 write_pdf_reader(

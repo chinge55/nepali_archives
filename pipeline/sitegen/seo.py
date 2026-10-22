@@ -2,7 +2,7 @@
 
 from html.parser import HTMLParser
 from pathlib import Path
-from urllib.parse import quote
+from urllib.parse import quote, unquote, urlsplit, urljoin
 import xml.etree.ElementTree as ET
 
 from .config import SITE_URL
@@ -17,6 +17,8 @@ class PageHead(HTMLParser):
         self.descriptions = []
         self.canonicals = []
         self.noindex = False
+        self.chapter_redirect = False
+        self.refresh = None
         self.in_title = False
         self.finished = False
 
@@ -30,6 +32,10 @@ class PageHead(HTMLParser):
         if tag == "meta":
             name = attrs.get("name", "").lower()
             content = attrs.get("content", "")
+            if name == "archive-redirect" and content == "chapter-merge":
+                self.chapter_redirect = True
+            if attrs.get("http-equiv", "").lower() == "refresh":
+                self.refresh = content
             if name == "description":
                 self.descriptions.append(content)
             if name == "robots":
@@ -93,6 +99,27 @@ def write_sitemaps(site):
     (site / "sitemap.txt").write_text("\n".join(sorted(set(urls))) + "\n", encoding="utf-8")
 
 
+def valid_chapter_redirect(site, path, head):
+    """Only marked, noindex, same-work redirects may canonicalize elsewhere."""
+    if not head.chapter_redirect or not head.noindex or len(head.canonicals) != 1:
+        return False
+    if not head.refresh or not head.refresh.startswith("0;url="):
+        return False
+    destination = head.refresh[len("0;url="):]
+    source_url = page_url(site, path)
+    target_url = urljoin(source_url, destination)
+    if head.canonicals != [target_url] or not target_url.startswith(SITE_URL):
+        return False
+    relative = unquote(urlsplit(target_url).path).strip("/")
+    target = Path(site) / relative / "index.html"
+    if (not path.parent.name.isdigit() or not target.parent.name.isdigit()
+            or target.parent.parent != path.parent.parent or target == path
+            or not target.is_file()):
+        return False
+    target_head = read_head(target)
+    return not target_head.noindex and not target_head.chapter_redirect
+
+
 def audit_site(site):
     """Check HTML metadata and exact sitemap coverage; downloads are not HTML."""
     site = Path(site)
@@ -104,8 +131,10 @@ def audit_site(site):
             errors.append(f"{relative}: expected one nonempty title")
         if len(head.descriptions) != 1 or not head.descriptions[0].strip():
             errors.append(f"{relative}: expected one nonempty meta description")
-        if head.canonicals != [page_url(site, path)]:
+        if head.canonicals != [page_url(site, path)] and not valid_chapter_redirect(site, path, head):
             errors.append(f"{relative}: expected one self-referencing canonical URL")
+        if head.chapter_redirect and not valid_chapter_redirect(site, path, head):
+            errors.append(f"{relative}: invalid chapter redirect")
         if not head.noindex:
             expected.add(page_url(site, path))
             if head.descriptions and len(head.descriptions[0].strip()) < 100:

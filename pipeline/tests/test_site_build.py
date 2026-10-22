@@ -349,6 +349,28 @@ class FullBuildTests(unittest.TestCase):
         self.assertEqual(len(search["works"]), 5)
         self.assertEqual(find_broken_links(context.site), [])
 
+    def test_duplicate_chapter_heading_has_redirect_and_one_contents_entry(self):
+        from check_reader_content import audit_readers
+        work = self.root / "archives/authors/test_author/long_work/text.txt"
+        work.write_text("प्रथम सर्ग\n\nकाव्यको नाम\n\nप्रथम सर्ग\n\n"
+                        + "पहिलो खण्डको पाठ। " * 600
+                        + "\n\nदोस्रो सर्ग\n\n" + "दोस्रो खण्डको पाठ। " * 600)
+        context, _ = self.run_build("merged-chapters")
+        parent = context.site / "authors/test_author/long_work"
+        toc = (parent / "index.html").read_text()
+        self.assertIn('href="2/"', toc)
+        self.assertNotIn('href="1/"', toc)
+        redirect = (parent / "1/index.html").read_text()
+        self.assertIn('noindex,follow', redirect)
+        self.assertIn('0;url=../2/', redirect)
+        self.assertNotIn('data-pagefind-body', redirect)
+        sitemap = (context.site / "sitemap.txt").read_text()
+        self.assertNotIn('authors/test_author/long_work/1/', sitemap)
+        self.assertIn('authors/test_author/long_work/2/', sitemap)
+        self.assertEqual(audit_site(context.site)[0], [])
+        self.assertEqual(audit_readers(context.site)[0], [])
+        self.assertEqual(find_broken_links(context.site), [])
+
     def test_bundled_and_external_download_modes(self):
         bundled, _ = self.run_build("site-bundled")
         bundled_page = (

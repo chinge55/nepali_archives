@@ -1,5 +1,6 @@
 """Faithful literary-text rendering and long-work pagination."""
 
+from dataclasses import dataclass
 import html
 import re
 
@@ -105,7 +106,7 @@ def work_html(text: str, verse: bool, *, drama: bool = False) -> str:
     return "\n".join(output)
 
 
-def paginate_work(
+def _split_work(
     text: str, balance: bool = False
 ) -> list[tuple[str, str]] | None:
     """Split a long work only at printed sections, or balance huge unsectioned text."""
@@ -131,7 +132,7 @@ def paginate_work(
             and is_heading(front[0].split("\n", 1)[0].strip())
         ):
             pages.append(
-                (front[0].split("\n", 1)[0].strip(), "\n\n".join(front[1:]))
+                (front[0].replace("\n", " — "), "\n\n".join(front[1:]))
             )
             front = []
         for page_index, start in enumerate(indexes):
@@ -161,3 +162,66 @@ def paginate_work(
             pages.append((f"भाग {devnum(number)}", "\n\n".join(current)))
         return pages if len(pages) >= 2 else None
     return None
+
+
+@dataclass
+class ReaderSection:
+    label: str
+    content: str
+    number: int
+    aliases: tuple[int, ...] = ()
+
+
+def _heading_key(text: str) -> str:
+    return re.sub(r"\s+", " ", text).strip()
+
+
+def paginate_sections(text: str, balance: bool = False) -> list[ReaderSection] | None:
+    """Keep existing content routes while joining heading-only split boundaries.
+
+    A short poem is not an empty chapter. Nonempty heading-only material is
+    joined only when followed by the same chapter heading. Exact redundant
+    heading labels are represented once; all intervening source text is kept.
+    """
+    raw = _split_work(text, balance)
+    if not raw:
+        return None
+    pages = [ReaderSection(label, content, i) for i, (label, content)
+             in enumerate(raw, 1)]
+    result = []
+    carried = []
+    for index, section in enumerate(pages):
+        blocks = text_blocks(section.content)
+        following = pages[index + 1] if index + 1 < len(pages) else None
+        same_heading = following and _heading_key(section.label) == _heading_key(following.label)
+        heading_only = bool(blocks) and all(is_heading(block) for block in blocks)
+        originally_empty = not text_blocks(raw[index][1])
+        if following and (originally_empty or (heading_only and same_heading)):
+            # Imports can prepend a composite navigation label, then repeat its
+            # parent heading and subtitle in the literary text. Keep the latter.
+            represented = same_heading
+            if not blocks and not represented:
+                following_blocks = text_blocks(following.content)
+                represented = bool(following_blocks) and _heading_key(section.label) == _heading_key(
+                    following.label + " — " + following_blocks[0]
+                )
+            carried.extend(([] if represented else [section.label]) + blocks)
+            following.aliases = section.aliases + (section.number,) + following.aliases
+        elif originally_empty and result:
+            # A trailing printed heading has no independent body. Retain it at
+            # the end of the preceding section rather than inventing content.
+            previous = result[-1]
+            previous.content += "\n\n" + "\n\n".join(carried + [section.label] + blocks)
+            previous.aliases += section.aliases + (section.number,)
+            carried = []
+        else:
+            section.content = "\n\n".join(carried + blocks)
+            carried = []
+            result.append(section)
+    return result
+
+
+def paginate_work(text: str, balance: bool = False) -> list[tuple[str, str]] | None:
+    """Compatibility view for callers that only need labels and literary text."""
+    pages = paginate_sections(text, balance)
+    return [(section.label, section.content) for section in pages] if pages else None

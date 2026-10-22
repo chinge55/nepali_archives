@@ -19435,55 +19435,68 @@
       "sources": [
         {
           "book": "tiplingi",
-          "path": "src/EPUB/text/prathama-padah.xhtml"
+          "path": "src/EPUB/text/prathama-padah.xhtml",
+          "section_title_in_body": true
         },
         {
           "book": "tiplingi",
-          "path": "src/EPUB/text/dvitiya-padah.xhtml"
+          "path": "src/EPUB/text/dvitiya-padah.xhtml",
+          "section_title_in_body": true
         },
         {
           "book": "tiplingi",
-          "path": "src/EPUB/text/trritiya-padah.xhtml"
+          "path": "src/EPUB/text/trritiya-padah.xhtml",
+          "section_title_in_body": true
         },
         {
           "book": "tiplingi",
-          "path": "src/EPUB/text/chaturtha-padah.xhtml"
+          "path": "src/EPUB/text/chaturtha-padah.xhtml",
+          "section_title_in_body": true
         },
         {
           "book": "tiplingi",
-          "path": "src/EPUB/text/panchama-padah.xhtml"
+          "path": "src/EPUB/text/panchama-padah.xhtml",
+          "section_title_in_body": true
         },
         {
           "book": "tiplingi",
-          "path": "src/EPUB/text/shashtha-padah.xhtml"
+          "path": "src/EPUB/text/shashtha-padah.xhtml",
+          "section_title_in_body": true
         },
         {
           "book": "tiplingi",
-          "path": "src/EPUB/text/saptama-padah.xhtml"
+          "path": "src/EPUB/text/saptama-padah.xhtml",
+          "section_title_in_body": true
         },
         {
           "book": "tiplingi",
-          "path": "src/EPUB/text/ashtama-padah.xhtml"
+          "path": "src/EPUB/text/ashtama-padah.xhtml",
+          "section_title_in_body": true
         },
         {
           "book": "tiplingi",
-          "path": "src/EPUB/text/navama-padah.xhtml"
+          "path": "src/EPUB/text/navama-padah.xhtml",
+          "section_title_in_body": true
         },
         {
           "book": "tiplingi",
-          "path": "src/EPUB/text/dashama-padah.xhtml"
+          "path": "src/EPUB/text/dashama-padah.xhtml",
+          "section_title_in_body": true
         },
         {
           "book": "tiplingi",
-          "path": "src/EPUB/text/ekadasha-padah.xhtml"
+          "path": "src/EPUB/text/ekadasha-padah.xhtml",
+          "section_title_in_body": true
         },
         {
           "book": "tiplingi",
-          "path": "src/EPUB/text/dvadasha-padah.xhtml"
+          "path": "src/EPUB/text/dvadasha-padah.xhtml",
+          "section_title_in_body": true
         },
         {
           "book": "tiplingi",
-          "path": "src/EPUB/text/trayodasha-padah.xhtml"
+          "path": "src/EPUB/text/trayodasha-padah.xhtml",
+          "section_title_in_body": true
         }
       ],
       "collections": [],
@@ -19497,7 +19510,7 @@
       "publisher": "महाकवि लक्ष्मीप्रसाद देवकोटा अध्ययन तथा अनुसन्धान केन्द्र (महाकवि लक्ष्मीप्रसाद देवकोटाका खण्डकाव्यहरू)",
       "source_url": "https://sahityaras.com/book/tiplingi/",
       "outputs": {
-        "text.txt": "2a177aae0584011f5ec33462596773296aa050a3a5444c828146eac12de372c0",
+        "text.txt": "d5c9ca3112052f2167fa9e5fbd307fa41fe1c47fcc7371871d507c171854046f",
         "metadata.json": "a85e956062f064d3c2fd6d81e7fea766c5b66f59f1060fcd7dc63ac2b182b20c",
         "extracted/index.html": "b3d2c6efd2f1bd523d319e1aca87e698d640928063f7ec8f1701328f1bf27c90"
       }
@@ -26334,7 +26347,8 @@
         },
         {
           "book": "mero-ram",
-          "path": "src/EPUB/text/mahatmya-saar.xhtml"
+          "path": "src/EPUB/text/mahatmya-saar.xhtml",
+          "section_title_in_body": true
         },
         {
           "book": "mero-ram",
@@ -26376,7 +26390,7 @@
       "publisher": "कुन्तीदेवी भट्टराई",
       "source_url": "https://sahityaras.com/book/mero-ram/",
       "outputs": {
-        "text.txt": "75c53a3a6cb9c6c537ad59741208ada041b8644c8708a9a6e1d0c0de450e915b",
+        "text.txt": "6591a30eae493e8fce1c170d4c689df0f6851f58a66cd680fa9898d737f1dffb",
         "metadata.json": "e45bb7e4fec74301bde911c98b03a24cba8adce5abe864cdf0e4de58e655d8bd",
         "extracted/index.html": "0da3bc2b2ba788a6301381fa3586a42d1a28278af468a9f808773ae31557d510"
       }
@@ -26638,7 +26652,8 @@
         },
         {
           "book": "amar-jyotiko-satya-smriti",
-          "path": "src/EPUB/text/purba-smriti.xhtml"
+          "path": "src/EPUB/text/purba-smriti.xhtml",
+          "section_title_in_body": true
         },
         {
           "book": "amar-jyotiko-satya-smriti",
@@ -26656,7 +26671,7 @@
       "publisher": "अनन्तनाथ शर्मा",
       "source_url": "https://sahityaras.com/book/amar-jyotiko-satya-smriti/",
       "outputs": {
-        "text.txt": "d67f007ae3dcb61cadb2a352882ea0041361a9ac1cbf38f7f866a4c45a1f4739",
+        "text.txt": "efa3f14399be2c94e302f416828d92403b81ad38607198154a0d19b54c440e87",
         "metadata.json": "87f37c0e42ea7e8af4c21e0734fb452c1b14613ef4a93a8c206de568df1e9b92",
         "extracted/index.html": "b0cc1213785128a74bb46c8ed087e6823d43eedafcbb4c92567eff5db6a71852"
       }
@@ -26678,7 +26693,8 @@
       "sources": [
         {
           "book": "sita-haran",
-          "path": "src/EPUB/text/prathama-pada.xhtml"
+          "path": "src/EPUB/text/prathama-pada.xhtml",
+          "section_title_in_body": true
         },
         {
           "book": "sita-haran",
@@ -26696,7 +26712,7 @@
       "publisher": "साझा प्रकाशन",
       "source_url": "https://sahityaras.com/book/sita-haran/",
       "outputs": {
-        "text.txt": "66b63d417d2a2d4e2e1096f23f9244cc9bb041fdc8c5865c340cb09ac017af1f",
+        "text.txt": "1f8eee9ae9d5d920d97c72b6a48e84b7cf231ab0ca3f10abce5986100c7de239",
         "metadata.json": "e5e48b1f378370a9e299d8005f08cf4482340c8b22177403f56170e7f01847e1",
         "extracted/index.html": "ee2a42136a72c6994c071a2008b2b59671278e13de2a56275ec93906a5be83f4"
       }

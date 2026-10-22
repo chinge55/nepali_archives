@@ -76,6 +76,26 @@ def base_work(work_id, source, genre=("kavita",), **extra):
 
 
 class CatalogueTests(unittest.TestCase):
+    def test_reviewed_heading_in_body_is_not_prepended_again(self):
+        with tempfile.TemporaryDirectory() as temp:
+            cache = Path(temp)
+            data = xhtml("प्रथम पाद", "प्रथम पाद</p><p>मूल कविता।</p><p>इति</p><p>प्रथम पाद")
+            book = book_record(cache, "book", [("EPUB/text/a.xhtml", data, "include", "approved", {})])
+            source = {'book': 'book', 'path': 'src/EPUB/text/a.xhtml', 'section_title_in_body': True}
+            work = base_work('work', source, preserve_section_titles=True)
+            text = catalogue.included_files(work, {'book': book}, cache)['text.txt'].decode()
+            self.assertEqual(text, 'प्रथम पाद\n\nमूल कविता।\n\nइति\n\nप्रथम पाद\n')
+
+    def test_reviewed_heading_exception_requires_retained_heading(self):
+        with tempfile.TemporaryDirectory() as temp:
+            cache = Path(temp)
+            data = xhtml("प्रथम पाद", "मूल कविता।")
+            book = book_record(cache, "book", [("EPUB/text/a.xhtml", data, "include", "approved", {})])
+            source = {'book': 'book', 'path': 'src/EPUB/text/a.xhtml', 'section_title_in_body': True}
+            work = base_work('work', source, preserve_section_titles=True)
+            with self.assertRaisesRegex(SourceError, 'section title missing'):
+                catalogue.included_files(work, {'book': book}, cache)
+
     def test_full_ledger_include_map_exclude_and_prose_metadata(self):
         with tempfile.TemporaryDirectory() as temp:
             root, cache = Path(temp) / "root", Path(temp) / "cache"

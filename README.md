@@ -179,3 +179,17 @@ fonttools as build steps.
 5. Source-only repo + CI build + PR validation + contribution guide. **done**
 6. **Proofreading** — correct each `text.txt` against its source and flip `text.proofread`.
    *The open gate before works are publication-ready.*
+
+### Reader content audit
+
+After a site build, run `python3 pipeline/check_reader_content.py site --sources archives` (optionally
+`--report /tmp/reader-content-audit.json`). CI checks every literary reader and
+chapter for missing bodies, heading-only chapters, contents/title mismatches,
+orphaned pages, unexpected noindex readers and broken chapter navigation. The
+source comparison checks that every work is published, headings remain present,
+and body blocks survive in source order (including repeated stanzas). Repeated
+headings, short texts and exact body duplicates are flagged for source review, not automatically deleted.
+
+Merged chapter boundaries retain existing content URLs. Redundant routes become
+noindex redirects excluded from the sitemaps and search; numeric URL gaps are
+intentional. See [the archive-wide audit](plans/reader-content-audit.md).
