@@ -1,19 +1,22 @@
 main{max-width:52rem}header.site,footer.site{max-width:52rem}
 .ch-heading{display:flex;justify-content:space-between;align-items:center;gap:1rem;margin:.5rem 0 1.2rem}.ch-heading h1{font-size:1.7rem;margin:0}.ch-edition{font-size:.65rem;color:var(--mut)}
-#chhanda-tool{--good:#377044;--bad:#ad473d;--wash:color-mix(in srgb,var(--fg) 3%,var(--bg));min-width:0}
-:root[data-theme=dark] #chhanda-tool{--good:#9ac59a;--bad:#f0a095}
-@media(prefers-color-scheme:dark){:root:not([data-theme=light]) #chhanda-tool{--good:#9ac59a;--bad:#f0a095}}
+#chhanda-tool{--good:#377044;--bad:#ad473d;--wash:color-mix(in srgb,var(--fg) 3%,var(--bg));--copy-paper:#f8f2e4;--copy-rule:#718b9b30;--copy-margin:#b66b6554;--copy-grain:#80623c04;--copy-shadow:#5944290d;min-width:0}
+:root[data-theme=dark] #chhanda-tool{--good:#9ac59a;--bad:#f0a095;--copy-paper:#201e18;--copy-rule:#a1b4bd26;--copy-margin:#d5968852;--copy-grain:#e8cda003;--copy-shadow:#0002}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]) #chhanda-tool{--good:#9ac59a;--bad:#f0a095;--copy-paper:#201e18;--copy-rule:#a1b4bd26;--copy-margin:#d5968852;--copy-grain:#e8cda003;--copy-shadow:#0002}}
 #chhanda-tool button,#chhanda-tool input,#chhanda-tool textarea,#chhanda-tool select{font:inherit;color:var(--fg)}
 #chhanda-tool button,.ch-file-button{background:transparent;border:1px solid var(--line);border-radius:.4rem;padding:.25rem .6rem;min-height:40px;cursor:pointer;font-size:.75rem}
 #chhanda-tool button:hover,.ch-file-button:hover{border-color:var(--accent);background:var(--wash)}#chhanda-tool button:disabled{opacity:.35;cursor:default}#chhanda-tool :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
-.ch-editor-card{border:1px solid var(--line);border-radius:.65rem;min-width:0;background:var(--bg)}
+.ch-editor-card{border:1px solid var(--line);border-radius:.2rem;min-width:0;background:var(--bg);box-shadow:0 .25rem 1rem var(--copy-shadow)}
 .ch-writer-toolbar{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.65rem 1rem;border-bottom:1px solid var(--line)}
 .ch-metre-label{display:flex;align-items:center;gap:.6rem;font-size:.75rem;color:var(--mut)}#metre-select{background:var(--bg);border:0;max-width:14rem;padding:.25rem .5rem;min-height:40px;font-size:.85rem;cursor:pointer}
 .ch-mode{display:flex;align-items:center;gap:.45rem;font-size:.7rem;cursor:pointer;white-space:nowrap}.ch-mode input{appearance:none;width:2rem;height:1.15rem;border:1px solid var(--line);border-radius:1rem;position:relative;margin:0;cursor:pointer;background:var(--wash);flex:none}
 .ch-mode input:before{content:'';position:absolute;left:.15rem;top:.15rem;width:.75rem;height:.75rem;border-radius:50%;background:var(--mut)}.ch-mode input:checked{background:var(--accent);border-color:var(--accent)}.ch-mode input:checked:before{left:1rem;background:var(--bg)}
-#poem{display:block;width:100%;border:0;border-radius:0;resize:vertical;background:transparent;min-height:43vh;height:22rem;max-height:65vh;padding:1.3rem 1.4rem;line-height:2.15;font-size:1.12rem}
-#poem::placeholder{color:var(--mut);opacity:.6}#poem:focus-visible{outline:0;box-shadow:inset 3px 0 0 color-mix(in srgb,var(--accent) 40%,transparent)}
-.ch-input-wrap{position:relative;min-width:0}
+/* One ruled sheet: the native textarea keeps its caret, wrapping and selection. */
+.ch-input-wrap{--copy-font:1.12rem;--copy-leading:2.4rem;--copy-top:1.4rem;--copy-edge:2.5rem;--copy-baseline:1.65rem;position:relative;min-width:0;overflow:hidden;background-color:var(--copy-paper);background-image:radial-gradient(ellipse at top left,#b98b4220,transparent 75%),radial-gradient(var(--copy-grain) .5px,transparent .8px);background-size:100% 100%,6px 7px}
+.ch-input-wrap::before{content:'';position:absolute;top:0;bottom:0;left:var(--copy-edge);border-left:1px solid var(--copy-margin);pointer-events:none}
+#poem{display:block;width:100%;border:0;border-radius:0;resize:vertical;background-color:transparent;background-image:linear-gradient(to bottom,var(--copy-rule) 1px,transparent 1px);background-size:100% var(--copy-leading);background-position:0 calc(var(--copy-top) + var(--copy-baseline));background-origin:border-box;background-attachment:local;min-height:43vh;height:22rem;max-height:65vh;padding:var(--copy-top) 1.4rem 1.4rem calc(var(--copy-edge) + .85rem);caret-color:var(--fg)}
+#chhanda-tool #poem{font-size:var(--copy-font);line-height:var(--copy-leading)}
+#poem::placeholder{color:var(--mut);opacity:.6}#poem:focus-visible{outline:0;box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--accent) 28%,transparent)}
 #poem,#poem-measure{white-space:pre-wrap;overflow-wrap:break-word;word-break:normal;tab-size:8}
 #poem-measure{position:absolute;top:0;left:0;visibility:hidden;pointer-events:none;user-select:none;box-sizing:border-box;border:0}
 #poem-underlines{position:absolute;inset:0;overflow:hidden;pointer-events:none;user-select:none;z-index:1}
@@ -41,5 +44,5 @@ main{max-width:52rem}header.site,footer.site{max-width:52rem}
 .ch-preview{border-left:3px solid var(--accent);background:var(--wash);padding:.6rem .8rem;margin:.7rem 0}.ch-preview p{font-size:.95rem;overflow-wrap:anywhere;margin:.3rem 0 .6rem}.ch-preview button{margin-right:.4rem}
 .ch-example{background:var(--bg);color:var(--fg);border:1px solid var(--line);border-radius:.7rem;padding:1.2rem;max-width:min(40rem,94vw);max-height:85vh}.ch-example::backdrop{background:#0006}.ch-example blockquote{white-space:pre-wrap;font-size:.95rem;line-height:2;margin:1rem 0}.ch-example p,.ch-help p{font-size:.8rem}.ch-help p{max-width:42rem}
 #notice:empty{display:none}.ch-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}.ch-keyboard #poem{height:8rem;min-height:6rem;max-height:45vh}.ch-keyboard .ch-heading{display:none}
-@media(max-width:600px){.ch-heading h1{font-size:1.45rem}.ch-writer-toolbar{padding:.4rem .65rem;gap:.4rem}.ch-metre-label{gap:.2rem;font-size:.7rem}#metre-select{max-width:10.5rem;padding:.2rem;font-size:.75rem}.ch-mode{gap:.3rem;font-size:.63rem}#poem{padding:1rem .85rem;font-size:1rem;min-height:40vh;height:20rem}.ch-editor-live{padding:.3rem .7rem .5rem;font-size:.7rem}.ch-editor-actions{padding:.35rem .5rem}#draft-status{font-size:.57rem}.ch-secondary-tools{gap:0 .9rem}.ch-secondary-tools>details>summary,.ch-secondary-tools>.ch-text-button{font-size:.7rem}}
+@media(max-width:600px){.ch-heading h1{font-size:1.45rem}.ch-writer-toolbar{padding:.4rem .65rem;gap:.4rem}.ch-metre-label{gap:.2rem;font-size:.7rem}#metre-select{max-width:10.5rem;padding:.2rem;font-size:.75rem}.ch-mode{gap:.3rem;font-size:.63rem}.ch-input-wrap{--copy-font:1rem;--copy-leading:2.2rem;--copy-top:1.1rem;--copy-edge:.95rem;--copy-baseline:1.5rem}#poem{padding-right:.85rem;padding-left:calc(var(--copy-edge) + .65rem);min-height:40vh;height:20rem}.ch-editor-live{padding:.3rem .7rem .5rem;font-size:.7rem}.ch-editor-actions{padding:.35rem .5rem}#draft-status{font-size:.57rem}.ch-secondary-tools{gap:0 .9rem}.ch-secondary-tools>details>summary,.ch-secondary-tools>.ch-text-button{font-size:.7rem}}
 @media(max-width:360px){.ch-writer-toolbar{flex-wrap:wrap}.ch-mode{margin-left:auto}#draft-status{max-width:6rem;line-height:1.5}.ch-editor-actions{gap:.2rem}}
