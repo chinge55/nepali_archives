@@ -1,6 +1,7 @@
 """Committed-data पात्रो and राशिफल pages."""
 
 import json
+from datetime import date
 
 from ..config import SITE_NAME
 from ..text import DEVNUM, devnum, esc
@@ -12,7 +13,6 @@ def write_patro_page(context, page, assets):
     date can never be wrong for a JS visitor even if the daily cron slips;
     the cron keeps the static baseline fresh for everyone else.
     Returns True if written."""
-    from datetime import datetime, timedelta, timezone
     content = context.root / "horoscope" / "content"
     days = {}
     for f in sorted(content.glob("panchanga-*.json")):
@@ -30,10 +30,22 @@ def write_patro_page(context, page, assets):
         p = days[iso]
         prose = prose_all.get(iso, {})
         depth = 2 if dated else 1
+        stale = not dated and iso != npt_today
+        status = ("" if dated else
+                  f'<p id="patro-stale" class="pt-stale{" is-stale" if stale else ""}" role="status" data-pagefind-ignore>'
+                  f'यो पात्रो पुरानो छ। यहाँ {esc(iso)} को पात्रो देखाइएको छ; आजको विवरण उपलब्ध छैन।</p>')
 
         def anga_cell(label, a):
             end_d, end_t = a["ends"].split("T")
-            when = end_t.translate(DEVNUM) + ("" if end_d == iso else " (भोलिपल्ट)")
+            offset = (date.fromisoformat(end_d) - date.fromisoformat(iso)).days
+            suffix = ""
+            if offset == 1:
+                suffix = " (भोलिपल्ट)"
+            elif offset > 1:
+                suffix = f" ({devnum(offset)} दिनपछि)"
+            elif offset < 0:
+                suffix = f" ({esc(end_d)})"
+            when = end_t.translate(DEVNUM) + suffix
             return (f'<div><span class="lbl">{label}</span><b>{esc(a["name"])}</b>'
                     f'<span class="end">समाप्ति {when}</span></div>')
 
@@ -57,6 +69,7 @@ def write_patro_page(context, page, assets):
         crumb = ('<nav class="crumb"><a href="../">← आजको पात्रो</a></nav>\n'
                  if dated else "")
         body = f"""{crumb}<h1 class="pt">पात्रो</h1>
+{status}
 <p class="pt-bs">{esc(p['bs_str'])} <span class="yr">{devnum(p['bs'].split('-')[0])} वि.सं.</span> · {esc(p['vara'])}</p>
 <p class="pt-date">{esc(p['ad'])} · सूर्योदय {p['sunrise'].translate(DEVNUM)} · सूर्यास्त {p['sunset'].translate(DEVNUM)} (काठमाडौं)</p>
 
@@ -67,10 +80,10 @@ def write_patro_page(context, page, assets):
 {anga_cell("करण", p['karana'])}
 {anga_cell("चन्द्र राशि", p['moon_rashi'])}
 </div>
-<p class="pt-ashtam">आज <b>{esc(p['chandrashtama_rashi'])}</b> राशिका लागि चन्द्राष्टम छ ·
+<p class="pt-ashtam">यस मितिमा <b>{esc(p['chandrashtama_rashi'])}</b> राशिका लागि चन्द्राष्टम छ ·
 तिथि वर्ग: {esc(p['tithi_class'])}</p>
 
-<h2>आजको राशिफल</h2>
+<h2>राशिफल</h2>
 <div class="zg" id="zg">
 {''.join(tiles)}
 </div>
@@ -92,13 +105,15 @@ def write_patro_page(context, page, assets):
                  "<script>(function(){var D=" + json.dumps(sorted(days)) +
                  ";var t=new Date(Date.now()+20700000).toISOString().slice(0,10);"
                  f'if(t!=="{iso}"&&D.indexOf(t)>=0)location.replace("/patro/"+t+"/");'
+                 f'else if(t!=="{iso}")document.documentElement.setAttribute("data-patro-stale","true");'
                  "})()</script>\n")
         return page(f"पात्रो — {p['bs_str']} · " + SITE_NAME, body,
                     desc="आजको पञ्चाङ्ग र राशिफल — तिथि, नक्षत्र, योग, करण, चन्द्र राशि (काठमाडौं, वि.सं. मितिमा)",
                     css_depth=depth,
                     extra_head=(fresh +
                                 "<script>document.documentElement.classList.add('js')</script>\n"
-                                f"<style>{assets.patro_css}</style>\n"),
+                                f"<style>{assets.patro_css}\n.pt-stale{{display:none;color:var(--accent);border:1px solid var(--line);padding:.7rem 1rem;border-radius:.5rem;font-size:.85rem}}\n"
+                                ".pt-stale.is-stale,html[data-patro-stale] .pt-stale{display:block}</style>\n"),
                     active="patro",
                     canon=f"patro/{iso}/" if dated else "patro/",
                     noindex=dated)

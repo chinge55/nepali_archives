@@ -126,14 +126,14 @@ class Anga:
 def _angle(t, kind: str, ayan: str) -> float:
     """The rotating angle whose sector defines each anga, degrees."""
     moon = _ecliptic_lon(t, "moon")
+    if kind == "nakshatra":
+        return (moon - ayanamsa(t, ayan)) % 360.0
     sun = _ecliptic_lon(t, "sun")
     if kind == "tithi":
         return (moon - sun) % 360.0                     # ayanamsa-invariant
     if kind == "yoga":
         a = ayanamsa(t, ayan)
         return ((moon - a) + (sun - a)) % 360.0
-    if kind == "nakshatra":
-        return (moon - ayanamsa(t, ayan)) % 360.0
     raise ValueError(kind)
 
 
@@ -146,11 +146,13 @@ def _find_end(t_start, kind: str, ayan: str, sector: float) -> dt.datetime:
     def past(t) -> bool:
         return ((_angle(t, kind, ayan) - target) % 360.0) < 180.0
 
-    lo, hi = 0.0, 0.05          # days; angas last < ~1.2 days
+    # A 30-degree moon sign can last longer than 2.5 days near lunar apogee.
+    horizon = 4.0 if sector == 30.0 else 2.5
+    lo, hi = 0.0, 0.05
     while not past(ts.tt_jd(t_start.tt + hi)):
-        lo, hi = hi, hi + 0.05
-        if hi > 2.5:
+        if hi >= horizon:
             raise RuntimeError("anga end not found")
+        lo, hi = hi, min(hi * 2, horizon)
     for _ in range(40):
         mid = (lo + hi) / 2
         if past(ts.tt_jd(t_start.tt + mid)):
@@ -243,8 +245,9 @@ def main() -> None:
                        ("moon_rashi", "चन्द्र राशि")):
         a = d[key]
         when = a.ends.strftime("%H:%M")
-        if a.ends.date() != date:                      # ends after midnight
-            when = f"राति {when} (भोलिपल्ट)"
+        offset = (a.ends.date() - date).days
+        if offset:
+            when += " (भोलिपल्ट)" if offset == 1 else f" ({offset} दिनपछि)"
         print(f"{label}: {a.name}  (समाप्ति {when})")
     print(f"[ayanamsa {d['ayanamsa_deg']}°]")
 

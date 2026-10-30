@@ -178,12 +178,12 @@ class FullBuildTests(unittest.TestCase):
     def normalize_key(_word):
         return "parikshan"
 
-    def run_build(self, name, archive_base=""):
+    def run_build(self, name, archive_base="", build_date=date(2026, 8, 13)):
         context = BuildContext.for_root(
             self.root,
             output_dir=self.root / name,
             archive_base=archive_base,
-            build_date=date(2026, 8, 13),
+            build_date=build_date,
         )
         result = build(
             context,
@@ -416,6 +416,32 @@ class FullBuildTests(unittest.TestCase):
             "verse_work/source.pdf",
             external_pdf_reader,
         )
+
+    def test_patro_marks_an_outdated_fallback_instead_of_claiming_it_is_today(self):
+        context, _ = self.run_build("site-patro-stale", build_date=date(2026, 8, 15))
+        root = (context.site / "patro/index.html").read_text(encoding="utf-8")
+        self.assertIn('class="pt-stale is-stale"', root)
+        self.assertIn("यो पात्रो पुरानो छ", root)
+        self.assertIn("2026-08-14", root)
+        self.assertNotIn("आजको राशिफल", root)
+        self.assertIn('data-patro-stale', root)
+        dated = (context.site / "patro/2026-08-13/index.html").read_text(encoding="utf-8")
+        self.assertNotIn('id="patro-stale"', dated)
+
+    def test_current_patro_hides_the_stale_notice(self):
+        context, _ = self.run_build("site-patro-current")
+        root = (context.site / "patro/index.html").read_text(encoding="utf-8")
+        self.assertIn('id="patro-stale" class="pt-stale"', root)
+        self.assertNotIn('class="pt-stale is-stale"', root)
+
+    def test_patro_labels_a_moon_sign_end_more_than_one_day_ahead(self):
+        path = self.root / "horoscope/content/panchanga-2026-08.json"
+        data = json.loads(path.read_text(encoding="utf-8"))
+        data["days"]["2026-08-13"]["moon_rashi"] = {"name": "परीक्षण", "ends": "2026-08-15T18:03"}
+        path.write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
+        context, _ = self.run_build("site-patro-transit")
+        html = (context.site / "patro/index.html").read_text(encoding="utf-8")
+        self.assertIn("१८:०३ (२ दिनपछि)", html)
 
     def test_page_specific_assets_remain_scoped(self):
         context, _ = self.run_build("site-assets")

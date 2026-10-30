@@ -79,6 +79,13 @@ def main() -> None:
                 "+1" if anga.ends.date() != date else "")
             if abs(_minutes(got_end) - _minutes(end)) > TOLERANCE_MIN:
                 bad.append(f"{iso}: {key} end {got_end} vs {end} (>±{TOLERANCE_MIN}m)")
+    # A slow moon-sign transit exceeded the former 2.5-day search limit.
+    slow_date = dt.date(2027, 5, 25)
+    slow = compute(slow_date)
+    rise = dt.datetime.combine(slow_date, dt.time.fromisoformat(slow["sunrise"]))
+    duration = slow["moon_rashi"].ends - rise
+    if not dt.timedelta(days=2.5) < duration <= dt.timedelta(days=4):
+        bad.append("slow moon-sign transit is outside the expected search interval")
     if bad:
         print("FAIL")
         for b in bad:
@@ -86,6 +93,7 @@ def main() -> None:
         sys.exit(1)
     print(f"OK: {len(FIXTURE)} dates × 5 angas + BS/vara/sunrise match "
           f"drikpanchang within ±{TOLERANCE_MIN} min (names exact)")
+    print("OK: slow moon-sign transit beyond 2.5 days is handled")
 
 
 if __name__ == "__main__":

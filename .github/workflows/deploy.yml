@@ -32,6 +32,7 @@ jobs:
         with:
           node-version: "20"
       - run: node --test chhanda_writer/tests/engine.mjs
+      - run: python3 pipeline/check_patro_coverage.py
       - uses: r-lib/actions/setup-pandoc@v2      # for reader.epub
       - run: pip install fonttools brotli         # for the font subset
       # The repo holds ONLY sources (metadata.json, text.txt, source PDF/HTML). Every

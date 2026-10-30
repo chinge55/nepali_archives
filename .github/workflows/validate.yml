@@ -26,6 +26,7 @@ jobs:
       - run: python3 pipeline/validate.py
       # 2) public-source hygiene: private local bindings stay private
       - run: python3 pipeline/check_public_tree.py
+      - run: python3 pipeline/check_patro_coverage.py
       # 3) archived pages contain no executable or comment data
       - run: python3 pipeline/sanitize_extracted_html.py --check
       # 4) site-generator unit and fixture-build tests
@@ -50,3 +51,4 @@ jobs:
           trap 'kill "$search_server_pid"' EXIT
           NODE_PATH="$RUNNER_TEMP/search-test/node_modules" node pipeline/tests/browser/search.cjs
           CHHANDA_TEST_URL=http://localhost:8262/chhanda/ NODE_PATH="$RUNNER_TEMP/search-test/node_modules" node chhanda_writer/tests/browser.cjs
+          NODE_PATH="$RUNNER_TEMP/search-test/node_modules" node pipeline/tests/browser/patro.cjs

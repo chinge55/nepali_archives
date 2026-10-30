@@ -1,5 +1,24 @@
 # पात्रो/राशिफल: Project Plan
 
+**Freshness repair (2026-10-30):** the committed data ended on September 30,
+so daily site rebuilds could not display October's calendar. Extend the computed
+source through December 2027, check current-date coverage in validation and
+deployment, and warn thirty days before the available interval runs out.
+The renderer labels missing-date fallbacks as stale, including when a cached
+page outlives its available dates. Existing dated pages remain available.
+The calculation engine's regression fixtures still pass; October 30 matches
+[Hamro Patro](https://www.hamropatro.com/en) for कार्तिक १३, शुक्रबार, कृष्ण
+पञ्चमी, मृगशिरा, शिव, कौलव, and the काठमाडौं sunrise and sunset. Prose beyond
+September uses the existing deterministic templates; no new prose service is
+needed for daily builds. Run `python3 pipeline/check_patro_coverage.py` before
+publishing and refresh the source with `horoscope/pipeline/export_month.py`
+before coverage expires.
+The extended export also exposed a moon-sign transit exceeding the old
+2.5-day search limit. The bounded search now allows four days for moon signs,
+with the previously failing May 25, 2027 calculation retained as a regression.
+Transitions more than one day ahead carry their actual day offset. Monthly
+exports use atomic checkpoints and can resume with `--skip-existing`.
+
 **Status (2026-08-13):** Monthly coverage extended. Computed panchanga now
 covers 2026-07-01 through 2026-09-30 (92 dated pages), and reviewed prose
 covers 2026-07-21 through 2026-09-30 (72 days, 864 राशि readings). The new

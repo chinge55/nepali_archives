@@ -52,6 +52,7 @@ def main() -> None:
     ap.add_argument("start", nargs="?", help="YYYY-MM-DD (default: today NPT)")
     ap.add_argument("--days", type=int, default=1)
     ap.add_argument("--month", help="YYYY-MM — export the whole AD month")
+    ap.add_argument("--skip-existing", action="store_true", help="resume without recalculating existing dates")
     args = ap.parse_args()
 
     if args.month:
@@ -64,21 +65,27 @@ def main() -> None:
         dates = [start + dt.timedelta(d) for d in range(args.days)]
 
     CONTENT.mkdir(exist_ok=True)
-    by_month: dict[str, dict] = {}
-    for date in dates:
-        month = date.strftime("%Y-%m")
-        if month not in by_month:
-            path = CONTENT / f"panchanga-{month}.json"
-            by_month[month] = (json.loads(path.read_text()) if path.exists()
-                               else {"days": {}})
-        by_month[month]["days"][date.isoformat()] = export_day(date)
-        print(date, flush=True)
-
-    for month, data in by_month.items():
+    def write_month(month, data):
         path = CONTENT / f"panchanga-{month}.json"
-        path.write_text(json.dumps(data, ensure_ascii=False, indent=1) + "\n",
-                        encoding="utf-8")
-        print(f"wrote {path} ({len(data['days'])} days)")
+        temporary = path.with_suffix(".json.tmp")
+        temporary.write_text(json.dumps(data, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+        temporary.replace(path)
+        print(f"saved {month} ({len(data['days'])} days)", flush=True)
+
+    month, data = None, None
+    for date in dates:
+        next_month = date.strftime("%Y-%m")
+        if next_month != month:
+            if month:
+                write_month(month, data)
+            month = next_month
+            path = CONTENT / f"panchanga-{month}.json"
+            data = json.loads(path.read_text()) if path.exists() else {"days": {}}
+        if not args.skip_existing or date.isoformat() not in data["days"]:
+            data["days"][date.isoformat()] = export_day(date)
+        print(date, flush=True)
+    if month:
+        write_month(month, data)
 
 
 if __name__ == "__main__":

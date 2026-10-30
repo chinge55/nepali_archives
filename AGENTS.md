@@ -136,6 +136,11 @@ author dir == `author.id`; `text.txt` non-empty Devanagari; `rights.status` ∈
   alter a draft to force a match, and keep all analysis assets off reader pages.
   Run `node --test chhanda_writer/tests/engine.mjs` and the browser harness in
   `chhanda_writer/tests/browser.cjs` when changing this tool.
+- **Patro coverage**: daily builds render committed `horoscope/content/panchanga-*.json`;
+  rebuilding cannot create missing dates. Run `pipeline/check_patro_coverage.py`
+  before publishing and extend dates with `horoscope/pipeline/export_month.py`
+  using the calendar environment. Exports checkpoint each month; `--skip-existing`
+  resumes a batch. Keep stale-date notices and multi-day transition labels accurate.
 
 ## Git / deploy
 
