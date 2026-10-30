@@ -40,6 +40,38 @@ test('the located Manoladdu ending follows anushtup without a universal fixed te
     assert.equal(reading.pattern.slice(4, 7), i % 2 ? 'LGL' : 'LGG');
   });
 });
+test('Panchachamara has eight light-heavy pairs in source-preserved Dagbatti padas', () => {
+  const catalogue = JSON.parse(readFileSync(new URL('../../assets/chhanda/catalogue.json', import.meta.url))).metres;
+  const entry = catalogue.find(m => m.id === 'panchachamara');
+  assert.equal(entry.pattern, 'LG'.repeat(8));
+  for (const text of ['म सात वर्षको थिएँ, अबोध बालकै थिएँ,', 'कुनै कुरा थिएन थाह, मस्त नींदमा थिएँ,']) {
+    assert.equal(scan(text).pattern, entry.pattern);
+  }
+  assert.equal(entry.writer, undefined);
+});
+test('twelve-syllable Upajati keeps Vamshastha and Indravamsha distinct from eleven-syllable Upajati', () => {
+  const catalogue = JSON.parse(readFileSync(new URL('../../assets/chhanda/catalogue.json', import.meta.url))).metres;
+  const entry = catalogue.find(m => m.id === 'upajati_12');
+  assert.deepEqual(entry.patterns, ['LGLGGLLGLGLG', 'GGLGGLLGLGLG']);
+  const padas = ['गरीब भन्छौ? सुखको म झैं धनी', 'मिल्दैन संसारभरी कतै पनि।'];
+  padas.forEach((text, i) => {
+    const reading = scan(text);
+    assert.equal(reading.syllables.length, 12);
+    assert.equal(align(reading.syllables, entry.patterns[i], true).distance, 0);
+  });
+  assert.ok(catalogue.find(m => m.id === 'upajati').patterns.every(p => p.length === 11));
+  assert.equal(entry.writer, undefined);
+});
+test('the located Viyogini ending alternates ten and eleven syllables', () => {
+  const catalogue = JSON.parse(readFileSync(new URL('../../assets/chhanda/catalogue.json', import.meta.url))).metres;
+  const entry = catalogue.find(m => m.id === 'viyogini');
+  const padas = ['उपकार गरुन् भनेर यो', 'प्रभुले मानिस देह बक्सियो', 'उपकार पटी तयार भै,', 'निज कर्तव्य समालिहाल है'];
+  padas.forEach((text, i) => assert.equal(scan(text).pattern, i % 2 ? 'LLGGLLGLGLG' : 'LLGLLGLGLG'));
+  // Alternating lengths cannot be represented as interchangeable fixed templates.
+  assert.equal(entry.pattern, undefined);
+  assert.equal(entry.patterns, undefined);
+  assert.equal(entry.writer, undefined);
+});
 test('input script follows newly entered letters and ignores digits or punctuation', () => {
   assert.equal(inputScript('mero'), 'roman');
   assert.equal(inputScript('कविता'), 'devanagari');

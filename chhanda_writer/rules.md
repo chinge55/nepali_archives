@@ -177,6 +177,24 @@ body. Paginated works keep the filters local to the sections containing the
 identified passages. This lets searches inside अनुष्टुप् find मनोलड्डु while
 avoiding unrelated metre filters on other sections of a long work.
 
+A further source review adds 42 published identifications: thirty single-metre
+works, eleven mixed works and one complete free-verse reading, bringing coverage
+to 187 works. The mixed annotations add 29 located complete stanzas. These
+include six selected passages in रामायण and four in गङ्गा गौरी; neither list
+claims to classify every stanza of those books. तीजको कथा similarly records
+only its reviewed शार्दूलविक्रीडित and मालिनी examples. Candidates without a
+declared preserved source remain pending. Literary texts and proofreading flags
+are unchanged.
+
+The added archive categories are पञ्चचामर, द्वादशाक्षरी उपजाति and वियोगिनी.
+पञ्चचामर has eight light-heavy pairs. The twelve-syllable उपजाति combines
+वंशस्थ and इन्द्रवंशा, distinct from the existing eleven-syllable category.
+Its इन्द्रवंशा pattern follows the त त ज र formula in वृत्तरत्नाकर, verse 48
+([source page](https://sa.wikisource.org/wiki/पृष्ठम्:वृत्तरत्नाकरम्.pdf/६८)).
+वियोगिनी's reviewed ending alternates ten- and eleven-syllable padas, so it has
+no universal fixed pattern or interchangeable-pattern list. These three browse
+categories do not add unsupported writer presets.
+
 `assets/chhanda/catalogue.json` is the archive's build-time name and pattern
 catalogue. A `pattern` is one fixed sequence; `patterns` lists the alternative
 pada sequences of a family, never a simultaneous fixed template. Its writer

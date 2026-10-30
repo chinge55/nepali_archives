@@ -116,6 +116,26 @@
       "reference": "https://www.sanskrit-lexicon.uni-koeln.de/scans/csldev/csldoc/build/dictionaries/prefaces/ap90app1.html"
     },
     {
+      "id": "panchachamara",
+      "name": "पञ्चचामर",
+      "kind": "varnika",
+      "pattern": "LGLGLGLGLGLGLGLG",
+      "reference": "https://www.sanskrit-lexicon.uni-koeln.de/scans/csldev/csldoc/build/dictionaries/prefaces/ap90app1.html"
+    },
+    {
+      "id": "upajati_12",
+      "name": "द्वादशाक्षरी उपजाति",
+      "kind": "varnika",
+      "patterns": ["LGLGGLLGLGLG", "GGLGGLLGLGLG"],
+      "reference": "https://sa.wikisource.org/wiki/पृष्ठम्:वृत्तरत्नाकरम्.pdf/६८"
+    },
+    {
+      "id": "viyogini",
+      "name": "वियोगिनी",
+      "kind": "varnika",
+      "reference": "https://www.sanskrit-lexicon.uni-koeln.de/scans/csldev/csldoc/build/dictionaries/prefaces/ap90app1.html"
+    },
+    {
       "id": "jhyaure",
       "name": "झ्याउरे",
       "kind": "folk"

@@ -11,12 +11,26 @@ const pause = ms => new Promise(resolve => setTimeout(resolve, ms));
   page.on('pageerror', error => errors.push(error.message));
   page.on('request', request => requests.push(request.url()));
   async function go(route) { await page.goto(base + route, { waitUntil: 'networkidle0' }); }
+  async function waitForPassage() {
+    await page.waitForFunction(() => {
+      const target = document.querySelector('.ln:target');
+      if (!target) return false;
+      const top = target.getBoundingClientRect().top, now = performance.now();
+      const previous = window.__prosodyScrollWait;
+      if (!previous || previous.id !== target.id || Math.abs(previous.top - top) > 0.5) {
+        window.__prosodyScrollWait = { id: target.id, top, since: now };
+        return false;
+      }
+      // Finish smooth scrolling before navigating to another hash in the same document.
+      return top >= 0 && top < innerHeight && now - previous.since >= 200;
+    });
+  }
   try {
     await page.setViewport({ width: 1152, height: 1000 });
     await go('chhandas/');
     assert.match(await page.$eval('h1', n => n.textContent), /छन्दअनुसार/);
     assert.match(await page.$eval('.lead', n => n.textContent), /कृतिको छन्द पहिचान समीक्षा गरिएको छ/);
-    assert.ok(await page.$$eval('.shelf > a', n => n.length) >= 17);
+    assert.ok(await page.$$eval('.shelf > a', n => n.length) >= 20);
     await page.screenshot({ path: '/tmp/prosody-browse-desktop.png', fullPage: true });
     await go('authors/lekhnath_paudyal/radhakrishna/');
     assert.match(await page.$eval('.meta', n => n.textContent), /छन्द: मालिनी/);
@@ -83,18 +97,48 @@ const pause = ms => new Promise(resolve => setTimeout(resolve, ms));
       for (const id of ids) {
         await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle0' }), page.click('#chhanda-details a[href$="#chhanda-' + id + '"]')]);
         assert.equal(await page.$eval('.ln:target', n => n.id), 'chhanda-' + id);
-        await page.waitForFunction(() => {
-          const target = document.querySelector('.ln:target');
-          if (!target) return false;
-          const top = target.getBoundingClientRect().top;
-          return top >= 0 && top < innerHeight;
-        });
+        await waitForPassage();
       }
       if (route.endsWith('/manoladdu')) await page.screenshot({ path: '/tmp/prosody-manoladdu-ending.png', fullPage: false });
     }
     await go('authors/lekhnath_paudyal/kabikabitalap_lalitya_bhag/');
     assert.equal(await page.$('.meta a[href*="chhandas/"]'), null, 'a known ending alone cannot certify the whole poem');
     console.log('PASS: anushtup, nine located passages and an unresolved mixed-form reading');
+
+    for (const [id, name] of [['panchachamara', 'पञ्चचामर'], ['upajati_12', 'द्वादशाक्षरी उपजाति'], ['viyogini', 'वियोगिनी']]) {
+      await go('chhandas/' + id + '/');
+      assert.ok((await page.$eval('h1', n => n.textContent)).includes(name));
+      assert.equal(await page.$('.prosody-write'), null);
+    }
+    await go('authors/bhimnidhi_tiwari/dagbatti/');
+    assert.match(await page.$eval('.meta', n => n.textContent), /छन्द: पञ्चचामर/);
+    await page.screenshot({ path: '/tmp/prosody-panchachamara.png', fullPage: false });
+    await go('authors/devkota/garib/');
+    assert.match(await page.$eval('.meta', n => n.textContent), /छन्द: द्वादशाक्षरी उपजाति/);
+    const newMixedCases = [
+      ['lekhnath_paudyal/parishranta_chatak', ['shardul-example', 'anushtup-10']],
+      ['jagannath_upadhyay_guraganyin/manushyajanma', ['shardul-example', 'shikharini-example', 'drutavilambita-example']],
+      ['jagannath_upadhyay_guraganyin/duhkhiko_upakar_gar', ['shardul-example', 'viyogini-ending']],
+      ['bhanubhakta_acharya/ramayana', ['shardul-example', 'upajati-example', 'sragdhara-example', 'shikharini-example', 'vasanta-example', 'malini-example']],
+      ['lekhnath_paudyal/gangga_gauri', ['malini-example', 'vasanta-example', 'shardul-example', 'vamshastha-example']],
+    ];
+    for (const [route, ids] of newMixedCases) {
+      await go('authors/' + route + '/');
+      assert.match(await page.$eval('.meta', n => n.textContent), /छन्द: मिश्रित/);
+      assert.equal(await page.$eval('#chhanda-details', n => n.open), false);
+      const links = await page.$$eval('#chhanda-details a', nodes => nodes.map(n => ({ href: n.href, hash: new URL(n.href).hash })));
+      assert.equal(links.length, ids.length);
+      // Capture links before leaving the contents page: long works route to sections.
+      for (const id of ids) {
+        const link = links.find(n => n.hash === '#chhanda-' + id);
+        assert.ok(link, route + ': ' + id);
+        await page.goto(link.href, { waitUntil: 'networkidle0' });
+        assert.equal(await page.$eval('.ln:target', n => n.id), 'chhanda-' + id);
+        await waitForPassage();
+      }
+      if (route.endsWith('/ramayana')) await page.screenshot({ path: '/tmp/prosody-ramayana-passage.png', fullPage: false });
+    }
+    console.log('PASS: three archive metre families and seventeen new passage links, including paginated books');
 
     await go('authors/devkota/pagal/');
     assert.match(await page.$eval('.meta', n => n.textContent), /मुक्तछन्द/);
@@ -129,6 +173,8 @@ const pause = ms => new Promise(resolve => setTimeout(resolve, ms));
     await page.waitForSelector('#results a[href*="katai_kharani_chhari_bhus_katai/"]');
     await go('?q=anushtup');
     await page.waitForSelector('#results a[href*="manoladdu/"]');
+    await go('?q=panchachamara');
+    await page.waitForSelector('#results a[href*="dagbatti/"]');
     console.log('PASS: Roman metre names find reviewed works in the main search');
     await page.setViewport({ width: 390, height: 844 });
     await go('chhandas/muktachhanda/');
