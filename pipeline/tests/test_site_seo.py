@@ -68,6 +68,54 @@ class SeoTests(unittest.TestCase):
         self.assertTrue(any('duplicate URLs' in error for error in errors))
         self.assertTrue(any('noindex page' in error for error in errors))
 
+    def writer_redirect(self, *, source='chhanda/index.html', destination='../kavita-lekhan/', noindex=True):
+        path = self.page(source, noindex=noindex, canonical=SITE_URL + 'kavita-lekhan/')
+        path.write_text(path.read_text().replace('</head>',
+            '<meta name="archive-redirect" content="writer-move">'
+            f'<noscript><meta http-equiv="refresh" content="0;url={destination}"></noscript></head>'))
+        return path
+
+    def test_writer_migration_has_one_indexable_destination(self):
+        self.page('kavita-lekhan/index.html')
+        self.writer_redirect()
+        write_sitemaps(self.site)
+        errors, report = audit_site(self.site)
+        self.assertEqual(errors, [])
+        self.assertEqual(report['indexable_pages'], 1)
+        self.assertEqual((self.site / 'sitemap.txt').read_text().splitlines(), [SITE_URL + 'kavita-lekhan/'])
+
+    def test_writer_redirect_exception_is_limited_to_the_known_migration(self):
+        self.page('kavita-lekhan/index.html')
+        for options in [
+            {'source': 'other/index.html'},
+            {'destination': 'https://example.org/kavita-lekhan/'},
+            {'destination': '../missing/'},
+            {'destination': '../kavita-lekhan/?metre=malini'},
+            {'noindex': False},
+        ]:
+            with self.subTest(options=options):
+                path = self.writer_redirect(**options)
+                # A bad indexable canonical is rejected by the sitemap writer too.
+                if options.get('noindex') is False:
+                    with self.assertRaises(ValueError):
+                        write_sitemaps(self.site)
+                else:
+                    write_sitemaps(self.site)
+                errors, _ = audit_site(self.site)
+                self.assertTrue(any('invalid writer redirect' in error for error in errors))
+                path.unlink()
+
+    def test_writer_redirect_requires_an_indexable_canonical_target(self):
+        self.writer_redirect()
+        write_sitemaps(self.site)
+        self.assertTrue(any('invalid writer redirect' in error for error in audit_site(self.site)[0]))
+        self.page('kavita-lekhan/index.html', noindex=True)
+        write_sitemaps(self.site)
+        self.assertTrue(any('invalid writer redirect' in error for error in audit_site(self.site)[0]))
+        self.page('kavita-lekhan/index.html')
+        write_sitemaps(self.site)
+        self.assertEqual(audit_site(self.site)[0], [])
+
 
 if __name__ == '__main__':
     unittest.main()

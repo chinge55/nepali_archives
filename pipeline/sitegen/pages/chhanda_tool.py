@@ -8,7 +8,7 @@ from ..config import SITE_NAME
 
 def write_chhanda_page(context, page):
     source = context.root / "assets" / "chhanda"
-    target = context.site / "chhanda"
+    target = context.site / "kavita-lekhan"
     target.mkdir(exist_ok=True)
     files = sorted(p for p in source.iterdir() if p.is_file() and p.name != "package.json")
     typing_dependencies = sorted(
@@ -19,7 +19,7 @@ def write_chhanda_page(context, page):
     for path in files:
         shutil.copy(path, target / path.name)
     body = """
-<div class="ch-heading"><h1>छन्दमा कविता लेख्नुहोस्</h1><span class="ch-edition">अभ्यास संस्करण</span></div>
+<div class="ch-heading"><h1>छन्दमा कविता लेखन</h1><span class="ch-edition">अभ्यास संस्करण</span></div>
 <section id="chhanda-tool" aria-label="छन्द लेखन सहायक">
 <section class="ch-editor-card" aria-label="कविता सम्पादक">
 <div class="ch-writer-toolbar">
@@ -81,13 +81,35 @@ def write_chhanda_page(context, page):
     body += f'<script type="module" src="app.js?v={version}"></script>'
     (target / "index.html").write_text(
         page(
-            "छन्दमा कविता लेख्नुहोस् — Nepali Chhanda Writer · " + SITE_NAME,
+            "छन्दमा कविता लेखन — " + SITE_NAME,
             body,
             desc="नेपाली छन्दमा कविता लेख्नुहोस्। भुजङ्गप्रयात, शार्दूलविक्रीडित, शिखरिणी, मन्दाक्रान्ता लगायतका छन्दमा लघु–गुरु जाँच, शब्दका विकल्प र रोमनबाट नेपाली टाइप।",
             css_depth=1,
             extra_head=f'<link rel="stylesheet" href="chhanda.css?v={version}">',
             active="chhanda",
-            canon="chhanda/",
+            canon="kavita-lekhan/",
+        ),
+        encoding="utf-8",
+    )
+
+    # Keep old bookmarks and metre links working without duplicating the editor.
+    # The draft key stays unchanged: localStorage is shared across both paths.
+    legacy = context.site / "chhanda"
+    legacy.mkdir(exist_ok=True)
+    (legacy / "index.html").write_text(
+        page(
+            "कविता लेखन — " + SITE_NAME,
+            '<h1>छन्दमा कविता लेखन</h1><p><a href="../kavita-lekhan/">कविता लेखन खोल्नुहोस् →</a></p>',
+            desc="छन्दमा कविता लेखन सहायकको नयाँ ठेगाना।",
+            css_depth=1,
+            active="chhanda",
+            canon="kavita-lekhan/",
+            noindex=True,
+            extra_head=(
+                '<meta name="archive-redirect" content="writer-move">\n'
+                '<script>location.replace("../kavita-lekhan/"+location.search+location.hash);</script>\n'
+                '<noscript><meta http-equiv="refresh" content="0;url=../kavita-lekhan/"></noscript>\n'
+            ),
         ),
         encoding="utf-8",
     )

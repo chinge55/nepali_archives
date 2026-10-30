@@ -6,7 +6,7 @@ See [`mission.MD`](./mission.MD) for the charter and [`CONTRIBUTING.md`](./CONTR
 Report credentials or personal-data exposure privately; see
 [`SECURITY.md`](./SECURITY.md).
 
-The [छन्द लेखन assistant](https://www.nepaliarchives.org/chhanda/) helps writers
+The [कविता लेखन assistant](https://www.nepaliarchives.org/kavita-lekhan/) helps writers
 compose in भुजङ्गप्रयात, वसन्ततिलका, and शार्दूलविक्रीडित with syllable-by-syllable
 feedback, pronunciation controls, and word suggestions. Drafts stay in the
 browser. Implementation rules and verification commands are in

@@ -49,7 +49,7 @@ def write_prosody_pages(context, page, assets, catalogue):
             f'<div class="shelf">{cards}</div>'
             '<p class="prosody-note">पहिचान समीक्षा भएका कृतिहरू यहाँ थपिँदै जान्छन्। '
             'एउटै कृति एकभन्दा धेरै छन्दमा पर्न सक्छ।</p>'
-            '<p><a href="../chhanda/">छन्दमा कविता लेख्नुहोस् →</a></p>')
+            '<p><a href="../kavita-lekhan/">छन्दमा कविता लेख्नुहोस् →</a></p>')
     (output / "index.html").write_text(page(
         "छन्दअनुसार नेपाली कविता — " + SITE_NAME, body, css_depth=1, active="works",
         desc="छन्दअनुसार नेपाली कविता खोज्नुहोस्। समीक्षा गरिएका छन्दका रचना, लेखक र लामो काव्यका मिल्दा अंश पढ्नुहोस्।",
@@ -77,7 +77,7 @@ def write_prosody_pages(context, page, assets, catalogue):
                 rows.append(catalogue.work_list_item(work, meta, esc(href), extra_html=extra))
             groups.append(f'<section class="group" data-author="{esc(author)}"><h2>{esc(author)}</h2><ul class="works">{"".join(rows)}</ul></section>')
         options = "".join(f'<option value="{esc(author)}">{esc(author)}</option>' for author in authors)
-        writer = (f'<p><a class="prosody-write" href="../../chhanda/?metre={esc(metre["writer"])}">यस छन्दमा कविता लेख्नुहोस् →</a></p>'
+        writer = (f'<p><a class="prosody-write" href="../../kavita-lekhan/?metre={esc(metre["writer"])}">यस छन्दमा कविता लेख्नुहोस् →</a></p>'
                   if metre.get("writer") else "")
         heading = "मुक्तछन्दका कविता" if identifier == FREE_VERSE["id"] else f"{name} छन्दका कविता"
         body = ('<nav class="crumb"><a href="../">← छन्दअनुसार कविता</a></nav>'

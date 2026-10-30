@@ -1,7 +1,10 @@
 # Chhanda writer rules
 
-The `/chhanda/` writer analyses the spelling under an explicit verse reading.
-Its catalogue contains ten metres with a fixed pattern for each पाउ:
+The `/kavita-lekhan/` writer analyses the spelling under an explicit verse reading.
+The retired `/chhanda/` URL redirects to it, preserving query parameters and
+fragments. The original local draft key stays unchanged for saved writing.
+
+The writer's catalogue contains ten metres with a fixed pattern for each पाउ:
 
 | Metre | Ganas and tail | Syllables | Internal pause positions |
 | --- | --- | --- | --- |
@@ -118,7 +121,7 @@ from the same site; no analysis service or telemetry is required.
 
 Run `node --test chhanda_writer/tests/engine.mjs` and the browser harness
 `NODE_PATH=<browser-test-dependencies> node chhanda_writer/tests/browser.cjs`.
-The latter defaults to `http://localhost:8263/chhanda/`; set `CHHANDA_TEST_URL`
+The latter defaults to `http://localhost:8263/kavita-lekhan/`; set `CHHANDA_TEST_URL`
 to exercise a deployed route. Run site-generator tests, the existing typing
 regressions, source validation, site-link and SEO audits, and the browser
 verification described in the repository skills before shipping.

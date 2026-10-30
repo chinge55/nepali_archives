@@ -1,7 +1,13 @@
 # Chhanda writer plan
 
-Draft · 2026-10-30 · Scope: a writing assistant at `/chhanda/`, named
-**छन्द लेखन**, within Nepali Archives.
+Draft · 2026-10-30 · Scope: a writing assistant at `/kavita-lekhan/`, named
+**कविता लेखन**, within Nepali Archives.
+
+**Writer identity revision, 2026-10-31:** use `/kavita-lekhan/`, navigation
+**कविता लेखन**, heading **छन्दमा कविता लेखन**, and title
+**छन्दमा कविता लेखन — नेपाली अभिलेख**. The retired `/chhanda/` URL redirects
+with its query and fragment intact; keep the original browser draft storage key.
+Only the new URL is indexed. `/chhandas/` remains the separate कविता browsing page.
 
 **Writing interface revision, 2026-10-30:** keep one main writer with a
 Devanagari/Roman toggle and a metre dropdown. Roman conversion happens in the
@@ -140,12 +146,12 @@ they do not constitute verified pronunciation or synonym data.
 | `chhanda_writer/pipeline/` | Validate metre data and prepare a compact word index |
 | `chhanda_writer/tests/` | Analysis, alignment, suggestion, and browser checks |
 | `assets/chhanda/` | Browser engine, editor, page CSS, metre definitions, and shipped data |
-| `pipeline/sitegen/pages/chhanda_tool.py` | Generate `/chhanda/` and install its assets |
+| `pipeline/sitegen/pages/chhanda_tool.py` | Generate `/kavita-lekhan/` and install its assets |
 
 Register the page in the builder, add navigation through the shared layout,
 and cover it in build fixtures and the sitemap checks. Follow existing asset
 versioning and load chhanda assets only on this page. Verify that shared typing
-assets resolve correctly from both `/type/` and `/chhanda/`.
+assets resolve correctly from both `/type/` and `/kavita-lekhan/`.
 
 The engine should expose a structured result with syllable spans, possible
 readings, weights, matched constraints, mismatch reasons, and remaining slots.
@@ -171,7 +177,7 @@ an explicit caching design; browser-side analysis alone does not provide it.
 | 1. Rules and examples | Three sourced metre definitions, pronunciation conventions, annotation format, reviewed reference set | A reviewer can explain every expected reading; disputed cases are identified |
 | 2. Analysis prototype | Standalone engine returning syllables, weights, alternatives, and target alignment | Reviewed regression cases pass; held-out results and failure categories are recorded |
 | 3. Writing prototype | Editor, live comparison, remaining-pattern hints, bounded word suggestions, and pronunciation controls | A writer can compose and repair a complete stanza using the interface |
-| 4. Site integration | `/chhanda/`, optional Roman input, examples, draft recovery, exports, navigation, and styles | Desktop and mobile flows work; typing-tool regressions and site checks pass |
+| 4. Site integration | `/kavita-lekhan/`, optional Roman input, examples, draft recovery, exports, navigation, and styles | Desktop and mobile flows work; typing-tool regressions and site checks pass |
 | 5. Beta and refinement | Trial with beginners and experienced poets, fixes to rules and explanations | Users can finish a stanza and understand the feedback; material confident misclassifications are resolved |
 
 Budget roughly **4–6 weeks of focused work** for a first public version,

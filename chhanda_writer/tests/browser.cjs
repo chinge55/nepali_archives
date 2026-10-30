@@ -4,7 +4,7 @@ const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
 const puppeteer = require('puppeteer');
-const url = process.env.CHHANDA_TEST_URL || 'http://localhost:8263/chhanda/';
+const url = process.env.CHHANDA_TEST_URL || 'http://localhost:8263/kavita-lekhan/';
 const pause = ms => new Promise(resolve => setTimeout(resolve, ms));
 let browser, count = 0;
 const temporary = fs.mkdtempSync(path.join(os.tmpdir(), 'chhanda-browser-'));
@@ -12,6 +12,7 @@ const temporary = fs.mkdtempSync(path.join(os.tmpdir(), 'chhanda-browser-'));
 async function test(name, fn, configure) {
   const context = await browser.createIncognitoBrowserContext();
   const page = await context.newPage(), errors = [], draftRequests = [];
+  const metricLocations = new Set([url]);
   page.on('pageerror', error => errors.push(error.message));
   page.on('request', request => {
     if (request.method() !== 'GET' || request.postData()) draftRequests.push({ url: request.url(), method: request.method(), body: request.postData() || '' });
@@ -26,7 +27,7 @@ async function test(name, fn, configure) {
     if (configure) await configure(page);
     await page.goto(url, { waitUntil: 'networkidle0' });
     if (!name.startsWith('failed analysis')) await page.waitForSelector('#chhanda-tool[data-ready=true]');
-    await fn(page);
+    await fn(page, metricLocations);
     assert.deepEqual(errors, [], 'uncaught browser errors');
     for (const request of draftRequests) {
       // Identify the host's own metrics separately from editor/API requests.
@@ -37,7 +38,7 @@ async function test(name, fn, configure) {
       if (!request.body) continue;
       const metrics = JSON.parse(request.body);
       assert.ok(!['text', 'poem', 'draft', 'pending', 'input'].some(key => key in metrics), 'editor data in host beacon');
-      if (metrics.location) assert.equal(metrics.location, url, 'draft must not enter the page URL');
+      if (metrics.location) assert.ok(metricLocations.has(metrics.location), 'draft must not enter the page URL');
       assert.doesNotMatch(request.body, /[\u0900-\u097f]|%e0%a[45]|\\u09[0-7][0-9a-f]/i, 'draft text must not leave the browser');
     }
     console.log(`PASS ${++count}: ${name}`);
@@ -55,8 +56,11 @@ const status = page => page.$eval('#analysis-status', node => node.dataset.statu
   const { METRES } = await import('../../assets/chhanda/metres.js');
   browser = await puppeteer.launch({ headless: 'new', args: ['--no-sandbox'] });
   await test('the initial surface is one writer with a toggle and metre dropdown', async page => {
-    assert.equal(await page.$eval('h1', node => node.textContent), 'छन्दमा कविता लेख्नुहोस्');
-    assert.match(await page.title(), /Nepali Chhanda Writer/);
+    assert.equal(await page.$eval('h1', node => node.textContent), 'छन्दमा कविता लेखन');
+    assert.equal(await page.title(), 'छन्दमा कविता लेखन — नेपाली अभिलेख');
+    assert.equal(new URL(page.url()).pathname, '/kavita-lekhan/');
+    assert.equal(await page.$eval('link[rel=canonical]', n => n.href), 'https://www.nepaliarchives.org/kavita-lekhan/');
+    assert.equal(await page.$eval('header nav a.on', n => n.textContent), 'कविता लेखन');
     assert.equal(await page.$$eval('textarea', nodes => nodes.length), 1);
     assert.equal(await page.$$eval('#metre-select option', nodes => nodes.length), 10);
     assert.equal(await page.$$eval('#roman', nodes => nodes.length), 0);
@@ -65,6 +69,45 @@ const status = page => page.$eval('#analysis-status', node => node.dataset.statu
     await page.select('#metre-select', 'shardul');
     assert.equal(await page.$eval('#example-dialog', node => node.open), false);
     await page.screenshot({ path: path.join(temporary, 'writer-empty.png'), fullPage: true });
+  });
+  await test('old bookmarks preserve drafts, metre presets, fragments and undo at the new URL', async (page, metricLocations) => {
+    // Live hosting metrics may record these intentional bookmark destinations.
+    for (const relative of ['../chhanda/?metre=malini&from=bookmark#poem', '?metre=malini&from=bookmark#poem', '?from=bookmark#poem', '../chhanda/']) {
+      const location = new URL(relative, url);
+      metricLocations.add(location.href);
+      location.hash = ''; metricLocations.add(location.href);
+    }
+    const draft = 'मेरो सुरक्षित कविता';
+    await write(page, draft);
+    await page.select('#metre-select', 'vasanta');
+    await page.click('#analysis-panel > summary');
+    await page.click('#final-flexible');
+    await page.goto(new URL('../chhanda/?metre=malini&from=bookmark#poem', url).href, { waitUntil: 'networkidle0' });
+    await page.waitForSelector('#chhanda-tool[data-ready=true]');
+    assert.equal(new URL(page.url()).pathname, '/kavita-lekhan/');
+    assert.equal(new URL(page.url()).hash, '#poem');
+    assert.equal(new URL(page.url()).search, '?from=bookmark');
+    assert.equal(await text(page), draft);
+    assert.equal(await page.$eval('#metre-select', n => n.value), 'malini');
+    assert.equal(await page.$eval('#final-flexible', n => n.checked), false);
+    await page.click('#undo');
+    assert.equal(await page.$eval('#metre-select', n => n.value), 'vasanta');
+    assert.equal(await text(page), draft);
+    await page.reload({ waitUntil: 'networkidle0' });
+    await page.waitForSelector('#chhanda-tool[data-ready=true]');
+    assert.equal(await text(page), draft);
+    assert.equal(await page.$eval('#metre-select', n => n.value), 'vasanta');
+    await page.goto(new URL('../chhanda/', url).href, { waitUntil: 'networkidle0' });
+    await page.waitForSelector('#chhanda-tool[data-ready=true]');
+    assert.equal(new URL(page.url()).pathname, '/kavita-lekhan/');
+    assert.equal(await text(page), draft);
+  });
+  await test('the old URL has a working redirect when JavaScript is disabled', async page => {
+    await page.setJavaScriptEnabled(false);
+    await page.goto(new URL('../chhanda/', url).href, { waitUntil: 'networkidle0' });
+    await page.waitForFunction(() => location.pathname === '/kavita-lekhan/');
+    assert.equal(await page.$eval('h1', n => n.textContent), 'छन्दमा कविता लेखन');
+    assert.ok(await page.$('#poem'));
   });
   await test('examples open only when requested and closing them preserves writing', async page => {
     await write(page, 'आफ्नो कविता');
@@ -331,7 +374,7 @@ const status = page => page.$eval('#analysis-status', node => node.dataset.statu
     assert.equal(await text(page), 'कविता');
   }, async page => {
     await page.setRequestInterception(true);
-    page.on('request', request => /\/chhanda\/(?:engine|inline)\.js/.test(request.url()) ? request.abort() : request.continue());
+    page.on('request', request => /\/kavita-lekhan\/(?:engine|inline)\.js/.test(request.url()) ? request.abort() : request.continue());
   });
   await test('mobile layout, dark theme and line wrapping preserve pada boundaries', async page => {
     await page.setViewport({ width: 390, height: 844, isMobile: true, hasTouch: true });

@@ -18,6 +18,7 @@ class PageHead(HTMLParser):
         self.canonicals = []
         self.noindex = False
         self.chapter_redirect = False
+        self.writer_redirect = False
         self.refresh = None
         self.in_title = False
         self.finished = False
@@ -34,6 +35,8 @@ class PageHead(HTMLParser):
             content = attrs.get("content", "")
             if name == "archive-redirect" and content == "chapter-merge":
                 self.chapter_redirect = True
+            if name == "archive-redirect" and content == "writer-move":
+                self.writer_redirect = True
             if attrs.get("http-equiv", "").lower() == "refresh":
                 self.refresh = content
             if name == "description":
@@ -120,6 +123,23 @@ def valid_chapter_redirect(site, path, head):
     return not target_head.noindex and not target_head.chapter_redirect
 
 
+def valid_writer_redirect(site, path, head):
+    """Allow only the retired writer URL to canonicalize to its replacement."""
+    if (not head.writer_redirect or head.chapter_redirect or not head.noindex
+            or path.relative_to(site).as_posix() != "chhanda/index.html"
+            or head.canonicals != [SITE_URL + "kavita-lekhan/"]
+            or not head.refresh or not head.refresh.startswith("0;url=")):
+        return False
+    if urljoin(page_url(site, path), head.refresh[len("0;url="):]) != head.canonicals[0]:
+        return False
+    target = Path(site) / "kavita-lekhan/index.html"
+    if not target.is_file():
+        return False
+    target_head = read_head(target)
+    return (not target_head.noindex and not target_head.writer_redirect
+            and not target_head.chapter_redirect and target_head.canonicals == head.canonicals)
+
+
 def audit_site(site):
     """Check HTML metadata and exact sitemap coverage; downloads are not HTML."""
     site = Path(site)
@@ -131,10 +151,14 @@ def audit_site(site):
             errors.append(f"{relative}: expected one nonempty title")
         if len(head.descriptions) != 1 or not head.descriptions[0].strip():
             errors.append(f"{relative}: expected one nonempty meta description")
-        if head.canonicals != [page_url(site, path)] and not valid_chapter_redirect(site, path, head):
+        if (head.canonicals != [page_url(site, path)]
+                and not valid_chapter_redirect(site, path, head)
+                and not valid_writer_redirect(site, path, head)):
             errors.append(f"{relative}: expected one self-referencing canonical URL")
         if head.chapter_redirect and not valid_chapter_redirect(site, path, head):
             errors.append(f"{relative}: invalid chapter redirect")
+        if head.writer_redirect and not valid_writer_redirect(site, path, head):
+            errors.append(f"{relative}: invalid writer redirect")
         if not head.noindex:
             expected.add(page_url(site, path))
             if head.descriptions and len(head.descriptions[0].strip()) < 100:
