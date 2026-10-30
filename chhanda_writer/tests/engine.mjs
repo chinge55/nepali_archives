@@ -2,8 +2,29 @@ import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { METRES } from '../../assets/chhanda/metres.js';
 import { scan, analyse, align, splitPadas, suggestWords, rebaseOverrides } from '../../assets/chhanda/engine.js';
+import { changedRange, pendingWord, transliterateEdit } from '../../assets/chhanda/inline.js';
 
 const bhujanga = METRES[0];
+const convert = word => ({ mero: 'मेरो', naam: 'नाम', kabita: 'कविता', ho: 'हो' }[word] || word);
+test('inline Roman conversion commits words at boundaries in the same editor', () => {
+  assert.deepEqual(transliterateEdit('mer', 'mero', 4, convert), { text: 'mero', caret: 4 });
+  assert.deepEqual(transliterateEdit('mero', 'mero ', 5, convert), { text: 'मेरो ', caret: 5 });
+  assert.deepEqual(transliterateEdit('', 'mero naam ho\n', 13, convert), { text: 'मेरो नाम हो\n', caret: 12 });
+  assert.equal(transliterateEdit('मेरो ', 'मेरो naam.', 10, convert).text, 'मेरो नाम।');
+});
+test('inline conversion preserves existing text, selected replacements and structured tokens', () => {
+  assert.equal(transliterateEdit('hello मेरो ', 'hello मेरो naam ', 16, convert).text, 'hello मेरो नाम ');
+  assert.equal(transliterateEdit('मेरो नाम छ', 'मेरो kabita छ', 11, convert).text, 'मेरो kabita छ');
+  assert.equal(transliterateEdit('मेरो नाम छ', 'मेरो k छ', 6, () => 'के').text, 'मेरो k छ');
+  assert.equal(transliterateEdit('मेरो kabita छ', 'मेरो kabita  छ', 12, convert).text, 'मेरो कविता  छ');
+  for (const text of ['test@example.org ', 'https://example.org ', 'covid19 ']) assert.equal(transliterateEdit('', text, text.length, convert).text, text);
+  assert.equal(transliterateEdit('mero', 'mero', 4, convert, { force: true }).text, 'मेरो');
+});
+test('inline pending-word ranges remain separate from source text and preserve offsets', () => {
+  assert.deepEqual(pendingWord('मेरो naam', 9), { start: 5, end: 9, text: 'naam' });
+  assert.equal(pendingWord('test@example.org', 4), null);
+  assert.deepEqual(changedRange('abc नाम', 'abc मेरो नाम'), { start: 4, end: 9, oldEnd: 4 });
+});
 test('three formulae expand to their independently specified patterns', () => {
   assert.deepEqual(METRES.map(m => m.pattern), ['LGGLGGLGGLGG', 'GGLGLLLGLLGLGG', 'GGGLLGLGLLLGGGLGGLG']);
 });

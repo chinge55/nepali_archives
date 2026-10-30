@@ -3,6 +3,12 @@
 Draft · 2026-10-30 · Scope: a writing assistant at `/chhanda/`, named
 **छन्द लेखन**, within Nepali Archives.
 
+**Writing interface revision, 2026-10-30:** keep one main writer with a
+Devanagari/Roman toggle and a metre dropdown. Roman conversion happens in the
+main writer. Show compact assistance for the active line; open examples,
+learning material, detailed scansion, and word search only when requested.
+This replaces the initial layout with numbered sections and a teaching sidebar.
+
 **Initial draft implemented, 2026-10-30:** the static route now includes the
 three launch metres, live scansion and explanations, pronunciation controls,
 contextual word suggestions, shared Roman input, source-checked excerpts,
@@ -49,8 +55,8 @@ offers help composing a line without requiring the author to know गण names.
 Provide undo/redo, browser-local draft recovery, copy, plain-text download,
 and a project export/import containing the selected metre and pronunciation
 choices. Keep the poem text separate from analysis marks in ordinary exports.
-On mobile, keep the active line, its pattern, and suggestions usable above the
-keyboard. Desktop can place explanations beside the editor.
+On mobile, keep the active line and compact feedback usable above the keyboard.
+Detailed explanations and suggestions are available on request on every screen.
 
 **2. First release scope**
 

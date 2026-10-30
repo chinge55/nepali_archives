@@ -6,6 +6,13 @@ and शार्दूलविक्रीडित (म स ज स त त �
 slash, vertical bar, or danda separates पाउ. Blank lines separate stanzas.
 Screen wrapping never changes the analysis.
 
+The main writing surface has one textarea, a Devanagari/Roman switch, and a
+metre dropdown. Roman words are composed and converted in that same textarea
+when Space, Enter, or punctuation is entered. Candidates replace the active
+Roman word at its actual location. Examples open only after an explicit click;
+analysis, pronunciation settings, word search, and help stay collapsed by
+default. Compact feedback supports the current line without opening a lesson.
+
 The formulae are cross-checked with [छन्दःशिक्षा](https://chhanda.vag.org.np/Examples/).
 General weight rules are described in [Apte's prosody appendix](https://www.sanskrit-lexicon.uni-koeln.de/scans/csldev/csldoc/build/dictionaries/prefaces/ap90app1.html).
 These are rules and reference material, rather than an imported implementation.
@@ -67,6 +74,9 @@ Edits preserve reading choices for unchanged words and invalidate choices for
 changed words. Undo/redo and versioned JSON exports contain poem, metre,
 reading choices, pending Roman input, and the final-syllable option. TXT and
 copy contain the poem alone. Browser storage failure does not prevent writing.
+Version 2 projects store the input mode and keep uncommitted Roman text in the
+poem itself. Existing version 1 drafts migrate without dropping their pending
+word. Switching modes does not move writing into a separate field.
 Draft text is never transmitted or encoded into URLs. Static data is fetched
 from the same site; no analysis service or telemetry is required.
 

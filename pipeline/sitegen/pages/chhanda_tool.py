@@ -19,82 +19,61 @@ def write_chhanda_page(context, page):
     for path in files:
         shutil.copy(path, target / path.name)
     body = """
-<div class="ch-heading"><div><p class="ch-eyebrow">लेखन साधन</p>
-<h1>छन्दमा लेख्नुहोस्</h1>
-<p class="lead">आफ्ना शब्द लेख्नुहोस्। अक्षर, लघु–गुरु र लय सँगसँगै हेर्नुहोस्।</p></div>
-<span class="ch-edition">अभ्यास संस्करण</span></div>
+<div class="ch-heading"><h1>छन्द लेखन</h1><span class="ch-edition">अभ्यास संस्करण</span></div>
 <section id="chhanda-tool" aria-label="छन्द लेखन सहायक">
-<fieldset class="ch-metres"><legend>१. छन्द छान्नुहोस्</legend>
-<div id="metre-choices" class="ch-metre-options"></div></fieldset>
-<div class="ch-workspace">
-<section class="ch-editor-card" aria-labelledby="editor-heading">
-<div class="ch-section-top"><h2 id="editor-heading">२. आफ्नो कविता</h2>
-<button type="button" id="example-open" class="ch-text-button">उदाहरण हेर्नुहोस् ↗</button></div>
+<section class="ch-editor-card" aria-label="कविता सम्पादक">
+<div class="ch-writer-toolbar">
+<label class="ch-metre-label" for="metre-select">छन्द <select id="metre-select" aria-label="छन्द छान्नुहोस्"></select></label>
+<label class="ch-mode"><span>देवनागरी</span><input id="roman-mode" type="checkbox" role="switch" aria-label="Roman बाट नेपाली लेख्ने"><span>Roman</span></label>
+</div>
 <label for="poem" class="ch-sr">कविताको पाठ</label>
-<textarea id="poem" rows="7" spellcheck="false" autocorrect="off" autocapitalize="none"
- placeholder="यहाँ आफ्नो पहिलो पाउ लेख्नुहोस्…" aria-describedby="editor-hint"></textarea>
-<p id="editor-hint" class="ch-caption">नयाँ हरफ वा / ले अर्को पाउ सुरु गर्छ। खाली हरफले अर्को श्लोक छुट्याउँछ।</p>
+<textarea id="poem" rows="11" spellcheck="false" autocorrect="off" autocapitalize="none"
+ placeholder="आफ्नो कविता यहाँ लेख्नुहोस्…" aria-describedby="editor-live-status"></textarea>
+<div id="roman-choices" class="ch-candidates ch-inline-candidates" role="group" aria-label="नेपाली शब्दका विकल्प" hidden></div>
+<div class="ch-typing-status"><span id="roman-status"></span><button id="roman-retry" type="button" hidden>फेरि प्रयास</button></div>
 <div class="ch-editor-live"><span id="editor-live-status"></span><span id="editor-live-pattern"></span></div>
 <div class="ch-editor-actions"><div class="ch-action-group">
-<button type="button" id="undo" disabled title="Ctrl/⌘+Z">↶ <span>फर्काउने</span></button>
-<button type="button" id="redo" disabled title="Ctrl/⌘+Shift+Z">↷ <span>दोहोर्‍याउने</span></button>
-<button type="button" id="boundary" title="कर्सरमा पाउ छुट्याउने / राख्नुहोस्">/ पाउ</button></div>
-<button type="button" id="copy">कपी गर्नुहोस्</button></div>
-<details id="roman-panel" class="ch-roman"><summary>रोमनबाट नेपाली लेख्नुहोस्</summary>
-<label for="roman">रोमनमा एक शब्द</label><div class="ch-roman-row">
-<input id="roman" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" placeholder="kabita">
-<button id="roman-retry" type="button" hidden>फेरि प्रयास</button></div>
-<div id="roman-choices" class="ch-candidates" role="group" aria-label="नेपाली शब्दका विकल्प"></div>
-<p id="roman-status" class="ch-caption">विकल्प थिच्दा कवितामा कर्सर भएको ठाउँमा शब्द बस्छ।</p></details>
-<div class="ch-draft-row"><span id="draft-status">पाठ यस ब्राउजरमा मात्र सुरक्षित हुन्छ।</span>
-<button type="button" id="clear" class="ch-text-button">नयाँ सुरु</button></div>
-</section>
-<aside class="ch-guide" aria-labelledby="guide-heading"><p class="ch-eyebrow">छन्दको ढाँचा</p>
-<h2 id="guide-heading">भुजङ्गप्रयात</h2><p id="metre-description"></p>
-<div id="metre-pattern" class="ch-formula" aria-label="लघु गुरुको क्रम"></div>
-<p id="metre-ganas" class="ch-caption"></p><p id="pause-note" class="ch-caption"></p>
-<div class="ch-legend"><span><b>ल</b> लघु · १ मात्रा</span><span><b>ग</b> गुरु · २ मात्रा</span></div>
-<label class="ch-flex"><input type="checkbox" id="final-flexible" checked> पाउको अन्तिम लघुलाई गुरु मान्ने छुट</label>
-<p class="ch-caption">काव्यपाठमा शब्दको अन्तिम ‘अ’ उच्चारित मानेर गणना हुन्छ। तलको उच्चारण विकल्पबाट बदल्न सकिन्छ।</p>
-</aside></div>
-<section class="ch-analysis" aria-labelledby="analysis-heading">
-<div class="ch-section-top"><h2 id="analysis-heading">३. अक्षर र लय</h2><span id="active-label" class="ch-caption">पहिलो पाउ</span></div>
-<p id="boot-status" role="status">लेखन सहायक तयार हुँदैछ…</p>
-<button id="boot-retry" type="button" hidden>फेरि प्रयास गर्नुहोस्</button>
-<div id="pada-tabs" class="ch-pada-tabs" role="group" aria-label="पाउका नतिजा"></div>
-<div class="ch-analysis-top"><p id="analysis-status"></p><span id="counts" class="ch-caption"></span></div>
-<div class="ch-scansion-wrap" tabindex="0" role="region" aria-label="अक्षर र अपेक्षित लघु गुरुको तुलना"><div id="scansion" class="ch-scansion"></div></div>
-<p id="syllable-detail" class="ch-syllable-detail">अक्षर थिचेर लघु वा गुरु हुनुको कारण हेर्नुहोस्।</p>
-<p id="analysis-hint" class="ch-caption"></p>
-<details id="reading-panel"><summary>शब्दको उच्चारण मिलाउनुहोस् <span id="reading-count"></span></summary>
-<p class="ch-caption">अन्तिम ‘अ’ उच्चारित छ कि छैन भन्ने आफ्नो पाठअनुसार छान्नुहोस्। छन्द मिलाउन पाठ आफैँ बदलिँदैन।</p>
-<div id="reading-choices" class="ch-reading-choices"></div></details>
-<div id="stanza-summary" class="ch-caption"></div>
-</section>
-<section class="ch-suggestions" aria-labelledby="suggestion-heading"><div class="ch-section-top">
-<div><p class="ch-eyebrow">अर्को शब्द खोज्दा</p><h2 id="suggestion-heading">लयमा मिल्ने शब्द</h2></div>
-<label class="ch-prefix-label" for="word-prefix">सुरुको अक्षर <input id="word-prefix" placeholder="जस्तै: म" autocomplete="off"></label></div>
-<p id="suggestion-context" class="ch-caption">पाउको बाँकी ढाँचामा मिल्ने शब्दहरू यहाँ देखिन्छन्।</p>
-<div id="word-choices" class="ch-candidates" role="group" aria-label="ढाँचामा मिल्ने शब्दहरू"></div>
-<div id="word-preview" class="ch-preview" hidden><p id="preview-line"></p>
-<button id="insert-word" type="button">यो शब्द राख्नुहोस्</button><button id="cancel-preview" type="button">रद्द</button></div>
-<p class="ch-caption">यी तौलमा मिल्ने विकल्प हुन्। अर्थ र भावअनुसार शब्द आफैँ रोज्नुहोस्। शब्द छानेर त्यसको ठाउँमा अर्को शब्द पनि खोज्न सकिन्छ।</p></section>
-<details id="example-panel" class="ch-example"><summary>देवकोटाको कविताबाट सिक्नुहोस्</summary>
-<blockquote id="example-text"></blockquote><p><a id="example-source" href="https://www.nepaliarchives.org/authors/devkota/shakuntala/">शाकुन्तल</a></p>
-<p id="example-page" class="ch-caption"></p><button id="use-example" type="button">यो उदाहरण सम्पादकमा राख्नुहोस्</button>
-<p class="ch-caption">लेखिरहेको पाठ फेरिन्छ; फर्काउने बटनले पहिलेकै पाठ फिर्ता ल्याउँछ।</p></details>
-<div class="ch-export"><button id="download-text" type="button">पाठ डाउनलोड · TXT</button>
+<button type="button" id="undo" disabled aria-label="फर्काउने" title="Ctrl/⌘+Z">↶</button>
+<button type="button" id="redo" disabled aria-label="दोहोर्‍याउने" title="Ctrl/⌘+Shift+Z">↷</button>
+<span id="draft-status" class="ch-caption">यस ब्राउजरमा सुरक्षित</span></div>
+<div class="ch-action-group"><button type="button" id="copy">कपी</button>
+<details class="ch-file-menu"><summary aria-label="मस्यौदाका थप विकल्प">⋯</summary><div>
+<button id="download-text" type="button">पाठ डाउनलोड · TXT</button>
 <button id="export-project" type="button">मस्यौदा सुरक्षित गर्नुहोस्</button>
-<label class="ch-file-button">मस्यौदा खोल्नुहोस्<input id="import-project" type="file" accept="application/json,.json"></label></div>
+<label class="ch-file-button">मस्यौदा खोल्नुहोस्<input id="import-project" type="file" accept="application/json,.json"></label>
+<button type="button" id="clear">नयाँ सुरु</button></div></details></div></div>
+</section>
+<p id="boot-status" class="ch-caption" role="status">लेखन सहायक तयार हुँदैछ…</p>
+<button id="boot-retry" type="button" hidden>फेरि प्रयास गर्नुहोस्</button>
+<div class="ch-secondary-tools"><details id="analysis-panel" class="ch-analysis"><summary>लय जाँच्नुहोस्</summary>
+<div class="ch-detail-body"><div class="ch-section-top"><span id="active-label" class="ch-caption"></span><span id="counts" class="ch-caption"></span></div>
+<div id="pada-tabs" class="ch-pada-tabs" role="group" aria-label="पाउका नतिजा"></div>
+<p id="analysis-status"></p>
+<div class="ch-scansion-wrap" tabindex="0" role="region" aria-label="अक्षर र अपेक्षित लघु गुरुको तुलना"><div id="scansion" class="ch-scansion"></div></div>
+<p id="syllable-detail" class="ch-caption"></p><p id="analysis-hint" class="ch-caption"></p>
+<details id="reading-panel"><summary>उच्चारणका विकल्प <span id="reading-count"></span></summary>
+<p class="ch-caption">शब्दको अन्तिम ‘अ’ आफ्नो पाठअनुसार छान्नुहोस्।</p><div id="reading-choices" class="ch-reading-choices"></div></details>
+<label class="ch-flex"><input type="checkbox" id="final-flexible" checked> पदान्त लघुलाई गुरु मान्ने छुट</label>
+<div id="stanza-summary" class="ch-caption"></div></div></details>
+<details id="word-panel" class="ch-suggestions"><summary>शब्द खोज्नुहोस्</summary>
+<div class="ch-detail-body"><label class="ch-prefix-label" for="word-prefix">सुरुको अक्षर <input id="word-prefix" placeholder="जस्तै: म" autocomplete="off"></label>
+<p id="suggestion-context" class="ch-caption"></p><div id="word-choices" class="ch-candidates" role="group" aria-label="ढाँचामा मिल्ने शब्दहरू"></div>
+<div id="word-preview" class="ch-preview" hidden><p id="preview-line"></p><button id="insert-word" type="button">यो शब्द राख्नुहोस्</button><button id="cancel-preview" type="button">रद्द</button></div>
+<p class="ch-caption">तौलमा मिल्ने विकल्पहरू। अर्थ र भावअनुसार रोज्नुहोस्।</p></div></details>
+<button type="button" id="example-open" class="ch-text-button">उदाहरण</button>
+<details id="help-panel" class="ch-help"><summary>मद्दत</summary><div class="ch-detail-body">
+<h2 id="guide-heading"></h2><p id="metre-description"></p><div id="metre-pattern" class="ch-formula"></div>
+<p id="metre-ganas" class="ch-caption"></p><p id="pause-note" class="ch-caption"></p>
+<p>ल = लघु, ग = गुरु। नयाँ हरफ वा / ले पाउ छुट्याउँछ; खाली हरफले श्लोक छुट्याउँछ। Roman मा लेख्दा Space वा Enter ले शब्दलाई नेपाली बनाउँछ।</p>
+<p>काव्यपाठमा अन्तिम ‘अ’ उच्चारित मानेर गणना हुन्छ। उच्चारणका विकल्पमा यसलाई बदल्न सकिन्छ। दीर्घ स्वर, अनुस्वार, विसर्ग र संयुक्त व्यञ्जनले तौलमा असर गर्छन्; चन्द्रबिन्दुले मात्र ह्रस्व स्वरलाई गुरु बनाउँदैन।</p>
+<p>यो प्रारम्भिक अभ्यास सहायक हो। विशेष काव्यपाठ, सन्धि र कविले लिएको छुटमा फरक नतिजा आउन सक्छ। नतिजा आफ्नो पाठसँग दाँज्नुहोस्।</p>
+<p>सूत्र: <a href="https://chhanda.vag.org.np/Examples/">छन्दःशिक्षा</a> · <a href="https://www.sanskrit-lexicon.uni-koeln.de/scans/csldev/csldoc/build/dictionaries/prefaces/ap90app1.html">आप्टेको छन्द परिचय</a>।</p>
+<p>मस्यौदा यस ब्राउजरमा मात्र रहन्छ। ब्राउजरको तथ्याङ्क मेट्दा यो पनि मेटिन्छ; मस्यौदा फाइलमा सुरक्षित गर्न सकिन्छ।</p></div></details></div>
 <p id="notice" class="ch-caption" role="status" aria-live="polite"></p>
-<details class="ch-help"><summary>यो सहायकले कसरी जाँच्छ?</summary>
-<p>दीर्घ स्वर, अनुस्वार, विसर्ग र संयुक्त व्यञ्जनका आधारमा अक्षरको तौल देखाइन्छ। चन्द्रबिन्दुले मात्र ह्रस्व स्वरलाई गुरु बनाउँदैन।
-लघु–गुरुको क्रम छानिएको छन्दसँग तुलना हुन्छ। यहाँ “अक्षर” भन्नाले उच्चारणको एकाइ बुझिन्छ।</p>
-<p>यो प्रारम्भिक, नियममा आधारित अभ्यास सहायक हो। विशेष काव्यपाठ, सन्धि, संयुक्त व्यञ्जनका फरक उच्चारण र कविले लिएको छुटमा फरक नतिजा आउन सक्छ।
-नतिजालाई आफ्नो उच्चारण र छन्दको अध्ययनसँग दाँज्नुहोस्। मिलेको तौलले कविताको अर्थ वा गुणको मूल्याङ्कन गर्दैन।</p>
-<p>उदाहरणको पाठ मूल पृष्ठसँग तुलना गरिएको छ। छन्दका सूत्रका लागि <a href="https://chhanda.vag.org.np/Examples/">छन्दःशिक्षा</a> र
-<a href="https://www.sanskrit-lexicon.uni-koeln.de/scans/csldev/csldoc/build/dictionaries/prefaces/ap90app1.html">आप्टेको छन्द परिचय</a> हेर्न सकिन्छ।</p>
-<p>पाठ वा मस्यौदा कतै पठाइँदैन। यो ब्राउजरको तथ्याङ्क मेटिँदा स्थानीय मस्यौदा पनि मेटिन्छ; फाइलमा सुरक्षित गर्न सकिन्छ।</p></details>
+<dialog id="example-dialog" class="ch-example"><div class="ch-section-top"><h2>कविताबाट उदाहरण</h2><button id="example-close" type="button" aria-label="उदाहरण बन्द गर्नुहोस्">×</button></div>
+<blockquote id="example-text"></blockquote><p><a id="example-source" href="https://www.nepaliarchives.org/authors/devkota/shakuntala/">शाकुन्तल</a></p>
+<p id="example-page" class="ch-caption"></p><button id="use-example" type="button">सम्पादकमा राख्नुहोस्</button>
+<p class="ch-caption">यसले लेखिरहेको पाठ फेर्छ। फर्काउने बटनबाट पुरानो पाठ फर्कन्छ।</p></dialog>
 </section><noscript><p>छन्द जाँच्न JavaScript चाहिन्छ। माथिको बाकसमा पाठ लेख्न र कपी गर्न सकिन्छ।</p></noscript>
 """
     body += f'<script type="module" src="app.js?v={version}"></script>'

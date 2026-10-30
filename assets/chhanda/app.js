@@ -14,13 +14,15 @@ let bootstrapAttempt = 0;
 $('boot-retry').addEventListener('click', boot);
 
 async function start() {
-  const [{ METRES, VOCABULARY }, { analyse, rebaseOverrides, splitPadas, suggestWords, digits, weightName }] = await Promise.all([
-    import(`${versioned('./metres.js')}&attempt=${bootstrapAttempt}`), import(`${versioned('./engine.js')}&attempt=${bootstrapAttempt++}`),
+  const attempt = bootstrapAttempt++;
+  const [{ METRES, VOCABULARY }, { analyse, rebaseOverrides, splitPadas, suggestWords, digits, weightName }, { pendingWord, changedRange, transliterateEdit }] = await Promise.all([
+    import(`${versioned('./metres.js')}&attempt=${attempt}`), import(`${versioned('./engine.js')}&attempt=${attempt}`),
+    import(`${versioned('./inline.js')}&attempt=${attempt}`),
   ]);
   const poem = $('poem');
-  let state = { version: 1, text: poem.value, metre: METRES[0].id, overrides: {}, finalFlexible: true, pending: '' };
+  let state = { version: 2, text: poem.value, metre: METRES[0].id, overrides: {}, finalFlexible: true, mode: 'devanagari' };
   let parts = [], readings = [], active = 0, composing = false, timer, preview = null;
-  let typingEngine = null, typingLoading = false, romanComposing = false, typingAttempt = 0;
+  let typingEngine = null, typingLoading = false, typingAttempt = 0, dirtyRoman = null;
   let vocabulary = [...VOCABULARY], undo = [], redo = [], suggestionTimer;
   let selection = { start: 0, end: 0 }, storageOK = true;
   const currentMetre = () => METRES.find(m => m.id === state.metre);
@@ -28,7 +30,7 @@ async function start() {
   const snapshot = () => ({ ...clone(state), selection: { ...selection } });
 
   function validProject(value) {
-    if (!value || value.version !== 1 || typeof value.text !== 'string' || value.text.length > 500000 ||
+    if (!value || ![1, 2].includes(value.version) || typeof value.text !== 'string' || value.text.length > 500000 ||
       !METRES.some(m => m.id === value.metre) || typeof value.finalFlexible !== 'boolean' ||
       value.pending !== undefined && typeof value.pending !== 'string') throw new Error('Invalid draft');
     const overrides = {};
@@ -38,16 +40,18 @@ async function start() {
         if (colon > 0 && Number.isInteger(pos) && pos >= 0 && word && value.text.slice(pos, pos + word.length) === word && choice === 'drop') overrides[key] = choice;
       }
     }
-    return { version: 1, text: value.text, metre: value.metre, overrides,
-      finalFlexible: value.finalFlexible, pending: (value.pending || '').slice(0, 2000) };
+    const oldPending = value.version === 1 ? (value.pending || '').slice(0, 2000) : '';
+    return { version: 2, text: value.text + (oldPending ? (value.text && !/\s$/.test(value.text) ? ' ' : '') + oldPending : ''),
+      metre: value.metre, overrides, finalFlexible: value.finalFlexible,
+      mode: value.mode === 'roman' || oldPending ? 'roman' : 'devanagari' };
   }
 
   function save() {
     try {
-      if (state.text || state.pending) localStorage.setItem(DRAFT_KEY, JSON.stringify(state));
+      if (state.text) localStorage.setItem(DRAFT_KEY, JSON.stringify(state));
       else localStorage.removeItem(DRAFT_KEY);
       storageOK = true;
-      $('draft-status').textContent = state.text || state.pending ? 'मस्यौदा यस ब्राउजरमा सुरक्षित छ।' : 'पाठ यस ब्राउजरमा मात्र सुरक्षित हुन्छ।';
+      $('draft-status').textContent = state.text ? 'यस ब्राउजरमा सुरक्षित' : '';
     } catch {
       storageOK = false;
       $('draft-status').textContent = 'ब्राउजरमा सुरक्षित भएन। मस्यौदा फाइल डाउनलोड गर्नुहोस्।';
@@ -65,9 +69,9 @@ async function start() {
   function action(fn) { remember(); fn(); sync(); render(); save(); }
   function sync() {
     if (poem.value !== state.text) poem.value = state.text;
-    if ($('roman').value !== state.pending) $('roman').value = state.pending;
+    $('roman-mode').checked = state.mode === 'roman';
+    $('metre-select').value = state.metre;
     $('final-flexible').checked = state.finalFlexible;
-    document.querySelectorAll('input[name="metre"]').forEach(input => { input.checked = input.value === state.metre; });
     $('undo').disabled = !undo.length; $('redo').disabled = !redo.length;
     if (typingEngine) renderRoman();
   }
@@ -75,11 +79,22 @@ async function start() {
     if (!from.length) return;
     to.push(snapshot()); const previous = from.pop();
     state = validProject(previous); selection = previous.selection || { start: 0, end: 0 };
+    dirtyRoman = null;
     sync(); poem.focus(); poem.setSelectionRange(selection.start, selection.end); render(); save();
   }
   function edited() {
-    state.overrides = preserveReadings(state.text, poem.value); state.text = poem.value;
-    selection = { start: poem.selectionStart, end: poem.selectionEnd };
+    let updated = poem.value, caret = poem.selectionStart;
+    if (state.mode === 'roman') {
+      const area = changedRange(state.text, updated);
+      if (typingEngine) {
+        const converted = transliterateEdit(state.text, updated, caret, word => typingEngine.candidates(word, 1)[0]?.d || word);
+        updated = converted.text; caret = converted.caret;
+      } else dirtyRoman = { start: Math.min(dirtyRoman?.start ?? area.start, area.start),
+        end: Math.max(area.end, (dirtyRoman?.end ?? area.end) + updated.length - state.text.length) };
+    }
+    state.overrides = preserveReadings(state.text, updated); state.text = updated;
+    if (poem.value !== updated) { poem.value = updated; poem.setSelectionRange(caret, caret); }
+    selection = { start: caret, end: poem.selectionEnd };
     clearTimeout(timer); timer = setTimeout(() => { render(); save(); }, 75);
     $('undo').disabled = !undo.length; $('redo').disabled = !redo.length;
   }
@@ -99,7 +114,7 @@ async function start() {
     }
     return { overrides, finalFlexible: state.finalFlexible };
   }
-  const statusLabels = { match: '✓ देखाइएको पाठमा मिल्यो', partial: '◌ अधुरो पाउ', mismatch: '△ ढाँचामा मिलेको छैन', uncertain: '? पाठ जाँच्नुहोस्', empty: 'पहिलो शब्दबाट सुरु गर्नुहोस्' };
+  const statusLabels = { match: '✓ लय मिल्यो', partial: 'अधुरो पाउ', mismatch: '△ लय जाँच्नुहोस्', uncertain: '? पाठ जाँच्नुहोस्', empty: '', typing: 'लेख्दै…' };
 
   function render() {
     preview = null; $('word-preview').hidden = true;
@@ -129,7 +144,14 @@ async function start() {
       }
       active = parts.length - 1;
     }
-    readings = parts.map(p => analyse(p.text, metre, options(p)));
+    const pending = state.mode === 'roman' ? pendingWord(state.text, selection.start) : null;
+    readings = parts.map(p => {
+      const localStart = pending ? pending.start - p.start : -1;
+      const waiting = localStart >= 0 && pending.end <= p.end;
+      const text = waiting ? p.text.slice(0, localStart) + ' '.repeat(pending.end - pending.start) + p.text.slice(pending.end - p.start) : p.text;
+      const reading = analyse(text, metre, options(p));
+      return waiting ? { ...reading, status: 'typing' } : reading;
+    });
     const part = parts[active], reading = readings[active];
     $('active-label').textContent = `पाउ ${digits(active + 1)}`;
     const tabs = parts.map((p, i) => {
@@ -144,10 +166,9 @@ async function start() {
     $('pada-tabs').replaceChildren(...tabs);
     $('analysis-status').textContent = statusLabels[reading.status] + (reading.flexible && reading.status === 'match' ? ' · पदान्त छुटसहित' : '');
     $('analysis-status').dataset.status = reading.status;
-    $('editor-live-status').textContent = `${statusLabels[reading.status]} · ${digits(reading.syllables.length)}/${digits(metre.pattern.length)}`;
+    $('editor-live-status').textContent = reading.status === 'empty' ? '' : `${statusLabels[reading.status]} · ${digits(reading.syllables.length)}/${digits(metre.pattern.length)}`;
     $('editor-live-status').dataset.status = reading.status;
-    $('editor-live-pattern').textContent = reading.remaining ? `बाँकी: ${[...reading.remaining].map(w => w === 'G' ? 'ग' : 'ल').join(' ')}`
-      : [...metre.pattern].map(w => w === 'G' ? 'ग' : 'ल').join(' ');
+    $('editor-live-pattern').textContent = reading.status === 'partial' ? `अझै ${digits(metre.pattern.length - reading.syllables.length)} अक्षर` : '';
     $('counts').textContent = `${digits(reading.syllables.length)} / ${digits(metre.pattern.length)} अक्षर · ${digits(reading.matras)} मात्रा`;
     const slots = reading.slots.map(slot => {
       const node = element(slot.syllable ? 'button' : 'div', undefined, `ch-slot ch-${slot.kind}${metre.pauses.includes(slot.position) ? ' ch-pause' : ''}`);
@@ -214,7 +235,7 @@ async function start() {
   }
   function queueSuggestions() {
     clearTimeout(suggestionTimer);
-    suggestionTimer = setTimeout(renderSuggestions, 100);
+    if ($('word-panel').open) suggestionTimer = setTimeout(renderSuggestions, 100);
   }
   function renderSuggestions() {
     const { part, start: begin, end } = insertionContext();
@@ -239,12 +260,9 @@ async function start() {
   }
 
   METRES.forEach(metre => {
-    const label = element('label', undefined, 'ch-metre'), input = element('input');
-    input.type = 'radio'; input.name = 'metre'; input.value = metre.id;
-    const caption = element('span'); caption.append(element('strong', metre.name), element('small', `${digits(metre.pattern.length)} अक्षर · ${metre.ganas.join(' ')}`));
-    label.append(input, caption); $('metre-choices').append(label);
-    input.addEventListener('change', () => action(() => { state.metre = metre.id; }));
+    const option = element('option', metre.name); option.value = metre.id; $('metre-select').append(option);
   });
+  $('metre-select').addEventListener('change', () => action(() => { state.metre = $('metre-select').value; }));
   poem.addEventListener('beforeinput', event => {
     if (event.inputType === 'historyUndo' || event.inputType === 'historyRedo') {
       event.preventDefault(); event.inputType === 'historyUndo' ? travel(undo, redo) : travel(redo, undo);
@@ -258,6 +276,7 @@ async function start() {
     const current = parts[active];
     if (!current || selection.start < current.start || selection.start > current.end) render();
     else queueSuggestions();
+    renderRoman();
   }
   poem.addEventListener('click', selectionChanged); poem.addEventListener('keyup', selectionChanged);
   poem.addEventListener('select', selectionChanged);
@@ -269,21 +288,25 @@ async function start() {
     }
   });
   $('undo').addEventListener('click', () => travel(undo, redo)); $('redo').addEventListener('click', () => travel(redo, undo));
-  $('boundary').addEventListener('click', () => insert(' / '));
   $('final-flexible').addEventListener('change', () => action(() => { state.finalFlexible = $('final-flexible').checked; }));
   $('word-prefix').addEventListener('input', queueSuggestions);
+  $('word-panel').addEventListener('toggle', queueSuggestions);
   $('insert-word').addEventListener('click', () => { if (preview) { const choice = preview; insert(choice.inserted, choice.start, choice.end); } });
   $('cancel-preview').addEventListener('click', () => { preview = null; $('word-preview').hidden = true; });
-  $('example-open').addEventListener('click', () => { $('example-panel').open = true; $('example-panel').scrollIntoView({ behavior: 'smooth', block: 'nearest' }); });
+  $('example-open').addEventListener('click', () => $('example-dialog').showModal());
+  $('example-close').addEventListener('click', () => $('example-dialog').close());
   $('use-example').addEventListener('click', () => {
     action(() => { state.text = currentMetre().example; state.overrides = {}; selection = { start: 0, end: 0 }; });
+    $('example-dialog').close();
     poem.focus(); poem.setSelectionRange(0, 0); poem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   });
   $('clear').addEventListener('click', () => {
-    action(() => { state.text = ''; state.pending = ''; state.overrides = {}; selection = { start: 0, end: 0 }; });
+    action(() => { state.text = ''; state.overrides = {}; selection = { start: 0, end: 0 }; dirtyRoman = null; });
+    document.querySelector('.ch-file-menu').open = false;
     notice('नयाँ कविता सुरु गर्नुहोस्। फर्काउने बटनले अघिल्लो पाठ फर्काउँछ।'); poem.focus();
   });
   $('copy').addEventListener('click', async () => {
+    finishRoman();
     const captured = state.text;
     try { await navigator.clipboard.writeText(captured); notice('पाठ कपी भयो।'); }
     catch {
@@ -297,7 +320,7 @@ async function start() {
     const anchor = element('a'); anchor.href = url; anchor.download = name; document.body.append(anchor); anchor.click(); anchor.remove();
     setTimeout(() => URL.revokeObjectURL(url), 1000);
   }
-  $('download-text').addEventListener('click', () => download(state.text, 'kabita.txt', 'text/plain;charset=utf-8'));
+  $('download-text').addEventListener('click', () => { finishRoman(); download(state.text, 'kabita.txt', 'text/plain;charset=utf-8'); });
   $('export-project').addEventListener('click', () => download(JSON.stringify(state, null, 2) + '\n', 'chhanda-draft.json', 'application/json'));
   $('import-project').addEventListener('change', async event => {
     const file = event.target.files[0]; if (!file) return;
@@ -305,6 +328,8 @@ async function start() {
       if (file.size > 2000000) throw new Error('Large file');
       const imported = validProject(JSON.parse(await file.text()));
       action(() => { state = imported; selection = { start: 0, end: 0 }; });
+      document.querySelector('.ch-file-menu').open = false;
+      if (state.mode === 'roman') loadTyping();
       notice('मस्यौदा खुल्यो। फर्काउने बटनले अघिल्लो पाठ फर्काउँछ।');
     } catch { notice('मस्यौदा खुलेन। यस साधनबाट सुरक्षित गरिएको JSON फाइल छान्नुहोस्। तपाईंको पाठ उस्तै छ।'); }
     event.target.value = '';
@@ -331,49 +356,56 @@ async function start() {
         fetchJSON('../type/rules.json'), fetchJSON('../type/autocorrect.json').catch(() => ({})),
       ]);
       typingEngine = createEngine(rules, autocorrect); typingEngine.setEnglishFirst(false);
+      $('chhanda-tool').dataset.typingReady = 'true';
       if (lexicon) typingEngine.setLexicon(lexicon);
-      $('roman-status').textContent = 'Space ले पहिलो विकल्प राख्छ। अर्को विकल्प थिचेर पनि रोज्न सकिन्छ।';
+      $('roman-status').textContent = '';
+      if (dirtyRoman && state.mode === 'roman') {
+        const converted = transliterateEdit('', state.text, selection.start, word => typingEngine.candidates(word, 1)[0]?.d || word, { range: dirtyRoman });
+        state.overrides = preserveReadings(state.text, converted.text); state.text = converted.text;
+        selection = { start: converted.caret, end: converted.caret }; dirtyRoman = null;
+        sync(); poem.setSelectionRange(selection.start, selection.end); render(); save();
+      }
       renderRoman();
     } catch {
       $('roman-status').textContent = 'रोमन साधन खुलेन। नेपालीमा सिधै लेख्न सकिन्छ।'; $('roman-retry').hidden = false;
     } finally { typingLoading = false; }
   }
-  function romanCandidates() { return typingEngine ? typingEngine.candidates($('roman').value.trim(), 5) : []; }
+  function currentRoman() { return state.mode === 'roman' ? pendingWord(state.text, selection.start) : null; }
+  function romanCandidates() { const word = currentRoman(); return typingEngine && word ? typingEngine.candidates(word.text, 5) : []; }
   function commitRoman(word) {
-    if (!word) return;
-    const startPos = selection.start, endPos = selection.end;
-    action(() => {
-      const before = state.text.slice(0, startPos), after = state.text.slice(endPos);
-      const value = (before && !/\s$/.test(before) && startPos === endPos ? ' ' : '') + word + ' ';
-      const updated = before + value + after;
-      state.overrides = preserveReadings(state.text, updated); state.text = updated; state.pending = '';
-      selection = { start: before.length + value.length, end: before.length + value.length };
+    const pending = currentRoman();
+    if (!word || !pending) return;
+    insert(word, pending.start, pending.end);
+    renderRoman();
+  }
+  function finishRoman() {
+    if (composing || state.mode !== 'roman' || !typingEngine) return;
+    const pending = currentRoman();
+    if (!pending) return;
+    const converted = transliterateEdit(state.text, state.text, selection.start, word => typingEngine.candidates(word, 1)[0]?.d || word,
+      { force: true, range: { start: pending.start, end: pending.end } });
+    if (converted.text !== state.text) action(() => {
+      state.overrides = preserveReadings(state.text, converted.text); state.text = converted.text;
+      selection = { start: converted.caret, end: converted.caret };
     });
-    poem.setSelectionRange(selection.start, selection.end); $('roman').focus(); renderRoman();
   }
   function renderRoman() {
     const candidates = romanCandidates();
+    $('roman-choices').hidden = !candidates.length;
     $('roman-choices').replaceChildren(...candidates.map(candidate => {
       const button = element('button', candidate.d); button.type = 'button';
       button.addEventListener('click', () => commitRoman(candidate.d)); return button;
     }));
   }
-  $('roman-panel').addEventListener('toggle', () => { if ($('roman-panel').open) loadTyping(); });
-  $('roman-retry').addEventListener('click', loadTyping);
-  $('roman').addEventListener('compositionstart', () => { romanComposing = true; });
-  $('roman').addEventListener('compositionend', () => { romanComposing = false; processRoman(); });
-  function processRoman() {
-    state.pending = $('roman').value;
-    if (/\s$/.test(state.pending) && typingEngine && state.pending.trim()) commitRoman(romanCandidates()[0]?.d);
-    else { save(); renderRoman(); }
-  }
-  $('roman').addEventListener('input', event => { if (!romanComposing && !event.isComposing) processRoman(); });
-  $('roman').addEventListener('keydown', event => {
-    if (event.isComposing || romanComposing) return;
-    if (event.key === 'Enter' && $('roman').value.trim()) {
-      event.preventDefault(); commitRoman(romanCandidates()[0]?.d);
-    }
+  $('roman-mode').addEventListener('change', () => {
+    const roman = $('roman-mode').checked;
+    if (!roman) finishRoman();
+    action(() => { state.mode = roman ? 'roman' : 'devanagari'; if (!roman) dirtyRoman = null; });
+    if (roman) loadTyping();
+    else { $('roman-status').textContent = ''; $('roman-retry').hidden = true; }
+    renderRoman(); poem.focus(); poem.setSelectionRange(selection.start, selection.end);
   });
+  $('roman-retry').addEventListener('click', loadTyping);
 
   try {
     const stored = localStorage.getItem(DRAFT_KEY);
@@ -382,14 +414,14 @@ async function start() {
   window.addEventListener('pagehide', () => { if (composing) edited(); save(); });
   document.addEventListener('visibilitychange', () => { if (document.hidden) { if (composing) edited(); save(); } });
   function keyboardLayout() {
-    const editing = ['poem', 'roman'].includes(document.activeElement?.id);
+    const editing = document.activeElement?.id === 'poem';
     document.body.classList.toggle('ch-keyboard', editing && innerWidth < 760 && (window.visualViewport?.height || innerHeight) < 520);
   }
   window.visualViewport?.addEventListener('resize', keyboardLayout);
   document.addEventListener('focusin', keyboardLayout);
   document.addEventListener('focusout', () => setTimeout(keyboardLayout, 0));
   sync(); render();
-  if (state.pending) { $('roman-panel').open = true; loadTyping(); }
+  if (state.mode === 'roman') loadTyping();
   $('boot-status').hidden = true;
   $('chhanda-tool').dataset.ready = 'true';
   if (!storageOK) notice('मस्यौदा फाइलमा डाउनलोड गरेर सुरक्षित राख्नुहोस्।');
