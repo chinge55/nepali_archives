@@ -255,13 +255,14 @@ def write_work_pages(context, page, assets, catalogue):
                 rendered_text = work_html(text, verse, drama=genre == "natak", line_anchors=annotation_anchors(annotation, text))
 
             if not sections:
+                page_filters = filters + (metre_filters(metre_ids) if annotation and annotation["kind"] == "mixed" else "")
                 body = f"""<nav class="crumb"><a href="{up}authors/{author_slug}/">← {esc(author_name)}</a></nav>
 <article>
   <h1>{esc(meta['title'])}</h1>
   <p class="byline">{esc(meta['author']['name'])}</p>
   <p class="meta">{" · ".join(bit for bit in meta_bits if bit)}</p>
   <p class="work-intro">{esc(introduction)}</p>{pdf_button}{prosody_details}
-  <div class="work {'verse' if verse else 'prose'}" data-pagefind-body>{filters}
+  <div class="work {'verse' if verse else 'prose'}" data-pagefind-body>{page_filters}
 {rendered_text}
   </div>
   {downloads}

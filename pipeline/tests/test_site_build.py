@@ -258,6 +258,22 @@ class FullBuildTests(unittest.TestCase):
         self.assertEqual((work / "text.txt").read_text(), text)
         self.assertEqual(find_broken_links(context.site), [])
 
+    def test_single_page_mixed_work_is_searchable_under_each_identified_metre(self):
+        work = self.root / "archives/authors/test_author/verse_work"
+        text = (work / "text.txt").read_text()
+        first, second = text.splitlines()[:2]
+        self.add_prosody("verse_work", "mixed", ["malini", "shardul"], passages=[
+            {"id": "first", "metre": "malini", "label": "पहिलो अंश", "start": first, "end": first},
+            {"id": "second", "metre": "shardul", "label": "दोस्रो अंश", "start": second, "end": second},
+        ])
+        context, _ = self.run_build("site-single-mixed")
+        reader = (context.site / "authors/test_author/verse_work/index.html").read_text()
+        for identifier in ["malini", "shardul"]:
+            self.assertIn(f'data-pagefind-filter="metre[data-v]" data-v="{identifier}"', reader)
+        self.assertIn('id="chhanda-first"', reader)
+        self.assertIn('id="chhanda-second"', reader)
+        self.assertEqual((work / "text.txt").read_text(), text)
+
     def test_build_rejects_stale_reviewed_annotations(self):
         work = self.add_prosody("verse_work", "single", ["malini"])
         with (work / "text.txt").open("a") as handle:

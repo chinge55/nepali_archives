@@ -110,6 +110,12 @@
       "reference": "https://www.sanskrit-lexicon.uni-koeln.de/scans/csldev/csldoc/build/dictionaries/prefaces/ap90app1.html"
     },
     {
+      "id": "anushtup",
+      "name": "अनुष्टुप्",
+      "kind": "varnika",
+      "reference": "https://www.sanskrit-lexicon.uni-koeln.de/scans/csldev/csldoc/build/dictionaries/prefaces/ap90app1.html"
+    },
+    {
       "id": "jhyaure",
       "name": "झ्याउरे",
       "kind": "folk"

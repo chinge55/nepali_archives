@@ -157,6 +157,26 @@ These cases have specific review notes and spelling-based counts; the tags do
 not certify faultless metre or completed text proofreading. Single-stanza cases
 whose exceptional reading remains unexplained retain `status: uncertain`.
 
+A further fifty source reviews add forty-nine published identifications and
+one uncertain assessment, bringing coverage to 145 works. Four new mixed
+annotations locate selected complete stanzas in वैराग्य वा सन्तोष, मनोलड्डु,
+वधूशिक्षा and प्रश्नोत्तरमाला. These passage lists are deliberately partial;
+for example, they do not label every metre change within प्रश्नोत्तरमाला's
+stanza 35 or classify वधूशिक्षा's stanza 11. Five more free-verse readings
+record positive structural observations on the complete poems.
+
+The अनुष्टुप् category uses the closing stanza of मनोलड्डु, with eight syllables
+per pada and the reviewed fifth-to-seventh positions. It has no universal
+fixed `pattern` or writer preset. The preceding twenty stanzas are स्वागता.
+कवि-कविताऽलाप's मालिनी ending is recognised in an uncertain assessment, while
+the preceding metrical dialogue needs further review; it receives no public
+tag and is not inferred to be free verse.
+
+Single-page mixed works carry every reviewed metre filter in their indexed
+body. Paginated works keep the filters local to the sections containing the
+identified passages. This lets searches inside अनुष्टुप् find मनोलड्डु while
+avoiding unrelated metre filters on other sections of a long work.
+
 `assets/chhanda/catalogue.json` is the archive's build-time name and pattern
 catalogue. A `pattern` is one fixed sequence; `patterns` lists the alternative
 pada sequences of a family, never a simultaneous fixed template. Its writer

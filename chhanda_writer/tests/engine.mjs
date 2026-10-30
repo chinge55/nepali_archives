@@ -26,6 +26,20 @@ test('upajati recognises both component readings without changing writer templat
   assert.deepEqual(readings, entry.patterns);
   assert.equal(METRES.some(m => m.id === 'upajati'), false);
 });
+test('the located Manoladdu ending follows anushtup without a universal fixed template', () => {
+  const catalogue = JSON.parse(readFileSync(new URL('../../assets/chhanda/catalogue.json', import.meta.url))).metres;
+  const entry = catalogue.find(m => m.id === 'anushtup');
+  assert.equal(entry.pattern, undefined);
+  assert.equal(entry.patterns, undefined);
+  assert.equal(entry.writer, undefined);
+  const padas = ['सानू यौटा मनोलड्डु', 'लेखनाथ अनाथको', 'लिनुहोला कृपासाथ', 'गहना पारि हातको'];
+  padas.forEach((text, i) => {
+    const reading = scan(text);
+    assert.deepEqual(reading.issues, []);
+    assert.equal(reading.syllables.length, 8);
+    assert.equal(reading.pattern.slice(4, 7), i % 2 ? 'LGL' : 'LGG');
+  });
+});
 test('input script follows newly entered letters and ignores digits or punctuation', () => {
   assert.equal(inputScript('mero'), 'roman');
   assert.equal(inputScript('कविता'), 'devanagari');
