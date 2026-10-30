@@ -18,6 +18,14 @@ test('archive metre definitions agree with every supported writer pattern', () =
   assert.equal(catalogue.find(m => m.id === 'prithvi').pattern, 'LGLLLGLGLLLGLGGLG');
   assert.equal(catalogue.find(m => m.id === 'swagata').pattern, 'GLGLLLGLLGG');
 });
+test('upajati recognises both component readings without changing writer templates', () => {
+  const catalogue = JSON.parse(readFileSync(new URL('../../assets/chhanda/catalogue.json', import.meta.url))).metres;
+  const entry = catalogue.find(m => m.id === 'upajati');
+  // Two source-preserved padas from Bhanubhakta's कतै खरानी छरि भुस्‌ कतै ता.
+  const readings = ['सुत्न्या दिनैदिन्‌ इलमै बिगारी,', 'कतै खरानी छरि भुस्‌ कतै ता,'].map(text => scan(text).pattern);
+  assert.deepEqual(readings, entry.patterns);
+  assert.equal(METRES.some(m => m.id === 'upajati'), false);
+});
 test('input script follows newly entered letters and ignores digits or punctuation', () => {
   assert.equal(inputScript('mero'), 'roman');
   assert.equal(inputScript('कविता'), 'devanagari');

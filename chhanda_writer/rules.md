@@ -142,8 +142,25 @@ edition of the long work. Their locators use the existing transcription, while
 the source PDF supplies the metrical evidence. This review changes neither
 literary text nor the work's proofreading flag.
 
+The next source review covers fifty further poems: forty-six reviewed
+identifications and four uncertain single-stanza readings that stay unpublished.
+This brings the published coverage to ninety-six works. The additions include
+six full free-verse readings, a two-stanza mixed annotation for बालाजी, and
+the archive categories वंशस्थ and उपजाति. The latter records the eleven-syllable
+combination of इन्द्रवज्रा and उपेन्द्रवज्रा; it does not claim to cover every
+other combination also called उपजाति in prosody texts.
+
+A reviewed identification describes the poem's recurring form. Source-preserved
+spelling, conjunct readings, avagraha, transcription differences and occasional
+metrical departures can still prevent a literal scan from matching every pada.
+These cases have specific review notes and spelling-based counts; the tags do
+not certify faultless metre or completed text proofreading. Single-stanza cases
+whose exceptional reading remains unexplained retain `status: uncertain`.
+
 `assets/chhanda/catalogue.json` is the archive's build-time name and pattern
-catalogue. Its writer entries must agree with `metres.js`; पृथ्वी and स्वागता
+catalogue. A `pattern` is one fixed sequence; `patterns` lists the alternative
+pada sequences of a family, never a simultaneous fixed template. Its writer
+entries must agree with `metres.js`; पृथ्वी, स्वागता, वंशस्थ and उपजाति
 are also checked against Apte's appendix, and झ्याउरे is source-labelled in
 the author's own introduction to मुना मदन. Reader pages fetch no scansion
 engine. `/chhandas/` and its metre pages are generated from reviewed metadata;
@@ -157,7 +174,9 @@ To prepare the remaining review queue without publishing classifications:
 node chhanda_writer/pipeline/suggest.mjs --unreviewed --output /tmp/prosody-review.json
 ```
 
-The report ranks exact spelling-based candidates and identifies uncertainty.
+The report ranks spelling-based candidates (including a family's alternative
+patterns and final-syllable flexibility) and identifies uncertainty. An उपजाति
+candidate still needs review of the actual combination within its stanzas.
 Review the original source before adding metadata. Record a precise note for
 reading choices or source differences. After text or source changes, recheck
 the evidence and update its fingerprint; the build rejects stale annotations.

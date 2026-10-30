@@ -47,5 +47,21 @@
     "epub": null
   },
   "added": "2026-09-18",
-  "updated": "2026-09-18"
+  "updated": "2026-09-18",
+  "prosody": {
+    "status": "reviewed",
+    "kind": "free-verse",
+    "metres": [],
+    "text_sha256": "016ca48e59d57b7c1eada43c9b7f7783a9012c644e63a65484d513a6e69a1a39",
+    "reviewed": "2026-10-30",
+    "evidence": [
+      {
+        "basis": "editorial-reading",
+        "file": "extracted/index.html",
+        "sha256": "a0ccb996d6645584fe6a5fc53f4f61792a8c646259a80410c9d21edac468d9a9",
+        "locator": "पूर्ण कविता",
+        "note": "रविलाई सम्बोधन, एकशब्दीय विराम र लामा अनुरोध-वाक्यले बनेको पूर्ण कविताको मुक्त लय समीक्षा गरिएको।"
+      }
+    ]
+  }
 }

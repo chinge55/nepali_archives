@@ -47,5 +47,21 @@
     "epub": null
   },
   "added": "2026-09-18",
-  "updated": "2026-09-18"
+  "updated": "2026-09-18",
+  "prosody": {
+    "status": "reviewed",
+    "kind": "free-verse",
+    "metres": [],
+    "text_sha256": "6de9f0682d0b727f41b23a0c8556f712001debc8c3b528d9af6b811a2ad72a0d",
+    "reviewed": "2026-10-30",
+    "evidence": [
+      {
+        "basis": "editorial-reading",
+        "file": "extracted/index.html",
+        "sha256": "3408f3faa9f4e65bd28f8be7141e9490a3a3b8a6045109a951cf913c028c89c7",
+        "locator": "पूर्ण कविता",
+        "note": "सुगन्ध र इन्द्रियको आवर्ती बिम्ब, दुई फरक आकारका खण्ड र कथ्यअनुसार बदलिने वाक्यात्मक हरफको पूर्ण पाठ समीक्षा गरिएको।"
+      }
+    ]
+  }
 }

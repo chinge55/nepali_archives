@@ -16,7 +16,7 @@ for (let i = 0; i < args.length; i++) {
 }
 const poetic = new Set(['kavita', 'balkavita', 'git', 'bhajan', 'gazal', 'mahakavya', 'khandakavya']);
 const catalogue = JSON.parse(fs.readFileSync(path.join(root, 'assets/chhanda/catalogue.json'), 'utf8')).metres;
-const definitions = catalogue.filter(m => m.pattern);
+const definitions = catalogue.filter(m => m.pattern || m.patterns?.length);
 const directory = path.join(root, 'archives/authors');
 const works = [];
 const sourceDigests = new Map();
@@ -50,9 +50,10 @@ for (const author of fs.readdirSync(directory).sort()) {
     const parts = splitPadas(text).filter(p => !/^\s*(?:वि|बि)\.?\s*सं\.?/u.test(p.text)).map(p => ({ ...p, ...scan(p.text) }));
     const substantial = parts.filter(p => p.syllables.length >= 8 && p.syllables.length <= 40);
     const candidates = definitions.map(m => {
-      const matched = substantial.filter(p => !p.issues.length && (p.pattern === m.pattern ||
-        p.pattern.length === m.pattern.length && p.pattern.slice(0, -1) === m.pattern.slice(0, -1) &&
-        p.pattern.at(-1) === 'L' && m.pattern.at(-1) === 'G'));
+      const patterns = m.patterns || [m.pattern];
+      const matched = substantial.filter(p => !p.issues.length && patterns.some(pattern => p.pattern === pattern ||
+        p.pattern.length === pattern.length && p.pattern.slice(0, -1) === pattern.slice(0, -1) &&
+        p.pattern.at(-1) === 'L' && pattern.at(-1) === 'G'));
       return { metre: m.id, exact_padas: matched.length, examined_padas: substantial.length,
         examples: matched.slice(0, 2).map(p => p.text.trim()) };
     }).filter(c => c.exact_padas).sort((a, b) => b.exact_padas - a.exact_padas || a.metre.localeCompare(b.metre));

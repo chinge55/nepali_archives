@@ -47,5 +47,21 @@
     "epub": null
   },
   "added": "2026-09-18",
-  "updated": "2026-09-18"
+  "updated": "2026-09-18",
+  "prosody": {
+    "status": "reviewed",
+    "kind": "free-verse",
+    "metres": [],
+    "text_sha256": "faf497f9d5591c17a432ecbbac748e3776e99bc8dbc9302a3b0cf42c14174454",
+    "reviewed": "2026-10-30",
+    "evidence": [
+      {
+        "basis": "editorial-reading",
+        "file": "extracted/index.html",
+        "sha256": "1ea945075448739ba2a61d1407075f514be18b7b2a7ae034cacefdc2b283ec89",
+        "locator": "पूर्ण कविता",
+        "note": "ईश्वरलाई आवर्ती प्रश्न र सम्बोधन, बीचका छोटा उद्गार तथा लामो अनुरोध-वाक्यबाट बनेको पूर्ण कविताको मुक्त लय पढिएको। अन्त्यानुप्रासले यसलाई निश्चित वर्णिक वृत्त बनाउँदैन।"
+      }
+    ]
+  }
 }

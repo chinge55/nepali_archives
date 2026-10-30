@@ -100,3 +100,22 @@ class ProsodyTests(unittest.TestCase):
         self.assertEqual(metres['jhyaure']['name'], 'झ्याउरे')
         self.assertNotIn('writer', metres['jhyaure'])
         self.assertEqual(metres['malini']['writer'], 'malini')
+
+    def test_alternative_patterns_describe_a_family_without_inventing_one_template(self):
+        metres = load_metres()
+        self.assertEqual(metres['upajati']['patterns'], ['GGLGGLLGLGG', 'LGLGGLLGLGG'])
+        self.assertNotIn('pattern', metres['upajati'])
+        self.assertNotIn('writer', metres['upajati'])
+        self.assertEqual(metres['vamshastha']['pattern'], 'LGLGGLLGLGLG')
+        folder = self.work / 'assets/chhanda'
+        folder.mkdir(parents=True)
+        entry = {'id': 'family', 'name': 'Family', 'patterns': ['GGLGGLLGLGG', 'LGLGGLLGLGG']}
+        for patterns in [[], ['GGLGGLLGLGG'], ['GGLGGLLGLGG'] * 2,
+                         ['GGLGGLLGLGG', 'invalid'], ['GGLGGLLGLGG', 'LGLGGL']]:
+            with self.subTest(patterns=patterns):
+                (folder / 'catalogue.json').write_text(json.dumps({'metres': [{**entry, 'patterns': patterns}]}))
+                with self.assertRaises(ValueError):
+                    load_metres(self.work)
+        (folder / 'catalogue.json').write_text(json.dumps({'metres': [{**entry, 'pattern': 'GGLGGLLGLGG'}]}))
+        with self.assertRaises(ValueError):
+            load_metres(self.work)

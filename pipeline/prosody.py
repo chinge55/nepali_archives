@@ -25,6 +25,12 @@ def load_metres(root: Path = ROOT) -> dict[str, dict]:
             raise ValueError("invalid metre catalogue entry")
         if "pattern" in entry and not re.fullmatch(r"[LG]{6,40}", entry["pattern"]):
             raise ValueError(f"invalid pattern for {identifier}")
+        if "patterns" in entry:
+            patterns = entry["patterns"]
+            if ("pattern" in entry or not isinstance(patterns, list) or len(patterns) < 2
+                    or not all(isinstance(p, str) and re.fullmatch(r"[LG]{6,40}", p) for p in patterns)
+                    or len(set(patterns)) != len(patterns) or len({len(p) for p in patterns}) != 1):
+                raise ValueError(f"invalid alternative patterns for {identifier}")
     return result
 
 

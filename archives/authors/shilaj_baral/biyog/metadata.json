@@ -47,5 +47,21 @@
     "epub": null
   },
   "added": "2026-09-18",
-  "updated": "2026-09-18"
+  "updated": "2026-09-18",
+  "prosody": {
+    "status": "reviewed",
+    "kind": "free-verse",
+    "metres": [],
+    "text_sha256": "cabdbc101b4eba459b706e428f59f5f5fe51d5c94012ddee602e0f2b7ccd0f15",
+    "reviewed": "2026-10-30",
+    "evidence": [
+      {
+        "basis": "editorial-reading",
+        "file": "extracted/index.html",
+        "sha256": "6ece68c3fdf16e24c478418066eda6891c97a8f0e5964ef8fbd86ead0c760ae8",
+        "locator": "पूर्ण कविता",
+        "note": "“म” र “या” बाट उठ्ने समानान्तर वाक्यखण्ड छोटा हरफबाट लामा कथनतिर विस्तार हुन्छन्। पूर्ण पाठको परिवर्तनशील लय पढेर मुक्तछन्दमा राखिएको।"
+      }
+    ]
+  }
 }

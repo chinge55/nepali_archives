@@ -96,6 +96,20 @@
       "reference": "https://www.sanskrit-lexicon.uni-koeln.de/scans/csldev/csldoc/build/dictionaries/prefaces/ap90app1.html"
     },
     {
+      "id": "vamshastha",
+      "name": "वंशस्थ",
+      "kind": "varnika",
+      "pattern": "LGLGGLLGLGLG",
+      "reference": "https://www.sanskrit-lexicon.uni-koeln.de/scans/csldev/csldoc/build/dictionaries/prefaces/ap90app1.html"
+    },
+    {
+      "id": "upajati",
+      "name": "उपजाति",
+      "kind": "varnika",
+      "patterns": ["GGLGGLLGLGG", "LGLGGLLGLGG"],
+      "reference": "https://www.sanskrit-lexicon.uni-koeln.de/scans/csldev/csldoc/build/dictionaries/prefaces/ap90app1.html"
+    },
+    {
       "id": "jhyaure",
       "name": "झ्याउरे",
       "kind": "folk"

@@ -47,5 +47,21 @@
     "epub": null
   },
   "added": "2026-09-18",
-  "updated": "2026-09-18"
+  "updated": "2026-09-18",
+  "prosody": {
+    "status": "reviewed",
+    "kind": "free-verse",
+    "metres": [],
+    "text_sha256": "a554139d788cf82cb5c3377df6d451907bd2e0477ae21ce3aeadda5093f91343",
+    "reviewed": "2026-10-30",
+    "evidence": [
+      {
+        "basis": "editorial-reading",
+        "file": "extracted/index.html",
+        "sha256": "599849451d6ff0be6a42e0c26736c439280e4bed825db55a2379608efceda2ac",
+        "locator": "पूर्ण कविता",
+        "note": "“नसम्झिनु” को पुनरावृत्ति, विचारअनुसार टुक्रिएका लामा–छोटा वाक्य र अन्त्यको विस्तारित कथनसहित पूर्ण पाठको मुक्त लय पढिएको।"
+      }
+    ]
+  }
 }

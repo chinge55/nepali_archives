@@ -47,5 +47,21 @@
     "epub": null
   },
   "added": "2026-09-18",
-  "updated": "2026-09-18"
+  "updated": "2026-09-18",
+  "prosody": {
+    "status": "reviewed",
+    "kind": "free-verse",
+    "metres": [],
+    "text_sha256": "065485e3f4856981d9e1422faa79eb8aa8d156c069dfde8bbe5ea517254f2353",
+    "reviewed": "2026-10-30",
+    "evidence": [
+      {
+        "basis": "editorial-reading",
+        "file": "extracted/index.html",
+        "sha256": "f38cf5421d672d16fef777d98ed8783fddf1c1ce058f34722c5beb20f0963139",
+        "locator": "पूर्ण कविता",
+        "note": "तीन खण्डमा आत्मसंवाद, प्रश्न र आवर्ती अन्त्यानुप्रास छ; वाक्यखण्डको परिवर्तनशील विस्तारसहितको पूर्ण मुक्त लय पढिएको।"
+      }
+    ]
+  }
 }
