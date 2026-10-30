@@ -59,8 +59,20 @@ test('inline pending-word ranges remain separate from source text and preserve o
   assert.equal(pendingWord('test@example.org', 4), null);
   assert.deepEqual(changedRange('abc नाम', 'abc मेरो नाम'), { start: 4, end: 9, oldEnd: 4 });
 });
-test('three formulae expand to their independently specified patterns', () => {
-  assert.deepEqual(METRES.map(m => m.pattern), ['LGGLGGLGGLGG', 'GGLGLLLGLLGLGG', 'GGGLLGLGLLLGGGLGGLG']);
+test('the metre catalogue matches independently specified formulae and pause positions', () => {
+  assert.equal(new Set(METRES.map(m => m.id)).size, METRES.length);
+  assert.deepEqual(Object.fromEntries(METRES.map(m => [m.id, [m.pattern, m.pauses]])), {
+    bhujanga: ['LGGLGGLGGLGG', []],
+    vasanta: ['GGLGLLLGLLGLGG', [8]],
+    shardul: ['GGGLLGLGLLLGGGLGGLG', [12]],
+    malini: ['LLLLLLGGGLGGLGG', [8]],
+    shikharini: ['LGGGGGLLLLLGGLLLG', [6]],
+    totaka: ['LLGLLGLLGLLG', []],
+    drutavilambita: ['LLLGLLGLLGLG', [4]],
+    shalini: ['GGGGGLGGLGG', [4]],
+    sragdhara: ['GGGGLGGLLLLLLGGLGGLGG', [7, 14]],
+    mandakranta: ['GGGGLLLLLGGLGGLGG', [4, 10]],
+  });
 });
 for (const [word, pattern] of Object.entries({
   'कवि': 'LL', 'कविता': 'LLG', 'माला': 'GG', 'कर्म': 'GL', 'भक्त': 'GL', 'राम्': 'G',

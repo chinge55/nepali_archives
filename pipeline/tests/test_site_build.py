@@ -196,6 +196,8 @@ class FullBuildTests(unittest.TestCase):
         context, result = self.run_build("site-fixture")
         chhanda = (context.site / "chhanda/index.html").read_text(encoding="utf-8")
         self.assertIn('id="poem"', chhanda)
+        self.assertIn('<h1>छन्दमा कविता लेख्नुहोस्</h1>', chhanda)
+        self.assertIn('छन्दमा कविता लेख्नुहोस् — Nepali Chhanda Writer', chhanda)
         self.assertIn('href="../chhanda/" class=on>छन्द</a>', chhanda)
         self.assertIn('href="chhanda.css?v=', chhanda)
         self.assertTrue((context.site / "chhanda/engine.js").is_file())

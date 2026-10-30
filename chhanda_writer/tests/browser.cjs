@@ -52,10 +52,13 @@ const text = page => page.$eval('#poem', node => node.value);
 const status = page => page.$eval('#analysis-status', node => node.dataset.status);
 
 (async () => {
+  const { METRES } = await import('../../assets/chhanda/metres.js');
   browser = await puppeteer.launch({ headless: 'new', args: ['--no-sandbox'] });
   await test('the initial surface is one writer with a toggle and metre dropdown', async page => {
+    assert.equal(await page.$eval('h1', node => node.textContent), 'छन्दमा कविता लेख्नुहोस्');
+    assert.match(await page.title(), /Nepali Chhanda Writer/);
     assert.equal(await page.$$eval('textarea', nodes => nodes.length), 1);
-    assert.equal(await page.$$eval('#metre-select option', nodes => nodes.length), 3);
+    assert.equal(await page.$$eval('#metre-select option', nodes => nodes.length), 10);
     assert.equal(await page.$$eval('#roman', nodes => nodes.length), 0);
     assert.equal(await page.$eval('#example-dialog', node => node.open), false);
     for (const id of ['analysis-panel', 'word-panel', 'help-panel']) assert.equal(await page.$eval('#' + id, node => node.open), false);
@@ -173,13 +176,20 @@ const status = page => page.$eval('#analysis-status', node => node.dataset.statu
     await page.click('#insert-word'); assert.equal(await text(page), 'नटी मेनका');
     assert.equal(await status(page), 'partial');
   });
-  await test('all three source examples and a full stanza are analysed', async page => {
-    for (const id of ['bhujanga', 'vasanta', 'shardul']) {
+  await test('all ten source examples are analysed and mixed tails are labelled correctly', async page => {
+    for (const { id, example } of METRES) {
+      const before = await text(page);
       await page.select('#metre-select', id);
+      assert.equal(await text(page), before, 'choosing a metre must preserve the draft');
+      assert.equal(await page.$eval('#example-dialog', node => node.open), false);
       await page.click('#example-open');
       await page.click('#use-example'); await pause(150);
       assert.equal(await status(page), 'match');
-      assert.equal(await page.$$eval('.ch-pada[data-status=match]', nodes => nodes.length), id === 'bhujanga' ? 4 : 2);
+      assert.equal(await page.$$eval('.ch-pada[data-status=match]', nodes => nodes.length), example.split('\n').length);
+      if (id === 'shikharini') {
+        assert.match(await page.$eval('#metre-ganas', n => n.textContent), /लघु · गुरु$/);
+        assert.equal(await page.$eval('#metre-pattern > span:last-child', n => n.textContent), 'ल ग');
+      }
     }
     await page.screenshot({ path: path.join(temporary, 'desktop.png'), fullPage: true });
   });

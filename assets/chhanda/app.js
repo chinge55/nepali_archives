@@ -132,7 +132,7 @@ async function start() {
     const metre = currentMetre();
     $('guide-heading').textContent = metre.name;
     $('metre-description').textContent = metre.description;
-    $('metre-ganas').textContent = `गण: ${metre.ganas.join(' · ')}${metre.tail ? ' · ' + [...metre.tail].map(() => 'गुरु').join(' · ') : ''}`;
+    $('metre-ganas').textContent = `गण: ${metre.ganas.join(' · ')}${metre.tail ? ' · ' + [...metre.tail].map(weightName).join(' · ') : ''}`;
     $('pause-note').textContent = metre.pauseNote;
     $('metre-pattern').replaceChildren(...metre.ganas.map((g, i) => {
       const node = element('span');
@@ -140,7 +140,7 @@ async function start() {
       node.append(element('b', [...group].map(w => w === 'G' ? 'ग' : 'ल').join(' ')));
       return node;
     }));
-    if (metre.tail) $('metre-pattern').append(element('span', [...metre.tail].map(() => 'ग').join(' ')));
+    if (metre.tail) $('metre-pattern').append(element('span', [...metre.tail].map(w => w === 'G' ? 'ग' : 'ल').join(' ')));
     $('example-text').textContent = metre.example;
     $('example-source').href = metre.source;
     $('example-source').textContent = `लक्ष्मीप्रसाद देवकोटा · ${metre.citation}`;

@@ -19,7 +19,7 @@ def write_chhanda_page(context, page):
     for path in files:
         shutil.copy(path, target / path.name)
     body = """
-<div class="ch-heading"><h1>छन्द लेखन</h1><span class="ch-edition">अभ्यास संस्करण</span></div>
+<div class="ch-heading"><h1>छन्दमा कविता लेख्नुहोस्</h1><span class="ch-edition">अभ्यास संस्करण</span></div>
 <section id="chhanda-tool" aria-label="छन्द लेखन सहायक">
 <section class="ch-editor-card" aria-label="कविता सम्पादक">
 <div class="ch-writer-toolbar">
@@ -81,9 +81,9 @@ def write_chhanda_page(context, page):
     body += f'<script type="module" src="app.js?v={version}"></script>'
     (target / "index.html").write_text(
         page(
-            "छन्द लेखन — लघु गुरु जाँच्दै कविता लेख्नुहोस् · " + SITE_NAME,
+            "छन्दमा कविता लेख्नुहोस् — Nepali Chhanda Writer · " + SITE_NAME,
             body,
-            desc="भुजङ्गप्रयात, वसन्ततिलका र शार्दूलविक्रीडितमा कविता लेख्ने निःशुल्क सहायक। लघु गुरु जाँच, शब्दका विकल्प र रोमनबाट नेपाली टाइप।",
+            desc="नेपाली छन्दमा कविता लेख्नुहोस्। भुजङ्गप्रयात, शार्दूलविक्रीडित, शिखरिणी, मन्दाक्रान्ता लगायतका छन्दमा लघु–गुरु जाँच, शब्दका विकल्प र रोमनबाट नेपाली टाइप।",
             css_depth=1,
             extra_head=f'<link rel="stylesheet" href="chhanda.css?v={version}">',
             active="chhanda",

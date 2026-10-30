@@ -1,8 +1,22 @@
 # Chhanda writer rules
 
-The initial `/chhanda/` release analyses the spelling under an explicit verse
-reading. It supports भुजङ्गप्रयात (य य य य), वसन्ततिलका (त भ ज ज गुरु गुरु),
-and शार्दूलविक्रीडित (म स ज स त त गुरु). A verse has four पाउ; a newline,
+The `/chhanda/` writer analyses the spelling under an explicit verse reading.
+Its catalogue contains ten metres with a fixed pattern for each पाउ:
+
+| Metre | Ganas and tail | Syllables | Internal pause positions |
+| --- | --- | --- | --- |
+| भुजङ्गप्रयात | य य य य | 12 | Grouping aid only |
+| वसन्ततिलका | त भ ज ज गुरु गुरु | 14 | 8 (practice aid) |
+| शार्दूलविक्रीडित | म स ज स त त गुरु | 19 | 12 |
+| मालिनी | न न म य य | 15 | 8 |
+| शिखरिणी | य म न स भ लघु गुरु | 17 | 6 |
+| तोटक | स स स स | 12 | Grouping aid only |
+| द्रुतविलम्बित | न भ भ र | 12 | 4 (one accepted division) |
+| शालिनी | म त त गुरु गुरु | 11 | 4 |
+| स्रग्धरा | म र भ न य य य | 21 | 7, 14 |
+| मन्दाक्रान्ता | म भ न त त गुरु गुरु | 17 | 4, 10 |
+
+A verse has four पाउ; a newline,
 slash, vertical bar, or danda separates पाउ. Blank lines separate stanzas.
 Screen wrapping never changes the analysis.
 
@@ -20,6 +34,9 @@ disappear during keyboard composition and when the reading is uncertain.
 
 The formulae are cross-checked with [छन्दःशिक्षा](https://chhanda.vag.org.np/Examples/).
 General weight rules are described in [Apte's prosody appendix](https://www.sanskrit-lexicon.uni-koeln.de/scans/csldev/csldoc/build/dictionaries/prefaces/ap90app1.html).
+The expanded catalogue's formulae and pause positions were also checked against
+that appendix. Its शिखरिणी entry supplies the य म न स भ लघु गुरु formula;
+the prose beneath that heading on छन्दःशिक्षा repeats the स्रग्धरा description.
 These are rules and reference material, rather than an imported implementation.
 The engine is independently written and has no runtime dependencies.
 
@@ -57,7 +74,14 @@ The excerpts in `assets/chhanda/metres.js` were compared visually against
 | --- | --- | --- | --- |
 | भुजङ्गप्रयात | चतुर्थ सर्ग, श्लोक ४, four पाउ | 50 | ५६ |
 | वसन्ततिलका | सप्तम सर्ग, श्लोक १२, first two पाउ | 100 | १०६ |
-| शार्दूलविक्रीडित | प्रथम सर्ग, श्लोक १, first two पाउ | 3 | १ |
+| शार्दूलविक्रीडित | प्रथम सर्ग, श्लोक १, first two पाउ | 3 | ९ |
+| मालिनी | द्वितीय सर्ग, श्लोक १, first two पाउ | 16 | २२ |
+| शिखरिणी | द्वितीय सर्ग, श्लोक १८, first two पाउ | 20 | २६ |
+| तोटक | तृतीय सर्ग, श्लोक १, last two पाउ | 28 | ३४ |
+| द्रुतविलम्बित | तृतीय सर्ग, श्लोक २५, first two पाउ | 34 | ४० |
+| शालिनी | सप्तम सर्ग, श्लोक ५०, first two पाउ | 108 | ११४ |
+| स्रग्धरा | सप्तम सर्ग, श्लोक ५३, second पाउ | 109 | ११५ |
+| मन्दाक्रान्ता | सप्तदश सर्ग, श्लोक १, last two पाउ | 299 | ३०५ |
 
 Keep the excerpts as printed, without modernizing. These checks concern the
 excerpt; they do not change the source work's `text.proofread` flag. Engine
