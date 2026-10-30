@@ -11,6 +11,9 @@ from ..introductions import work_intro
 from ..text import devnum, esc, paginate_sections, work_html
 from .pdf_reader import write_pdf_reader
 from .pdf_choices import edition_display_label, pdf_edition_picker
+from .prosody import passage_details, prosody_badge
+from prosody import annotation_anchors, published_metres
+from devanagari_slug import romanize
 
 
 DEVANAGARI_WORD = re.compile(r"[ऀ-ॣ०-ॿ]+")
@@ -32,6 +35,11 @@ def write_work_pages(context, page, assets, catalogue):
             up = "../" * depth
             collections = work.get("collection") or []
             introduction = work_intro(meta, collections)
+            annotation = catalogue.extras[work["path"]]["prosody"]
+            metre_ids = published_metres(annotation)
+
+            def metre_filters(identifiers):
+                return "".join(f'<span data-pagefind-filter="metre[data-v]" data-v="{esc(identifier)}"></span>' for identifier in identifiers)
 
             filters = (
                 '<span data-pagefind-filter="author[data-v]" '
@@ -47,6 +55,8 @@ def write_work_pages(context, page, assets, catalogue):
                     '<span data-pagefind-filter="genre[data-v]" '
                     f'data-v="{esc(meta["genre"][0])}"></span>'
                 )
+            if annotation and annotation["kind"] != "mixed":
+                filters += metre_filters(metre_ids)
 
             genre = meta["genre"][0] if meta["genre"] else ""
             verse = genre not in PROSE_GENRES
@@ -65,6 +75,7 @@ def write_work_pages(context, page, assets, catalogue):
                     f'{catalogue.collection_slugs[collection]}/">'
                     f"{esc(collection)}</a>"
                 )
+            meta_bits.append(prosody_badge(annotation, catalogue.metres, up))
 
             formats = meta.get("formats", {})
             source_info = meta.get("source", {})
@@ -229,6 +240,19 @@ def write_work_pages(context, page, assets, catalogue):
             sections = paginate_sections(
                 text, balance=len(rendered_text) - indent_markup_size > 150000
             )
+            targets = []
+            for passage in (annotation or {}).get("passages", []):
+                path = str(relative) + "/"
+                if sections:
+                    matched = [section for section in sections if passage["start"] in section.content.splitlines()]
+                    if len(matched) != 1:
+                        raise ValueError(f"{work['path']}: cannot locate prosody passage {passage['id']}")
+                    path += f"{matched[0].number}/"
+                targets.append({**passage, "url": path + "#chhanda-" + passage["id"]})
+            catalogue.extras[work["path"]]["prosody_targets"] = targets
+            prosody_details = passage_details(annotation, targets, catalogue.metres, up)
+            if annotation and annotation.get("passages"):
+                rendered_text = work_html(text, verse, drama=genre == "natak", line_anchors=annotation_anchors(annotation, text))
 
             if not sections:
                 body = f"""<nav class="crumb"><a href="{up}authors/{author_slug}/">← {esc(author_name)}</a></nav>
@@ -236,7 +260,7 @@ def write_work_pages(context, page, assets, catalogue):
   <h1>{esc(meta['title'])}</h1>
   <p class="byline">{esc(meta['author']['name'])}</p>
   <p class="meta">{" · ".join(bit for bit in meta_bits if bit)}</p>
-  <p class="work-intro">{esc(introduction)}</p>{pdf_button}
+  <p class="work-intro">{esc(introduction)}</p>{pdf_button}{prosody_details}
   <div class="work {'verse' if verse else 'prose'}" data-pagefind-body>{filters}
 {rendered_text}
   </div>
@@ -269,7 +293,7 @@ def write_work_pages(context, page, assets, catalogue):
   <h1>{esc(meta['title'])}</h1>
   <p class="byline">{esc(meta['author']['name'])}</p>
   <p class="meta">{" · ".join(bit for bit in meta_bits if bit)}</p>
-  <p class="work-intro">{esc(introduction)}</p>{pdf_button}
+  <p class="work-intro">{esc(introduction)}</p>{pdf_button}{prosody_details}
   <p class="tochint">{devnum(section_count)} खण्डमा विभाजित — कुनै पनि खण्ड छानेर पढ्नुहोस् :</p>
   <ol class="toc">{contents}</ol>
   {downloads}
@@ -296,6 +320,14 @@ def write_work_pages(context, page, assets, catalogue):
                     section_dir.mkdir(parents=True, exist_ok=True)
                     section_depth = depth + 1
                     section_up = "../" * section_depth
+                    local_targets = [target for target in targets if target["start"] in content.splitlines()]
+                    local_ids = list(dict.fromkeys(target["metre"] for target in local_targets)) if annotation and annotation["kind"] == "mixed" else metre_ids
+                    local_badge = ""
+                    if local_ids:
+                        badge_label = "यस खण्डका अंश" if annotation["kind"] == "mixed" else "छन्द"
+                        links = " · ".join(f'<a href="{section_up}chhandas/{identifier}/">{esc(catalogue.metres[identifier]["name"])}</a>' for identifier in local_ids)
+                        local_badge = f'<p class="meta prosody-section" data-pagefind-ignore>{badge_label}: {links}</p>'
+                    local_filters = filters + (metre_filters(local_ids) if annotation and annotation["kind"] == "mixed" else "")
                     section_nav = [
                         (
                             f'<a class="pv" href="../{sections[section_index - 1].number}/">'
@@ -318,9 +350,10 @@ def write_work_pages(context, page, assets, catalogue):
 <article>
   <h1>{esc(label)}</h1>
   <p class="byline"><a href="../">{esc(meta['title'])}</a> · {esc(meta['author']['name'])} · {devnum(section_index + 1)}/{devnum(section_count)}</p>
+  {local_badge}
   {section_pdf_link(label)}
-  <div class="work {'verse' if verse else 'prose'}" data-pagefind-body>{filters}
-{work_html(content, verse, drama=genre == "natak")}
+  <div class="work {'verse' if verse else 'prose'}" data-pagefind-body>{local_filters}
+{work_html(content, verse, drama=genre == "natak", line_anchors=annotation_anchors(annotation, content))}
   </div>
 </article>
 <nav class="seqnav">{''.join(section_nav)}</nav>"""
@@ -384,6 +417,7 @@ def write_work_pages(context, page, assets, catalogue):
                     "m": catalogue.extras[work["path"]]["min"],
                     "f": 1 if catalogue.extras[work["path"]]["pdf"] else 0,
                     "p": str(relative) + "/",
+                    **({"ch": " ".join(f"{identifier} {catalogue.metres[identifier]['name']} {romanize(catalogue.metres[identifier]['name'])}" for identifier in metre_ids)} if metre_ids else {}),
                 }
             )
     return search_rows, word_counts

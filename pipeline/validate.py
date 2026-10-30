@@ -19,6 +19,8 @@ import sys
 import argparse
 from pathlib import Path
 
+from prosody import validate_prosody
+
 try:
     import jsonschema
 except ImportError:
@@ -208,6 +210,8 @@ def validate_authors(authors: Path = AUTHORS) -> tuple[int, int, list[str]]:
 
         for pdf_error in validate_pdf_editions(work, m):
             err(pdf_error)
+        for prosody_error in validate_prosody(work, m):
+            err(prosody_error)
 
     return nworks, len(seen), errors
 

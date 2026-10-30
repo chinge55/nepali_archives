@@ -14,6 +14,7 @@ from .pages.catalogue import write_catalogue_pages
 from .pages.chhanda_tool import write_chhanda_page
 from .pages.ocr import write_ocr_page
 from .pages.patro import write_patro_page
+from .pages.prosody import write_prosody_pages
 from .pages.type_tool import write_type_page
 from .pages.works import write_work_pages
 from .search import write_search_data
@@ -53,6 +54,7 @@ def build(
         translit_word_keys=translit_word_keys,
     )
     write_catalogue_pages(context, page, assets, catalogue)
+    write_prosody_pages(context, page, assets, catalogue)
     write_about_page(context, page, catalogue)
     write_ocr_page(context, page)
     write_type_page(context, page, assets)

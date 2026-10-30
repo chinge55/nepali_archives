@@ -90,6 +90,11 @@ Key fields:
 - `text.ocr_status` — `ocr-done` or `born-digital` (web/embedded text).
 - `text.proofread` — whether the text has been human-corrected (OCR fixes only; never modernized).
 - `genre` — free-form tags; `genre[0]` drives rendering (`nibandha`/`upanyas`/`katha` = prose, else verse).
+- `prosody` — optional reviewed छन्द classification, independent of genre and
+  proofreading. Tags link to `/chhandas/`; mixed works can identify selected
+  passages. Evidence and text fingerprints prevent stale labels. The initial
+  fifty-work seed and review workflow are documented in
+  [`chhanda_writer/rules.md`](./chhanda_writer/rules.md#archive-metre-annotations).
 - `formats` — filename per available format.
 - `summary` — optional, reviewed one-line Nepali introduction for readers, separate from the literary text.
   Describe only what the work supports; preserve collection/source notes in `description`.

@@ -8,6 +8,7 @@ import hashlib
 from pathlib import Path
 
 from devanagari_slug import slugify
+from prosody import FREE_VERSE, load_metres, published_metres, published_prosody, validate_prosody
 
 from .config import AUTHORS, AUTHOR_GROUPS, AUTHOR_SECTIONS, GENRE, GENRE_ORDER
 from .context import BuildContext
@@ -29,6 +30,9 @@ class Catalogue:
     collection_aliases: dict[str, list[str]]
     by_genre: dict[str, list[tuple[dict, dict]]]
     genres_present: list[str]
+    metres: dict[str, dict]
+    by_metre: dict[str, list[tuple[dict, dict, dict]]]
+    prosody_count: int
 
     @staticmethod
     def author_slug(work: dict) -> str:
@@ -51,7 +55,7 @@ class Catalogue:
                 for key, authors in groups.items() if authors]
 
     def work_list_item(
-        self, work: dict, meta: dict, href: str, *, chip: bool = False
+        self, work: dict, meta: dict, href: str, *, chip: bool = False, extra_html: str = ""
     ) -> str:
         extra = self.extras[work["path"]]
         genre = meta["genre"][0] if meta["genre"] else ""
@@ -78,7 +82,7 @@ class Catalogue:
             f'<li><a class="row-link" href="{href}">'
             f'<span class="wmeta">{metadata}</span>{esc(meta["title"])}'
             f'<span class="r">{esc(meta.get("title_roman") or "")}</span>'
-            f'<span class="work-intro">{esc(work_intro(meta, work.get("collection") or []))}</span></a></li>'
+            f'<span class="work-intro">{esc(work_intro(meta, work.get("collection") or []))}</span></a>{extra_html}</li>'
         )
 
     def genre_cards(self, base: str) -> str:
@@ -121,6 +125,7 @@ def collection_routes(names):
 
 
 def load_catalogue(context: BuildContext) -> Catalogue:
+    metres = load_metres(context.root)
     works = json.loads(
         (context.archives / "index.json").read_text(encoding="utf-8")
     )["works"]
@@ -132,10 +137,14 @@ def load_catalogue(context: BuildContext) -> Catalogue:
             (work_dir / "metadata.json").read_text(encoding="utf-8")
         )
         text = (work_dir / "text.txt").read_text(encoding="utf-8")
+        errors = validate_prosody(work_dir, meta, metres=metres)
+        if errors:
+            raise ValueError(f"{work['path']}: {'; '.join(errors)}")
         records.append((work, meta, text))
         extras[work["path"]] = {
             "min": round(len(text.split()) / 200),
             "pdf": bool(meta.get("formats", {}).get("pdf")),
+            "prosody": published_prosody(meta, text),
         }
 
     by_author: dict[str, list[WorkRecord]] = {}
@@ -175,6 +184,15 @@ def load_catalogue(context: BuildContext) -> Catalogue:
         )
         if by_genre.get(genre)
     ]
+    by_metre = {}
+    prosody_count = 0
+    for work, meta, _ in records:
+        annotation = extras[work["path"]]["prosody"]
+        if annotation:
+            prosody_count += 1
+        for identifier in published_metres(annotation):
+            by_metre.setdefault(identifier, []).append((work, meta, annotation))
+    metres[FREE_VERSE["id"]] = FREE_VERSE
     return Catalogue(
         records=records,
         extras=extras,
@@ -185,4 +203,7 @@ def load_catalogue(context: BuildContext) -> Catalogue:
         collection_aliases=collection_aliases,
         by_genre=by_genre,
         genres_present=genres_present,
+        metres=metres,
+        by_metre=by_metre,
+        prosody_count=prosody_count,
     )

@@ -122,3 +122,45 @@ The latter defaults to `http://localhost:8263/chhanda/`; set `CHHANDA_TEST_URL`
 to exercise a deployed route. Run site-generator tests, the existing typing
 regressions, source validation, site-link and SEO audits, and the browser
 verification described in the repository skills before shipping.
+
+**Archive metre annotations**
+
+`metadata.prosody` records a separately reviewed identification, with a text
+fingerprint, review date, source file and fingerprint, location and review note.
+The initial curated seed in `data/prosody-pilot.json` contains fifty works:
+twenty-two single-metre works (including a source-labelled झ्याउरे work),
+twenty-seven free-verse readings, and one mixed work with ten located examples.
+This is a curated seed, not a held-out accuracy benchmark or an estimate of
+automatic identification accuracy across the archive.
+
+The metrical readings were checked against the preserved source poems and the
+catalogue patterns. Free-verse readings record positive structural observations
+about the whole poem; they are not inferred from missing template matches.
+Candidate rhythmic songs and poems with unexplained scans were left for later
+review. The mixed annotation's selected passages are not a complete metrical
+edition of the long work. Their locators use the existing transcription, while
+the source PDF supplies the metrical evidence. This review changes neither
+literary text nor the work's proofreading flag.
+
+`assets/chhanda/catalogue.json` is the archive's build-time name and pattern
+catalogue. Its writer entries must agree with `metres.js`; पृथ्वी and स्वागता
+are also checked against Apte's appendix, and झ्याउरे is source-labelled in
+the author's own introduction to मुना मदन. Reader pages fetch no scansion
+engine. `/chhandas/` and its metre pages are generated from reviewed metadata;
+mixed-work links go to the identified passage, and search filters describe
+metres present on the indexed reader page. A match elsewhere in a mixed page
+does not certify the excerpt's own metre.
+
+To prepare the remaining review queue without publishing classifications:
+
+```sh
+node chhanda_writer/pipeline/suggest.mjs --unreviewed --output /tmp/prosody-review.json
+```
+
+The report ranks exact spelling-based candidates and identifies uncertainty.
+Review the original source before adding metadata. Record a precise note for
+reading choices or source differences. After text or source changes, recheck
+the evidence and update its fingerprint; the build rejects stale annotations.
+Run the source validator, site-generator tests and
+`NODE_PATH=<browser-test-dependencies> node pipeline/tests/browser/prosody.cjs`.
+Set `PROSODY_TEST_URL` to the served site root for local or live checks.

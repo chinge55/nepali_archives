@@ -4,10 +4,10 @@
      BASE=(R&&R.getAttribute('data-base'))||(FT&&FT.getAttribute('data-base'))||'';
  // Scoped mode (author/collection/genre pages): tier-1 filters the on-page works
  // list, tier-2 passes a Pagefind filter. Home (no scope attrs) keeps the global behavior.
- var SCOPE=null;
+ var SCOPE=null,authorSelect=document.getElementById('metre-author');
  if(FT){var sa=FT.getAttribute('data-scope-author'),sc=FT.getAttribute('data-scope-collection'),
-   sg=FT.getAttribute('data-scope-genre');
-   if(sa||sc||sg){SCOPE={};if(sa)SCOPE.author=sa;if(sc)SCOPE.collection=sc;if(sg)SCOPE.genre=sg;}}
+   sg=FT.getAttribute('data-scope-genre'),sm=FT.getAttribute('data-scope-metre');
+   if(sa||sc||sg||sm){SCOPE={};if(sa)SCOPE.author=sa;if(sc)SCOPE.collection=sc;if(sg)SCOPE.genre=sg;if(sm)SCOPE.metre=sm;}}
  var idx=null,indexPromise=null;
  function norm(s){return (s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/\s+/g,' ').trim();}
  function isDev(s){return /[\u0900-\u097f]/.test(s);}
@@ -69,6 +69,8 @@
    a=scoreField(qn,w._s); if(a>s)s=a;
    a=scoreField(qn,w._c)-8; if(a>s)s=a;           // collection ranks a touch lower
    a=scoreField(qn,w._a)-6; if(a>s)s=a;           // author name
+   a=scoreField(qn,w._ch)-10; if(a>s)s=a;          // reviewed metre names
+   a=scoreField(qraw,w.ch||'')-10; if(a>s)s=a;
    return s;
  }
  function load(cb){
@@ -77,7 +79,7 @@
      if(!r.ok)throw new Error('Title index unavailable'); return r.json();
    }).then(function(d){
      idx=d.works; for(var k=0;k<idx.length;k++){var w=idx[k];
-       w._r=norm(w.r);w._s=norm(w.s);w._c=norm(w.c);w._a=norm(w.a);}
+       w._r=norm(w.r);w._s=norm(w.s);w._c=norm(w.c);w._a=norm(w.a);w._ch=norm(w.ch);}
    }).catch(function(e){indexPromise=null;throw e;});
    return indexPromise.then(cb);
  }
@@ -100,10 +102,11 @@
  var LIS=null;
  function domFilter(qn,qraw){
    if(!LIS) LIS=[].map.call(document.querySelectorAll('ul.works li'),function(li){
-     return {li:li,t:li.textContent||'',n:norm(li.textContent||'')};});
+     var group=li.closest('[data-author]');
+     return {li:li,t:li.textContent||'',n:norm(li.textContent||''),author:group&&group.getAttribute('data-author')};});
    var shown=0;
    LIS.forEach(function(o){
-     var hit=!qn||(qraw&&o.t.indexOf(qraw)>=0)||scoreField(qn,o.n)>0;
+     var hit=(!qn||(qraw&&o.t.indexOf(qraw)>=0)||scoreField(qn,o.n)>0)&&(!authorSelect||!authorSelect.value||authorSelect.value===o.author);
      o.li.style.display=hit?'':'none'; if(hit)shown++;
    });
    [].forEach.call(document.querySelectorAll('.group'),function(g){   // hide emptied genre groups
@@ -253,6 +256,7 @@
  var ftTimer=null;
  function search(){
    var my=++ftSeq,qraw=q.value.trim(),qn=norm(qraw);
+   if(authorSelect&&SCOPE){if(authorSelect.value)SCOPE.author=authorSelect.value;else delete SCOPE.author;}
    if(ftTimer)clearTimeout(ftTimer);
    FT.innerHTML=qn?'<p class=ftmsg>पाठभित्र खोज्दै…</p>':'';
    if(!qn){
@@ -273,6 +277,7 @@
    ftTimer=setTimeout(function(){fullText(qraw,my);},250);
  }
  q.addEventListener('input',search);
+ if(authorSelect)authorSelect.addEventListener('change',search);
  q.addEventListener('focus',function(){if(SCOPE)return;load(function(){if(!q.value)H.textContent=idx.length+' कृति';}).catch(function(){H.textContent='शीर्षक लोड भएन — फेरि खोज्नुहोस्।';});});
  // deep link: /?q=term (e.g. a word clicked on the stats page) runs the search on load
  var dl=location.search.match(/[?&]q=([^&]*)/);

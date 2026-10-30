@@ -61,7 +61,7 @@ def verse_line(line: str) -> str:
     return _no_break_punctuation(esc(line))
 
 
-def work_html(text: str, verse: bool, *, drama: bool = False) -> str:
+def work_html(text: str, verse: bool, *, drama: bool = False, line_anchors: dict[str, str] | None = None) -> str:
     """Render source blocks without modernizing or filling missing text."""
     blocks = text_blocks(text)
     output = []
@@ -87,10 +87,12 @@ def work_html(text: str, verse: bool, *, drama: bool = False) -> str:
                 lines = lines[1:]
             # Text extractors do not know that .ln is displayed as a block.
             # Keep source line boundaries in the DOM so search words cannot fuse.
-            rendered_lines = "\n".join(
-                f'<span class="ln">{verse_line(line)}</span>'
-                for line in lines
-            )
+            def render_line(line):
+                anchor = (line_anchors or {}).get(line)
+                attribute = f' id="{esc(anchor)}"' if anchor else ""
+                return f'<span class="ln"{attribute}>{verse_line(line)}</span>'
+
+            rendered_lines = "\n".join(render_line(line) for line in lines)
             css_class = (
                 "stanza snum"
                 if re.fullmatch(r"[०-९0-9]{1,4}", block.strip())

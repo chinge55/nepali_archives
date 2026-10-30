@@ -53,6 +53,49 @@
       "type": ["string", "null"], "minLength": 1, "maxLength": 280,
       "description": "Optional reviewed one-line reader introduction in Nepali. Separate from original text and source/collection notes; grounded in the work."
     },
+    "prosody": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "kind", "metres", "text_sha256", "reviewed", "evidence"],
+      "description": "Metrical assessment, independent of genre and text proofreading. Only reviewed, current annotations appear publicly.",
+      "properties": {
+        "status": {"enum": ["reviewed", "uncertain"]},
+        "kind": {"enum": ["single", "mixed", "free-verse", "unresolved"]},
+        "metres": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^[a-z0-9_-]+$"}},
+        "text_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "reviewed": {"type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"},
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "object", "additionalProperties": false,
+            "required": ["basis", "file", "sha256", "locator", "note"],
+            "properties": {
+              "basis": {"enum": ["source-label", "metrical-reading", "editorial-reading"]},
+              "file": {"type": "string", "minLength": 1},
+              "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+              "locator": {"type": "string", "minLength": 1},
+              "note": {"type": "string", "minLength": 1},
+              "page_start": {"type": "integer", "minimum": 1},
+              "page_end": {"type": "integer", "minimum": 1}
+            }
+          }
+        },
+        "passages": {
+          "type": "array",
+          "items": {
+            "type": "object", "additionalProperties": false,
+            "required": ["id", "metre", "label", "start", "end"],
+            "properties": {
+              "id": {"type": "string", "pattern": "^[a-z0-9_-]+$"},
+              "metre": {"type": "string", "pattern": "^[a-z0-9_-]+$"},
+              "label": {"type": "string", "minLength": 1},
+              "start": {"type": "string", "minLength": 1, "pattern": "^[^\\r\\n]+$"},
+              "end": {"type": "string", "minLength": 1, "pattern": "^[^\\r\\n]+$"}
+            }
+          }
+        }
+      }
+    },
     "rights": {
       "type": "object",
       "required": ["status"],

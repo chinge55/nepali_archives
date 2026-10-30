@@ -47,5 +47,21 @@
     "epub": null
   },
   "added": "2026-09-18",
-  "updated": "2026-09-18"
+  "updated": "2026-09-18",
+  "prosody": {
+    "status": "reviewed",
+    "kind": "free-verse",
+    "metres": [],
+    "text_sha256": "d667f62bb4ff3ad85c7eb84cb01cb9d542d298d3c22801318d76877d9a83f101",
+    "reviewed": "2026-10-30",
+    "evidence": [
+      {
+        "basis": "editorial-reading",
+        "file": "extracted/index.html",
+        "sha256": "221090d67fe5c0e7c951956098abb19ca22301b89ae69ef8d73658ef207043b2",
+        "locator": "पूर्ण कविता",
+        "note": "प्रश्न, कथन र फरक आकारका हरफ–समूहमा बनेको मुक्त लयको पूर्ण कविता स्रोतसँग दाँजेर पढिएको। स्रोतको ‘सृष्टिकाे’ र अभिलेखको ‘सृष्टिको’ को लेखनभिन्नता पनि दाँजिएको; यस समीक्षाले पाठ फेरेको छैन।"
+      }
+    ]
+  }
 }

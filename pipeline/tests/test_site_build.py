@@ -15,6 +15,8 @@ from check_site_links import find_broken_links
 from sitegen.builder import build
 from sitegen.context import BuildContext
 from sitegen.seo import audit_site
+from prosody import text_digest
+import hashlib
 
 
 def fixture_metadata(identifier, title, genre):
@@ -191,6 +193,77 @@ class FullBuildTests(unittest.TestCase):
             translit_word_keys=self.word_keys,
         )
         return context, result
+
+    def add_prosody(self, identifier, kind, metres, passages=None, status="reviewed"):
+        work = self.root / "archives/authors/test_author" / identifier
+        text = (work / "text.txt").read_text(encoding="utf-8")
+        source = work / "source.html"
+        source.write_text("<p>Source review fixture</p>", encoding="utf-8")
+        metadata_path = work / "metadata.json"
+        metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
+        metadata["source"]["html"] = "source.html"
+        metadata["prosody"] = {
+            "status": status, "kind": kind, "metres": metres,
+            "text_sha256": text_digest(text), "reviewed": "2026-10-30",
+            "evidence": [{"basis": "metrical-reading", "file": "source.html",
+                          "sha256": hashlib.sha256(source.read_bytes()).hexdigest(),
+                          "locator": "fixture", "note": "Reviewed fixture annotation."}],
+            **({"passages": passages} if passages else {}),
+        }
+        metadata_path.write_text(json.dumps(metadata, ensure_ascii=False), encoding="utf-8")
+        return work
+
+    def test_reviewed_metre_has_reader_tag_browse_page_and_search_filter(self):
+        self.add_prosody("verse_work", "single", ["malini"])
+        context, _ = self.run_build("site-metre")
+        reader = (context.site / "authors/test_author/verse_work/index.html").read_text()
+        self.assertIn('छन्द: <a href="../../../chhandas/malini/">मालिनी</a>', reader)
+        self.assertIn('data-pagefind-filter="metre[data-v]" data-v="malini"', reader)
+        self.assertNotIn("chhanda/engine.js", reader)
+        browse = (context.site / "chhandas/malini/index.html").read_text()
+        self.assertIn("मालिनी छन्दका कविता", browse)
+        self.assertIn('data-scope-metre="malini"', browse)
+        self.assertIn('id="metre-author"', browse)
+        self.assertIn("../../chhanda/?metre=malini", browse)
+        search = json.loads((context.site / "search-index.json").read_text())
+        self.assertIn("मालिनी", next(w for w in search["works"] if w["t"] == "परीक्षण कविता")["ch"])
+        self.assertEqual(find_broken_links(context.site), [])
+
+    def test_uncertain_assessment_does_not_create_public_tags_or_free_verse_page(self):
+        self.add_prosody("verse_work", "unresolved", [], status="uncertain")
+        context, _ = self.run_build("site-metre-pending")
+        reader = (context.site / "authors/test_author/verse_work/index.html").read_text()
+        self.assertNotIn("छन्द:", reader)
+        self.assertFalse((context.site / "chhandas/muktachhanda").exists())
+
+    def test_mixed_work_links_to_scoped_passages_without_changing_source_text(self):
+        work = self.root / "archives/authors/test_author/long_work"
+        text = (work / "text.txt").read_text()
+        first, second = [line for line in text.splitlines() if len(line) > 100]
+        self.add_prosody("long_work", "mixed", ["malini", "shardul"], passages=[
+            {"id": "first", "metre": "malini", "label": "पहिलो अंश", "start": first, "end": first},
+            {"id": "second", "metre": "shardul", "label": "दोस्रो अंश", "start": second, "end": second},
+        ])
+        context, _ = self.run_build("site-metre-mixed")
+        contents = (context.site / "authors/test_author/long_work/index.html").read_text()
+        self.assertIn('href="#chhanda-details">मिश्रित</a>', contents)
+        self.assertIn('id="chhanda-details"', contents)
+        browse = (context.site / "chhandas/malini/index.html").read_text()
+        self.assertIn("long_work/1/#chhanda-first", browse)
+        section = (context.site / "authors/test_author/long_work/1/index.html").read_text()
+        self.assertIn('id="chhanda-first"', section)
+        self.assertIn('data-v="malini"', section)
+        self.assertNotIn('data-v="shardul"', section)
+        self.assertIn("प्रथम सर्ग", section)
+        self.assertEqual((work / "text.txt").read_text(), text)
+        self.assertEqual(find_broken_links(context.site), [])
+
+    def test_build_rejects_stale_reviewed_annotations(self):
+        work = self.add_prosody("verse_work", "single", ["malini"])
+        with (work / "text.txt").open("a") as handle:
+            handle.write("\nनयाँ हरफ")
+        with self.assertRaisesRegex(ValueError, "stale"):
+            self.run_build("site-metre-stale")
 
     def test_fixture_build_has_pages_search_sitemap_and_valid_links(self):
         context, result = self.run_build("site-fixture")

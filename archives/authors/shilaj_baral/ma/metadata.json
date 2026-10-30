@@ -47,5 +47,21 @@
     "epub": null
   },
   "added": "2026-09-18",
-  "updated": "2026-09-18"
+  "updated": "2026-09-18",
+  "prosody": {
+    "status": "reviewed",
+    "kind": "free-verse",
+    "metres": [],
+    "text_sha256": "7a77fbbcecaeb49047c63cb2559c172f790b8f8c63ae2c873d276ce74dc3cf44",
+    "reviewed": "2026-10-30",
+    "evidence": [
+      {
+        "basis": "editorial-reading",
+        "file": "extracted/index.html",
+        "sha256": "2312fa36351f4214ef4a64e2b3c336adfee92941c56dbef879ec00c6abeba7ff",
+        "locator": "पूर्ण कविता",
+        "note": "आत्मकथनका फरक लम्बाइका हरफ, वाक्यखण्ड र परिवर्तनशील अन्त्यानुप्रासमा बनेको मुक्त लयको पूर्ण पाठ समीक्षा गरिएको।"
+      }
+    ]
+  }
 }

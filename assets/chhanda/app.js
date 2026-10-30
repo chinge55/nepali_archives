@@ -423,6 +423,16 @@ async function start() {
     const stored = localStorage.getItem(DRAFT_KEY);
     if (stored && !state.text) { state = validProject(JSON.parse(stored)); notice('अघिल्लो स्थानीय मस्यौदा फर्काइएको छ।'); }
   } catch { notice('अघिल्लो मस्यौदा खुल्न सकेन। लेख्न सकिन्छ; सुरक्षित मस्यौदा फाइल भए खोल्नुहोस्।'); }
+  const requestedMetre = new URL(location.href).searchParams.get('metre');
+  if (METRES.some(metre => metre.id === requestedMetre) && requestedMetre !== state.metre) {
+    remember(); state.metre = requestedMetre;
+    if (state.text) notice('मस्यौदाको पाठ कायम राखेर छन्द छानिएको छ।');
+  }
+  if (requestedMetre !== null) {
+    // A link presets this visit; later reloads respect the writer's saved choice.
+    const clean = new URL(location.href); clean.searchParams.delete('metre');
+    try { history.replaceState(history.state, '', clean.pathname + clean.search + clean.hash); } catch { /* Writing still works if history is unavailable. */ }
+  }
   window.addEventListener('pagehide', () => { if (composing) edited(); save(); });
   document.addEventListener('visibilitychange', () => { if (document.hidden) { if (composing) edited(); save(); } });
   function keyboardLayout() {

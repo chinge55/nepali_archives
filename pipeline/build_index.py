@@ -48,6 +48,8 @@ def entry(meta, wd):
         "source": src.get("name") if src.get("url") else None,
         "path": str(wd.relative_to(ROOT)),
         "formats": [k for k in ("pdf", "txt", "html", "epub") if fmts.get(k)],
+        **({"prosody": {key: meta["prosody"][key] for key in ("status", "kind", "metres")}}
+           if meta.get("prosody") else {}),
     }
 
 def build():

@@ -323,7 +323,7 @@ def write_catalogue_pages(context, page, assets, catalogue):
 <p class="tagline-en">{SITE_TAGLINE_EN}</p>
 </div>
 <div class="home-discovery">
-<nav class="browse-links" aria-label="कृति खोज्ने तरिका"><a href="authors/">लेखकअनुसार</a><a href="genres/">विधाअनुसार</a><a href="collections/">सङ्ग्रहअनुसार</a></nav>
+<nav class="browse-links" aria-label="कृति खोज्ने तरिका"><a href="authors/">लेखकअनुसार</a><a href="genres/">विधाअनुसार</a><a href="collections/">सङ्ग्रहअनुसार</a><a href="chhandas/">छन्दअनुसार</a></nav>
 <p class="lead home-summary">{str(len(catalogue.by_author)).translate(DEVNUM)} लेखकका {str(len(catalogue.records)).translate(DEVNUM)} कृति — नि:शुल्क, सधैँभरि। दर्ता छैन, विज्ञापन छैन।</p>
 <p class="home-search"><input id="q" type="search" placeholder="खोज्नुहोस् — शीर्षक, पाठ वा रोमन" autocomplete="off" aria-label="खोज"></p>
 <p class="hint" id="hint">जस्तै: <a href="?q=pagal">pagal</a><a href="?q=muna madan">muna madan</a><a href="?q=hunxa">hunxa</a><a href="?q=फूल">फूल</a></p>

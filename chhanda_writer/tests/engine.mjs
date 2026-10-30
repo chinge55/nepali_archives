@@ -4,8 +4,20 @@ import { METRES } from '../../assets/chhanda/metres.js';
 import { scan, analyse, align, splitPadas, suggestWords, rebaseOverrides } from '../../assets/chhanda/engine.js';
 import { changedRange, pendingWord, transliterateEdit, inputScript } from '../../assets/chhanda/inline.js';
 import { problemRanges } from '../../assets/chhanda/underlines.js';
+import { readFileSync } from 'node:fs';
 
 const bhujanga = METRES[0];
+test('archive metre definitions agree with every supported writer pattern', () => {
+  const catalogue = JSON.parse(readFileSync(new URL('../../assets/chhanda/catalogue.json', import.meta.url))).metres;
+  for (const metre of METRES) {
+    const entry = catalogue.find(m => m.id === metre.id);
+    assert.equal(entry.name, metre.name);
+    assert.equal(entry.pattern, metre.pattern);
+    assert.equal(entry.writer, metre.id);
+  }
+  assert.equal(catalogue.find(m => m.id === 'prithvi').pattern, 'LGLLLGLGLLLGLGGLG');
+  assert.equal(catalogue.find(m => m.id === 'swagata').pattern, 'GLGLLLGLLGG');
+});
 test('input script follows newly entered letters and ignores digits or punctuation', () => {
   assert.equal(inputScript('mero'), 'roman');
   assert.equal(inputScript('कविता'), 'devanagari');

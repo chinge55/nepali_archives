@@ -1,0 +1,104 @@
+{
+  "version": 1,
+  "metres": [
+    {
+      "id": "bhujanga",
+      "name": "भुजङ्गप्रयात",
+      "kind": "varnika",
+      "pattern": "LGGLGGLGGLGG",
+      "writer": "bhujanga",
+      "reference": "https://www.sanskrit-lexicon.uni-koeln.de/scans/csldev/csldoc/build/dictionaries/prefaces/ap90app1.html"
+    },
+    {
+      "id": "vasanta",
+      "name": "वसन्ततिलका",
+      "kind": "varnika",
+      "pattern": "GGLGLLLGLLGLGG",
+      "writer": "vasanta",
+      "reference": "https://www.sanskrit-lexicon.uni-koeln.de/scans/csldev/csldoc/build/dictionaries/prefaces/ap90app1.html"
+    },
+    {
+      "id": "shardul",
+      "name": "शार्दूलविक्रीडित",
+      "kind": "varnika",
+      "pattern": "GGGLLGLGLLLGGGLGGLG",
+      "writer": "shardul",
+      "reference": "https://www.sanskrit-lexicon.uni-koeln.de/scans/csldev/csldoc/build/dictionaries/prefaces/ap90app1.html"
+    },
+    {
+      "id": "malini",
+      "name": "मालिनी",
+      "kind": "varnika",
+      "pattern": "LLLLLLGGGLGGLGG",
+      "writer": "malini",
+      "reference": "https://www.sanskrit-lexicon.uni-koeln.de/scans/csldev/csldoc/build/dictionaries/prefaces/ap90app1.html"
+    },
+    {
+      "id": "shikharini",
+      "name": "शिखरिणी",
+      "kind": "varnika",
+      "pattern": "LGGGGGLLLLLGGLLLG",
+      "writer": "shikharini",
+      "reference": "https://www.sanskrit-lexicon.uni-koeln.de/scans/csldev/csldoc/build/dictionaries/prefaces/ap90app1.html"
+    },
+    {
+      "id": "totaka",
+      "name": "तोटक",
+      "kind": "varnika",
+      "pattern": "LLGLLGLLGLLG",
+      "writer": "totaka",
+      "reference": "https://www.sanskrit-lexicon.uni-koeln.de/scans/csldev/csldoc/build/dictionaries/prefaces/ap90app1.html"
+    },
+    {
+      "id": "drutavilambita",
+      "name": "द्रुतविलम्बित",
+      "kind": "varnika",
+      "pattern": "LLLGLLGLLGLG",
+      "writer": "drutavilambita",
+      "reference": "https://www.sanskrit-lexicon.uni-koeln.de/scans/csldev/csldoc/build/dictionaries/prefaces/ap90app1.html"
+    },
+    {
+      "id": "shalini",
+      "name": "शालिनी",
+      "kind": "varnika",
+      "pattern": "GGGGGLGGLGG",
+      "writer": "shalini",
+      "reference": "https://www.sanskrit-lexicon.uni-koeln.de/scans/csldev/csldoc/build/dictionaries/prefaces/ap90app1.html"
+    },
+    {
+      "id": "sragdhara",
+      "name": "स्रग्धरा",
+      "kind": "varnika",
+      "pattern": "GGGGLGGLLLLLLGGLGGLGG",
+      "writer": "sragdhara",
+      "reference": "https://www.sanskrit-lexicon.uni-koeln.de/scans/csldev/csldoc/build/dictionaries/prefaces/ap90app1.html"
+    },
+    {
+      "id": "mandakranta",
+      "name": "मन्दाक्रान्ता",
+      "kind": "varnika",
+      "pattern": "GGGGLLLLLGGLGGLGG",
+      "writer": "mandakranta",
+      "reference": "https://www.sanskrit-lexicon.uni-koeln.de/scans/csldev/csldoc/build/dictionaries/prefaces/ap90app1.html"
+    },
+    {
+      "id": "prithvi",
+      "name": "पृथ्वी",
+      "kind": "varnika",
+      "pattern": "LGLLLGLGLLLGLGGLG",
+      "reference": "https://www.sanskrit-lexicon.uni-koeln.de/scans/csldev/csldoc/build/dictionaries/prefaces/ap90app1.html"
+    },
+    {
+      "id": "swagata",
+      "name": "स्वागता",
+      "kind": "varnika",
+      "pattern": "GLGLLLGLLGG",
+      "reference": "https://www.sanskrit-lexicon.uni-koeln.de/scans/csldev/csldoc/build/dictionaries/prefaces/ap90app1.html"
+    },
+    {
+      "id": "jhyaure",
+      "name": "झ्याउरे",
+      "kind": "folk"
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+/* Exercise reviewed tags, scoped search, passage links and safe writer presets. */
+const assert = require('node:assert/strict');
+const puppeteer = require('puppeteer');
+const base = (process.env.PROSODY_TEST_URL || 'http://localhost:8262/').replace(/\/?$/, '/');
+const pause = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+(async () => {
+  const browser = await puppeteer.launch({ headless: 'new', args: ['--no-sandbox'] });
+  const context = await browser.createIncognitoBrowserContext();
+  const page = await context.newPage(), errors = [], requests = [];
+  page.on('pageerror', error => errors.push(error.message));
+  page.on('request', request => requests.push(request.url()));
+  async function go(route) { await page.goto(base + route, { waitUntil: 'networkidle0' }); }
+  try {
+    await page.setViewport({ width: 1152, height: 1000 });
+    await go('chhandas/');
+    assert.match(await page.$eval('h1', n => n.textContent), /छन्दअनुसार/);
+    assert.match(await page.$eval('.lead', n => n.textContent), /कृतिको छन्द पहिचान समीक्षा गरिएको छ/);
+    assert.ok(await page.$$eval('.shelf > a', n => n.length) >= 14);
+    await page.screenshot({ path: '/tmp/prosody-browse-desktop.png', fullPage: true });
+    await go('authors/lekhnath_paudyal/radhakrishna/');
+    assert.match(await page.$eval('.meta', n => n.textContent), /छन्द: मालिनी/);
+    assert.equal(requests.some(url => /\/chhanda\/(?:engine|app|metres)\.js/.test(url)), false, 'reader pages must not load the writing engine');
+    await page.screenshot({ path: '/tmp/prosody-reader-tag.png', fullPage: true });
+    await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle0' }), page.click('.meta a[href*="chhandas/"]')]);
+    assert.match(await page.$eval('h1', n => n.textContent), /मालिनी छन्दका कविता/);
+    await page.select('#metre-author', 'लेखनाथ पौड्याल');
+    assert.equal(await page.$$eval('.group', nodes => nodes.filter(n => getComputedStyle(n).display !== 'none').length), 1);
+    await page.type('#q', 'विषय');
+    await page.waitForSelector('#ft .ftlink');
+    const results = await page.$$eval('#ft .ftlink', nodes => nodes.map(n => n.href));
+    assert.ok(results.some(url => url.includes('/authors/lekhnath_paudyal/radhakrishna/')));
+    assert.ok(results.every(url => url.includes('/authors/lekhnath_paudyal/')));
+    console.log('PASS: reviewed tags, author filtering and metre-scoped full-text search');
+
+    await go('chhandas/malini/');
+    await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle0' }), page.click('.prosody-passages a')]);
+    assert.match(new URL(page.url()).hash, /^#chhanda-/);
+    assert.ok(await page.$eval('.ln:target', n => n.textContent.includes('विपिन')));
+    assert.match(await page.$eval('.prosody-section', n => n.textContent), /यस खण्डका अंश/);
+    assert.match(await page.$eval('h1', n => n.textContent), /द्वितीय सर्ग/);
+    await page.screenshot({ path: '/tmp/prosody-passage.png', fullPage: false });
+    console.log('PASS: mixed works link directly to the correct text passage');
+
+    await go('authors/devkota/pagal/');
+    assert.match(await page.$eval('.meta', n => n.textContent), /मुक्तछन्द/);
+    await go('chhandas/jhyaure/');
+    assert.equal(await page.$('.prosody-write'), null);
+    console.log('PASS: reviewed free verse and folk metre remain distinct from writer support');
+
+    await go('chhandas/malini/');
+    await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle0' }), page.click('.prosody-write')]);
+    await page.waitForSelector('#chhanda-tool[data-ready=true]');
+    assert.equal(await page.$eval('#metre-select', n => n.value), 'malini');
+    assert.equal(new URL(page.url()).searchParams.has('metre'), false);
+    const draft = 'मेरो सुरक्षित मस्यौदा';
+    await page.type('#poem', draft); await pause(250);
+    await go('chhandas/shardul/');
+    await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle0' }), page.click('.prosody-write')]);
+    await page.waitForSelector('#chhanda-tool[data-ready=true]');
+    assert.equal(await page.$eval('#metre-select', n => n.value), 'shardul');
+    assert.equal(await page.$eval('#poem', n => n.value), draft);
+    await page.click('#undo');
+    assert.equal(await page.$eval('#metre-select', n => n.value), 'malini');
+    assert.equal(await page.$eval('#poem', n => n.value), draft);
+    await page.reload({ waitUntil: 'networkidle0' });
+    await page.waitForSelector('#chhanda-tool[data-ready=true]');
+    assert.equal(await page.$eval('#metre-select', n => n.value), 'malini');
+    assert.equal(await page.$eval('#poem', n => n.value), draft);
+    console.log('PASS: writer presets retain existing drafts and can be undone');
+
+    await go('?q=malini');
+    await page.waitForSelector('#results a[href*="radhakrishna/"]');
+    console.log('PASS: Roman metre names find reviewed works in the main search');
+    await page.setViewport({ width: 390, height: 844 });
+    await go('chhandas/muktachhanda/');
+    assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true);
+    await page.evaluate(() => document.documentElement.setAttribute('data-theme', 'dark')); await pause(350);
+    await page.screenshot({ path: '/tmp/prosody-browse-mobile.png', fullPage: false });
+    assert.deepEqual(errors, []);
+    console.log('PASS: mobile and dark-theme browsing without browser errors');
+  } finally { await context.close(); await browser.close(); }
+})().catch(error => { console.error(error); process.exitCode = 1; });

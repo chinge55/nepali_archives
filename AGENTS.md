@@ -129,13 +129,23 @@ author dir == `author.id`; `text.txt` non-empty Devanagari; `rights.status` ∈
   research, evals: `roman_nepali_transliteration/` (plan.md is the roadmap; the
   Aksharantar test split is HELD OUT for evaluation — never feed it to a build).
 - **Chhanda writer** (`write_chhanda_page`): `/chhanda/` — browser-local verse
-  editor with three metre patterns, syllable explanations, explicit final-vowel
+  editor with ten metre patterns, syllable explanations, explicit final-vowel
   choices, contextual word suggestions, optional shared Roman typing, and draft
   exports. Sources: `assets/chhanda/`; rules and tests: `chhanda_writer/`;
   roadmap: `plans/chhanda-writer.md`. Keep pronunciation choices visible, never
   alter a draft to force a match, and keep all analysis assets off reader pages.
   Run `node --test chhanda_writer/tests/engine.mjs` and the browser harness in
   `chhanda_writer/tests/browser.cjs` when changing this tool.
+- **Reviewed metre tags**: optional `metadata.prosody` is independent of `genre`
+  and `text.proofread`. Source evidence and text hashes are validated; only current,
+  reviewed annotations appear on readers and `/chhandas/`. Mixed works use uniquely
+  located complete lines for passage links. Keep source text untouched; a failed
+  pattern match does not establish मुक्तछन्द. The build-time catalogue lives at
+  `assets/chhanda/catalogue.json`; it can include metres outside writer support.
+  `chhanda_writer/data/prosody-pilot.json` is a curated seed list, not an accuracy
+  benchmark. The offline `chhanda_writer/pipeline/suggest.mjs --unreviewed` creates
+  a candidate report without modifying metadata. Verify tags, filters and writer
+  presets with `pipeline/tests/browser/prosody.cjs` after building the search index.
 - **Patro coverage**: daily builds render committed `horoscope/content/panchanga-*.json`;
   rebuilding cannot create missing dates. Run `pipeline/check_patro_coverage.py`
   before publishing and extend dates with `horoscope/pipeline/export_month.py`
