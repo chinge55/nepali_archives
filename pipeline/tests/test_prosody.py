@@ -47,6 +47,15 @@ class ProsodyTests(unittest.TestCase):
         self.annotation['metres'] = ['malini']
         self.assertTrue(any('free verse' in e for e in validate_prosody(self.work, self.metadata)))
 
+    def test_source_limited_assessment_keeps_a_note_without_publishing_a_guess(self):
+        self.annotation.update(status='uncertain', kind='unresolved', metres=[], evidence=[],
+                               review_note='Preserved source unavailable; metre unresolved.')
+        self.assertEqual(validate_prosody(self.work, self.metadata), [])
+        self.assertIsNone(published_prosody(self.metadata, self.text))
+        for value in ['', '  ', None, False]:
+            self.annotation['review_note'] = value
+            self.assertTrue(any('review_note' in error for error in validate_prosody(self.work, self.metadata)))
+
     def test_text_or_source_edits_invalidate_a_review(self):
         (self.work / 'text.txt').write_text(self.text + 'बदलिएको पाठ')
         self.assertTrue(any('stale' in e for e in validate_prosody(self.work, self.metadata)))

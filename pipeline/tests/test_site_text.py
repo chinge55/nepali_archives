@@ -93,6 +93,14 @@ class WorkHtmlTests(unittest.TestCase):
             '<p class="colophon">वि. सं. १९६९ लालित्यबाट</p>',
         )
 
+    def test_passage_anchor_survives_a_standalone_line_rendered_as_a_heading(self):
+        line = 'क्षणमात्र रह्यो र त्यो घना'
+        source = line + '\n\nमुनिको मौन समाधि-भावना ।'
+        original = work_html(source, verse=True)
+        anchored = work_html(source, verse=True, line_anchors={line: 'chhanda-viyogini-2'})
+        self.assertIn('<h2 class="sec" id="chhanda-viyogini-2">', anchored)
+        self.assertEqual(anchored.replace(' id="chhanda-viyogini-2"', ''), original)
+
     def test_spaced_danda_uses_non_breaking_space_only_at_punctuation(self):
         rendered = work_html("शब्द शब्द ।", verse=True)
         self.assertIn("शब्द शब्द\u00a0।", rendered)

@@ -65,6 +65,11 @@ def work_html(text: str, verse: bool, *, drama: bool = False, line_anchors: dict
     """Render source blocks without modernizing or filling missing text."""
     blocks = text_blocks(text)
     output = []
+
+    def anchor_attribute(line):
+        anchor = (line_anchors or {}).get(line)
+        return f' id="{esc(anchor)}"' if anchor else ""
+
     for block in blocks:
         if not block.strip():
             continue
@@ -74,7 +79,7 @@ def work_html(text: str, verse: bool, *, drama: bool = False, line_anchors: dict
         elif (is_heading(block) and not (
             drama and re.match(r"^[^\n–—-]+\s*[–—-]", block)
         )) or (drama and re.fullmatch(r"[।॥\s]*दृश्य\s+[०-९0-9]+[।॥\s]*", block)):
-            output.append(f'<h2 class="sec">{esc(block)}</h2>')
+            output.append(f'<h2 class="sec"{anchor_attribute(block)}>{esc(block)}</h2>')
         elif verse:
             lines = block.split("\n")
             if len(lines) > 1 and re.fullmatch(
@@ -88,9 +93,7 @@ def work_html(text: str, verse: bool, *, drama: bool = False, line_anchors: dict
             # Text extractors do not know that .ln is displayed as a block.
             # Keep source line boundaries in the DOM so search words cannot fuse.
             def render_line(line):
-                anchor = (line_anchors or {}).get(line)
-                attribute = f' id="{esc(anchor)}"' if anchor else ""
-                return f'<span class="ln"{attribute}>{verse_line(line)}</span>'
+                return f'<span class="ln"{anchor_attribute(line)}>{verse_line(line)}</span>'
 
             rendered_lines = "\n".join(render_line(line) for line in lines)
             css_class = (

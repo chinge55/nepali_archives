@@ -82,6 +82,8 @@ def validate_prosody(work: Path, metadata: dict, *, metres=None) -> list[str]:
         errors.append("invalid prosody status")
     if kind not in {"single", "mixed", "free-verse", "unresolved"}:
         errors.append("invalid prosody kind")
+    if "review_note" in annotation and (not isinstance(annotation["review_note"], str) or not annotation["review_note"].strip()):
+        errors.append("prosody.review_note must be a nonempty string")
     try:
         date.fromisoformat(annotation.get("reviewed", ""))
     except (ValueError, TypeError):

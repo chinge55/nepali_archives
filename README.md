@@ -95,6 +95,9 @@ Key fields:
   passages. Evidence and text fingerprints prevent stale labels. The initial
   fifty-work seed and review workflow are documented in
   [`chhanda_writer/rules.md`](./chhanda_writer/rules.md#archive-metre-annotations).
+  Uncertain assessments retain their reasoning in `review_note` and evidence;
+  they publish no tag. The offline queue's `--unassessed` finds works still
+  needing examination; `--unreviewed` also includes examined, unresolved works.
 - `formats` — filename per available format.
 - `summary` — optional, reviewed one-line Nepali introduction for readers, separate from the literary text.
   Describe only what the work supports; preserve collection/source notes in `description`.

@@ -106,7 +106,10 @@
       "id": "upajati",
       "name": "उपजाति",
       "kind": "varnika",
-      "patterns": ["GGLGGLLGLGG", "LGLGGLLGLGG"],
+      "patterns": [
+        "GGLGGLLGLGG",
+        "LGLGGLLGLGG"
+      ],
       "reference": "https://www.sanskrit-lexicon.uni-koeln.de/scans/csldev/csldoc/build/dictionaries/prefaces/ap90app1.html"
     },
     {
@@ -126,7 +129,10 @@
       "id": "upajati_12",
       "name": "द्वादशाक्षरी उपजाति",
       "kind": "varnika",
-      "patterns": ["LGLGGLLGLGLG", "GGLGGLLGLGLG"],
+      "patterns": [
+        "LGLGGLLGLGLG",
+        "GGLGGLLGLGLG"
+      ],
       "reference": "https://sa.wikisource.org/wiki/पृष्ठम्:वृत्तरत्नाकरम्.pdf/६८"
     },
     {
@@ -139,6 +145,86 @@
       "id": "jhyaure",
       "name": "झ्याउरे",
       "kind": "folk"
+    },
+    {
+      "id": "ramal_musamman_mahzuf",
+      "name": "रमल मुसम्मन महजूफ",
+      "kind": "bahr",
+      "pattern": "GLGGGLGGGLGGGLG",
+      "reference": "https://franpritchett.com/00ghalib/meterbk/06_meters.html"
+    },
+    {
+      "id": "hazaj_musamman_salim",
+      "name": "हजज मुसम्मन सालिम",
+      "kind": "bahr",
+      "pattern": "LGGGLGGGLGGGLGGG",
+      "reference": "https://franpritchett.com/00ghalib/meterbk/06_meters.html"
+    },
+    {
+      "id": "hazaj_musaddas_mahzuf",
+      "name": "हजज मुसद्दस महजूफ",
+      "kind": "bahr",
+      "pattern": "LGGGLGGGLGG",
+      "reference": "https://franpritchett.com/00ghalib/meterbk/06_meters.html"
+    },
+    {
+      "id": "mutaqarib_musamman_mahzuf",
+      "name": "मुतकारिब मुसम्मन महजूफ",
+      "kind": "bahr",
+      "pattern": "LGGLGGLGGLG",
+      "reference": "https://franpritchett.com/00ghalib/meterbk/06_meters.html"
+    },
+    {
+      "id": "kamil_musamman_salim",
+      "name": "कामिल मुसम्मन सालिम",
+      "kind": "bahr",
+      "pattern": "LLGLGLLGLGLLGLGLLGLG",
+      "reference": "https://franpritchett.com/00ghalib/meterbk/06_meters.html"
+    },
+    {
+      "id": "vidyunmala",
+      "name": "विद्युन्माला",
+      "kind": "varnika",
+      "pattern": "GGGGGGGG",
+      "reference": "https://www.sanskrit-lexicon.uni-koeln.de/scans/csldev/csldoc/build/dictionaries/prefaces/ap90app1.html"
+    },
+    {
+      "id": "mattamayuri",
+      "name": "मत्तमयूरी",
+      "kind": "varnika",
+      "pattern": "GGGGGLLGGLLGG",
+      "reference": "https://www.sanskrit-lexicon.uni-koeln.de/scans/csldev/csldoc/build/dictionaries/prefaces/ap90app1.html"
+    },
+    {
+      "id": "giti",
+      "name": "गीति",
+      "kind": "matrika",
+      "reference": "https://www.sanskrit-lexicon.uni-koeln.de/scans/csldev/csldoc/build/dictionaries/prefaces/ap90app1.html"
+    },
+    {
+      "id": "pushpitagra",
+      "name": "पुष्पिताग्रा",
+      "kind": "varnika",
+      "reference": "https://www.sanskrit-lexicon.uni-koeln.de/scans/csldev/csldoc/build/dictionaries/prefaces/ap90app1.html"
+    },
+    {
+      "id": "aupachchhandasika",
+      "name": "औपच्छन्दसिक",
+      "kind": "matrika",
+      "reference": "https://www.sanskrit-lexicon.uni-koeln.de/scans/csldev/csldoc/build/dictionaries/prefaces/ap90app1.html"
+    },
+    {
+      "id": "padakulak",
+      "name": "पादाकुलक",
+      "kind": "matrika",
+      "reference": "https://gmmcjournal.edu.np/index.php/journal/article/download/99/62/160"
+    },
+    {
+      "id": "pramanika",
+      "name": "प्रमाणिका",
+      "kind": "varnika",
+      "pattern": "LGLGLGLG",
+      "reference": "https://www.sanskrit-lexicon.uni-koeln.de/scans/csldev/csldoc/build/dictionaries/prefaces/ap90app1.html"
     }
   ]
 }

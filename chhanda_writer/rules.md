@@ -195,6 +195,48 @@ Its इन्द्रवंशा pattern follows the त त ज र formula i
 no universal fixed pattern or interchangeable-pattern list. These three browse
 categories do not add unsupported writer presets.
 
+The complete remaining-work assessment dated 2026-10-31 examines 492 works:
+140 confirmed identifications (83 single, 20 mixed, 37 free verse) and 352
+uncertain assessments. Across all 679 poetic works, 327 now have a confirmed
+classification: 214 single, 37 mixed and 76 free verse. Every poetic work has
+an assessment; 352 still await a confirmed identification. These counts
+describe editorial coverage, not automatic classification accuracy.
+
+The new mixed annotations locate 60 selected passages. Short source-backed
+poems were read in full; long books were examined through selected complete
+passages, source introductions and recurring structures. Book annotations
+state their scope and do not claim a complete metrical edition. Refrains,
+rhyming songs, bhajans, sonnets and unnamed folk rhythms are not automatically
+free verse. Source-limited and unresolved readings retain their specific
+`review_note`, text fingerprint and available source evidence, with no public
+tag. Two works still lack a declared preserved source. The original literary
+texts and every metadata field outside `prosody` are preserved.
+
+The catalogue adds twelve archive categories: five bahr forms, विद्युन्माला,
+मत्तमयूरी, प्रमाणिका, गीति, पुष्पिताग्रा, औपच्छन्दसिक and पादाकुलक.
+The bahr feet follow the authors' [Urdu Meter handbook](https://franpritchett.com/00ghalib/meterbk/06_meters.html):
+रमल मुसम्मन महजूफ is `GLGG / GLGG / GLGG / GLG`; हजज मुसम्मन सालिम is
+`LGGG` four times; हजज मुसद्दस महजूफ is `LGGG / LGGG / LGG`;
+मुतकारिब मुसम्मन महजूफ is `LGG / LGG / LGG / LG`; कामिल मुसम्मन सालिम
+is `LLGLG` four times. Spelling-based Nepali candidates need manual readings;
+the offline matcher does not apply Sanskrit final-short-as-long flexibility
+to bahr. The handbook's extra unscanned final short is admitted only for
+the four listed forms other than हजज मुसम्मन सालिम. These checks do not
+implement the broader Urdu system of substitutions and word pronunciation.
+
+Apte's appendix gives विद्युन्माला as eight gurus, मत्तमयूरी as म त य स गुरु,
+and प्रमाणिका as ज र लघु गुरु. गीति uses 12/18/12/18 moras.
+पुष्पिताग्रा alternates `LLLLLLGLGLGG` and `LLLLGLLGLGLGG` (12/13 syllables).
+औपच्छन्दसिक's broader alternating 16/18-mora form has a र य ending;
+प्रतिभा fits that form rather than वियोगिनी. These alternating forms are
+not interchangeable single-pada templates. पादाकुलक's recurring 16-mora
+form is supported by the source poems and the original
+[पिँजराको सुगा study](https://gmmcjournal.edu.np/index.php/journal/article/download/99/62/160).
+Additional झ्याउरे readings use the existing category and record their
+16-syllable 5+5+6 gait, including spoken contractions; that folk form is also
+described in [field research](https://elibrary.tucl.edu.np/bitstreams/40e854bd-01ee-446a-ac87-127150738383/download).
+All twelve additions remain outside the writer's ten supported presets.
+
 `assets/chhanda/catalogue.json` is the archive's build-time name and pattern
 catalogue. A `pattern` is one fixed sequence; `patterns` lists the alternative
 pada sequences of a family, never a simultaneous fixed template. Its writer
@@ -210,8 +252,13 @@ To prepare the remaining review queue without publishing classifications:
 
 ```sh
 node chhanda_writer/pipeline/suggest.mjs --unreviewed --output /tmp/prosody-review.json
+node chhanda_writer/pipeline/suggest.mjs --unassessed --output /tmp/prosody-unassessed.json
 ```
 
+`--unreviewed` retains uncertain works that await confirmation; `--unassessed`
+excludes a current recorded assessment even when its result is uncertain.
+Text or source changes reopen that assessment, as does a newly available source
+for a documented source gap. Neither flag changes metadata or publishes a tag.
 The report ranks spelling-based candidates (including a family's alternative
 patterns and final-syllable flexibility) and identifies uncertainty. An उपजाति
 candidate still needs review of the actual combination within its stanzas.

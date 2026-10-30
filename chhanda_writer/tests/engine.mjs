@@ -4,7 +4,11 @@ import { METRES } from '../../assets/chhanda/metres.js';
 import { scan, analyse, align, splitPadas, suggestWords, rebaseOverrides } from '../../assets/chhanda/engine.js';
 import { changedRange, pendingWord, transliterateEdit, inputScript } from '../../assets/chhanda/inline.js';
 import { problemRanges } from '../../assets/chhanda/underlines.js';
-import { readFileSync } from 'node:fs';
+import { readFileSync, mkdtempSync, writeFileSync, rmSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import path from 'node:path';
+import crypto from 'node:crypto';
+import { assessmentIsCurrent, matchesCataloguePattern } from '../pipeline/review-state.mjs';
 
 const bhujanga = METRES[0];
 test('archive metre definitions agree with every supported writer pattern', () => {
@@ -71,6 +75,77 @@ test('the located Viyogini ending alternates ten and eleven syllables', () => {
   assert.equal(entry.pattern, undefined);
   assert.equal(entry.patterns, undefined);
   assert.equal(entry.writer, undefined);
+});
+test('five archive bahr readings follow their reference feet in preserved Nepali lines', () => {
+  const catalogue = JSON.parse(readFileSync(new URL('../../assets/chhanda/catalogue.json', import.meta.url))).metres;
+  const examples = [
+    ['ramal_musamman_mahzuf', 'GLGG'.repeat(3) + 'GLG', 'क्या सफाई हाइ हाई बम्बईका मालिनी'],
+    ['hazaj_musamman_salim', 'LGGG'.repeat(4), 'भला सद्धै नआये आउ एकैपल्ट घर्‌सम्मन्,'],
+    ['hazaj_musaddas_mahzuf', 'LGGG'.repeat(2) + 'LGG', 'बिना मन्‌को भई यो ज्यू जिएको,'],
+    ['mutaqarib_musamman_mahzuf', 'LGG'.repeat(3) + 'LG', 'हरे ! मैसितै लाग खानू कती,'],
+    ['kamil_musamman_salim', 'LLGLG'.repeat(4), 'दिनको पचास त के हजार पटक् कती समझाउनू,'],
+  ];
+  for (const [id, formula, text] of examples) {
+    const entry = catalogue.find(m => m.id === id);
+    assert.equal(entry.pattern, formula);
+    assert.equal(scan(text).pattern, formula, id);
+    assert.equal(entry.writer, undefined);
+    assert.equal(matchesCataloguePattern(formula.slice(0, -1) + 'L', formula, entry), false);
+    assert.equal(matchesCataloguePattern(formula + 'L', formula, entry), id !== 'hazaj_musamman_salim');
+  }
+  assert.equal(matchesCataloguePattern('LGGLGGLGGLGL', 'LGGLGGLGGLGG', { kind: 'varnika' }), true);
+});
+test('alternating and mora-based archive forms retain their stanza order and final-weight licence', () => {
+  const catalogue = JSON.parse(readFileSync(new URL('../../assets/chhanda/catalogue.json', import.meta.url))).metres;
+  for (const id of ['giti', 'pushpitagra', 'aupachchhandasika', 'padakulak']) {
+    const entry = catalogue.find(m => m.id === id);
+    assert.equal(entry.pattern, undefined);
+    assert.equal(entry.patterns, undefined);
+    assert.equal(entry.writer, undefined);
+  }
+  const heavyEnd = text => { const p = scan(text).pattern; return p.slice(0, -1) + 'G'; };
+  assert.equal(heavyEnd('अब मति सब यो वितृष्ण गर्छु'), 'LLLLLLGLGLGG');
+  assert.equal(heavyEnd('विभु भगवान्‌ यदुनाथमा म धर्छु'), 'LLLLGLLGLGLGG');
+  const mora = text => [...scan(text).pattern].reduce((sum, w) => sum + (w === 'G' ? 2 : 1), 0);
+  assert.deepEqual(['प्रतिभा मुटु हो मनुष्यताको', 'प्रतिभाले पद लिन्छ देवताको'].map(mora), [16, 18]);
+  assert.deepEqual(['जय गणनायक ! मेरो', 'हृदय-कमलमा सदा गरी वास'].map(mora), [12, 17]);
+  // The second Giti pada takes the documented final-short-as-long licence: 17 + 1.
+  assert.equal(scan('हृदय-कमलमा सदा गरी वास').pattern.at(-1), 'L');
+  assert.equal(catalogue.find(m => m.id === 'pramanika').pattern, 'LG'.repeat(4));
+  assert.equal(scan('नटिप्नु हेर कोपिला').pattern, 'LG'.repeat(4));
+});
+test('an uncertain assessment leaves classification pending and reopens on text or source changes', () => {
+  const work = mkdtempSync(path.join(tmpdir(), 'prosody-review-'));
+  try {
+    writeFileSync(path.join(work, 'source.html'), 'preserved source');
+    const sha = crypto.createHash('sha256').update('preserved source').digest('hex');
+    const metadata = { source: { html: 'source.html' }, prosody: {
+      status: 'uncertain', text_sha256: 'text-digest', reviewed: '2026-10-31',
+      evidence: [{ file: 'source.html', sha256: sha, locator: 'poem', note: 'Rhythm unresolved.' }],
+    } };
+    assert.equal(assessmentIsCurrent(work, metadata, 'text-digest'), true);
+    assert.equal(metadata.prosody.status, 'uncertain');
+    assert.equal(assessmentIsCurrent(work, metadata, 'changed-text'), false);
+    writeFileSync(path.join(work, 'source.html'), 'changed source');
+    assert.equal(assessmentIsCurrent(work, metadata, 'text-digest'), false);
+  } finally { rmSync(work, { recursive: true }); }
+});
+test('a documented source gap is assessed until a preserved source becomes available', () => {
+  const work = mkdtempSync(path.join(tmpdir(), 'prosody-gap-'));
+  try {
+    const metadata = { source: { html: 'missing.html' }, prosody: {
+      status: 'uncertain', text_sha256: 'text-digest', reviewed: '2026-10-31', evidence: [],
+      review_note: 'No preserved source is available to confirm the reading.',
+    } };
+    assert.equal(assessmentIsCurrent(work, metadata, 'text-digest'), true);
+    metadata.prosody.review_note = '';
+    assert.equal(assessmentIsCurrent(work, metadata, 'text-digest'), false);
+    metadata.prosody.review_note = 'Source unavailable.';
+    writeFileSync(path.join(work, 'missing.html'), 'new source');
+    assert.equal(assessmentIsCurrent(work, metadata, 'text-digest'), false);
+    metadata.prosody.status = 'reviewed';
+    assert.equal(assessmentIsCurrent(work, metadata, 'text-digest'), false);
+  } finally { rmSync(work, { recursive: true }); }
 });
 test('input script follows newly entered letters and ignores digits or punctuation', () => {
   assert.equal(inputScript('mero'), 'roman');

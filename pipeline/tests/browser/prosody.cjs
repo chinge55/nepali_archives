@@ -13,7 +13,7 @@ const pause = ms => new Promise(resolve => setTimeout(resolve, ms));
   async function go(route) { await page.goto(base + route, { waitUntil: 'networkidle0' }); }
   async function waitForPassage() {
     await page.waitForFunction(() => {
-      const target = document.querySelector('.ln:target');
+      const target = document.querySelector('.ln:target, .sec:target');
       if (!target) return false;
       const top = target.getBoundingClientRect().top, now = performance.now();
       const previous = window.__prosodyScrollWait;
@@ -30,7 +30,7 @@ const pause = ms => new Promise(resolve => setTimeout(resolve, ms));
     await go('chhandas/');
     assert.match(await page.$eval('h1', n => n.textContent), /छन्दअनुसार/);
     assert.match(await page.$eval('.lead', n => n.textContent), /कृतिको छन्द पहिचान समीक्षा गरिएको छ/);
-    assert.ok(await page.$$eval('.shelf > a', n => n.length) >= 20);
+    assert.ok(await page.$$eval('.shelf > a', n => n.length) >= 32);
     await page.screenshot({ path: '/tmp/prosody-browse-desktop.png', fullPage: true });
     await go('authors/lekhnath_paudyal/radhakrishna/');
     assert.match(await page.$eval('.meta', n => n.textContent), /छन्द: मालिनी/);
@@ -139,6 +139,54 @@ const pause = ms => new Promise(resolve => setTimeout(resolve, ms));
       if (route.endsWith('/ramayana')) await page.screenshot({ path: '/tmp/prosody-ramayana-passage.png', fullPage: false });
     }
     console.log('PASS: three archive metre families and seventeen new passage links, including paginated books');
+
+    for (const id of ['ramal_musamman_mahzuf', 'hazaj_musamman_salim', 'hazaj_musaddas_mahzuf',
+      'mutaqarib_musamman_mahzuf', 'kamil_musamman_salim', 'vidyunmala', 'mattamayuri',
+      'pramanika', 'giti', 'pushpitagra', 'aupachchhandasika', 'padakulak']) {
+      await go('chhandas/' + id + '/');
+      assert.ok(await page.$('.works li'));
+      assert.equal(await page.$('.prosody-write'), null);
+      if (id === 'ramal_musamman_mahzuf') await page.screenshot({ path: '/tmp/prosody-bahr.png', fullPage: true });
+    }
+    await go('authors/motiram_bhatta/apsara_jhain_sbargaka/');
+    assert.match(await page.$eval('.meta', n => n.textContent), /रमल मुसम्मन महजूफ/);
+    for (const route of ['devkota/yatri', 'devkota/luni', 'bhimnidhi_tiwari/chadbad']) {
+      await go('authors/' + route + '/');
+      assert.equal(await page.$('.meta a[href*="chhandas/"]'), null, 'unresolved rhythms must not publish a guessed tag');
+    }
+    const remainingMixed = [
+      'bhanubhakta_acharya/roj_roj_darshan', 'bhanubhakta_acharya/sharir_chh_ati_kachcha_annajalle',
+      'motiram_bhatta/panchak_prapanch', 'motiram_bhatta/pikadut',
+      'jagannath_upadhyay_guraganyin/dharmako_phal', 'jagannath_upadhyay_guraganyin/matri_biyog',
+      'jagannath_upadhyay_guraganyin/murkhalai_rijhaun_sakidain', 'jagannath_upadhyay_guraganyin/nyayale_dhan_badhau',
+      'jagannath_upadhyay_guraganyin/prashnauttar', 'jagannath_upadhyay_guraganyin/pratigyaa_pal',
+      'jagannath_upadhyay_guraganyin/satpurushaka_gun', 'jagannath_upadhyay_guraganyin/shriramacharitr',
+      'jagannath_upadhyay_guraganyin/udyogi_ban', 'lekhnath_paudyal/satya_sandeshaharu',
+      'devkota/ek_sundari_beshya_prati', 'devkota/nepali_meghadut', 'lekhnath_paudyal/ritu_bichar',
+      'lekhnath_paudyal/tarun_tapasi', 'devkota/raj_kumar_prabhakar', 'motiram_bhatta/satya_harishchandra_katha',
+    ];
+    let passageCount = 0;
+    for (const route of remainingMixed) {
+      const expected = require('../../../archives/authors/' + route + '/metadata.json').prosody.passages;
+      await go('authors/' + route + '/');
+      assert.match(await page.$eval('.meta', n => n.textContent), /छन्द: मिश्रित/);
+      assert.equal(await page.$eval('#chhanda-details', n => n.open), false);
+      const links = await page.$$eval('#chhanda-details a', nodes => nodes.map(n => ({ href: n.href, hash: new URL(n.href).hash })));
+      assert.equal(links.length, expected.length);
+      for (const passage of expected) {
+        const link = links.find(n => n.hash === '#chhanda-' + passage.id);
+        assert.ok(link, route + ': ' + passage.id);
+        await page.goto(link.href, { waitUntil: 'networkidle0' });
+        // Reader typography keeps punctuation with the line using nonbreaking spaces.
+        assert.equal(await page.$eval('.ln:target, .sec:target', n => n.textContent.replace(/\s+/g, ' ').trim()),
+          passage.start.replace(/\s+/g, ' ').trim());
+        await waitForPassage();
+        passageCount++;
+      }
+      if (route.endsWith('/tarun_tapasi')) await page.screenshot({ path: '/tmp/prosody-tarun-passage.png', fullPage: false });
+    }
+    assert.equal(passageCount, 60);
+    console.log('PASS: twelve added archive categories, unresolved exclusions and all sixty new passage links');
 
     await go('authors/devkota/pagal/');
     assert.match(await page.$eval('.meta', n => n.textContent), /मुक्तछन्द/);

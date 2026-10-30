@@ -64,6 +64,7 @@
         "metres": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^[a-z0-9_-]+$"}},
         "text_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
         "reviewed": {"type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"},
+        "review_note": {"type": "string", "minLength": 1, "description": "Assessment rationale, including unresolved form or unavailable preserved source; does not publish an uncertain classification."},
         "evidence": {
           "type": "array",
           "items": {
