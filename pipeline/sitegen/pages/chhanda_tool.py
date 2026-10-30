@@ -24,7 +24,7 @@ def write_chhanda_page(context, page):
 <section class="ch-editor-card" aria-label="कविता सम्पादक">
 <div class="ch-writer-toolbar">
 <label class="ch-metre-label" for="metre-select">छन्द <select id="metre-select" aria-label="छन्द छान्नुहोस्"></select></label>
-<label class="ch-mode"><span>देवनागरी</span><input id="roman-mode" type="checkbox" role="switch" aria-label="Roman बाट नेपाली लेख्ने"><span>Roman</span></label>
+<label class="ch-mode"><span>देवनागरी</span><input id="roman-mode" type="checkbox" role="switch" aria-label="Roman बाट नेपाली लेख्ने" title="सुरुमा अक्षरअनुसार स्वतः छानिन्छ; स्विचबाट बदल्न सकिन्छ।"><span>Roman</span></label>
 </div>
 <label for="poem" class="ch-sr">कविताको पाठ</label>
 <div class="ch-input-wrap">
@@ -66,7 +66,7 @@ def write_chhanda_page(context, page):
 <details id="help-panel" class="ch-help"><summary>मद्दत</summary><div class="ch-detail-body">
 <h2 id="guide-heading"></h2><p id="metre-description"></p><div id="metre-pattern" class="ch-formula"></div>
 <p id="metre-ganas" class="ch-caption"></p><p id="pause-note" class="ch-caption"></p>
-<p>ल = लघु, ग = गुरु। नयाँ हरफ वा / ले पाउ छुट्याउँछ; खाली हरफले श्लोक छुट्याउँछ। Roman मा लेख्दा Space वा Enter ले शब्दलाई नेपाली बनाउँछ।</p>
+<p>ल = लघु, ग = गुरु। नयाँ हरफ वा / ले पाउ छुट्याउँछ; खाली हरफले श्लोक छुट्याउँछ। सुरुमा देवनागरी र Roman अक्षरअनुसार आफैँ छानिन्छ। स्विचबाट छानेपछि तपाईंको रोजाइ कायम रहन्छ। Roman मा लेख्दा Space वा Enter ले शब्दलाई नेपाली बनाउँछ।</p>
 <p>काव्यपाठमा अन्तिम ‘अ’ उच्चारित मानेर गणना हुन्छ। उच्चारणका विकल्पमा यसलाई बदल्न सकिन्छ। दीर्घ स्वर, अनुस्वार, विसर्ग र संयुक्त व्यञ्जनले तौलमा असर गर्छन्; चन्द्रबिन्दुले मात्र ह्रस्व स्वरलाई गुरु बनाउँदैन।</p>
 <p>यो प्रारम्भिक अभ्यास सहायक हो। विशेष काव्यपाठ, सन्धि र कविले लिएको छुटमा फरक नतिजा आउन सक्छ। नतिजा आफ्नो पाठसँग दाँज्नुहोस्।</p>
 <p>सूत्र: <a href="https://chhanda.vag.org.np/Examples/">छन्दःशिक्षा</a> · <a href="https://www.sanskrit-lexicon.uni-koeln.de/scans/csldev/csldoc/build/dictionaries/prefaces/ap90app1.html">आप्टेको छन्द परिचय</a>।</p>

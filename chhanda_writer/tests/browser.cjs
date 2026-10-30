@@ -71,6 +71,51 @@ const status = page => page.$eval('#analysis-status', node => node.dataset.statu
     await page.click('#example-open'); assert.equal(await page.$eval('#example-dialog', n => n.open), true);
     await page.click('#example-close'); assert.equal(await text(page), 'आफ्नो कविता');
   });
+  await test('a new draft detects Roman typing and keeps Devanagari input unchanged', async page => {
+    assert.equal(await page.$eval('#roman-mode', n => n.dataset.selection), 'automatic');
+    await page.type('#poem', 'mero naam ');
+    await page.waitForFunction(() => document.querySelector('#poem').value === 'मेरो नाम ');
+    assert.equal(await page.$eval('#roman-mode', n => n.checked), true);
+    await page.keyboard.sendCharacter('कविता '); await pause(200);
+    assert.equal(await text(page), 'मेरो नाम कविता ');
+    assert.equal(await page.$eval('#roman-mode', n => n.checked), false);
+    await page.keyboard.type('ho ');
+    await page.waitForFunction(() => document.querySelector('#poem').value === 'मेरो नाम कविता हो ');
+    assert.equal(await page.$eval('#roman-mode', n => n.checked), true);
+  });
+  await test('a manual mode choice overrides detection and survives reload', async page => {
+    await page.type('#poem', 'hello'); await pause(200);
+    assert.equal(await page.$eval('#roman-mode', n => n.checked), true);
+    await page.click('#roman-mode');
+    assert.equal(await text(page), 'hello');
+    await page.type('#poem', ' world '); await pause(200);
+    assert.equal(await text(page), 'hello world ');
+    assert.equal(await page.$eval('#roman-mode', n => n.dataset.selection), 'manual');
+    await page.reload({ waitUntil: 'networkidle0' }); await page.waitForSelector('#chhanda-tool[data-ready=true]');
+    assert.equal(await text(page), 'hello world ');
+    assert.equal(await page.$eval('#roman-mode', n => n.checked), false);
+    assert.equal(await page.$eval('#roman-mode', n => n.dataset.selection), 'manual');
+    await page.focus('#poem'); await page.keyboard.press('End'); await page.keyboard.type('mero '); await pause(200);
+    assert.equal(await text(page), 'hello world mero ');
+  });
+  let autoRules;
+  await test('automatic detection waits for word completion while typing rules load', async page => {
+    await page.type('#poem', 'mero'); await pause(150);
+    assert.equal(await text(page), 'mero');
+    await autoRules.continue(); await page.waitForSelector('#chhanda-tool[data-typing-ready=true]'); await pause(100);
+    assert.equal(await text(page), 'mero');
+    await page.keyboard.type(' '); await pause(200);
+    assert.equal(await text(page), 'मेरो ');
+  }, async page => {
+    await page.setRequestInterception(true);
+    page.on('request', request => request.url().includes('/type/rules.json') ? autoRules = request : request.continue());
+  });
+  await test('pasted mixed scripts convert without losing the Nepali text', async page => {
+    await write(page, 'mero नाम ho कविता ');
+    await page.waitForFunction(() => document.querySelector('#poem').value === 'मेरो नाम हो कविता ');
+    assert.equal(await page.$eval('#roman-mode', n => n.checked), false);
+    assert.equal(await page.$eval('#roman-mode', n => n.dataset.selection), 'automatic');
+  });
   await test('soft problem underlines preserve writing and clear after correction or during composition', async page => {
     const good = 'नटी मेनका छम्छमाउन् अगाडि';
     const bad = good.replace('नटी', 'नाटी');

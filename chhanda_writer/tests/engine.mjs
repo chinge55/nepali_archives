@@ -2,10 +2,18 @@ import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { METRES } from '../../assets/chhanda/metres.js';
 import { scan, analyse, align, splitPadas, suggestWords, rebaseOverrides } from '../../assets/chhanda/engine.js';
-import { changedRange, pendingWord, transliterateEdit } from '../../assets/chhanda/inline.js';
+import { changedRange, pendingWord, transliterateEdit, inputScript } from '../../assets/chhanda/inline.js';
 import { problemRanges } from '../../assets/chhanda/underlines.js';
 
 const bhujanga = METRES[0];
+test('input script follows newly entered letters and ignores digits or punctuation', () => {
+  assert.equal(inputScript('mero'), 'roman');
+  assert.equal(inputScript('कविता'), 'devanagari');
+  assert.equal(inputScript('मेरो naam '), 'roman');
+  assert.equal(inputScript('mero नाम'), 'devanagari');
+  assert.equal(inputScript('२०८३ 2026 ।!?'), null);
+  assert.equal(inputScript('्ाँ\u200d'), null);
+});
 test('underlines identify the wrong syllable without marking a valid line', () => {
   const good = splitPadas(bhujanga.example)[0].text;
   const bad = good.replace('नटी', 'नाटी');

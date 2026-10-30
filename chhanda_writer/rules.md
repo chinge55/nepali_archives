@@ -82,6 +82,11 @@ copy contain the poem alone. Browser storage failure does not prevent writing.
 Version 2 projects store the input mode and keep uncommitted Roman text in the
 poem itself. Existing version 1 drafts migrate without dropping their pending
 word. Switching modes does not move writing into a separate field.
+New drafts detect the input script automatically: Roman words convert in place
+and Devanagari passes through. Only newly entered letters affect the switch;
+punctuation, digits, and the converted output do not change it. An explicit
+toggle choice disables automatic selection for that draft and survives reload
+and export/import. Older saved drafts retain their recorded input mode.
 Draft text is never transmitted or encoded into URLs. Static data is fetched
 from the same site; no analysis service or telemetry is required.
 

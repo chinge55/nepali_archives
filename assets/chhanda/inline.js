@@ -1,4 +1,12 @@
 // Inline Roman input: transform only the edited range, keeping editor offsets.
+export function inputScript(text) {
+  for (let i = text.length - 1; i >= 0; i--) {
+    if (/[A-Za-z]/.test(text[i])) return 'roman';
+    if (/[\u0904-\u0939\u0958-\u0961]/u.test(text[i])) return 'devanagari';
+  }
+  return null;
+}
+
 export function changedRange(before, after) {
   let start = 0, end = after.length, oldEnd = before.length;
   while (start < oldEnd && start < end && before[start] === after[start]) start++;

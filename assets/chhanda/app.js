@@ -15,19 +15,20 @@ $('boot-retry').addEventListener('click', boot);
 
 async function start() {
   const attempt = bootstrapAttempt++;
-  const [{ METRES, VOCABULARY }, { analyse, rebaseOverrides, splitPadas, suggestWords, digits, weightName }, { pendingWord, changedRange, transliterateEdit }, { problemRanges, createUnderlines }] = await Promise.all([
+  const [{ METRES, VOCABULARY }, { analyse, rebaseOverrides, splitPadas, suggestWords, digits, weightName }, { pendingWord, changedRange, transliterateEdit, inputScript }, { problemRanges, createUnderlines }] = await Promise.all([
     import(`${versioned('./metres.js')}&attempt=${attempt}`), import(`${versioned('./engine.js')}&attempt=${attempt}`),
     import(`${versioned('./inline.js')}&attempt=${attempt}`),
     import(`${versioned('./underlines.js')}&attempt=${attempt}`),
   ]);
   const poem = $('poem');
   const underlines = createUnderlines(poem, $('poem-measure'), $('poem-underlines'));
-  let state = { version: 2, text: poem.value, metre: METRES[0].id, overrides: {}, finalFlexible: true, mode: 'devanagari' };
+  let state = { version: 2, text: poem.value, metre: METRES[0].id, overrides: {}, finalFlexible: true, mode: 'devanagari', automatic: true };
   let parts = [], readings = [], active = 0, composing = false, timer, preview = null;
   let typingEngine = null, typingLoading = false, typingAttempt = 0, dirtyRoman = null;
   let vocabulary = [...VOCABULARY], undo = [], redo = [], suggestionTimer;
   let selection = { start: 0, end: 0 }, storageOK = true;
   const currentMetre = () => METRES.find(m => m.id === state.metre);
+  const romanEnabled = () => state.automatic || state.mode === 'roman';
   const clone = value => JSON.parse(JSON.stringify(value));
   const snapshot = () => ({ ...clone(state), selection: { ...selection } });
 
@@ -45,7 +46,7 @@ async function start() {
     const oldPending = value.version === 1 ? (value.pending || '').slice(0, 2000) : '';
     return { version: 2, text: value.text + (oldPending ? (value.text && !/\s$/.test(value.text) ? ' ' : '') + oldPending : ''),
       metre: value.metre, overrides, finalFlexible: value.finalFlexible,
-      mode: value.mode === 'roman' || oldPending ? 'roman' : 'devanagari' };
+      mode: value.mode === 'roman' || oldPending ? 'roman' : 'devanagari', automatic: value.automatic === true };
   }
 
   function save() {
@@ -72,6 +73,8 @@ async function start() {
   function sync() {
     if (poem.value !== state.text) poem.value = state.text;
     $('roman-mode').checked = state.mode === 'roman';
+    $('roman-mode').dataset.selection = state.automatic ? 'automatic' : 'manual';
+    $('roman-mode').title = state.automatic ? 'अक्षरअनुसार स्वतः छानिन्छ। स्विचबाट आफ्नै रोजाइ राख्न सकिन्छ।' : 'तपाईंले रोज्नुभएको लेखन तरिका';
     $('metre-select').value = state.metre;
     $('final-flexible').checked = state.finalFlexible;
     $('undo').disabled = !undo.length; $('redo').disabled = !redo.length;
@@ -83,23 +86,28 @@ async function start() {
     state = validProject(previous); selection = previous.selection || { start: 0, end: 0 };
     dirtyRoman = null;
     sync(); poem.focus(); poem.setSelectionRange(selection.start, selection.end); render(); save();
+    if (state.mode === 'roman') loadTyping();
   }
   function edited() {
     underlines.clear();
     let updated = poem.value, caret = poem.selectionStart;
-    if (state.mode === 'roman') {
-      const area = changedRange(state.text, updated);
+    const area = changedRange(state.text, updated);
+    const added = updated.slice(area.start, area.end);
+    if (state.automatic) state.mode = inputScript(added) || state.mode;
+    const needsTyping = romanEnabled() && (/[A-Za-z]/.test(added) || dirtyRoman || state.mode === 'roman');
+    if (romanEnabled()) {
       if (typingEngine) {
         const converted = transliterateEdit(state.text, updated, caret, word => typingEngine.candidates(word, 1)[0]?.d || word);
         updated = converted.text; caret = converted.caret;
-      } else dirtyRoman = { start: Math.min(dirtyRoman?.start ?? area.start, area.start),
-        end: Math.max(area.end, (dirtyRoman?.end ?? area.end) + updated.length - state.text.length) };
+      } else if (needsTyping) dirtyRoman = { start: Math.min(dirtyRoman?.start ?? area.start, area.start),
+        end: Math.max(area.end, dirtyRoman ? dirtyRoman.end + updated.length - state.text.length : area.end) };
     }
     state.overrides = preserveReadings(state.text, updated); state.text = updated;
     if (poem.value !== updated) { poem.value = updated; poem.setSelectionRange(caret, caret); }
     selection = { start: caret, end: poem.selectionEnd };
     clearTimeout(timer); timer = setTimeout(() => { render(); save(); }, 75);
     $('undo').disabled = !undo.length; $('redo').disabled = !redo.length;
+    if (needsTyping && !typingEngine) loadTyping();
   }
   function insert(text, startPos = selection.start, endPos = selection.end) {
     action(() => {
@@ -147,13 +155,14 @@ async function start() {
       }
       active = parts.length - 1;
     }
-    const pending = state.mode === 'roman' ? pendingWord(state.text, selection.start) : null;
+    const pending = romanEnabled() ? pendingWord(state.text, selection.start) : null;
     readings = parts.map(p => {
       const localStart = pending ? pending.start - p.start : -1;
       const waiting = localStart >= 0 && pending.end <= p.end;
       const text = waiting ? p.text.slice(0, localStart) + ' '.repeat(pending.end - pending.start) + p.text.slice(pending.end - p.start) : p.text;
       const reading = analyse(text, metre, options(p));
-      return waiting ? { ...reading, status: 'typing' } : reading;
+      const loading = dirtyRoman && !typingEngine && dirtyRoman.start < p.end && dirtyRoman.end > p.start;
+      return waiting || loading ? { ...reading, status: 'typing' } : reading;
     });
     underlines.update(state.text, composing ? [] : problemRanges(state.text, parts, readings));
     const part = parts[active], reading = readings[active];
@@ -305,7 +314,7 @@ async function start() {
     poem.focus(); poem.setSelectionRange(0, 0); poem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   });
   $('clear').addEventListener('click', () => {
-    action(() => { state.text = ''; state.overrides = {}; selection = { start: 0, end: 0 }; dirtyRoman = null; });
+    action(() => { state.text = ''; state.overrides = {}; state.automatic = true; state.mode = 'devanagari'; selection = { start: 0, end: 0 }; dirtyRoman = null; });
     document.querySelector('.ch-file-menu').open = false;
     notice('नयाँ कविता सुरु गर्नुहोस्। फर्काउने बटनले अघिल्लो पाठ फर्काउँछ।'); poem.focus();
   });
@@ -333,7 +342,7 @@ async function start() {
       const imported = validProject(JSON.parse(await file.text()));
       action(() => { state = imported; selection = { start: 0, end: 0 }; });
       document.querySelector('.ch-file-menu').open = false;
-      if (state.mode === 'roman') loadTyping();
+      if (romanEnabled() && /[A-Za-z]/.test(state.text)) loadTyping();
       notice('मस्यौदा खुल्यो। फर्काउने बटनले अघिल्लो पाठ फर्काउँछ।');
     } catch { notice('मस्यौदा खुलेन। यस साधनबाट सुरक्षित गरिएको JSON फाइल छान्नुहोस्। तपाईंको पाठ उस्तै छ।'); }
     event.target.value = '';
@@ -353,7 +362,7 @@ async function start() {
   async function loadTyping() {
     if (typingLoading || typingEngine) return;
     typingLoading = true; $('roman-retry').hidden = true;
-    $('roman-status').textContent = 'टाइप गर्ने साधन तयार हुँदैछ…';
+    $('roman-status').textContent = state.automatic ? '' : 'टाइप गर्ने साधन तयार हुँदैछ…';
     try {
       const [{ createEngine }, rules, autocorrect] = await Promise.all([
         import(`${versioned('../type/engine.js')}&attempt=${typingAttempt++}`),
@@ -363,7 +372,7 @@ async function start() {
       $('chhanda-tool').dataset.typingReady = 'true';
       if (lexicon) typingEngine.setLexicon(lexicon);
       $('roman-status').textContent = '';
-      if (dirtyRoman && state.mode === 'roman') {
+      if (dirtyRoman && romanEnabled()) {
         const converted = transliterateEdit('', state.text, selection.start, word => typingEngine.candidates(word, 1)[0]?.d || word, { range: dirtyRoman });
         state.overrides = preserveReadings(state.text, converted.text); state.text = converted.text;
         selection = { start: converted.caret, end: converted.caret }; dirtyRoman = null;
@@ -374,7 +383,7 @@ async function start() {
       $('roman-status').textContent = 'रोमन साधन खुलेन। नेपालीमा सिधै लेख्न सकिन्छ।'; $('roman-retry').hidden = false;
     } finally { typingLoading = false; }
   }
-  function currentRoman() { return state.mode === 'roman' ? pendingWord(state.text, selection.start) : null; }
+  function currentRoman() { return romanEnabled() ? pendingWord(state.text, selection.start) : null; }
   function romanCandidates() { const word = currentRoman(); return typingEngine && word ? typingEngine.candidates(word.text, 5) : []; }
   function commitRoman(word) {
     const pending = currentRoman();
@@ -383,7 +392,7 @@ async function start() {
     renderRoman();
   }
   function finishRoman() {
-    if (composing || state.mode !== 'roman' || !typingEngine) return;
+    if (composing || !romanEnabled() || !typingEngine) return;
     const pending = currentRoman();
     if (!pending) return;
     const converted = transliterateEdit(state.text, state.text, selection.start, word => typingEngine.candidates(word, 1)[0]?.d || word,
@@ -403,8 +412,7 @@ async function start() {
   }
   $('roman-mode').addEventListener('change', () => {
     const roman = $('roman-mode').checked;
-    if (!roman) finishRoman();
-    action(() => { state.mode = roman ? 'roman' : 'devanagari'; if (!roman) dirtyRoman = null; });
+    action(() => { state.mode = roman ? 'roman' : 'devanagari'; state.automatic = false; if (!roman) dirtyRoman = null; });
     if (roman) loadTyping();
     else { $('roman-status').textContent = ''; $('roman-retry').hidden = true; }
     renderRoman(); poem.focus(); poem.setSelectionRange(selection.start, selection.end);
@@ -425,7 +433,7 @@ async function start() {
   document.addEventListener('focusin', keyboardLayout);
   document.addEventListener('focusout', () => setTimeout(keyboardLayout, 0));
   sync(); render();
-  if (state.mode === 'roman') loadTyping();
+  if (romanEnabled() && /[A-Za-z]/.test(state.text)) loadTyping();
   $('boot-status').hidden = true;
   $('chhanda-tool').dataset.ready = 'true';
   if (!storageOK) notice('मस्यौदा फाइलमा डाउनलोड गरेर सुरक्षित राख्नुहोस्।');
