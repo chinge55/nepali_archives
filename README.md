@@ -6,6 +6,12 @@ See [`mission.MD`](./mission.MD) for the charter and [`CONTRIBUTING.md`](./CONTR
 Report credentials or personal-data exposure privately; see
 [`SECURITY.md`](./SECURITY.md).
 
+The [छन्द लेखन assistant](https://www.nepaliarchives.org/chhanda/) helps writers
+compose in भुजङ्गप्रयात, वसन्ततिलका, and शार्दूलविक्रीडित with syllable-by-syllable
+feedback, pronunciation controls, and word suggestions. Drafts stay in the
+browser. Implementation rules and verification commands are in
+[`chhanda_writer/rules.md`](./chhanda_writer/rules.md).
+
 This repository is **source-only**: it holds the texts, their metadata, and the
 digitization pipeline. The reader website — reading pages, downloads, full-text search,
 the stats page — is **built from these sources by CI on every push** and deployed to

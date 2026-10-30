@@ -51,6 +51,7 @@ footer.site{display:block;border-top:1px solid var(--line);margin-top:3rem;color
 @media(prefers-reduced-motion:reduce){
  .brand-mark::before,.brand-mark::after{-webkit-mask-position:center top;mask-position:center top}
 }
+header.site nav{display:flex;flex-wrap:wrap;align-items:center;max-width:100%;row-gap:.2rem}
 nav a,.themebtn{color:var(--mut);text-decoration:none;font-size:.95rem;font-family:inherit;
  padding:.34rem .6rem;margin-left:.2rem;border-radius:.45rem;background:none;border:0;cursor:pointer}
 nav a:hover,.themebtn:hover{color:var(--accent);background:color-mix(in srgb,var(--accent) 9%,transparent)}

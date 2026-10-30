@@ -128,6 +128,14 @@ author dir == `author.id`; `text.txt` non-empty Devanagari; `rights.status` ∈
   pipeline/build_lexicon.py --install`). JS loads only on `/type/`. Project docs,
   research, evals: `roman_nepali_transliteration/` (plan.md is the roadmap; the
   Aksharantar test split is HELD OUT for evaluation — never feed it to a build).
+- **Chhanda writer** (`write_chhanda_page`): `/chhanda/` — browser-local verse
+  editor with three metre patterns, syllable explanations, explicit final-vowel
+  choices, contextual word suggestions, optional shared Roman typing, and draft
+  exports. Sources: `assets/chhanda/`; rules and tests: `chhanda_writer/`;
+  roadmap: `plans/chhanda-writer.md`. Keep pronunciation choices visible, never
+  alter a draft to force a match, and keep all analysis assets off reader pages.
+  Run `node --test chhanda_writer/tests/engine.mjs` and the browser harness in
+  `chhanda_writer/tests/browser.cjs` when changing this tool.
 
 ## Git / deploy
 

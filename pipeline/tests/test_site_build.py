@@ -66,6 +66,7 @@ class FullBuildTests(unittest.TestCase):
         type_assets.mkdir(parents=True)
         (type_assets / "app.js").write_text("export {};", encoding="utf-8")
         (type_assets / "engine.js").write_text("export {};", encoding="utf-8")
+        shutil.copytree(ROOT / "assets" / "chhanda", self.root / "assets" / "chhanda")
 
         works = []
         for identifier, title, genre, text, collection in [
@@ -193,6 +194,13 @@ class FullBuildTests(unittest.TestCase):
 
     def test_fixture_build_has_pages_search_sitemap_and_valid_links(self):
         context, result = self.run_build("site-fixture")
+        chhanda = (context.site / "chhanda/index.html").read_text(encoding="utf-8")
+        self.assertIn('id="poem"', chhanda)
+        self.assertIn('href="../chhanda/" class=on>छन्द</a>', chhanda)
+        self.assertIn('href="chhanda.css?v=', chhanda)
+        self.assertTrue((context.site / "chhanda/engine.js").is_file())
+        self.assertFalse((context.site / "chhanda/package.json").exists())
+        self.assertNotIn('src="app.js', (context.site / "index.html").read_text(encoding="utf-8"))
         self.assertEqual(result.works, 3)
         self.assertTrue(
             (
@@ -413,6 +421,7 @@ class FullBuildTests(unittest.TestCase):
         context, _ = self.run_build("site-assets")
         home = (context.site / "index.html").read_text(encoding="utf-8")
         typing = (context.site / "type/index.html").read_text(encoding="utf-8")
+        chhanda = (context.site / "chhanda/index.html").read_text(encoding="utf-8")
         patro = (context.site / "patro/index.html").read_text(encoding="utf-8")
         pdf_reader = (
             context.site
@@ -422,6 +431,9 @@ class FullBuildTests(unittest.TestCase):
         self.assertNotIn("pdfjs/pdf.min.js", home)
         self.assertNotIn('id="zg"', home)
         self.assertIn('src="app.js', typing)
+        self.assertIn('src="app.js', chhanda)
+        self.assertNotIn('chhanda.css', home)
+        self.assertNotIn('chhanda.css', typing)
         self.assertIn('id="zg"', patro)
         self.assertIn("2026-08-13", patro)
         self.assertNotIn("2026-08-14 ·", patro)

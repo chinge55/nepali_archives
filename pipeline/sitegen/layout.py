@@ -58,6 +58,7 @@ class PageRenderer:
                 ("home", "", "गृह"),
                 ("works", "authors/", "लेखकहरू"),
                 ("type", "type/", "टाइप"),
+                ("chhanda", "chhanda/", "छन्द"),
                 ("patro", "patro/", "पात्रो"),
                 ("about", "about.html", "बारेमा"),
             ]

@@ -31,6 +31,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
+      - run: node --test chhanda_writer/tests/engine.mjs
       - uses: r-lib/actions/setup-pandoc@v2      # for reader.epub
       - run: pip install fonttools brotli         # for the font subset
       # The repo holds ONLY sources (metadata.json, text.txt, source PDF/HTML). Every

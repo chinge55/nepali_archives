@@ -11,6 +11,7 @@ from .layout import PageRenderer
 from .model import load_catalogue
 from .pages.about import write_about_page
 from .pages.catalogue import write_catalogue_pages
+from .pages.chhanda_tool import write_chhanda_page
 from .pages.ocr import write_ocr_page
 from .pages.patro import write_patro_page
 from .pages.type_tool import write_type_page
@@ -55,6 +56,7 @@ def build(
     write_about_page(context, page, catalogue)
     write_ocr_page(context, page)
     write_type_page(context, page, assets)
+    write_chhanda_page(context, page)
     write_patro_page(context, page, assets)
     stats.build_stats_page(
         catalogue.records,
