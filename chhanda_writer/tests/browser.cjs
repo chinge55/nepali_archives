@@ -71,6 +71,51 @@ const status = page => page.$eval('#analysis-status', node => node.dataset.statu
     await page.click('#example-open'); assert.equal(await page.$eval('#example-dialog', n => n.open), true);
     await page.click('#example-close'); assert.equal(await text(page), 'आफ्नो कविता');
   });
+  await test('soft problem underlines preserve writing and clear after correction or during composition', async page => {
+    const good = 'नटी मेनका छम्छमाउन् अगाडि';
+    const bad = good.replace('नटी', 'नाटी');
+    await write(page, bad);
+    await page.waitForSelector('.ch-problem-underline');
+    const before = await page.$eval('#poem', n => [n.selectionStart, n.selectionEnd, n.value]);
+    assert.equal(await page.$eval('.ch-problem-underline', n => n.dataset.start), '0');
+    assert.equal(await page.$eval('.ch-problem-underline', n => n.dataset.end), '2');
+    assert.equal(await page.$eval('#poem-underlines', n => getComputedStyle(n).pointerEvents), 'none');
+    assert.equal(await page.$eval('#analysis-panel', n => n.open), false);
+    await pause(150);
+    assert.deepEqual(await page.$eval('#poem', n => [n.selectionStart, n.selectionEnd, n.value]), before);
+    assert.equal(await page.evaluate(() => document.activeElement.id), 'poem');
+    await page.screenshot({ path: path.join(temporary, 'soft-underlines.png'), fullPage: true });
+    await page.$eval('#poem', n => n.dispatchEvent(new CompositionEvent('compositionstart', { bubbles: true })));
+    assert.equal(await page.$$('.ch-problem-underline').then(nodes => nodes.length), 0);
+    await page.$eval('#poem', n => n.dispatchEvent(new CompositionEvent('compositionend', { bubbles: true })));
+    await page.waitForSelector('.ch-problem-underline');
+    await write(page, good); assert.equal(await page.$$('.ch-problem-underline').then(nodes => nodes.length), 0);
+    await write(page, 'नटी'); assert.equal(await page.$$('.ch-problem-underline').then(nodes => nodes.length), 0);
+    await page.keyboard.press('Enter'); await page.waitForSelector('.ch-problem-underline');
+    assert.equal(await text(page), 'नटी\n');
+  });
+  await test('underlines follow wrapping and textarea scrolling on a narrow screen', async page => {
+    await page.setViewport({ width: 390, height: 844 });
+    const bad = 'नाटी मेनका छम्छमाउन् अगाडि मनको कविता सुन्दर हिमालको सम्झनामा';
+    const poem = Array(8).fill(bad).join('\n');
+    await write(page, poem);
+    await page.$eval('#poem', n => {
+      n.style.height = n.style.minHeight = n.style.maxHeight = '190px';
+      n.scrollTop = 0; n.dispatchEvent(new Event('scroll'));
+    });
+    await page.waitForSelector('.ch-problem-underline[data-start="0"]'); await pause(100);
+    assert.ok(await page.$eval('#poem-measure', n => n.scrollHeight > 8 * parseFloat(getComputedStyle(n).lineHeight)), 'long lines must actually wrap');
+    const firstTop = await page.$eval('.ch-problem-underline[data-start="0"]', n => parseFloat(n.style.top));
+    await page.$eval('#poem', n => { n.scrollTop = 20; n.dispatchEvent(new Event('scroll')); });
+    await pause(100);
+    const movedTop = await page.$eval('.ch-problem-underline[data-start="0"]', n => parseFloat(n.style.top));
+    assert.ok(Math.abs(firstTop - movedTop - 20) < 1, 'underlines must scroll with the text');
+    assert.equal(await text(page), poem);
+    assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true);
+    await page.evaluate(() => document.documentElement.setAttribute('data-theme', 'dark'));
+    await pause(300);
+    await page.screenshot({ path: path.join(temporary, 'soft-underlines-mobile.png'), fullPage: true });
+  });
   await test('word suggestions preview and insert a valid next word', async page => {
     await page.click('#word-panel > summary');
     await write(page, 'नटी ');

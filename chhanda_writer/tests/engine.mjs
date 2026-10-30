@@ -3,8 +3,34 @@ import { test } from 'node:test';
 import { METRES } from '../../assets/chhanda/metres.js';
 import { scan, analyse, align, splitPadas, suggestWords, rebaseOverrides } from '../../assets/chhanda/engine.js';
 import { changedRange, pendingWord, transliterateEdit } from '../../assets/chhanda/inline.js';
+import { problemRanges } from '../../assets/chhanda/underlines.js';
 
 const bhujanga = METRES[0];
+test('underlines identify the wrong syllable without marking a valid line', () => {
+  const good = splitPadas(bhujanga.example)[0].text;
+  const bad = good.replace('नटी', 'नाटी');
+  const errors = text => { const parts = splitPadas(text); return problemRanges(text, parts, parts.map(p => analyse(p.text, bhujanga))); };
+  assert.deepEqual(errors(good), []);
+  assert.deepEqual(errors(bad), [{ start: 0, end: 2 }]);
+  assert.equal(bad.slice(errors(bad)[0].start, errors(bad)[0].end), 'ना');
+});
+test('underlines wait for a boundary before flagging an otherwise valid unfinished line', () => {
+  const parts = splitPadas('नटी');
+  const reading = analyse(parts[0].text, bhujanga);
+  assert.deepEqual(problemRanges('नटी', parts, [reading]), []);
+  assert.deepEqual(problemRanges('नटी\n', parts, [reading]), [{ start: 1, end: 3 }]);
+  assert.deepEqual(problemRanges('नटी।', parts, [reading]), [{ start: 1, end: 3 }]);
+});
+test('underline ranges retain whole-draft offsets and ignore pending or uncertain readings', () => {
+  const bad = splitPadas(bhujanga.example)[0].text.replace('नटी', 'नाटी');
+  const text = 'नटी\n' + bad, parts = splitPadas(text);
+  const readings = parts.map(p => analyse(p.text, bhujanga));
+  assert.deepEqual(problemRanges(text, parts, readings), [{ start: 1, end: 3 }, { start: 4, end: 6 }]);
+  readings[1].status = 'typing';
+  assert.deepEqual(problemRanges(text, parts, readings), [{ start: 1, end: 3 }]);
+  readings[0].status = 'uncertain';
+  assert.deepEqual(problemRanges(text, parts, readings), []);
+});
 const convert = word => ({ mero: 'मेरो', naam: 'नाम', kabita: 'कविता', ho: 'हो' }[word] || word);
 test('inline Roman conversion commits words at boundaries in the same editor', () => {
   assert.deepEqual(transliterateEdit('mer', 'mero', 4, convert), { text: 'mero', caret: 4 });

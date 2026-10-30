@@ -12,6 +12,11 @@ when Space, Enter, or punctuation is entered. Candidates replace the active
 Roman word at its actual location. Examples open only after an explicit click;
 analysis, pronunciation settings, word search, and help stay collapsed by
 default. Compact feedback supports the current line without opening a lesson.
+Soft red underlines mark metrical problems inside the writer. They are visual
+decorations over the native textarea; they never enter the draft or change its
+caret, selection, or clipboard text. Correct unfinished prefixes remain clear
+while writing; a boundary makes an incomplete पाउ eligible for a mark. Marks
+disappear during keyboard composition and when the reading is uncertain.
 
 The formulae are cross-checked with [छन्दःशिक्षा](https://chhanda.vag.org.np/Examples/).
 General weight rules are described in [Apte's prosody appendix](https://www.sanskrit-lexicon.uni-koeln.de/scans/csldev/csldoc/build/dictionaries/prefaces/ap90app1.html).

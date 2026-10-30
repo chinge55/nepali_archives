@@ -27,8 +27,10 @@ def write_chhanda_page(context, page):
 <label class="ch-mode"><span>देवनागरी</span><input id="roman-mode" type="checkbox" role="switch" aria-label="Roman बाट नेपाली लेख्ने"><span>Roman</span></label>
 </div>
 <label for="poem" class="ch-sr">कविताको पाठ</label>
+<div class="ch-input-wrap">
+<div id="poem-measure" aria-hidden="true"></div><div id="poem-underlines" aria-hidden="true"></div>
 <textarea id="poem" rows="11" spellcheck="false" autocorrect="off" autocapitalize="none"
- placeholder="आफ्नो कविता यहाँ लेख्नुहोस्…" aria-describedby="editor-live-status"></textarea>
+ placeholder="आफ्नो कविता यहाँ लेख्नुहोस्…" aria-describedby="editor-live-status"></textarea></div>
 <div id="roman-choices" class="ch-candidates ch-inline-candidates" role="group" aria-label="नेपाली शब्दका विकल्प" hidden></div>
 <div class="ch-typing-status"><span id="roman-status"></span><button id="roman-retry" type="button" hidden>फेरि प्रयास</button></div>
 <div class="ch-editor-live"><span id="editor-live-status"></span><span id="editor-live-pattern"></span></div>

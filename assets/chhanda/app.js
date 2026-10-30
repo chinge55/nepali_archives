@@ -15,11 +15,13 @@ $('boot-retry').addEventListener('click', boot);
 
 async function start() {
   const attempt = bootstrapAttempt++;
-  const [{ METRES, VOCABULARY }, { analyse, rebaseOverrides, splitPadas, suggestWords, digits, weightName }, { pendingWord, changedRange, transliterateEdit }] = await Promise.all([
+  const [{ METRES, VOCABULARY }, { analyse, rebaseOverrides, splitPadas, suggestWords, digits, weightName }, { pendingWord, changedRange, transliterateEdit }, { problemRanges, createUnderlines }] = await Promise.all([
     import(`${versioned('./metres.js')}&attempt=${attempt}`), import(`${versioned('./engine.js')}&attempt=${attempt}`),
     import(`${versioned('./inline.js')}&attempt=${attempt}`),
+    import(`${versioned('./underlines.js')}&attempt=${attempt}`),
   ]);
   const poem = $('poem');
+  const underlines = createUnderlines(poem, $('poem-measure'), $('poem-underlines'));
   let state = { version: 2, text: poem.value, metre: METRES[0].id, overrides: {}, finalFlexible: true, mode: 'devanagari' };
   let parts = [], readings = [], active = 0, composing = false, timer, preview = null;
   let typingEngine = null, typingLoading = false, typingAttempt = 0, dirtyRoman = null;
@@ -83,6 +85,7 @@ async function start() {
     sync(); poem.focus(); poem.setSelectionRange(selection.start, selection.end); render(); save();
   }
   function edited() {
+    underlines.clear();
     let updated = poem.value, caret = poem.selectionStart;
     if (state.mode === 'roman') {
       const area = changedRange(state.text, updated);
@@ -152,6 +155,7 @@ async function start() {
       const reading = analyse(text, metre, options(p));
       return waiting ? { ...reading, status: 'typing' } : reading;
     });
+    underlines.update(state.text, composing ? [] : problemRanges(state.text, parts, readings));
     const part = parts[active], reading = readings[active];
     $('active-label').textContent = `पाउ ${digits(active + 1)}`;
     const tabs = parts.map((p, i) => {
@@ -268,7 +272,7 @@ async function start() {
       event.preventDefault(); event.inputType === 'historyUndo' ? travel(undo, redo) : travel(redo, undo);
     } else if (!composing && !event.isComposing) remember();
   });
-  poem.addEventListener('compositionstart', () => { remember(); composing = true; });
+  poem.addEventListener('compositionstart', () => { remember(); composing = true; underlines.clear(); });
   poem.addEventListener('compositionend', () => { composing = false; edited(); });
   poem.addEventListener('input', event => { if (!composing && !event.isComposing) edited(); });
   function selectionChanged() {
