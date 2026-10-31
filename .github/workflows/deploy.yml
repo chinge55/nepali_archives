@@ -31,7 +31,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
-      - run: node --test chhanda_writer/tests/engine.mjs
+      - run: node --test chhanda_writer/tests/*.mjs
       - run: python3 pipeline/check_patro_coverage.py
       - uses: r-lib/actions/setup-pandoc@v2      # for reader.epub
       - run: pip install fonttools brotli         # for the font subset

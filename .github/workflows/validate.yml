@@ -31,7 +31,7 @@ jobs:
       - run: python3 pipeline/sanitize_extracted_html.py --check
       # 4) site-generator unit and fixture-build tests
       - run: python3 -m unittest discover -s pipeline/tests
-      - run: node --test chhanda_writer/tests/engine.mjs
+      - run: node --test chhanda_writer/tests/*.mjs
       # 5) dry-run the real build and audit generated links (nothing is deployed)
       - run: python3 pipeline/build_index.py
       - run: python3 pipeline/build_site.py
@@ -53,3 +53,4 @@ jobs:
           CHHANDA_TEST_URL=http://localhost:8262/kavita-lekhan/ NODE_PATH="$RUNNER_TEMP/search-test/node_modules" node chhanda_writer/tests/browser.cjs
           NODE_PATH="$RUNNER_TEMP/search-test/node_modules" node pipeline/tests/browser/patro.cjs
           NODE_PATH="$RUNNER_TEMP/search-test/node_modules" node pipeline/tests/browser/prosody.cjs
+          NODE_PATH="$RUNNER_TEMP/search-test/node_modules" node pipeline/tests/browser/prosody-guides.cjs

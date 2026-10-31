@@ -5,6 +5,7 @@ from pathlib import Path
 from prosody import FREE_VERSE, POETIC_GENRES, published_metres
 
 from ..config import SITE_NAME
+from ..prosody_guides import load_guides, metre_guide
 from ..text import devnum, esc
 
 
@@ -35,6 +36,7 @@ def write_prosody_pages(context, page, assets, catalogue):
     output = context.site / "chhandas"
     output.mkdir(exist_ok=True)
     present = sorted(catalogue.by_metre, key=lambda key: catalogue.metres[key]["name"])
+    guides = load_guides(context.root, catalogue.metres)
     poetic_count = sum((meta.get("genre") or [""])[0] in POETIC_GENRES for _, meta, _ in catalogue.records)
     cards = "".join(
         f'<a class="card" href="{identifier}/"><b>{esc(catalogue.metres[identifier]["name"])}</b>'
@@ -77,12 +79,11 @@ def write_prosody_pages(context, page, assets, catalogue):
                 rows.append(catalogue.work_list_item(work, meta, esc(href), extra_html=extra))
             groups.append(f'<section class="group" data-author="{esc(author)}"><h2>{esc(author)}</h2><ul class="works">{"".join(rows)}</ul></section>')
         options = "".join(f'<option value="{esc(author)}">{esc(author)}</option>' for author in authors)
-        writer = (f'<p><a class="prosody-write" href="../../kavita-lekhan/?metre={esc(metre["writer"])}">यस छन्दमा कविता लेख्नुहोस् →</a></p>'
-                  if metre.get("writer") else "")
         heading = "मुक्तछन्दका कविता" if identifier == FREE_VERSE["id"] else f"{name} छन्दका कविता"
         body = ('<nav class="crumb"><a href="../">← छन्दअनुसार कविता</a></nav>'
                 f'<h1>{esc(heading)}</h1><p class="genre-intro">पूरा कविता वा लामो काव्यभित्रका सम्बन्धित अंश छान्नुहोस्।</p>'
-                f'<p class="lead">{devnum(len(records))} कृति · {devnum(len(authors))} लेखक</p>{writer}'
+                f'<p class="lead">{devnum(len(records))} कृति · {devnum(len(authors))} लेखक</p>'
+                f'{metre_guide(identifier, metre, guides[identifier], catalogue)}'
                 f'<div class="prosody-filters"><label for="metre-author">लेखक <select id="metre-author"><option value="">सबै लेखक</option>{options}</select></label>'
                 '<label class="search-label" for="q">खोज <input id="q" type="search" placeholder="शीर्षक वा पाठमा खोज्नुहोस्" autocomplete="off"></label></div>'
                 '<p class="hint" id="hint"></p>'

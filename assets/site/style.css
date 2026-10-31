@@ -393,7 +393,11 @@ body{transition:background-color .25s ease,color .25s ease}
 .cloud .cw:hover{color:var(--accent);text-decoration:underline}
 ul.trivia{padding-left:1.1rem;margin:.5rem 0}
 ul.trivia li{margin:.45rem 0}
-.statnote{margin-top:1.6rem;font-size:.8rem}
+.chhanda-stats .snums{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;margin-bottom:1.2rem}
+.chhanda-stats .snum b a{color:inherit}
+.chhanda-stats .slab{white-space:normal;overflow-wrap:anywhere}
+.chhanda-stats summary{cursor:pointer;color:var(--link);font-size:.9rem;margin:.7rem 0}
+@media(min-width:600px){.chhanda-stats .snums{grid-template-columns:repeat(4,minmax(0,1fr))}}
 /* stats charts (inline SVG) */
 .chart{width:100%;height:auto;margin:.6rem 0;overflow:visible}
 .chart text{fill:var(--mut);font-family:inherit}
@@ -439,5 +443,20 @@ ul.works .work-intro{clear:both;font-size:.82rem;margin:.2rem 0 .35rem}
 
 /* Reviewed metre tags and static discovery. */
 .prosody-details{font-size:.8rem;color:var(--mut);margin:.7rem 0}.prosody-details summary{cursor:pointer;min-height:36px;align-content:center}.prosody-details p{margin:.3rem 0}.prosody-details ul{padding-left:1.3rem}.prosody-note,.prosody-passages{font-size:.8rem;color:var(--mut)}.prosody-passages{margin:.1rem 0 .8rem}.prosody-filters{display:flex;flex-wrap:wrap;gap:.7rem 1.2rem;margin:1rem 0}.prosody-filters label{display:flex;align-items:center;gap:.5rem;font-size:.8rem;min-width:0}.prosody-filters select,.prosody-filters #q{font:inherit;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:.35rem;padding:.4rem .6rem;min-height:44px;max-width:100%}.prosody-filters .search-label{flex:1;min-width:min(15rem,100%)}.prosody-filters #q{width:100%}.work [id^=chhanda-]{scroll-margin-top:5rem}
+.metre-guide{margin:1rem 0;border-block:1px solid var(--line);font-size:.9rem}
+.metre-guide>summary{cursor:pointer;min-height:44px;align-content:center;padding:.45rem 0;color:var(--link)}
+.metre-guide-body{padding:.2rem 0 1rem;line-height:1.8;overflow-wrap:anywhere}
+.metre-guide-body p{margin:.65rem 0}
+.metre-guide-body h3{font-size:1rem;margin:1.2rem 0 .4rem}
+.metre-guide-body h4{font-size:.9rem;margin:.8rem 0 .4rem}
+.metre-guide-body ul{padding-left:1.3rem;margin:.4rem 0}
+.metre-guide-body li{margin:.35rem 0}
+.metre-guide .metre-pattern{display:flex;flex-wrap:wrap;gap:.2rem .6rem;font-size:.85rem;color:var(--accent);font-variant-numeric:tabular-nums}
+.metre-pattern>span{white-space:nowrap}
+.metre-guide .metre-legend,.metre-guide .metre-citation,.metre-guide .metre-references,.metre-guide .metre-example-note{font-size:.8rem;color:var(--mut)}
+.metre-example{border-top:1px solid var(--line);margin-top:1rem}
+.metre-example blockquote{margin:.6rem 0;padding:.2rem 0 .2rem .85rem;border-left:2px solid var(--accent);white-space:pre-line}
+.metre-reading{font-size:.85rem}
+.reading-divider{color:var(--accent)}
 .work [id^=chhanda-]:target{background:color-mix(in srgb,var(--accent) 12%,transparent);border-radius:.15rem}
 .prosody-filters select,.prosody-filters #q{font-size:1rem}.prosody-filters #q{min-width:0}

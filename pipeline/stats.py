@@ -18,6 +18,7 @@ from pathlib import Path
 from urllib.parse import quote
 
 from devanagari_slug import romanize as _rom
+from prosody import POETIC_GENRES, published_prosody
 
 WORD = re.compile(r"[ऀ-ॣ०-ॿ]+")          # a Devanagari word (matras/viramas incl., danda excl.)
 NUM = re.compile(r"^[०-९]+$")
@@ -74,6 +75,46 @@ def _bars(rows, maxv):
                    f'<span class="sbar"><i style="width:{pct:.1f}%"></i></span>'
                    f'<span class="sval">{_dnum(v)}</span></div>')
     return "".join(out)
+
+
+def _chhanda_section(recs, metres):
+    """Count current, reviewed identifications, once per work in each metre."""
+    poetic = reviewed = mixed = free_verse = 0
+    counts = Counter()
+    for _, meta, text in recs:
+        if not meta.get("genre") or meta["genre"][0] not in POETIC_GENRES:
+            continue
+        poetic += 1
+        annotation = published_prosody(meta, text)
+        if not annotation:
+            continue
+        reviewed += 1
+        if annotation["kind"] == "free-verse":
+            free_verse += 1
+        else:
+            mixed += annotation["kind"] == "mixed"
+            counts.update(set(annotation["metres"]))
+
+    metrics = [(reviewed, "पहिचान भएका कृति", "../chhandas/"),
+               (len(counts), "छन्दका प्रकार", None),
+               (mixed, "मिश्रित छन्दका कृति", None),
+               (free_verse, "मुक्तछन्दका कृति", "../chhandas/muktachhanda/" if free_verse else None)]
+    numbers = ""
+    for value, label, href in metrics:
+        number = f'<a href="{href}">{_dnum(value)}</a>' if href else _dnum(value)
+        numbers += f'<div class="snum"><b>{number}</b><span>{label}</span></div>'
+    rows = [(esc(metres[identifier]["name"]), count, f"../chhandas/{identifier}/")
+            for identifier, count in sorted(counts.items(), key=lambda item: (-item[1], metres[item[0]]["name"]))]
+    maximum = max(counts.values(), default=0)
+    chart = f'<div class="schart">{_bars(rows[:10], maximum)}</div>' if rows else ""
+    if len(rows) > 10:
+        chart += (f'<details><summary>बाँकी {_dnum(len(rows) - 10)} छन्द हेर्नुहोस्</summary>'
+                  f'<div class="schart">{_bars(rows[10:], maximum)}</div></details>')
+    note = '<p class="meta">मिश्रित कृतिलाई त्यसमा पहिचान भएका हरेक छन्दमा गनिएको छ।</p>' if mixed else ""
+    return (f'<section class="chhanda-stats" aria-labelledby="chhanda-stats">'
+            f'<h2 id="chhanda-stats">छन्दको तथ्याङ्क <span class="sh">कृति सङ्ख्या</span></h2>'
+            f'<p class="meta">{_dnum(poetic)} काव्यात्मक कृतिमध्ये {_dnum(reviewed)} कृतिको छन्द पहिचान समीक्षा गरिएको छ।</p>'
+            f'<div class="snums">{numbers}</div>{chart}{note}</section>')
 
 
 # ── chart 1: work-length histogram (the "shape" of the corpus) ──
@@ -157,7 +198,7 @@ def _treemap_svg(tiles, color_of):
     return f'<svg viewBox="0 0 {W} {H}" class="chart tree" role="img" aria-label="अभिलेखको नक्सा">{"".join(s)}</svg>'
 
 
-def build_stats_page(recs, collections, *, page, GENRE, PROSE_GENRES, site, site_name):
+def build_stats_page(recs, collections, *, page, GENRE, PROSE_GENRES, metres, site, site_name):
     total_words = total_lines = prose_w = verse_w = 0
     uniq = set(); aw = defaultdict(int); ak = defaultdict(int)
     gc = Counter(); freq = Counter(); fullfreq = Counter(); wlens = []; years = []
@@ -263,6 +304,8 @@ def build_stats_page(recs, collections, *, page, GENRE, PROSE_GENRES, site, site
 <h2>लेखकहरू <span class="sh">शब्दको हिसाबले</span></h2><div class="schart">{authors_html}</div>
 <h2>विधा <span class="sh">कृति सङ्ख्या</span></h2><div class="schart">{genres_html}</div>
 
+{_chhanda_section(recs, metres)}
+
 <h2>कृतिको लम्बाइ <span class="sh">कति कृति, कति लामा</span></h2>
 {hist_html}
 
@@ -280,10 +323,9 @@ def build_stats_page(recs, collections, *, page, GENRE, PROSE_GENRES, site, site
 {zipf_html}
 
 <h2>रोचक तथ्य</h2><ul class="trivia">{"".join(f"<li>{t}</li>" for t in trivia)}</ul>
-<p class="meta statnote">यी आँकडा OCR/स्क्यान गरिएका पाठमा आधारित र प्रुफरिड हुन बाँकी भएकाले अनुमानित हुन्; हरेक build मा स्वतः गणना हुन्छन्।</p>
 </article>"""
     (site / "stats").mkdir(parents=True, exist_ok=True)
     (site / "stats" / "index.html").write_text(
         page("अभिलेख एक नजरमा — " + site_name, body,
-             desc="नेपाली अभिलेखमा उपलब्ध लेखक, कृति र विधाका तथ्याङ्क हेर्नुहोस्। शब्दको आवृत्ति, धेरै प्रयोग हुने शब्द, पढ्ने समय र लेखकअनुसारका ग्राफबाट सङ्ग्रह चिन्नुहोस्।", css_depth=1, active="", canon="stats/"),
+             desc="नेपाली अभिलेखमा उपलब्ध लेखक, कृति, विधा र छन्दका तथ्याङ्क हेर्नुहोस्। छन्दअनुसार कृति सङ्ख्या, शब्दको आवृत्ति, पढ्ने समय र लेखकअनुसारका ग्राफबाट सङ्ग्रह चिन्नुहोस्।", css_depth=1, active="", canon="stats/"),
         encoding="utf-8")

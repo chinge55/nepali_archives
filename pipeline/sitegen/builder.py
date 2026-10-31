@@ -66,6 +66,7 @@ def build(
         page=page,
         GENRE=GENRE,
         PROSE_GENRES=PROSE_GENRES,
+        metres=catalogue.metres,
         site=context.site,
         site_name=SITE_NAME,
     )

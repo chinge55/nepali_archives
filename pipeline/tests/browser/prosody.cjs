@@ -195,6 +195,7 @@ const pause = ms => new Promise(resolve => setTimeout(resolve, ms));
     console.log('PASS: reviewed free verse and folk metre remain distinct from writer support');
 
     await go('chhandas/malini/');
+    await page.click('.metre-guide > summary');
     await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle0' }), page.click('.prosody-write')]);
     await page.waitForSelector('#chhanda-tool[data-ready=true]');
     assert.equal(new URL(page.url()).pathname, '/kavita-lekhan/');
@@ -203,6 +204,7 @@ const pause = ms => new Promise(resolve => setTimeout(resolve, ms));
     const draft = 'मेरो सुरक्षित मस्यौदा';
     await page.type('#poem', draft); await pause(250);
     await go('chhandas/shardul/');
+    await page.click('.metre-guide > summary');
     await Promise.all([page.waitForNavigation({ waitUntil: 'networkidle0' }), page.click('.prosody-write')]);
     await page.waitForSelector('#chhanda-tool[data-ready=true]');
     assert.equal(await page.$eval('#metre-select', n => n.value), 'shardul');

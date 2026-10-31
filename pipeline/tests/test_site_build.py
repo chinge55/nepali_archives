@@ -225,6 +225,11 @@ class FullBuildTests(unittest.TestCase):
         self.assertIn('data-scope-metre="malini"', browse)
         self.assertIn('id="metre-author"', browse)
         self.assertIn("../../kavita-lekhan/?metre=malini", browse)
+        guide = browse.split('<details class="metre-guide" id="chhanda-parichaya">', 1)[1].split('</details>', 1)[0]
+        self.assertIn("यस छन्दबारे र पढ्ने तरिका", guide)
+        self.assertIn("आठौँ अक्षरपछि यति", guide)
+        self.assertIn("../../kavita-lekhan/?metre=malini", guide)
+        self.assertLess(browse.index('id="chhanda-parichaya"'), browse.index('class="prosody-filters"'))
         search = json.loads((context.site / "search-index.json").read_text())
         self.assertIn("मालिनी", next(w for w in search["works"] if w["t"] == "परीक्षण कविता")["ch"])
         self.assertEqual(find_broken_links(context.site), [])
@@ -235,6 +240,33 @@ class FullBuildTests(unittest.TestCase):
         reader = (context.site / "authors/test_author/verse_work/index.html").read_text()
         self.assertNotIn("छन्द:", reader)
         self.assertFalse((context.site / "chhandas/muktachhanda").exists())
+        stats_page = (context.site / "stats/index.html").read_text()
+        self.assertIn('०</a></b><span>पहिचान भएका कृति</span>', stats_page)
+        self.assertIn('<b>०</b><span>मुक्तछन्दका कृति</span>', stats_page)
+        self.assertNotIn('href="../chhandas/muktachhanda/"', stats_page)
+
+    def test_stats_count_mixed_and_paginated_works_once_and_separate_free_verse(self):
+        self.add_prosody("verse_work", "free-verse", [])
+        work = self.root / "archives/authors/test_author/long_work"
+        first, second = [line for line in (work / "text.txt").read_text().splitlines() if len(line) > 100]
+        self.add_prosody("long_work", "mixed", ["malini", "shardul"], passages=[
+            {"id": "first", "metre": "malini", "label": "पहिलो अंश", "start": first, "end": first},
+            {"id": "second", "metre": "shardul", "label": "दोस्रो अंश", "start": second, "end": second},
+        ])
+        context, _ = self.run_build("site-stats-prosody")
+        stats_page = (context.site / "stats/index.html").read_text()
+        self.assertIn("२ काव्यात्मक कृतिमध्ये २ कृतिको", stats_page)
+        self.assertIn('२</a></b><span>पहिचान भएका कृति</span>', stats_page)
+        self.assertIn('<b>२</b><span>छन्दका प्रकार</span>', stats_page)
+        self.assertIn('<b>१</b><span>मिश्रित छन्दका कृति</span>', stats_page)
+        self.assertIn('href="../chhandas/muktachhanda/">१</a></b><span>मुक्तछन्दका कृति</span>', stats_page)
+        for identifier, name in [("malini", "मालिनी"), ("shardul", "शार्दूलविक्रीडित")]:
+            self.assertIn(f'href="../chhandas/{identifier}/">{name}</a>', stats_page)
+        chhanda_chart = stats_page.split('<section class="chhanda-stats"', 1)[1].split('</section>', 1)[0]
+        self.assertEqual(chhanda_chart.count('<span class="sval">१</span>'), 2)
+        self.assertNotIn("हरेक build मा स्वतः गणना", stats_page)
+        self.assertNotIn('class="meta statnote"', stats_page)
+        self.assertEqual(find_broken_links(context.site), [])
 
     def test_mixed_work_links_to_scoped_passages_without_changing_source_text(self):
         work = self.root / "archives/authors/test_author/long_work"
