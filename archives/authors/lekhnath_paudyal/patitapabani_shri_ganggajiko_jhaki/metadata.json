@@ -56,7 +56,7 @@
   "text": {
     "extraction_method": "ocr",
     "ocr_status": "ocr-done",
-    "proofread": false,
+    "proofread": true,
     "quality": "good"
   },
   "formats": {
@@ -66,13 +66,13 @@
     "epub": "reader.epub"
   },
   "added": "2026-06-07",
-  "updated": "2026-09-09",
+  "updated": "2026-10-31",
   "summary": "गङ्गाजीको पवित्र धार, तीर्थयात्री र पापमोचनको विश्वासलाई झाँकीको रूपमा प्रस्तुत गर्दै कविता भक्तिभावले भरिन्छ।",
   "prosody": {
     "status": "uncertain",
     "kind": "unresolved",
     "metres": [],
-    "text_sha256": "b925705d0925067f5db9e42ff27483a2da5986cee53efc03a516ff2d5464ed43",
+    "text_sha256": "09f155de502bf5469e30ca98fcf3f0bbe49c05a5aa59e306f7b0bf82143e298b",
     "reviewed": "2026-10-31",
     "evidence": [
       {

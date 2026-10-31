@@ -1,0 +1,6813 @@
+{
+  "schema_version": 1,
+  "reviewed": "2026-10-31",
+  "scope": [
+    "archives/authors/devkota/bhumika",
+    "archives/authors/devkota/chhanda_r_lay",
+    "archives/authors/devkota/juba",
+    "archives/authors/devkota/kala_r_jiban",
+    "archives/authors/devkota/kalpana",
+    "archives/authors/devkota/ke_nepal_sano_chha",
+    "archives/authors/devkota/kumbhakarna",
+    "archives/authors/devkota/lekhne_bani",
+    "archives/authors/devkota/manchhejadu",
+    "archives/authors/devkota/meri_shishu",
+    "archives/authors/devkota/pahadi_jiban",
+    "archives/authors/devkota/pandit_lekhanath_paudyalako_bishayama",
+    "archives/authors/devkota/shiksha",
+    "archives/authors/devkota/sukulamathi",
+    "archives/authors/devkota/sunako_bihan",
+    "archives/authors/lekhnath_paudyal/banshidharako_dibya_banshi",
+    "archives/authors/lekhnath_paudyal/basanta_kokil",
+    "archives/authors/lekhnath_paudyal/bigyaanako_moh",
+    "archives/authors/lekhnath_paudyal/patitapabani_shri_ganggajiko_jhaki",
+    "archives/authors/lekhnath_paudyal/sahityako_phutabal",
+    "archives/authors/lekhnath_paudyal/sarasbati_smriti",
+    "archives/authors/lekhnath_paudyal/satya_sandeshaharu"
+  ],
+  "method": "Every page of the preserved primary scan is compared with the transcription and a hash-pinned Sahitya Ras digital witness. The primary edition governs. A second visual review reconciles corrections, paragraph and verse boundaries, notes, numbering and endings before publication. Authentic spelling and wording are retained; editions are not substituted automatically.",
+  "works": [
+    {
+      "path": "archives/authors/devkota/bhumika",
+      "title": "भूमिका",
+      "status": "proofread",
+      "before_sha256": "52acaf953b4321a9a388c3dd303a10783e3734cd27524ca0a6dee25771f8f94d",
+      "after_sha256": "2b97779d2d02cbf29f8817275e63f5d811f89c72e70ade528c5762fb22762aae",
+      "primary_source": {
+        "file": "archives/authors/devkota/bhumika/bhumika.pdf",
+        "sha256": "5249d32401a55f89d458bba7ef6decbf1f3ae110777f2a0e8e69a40a609818e7",
+        "pages_reviewed": [
+          1,
+          2
+        ]
+      },
+      "digital_comparisons": [
+        {
+          "book": "laxmi-nibandhasangraha",
+          "revision": "831ac1e09b4b613c04118f61644aaa20b9940227",
+          "path": "src/EPUB/text/bhumika.xhtml",
+          "sha256": "d0e5165fd40b9a25332d7d3ccb931646f0b814b86800efb4c1e83813abc20ef8"
+        }
+      ],
+      "word_change_groups": 19,
+      "changes": [
+        {
+          "old": "छु-",
+          "new": "छु–"
+        },
+        {
+          "old": "छन्-",
+          "new": "छन्–"
+        },
+        {
+          "old": "वर्णनहरू-",
+          "new": "वर्णनहरू–"
+        },
+        {
+          "old": "पनि-",
+          "new": "पनि–"
+        },
+        {
+          "old": "मानबबुद्धि",
+          "new": "मानवबुद्धि"
+        },
+        {
+          "old": "कबिताशक्ति",
+          "new": "कविताशक्ति"
+        },
+        {
+          "old": "होला-",
+          "new": "होला–"
+        },
+        {
+          "old": "ठूघासफु",
+          "new": "ठ्यासफु"
+        },
+        {
+          "old": "हो-",
+          "new": "हो–"
+        },
+        {
+          "old": "घोरिँदैन-पाठघोकुवा,",
+          "new": "घोरिदैन-पाठघोकुवा,"
+        },
+        {
+          "old": "जगतमा",
+          "new": "जगत्‌मा"
+        },
+        {
+          "old": "बमन-वेदान्त",
+          "new": "वमन-वेदान्त"
+        },
+        {
+          "old": "श्पृङ्गार",
+          "new": "शृङ्गार"
+        },
+        {
+          "old": "कृतकृती",
+          "new": "कुतकुती"
+        },
+        {
+          "old": "थिएँ-",
+          "new": "थिएँ–"
+        },
+        {
+          "old": "गर्दछन्-",
+          "new": "गर्दछन्–"
+        },
+        {
+          "old": "बनाएँ-",
+          "new": "बनाएँ–"
+        },
+        {
+          "old": "चमेना-",
+          "new": "चमेना–"
+        },
+        {
+          "old": "बोलाएँ-",
+          "new": "बोलाएँ–"
+        }
+      ],
+      "correction_summary": [
+        {
+          "old": "मानबबुद्धि",
+          "new": "मानवबुद्धि",
+          "page": 1,
+          "basis": "full primary image comparison, with enlarged enlarged opening and page 2 images for small glyphs"
+        },
+        {
+          "old": "कबिताशक्ति",
+          "new": "कविताशक्ति",
+          "page": 1,
+          "basis": "full primary image comparison, with enlarged enlarged opening and page 2 images for small glyphs"
+        },
+        {
+          "old": "ठूघासफु",
+          "new": "ठ्यासफु",
+          "page": 1,
+          "basis": "full primary image comparison, with enlarged enlarged opening and page 2 images for small glyphs"
+        },
+        {
+          "old": "घोरिँदैन",
+          "new": "घोरिदैन",
+          "page": 2,
+          "basis": "full primary image comparison, with enlarged enlarged opening and page 2 images for small glyphs"
+        },
+        {
+          "old": "जगतमा",
+          "new": "जगत्‌मा",
+          "page": 2,
+          "basis": "full primary image comparison, with enlarged enlarged opening and page 2 images for small glyphs"
+        },
+        {
+          "old": "बमन-वेदान्त",
+          "new": "वमन-वेदान्त",
+          "page": 2,
+          "basis": "full primary image comparison, with enlarged enlarged opening and page 2 images for small glyphs"
+        },
+        {
+          "old": "श्पृङ्गार",
+          "new": "शृङ्गार",
+          "page": 2,
+          "basis": "full primary image comparison, with enlarged enlarged opening and page 2 images for small glyphs"
+        },
+        {
+          "old": "कृतकृती",
+          "new": "कुतकुती",
+          "page": 2,
+          "basis": "full primary image comparison, with enlarged enlarged opening and page 2 images for small glyphs"
+        },
+        {
+          "old": "बनोस् । यस किसिमको",
+          "new": "बनोस् ।\n\nयस किसिमको",
+          "page": 2,
+          "basis": "full primary image comparison, with enlarged enlarged opening and page 2 images for small glyphs"
+        },
+        {
+          "old": "छु- व्यक्तित्वको",
+          "new": "छु– व्यक्तित्वको",
+          "page": 1,
+          "basis": "full primary image comparison, with enlarged enlarged opening and page 2 images for small glyphs"
+        },
+        {
+          "old": "छन्- चित्रात्मक",
+          "new": "छन्– चित्रात्मक",
+          "page": 1,
+          "basis": "full primary image comparison, with enlarged enlarged opening and page 2 images for small glyphs"
+        },
+        {
+          "old": "वर्णनहरू- जहाँ",
+          "new": "वर्णनहरू– जहाँ",
+          "page": 1,
+          "basis": "full primary image comparison, with enlarged enlarged opening and page 2 images for small glyphs"
+        },
+        {
+          "old": "पनि- जहाँ",
+          "new": "पनि– जहाँ",
+          "page": 1,
+          "basis": "full primary image comparison, with enlarged enlarged opening and page 2 images for small glyphs"
+        },
+        {
+          "old": "होला- एक",
+          "new": "होला– एक",
+          "page": 1,
+          "basis": "full primary image comparison, with enlarged enlarged opening and page 2 images for small glyphs"
+        },
+        {
+          "old": "हो- जो",
+          "new": "हो– जो",
+          "page": 2,
+          "basis": "full primary image comparison, with enlarged enlarged opening and page 2 images for small glyphs"
+        },
+        {
+          "old": "थिएँ- त्यस",
+          "new": "थिएँ– त्यस",
+          "page": 2,
+          "basis": "full primary image comparison, with enlarged enlarged opening and page 2 images for small glyphs"
+        },
+        {
+          "old": "गर्दछन्- याने",
+          "new": "गर्दछन्– याने",
+          "page": 2,
+          "basis": "full primary image comparison, with enlarged enlarged opening and page 2 images for small glyphs"
+        },
+        {
+          "old": "बनाएँ- या",
+          "new": "बनाएँ– या",
+          "page": 2,
+          "basis": "full primary image comparison, with enlarged enlarged opening and page 2 images for small glyphs"
+        },
+        {
+          "old": "चमेना- अल्छी",
+          "new": "चमेना– अल्छी",
+          "page": 2,
+          "basis": "full primary image comparison, with enlarged enlarged opening and page 2 images for small glyphs"
+        },
+        {
+          "old": "बोलाएँ- केही",
+          "new": "बोलाएँ– केही",
+          "page": 2,
+          "basis": "full primary image comparison, with enlarged enlarged opening and page 2 images for small glyphs"
+        }
+      ],
+      "retained_edition_differences": [
+        {
+          "page": 1,
+          "primary": "प्रबन्धभित्र",
+          "digital": "प्रबन्धमित्र",
+          "note": "Preserved the clear primary भि, rather than digital मि."
+        },
+        {
+          "page": 2,
+          "primary": "सफल बनेको छु त्यो ता",
+          "digital": "सफल बनेको छु, त्यो ता",
+          "note": "Kept primary punctuation rather than importing the digital comma."
+        }
+      ],
+      "source_anomalies": [
+        {
+          "pages": [
+            1,
+            2
+          ],
+          "note": "Printed period forms मर्दगद्य, अल्सी, साहित्यक, ठर्रोपना, रौंचिरा and छानवीन retained; author signature लक्ष्मीप्रसाद retained. No footnotes or page-bottom literary omissions."
+        }
+      ],
+      "reconciliation": {
+        "reviewed": "2026-10-31",
+        "pages_reviewed": [
+          1,
+          2
+        ],
+        "checks": [
+          "correction spans",
+          "paragraph and verse boundaries",
+          "numbering",
+          "author notes and page bottoms",
+          "complete ending"
+        ]
+      }
+    },
+    {
+      "path": "archives/authors/devkota/chhanda_r_lay",
+      "title": "छन्द र लय",
+      "status": "proofread",
+      "before_sha256": "ad93b44addbad6784627e53336caf6960746556b1bf14298739993e0a7799da3",
+      "after_sha256": "2ee1bb0747df3a38c3237cbe3caba301c8564f639333ead64dc7261d84e05675",
+      "primary_source": {
+        "file": "archives/authors/devkota/chhanda_r_lay/chhanda_r_lay.pdf",
+        "sha256": "968ea0565177357b2dd5432607f4e8d2a8fe42e7fff9d218f79fcdeb1eb6384f",
+        "pages_reviewed": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      "digital_comparisons": [
+        {
+          "book": "laxmi-nibandhasangraha",
+          "revision": "831ac1e09b4b613c04118f61644aaa20b9940227",
+          "path": "src/EPUB/text/chanda-ra-laya.xhtml",
+          "sha256": "514d92b7d73b4d885e44e264cf61cda19a94f41ddc1fc57c0479ad36d8c9c876"
+        }
+      ],
+      "word_change_groups": 71,
+      "changes": [
+        {
+          "old": "आफैँ",
+          "new": "आफैं"
+        },
+        {
+          "old": "लगेझौँ",
+          "new": "लगेझैं"
+        },
+        {
+          "old": "बजाएझै",
+          "new": "बजाएझैं"
+        },
+        {
+          "old": "उहीँ",
+          "new": "उहीं"
+        },
+        {
+          "old": "सुक्ष्म",
+          "new": "सूक्ष्म"
+        },
+        {
+          "old": "सव",
+          "new": "सब"
+        },
+        {
+          "old": "देखेँ",
+          "new": "देखें"
+        },
+        {
+          "old": "कलाभवबनअगाडि",
+          "new": "कलाभवनअगाडि"
+        },
+        {
+          "old": "ढुकढुकीबिनाको",
+          "new": "ढुकढुकीविनाको"
+        },
+        {
+          "old": "अंध्यारैमा",
+          "new": "अँध्यारैमा"
+        },
+        {
+          "old": "लेट्तछु,",
+          "new": "लेट्तछु"
+        },
+        {
+          "old": "हृयदभावना",
+          "new": "हृदयभावना"
+        },
+        {
+          "old": "झै",
+          "new": "झैं"
+        },
+        {
+          "old": "सहसरजनीको",
+          "new": "सहस्ररजनीको"
+        },
+        {
+          "old": "एँडी",
+          "new": "ऐंडी"
+        },
+        {
+          "old": "च्‌प",
+          "new": "चूप"
+        },
+        {
+          "old": "बसन्तसँग",
+          "new": "वसन्तसँग"
+        },
+        {
+          "old": "लम्बिदै",
+          "new": "लम्बिंदै"
+        },
+        {
+          "old": "हृयदाकाशमा",
+          "new": "हृदयाकाशमा"
+        },
+        {
+          "old": "झै",
+          "new": "झैं"
+        },
+        {
+          "old": "खोज्छु",
+          "new": "खोज्छु,"
+        },
+        {
+          "old": "स्वातिबुँद",
+          "new": "स्वातिबूँद"
+        },
+        {
+          "old": "पिउँछौँ",
+          "new": "पिउँछौं"
+        },
+        {
+          "old": "देख्नछौं",
+          "new": "देख्तछौं"
+        },
+        {
+          "old": "निस्कँदैनन्",
+          "new": "निस्कदैनन्"
+        },
+        {
+          "old": "उद्दछन्",
+          "new": "उठ्दछन्"
+        },
+        {
+          "old": "झै झूनझुनाउँछन्",
+          "new": "झैं झुनझुनाउँछन्"
+        },
+        {
+          "old": "ऐम्य",
+          "new": "ऐक्य"
+        },
+        {
+          "old": "मानबप्रेरणाबाट निस्कंदो",
+          "new": "मानवप्रेरणाबाट निस्कँदो"
+        },
+        {
+          "old": "ओर्लेनु",
+          "new": "ओर्लनु"
+        },
+        {
+          "old": "बुभन",
+          "new": "बुझ्न"
+        },
+        {
+          "old": "। हुन्",
+          "new": ""
+        },
+        {
+          "old": "बेदान्ती",
+          "new": "वेदान्ती"
+        },
+        {
+          "old": "",
+          "new": "लेख्तालेख्तै"
+        },
+        {
+          "old": "कै",
+          "new": "के"
+        },
+        {
+          "old": "छ",
+          "new": "छ;"
+        },
+        {
+          "old": "छ",
+          "new": "छ;"
+        },
+        {
+          "old": "ऐसेलु",
+          "new": "ऐंसेलु"
+        },
+        {
+          "old": "च्याँष्ठिनुमा,",
+          "new": "च्याँठ्ठिनुमा,"
+        },
+        {
+          "old": "बुभनुपर्छ,",
+          "new": "बुझ्नुपर्छ,"
+        },
+        {
+          "old": "चाहन्छ",
+          "new": "चाहन्छु"
+        },
+        {
+          "old": "गर्दछ",
+          "new": "गर्दछु"
+        },
+        {
+          "old": "रङ्गि ओर्लिरहेछः",
+          "new": "रङ्गिंदै ओर्लिरहेछ;"
+        },
+        {
+          "old": "कारणका,",
+          "new": "कारणका"
+        },
+        {
+          "old": "हृदयवाटै",
+          "new": "हृदयबाटै"
+        },
+        {
+          "old": "जन्मेहुँला",
+          "new": "जन्मेंहुँला"
+        },
+        {
+          "old": "सररर",
+          "new": "सररर्र"
+        },
+        {
+          "old": "पगिलएजस्तो",
+          "new": "पग्लिएजस्तो"
+        },
+        {
+          "old": "नुभदछु छु",
+          "new": "बुझ्दछु,"
+        },
+        {
+          "old": "अङ्गमाल",
+          "new": "अङ्कमाल गर्दै"
+        },
+        {
+          "old": "बसिँदा जन्मेहुँला–यी",
+          "new": "बर्सिंदा जन्मेंहुँला–यी"
+        },
+        {
+          "old": "बाहन",
+          "new": "वाहन"
+        },
+        {
+          "old": "पाउँछै",
+          "new": "पाउँछे"
+        },
+        {
+          "old": "दिवा",
+          "new": "दिव्य"
+        },
+        {
+          "old": "नाघेझैँ",
+          "new": "नाघेझैं"
+        },
+        {
+          "old": "गुञ्जेझैँ",
+          "new": "गुञ्जेझैं"
+        },
+        {
+          "old": "थकन्छन्",
+          "new": "थर्कन्छन्"
+        },
+        {
+          "old": "'कहकह'",
+          "new": "'कुहुकुहू'"
+        },
+        {
+          "old": "हुनान",
+          "new": "हुनाले"
+        },
+        {
+          "old": "हावालाइ",
+          "new": "हावालाई"
+        },
+        {
+          "old": "छैनन्,",
+          "new": "छैनन्;"
+        },
+        {
+          "old": "मानौं",
+          "new": "मानौँ"
+        },
+        {
+          "old": "कल्पतालाई",
+          "new": "कल्पनालाई"
+        },
+        {
+          "old": "बार्णिक",
+          "new": "वार्णिक"
+        },
+        {
+          "old": "र",
+          "new": "छ,"
+        },
+        {
+          "old": "वडा",
+          "new": "कडा"
+        },
+        {
+          "old": "छन्दचाहिँ",
+          "new": "छन्दचाहिं"
+        },
+        {
+          "old": "देखिँदै",
+          "new": "देखिंदै"
+        },
+        {
+          "old": "लयबिना",
+          "new": "लयविना"
+        },
+        {
+          "old": "बार्णिक",
+          "new": "वार्णिक"
+        },
+        {
+          "old": "पखेँटा",
+          "new": "पखेटा"
+        }
+      ],
+      "correction_summary": [
+        {
+          "primary_pages": [
+            1,
+            2
+          ],
+          "printed_folios": [
+            99,
+            100
+          ],
+          "summary": "Corrected nasal/vowel and glyph defects such as आफैँ→आफैं, लगेझौँ→लगेझैं, सुक्ष्म→सूक्ष्म and सव→सब; preserved the original metre terms."
+        },
+        {
+          "primary_pages": [
+            3
+          ],
+          "printed_folios": [
+            101
+          ],
+          "summary": "Recovered कलाभवन, ढुकढुकीविनाको, अँध्यारैमा, हृदयभावना, सहस्ररजनीको, ऐंडी and चूप. The shared digital हृयदभावना is also corrupt; the scan reads हृदयभावना."
+        },
+        {
+          "primary_pages": [
+            4
+          ],
+          "printed_folios": [
+            102
+          ],
+          "summary": "Recovered वसन्तसँग, लम्बिंदै, स्वातिबूँद, देख्तछौं, उठ्दछन् and हृदयाकाशमा, with the printed comma after खोज्छु. Kept the original exclamation after तरङ्गमा."
+        },
+        {
+          "primary_pages": [
+            5
+          ],
+          "printed_folios": [
+            103
+          ],
+          "summary": "Recovered ऐक्य, मानवप्रेरणाबाट, ओर्लनु, बुझ्न, वेदान्ती and the omitted लेख्तालेख्तै. Removed a spurious duplicated हुन् and danda."
+        },
+        {
+          "primary_pages": [
+            6
+          ],
+          "printed_folios": [
+            104
+          ],
+          "summary": "Recovered two semicolons, ऐंसेलु, च्याँठ्ठिनुमा, first-person चाहन्छु/गर्दछु, रङ्गिंदै, जन्मेंहुँला, सररर्र, पग्लिएजस्तो, बुझ्दछु, अङ्कमाल गर्दै and बर्सिंदा. The difficult passage was checked against an enlarged source image."
+        },
+        {
+          "primary_pages": [
+            7
+          ],
+          "printed_folios": [
+            105
+          ],
+          "summary": "Recovered वाहन, पाउँछे, दिव्य, थर्कन्छन्, कुहुकुहू, हुनाले, कल्पनालाई and वार्णिक. Restored मधुर बन्धन छ, तापसपना कडा गाम्भीर्य. Independent reading confirms faint हुनाले, final long ऊ in कुहुकुहू and literal जव."
+        },
+        {
+          "primary_pages": [
+            8
+          ],
+          "printed_folios": [
+            106
+          ],
+          "summary": "Corrected printed forms देखिंदै, लयविना, वार्णिक and unnasalized पखेटा. Essay ending and blank page bottom checked."
+        }
+      ],
+      "retained_edition_differences": [
+        {
+          "primary_page": 2,
+          "primary": "हिंडाउँदा / हुँदारहेछन् / पाउँदछु र",
+          "sahityaras": "हिँडाउँदा / हँदारहेछन् / पाउँदछु; र",
+          "reason": "Primary nasal spelling, उ vowel and punctuation govern."
+        },
+        {
+          "primary_page": 3,
+          "primary": "ढुकढुकीविनाको / समुद्रकै / हृदयभावना",
+          "sahityaras": "ढुकढुकीबिनाकाे / समुव्रकै / हृयदभावना",
+          "reason": "The primary image confirms वि; digital corruption was not imported."
+        },
+        {
+          "primary_page": 4,
+          "primary": "हुने / तरङ्गमा ! / हृदयाकाशमा / निदाउँछु संसारबाट / अनन्तका",
+          "sahityaras": "हने / तरङ्गमा । / हृयदाकाशमा / निदाउँंछु, संसारबाट / अतन्तका",
+          "reason": "Original vowels, letter order and punctuation verified."
+        },
+        {
+          "primary_page": 5,
+          "primary": "हुँदैनन्",
+          "sahityaras": "हँदैनन्",
+          "reason": "Printed उ vowel retained."
+        },
+        {
+          "primary_page": 6,
+          "primary": "उठेहुँला / रङ्गिंदै / भएझैं / बर्सिंदा जन्मेंहुँला",
+          "sahityaras": "उठेहँला / रङ्गिदै / भएझैँ / बर्सिंदा जन्मेहुँला",
+          "reason": "Source vowel/nasal forms verified; no normalization."
+        },
+        {
+          "primary_page": 7,
+          "primary": "छन् छन् त / जव / 'कुहुकुहू' / हुनाले / आफैं",
+          "sahityaras": "छन् छन त / जब / 'कुहुकुह' / हनाले / आफै",
+          "reason": "Primary forms retained after independent enlarged-image comparison."
+        }
+      ],
+      "source_anomalies": [
+        {
+          "primary_page": 1,
+          "text": "उहाँ रगणको व्यायाम",
+          "action": "Preserved unusual printed उहाँ; no contextual rewrite."
+        },
+        {
+          "primary_page": 5,
+          "text": "कला जन्मिन्छन्",
+          "action": "Preserved original agreement."
+        },
+        {
+          "primary_page": 7,
+          "text": "ढुङ्गा छन् छन् त",
+          "action": "Printed repetition retained; both छन् have final virama."
+        },
+        {
+          "primary_page": 7,
+          "text": "मधुर बन्धन छ, तापसपना कडा गाम्भीर्य",
+          "action": "Faithfully recovered the terse printed wording; no supplied verb or punctuation."
+        }
+      ],
+      "reconciliation": {
+        "reviewed": "2026-10-31",
+        "pages_reviewed": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "checks": [
+          "correction spans",
+          "paragraph and verse boundaries",
+          "numbering",
+          "author notes and page bottoms",
+          "complete ending"
+        ]
+      }
+    },
+    {
+      "path": "archives/authors/devkota/juba",
+      "title": "जूवा",
+      "status": "proofread",
+      "before_sha256": "9cd95d01600d575b0b5726e12cd6577696bdbb598c4062926d6ca00b3e6a25a9",
+      "after_sha256": "bc6ecedff1eb440cffaa91a00c10ce674ab0c33ff416814e7ce2c7959a5f4668",
+      "primary_source": {
+        "file": "archives/authors/devkota/juba/juba.pdf",
+        "sha256": "87ad341a76a7447c84178ec87defa86f1b8ddaf285585ad4fb7270b697de397e",
+        "pages_reviewed": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ]
+      },
+      "digital_comparisons": [
+        {
+          "book": "laxmi-nibandhasangraha",
+          "revision": "831ac1e09b4b613c04118f61644aaa20b9940227",
+          "path": "src/EPUB/text/juwa.xhtml",
+          "sha256": "70c6314ab96c39fea8cd29c291503ca41706d75c0523fcb50caddd19666ff5be"
+        }
+      ],
+      "word_change_groups": 123,
+      "changes": [
+        {
+          "old": "त्यो-",
+          "new": "त्यो–"
+        },
+        {
+          "old": "मारा'-",
+          "new": "मारा'–"
+        },
+        {
+          "old": "दुबैले",
+          "new": "दुवैले"
+        },
+        {
+          "old": "दुबैलाई",
+          "new": "दुवैलाई"
+        },
+        {
+          "old": "कइरोले",
+          "new": "कुइरोले"
+        },
+        {
+          "old": "डथाङहरू",
+          "new": "ड्याङहरू"
+        },
+        {
+          "old": "क",
+          "new": "ऊ"
+        },
+        {
+          "old": "बताइदेङ",
+          "new": "बताइदेऊ"
+        },
+        {
+          "old": "यायार्थिकता",
+          "new": "याथार्थिकता"
+        },
+        {
+          "old": "मानब-समझ",
+          "new": "मानव-समझ"
+        },
+        {
+          "old": "राखेझै",
+          "new": "राखेझैं"
+        },
+        {
+          "old": "भन्नै",
+          "new": "भन्ने"
+        },
+        {
+          "old": "करै",
+          "new": "कुरै"
+        },
+        {
+          "old": "भझिमिकमा",
+          "new": "झिमिकमा"
+        },
+        {
+          "old": "कपाले",
+          "new": "कृपाले"
+        },
+        {
+          "old": "नहनु",
+          "new": "नहुनु"
+        },
+        {
+          "old": "बेलाको",
+          "new": "वेलाको"
+        },
+        {
+          "old": "ठहत्याइएका",
+          "new": "ठहर्‍याइएका"
+        },
+        {
+          "old": "सकिदैन",
+          "new": "सकिंदैन"
+        },
+        {
+          "old": "मृदु",
+          "new": "मुटु"
+        },
+        {
+          "old": "बास्तविक",
+          "new": "वास्तविक"
+        },
+        {
+          "old": "झैँ",
+          "new": "झैं"
+        },
+        {
+          "old": "क्षण-क्षणामा",
+          "new": "क्षण-क्षणमा"
+        },
+        {
+          "old": "बुझेँ,",
+          "new": "बुझें,"
+        },
+        {
+          "old": "लख्तछु",
+          "new": "लेख्तछु"
+        },
+        {
+          "old": "भन्नै",
+          "new": "भन्ने"
+        },
+        {
+          "old": "जरैतिक",
+          "new": "नैतिक"
+        },
+        {
+          "old": "\"छि,",
+          "new": "'छि,"
+        },
+        {
+          "old": "तबरले",
+          "new": "तवरले"
+        },
+        {
+          "old": "मनौबैज्ञानिकलाई",
+          "new": "मनोवैज्ञानिकलाई"
+        },
+        {
+          "old": "हँसिरहेका",
+          "new": "हाँसिरहेका"
+        },
+        {
+          "old": "घसेर,",
+          "new": "धसेर,"
+        },
+        {
+          "old": "प्रकतिका",
+          "new": "प्रकृतिका"
+        },
+        {
+          "old": "क",
+          "new": "ऊ"
+        },
+        {
+          "old": "क",
+          "new": "ऊ"
+        },
+        {
+          "old": "बर्दालन्छ, फोकाझोकी",
+          "new": "बदलिन्छ, झोकाझोकी"
+        },
+        {
+          "old": "सधैँ",
+          "new": "सधैं"
+        },
+        {
+          "old": "मदैछ",
+          "new": "मर्दैछ"
+        },
+        {
+          "old": "भन्दछन्-जस्तो",
+          "new": "भन्दछन्–जस्तो"
+        },
+        {
+          "old": "चण्ड्",
+          "new": "चण्डू"
+        },
+        {
+          "old": "जूबा",
+          "new": "जूवा"
+        },
+        {
+          "old": "मतलब",
+          "new": "मतलव"
+        },
+        {
+          "old": "छ!",
+          "new": "छ ।"
+        },
+        {
+          "old": "हुकुमले",
+          "new": "हुकूमले"
+        },
+        {
+          "old": "ठुङ्गो",
+          "new": "टुङ्गो"
+        },
+        {
+          "old": "हन",
+          "new": "हुन"
+        },
+        {
+          "old": "जुबाडेका",
+          "new": "जुवाडेका"
+        },
+        {
+          "old": "कोडी",
+          "new": "कौडी"
+        },
+        {
+          "old": "मुट्टाको",
+          "new": "मुद्दाको"
+        },
+        {
+          "old": "ढल्काउँ",
+          "new": "ढल्काऊँ"
+        },
+        {
+          "old": "ढल्काञँ",
+          "new": "ढल्काऊँ"
+        },
+        {
+          "old": "ढले",
+          "new": "ढङ्गले"
+        },
+        {
+          "old": "कोौडीहरू",
+          "new": "कौडीहरू"
+        },
+        {
+          "old": "जूबाको",
+          "new": "जूवाको"
+        },
+        {
+          "old": "घेरै",
+          "new": "धेरै"
+        },
+        {
+          "old": "सकियो",
+          "new": "सकियोस्"
+        },
+        {
+          "old": "जूबा",
+          "new": "जूवा"
+        },
+        {
+          "old": "लक्कहरूले मज्ञाको",
+          "new": "लक्कुहरूले मजाको"
+        },
+        {
+          "old": "दिन्",
+          "new": "दिऊन्"
+        },
+        {
+          "old": "नदिञन्",
+          "new": "नदिऊन्"
+        },
+        {
+          "old": "क",
+          "new": "ऊ"
+        },
+        {
+          "old": "क",
+          "new": "ऊ"
+        },
+        {
+          "old": "हन्छ",
+          "new": "हुन्छ"
+        },
+        {
+          "old": "क",
+          "new": "ऊ"
+        },
+        {
+          "old": "बदलिदैन,",
+          "new": "बदलिंदैन,"
+        },
+        {
+          "old": "क",
+          "new": "ऊ"
+        },
+        {
+          "old": "क",
+          "new": "ऊ"
+        },
+        {
+          "old": "लिन्छ",
+          "new": "लिन्छ,"
+        },
+        {
+          "old": "क",
+          "new": "ऊ"
+        },
+        {
+          "old": "लडाईँ",
+          "new": "लडाइँ"
+        },
+        {
+          "old": "मसुक्क",
+          "new": "मुसुक्क"
+        },
+        {
+          "old": "क",
+          "new": "ऊ"
+        },
+        {
+          "old": "क्रषि",
+          "new": "ऋषि"
+        },
+        {
+          "old": "क",
+          "new": "ऊ"
+        },
+        {
+          "old": "नखेल्नु",
+          "new": "नखेल्नू"
+        },
+        {
+          "old": "बोके",
+          "new": "बोक्रे"
+        },
+        {
+          "old": "त्यस्तालाँडि",
+          "new": "त्यस्तालाई"
+        },
+        {
+          "old": "!'",
+          "new": "!"
+        },
+        {
+          "old": "अण्डा",
+          "new": "घण्टा"
+        },
+        {
+          "old": "!?",
+          "new": "?"
+        },
+        {
+          "old": "कहिरहने",
+          "new": "कुहिरहने"
+        },
+        {
+          "old": "दुनियामा",
+          "new": "दुनियाँमा"
+        },
+        {
+          "old": "लगाउँ",
+          "new": "लगाऊँ"
+        },
+        {
+          "old": "प्रशसनीय",
+          "new": "प्रशंसनीय"
+        },
+        {
+          "old": "ग्य्राजुएटहरू",
+          "new": "ग्र्याजुएटहरू"
+        },
+        {
+          "old": "लगाउन्",
+          "new": "लगाऊन्"
+        },
+        {
+          "old": "आउन्",
+          "new": "आऊन्"
+        },
+        {
+          "old": "पौडचालले",
+          "new": "पौड्यालले"
+        },
+        {
+          "old": "जवा",
+          "new": "जूवा"
+        },
+        {
+          "old": "आत्म-बिरोधजस्तो",
+          "new": "आत्म-विरोधजस्तो"
+        },
+        {
+          "old": "गर्ने",
+          "new": "गर्न"
+        },
+        {
+          "old": "देख्दछ",
+          "new": "देख्दछु"
+        },
+        {
+          "old": "जुवा",
+          "new": "जूवा"
+        },
+        {
+          "old": "छद्द",
+          "new": "छट्टू"
+        },
+        {
+          "old": "क्रेतले",
+          "new": "कुरेतले"
+        },
+        {
+          "old": "छोडछन्",
+          "new": "छोड्छन्"
+        },
+        {
+          "old": "मुटका",
+          "new": "मुटुका"
+        },
+        {
+          "old": "गरेँ",
+          "new": "गरें"
+        },
+        {
+          "old": "।",
+          "new": ""
+        },
+        {
+          "old": "छेँदैछन्,",
+          "new": "छँदैछन्,"
+        },
+        {
+          "old": "पो",
+          "new": "यो"
+        },
+        {
+          "old": "भन्नै",
+          "new": "भन्ने"
+        },
+        {
+          "old": "टुप्पाले",
+          "new": "टुप्पोले"
+        },
+        {
+          "old": "बल्भियो",
+          "new": "बल्झियो"
+        },
+        {
+          "old": "बल्भिएपछि",
+          "new": "बल्झिएपछि"
+        },
+        {
+          "old": "नरन्केक",
+          "new": "नरन्केऊ"
+        },
+        {
+          "old": "यपनी",
+          "new": "थपनी"
+        },
+        {
+          "old": "पन्यो,",
+          "new": "पर्‍यो,"
+        },
+        {
+          "old": "ठुलो",
+          "new": "ठूलो"
+        },
+        {
+          "old": "डिट्टाङ्की",
+          "new": "डिठ्ठाङ्गी"
+        },
+        {
+          "old": "अङ्डाले",
+          "new": "अड्डाले"
+        },
+        {
+          "old": "बटाउँदै",
+          "new": "बटार्दै"
+        },
+        {
+          "old": "कमारीचोक",
+          "new": "कुमारीचोक"
+        },
+        {
+          "old": "खौँदिलो",
+          "new": "खँदिलो"
+        },
+        {
+          "old": "बन्दरमुट्ठे",
+          "new": "बन्दरमुठ्ठे"
+        },
+        {
+          "old": "खसालिदेक",
+          "new": "खसालिदेऊ"
+        },
+        {
+          "old": "सित्तै",
+          "new": "सित्तैं"
+        },
+        {
+          "old": "बदुल्लिन्छन्",
+          "new": "बटुलिन्छन्"
+        },
+        {
+          "old": "जुवाको",
+          "new": "जूवाको"
+        },
+        {
+          "old": "ट्धुनिसिया",
+          "new": "ट्यूनिसिया"
+        },
+        {
+          "old": "भइदिए",
+          "new": "गरिन सकिनु"
+        },
+        {
+          "old": "",
+          "new": "चतुरलाई"
+        },
+        {
+          "old": "नाध्दछ",
+          "new": "नाघ्दछ"
+        }
+      ],
+      "correction_summary": [
+        {
+          "pages": [
+            1,
+            2,
+            3
+          ],
+          "note": "Restored OCR-damaged words and conjugations, including कुइरोले, ड्याङहरू, ऊ, बताइदेऊ, याथार्थिकता, कृपाले, नहुनु, मुटु, नैतिक and लेख्तछु."
+        },
+        {
+          "pages": [
+            4,
+            5,
+            6
+          ],
+          "note": "Corrected multiple ऊ→क misrecognitions, मर्दैछ, चण्डू, जूवा/जूवाको, कौडी, मुद्दाको, ढल्काऊँ, ढङ्गले, धेरै, सकियोस्, लक्कुहरूले, मजाको, दिऊन्, नदिऊन्, हुन्छ, मुसुक्क, ऋषि and बोक्रे."
+        },
+        {
+          "pages": [
+            7,
+            8
+          ],
+          "note": "Corrected त्यस्तालाई, घण्टा (misread अण्डा), कुहिरहने, दुनियाँमा, लगाऊँ, प्रशंसनीय, ग्र्याजुएटहरू, पौड्यालले, छट्टू, कुरेतले, छोड्छन् and मुटुका; restored the paragraph continuation across pages 6–7 and the printed new paragraph before चार-पाँच जना."
+        },
+        {
+          "pages": [
+            9,
+            10
+          ],
+          "note": "Corrected छँदैछन्, यो, टुप्पोले, बल्झियो/बल्झिएपछि, नरन्केऊ, थपनी, पर्‍यो, ठूलो, डिठ्ठाङ्गी, अड्डाले, बटार्दै, कुमारीचोक, खँदिलो, बन्दरमुठ्ठे, खसालिदेऊ, बटुलिन्छन् and ट्यूनिसिया."
+        },
+        {
+          "pages": [
+            11
+          ],
+          "note": "Recovered the scan wording गरिन सकिनु in place of भइदिए, restored omitted चतुरलाई, and corrected नाघ्दछ."
+        }
+      ],
+      "retained_edition_differences": [
+        {
+          "page": 1,
+          "primary": "गजबको",
+          "digital": "जगबको",
+          "action": "Retained the primary reading; the digital witness itself has a transposition."
+        },
+        {
+          "page": 2,
+          "primary": "पस्योभने",
+          "digital": "पर्‍योभने",
+          "action": "Retained the clearly printed primary wording."
+        },
+        {
+          "pages": [
+            1,
+            3,
+            4,
+            5,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "primary_examples": [
+            "उक्साइ-गडाइनजीक",
+            "चीज",
+            "घनिष्ठ",
+            "गरीब",
+            "तीखा",
+            "बेहान-बेलुका",
+            "राती",
+            "जुवालाई",
+            "ठहराइएका",
+            "नीला",
+            "यहीं",
+            "रूपमा",
+            "कृत्वा",
+            "गरीकन",
+            "जङ्गलीहरूका",
+            "चालीस-पचास",
+            "महीनाभरि",
+            "तीव्र",
+            "बेहोशीसँग",
+            "आफैँ",
+            "छाडेर",
+            "गरून्",
+            "तारीफ",
+            "चौपट",
+            "जमीन",
+            "इञ्जिनीयर",
+            "उपयोग",
+            "बीस",
+            "कठाङ्ग्रिँदो",
+            "तीतो",
+            "खरीद",
+            "मोज लिनु",
+            "क्रीडाहरूभन्दा",
+            "नतीजा",
+            "खोजेको",
+            "जुवाडे"
+          ],
+          "action": "Preserved the primary edition rather than normalizing to differing digital spelling, punctuation or wording."
+        }
+      ],
+      "source_anomalies": [
+        {
+          "pages": [
+            1,
+            2,
+            6,
+            11
+          ],
+          "note": "Preserved printed old or unusual forms such as जस्लाई, पक्डन, बजने, नियमलाई नाघ्नेपना न जीवन हो, चित्रकार र लेखहरू, क्याँट लक्कुहरूले, साँपा and हरल; these are not invented OCR repairs."
+        },
+        {
+          "pages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "note": "No author footnotes or missing literary page-bottom material found. Running folios and पुस्तक/जूवा furniture are excluded."
+        }
+      ],
+      "reconciliation": {
+        "reviewed": "2026-10-31",
+        "pages_reviewed": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "checks": [
+          "correction spans",
+          "paragraph and verse boundaries",
+          "numbering",
+          "author notes and page bottoms",
+          "complete ending"
+        ]
+      }
+    },
+    {
+      "path": "archives/authors/devkota/kala_r_jiban",
+      "title": "कला र जीवन",
+      "status": "proofread",
+      "before_sha256": "1fcf777f39fec0881cd60dff071ae524d51a59f309f85e78ea2af7d2f0cf28f5",
+      "after_sha256": "0ca1917b3df67aa04ce8ad939fc37d98a91da60837fa19b45ef56f264e14b79b",
+      "primary_source": {
+        "file": "archives/authors/devkota/kala_r_jiban/kala_r_jiban.pdf",
+        "sha256": "6246c647b4a0113dbeb1fc5392729535988cb0510fc5d1642022917d3fe27121",
+        "pages_reviewed": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ]
+      },
+      "digital_comparisons": [
+        {
+          "book": "laxmi-nibandhasangraha",
+          "revision": "831ac1e09b4b613c04118f61644aaa20b9940227",
+          "path": "src/EPUB/text/kala-ra-jivan.xhtml",
+          "sha256": "321b9877fdf72b4750bdc126b2ed9e73313f503c4b5b1c350b722b679e718520"
+        }
+      ],
+      "word_change_groups": 70,
+      "changes": [
+        {
+          "old": "\"सुन्दर\"",
+          "new": "'सुन्दर'"
+        },
+        {
+          "old": "",
+          "new": "सौन्दर्य"
+        },
+        {
+          "old": "जस्तो-",
+          "new": "जस्तो–"
+        },
+        {
+          "old": "चाहिँलाई",
+          "new": "चाहिंलाई"
+        },
+        {
+          "old": "क्रालाई",
+          "new": "कुरालाई"
+        },
+        {
+          "old": "भन्दछु,",
+          "new": "भन्दछु"
+        },
+        {
+          "old": "गरेँ",
+          "new": "गरें"
+        },
+        {
+          "old": "छ,",
+          "new": "छ;"
+        },
+        {
+          "old": "गर्दछ,",
+          "new": "गर्दछ;"
+        },
+        {
+          "old": "रगरेखा",
+          "new": "रंगरेखा"
+        },
+        {
+          "old": "क",
+          "new": "ऊ"
+        },
+        {
+          "old": "क्राहरूको",
+          "new": "कुराहरूको"
+        },
+        {
+          "old": "जगतका",
+          "new": "जगत्का"
+        },
+        {
+          "old": "क",
+          "new": "ऊ"
+        },
+        {
+          "old": "गर्ने",
+          "new": "गर्न"
+        },
+        {
+          "old": "क",
+          "new": "ऊ"
+        },
+        {
+          "old": "क",
+          "new": "ऊ"
+        },
+        {
+          "old": "चाहन्छ,",
+          "new": "चाहन्छ;"
+        },
+        {
+          "old": "अन्तरध्वनि",
+          "new": "अन्तर्ध्वनि"
+        },
+        {
+          "old": "क",
+          "new": "ऊ"
+        },
+        {
+          "old": "क",
+          "new": "ऊ"
+        },
+        {
+          "old": "लिँदै",
+          "new": "लिंदै"
+        },
+        {
+          "old": "\"रोस्कपिग'",
+          "new": "'रोस्कपिग'"
+        },
+        {
+          "old": "रामा",
+          "new": "राम्रा"
+        },
+        {
+          "old": "\"यो",
+          "new": "'यो"
+        },
+        {
+          "old": "कुराहरूमा",
+          "new": "कराहरूमा"
+        },
+        {
+          "old": "भै",
+          "new": "झैं"
+        },
+        {
+          "old": "अत्तर-छालामै",
+          "new": "अन्तर-छालामै"
+        },
+        {
+          "old": "उमिरहेको",
+          "new": "उम्रिरहेको"
+        },
+        {
+          "old": "क्रा",
+          "new": "कुरा"
+        },
+        {
+          "old": "!",
+          "new": "।"
+        },
+        {
+          "old": "रौंसावको",
+          "new": "शैशवको"
+        },
+        {
+          "old": "क्रा",
+          "new": "कुरा"
+        },
+        {
+          "old": "बास",
+          "new": "वास"
+        },
+        {
+          "old": "बास",
+          "new": "वास"
+        },
+        {
+          "old": "'माक्रैराको",
+          "new": "'माकुराको"
+        },
+        {
+          "old": "बनकालीको",
+          "new": "वनकालीको"
+        },
+        {
+          "old": "माक्रा",
+          "new": "माकुरा"
+        },
+        {
+          "old": "'कुह-कह'मा",
+          "new": "'कुहू-कुहू'मा"
+        },
+        {
+          "old": "क्रा",
+          "new": "कुरा"
+        },
+        {
+          "old": "क्रा",
+          "new": "कुरा"
+        },
+        {
+          "old": "मिल्दछ,",
+          "new": "मिल्दछ;"
+        },
+        {
+          "old": "क्रा",
+          "new": "कुरा"
+        },
+        {
+          "old": "नभेटिने",
+          "new": "नभेट्टिने"
+        },
+        {
+          "old": "छुमाइदिन्छ,",
+          "new": "छुमाइदिन्छ;"
+        },
+        {
+          "old": "पाउँदछ",
+          "new": "पाउँदछु"
+        },
+        {
+          "old": "जोड्दछ",
+          "new": "जोड्दछु"
+        },
+        {
+          "old": "चाहन्छन्‌,",
+          "new": "चाहन्छन्‌;"
+        },
+        {
+          "old": "अह्दार्य",
+          "new": "अहार्य"
+        },
+        {
+          "old": "तरलिदै",
+          "new": "तरलिंदै"
+        },
+        {
+          "old": "अवभास",
+          "new": "अवकाश"
+        },
+        {
+          "old": "पवित्रता",
+          "new": "केन्द्रको अनुभव"
+        },
+        {
+          "old": "सहानुभर्कनले",
+          "new": "सहानुभौतिक थर्कनले"
+        },
+        {
+          "old": "कुनै",
+          "new": "ऊ"
+        },
+        {
+          "old": "मिल्दछन्‌-टाढाको",
+          "new": "मिल्दछन्‌–टाढाको"
+        },
+        {
+          "old": "आउन्‌",
+          "new": "आऊन्‌"
+        },
+        {
+          "old": "हिँड्छ,",
+          "new": "हिंड्छ;"
+        },
+        {
+          "old": "कला",
+          "new": "ऊ"
+        },
+        {
+          "old": "देखिँदैन",
+          "new": "देखिंदैन"
+        },
+        {
+          "old": "बैलिन्छ,",
+          "new": "वैलिन्छ,"
+        },
+        {
+          "old": "छाँद्नु",
+          "new": "छाँट्नु"
+        },
+        {
+          "old": "याधार्थिक",
+          "new": "याथार्थिक"
+        },
+        {
+          "old": "राख्तैन",
+          "new": "राख्तैन,"
+        },
+        {
+          "old": "खोज्दछन्‌,",
+          "new": "खोज्दछन्‌;"
+        },
+        {
+          "old": "दर्जामुनितिर",
+          "new": "दर्जामनितिर"
+        },
+        {
+          "old": "छाम्तने",
+          "new": "छाम्ने"
+        },
+        {
+          "old": "सासफेदी",
+          "new": "सासफेर्दो"
+        },
+        {
+          "old": "छ,",
+          "new": "छ"
+        },
+        {
+          "old": "दुबै",
+          "new": "दुवै"
+        },
+        {
+          "old": "एँडीमा",
+          "new": "ऐंडीमा"
+        }
+      ],
+      "correction_summary": [
+        {
+          "pages": [
+            1,
+            2
+          ],
+          "note": "Restored missing सौन्दर्य and corrected कुरालाई, रंगरेखा and source punctuation."
+        },
+        {
+          "pages": [
+            3
+          ],
+          "note": "Restored six ऊ pronouns misread as क, कुराहरूको, जगत्का, अध्ययन गर्न and अन्तर्ध्वनि."
+        },
+        {
+          "pages": [
+            4,
+            5,
+            6
+          ],
+          "note": "Corrected राम्रा, अन्तर-छालामै, उम्रिरहेको, शैशवको, कुरा, वास, माकुरा, वनकाली, कुहू-कुहू, नभेट्टिने and first-person verb endings."
+        },
+        {
+          "pages": [
+            6,
+            7
+          ],
+          "note": "Joined the paragraph split solely at the physical page break before रेखागणितको; corrected अहार्य after enlarged primary-glyph comparison."
+        },
+        {
+          "pages": [
+            7,
+            8
+          ],
+          "note": "Restored तरलिंदै and अवकाश from the primary scan; recovered केन्द्रको अनुभव and सहानुभौतिक थर्कनले; corrected ऊ pronouns."
+        },
+        {
+          "pages": [
+            9,
+            10,
+            11
+          ],
+          "note": "Corrected वैलिन्छ, छाँट्नु, याथार्थिक, छाम्ने, सासफेर्दो, दुवै, ऐंडीमा and source punctuation."
+        }
+      ],
+      "retained_edition_differences": [
+        {
+          "page": 1,
+          "primary": "स्रष्टाको",
+          "digital": "सष्टाको",
+          "decision": "Keep primary; do not import digital dropped र."
+        },
+        {
+          "page": 1,
+          "primary": "भन्दछु र सरस्वतीलाई",
+          "digital": "भन्दछु; र सरस्वतीलाई",
+          "decision": "Keep the primary punctuation without inserted semicolon."
+        },
+        {
+          "page": 3,
+          "primary": "सूक्ष्म",
+          "digital": "सृक्ष्म",
+          "decision": "Keep primary vowel."
+        },
+        {
+          "page": 3,
+          "primary": "प्रकृतिलाई",
+          "digital": "प्रकतिलाई",
+          "decision": "Keep primary ऋ vowel."
+        },
+        {
+          "page": 4,
+          "primary": "अन्तर-छालामै",
+          "digital": "अत्तर-छालामै",
+          "decision": "Follow directly read primary."
+        },
+        {
+          "page": 4,
+          "primary": "राम्ररी",
+          "digital": "रामरी",
+          "decision": "Keep primary conjunct."
+        },
+        {
+          "page": 4,
+          "primary": "मिल्काउँछौं",
+          "digital": "मिल्काउँछौँ",
+          "decision": "Keep primary nasal form."
+        },
+        {
+          "page": 4,
+          "primary": "झिल्काजस्ता छन् ।",
+          "digital": "झिल्काजस्ता छन् !",
+          "decision": "Keep primary danda."
+        },
+        {
+          "page": 5,
+          "primary": "धुवाँको / निकाल्नुपर्दछ / नउठाओस् / कल्पनाले / मानौं",
+          "digital": "धूवाँको / निकाल्नुपर्छ / नउठाऔस् / कत्पनाले / मानौ",
+          "decision": "Retain primary readings; digital witness is not an automatic replacement."
+        },
+        {
+          "page": 6,
+          "primary": "बालकृष्णशमशेरको / हेर्न / छुमाइदिन्छ / पाउँछु",
+          "digital": "बालकृ्ष्णशमशेरको / हेन / छमाइदिन्छ / पाउँछ",
+          "decision": "Keep primary forms."
+        },
+        {
+          "page": 7,
+          "primary": "हुँदैन / तरलिंदै / अवकाश",
+          "digital": "हँदैन / तरलिदै / अवभास",
+          "decision": "Keep the scanned edition readings."
+        },
+        {
+          "page": 10,
+          "primary": "बुझ्छौं / सुन्दरतम / हुनु / सूक्ष्म",
+          "digital": "बुभ्छौं / स्‌न्दरतम / हुन्‌ / सृक्ष्म",
+          "decision": "Keep primary forms."
+        },
+        {
+          "page": 11,
+          "primary": "भर्नुमा छ र",
+          "digital": "भर्नुमा छ; र",
+          "decision": "Keep primary punctuation."
+        },
+        {
+          "page": 12,
+          "primary": "पाउँदछौं",
+          "digital": "पाउँदछौ",
+          "decision": "Keep primary nasal."
+        },
+        {
+          "pages": [
+            1,
+            5,
+            6,
+            9,
+            11
+          ],
+          "note": "Preserved visible primary spellings and punctuation. Digital zero-width joiner differences do not establish a changed reading."
+        }
+      ],
+      "source_anomalies": [
+        {
+          "page": 4,
+          "reading": "बाह्य कराहरूमा",
+          "note": "Printed without the उ vowel; retained rather than emending to कुराहरूमा."
+        },
+        {
+          "page": 11,
+          "reading": "दर्जामनितिर",
+          "note": "Printed without a visible उ vowel, also present in digital text; retained."
+        },
+        {
+          "page": 8,
+          "reading": "पृथ्वी सबै ठाउँमा राम्री छैनन्",
+          "note": "Printed grammatical form retained."
+        },
+        {
+          "pages": [
+            10
+          ],
+          "reading": "होओइन",
+          "note": "Printed form retained."
+        }
+      ],
+      "reconciliation": {
+        "reviewed": "2026-10-31",
+        "pages_reviewed": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "checks": [
+          "correction spans",
+          "paragraph and verse boundaries",
+          "numbering",
+          "author notes and page bottoms",
+          "complete ending"
+        ]
+      }
+    },
+    {
+      "path": "archives/authors/devkota/kalpana",
+      "title": "कल्पना",
+      "status": "proofread",
+      "before_sha256": "fb0c0f91a9b1bae4f49d99092ef94e5b781901c6f96c1333b63bdd88293ce4bf",
+      "after_sha256": "31c6945a38bb210407f4f9bcc2729c9b83525338f28026c6e9fe1e925db34689",
+      "primary_source": {
+        "file": "archives/authors/devkota/kalpana/kalpana.pdf",
+        "sha256": "6f28bc3fbc494ab9cf46d8979c5a08cb56b07639dac53ae8e51fece0f84eb762",
+        "pages_reviewed": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13
+        ]
+      },
+      "digital_comparisons": [
+        {
+          "book": "laxmi-nibandhasangraha",
+          "revision": "831ac1e09b4b613c04118f61644aaa20b9940227",
+          "path": "src/EPUB/text/kalpana.xhtml",
+          "sha256": "cb30436c37953695191d82f6008ca9f91cfc847f0eb9c9befaae734c8fa8c0e7"
+        }
+      ],
+      "word_change_groups": 146,
+      "changes": [
+        {
+          "old": "हो;'- वर्डस्बर्थ",
+          "new": "हो;'– वर्डस्वर्थ"
+        },
+        {
+          "old": "क्रा",
+          "new": "कुरा"
+        },
+        {
+          "old": "'ती",
+          "new": "ती"
+        },
+        {
+          "old": "कहिरा",
+          "new": "कुहिरा"
+        },
+        {
+          "old": "भन्दछु-",
+          "new": "भन्दछु–"
+        },
+        {
+          "old": "क",
+          "new": "ऊ"
+        },
+        {
+          "old": "क",
+          "new": "ऊ"
+        },
+        {
+          "old": "छ",
+          "new": "छ,"
+        },
+        {
+          "old": "सहसरजनीका",
+          "new": "सहस्ररजनीका"
+        },
+        {
+          "old": "अजडङका",
+          "new": "अजङका"
+        },
+        {
+          "old": "उठतछन्‌",
+          "new": "उठ्तछन्‌"
+        },
+        {
+          "old": "रइ्दार",
+          "new": "रङ्गदार"
+        },
+        {
+          "old": "हुक्‌ममा",
+          "new": "हुकूममा"
+        },
+        {
+          "old": "सुकमाराङ्गिनी,",
+          "new": "सुकुमाराङ्गिनी,"
+        },
+        {
+          "old": "नृत्यकलाकशला",
+          "new": "नृत्यकलाकुशला"
+        },
+        {
+          "old": "स्पशंसामीप्यस्वरूपमा 'झीना,",
+          "new": "स्पर्शसामीप्यस्वरूपमा झीना,"
+        },
+        {
+          "old": "रजतभझुनभुने",
+          "new": "रजतझुनझुने"
+        },
+        {
+          "old": "बाल्टर",
+          "new": "वाल्टर"
+        },
+        {
+          "old": "अधवा जयशङ्गरप्रसादका",
+          "new": "अथवा जयशङ्करप्रसादका"
+        },
+        {
+          "old": "स्‌नसानको",
+          "new": "सुनसानको"
+        },
+        {
+          "old": "वैचित्यमा",
+          "new": "वैचित्र्यमा"
+        },
+        {
+          "old": "दुरतालाई",
+          "new": "दूरतालाई"
+        },
+        {
+          "old": "छ-कल्पना",
+          "new": "छ–कल्पना"
+        },
+        {
+          "old": "गर्ने",
+          "new": "गर्न"
+        },
+        {
+          "old": "ईशनिमिंत",
+          "new": "ईशनिर्मित"
+        },
+        {
+          "old": "अलिकति",
+          "new": "'अलिकति"
+        },
+        {
+          "old": "राखिदिन्छु",
+          "new": "राखिदिन्छु,"
+        },
+        {
+          "old": "जगतृहरू",
+          "new": "जगत्‌हरू"
+        },
+        {
+          "old": "मृठी",
+          "new": "मुठी"
+        },
+        {
+          "old": "प्रेमसँग",
+          "new": "प्रेमसंग"
+        },
+        {
+          "old": "मनृष्यको",
+          "new": "मनुष्यको"
+        },
+        {
+          "old": "सक्तिनँ- कनै",
+          "new": "सक्तिनँ‐ कुनै"
+        },
+        {
+          "old": "क्नै",
+          "new": "कुनै"
+        },
+        {
+          "old": "उदघाटन",
+          "new": "उद्घाटन"
+        },
+        {
+          "old": "लाग्दछ,",
+          "new": "लाग्दछु,"
+        },
+        {
+          "old": "संक्चित",
+          "new": "संकुचित"
+        },
+        {
+          "old": "फर्सत",
+          "new": "फुर्सत"
+        },
+        {
+          "old": "बन्दछ",
+          "new": "बन्दछु"
+        },
+        {
+          "old": "उड्दछ्‌",
+          "new": "उड्दछु"
+        },
+        {
+          "old": "कट्‌",
+          "new": "कटु"
+        },
+        {
+          "old": "रहन्छु",
+          "new": "रहन्छु,"
+        },
+        {
+          "old": "सृक्ष्म",
+          "new": "सूक्ष्म"
+        },
+        {
+          "old": "सक्तेन",
+          "new": "सक्तैन"
+        },
+        {
+          "old": "कल्पनाबिना",
+          "new": "कल्पनाविना"
+        },
+        {
+          "old": "सृत्रबद्ध",
+          "new": "सूत्रबद्ध"
+        },
+        {
+          "old": "स्मति,",
+          "new": "स्मृति,"
+        },
+        {
+          "old": "अम्चै",
+          "new": "अम्बै"
+        },
+        {
+          "old": "व्याकरणबुद्धलाई",
+          "new": "व्याकरणबुद्धूलाई"
+        },
+        {
+          "old": "हँदैन",
+          "new": "हुँदैन"
+        },
+        {
+          "old": "हँदैन,",
+          "new": "हुँदैन,"
+        },
+        {
+          "old": "हुन्छ-जसमा",
+          "new": "हुन्छ–जसमा"
+        },
+        {
+          "old": "तरङ्रको",
+          "new": "तरङ्गको"
+        },
+        {
+          "old": "रसद्वव",
+          "new": "रसद्रव"
+        },
+        {
+          "old": "छ-जसमा",
+          "new": "छ–जसमा"
+        },
+        {
+          "old": "फेलिरहेछन्‌;",
+          "new": "फैलिरहेछन्‌;"
+        },
+        {
+          "old": "शिशृहरूको",
+          "new": "शिशुहरूको"
+        },
+        {
+          "old": "सृक्ष्म",
+          "new": "सूक्ष्म"
+        },
+        {
+          "old": "उच्छुबासित",
+          "new": "उच्छ्वासित"
+        },
+        {
+          "old": "कन",
+          "new": "कुन"
+        },
+        {
+          "old": "करा",
+          "new": "कुरा"
+        },
+        {
+          "old": "वाल्दछ",
+          "new": "थाल्दछ"
+        },
+        {
+          "old": "क्र्रता",
+          "new": "क्रूरता"
+        },
+        {
+          "old": "गर्ने",
+          "new": "गर्न"
+        },
+        {
+          "old": "गर्देछ",
+          "new": "गर्दछ"
+        },
+        {
+          "old": "कनै",
+          "new": "कुनै"
+        },
+        {
+          "old": "बादलबँदे",
+          "new": "बादलबूँदे"
+        },
+        {
+          "old": "कोटीउपर",
+          "new": "कोठीउपर"
+        },
+        {
+          "old": "नौला",
+          "new": "नौलो"
+        },
+        {
+          "old": "गर्दछन्‌-चरीचतुर,",
+          "new": "गर्दछन्‌–चरीचतुर,"
+        },
+        {
+          "old": "कर्लन",
+          "new": "कुर्लन"
+        },
+        {
+          "old": "हँदैन",
+          "new": "हुँदैन"
+        },
+        {
+          "old": "गद्यगहौं",
+          "new": "गद्यगह्रौं"
+        },
+        {
+          "old": "सृक्ष्म",
+          "new": "सूक्ष्म"
+        },
+        {
+          "old": "हँदैन",
+          "new": "हुँदैन"
+        },
+        {
+          "old": "हन्छ",
+          "new": "हुन्छ"
+        },
+        {
+          "old": "करा",
+          "new": "कुरा"
+        },
+        {
+          "old": "फललाई",
+          "new": "फूललाई"
+        },
+        {
+          "old": "सुनकेसरी",
+          "new": "सुनकेस्री"
+        },
+        {
+          "old": "'फझारहरूमा",
+          "new": "झारहरूमा"
+        },
+        {
+          "old": "जजञ्जाल",
+          "new": "जञ्जाल"
+        },
+        {
+          "old": "भएकै",
+          "new": "भएझैं"
+        },
+        {
+          "old": "हुन्छ-",
+          "new": "हुन्छ–"
+        },
+        {
+          "old": "खौँदिलो",
+          "new": "खँदिलो"
+        },
+        {
+          "old": "करा",
+          "new": "कुरा"
+        },
+        {
+          "old": "इन्द्राणीम्का",
+          "new": "इन्द्राणीका"
+        },
+        {
+          "old": "ढुङ्गघाजस्तो",
+          "new": "ढुङ्गाजस्तो"
+        },
+        {
+          "old": "स्‌क्ष्म",
+          "new": "सूक्ष्म"
+        },
+        {
+          "old": "फुम्रा",
+          "new": "फुस्रा"
+        },
+        {
+          "old": "बढटुल्नामा",
+          "new": "बटुल्नामा"
+        },
+        {
+          "old": "शिशृहरू",
+          "new": "शिशुहरू"
+        },
+        {
+          "old": "भझिलिमिलीमा",
+          "new": "झिलिमिलीमा"
+        },
+        {
+          "old": "पृथिबीमा स्वगको",
+          "new": "पृथिवीमा स्वर्गको"
+        },
+        {
+          "old": "रहँदैन,",
+          "new": "रहुँदैन,"
+        },
+        {
+          "old": "लागिरहेथेँ",
+          "new": "लागिरहेथें"
+        },
+        {
+          "old": "विहङ्जगमगुञ्जित",
+          "new": "विहङ्गमगुञ्जित"
+        },
+        {
+          "old": "दौड्दछ्‌",
+          "new": "दौड्दछु"
+        },
+        {
+          "old": "हन्छ,",
+          "new": "हुन्छ,"
+        },
+        {
+          "old": "मस्कराहट",
+          "new": "मुस्कुराहट"
+        },
+        {
+          "old": "!",
+          "new": "।"
+        },
+        {
+          "old": "ठहन्याउँछु,",
+          "new": "ठहर्‍याउँछु,"
+        },
+        {
+          "old": "बेपरबाहले",
+          "new": "बेपरवाहले"
+        },
+        {
+          "old": "पशृत्व,",
+          "new": "पशुत्व,"
+        },
+        {
+          "old": "दौडदछ",
+          "new": "दौड्दछु"
+        },
+        {
+          "old": "दु:खको",
+          "new": "दुःखको"
+        },
+        {
+          "old": "मनुष्यहरूसंग",
+          "new": "मनुष्यहरूसँग"
+        },
+        {
+          "old": "कुबेरभन्दा",
+          "new": "कुवेरभन्दा"
+        },
+        {
+          "old": "कुबेरभन्दा",
+          "new": "कुवेरभन्दा"
+        },
+        {
+          "old": "सिँगार्दछन्‌",
+          "new": "सिंगार्दछन्‌"
+        },
+        {
+          "old": "आलस्यकी",
+          "new": "आलस्यको"
+        },
+        {
+          "old": "बोधो",
+          "new": "बोधा"
+        },
+        {
+          "old": "ज्याप्‌",
+          "new": "ज्यापू"
+        },
+        {
+          "old": "च्यौरासी",
+          "new": "चौरासी"
+        },
+        {
+          "old": "जिब्रोले",
+          "new": "जिभ्रोले"
+        },
+        {
+          "old": "भुइँमा",
+          "new": "भूइँमा"
+        },
+        {
+          "old": "ढिँडो",
+          "new": "ढिंडो"
+        },
+        {
+          "old": "धन्यबाद",
+          "new": "धन्यवाद"
+        },
+        {
+          "old": "भुइँमा",
+          "new": "भैंमा"
+        },
+        {
+          "old": "'",
+          "new": "!"
+        },
+        {
+          "old": "पाएँ-",
+          "new": "पाएँ–"
+        },
+        {
+          "old": "तबरको",
+          "new": "तवरको"
+        },
+        {
+          "old": "झिलमिलाहटमुनि",
+          "new": "झिलमिलावटमुनि"
+        },
+        {
+          "old": "भाबुक",
+          "new": "भावुक"
+        },
+        {
+          "old": "मुदु",
+          "new": "मुटु"
+        },
+        {
+          "old": "जूबा",
+          "new": "जूवा"
+        },
+        {
+          "old": "झिलिकमिलिक",
+          "new": "झिल्कामिल्का"
+        },
+        {
+          "old": "एँसेल्‌का",
+          "new": "ऐंसेलुका"
+        },
+        {
+          "old": "दूरयात्रामा-",
+          "new": "दूरयात्रामा–"
+        },
+        {
+          "old": "वर्डक्लास",
+          "new": "थर्डक्लास"
+        },
+        {
+          "old": "चुटकिला",
+          "new": "चुट्किला"
+        },
+        {
+          "old": "हिड्दा-हिँड्दा",
+          "new": "हिंड्दा-हिंड्दा"
+        },
+        {
+          "old": "हिँडेछ",
+          "new": "हिंडेछ"
+        },
+        {
+          "old": "झूलनतरङ्गी",
+          "new": "झुलनतरङ्गी"
+        },
+        {
+          "old": "चाहँदैनौं,",
+          "new": "चाहुँदैनौ,"
+        },
+        {
+          "old": "सक्तैन",
+          "new": "सक्तैन,"
+        },
+        {
+          "old": "होइन",
+          "new": "होइन,"
+        },
+        {
+          "old": "कल्पद्रममा",
+          "new": "कल्पद्रुममा"
+        },
+        {
+          "old": "'कुब्लखाँ'",
+          "new": "'कब्लखाँ'"
+        },
+        {
+          "old": "बस्तु",
+          "new": "वस्तु"
+        },
+        {
+          "old": "बिदितको",
+          "new": "विदितको"
+        },
+        {
+          "old": "विक्तका",
+          "new": "विकृतका"
+        },
+        {
+          "old": "बाल्मीकिको",
+          "new": "वाल्मीकिको"
+        },
+        {
+          "old": "छन्‌-",
+          "new": "छन्‌–"
+        },
+        {
+          "old": "गरेथेँ",
+          "new": "गरेथें"
+        },
+        {
+          "old": "दुना",
+          "new": "टुना"
+        },
+        {
+          "old": "ध्बनिउपर",
+          "new": "ध्वनिउपर"
+        },
+        {
+          "old": "चमत्कार-",
+          "new": "चमत्कार–"
+        }
+      ],
+      "correction_summary": [
+        {
+          "pages": [
+            1,
+            2
+          ],
+          "examples": [
+            "क्रा → कुरा",
+            "क → ऊ in two sentences",
+            "कहिरा → कुहिरा",
+            "सहसरजनीका → सहस्ररजनीका",
+            "रइ्दार → रङ्गदार",
+            "नृत्यकलाकशला → नृत्यकलाकुशला"
+          ],
+          "reason": "Dropped vowel marks, malformed conjuncts and stray punctuation verified against primary scan."
+        },
+        {
+          "pages": [
+            3,
+            4,
+            5
+          ],
+          "examples": [
+            "ईशनिमिंत → ईशनिर्मित",
+            "जगतृहरू → जगत्‌हरू",
+            "मनृष्यको → मनुष्यको",
+            "संक्चित → संकुचित",
+            "सृक्ष्म → सूक्ष्म",
+            "सृत्रबद्ध → सूत्रबद्ध",
+            "वाल्दछ → थाल्दछ"
+          ],
+          "reason": "Primary scan restores missing matras/conjuncts and first-person verb endings; authentic historical spelling retained."
+        },
+        {
+          "pages": [
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13
+          ],
+          "examples": [
+            "इन्द्राणीम्का → इन्द्राणीका",
+            "भझिलिमिलीमा → झिलिमिलीमा",
+            "विहङ्जगमगुञ्जित → विहङ्गमगुञ्जित",
+            "पशृत्व → पशुत्व",
+            "जूबा → जूवा",
+            "वर्डक्लास → थर्डक्लास",
+            "विक्तका → विकृतका",
+            "दुना → टुना",
+            "ध्बनिउपर → ध्वनिउपर"
+          ],
+          "reason": "Source-confirmed OCR errors, punctuation and local word readings."
+        },
+        {
+          "pages": [
+            1,
+            6,
+            7,
+            8,
+            12
+          ],
+          "examples": [
+            "Unwrap the opening prose quotation",
+            "Restore the four-line quotation as one block",
+            "Join a false paragraph break at the pp. 7–8 seam",
+            "Restore the indented new paragraph before मलाई भारत भनेको on p. 12"
+          ],
+          "reason": "Preserve primary edition paragraph and quotation structure."
+        },
+        {
+          "pages": [
+            7,
+            8,
+            9,
+            12
+          ],
+          "note": "Final enlarged-image reconciliation restores printed लागिरहेथें, सिंगार्दछन्, भूइँमा in चढेको भूतलाई भूइँमा, ढिंडो and गरेथें. Literal vowel and nasal marks govern; no wholesale normalization."
+        }
+      ],
+      "retained_edition_differences": [
+        {
+          "primary_page": 3,
+          "retained": "कुञ्जहरूमा",
+          "sahityaras": "कञ्जहरूमा",
+          "note": "Primary scan has the short-u matra; retained original-edition reading."
+        },
+        {
+          "primary_page": 4,
+          "retained": [
+            "गर्छौं",
+            "विषयी",
+            "धेरै"
+          ],
+          "sahityaras": [
+            "गछौं",
+            "बिषयी",
+            "घेरै"
+          ],
+          "note": "Digital rendition has differing/malformed readings; original scan controls."
+        },
+        {
+          "primary_page": 7,
+          "retained": "मेरो मुर्दा हृदयमा",
+          "sahityaras": "मेरी मुर्दा हृदयमा",
+          "note": "Preserve मेरो; punctuation before it corrected to the printed danda."
+        },
+        {
+          "primary_page": 8,
+          "retained": [
+            "धनीहरू",
+            "झिलिमिलीमा बोधा",
+            "पुर्‍याउँछ"
+          ],
+          "sahityaras": [
+            "घनीहरू",
+            "भिलिमिलीमा बोधा",
+            "पृर्याउँछ"
+          ],
+          "note": "Retain source word readings and valid conjunct representation; fix only the baseline’s बोधो to printed बोधा."
+        },
+        {
+          "primary_page": 10,
+          "retained": "उम्ने",
+          "sahityaras": "उम्रने",
+          "note": "Preserve the original edition’s printed variant instead of silently replacing it with a smoother digital reading."
+        },
+        {
+          "primary_page": 11,
+          "retained": [
+            "हुन्छ",
+            "देख्तैनौं"
+          ],
+          "sahityaras": [
+            "हन्छ",
+            "देख्नैनौं"
+          ],
+          "note": "Scan confirms baseline word readings."
+        },
+        {
+          "primary_page": 13,
+          "retained": "क्रियाउपर",
+          "sahityaras": "त्रियाउपर",
+          "note": "Original scan clearly has क्रि; digital typo not imported."
+        },
+        {
+          "retained": "Existing valid nasalization and conjunct encodings where the visual reading agrees",
+          "note": "No wholesale modernization or replacement of spelling/typographic conventions."
+        }
+      ],
+      "source_anomalies": [
+        {
+          "primary_page": 4,
+          "reading": "गन्धका चेहरा; परगिस नरगिस",
+          "note": "Odd-looking wording is present in the scan and is retained."
+        },
+        {
+          "primary_page": 5,
+          "reading": "मट्टीजरे",
+          "note": "Degraded/odd source reading retained after an independent visual check and agreement of baseline and digital rendition."
+        },
+        {
+          "primary_page": 6,
+          "reading": "टेख्तछौं",
+          "note": "Printed quotation reading retained after independent visual check; not semantically regularized to टेक्छौं or टेक्दछौं."
+        },
+        {
+          "primary_page": 7,
+          "reading": "विज्ञानवक्र यूरोप",
+          "note": "Printed wording retained."
+        },
+        {
+          "primary_page": 11,
+          "reading": "कब्लखाँ",
+          "note": "The source’s printed title reading has no short-u matra after क; preserved rather than regularized to कुब्लखाँ."
+        },
+        {
+          "primary_page": 13,
+          "reading": "भनभनिँदै",
+          "note": "The faint nasal mark did not provide sufficient evidence to change the existing reading; retained without conjectural normalization."
+        }
+      ],
+      "reconciliation": {
+        "reviewed": "2026-10-31",
+        "pages_reviewed": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13
+        ],
+        "checks": [
+          "correction spans",
+          "paragraph and verse boundaries",
+          "numbering",
+          "author notes and page bottoms",
+          "complete ending"
+        ]
+      }
+    },
+    {
+      "path": "archives/authors/devkota/ke_nepal_sano_chha",
+      "title": "के नेपाल सानो छ ?",
+      "status": "proofread",
+      "before_sha256": "ee8fb56e06c5a3cf53def5a32bef76011dd86ef15e7af4f4f57b0d6309570d0a",
+      "after_sha256": "a3cbd2ae180deb2c2d0b5ef4375e9f349524d93a2c5fe0c7ae9d398ea44204e3",
+      "primary_source": {
+        "file": "archives/authors/devkota/ke_nepal_sano_chha/Ke Nepal Sano Cha_text.pdf",
+        "sha256": "7870d8224eb4b30b9a51c71c05aeffc32b65103e033663bb9b2ebe8654242736",
+        "pages_reviewed": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "digital_comparisons": [
+        {
+          "book": "laxmi-nibandhasangraha",
+          "revision": "831ac1e09b4b613c04118f61644aaa20b9940227",
+          "path": "src/EPUB/text/ke-nepal-sano-cha.xhtml",
+          "sha256": "92eea68a3530e3bbde7fdd568045a62fbd61c0afa622341036f00c73dd006702"
+        }
+      ],
+      "word_change_groups": 96,
+      "changes": [
+        {
+          "old": "के नेपाल सानो छ ?",
+          "new": ""
+        },
+        {
+          "old": "ई",
+          "new": "लुकामारी"
+        },
+        {
+          "old": "छ,",
+          "new": "छ;"
+        },
+        {
+          "old": "हुन्छ,",
+          "new": "हुन्छ;"
+        },
+        {
+          "old": "-",
+          "new": ""
+        },
+        {
+          "old": "-",
+          "new": ""
+        },
+        {
+          "old": "सृक्ष्मदर्शी",
+          "new": "सूक्ष्मदर्शी"
+        },
+        {
+          "old": "जाद्गरी के नेपाल यानो छ ?/५१",
+          "new": "जादूगरी"
+        },
+        {
+          "old": "ठुलोका",
+          "new": "ठूलोका"
+        },
+        {
+          "old": "भाबुक",
+          "new": "भावुक"
+        },
+        {
+          "old": "श्त्‌,",
+          "new": "'धत्,"
+        },
+        {
+          "old": "लेख्छन्‌ ।।",
+          "new": "लेख्छन् ।'"
+        },
+        {
+          "old": "नअस्ताकन्‌",
+          "new": "नअस्ताऊन्"
+        },
+        {
+          "old": "फर्कदा",
+          "new": "फर्कंदा"
+        },
+        {
+          "old": "“को",
+          "new": "'को"
+        },
+        {
+          "old": "सौन्दर्य- संसारमा",
+          "new": "सौन्दर्य-संसारमा"
+        },
+        {
+          "old": "“'बाल्ज'",
+          "new": "'वाल्ज'"
+        },
+        {
+          "old": "'झैं",
+          "new": "झैं"
+        },
+        {
+          "old": "भझुलुक्क",
+          "new": "झुलुक्क"
+        },
+        {
+          "old": "'“रानीवनैमा'",
+          "new": "'रानीवनैमा'"
+        },
+        {
+          "old": "ुन/414%100:14 मातभाषाका",
+          "new": "नक्कल मातृभाषाका"
+        },
+        {
+          "old": "'फोक्कामा",
+          "new": "झोक्कामा"
+        },
+        {
+          "old": ",",
+          "new": "चाहन्छौं,"
+        },
+        {
+          "old": "_",
+          "new": ""
+        },
+        {
+          "old": "भझर्नाहरू",
+          "new": "झर्नाहरू"
+        },
+        {
+          "old": "बाइमात्रा,",
+          "new": "वाइमात्रा,"
+        },
+        {
+          "old": "५२, लक्ष्मी निबन्ध-संग्रह",
+          "new": ""
+        },
+        {
+          "old": "अनुपम-बस",
+          "new": "अनुपम–बस"
+        },
+        {
+          "old": "दर्नर",
+          "new": "टर्नर"
+        },
+        {
+          "old": "धाराप्रबाह",
+          "new": "धाराप्रवाह"
+        },
+        {
+          "old": "बुभ्ने",
+          "new": "बुझ्ने"
+        },
+        {
+          "old": "वबेलीकञ्ज",
+          "new": "वेलीकुञ्ज"
+        },
+        {
+          "old": "बाग्मती",
+          "new": "वाग्मती"
+        },
+        {
+          "old": "घुवाँले",
+          "new": "धुवाँले"
+        },
+        {
+          "old": "माक्राको",
+          "new": "माकुराको"
+        },
+        {
+          "old": "आर्यभावहेरूको",
+          "new": "आर्यभावहरूको"
+        },
+        {
+          "old": "के नेपाल यानो छ ?/५३",
+          "new": ""
+        },
+        {
+          "old": "सम्भझँदैन,",
+          "new": "सम्झँदैन,"
+        },
+        {
+          "old": "जाद्का",
+          "new": "जादूका"
+        },
+        {
+          "old": "त्यहीँ",
+          "new": "त्यहीं"
+        },
+        {
+          "old": "भझिल्काले",
+          "new": "झिल्काले"
+        },
+        {
+          "old": "स्‌क्ष्म",
+          "new": "सूक्ष्म"
+        },
+        {
+          "old": "धुवप्रदेशको",
+          "new": "ध्रुवप्रदेशको"
+        },
+        {
+          "old": "यहीँ",
+          "new": "यहीं"
+        },
+        {
+          "old": "गार्डेन्स-भझूलन",
+          "new": "गार्डेन्स–झूलन"
+        },
+        {
+          "old": "छ।",
+          "new": "छ ।"
+        },
+        {
+          "old": "_",
+          "new": ""
+        },
+        {
+          "old": "यहीँ",
+          "new": "यहीं"
+        },
+        {
+          "old": "मानव-- आत्मा यहीँ",
+          "new": "मानव-आत्मा यहीं"
+        },
+        {
+          "old": "दोहोन्याउँछु",
+          "new": "दोहोर्याउँछु"
+        },
+        {
+          "old": "पाइन्न,",
+          "new": "पाइन्न;"
+        },
+        {
+          "old": "हेप्यो",
+          "new": "हेर्‍यो"
+        },
+        {
+          "old": "चुलिँदै-चुलिंदै",
+          "new": "चुलिँदै-चुलिँदै"
+        },
+        {
+          "old": "मुस्क्राहट",
+          "new": "मुस्कुराहट"
+        },
+        {
+          "old": "मिमिरि",
+          "new": "मिमिरे"
+        },
+        {
+          "old": "भझिकिदिएको",
+          "new": "झिकिदिएको"
+        },
+        {
+          "old": "५४,लक्ष्मी निबन्ध-संग्रह",
+          "new": ""
+        },
+        {
+          "old": "दुई- तीनतर्फ",
+          "new": "दुई-तीनतर्फ"
+        },
+        {
+          "old": "कृहिरो",
+          "new": "कुहिरो"
+        },
+        {
+          "old": "भ्याउका",
+          "new": "झ्याउका"
+        },
+        {
+          "old": "भै",
+          "new": "झैं"
+        },
+        {
+          "old": "रङ्ग-रङ्गाका",
+          "new": "रङ्गा-रङ्गाका"
+        },
+        {
+          "old": "र्ची-रची",
+          "new": "रची-रची"
+        },
+        {
+          "old": "शस्याढ",
+          "new": "शस्याढ्य"
+        },
+        {
+          "old": "उब्जनी -प्रतिभा",
+          "new": "उब्जनी-प्रतिभा"
+        },
+        {
+          "old": "बिर्सन्छु।",
+          "new": "बिर्सन्छु ।"
+        },
+        {
+          "old": "के नेपाल सानो छ ?/११",
+          "new": ""
+        },
+        {
+          "old": "झरभझरको",
+          "new": "झरझरको"
+        },
+        {
+          "old": "मानबहृदयहरूका",
+          "new": "मानवहृदयहरूका"
+        },
+        {
+          "old": "नलेखुँ",
+          "new": "नलेखूँ"
+        },
+        {
+          "old": "शैशब",
+          "new": "शैशव"
+        },
+        {
+          "old": "ब्युँझेको",
+          "new": "ब्यूँझेको"
+        },
+        {
+          "old": "बिशालताको",
+          "new": "विशालताको"
+        },
+        {
+          "old": "हेस्यो",
+          "new": "हेर्‍यो"
+        },
+        {
+          "old": "लिँदो रहेछ-जस्तो",
+          "new": "लिंदै रहेछ–जस्तो"
+        },
+        {
+          "old": "हुन्छ।",
+          "new": "हुन्छ ।"
+        },
+        {
+          "old": "बिश्वप्रेम",
+          "new": "विश्वप्रेम"
+        },
+        {
+          "old": "होङ",
+          "new": "होऊ"
+        },
+        {
+          "old": "“तँ",
+          "new": "'तँ"
+        },
+        {
+          "old": "दिन्थें-",
+          "new": "दिन्थें–"
+        },
+        {
+          "old": "ओलंदा",
+          "new": "ओर्लंदा"
+        },
+        {
+          "old": "दिन्थेँ,",
+          "new": "दिन्थें,"
+        },
+        {
+          "old": "दौड्न्‌,",
+          "new": "दौडून्,"
+        },
+        {
+          "old": "नबताक,",
+          "new": "नबताऊ,"
+        },
+        {
+          "old": "कहाँछर",
+          "new": "कहाँ छ र"
+        },
+        {
+          "old": "उडाउँछन्‌,",
+          "new": "उडाउँछन्;"
+        },
+        {
+          "old": "पुग्याउन",
+          "new": "पुर्याउन"
+        },
+        {
+          "old": "रहन्‌,",
+          "new": "रहून्,"
+        },
+        {
+          "old": "५६, लक्ष्मी निबन्ध-संग्रह",
+          "new": ""
+        },
+        {
+          "old": "वास्तबमा",
+          "new": "वास्तवमा"
+        },
+        {
+          "old": "(पूर्णात्‌",
+          "new": "'पूर्णात्"
+        },
+        {
+          "old": "बुभ्नमा",
+          "new": "बुझ्नमा"
+        },
+        {
+          "old": "हुन्छु",
+          "new": "हुन्छु;"
+        },
+        {
+          "old": "गुण-हो",
+          "new": "गुण हो"
+        },
+        {
+          "old": "बिकासिन्छ;",
+          "new": "विकासिन्छ;"
+        },
+        {
+          "old": "के नेपाल सानो छ ?/५७",
+          "new": ""
+        }
+      ],
+      "correction_summary": [
+        {
+          "pages": [
+            1,
+            2
+          ],
+          "note": "Recovered लुकामारी in place of the OCR fragment ई, सूक्ष्मदर्शी, जादूगरी, ठूलोका, भावुक, the opening quotation धत्, नअस्ताऊन्, फर्कंदा, वाल्ज, झुलुक्क, and the heavily corrupted नक्कल मातृभाषाका / झोक्कामा / चाहन्छौं passage. Restored the source’s quotation marks and semicolons; removed two false dash/bullet artifacts. Primary page 2 bottom supports वाइमात्रा, differing from both digital witnesses."
+        },
+        {
+          "pages": [
+            3,
+            4
+          ],
+          "note": "Corrected टर्नर, धाराप्रवाह, बुझ्ने, वेलीकुञ्ज, वाग्मती, धुवाँले, माकुराको, आर्यभावहरूको and सम्झँदैन. Recovered जादूका, झिल्काले, सूक्ष्म, ध्रुवप्रदेशको, झूलन, दोहोर्याउँछु, हेर्‍यो, मुस्कुराहट, मिमिरे and झिकिदिएको. Independently cross-checked the literal मिमिरे; retained primary भूइँजस्तो and तसबीरको instead of copying the digital edition."
+        },
+        {
+          "pages": [
+            5,
+            6
+          ],
+          "note": "Corrected कुहिरो, झ्याउका, झैं, रची-रची, शस्याढ्य, झरझरको, मानवहृदयहरूका, नलेखूँ, शैशव, ब्यूँझेको, विशालताको, हेर्‍यो, विश्वप्रेम, होऊ, दौडून्, नबताऊ, कहाँ छ र, पुर्याउन and रहून्. The full scan supports रङ्गा-रङ्गाका, लिंदै, मातृभूमिमा and ओर्लंदा; preserved these literal forms even when one or both digital witnesses differ."
+        },
+        {
+          "pages": [
+            7
+          ],
+          "note": "Corrected वास्तवमा, the opening quotation before पूर्णात् पूर्णमिदं, बुझ्नमा, the semicolon after हेरिरहेको हुन्छु, the spurious hyphen in गुण-हो and विकासिन्छ. Read through the final line and page bottom; no authorial notes or colophon are omitted."
+        },
+        {
+          "pages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "note": "Removed all seven running folio/title footers and the duplicated display title from the body. Reconstructed 14 scan-indented prose paragraphs and preserved the opening two-line verse quotation as one block. Joined sentences across all physical page turns and removed OCR-only blank lines; joined line-wrapped सौन्दर्य-संसारमा, मानव-आत्मा and दुई-तीनतर्फ compounds without dropping their printed hyphens."
+        }
+      ],
+      "retained_edition_differences": [
+        {
+          "pages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "primary_examples": [
+            "पसीना",
+            "पुजारी",
+            "हीरा",
+            "जूनकीरी",
+            "जादू",
+            "चीज",
+            "शेक्सपियर",
+            "हरहमेशा",
+            "अरू",
+            "नमूना",
+            "गौरीशंकर",
+            "अनन्ततामा",
+            "रंग",
+            "संगीत",
+            "नजीक",
+            "नीलो",
+            "स्वरूपमा"
+          ],
+          "action": "Retained the primary edition’s vowels, consonants, word spacing and wording where Sahitya Ras differs; the digital text was used only as a comparison witness."
+        },
+        {
+          "pages": [
+            2,
+            4,
+            5,
+            6
+          ],
+          "primary_examples": [
+            "वाइमात्रा",
+            "ठिठाको",
+            "मिमिरे",
+            "भूइँजस्तो",
+            "रङ्गा-रङ्गाका",
+            "लिंदै",
+            "मातृभूमिमा",
+            "ओर्लंदा"
+          ],
+          "action": "Retained the scan’s literal readings. Enlarged crops and an independent visual check confirmed वाइमात्रा, ठिठाको, मिमिरे, रङ्गा-रङ्गाका and ओर्लंदा. In particular both baseline and digital have defective लिँदो / लिंदो, whereas the scan reads लिंदै."
+        },
+        {
+          "pages": [
+            5,
+            6
+          ],
+          "primary_examples": [
+            "संगीतद्वारा भावनादोष",
+            "ब्यूँझेको"
+          ],
+          "action": "Retained/restored scan readings rather than independent digital defects संहीतद्वारा भवनादोष and ब्युूझेको."
+        }
+      ],
+      "source_anomalies": [
+        {
+          "page": 2,
+          "note": "The source prints स्कूले ठिठाको, with two ठ consonants; independently checked and retained, rather than normalizing it to ठिटाको."
+        },
+        {
+          "page": 4,
+          "note": "The source prints मिमिरे, not the digital मिर्मिरे. The existing OCR’s final vowel मिमिरि is corrected while the source’s absent reph is preserved."
+        },
+        {
+          "page": 5,
+          "note": "The source literally prints रङ्गा-रङ्गाका; both components have an आ matra. Retained the unusual printed form."
+        },
+        {
+          "pages": [
+            3,
+            4,
+            5,
+            6
+          ],
+          "note": "Preserved source wording and agreement such as शीतलव, जादू भने, दिनभरिभरि, यस्ती शस्यशालिनी छन् and म विश्वप्रेम मातृभूमिमा सिक्तछु; no stylistic or grammatical rewriting."
+        }
+      ],
+      "reconciliation": {
+        "reviewed": "2026-10-31",
+        "pages_reviewed": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "checks": [
+          "correction spans",
+          "paragraph and verse boundaries",
+          "numbering",
+          "author notes and page bottoms",
+          "complete ending"
+        ]
+      }
+    },
+    {
+      "path": "archives/authors/devkota/kumbhakarna",
+      "title": "कुम्भकर्ण",
+      "status": "proofread",
+      "before_sha256": "3713fa2af248801f3a32284ffda9ba2c438702422f773a65f6a11fc360c661e3",
+      "after_sha256": "b306206cac8fa7ecd37a89515a4bf47722fde80fbf60e6f4e21400de7a781352",
+      "primary_source": {
+        "file": "archives/authors/devkota/kumbhakarna/kumbhakarna.pdf",
+        "sha256": "7ff38da14e515b9b81d6e26256b70b3efd47dc8b5883042b2139ba7f2cd01765",
+        "pages_reviewed": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "digital_comparisons": [
+        {
+          "book": "laxmi-nibandhasangraha",
+          "revision": "831ac1e09b4b613c04118f61644aaa20b9940227",
+          "path": "src/EPUB/text/kumbhakarna.xhtml",
+          "sha256": "1003d5b73cb57a3adf8bd361b4a8a5ba5db33c112d8236f52780a2b45cb70e76"
+        }
+      ],
+      "word_change_groups": 51,
+      "changes": [
+        {
+          "old": "सधैँ",
+          "new": "सधैं"
+        },
+        {
+          "old": "बोझ",
+          "new": "बोझा"
+        },
+        {
+          "old": "तबरका",
+          "new": "तवरका"
+        },
+        {
+          "old": "ध्यार्रघुर्र",
+          "new": "घ्यार्रघुर्र"
+        },
+        {
+          "old": "कुँजा",
+          "new": "कूँजा"
+        },
+        {
+          "old": "निसास्सिँदो",
+          "new": "निसास्सिंदो"
+        },
+        {
+          "old": "हेस्यो",
+          "new": "हेर्यो"
+        },
+        {
+          "old": "हेस्यो",
+          "new": "हेर्यो"
+        },
+        {
+          "old": "जल्तु",
+          "new": "जल्नु"
+        },
+        {
+          "old": "बिवेकवाद",
+          "new": "विवेकवाद"
+        },
+        {
+          "old": "मोहन-बनमा'",
+          "new": "मोहन-वनमा'"
+        },
+        {
+          "old": "कुक्रको",
+          "new": "कुकुरको"
+        },
+        {
+          "old": "कबि",
+          "new": "कवि"
+        },
+        {
+          "old": "तर्कले",
+          "new": "तर्कुले"
+        },
+        {
+          "old": "हिँडिरहेकै",
+          "new": "हिंडिरहेकै"
+        },
+        {
+          "old": "झुनुझुनु झुनुझुनु",
+          "new": "रुनुझुनु रुनुझुनु"
+        },
+        {
+          "old": "अर्घनिमीलन",
+          "new": "अर्धनिमीलन"
+        },
+        {
+          "old": "बिचेतका",
+          "new": "विचेतका"
+        },
+        {
+          "old": "झझङ्कतिदार",
+          "new": "झङ्कृतिदार"
+        },
+        {
+          "old": "गर्दथेँ",
+          "new": "गर्दथें"
+        },
+        {
+          "old": "हामी",
+          "new": "हाम्री"
+        },
+        {
+          "old": "बिलास",
+          "new": "विलास"
+        },
+        {
+          "old": "बिष्णु,",
+          "new": "विष्णु,"
+        },
+        {
+          "old": "नबजगन्निर्माणको",
+          "new": "नवजगन्निर्माणको"
+        },
+        {
+          "old": "बिपनाद्वारा",
+          "new": "विपनाद्वारा"
+        },
+        {
+          "old": "पल्टैँ",
+          "new": "पल्टें"
+        },
+        {
+          "old": "भाबनाले",
+          "new": "भावनाले"
+        },
+        {
+          "old": "खोजेँ,",
+          "new": "खोजें,"
+        },
+        {
+          "old": "बुझेँ",
+          "new": "बुझें"
+        },
+        {
+          "old": "बिपनाको",
+          "new": "विपनाको"
+        },
+        {
+          "old": "लेखुँ",
+          "new": "लेखूँ"
+        },
+        {
+          "old": "लेखिँदो",
+          "new": "लेखिंदो"
+        },
+        {
+          "old": "हे",
+          "new": "“हे"
+        },
+        {
+          "old": "जादु",
+          "new": "जादू"
+        },
+        {
+          "old": "आफैँ",
+          "new": "आफैं"
+        },
+        {
+          "old": "अँध्येरो",
+          "new": "अँधेरो"
+        },
+        {
+          "old": "परिघान",
+          "new": "परिधान"
+        },
+        {
+          "old": "बिषयबाट",
+          "new": "विषयबाट"
+        },
+        {
+          "old": "उडाए?",
+          "new": "उडाए ?"
+        },
+        {
+          "old": "ओह्वाल्यो",
+          "new": "ओह्राल्यो"
+        },
+        {
+          "old": "सुतुबा",
+          "new": "सुतुवा"
+        },
+        {
+          "old": "दुहना",
+          "new": "दुहुना"
+        },
+        {
+          "old": "नुपुरहरू",
+          "new": "नूपुरहरू"
+        },
+        {
+          "old": "ढल्काएझैँ",
+          "new": "ढल्काएझैं"
+        },
+        {
+          "old": "कोत कुट्न",
+          "new": "कोमल"
+        },
+        {
+          "old": "",
+          "new": "गरिरहेकै"
+        },
+        {
+          "old": "उटपटाङ",
+          "new": "उटपट्याङ"
+        },
+        {
+          "old": "रुनझुन्‌ नुपुर",
+          "new": "रुनुझुनु नूपुर"
+        },
+        {
+          "old": "धुलीमय",
+          "new": "धूलीमय"
+        },
+        {
+          "old": "ढवाँगे",
+          "new": "ढ्वाँगे"
+        },
+        {
+          "old": "लक्वामा",
+          "new": "लङ्कामा"
+        }
+      ],
+      "correction_summary": [
+        {
+          "pages": [
+            1,
+            2
+          ],
+          "note": "Corrected सधैं, बोझा, तवरका, घ्यार्रघुर्र, कूँजा, निसास्सिंदो, both हेर्यो readings, जल्नु, विवेकवाद, मोहन-वनमा, कुकुरको, कवि, तर्कुले, हिंडिरहेकै and the first quoted verse’s रुनुझुनु repetitions. Retained source हडवड and सुषुप्ति instead of copying the differing digital readings."
+        },
+        {
+          "pages": [
+            3,
+            4
+          ],
+          "note": "Corrected अर्धनिमीलन, विचेतका, झङ्कृतिदार, independently checked गर्दथें, हाम्री, विलास, नवजगन्निर्माणको, विपनाद्वारा, पल्टें, भावनाले, खोजें, बुझें, विपनाको, लेखूँ and लेखिंदो. Restored the missing opening quotation before हे निद्रा and long-ू जादू. The primary independently supports विष्णु, while both comparison transcriptions had बिष्णु."
+        },
+        {
+          "pages": [
+            5,
+            6,
+            7
+          ],
+          "note": "Corrected आफैं, अँधेरो, परिधान, विषयबाट, ओह्राल्यो, सुतुवा, दुहुना, नूपुरहरू, ढल्काएझैं, कोमल, उटपट्याङ, रुनुझुनु नूपुर, धूलीमय, ढ्वाँगे and लङ्कामा. Restored the omitted गरिरहेकै in अनुभव काम गरिरहेकै अवस्थामा. Retained the independently checked primary पलङ्गासम्म and the source’s concluding full sentence."
+        },
+        {
+          "pages": [
+            2,
+            3,
+            4,
+            6
+          ],
+          "note": "Reconstructed three complete embedded verse quotations as 16-, 4- and 9-line blocks: removed OCR-only empty lines, retained all printed line breaks including ज्योति- / हरूको and अधर / भरी !, and separated the following prose beginning तब न सुत्न जान्नु. All 14 prose paragraphs are preserved; the baseline already excludes display title and running folios."
+        },
+        {
+          "pages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "note": "All seven full 300-dpi primary images were read, including body, margins and page bottoms. No footnotes, authorial notes or colophon occur. The excerpt ends with a complete concluding sentence at folio 126; no abrupt boundary or missing continuation found."
+        }
+      ],
+      "retained_edition_differences": [
+        {
+          "pages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "primary_examples": [
+            "प्लूटो",
+            "हडवड",
+            "शोच",
+            "सुषुप्ति",
+            "मध्याह्नको",
+            "आलसपनको मोहन-वनमा",
+            "अलसपनाको मोहन वनमा",
+            "गर्दथें",
+            "स्वर्गिय",
+            "बेला",
+            "हुँदै",
+            "कुम्भकर्णको",
+            "पलङ्गासम्म",
+            "हुन्"
+          ],
+          "action": "Retained literal original-edition wording, vowels, consonants and punctuation. The digital witness changes some words and introduces its own missing-vowel/consonant errors; it was not substituted wholesale."
+        },
+        {
+          "pages": [
+            1,
+            3,
+            4,
+            5
+          ],
+          "primary_examples": [
+            "हडवड",
+            "गर्दथें",
+            "विष्णु",
+            "पलङ्गासम्म"
+          ],
+          "action": "Enlarged source evidence retained. Independent checking confirmed the nasal in गर्दथें and voiced ग in पलङ्गासम्म. Source विष्णु corrects an error shared by baseline and digital."
+        }
+      ],
+      "source_anomalies": [
+        {
+          "pages": [
+            2,
+            3
+          ],
+          "note": "The prose names a poem आलसपनको मोहन-वनमा, while its quoted first line is अलसपनाको मोहन वनमा. Both literal primary forms are preserved."
+        },
+        {
+          "pages": [
+            3,
+            4,
+            6
+          ],
+          "note": "Preserved source verse and unusual wording such as फिल्मी जीवन, समरहरूको पारावर, स्वर्गिय, आँखमिचौनीहरूका and the original quotation marks; no metrical, grammatical or stylistic emendation."
+        },
+        {
+          "pages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "note": "Retained printed prose such as समयद्वारा मूर्खता, दर्शन, सजीवता लिन सक्तिन, राहा, भैंसीको सूँड / हात्तीको याल, सपना सचेत तवरले, स्वेच्छाभासिनी, उग्राउन and डाहाड; transcription is source-faithful rather than a conceptual rewrite."
+        }
+      ],
+      "reconciliation": {
+        "reviewed": "2026-10-31",
+        "pages_reviewed": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "checks": [
+          "correction spans",
+          "paragraph and verse boundaries",
+          "numbering",
+          "author notes and page bottoms",
+          "complete ending"
+        ]
+      }
+    },
+    {
+      "path": "archives/authors/devkota/lekhne_bani",
+      "title": "लेख्ने बानी",
+      "status": "proofread",
+      "before_sha256": "9ea3baa0824b03f1b21e3ca416a40a7f5fd38314b5d4551c35870171013e0eee",
+      "after_sha256": "66e7976729446af98cb081c0a89fc15b18bfffab4302731d2a0ceb003dd16e86",
+      "primary_source": {
+        "file": "archives/authors/devkota/lekhne_bani/lekhne_bani.pdf",
+        "sha256": "872bd05fa18e518e8e7d536ede5b65e6e00df4a9f2280876c1224952e868dd38",
+        "pages_reviewed": [
+          1,
+          2,
+          3
+        ]
+      },
+      "digital_comparisons": [
+        {
+          "book": "laxmi-nibandhasangraha",
+          "revision": "831ac1e09b4b613c04118f61644aaa20b9940227",
+          "path": "src/EPUB/text/lekhne-bani.xhtml",
+          "sha256": "868d61fc8807ecd2235b23d4f03fc2797ae87bd668d4b8a5211b34454a3f5e7d"
+        }
+      ],
+      "word_change_groups": 18,
+      "changes": [
+        {
+          "old": "मृगतृष्णासिबाय",
+          "new": "मृगतृष्णासिवाय"
+        },
+        {
+          "old": "जीबन",
+          "new": "जीवन"
+        },
+        {
+          "old": "छ।",
+          "new": "छ ।"
+        },
+        {
+          "old": "ढाँद्तथ्यो",
+          "new": "ढाँट्तथ्यो"
+        },
+        {
+          "old": "जल्दै-दुट्दै",
+          "new": "जल्दै-टुट्दै"
+        },
+        {
+          "old": "अँध्रेरा",
+          "new": "अँधेरा"
+        },
+        {
+          "old": "च्याँठिदै",
+          "new": "च्याँठिँदै"
+        },
+        {
+          "old": "पञ्छाएर",
+          "new": "पन्छाएर"
+        },
+        {
+          "old": "दु:खहरू",
+          "new": "दुःखहरू"
+        },
+        {
+          "old": "नुकचूकहरू,",
+          "new": "नूकचूकहरू,"
+        },
+        {
+          "old": "एऐँडीले",
+          "new": "एँडीले"
+        },
+        {
+          "old": "सुखदु:ख",
+          "new": "सुखदुःख"
+        },
+        {
+          "old": "छँदैछ-यो",
+          "new": "छँदैछ—यो"
+        },
+        {
+          "old": "बेदना",
+          "new": "वेदना"
+        },
+        {
+          "old": "महत",
+          "new": "मद्दत"
+        },
+        {
+          "old": "पुन्याउन",
+          "new": "पुर्‍याउन"
+        },
+        {
+          "old": "दिन्छन्-",
+          "new": "दिन्छन्—"
+        },
+        {
+          "old": "बिश्वासकारी",
+          "new": "विश्वासकारी"
+        }
+      ],
+      "correction_summary": [
+        {
+          "old": "मृगतृष्णासिबाय",
+          "new": "मृगतृष्णासिवाय",
+          "page": 1,
+          "basis": "Full primary-page comparison; printed letters, vowel marks and dashes restored."
+        },
+        {
+          "old": "जीबन",
+          "new": "जीवन",
+          "page": 1,
+          "basis": "Full primary-page comparison; printed letters, vowel marks and dashes restored."
+        },
+        {
+          "old": "ढाँद्तथ्यो",
+          "new": "ढाँट्तथ्यो",
+          "page": 1,
+          "basis": "Full primary-page comparison; printed letters, vowel marks and dashes restored."
+        },
+        {
+          "old": "जल्दै-दुट्दै",
+          "new": "जल्दै-टुट्दै",
+          "page": 2,
+          "basis": "Full primary-page comparison; printed letters, vowel marks and dashes restored."
+        },
+        {
+          "old": "अँध्रेरा",
+          "new": "अँधेरा",
+          "page": 2,
+          "basis": "Full primary-page comparison; printed letters, vowel marks and dashes restored."
+        },
+        {
+          "old": "च्याँठिदै",
+          "new": "च्याँठिँदै",
+          "page": 2,
+          "basis": "Full primary-page comparison; printed letters, vowel marks and dashes restored."
+        },
+        {
+          "old": "पञ्छाएर",
+          "new": "पन्छाएर",
+          "page": 2,
+          "basis": "Full primary-page comparison; printed letters, vowel marks and dashes restored."
+        },
+        {
+          "old": "नुकचूकहरू",
+          "new": "नूकचूकहरू",
+          "page": 2,
+          "basis": "Full primary-page comparison; printed letters, vowel marks and dashes restored."
+        },
+        {
+          "old": "एऐँडीले",
+          "new": "एँडीले",
+          "page": 2,
+          "basis": "Full primary-page comparison; printed letters, vowel marks and dashes restored."
+        },
+        {
+          "old": "दु:ख",
+          "new": "दुःख",
+          "page": 2,
+          "basis": "Full primary-page comparison; printed letters, vowel marks and dashes restored."
+        },
+        {
+          "old": "बेदना",
+          "new": "वेदना",
+          "page": 2,
+          "basis": "Full primary-page comparison; printed letters, vowel marks and dashes restored."
+        },
+        {
+          "old": "महत गर्नेमा",
+          "new": "मद्दत गर्नेमा",
+          "page": 2,
+          "basis": "Full primary-page comparison; printed letters, vowel marks and dashes restored."
+        },
+        {
+          "old": "पुन्याउन",
+          "new": "पुर्‍याउन",
+          "page": 2,
+          "basis": "Full primary-page comparison; printed letters, vowel marks and dashes restored."
+        },
+        {
+          "old": "बिश्वासकारी",
+          "new": "विश्वासकारी",
+          "page": 3,
+          "basis": "Full primary-page comparison; printed letters, vowel marks and dashes restored."
+        },
+        {
+          "old": "छँदैछ-यो",
+          "new": "छँदैछ—यो",
+          "page": 2,
+          "basis": "Full primary-page comparison; printed letters, vowel marks and dashes restored."
+        },
+        {
+          "old": "दिन्छन्- जसको",
+          "new": "दिन्छन्— जसको",
+          "page": 2,
+          "basis": "Full primary-page comparison; printed letters, vowel marks and dashes restored."
+        }
+      ],
+      "retained_edition_differences": [
+        "Retained printed कतुवा, गरीब, रङ्गिला, यमकातर, मनाइरहोस्, सङ्कष्ट and छद्मवेष. Digital छद्यवेष and प्रध्याति were not imported. Primary wording and paragraph sequence govern; no editorial modernization."
+      ],
+      "source_anomalies": [
+        "All seven paragraphs checked across all three source pages, including both page-break continuations. No notes or missing literary passages."
+      ],
+      "reconciliation": {
+        "reviewed": "2026-10-31",
+        "pages_reviewed": [
+          1,
+          2,
+          3
+        ],
+        "checks": [
+          "correction spans",
+          "paragraph and verse boundaries",
+          "numbering",
+          "author notes and page bottoms",
+          "complete ending"
+        ]
+      }
+    },
+    {
+      "path": "archives/authors/devkota/manchhejadu",
+      "title": "मान्छे-जादू",
+      "status": "proofread",
+      "before_sha256": "fb63152c49789c2f388b42c08ed7351842bdb11b7188cf7539d63fe64a992959",
+      "after_sha256": "f16ae91d85af949852a10801ff20ecec5f07d06b0b0a619fb7d95e24f0e37821",
+      "primary_source": {
+        "file": "archives/authors/devkota/manchhejadu/manchhejadu.pdf",
+        "sha256": "cb49220cece5b416c7f688837857d4d17f1e8df5e8e5a6602e98b4abe88c40e8",
+        "pages_reviewed": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      "digital_comparisons": [
+        {
+          "book": "laxmi-nibandhasangraha",
+          "revision": "831ac1e09b4b613c04118f61644aaa20b9940227",
+          "path": "src/EPUB/text/manche-jadu.xhtml",
+          "sha256": "89f85f7934b3e504fde2308cdd6e408ef2e3a5e0e7a1eb423a5e15c0c00cd51c"
+        }
+      ],
+      "word_change_groups": 77,
+      "changes": [
+        {
+          "old": "बुझनाको",
+          "new": "बुझ्नाको"
+        },
+        {
+          "old": "जीबन",
+          "new": "जीवन"
+        },
+        {
+          "old": "अँघेरीबाट",
+          "new": "अँधेरीबाट"
+        },
+        {
+          "old": "जीबनको",
+          "new": "जीवनको"
+        },
+        {
+          "old": "भनेँ,",
+          "new": "भनें,"
+        },
+        {
+          "old": "बुझनाको",
+          "new": "बुझ्नाको"
+        },
+        {
+          "old": "बिस्तार",
+          "new": "विस्तार"
+        },
+        {
+          "old": "बुझ्दछु",
+          "new": "बुझ्दछु,"
+        },
+        {
+          "old": "असंगतिबाट",
+          "new": "अङ्गसंगतिबाट"
+        },
+        {
+          "old": "अत्तर-छालासम्म बुझन",
+          "new": "अन्तर-छालासम्म बुझ्न"
+        },
+        {
+          "old": "गोर्खाहरूले",
+          "new": "गिर्खाहरूले"
+        },
+        {
+          "old": "!",
+          "new": "?"
+        },
+        {
+          "old": "पक्रैदैमा",
+          "new": "पक्रँदैमा"
+        },
+        {
+          "old": "'लब-डब'",
+          "new": "'लब-ढब'"
+        },
+        {
+          "old": "(क-ख)",
+          "new": "(क-ख)२"
+        },
+        {
+          "old": "सक्केन,",
+          "new": "सक्तेन,"
+        },
+        {
+          "old": "बुझन",
+          "new": "बुझ्न"
+        },
+        {
+          "old": "लटम्खाहरूमध्ये",
+          "new": "लटमुखाहरूमध्ये"
+        },
+        {
+          "old": "खँदिलोसिबाय",
+          "new": "खँदिलोसिवाय"
+        },
+        {
+          "old": "।",
+          "new": "!"
+        },
+        {
+          "old": "गिदी-गोर्खामा",
+          "new": "गिदी-गिर्खामा"
+        },
+        {
+          "old": "चात्रीमा",
+          "new": "चातुरीमा"
+        },
+        {
+          "old": "काड्‍ेर",
+          "new": "काडेर"
+        },
+        {
+          "old": "बिचार",
+          "new": "विचार"
+        },
+        {
+          "old": "हो-",
+          "new": "हो–"
+        },
+        {
+          "old": "तौलमिलाइ",
+          "new": "तौलीमिलाइ"
+        },
+        {
+          "old": "देख्यो-",
+          "new": "देख्यो–"
+        },
+        {
+          "old": "?-",
+          "new": "?–"
+        },
+        {
+          "old": "कङ्गालको",
+          "new": "कङ्कालको"
+        },
+        {
+          "old": "कङ्गाल किलिङ्ग",
+          "new": "कङ्काल किर्लिङ्ग"
+        },
+        {
+          "old": "बाझिएर",
+          "new": "बाङ्गिएर"
+        },
+        {
+          "old": "बेर्पीधि",
+          "new": "बेपीँधे"
+        },
+        {
+          "old": "।' खोइ",
+          "new": "। 'खोइ"
+        },
+        {
+          "old": "गयौ",
+          "new": "गयो ?"
+        },
+        {
+          "old": ":",
+          "new": "?"
+        },
+        {
+          "old": "दिन्थेँ",
+          "new": "दिन्थें"
+        },
+        {
+          "old": "'तैँ",
+          "new": "'तँ"
+        },
+        {
+          "old": "रुदै",
+          "new": "रुँदै"
+        },
+        {
+          "old": "नछाड",
+          "new": "नछाडे"
+        },
+        {
+          "old": "विराटका",
+          "new": "विराट्का"
+        },
+        {
+          "old": "अँघेरीमा",
+          "new": "अँधेरीमा"
+        },
+        {
+          "old": "फ्यांक्तथ्यो",
+          "new": "फ्याँक्तथ्यो"
+        },
+        {
+          "old": "थियो-",
+          "new": "थियो–"
+        },
+        {
+          "old": "बेदनामा",
+          "new": "वेदनामा"
+        },
+        {
+          "old": "बुझन",
+          "new": "बुझ्न"
+        },
+        {
+          "old": "कङ्गालका",
+          "new": "कङ्कालका"
+        },
+        {
+          "old": "'",
+          "new": "।"
+        },
+        {
+          "old": "नाकलाइ",
+          "new": "नाकलाई"
+        },
+        {
+          "old": "निकालिरहिछन्-",
+          "new": "निकालिरहिछन्–"
+        },
+        {
+          "old": "छठ र",
+          "new": "छाँटूँ"
+        },
+        {
+          "old": "त्याड्रिन",
+          "new": "ऱ्याङ्गिन"
+        },
+        {
+          "old": "जँघा छाँदन",
+          "new": "जुँघा छाँट्न"
+        },
+        {
+          "old": "कुँ-कुँ",
+          "new": "कुइँ-कुइँ"
+        },
+        {
+          "old": "सुन",
+          "new": "छुरा र"
+        },
+        {
+          "old": "",
+          "new": "फैलिएर"
+        },
+        {
+          "old": "मलाई-",
+          "new": "मलाई–"
+        },
+        {
+          "old": "छ।'",
+          "new": "छ !'"
+        },
+        {
+          "old": "भन्दछन्‌-के",
+          "new": "भन्दछन्‌–के"
+        },
+        {
+          "old": ":",
+          "new": "?"
+        },
+        {
+          "old": "'राम'-को",
+          "new": "'राम-को"
+        },
+        {
+          "old": "शिशु फूल",
+          "new": "'शिशु फूल'[१]"
+        },
+        {
+          "old": "सुन्दछु-",
+          "new": "सुन्दछु–"
+        },
+        {
+          "old": "लिन्छु!",
+          "new": "लिन्छु !"
+        },
+        {
+          "old": "कल्पद्रममुनि",
+          "new": "कल्पद्रुममुनि"
+        },
+        {
+          "old": "अड्घाउँछु",
+          "new": "अड्याउँछु"
+        },
+        {
+          "old": "अदलवदल",
+          "new": "अदलबदल"
+        },
+        {
+          "old": "देख्तछ,",
+          "new": "देख्तछ;"
+        },
+        {
+          "old": "मूर्ति-जससँग",
+          "new": "मूर्ति–जससँग"
+        },
+        {
+          "old": "हेप्यो-",
+          "new": "हेर्‍यो–"
+        },
+        {
+          "old": "ब्यौँझिएर",
+          "new": "ब्यूँझिएर"
+        },
+        {
+          "old": "'किरो'",
+          "new": "'किरो'[२]"
+        },
+        {
+          "old": "झल्काइरहेछु",
+          "new": "झल्काइरहेछु,"
+        },
+        {
+          "old": "लप्डन हुन्छन्‌,",
+          "new": "लण्डन हुन्छन्‌"
+        },
+        {
+          "old": "ईंटदेखि",
+          "new": "ईटदेखि"
+        },
+        {
+          "old": "आफैँलाई",
+          "new": "आफैलाई"
+        },
+        {
+          "old": "बिचित्रको",
+          "new": "विचित्रको"
+        },
+        {
+          "old": "",
+          "new": "टिप्पणी [१] मेरो एक गाइने गीतको शीर्षक । [२] अंग्रेजी सामुदायिक विद्यामा पारंगत प्रसिद्ध पुरुष ।"
+        }
+      ],
+      "correction_summary": [
+        {
+          "pages": [
+            1,
+            2
+          ],
+          "note": "Fixed dropped halants and OCR letter substitutions, including बुझ्नाको, जीवन, अँधेरी, विस्तार, अङ्गसंगतिबाट, बुझ्न, गिर्खाहरूले, पक्रँदैमा and लब-ढब; restored the printed punctuation."
+        },
+        {
+          "pages": [
+            3,
+            4
+          ],
+          "note": "Restored (क-ख)२ (the scan prints a superscript Devanagari २), verified literal सक्तेन against an independent reading, and corrected लटमुखाहरूमध्ये, खँदिलोसिवाय, गिदी-गिर्खामा, चातुरीमा, जिभ्रो काडेर, विचार, तौलीमिलाइ, कङ्कालको, कङ्काल किर्लिङ्ग, बाङ्गिएर, बेपीँधे and गयो."
+        },
+        {
+          "pages": [
+            5,
+            6
+          ],
+          "note": "Corrected नछाडे, विराट्का, अँधेरीमा, फ्याँक्तथ्यो, वेदनामा, कङ्कालका, नाकलाई, छाँटूँ, the independently checked company name ऱ्याङ्गिन, जुँघा छाँट्न, कुइँ-कुइँ, and छुरा र. Recovered omitted फैलिएर and rejoined the sentence across the pages 5–6 page turn."
+        },
+        {
+          "pages": [
+            7,
+            8,
+            9
+          ],
+          "note": "Restored कल्पद्रुममुनि, अड्याउँछु, अदलबदल, हेर्‍यो, independently checked ब्यूँझिएर, लण्डन, ईटदेखि and विचित्रको. Restored omitted inline footnote references and both complete printed notes under टिप्पणी."
+        },
+        {
+          "pages": [
+            2
+          ],
+          "note": "Reconciliation restores printed अन्तर-छालासम्म; the earlier transcription and digital witness both misread the conjunct as अत्तर."
+        }
+      ],
+      "retained_edition_differences": [
+        {
+          "pages": [
+            3,
+            4,
+            5,
+            7,
+            8,
+            9
+          ],
+          "primary_examples": [
+            "सक्तेन",
+            "सरक्षिणी",
+            "थुकमा",
+            "बेपीँधे",
+            "ऱ्याङ्गिन",
+            "स्कुल",
+            "टुप्पाअगाडि",
+            "कल्पद्रुममुनि",
+            "ब्यूँझिएर",
+            "सामुदायिक"
+          ],
+          "action": "Retained the literal primary readings rather than the differing digital vowels, missing vowels, consonants or lexical corrections."
+        },
+        {
+          "pages": [
+            1,
+            2,
+            3,
+            6,
+            7,
+            8,
+            9
+          ],
+          "note": "Retained primary spellings/wording such as पढाएँ, हाँसेर, बाँध्न, कति, सक्तिनँ, त्यतिमै, ढाक्न, अज्ञातको, अघि, चौथाइ, हुँ, झल्काइरहेछु, गरीब, बरु, झूटा, सुँघ्दै, देख्ने, त्यसका and the existing nonprinting joiner choices. The digital witness contains independent typographical errors and was not substituted wholesale."
+        }
+      ],
+      "source_anomalies": [
+        {
+          "page": 3,
+          "note": "The source reads सक्तेन, with क्त and ए, not baseline सक्केन or digital सक्तैन; an independent enlarged-image check confirmed this spelling."
+        },
+        {
+          "page": 3,
+          "note": "The source prints सरक्षिणी without anusvara. Retained as a source anomaly instead of silently imposing the digital संरक्षिणी."
+        },
+        {
+          "page": 6,
+          "note": "The source opens a quotation before राम-को without a matching closing quotation at that word; its punctuation is retained."
+        },
+        {
+          "page": 7,
+          "note": "Footnote १ explicitly uses the authorial first person: मेरो एक गाइने गीतको शीर्षक ।"
+        },
+        {
+          "page": 8,
+          "note": "Footnote २ is restored literally, including printed सामुदायिक rather than a conjectural सामुद्रिक. The primary source supplies this factual explanatory note."
+        }
+      ],
+      "reconciliation": {
+        "reviewed": "2026-10-31",
+        "pages_reviewed": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "checks": [
+          "correction spans",
+          "paragraph and verse boundaries",
+          "numbering",
+          "author notes and page bottoms",
+          "complete ending"
+        ]
+      }
+    },
+    {
+      "path": "archives/authors/devkota/meri_shishu",
+      "title": "मेरी शिशु",
+      "status": "proofread",
+      "before_sha256": "22b79475df7da0e2a1635e8cfdef70a618a6e270fa58fec9479bc89d2a41c0f7",
+      "after_sha256": "f18e7ffdc9e01a82e3a604cfc62e4e0e880622f18ba0b1540cde8017accb622b",
+      "primary_source": {
+        "file": "archives/authors/devkota/meri_shishu/meri_shishu.pdf",
+        "sha256": "af733649561f5f03e85dbc66457cc60aa64b103fef61d25a9de41d7ee03b0c85",
+        "pages_reviewed": [
+          1,
+          2
+        ]
+      },
+      "digital_comparisons": [
+        {
+          "book": "laxmi-nibandhasangraha",
+          "revision": "831ac1e09b4b613c04118f61644aaa20b9940227",
+          "path": "src/EPUB/text/meri-shishu.xhtml",
+          "sha256": "a0f916d4eb2a7b162d55d579c06a9b5420a4600695aef8803c0e8c05ad5cd54e"
+        }
+      ],
+      "word_change_groups": 11,
+      "changes": [
+        {
+          "old": "ब्युँझदै",
+          "new": "ब्यूँझैँदै"
+        },
+        {
+          "old": "क",
+          "new": "उ"
+        },
+        {
+          "old": "बनेकै",
+          "new": "बनेझैं"
+        },
+        {
+          "old": "क",
+          "new": "उ"
+        },
+        {
+          "old": "बस्तु",
+          "new": "वस्तु"
+        },
+        {
+          "old": "रोपुँ",
+          "new": "रोपूँ"
+        },
+        {
+          "old": "क",
+          "new": "उ"
+        },
+        {
+          "old": "बिश्वास",
+          "new": "विश्वास"
+        },
+        {
+          "old": "",
+          "new": "मनुष्य"
+        },
+        {
+          "old": "",
+          "new": "धर्मसमरहो"
+        },
+        {
+          "old": "घरातललाई",
+          "new": "धरातललाई"
+        }
+      ],
+      "correction_summary": [
+        {
+          "old": "ब्युँझदै",
+          "new": "ब्यूँझैँदै",
+          "page": 1,
+          "basis": "Complete primary-page comparison; omitted words and printed letters restored."
+        },
+        {
+          "old": "क बढ्दै",
+          "new": "उ बढ्दै",
+          "page": 1,
+          "basis": "Complete primary-page comparison; omitted words and printed letters restored."
+        },
+        {
+          "old": "बनेकै",
+          "new": "बनेझैं",
+          "page": 1,
+          "basis": "Complete primary-page comparison; omitted words and printed letters restored."
+        },
+        {
+          "old": "क प्रकृतिले",
+          "new": "उ प्रकृतिले",
+          "page": 1,
+          "basis": "Complete primary-page comparison; omitted words and printed letters restored."
+        },
+        {
+          "old": "क बिरामी",
+          "new": "उ बिरामी",
+          "page": 1,
+          "basis": "Complete primary-page comparison; omitted words and printed letters restored."
+        },
+        {
+          "old": "बस्तु",
+          "new": "वस्तु",
+          "page": 1,
+          "basis": "Complete primary-page comparison; omitted words and printed letters restored."
+        },
+        {
+          "old": "रोपुँ",
+          "new": "रोपूँ",
+          "page": 1,
+          "basis": "Complete primary-page comparison; omitted words and printed letters restored."
+        },
+        {
+          "old": "बिश्वास",
+          "new": "विश्वास",
+          "page": 1,
+          "basis": "Complete primary-page comparison; omitted words and printed letters restored."
+        },
+        {
+          "old": "मर्दा के चाहन्छस्‌ ?",
+          "new": "मर्दा के चाहन्छस्‌ मनुष्य ?",
+          "page": 2,
+          "basis": "Complete primary-page comparison; omitted words and printed letters restored."
+        },
+        {
+          "old": "हे महायुद्धहो ! हे !",
+          "new": "हे महायुद्धहो ! हे धर्मसमरहो !",
+          "page": 2,
+          "basis": "Complete primary-page comparison; omitted words and printed letters restored."
+        },
+        {
+          "old": "घरातललाई",
+          "new": "धरातललाई",
+          "page": 2,
+          "basis": "Complete primary-page comparison; omitted words and printed letters restored."
+        }
+      ],
+      "retained_edition_differences": [
+        "Preserved the unusual printed ब्यूँझैँदै and short उ, rather than silently regularizing the grammar or spelling. Retained source होओइन, अल्सी, आटलास, जापक and the awkward printed quotation before शिशुलाई. Digital आघार and its quote rearrangements were not imported."
+      ],
+      "source_anomalies": [
+        "All eight paragraphs and the cross-page sentence checked; restored omitted मनुष्य and धर्मसमरहो. No footnotes. The original printed text has some grammatical and quotation irregularities, which remain."
+      ],
+      "reconciliation": {
+        "reviewed": "2026-10-31",
+        "pages_reviewed": [
+          1,
+          2
+        ],
+        "checks": [
+          "correction spans",
+          "paragraph and verse boundaries",
+          "numbering",
+          "author notes and page bottoms",
+          "complete ending"
+        ]
+      }
+    },
+    {
+      "path": "archives/authors/devkota/pahadi_jiban",
+      "title": "पहाडी जीवन",
+      "status": "proofread",
+      "before_sha256": "e0962ceb6982f8cbfa005ce6a781c95f4edecfadb34084b5b7e7e9bf23241b36",
+      "after_sha256": "db22966955810b164254dd7a39145811584526e990fdd44c15c6f9358d809d06",
+      "primary_source": {
+        "file": "archives/authors/devkota/pahadi_jiban/pahadi_jiban.pdf",
+        "sha256": "cc9d667668be3ced6bb2e2873386e7ee6ec856970c6f0d6c366265243f346648",
+        "pages_reviewed": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      "digital_comparisons": [
+        {
+          "book": "laxmi-nibandhasangraha",
+          "revision": "831ac1e09b4b613c04118f61644aaa20b9940227",
+          "path": "src/EPUB/text/pahadi-jivan.xhtml",
+          "sha256": "8e21ade0b99021bde2a62c302f41acfd6b0cb06c1914af5f7aa5492e2e34b10f"
+        }
+      ],
+      "word_change_groups": 110,
+      "changes": [
+        {
+          "old": "बन,",
+          "new": "वन,"
+        },
+        {
+          "old": "बस्तछौँ",
+          "new": "बस्तछौ"
+        },
+        {
+          "old": "ढिँडो",
+          "new": "ढिंडो"
+        },
+        {
+          "old": "ढिँडो",
+          "new": "ढिंडो"
+        },
+        {
+          "old": "देखेझैँ",
+          "new": "देखेझैं"
+        },
+        {
+          "old": "झैँ",
+          "new": "झैं"
+        },
+        {
+          "old": "रहञ्ज्याल",
+          "new": "रहुञ्ज्याल"
+        },
+        {
+          "old": "दारिद्रथबाट",
+          "new": "दारिद्र्यबाट"
+        },
+        {
+          "old": "लैजाञँ",
+          "new": "लैजाऊँ"
+        },
+        {
+          "old": "बदुल्न",
+          "new": "बटुल्न"
+        },
+        {
+          "old": "मानब",
+          "new": "मानव"
+        },
+        {
+          "old": "सोधेँसम्म,",
+          "new": "सोधेंसम्म,"
+        },
+        {
+          "old": "कठाँग्रिन्छ,",
+          "new": "कठाँग्रिन्छ;"
+        },
+        {
+          "old": "खोसनुभन्दा",
+          "new": "खोस्नुभन्दा"
+        },
+        {
+          "old": "हिडिरहेछ",
+          "new": "हिंडिरहेछ"
+        },
+        {
+          "old": "कन",
+          "new": "कुन"
+        },
+        {
+          "old": "दाह्वाअगाडि",
+          "new": "दाह्राअगाडि"
+        },
+        {
+          "old": "जङ्रली",
+          "new": "जङ्गली"
+        },
+        {
+          "old": "भै",
+          "new": "झैं"
+        },
+        {
+          "old": "ककल्ढुक",
+          "new": "कुकुल्ढुक"
+        },
+        {
+          "old": "रातोमाटै",
+          "new": "रातोमाटे"
+        },
+        {
+          "old": "भ्याङप्वाल",
+          "new": "झ्याङप्वाल"
+        },
+        {
+          "old": "चिघरे",
+          "new": "चिथरे"
+        },
+        {
+          "old": "त्यहीँ",
+          "new": "त्यहीं"
+        },
+        {
+          "old": "पुच्याउने",
+          "new": "पुर्‍याउने"
+        },
+        {
+          "old": "आफैँ",
+          "new": "आफैं"
+        },
+        {
+          "old": "हुन्थेँ",
+          "new": "हुन्थें"
+        },
+        {
+          "old": "पाउँ,",
+          "new": "पाऊँ,"
+        },
+        {
+          "old": "मान्दथैँ",
+          "new": "मान्दथें"
+        },
+        {
+          "old": "रहन्थे,",
+          "new": "रहन्थें,"
+        },
+        {
+          "old": "लिन्थे",
+          "new": "लिन्थें"
+        },
+        {
+          "old": "कतज्ञता",
+          "new": "कृतज्ञता"
+        },
+        {
+          "old": "गर्दछन्‌-समयको,",
+          "new": "गर्दछन्‌–समयको,"
+        },
+        {
+          "old": "बढाउँ",
+          "new": "बढाऊँ"
+        },
+        {
+          "old": "गरिरहेछौँ, बिलास",
+          "new": "गरिरहेछौं, विलास"
+        },
+        {
+          "old": "दु:ख पाइरहेछौँ,",
+          "new": "दुःख पाइरहेछौं,"
+        },
+        {
+          "old": "क्राको",
+          "new": "कुराको"
+        },
+        {
+          "old": "क",
+          "new": "ऊ"
+        },
+        {
+          "old": "स्याँठेला",
+          "new": "स्याँठिला"
+        },
+        {
+          "old": "ढिँडोबाट",
+          "new": "ढिंडोबाट"
+        },
+        {
+          "old": "बुभ्दथे,",
+          "new": "बुझ्दथे,"
+        },
+        {
+          "old": "गर्दथ्यो।",
+          "new": "गर्दथ्यो ।"
+        },
+        {
+          "old": "सारड्डी",
+          "new": "सारङ्गी"
+        },
+        {
+          "old": "गाउँदै,",
+          "new": "गाउँथें,"
+        },
+        {
+          "old": "शिशृहरूलाई",
+          "new": "शिशुहरूलाई"
+        },
+        {
+          "old": "घर्म",
+          "new": "धर्म"
+        },
+        {
+          "old": "रडहरूले",
+          "new": "रङहरूले"
+        },
+        {
+          "old": "भिकाउँदै",
+          "new": "झिकाउँदै"
+        },
+        {
+          "old": "चित्रकटीमा",
+          "new": "चित्रकुटीमा"
+        },
+        {
+          "old": "सुनाइदिन्धें,",
+          "new": "सुनाइदिन्थें,"
+        },
+        {
+          "old": "तबरका",
+          "new": "तवरका"
+        },
+        {
+          "old": "कवामा",
+          "new": "कथामा"
+        },
+        {
+          "old": "गरेँ",
+          "new": "गरें"
+        },
+        {
+          "old": "पुन्याउन",
+          "new": "पुर्‍याउन"
+        },
+        {
+          "old": "हन",
+          "new": "हुन"
+        },
+        {
+          "old": "पात्रीहरूकै",
+          "new": "यात्रीहरूकै"
+        },
+        {
+          "old": "बढेँ",
+          "new": "बढें"
+        },
+        {
+          "old": "बयोवृद्ध",
+          "new": "वयोवृद्ध"
+        },
+        {
+          "old": "कनै",
+          "new": "कुनै"
+        },
+        {
+          "old": "दिन्छु-सरासर दगुच्यो,",
+          "new": "दिन्छु–सरासर दगुर्‍यो,"
+        },
+        {
+          "old": "क्रषिहरू",
+          "new": "ऋषिहरू"
+        },
+        {
+          "old": "सधैँ फर्सतैको",
+          "new": "सधैं फुर्सतैको"
+        },
+        {
+          "old": "क्रा",
+          "new": "कुरा"
+        },
+        {
+          "old": "गर्दथे",
+          "new": "गर्दथे,"
+        },
+        {
+          "old": "सृक्ष्म",
+          "new": "सूक्ष्म"
+        },
+        {
+          "old": "देखेँ",
+          "new": "देखें"
+        },
+        {
+          "old": "प्रुषहरूभन्दा",
+          "new": "पुरुषहरूभन्दा"
+        },
+        {
+          "old": "रइका",
+          "new": "रङ्गका"
+        },
+        {
+          "old": "मड्रोलियन",
+          "new": "मङ्गोलियन"
+        },
+        {
+          "old": "पुडकापुडका",
+          "new": "पुड्कापुड्का"
+        },
+        {
+          "old": "तामाड",
+          "new": "तामाङ"
+        },
+        {
+          "old": "म्रली",
+          "new": "मुरली"
+        },
+        {
+          "old": "बरदान",
+          "new": "वरदान"
+        },
+        {
+          "old": "नाचेझै",
+          "new": "नाचेझैं"
+        },
+        {
+          "old": "तबरले हांस्तथे, प्राकतिक",
+          "new": "तवरले हाँस्तथे, प्राकृतिक"
+        },
+        {
+          "old": "तबरले,",
+          "new": "तवरले,"
+        },
+        {
+          "old": "तामाङड्नीहरू",
+          "new": "तामाङ्नीहरू"
+        },
+        {
+          "old": "थिए-",
+          "new": "थिए–"
+        },
+        {
+          "old": "मानौं-",
+          "new": "मानौं–"
+        },
+        {
+          "old": "पुगेँ",
+          "new": "पुगें"
+        },
+        {
+          "old": "चढेँ",
+          "new": "चढें"
+        },
+        {
+          "old": "बनोस्,",
+          "new": "बनोस्"
+        },
+        {
+          "old": "कलझैं",
+          "new": "कल झैं"
+        },
+        {
+          "old": "मिलेझौं",
+          "new": "मिलेझैं"
+        },
+        {
+          "old": "भयङ्गर",
+          "new": "भयङ्कर"
+        },
+        {
+          "old": "गोसाइँधानको",
+          "new": "गोसाईंथानको"
+        },
+        {
+          "old": "चित्रहरूसिवबाय",
+          "new": "चित्रहरूसिवाय"
+        },
+        {
+          "old": "भयाल",
+          "new": "झ्याल"
+        },
+        {
+          "old": "पहेँलिएर",
+          "new": "पहेंलिएर"
+        },
+        {
+          "old": "बाखीहरू",
+          "new": "बाख्रीहरू"
+        },
+        {
+          "old": "एक आँठे",
+          "new": "एकआँठे"
+        },
+        {
+          "old": "बाटने",
+          "new": "बाट्ने"
+        },
+        {
+          "old": "ईटले",
+          "new": "ईंटले"
+        },
+        {
+          "old": "मध्याहनको",
+          "new": "मध्याह्नको"
+        },
+        {
+          "old": "देखिंदैन",
+          "new": "देखिँदैन"
+        },
+        {
+          "old": "बरमुनि",
+          "new": "बरमनि"
+        },
+        {
+          "old": "जुता माठी",
+          "new": "लुकामारी"
+        },
+        {
+          "old": "",
+          "new": "भैंसी"
+        },
+        {
+          "old": "छ-एउटा",
+          "new": "छ–एउटा"
+        },
+        {
+          "old": "हासिल",
+          "new": "निर्मल"
+        },
+        {
+          "old": "बिश्वास",
+          "new": "विश्वास"
+        },
+        {
+          "old": "क्रणमा",
+          "new": "ऋणमा"
+        },
+        {
+          "old": "चाहिँदा",
+          "new": "चाहिंदा"
+        },
+        {
+          "old": "हुन",
+          "new": ""
+        },
+        {
+          "old": "बृता",
+          "new": "कसैको बूता"
+        },
+        {
+          "old": "पृथ्बीमाताको",
+          "new": "पृथ्वीमाताको"
+        },
+        {
+          "old": "प्रबाहउपर",
+          "new": "प्रवाहउपर"
+        },
+        {
+          "old": "पहाँ",
+          "new": "यहाँ"
+        },
+        {
+          "old": "होस्,",
+          "new": "होस्;"
+        },
+        {
+          "old": "मेटिञन्,",
+          "new": "मेटिऊन्,"
+        }
+      ],
+      "correction_summary": [
+        {
+          "pages": [
+            1,
+            2
+          ],
+          "note": "Corrected dropped vowels/conjuncts in रहुञ्ज्याल, दारिद्र्यबाट, लैजाऊँ, बटुल्न, दाह्रा, जङ्गली, कुकुल्ढुक and झ्याङप्वाल; followed source nasal and punctuation forms."
+        },
+        {
+          "pages": [
+            2,
+            3
+          ],
+          "note": "Restored पुर्‍याउने, first-person verb endings, कृतज्ञता, विलास, कुराको and the ऊ pronoun misread as क."
+        },
+        {
+          "pages": [
+            4
+          ],
+          "note": "Corrected सारङ्गी/गाउँथें, शिशु, धर्म, रङ, झिकाउँदै, चित्रकुटी, सुनाइदिन्थें, कथामा, पुर्‍याउन and missing vowel in हुन."
+        },
+        {
+          "pages": [
+            5,
+            6
+          ],
+          "note": "Corrected यात्री, वयोवृद्ध, कुनै, दगुर्‍यो, ऋषि, फुर्सत, कुरा, सूक्ष्म, पुरुष, रङ्ग, मङ्गोलियन, पुड्कापुड्का, तामाङ, मुरली, वरदान, प्राकृतिक and तामाङ्नी. Preserved the original folk-song syllables."
+        },
+        {
+          "pages": [
+            7,
+            8
+          ],
+          "note": "Corrected सिवाय, झ्याल, बाख्री, बाट्ने, ईंट, मध्याह्न and लुकामारी; restored omitted भैंसी and replaced OCR-hallucinated हासिल with निर्मल."
+        },
+        {
+          "pages": [
+            8,
+            9
+          ],
+          "note": "Restored विश्वास, ऋण, कसैको बूता, पृथ्वी, प्रवाह, यहाँ and मेटिऊन्; removed unprinted duplicate हुन."
+        }
+      ],
+      "retained_edition_differences": [
+        {
+          "page": 1,
+          "primary": "नमूना झैं / धूलोमा",
+          "digital": "नमूना झौं / घूलोमा",
+          "decision": "Keep the primary words."
+        },
+        {
+          "page": 2,
+          "primary": "खोस्नुभन्दा / कुन आनन्द / चिथरा / धर्मराउँदो",
+          "digital": "खोस्रनुभन्दा / कन आनन्द / चिधरा / घर्मराउँदो",
+          "decision": "Follow directly read primary glyphs; खोस्नुभन्दा independently confirmed from enlarged crop."
+        },
+        {
+          "page": 4,
+          "primary": "प्रकाश गर्न सक्ने थिए ।",
+          "digital": "प्रकाश गर्न सक्ने थिए !",
+          "decision": "Keep primary danda."
+        },
+        {
+          "page": 5,
+          "primary": "वयोवृद्ध / बराबर / सूक्ष्म / मङ्गोलियन",
+          "digital": "बयोवृद्ध / वराबर / सृक्ष्म / मड्गोलियन",
+          "decision": "Keep primary forms, repairing even errors shared by baseline and digital text."
+        },
+        {
+          "page": 6,
+          "primary": "झाभझे",
+          "digital": "झाझे",
+          "decision": "Keep the primary folk-song syllables; no inferred regularization of unfamiliar language."
+        },
+        {
+          "page": 6,
+          "primary": "गर्दैनन् / हुन्छन् / गोसाईंथानको",
+          "digital": "गदैनन् / हन्छन् / गोसाईंधानको",
+          "decision": "Keep primary readings."
+        },
+        {
+          "page": 8,
+          "primary": "मुद्दा र झगडाहरूमा / श्रद्धा",
+          "digital": "मुद्दा झगडाहरूमा / श्रद्वा",
+          "decision": "Retain the printed र and श्रद्धा conjunct."
+        },
+        {
+          "page": 9,
+          "primary": "इत्यादिमा",
+          "digital": "डत्यादिमा",
+          "decision": "Retain primary initial इ."
+        },
+        {
+          "pages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "note": "Primary nasal forms such as सोधें, रहन्थें, हुन्थें, दबाउँछौं, पाउँछौं, चढें and हिंड्थे retained where digital nasal signs differ; zero-width joining differences are not replacement instructions."
+        }
+      ],
+      "source_anomalies": [
+        {
+          "page": 8,
+          "reading": "बरमनि",
+          "note": "Primary prints no visible उ vowel; retained rather than silently normalizing to बरमुनि."
+        },
+        {
+          "page": 8,
+          "reading": "गाई-भैंसी फुने",
+          "note": "The unusual printed फुने is retained, not silently replaced by a presumed verb."
+        },
+        {
+          "page": 5,
+          "reading": "होवैनन्",
+          "note": "Printed form retained."
+        },
+        {
+          "page": 9,
+          "reading": "विविध अध्ययन पाउँछु / गौड गर्न",
+          "note": "Unusual source wording retained."
+        }
+      ],
+      "reconciliation": {
+        "reviewed": "2026-10-31",
+        "pages_reviewed": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "checks": [
+          "correction spans",
+          "paragraph and verse boundaries",
+          "numbering",
+          "author notes and page bottoms",
+          "complete ending"
+        ]
+      }
+    },
+    {
+      "path": "archives/authors/devkota/pandit_lekhanath_paudyalako_bishayama",
+      "title": "पण्डित लेखनाथ पौड्यालको विषयमा",
+      "status": "proofread",
+      "before_sha256": "c26a970907e5c7a5178352be6dc97aa7fbbae85153f438bff968f7496b92b9df",
+      "after_sha256": "46c4b3a3f92ba2e35be4dbab21cb883a9b03ef5fb9f88ed6c5d5dc7ba89742de",
+      "primary_source": {
+        "file": "archives/authors/devkota/pandit_lekhanath_paudyalako_bishayama/pandit_lekhanath_paudyalako_bishayama.pdf",
+        "sha256": "da13f55e6161f2dc57dbaa03246d98ad2d21dbc5382b8d770cf322be2253c1b2",
+        "pages_reviewed": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "digital_comparisons": [
+        {
+          "book": "laxmi-nibandhasangraha",
+          "revision": "831ac1e09b4b613c04118f61644aaa20b9940227",
+          "path": "src/EPUB/text/pandit-lekhnath-paudyalko-bisayama.xhtml",
+          "sha256": "b690fc4a633582e3047be6578720eb1bddf971f54b564103d507129ab5f24722"
+        }
+      ],
+      "word_change_groups": 64,
+      "changes": [
+        {
+          "old": "उँचा",
+          "new": "ऊँचा"
+        },
+        {
+          "old": "हेरेँ",
+          "new": "हेरें"
+        },
+        {
+          "old": "पसेँ",
+          "new": "पसें"
+        },
+        {
+          "old": "गन्यो",
+          "new": "गर्‍यो"
+        },
+        {
+          "old": "भ्यालतिर",
+          "new": "झ्यालतिर"
+        },
+        {
+          "old": "देखेँ",
+          "new": "देखें"
+        },
+        {
+          "old": "हुनुहन्थ्यो",
+          "new": "हुनुहुन्थ्यो"
+        },
+        {
+          "old": "सुनेँ",
+          "new": "सुनें"
+        },
+        {
+          "old": "दिदै",
+          "new": "दिंदै"
+        },
+        {
+          "old": "श्रोतवर्गमा",
+          "new": "श्रोतृवर्गमा"
+        },
+        {
+          "old": "प्रकृति-बर्णनमा",
+          "new": "प्रकृति-वर्णनमा"
+        },
+        {
+          "old": "गर्नेभयो",
+          "new": "गर्नुभयो"
+        },
+        {
+          "old": "वेस",
+          "new": "बेस"
+        },
+        {
+          "old": "सस्तो",
+          "new": "उस्तो"
+        },
+        {
+          "old": "गर्नै",
+          "new": "गर्ने"
+        },
+        {
+          "old": "पाउँदिनथेँ",
+          "new": "पाउँदिनथें"
+        },
+        {
+          "old": "हौँटहौँट",
+          "new": "हौंटहौंट"
+        },
+        {
+          "old": "गरेँ",
+          "new": "गरें"
+        },
+        {
+          "old": "समीपबर्ती जौहारलाई",
+          "new": "समीपवर्ती जुहारलाई"
+        },
+        {
+          "old": "जोड्न",
+          "new": "जोड्नु"
+        },
+        {
+          "old": "राख्तछौँ,",
+          "new": "राख्तछौं,"
+        },
+        {
+          "old": "नबीनताको,",
+          "new": "नवीनताको,"
+        },
+        {
+          "old": "बुझ्दैनौँ,",
+          "new": "बुझ्दैनौं,"
+        },
+        {
+          "old": "देख्नछौं",
+          "new": "देख्तछौं"
+        },
+        {
+          "old": "कथवनी-पथनीभन्दा",
+          "new": "कथनी-पथनीभन्दा"
+        },
+        {
+          "old": "मुदा",
+          "new": "मुर्दा"
+        },
+        {
+          "old": "तिर्देछ,",
+          "new": "तिर्दछ,"
+        },
+        {
+          "old": "तिर्ने",
+          "new": "तिर्न"
+        },
+        {
+          "old": "छुट्टयाउन",
+          "new": "छुट्ट्याउन"
+        },
+        {
+          "old": "बुझनेलाई",
+          "new": "बुझ्नेलाई"
+        },
+        {
+          "old": "बाञ्चित",
+          "new": "वञ्चित"
+        },
+        {
+          "old": "बुझन",
+          "new": "बुझ्न"
+        },
+        {
+          "old": "क",
+          "new": "ऊ"
+        },
+        {
+          "old": "टोह्लाउँथ्यथे",
+          "new": "टोह्लाउँथे"
+        },
+        {
+          "old": "बिद्वान्हरू",
+          "new": "विद्वान्हरू"
+        },
+        {
+          "old": "उचालिँदै",
+          "new": "उचालिंदै"
+        },
+        {
+          "old": "क",
+          "new": "ऊ"
+        },
+        {
+          "old": "क",
+          "new": "ऊ"
+        },
+        {
+          "old": "दुना",
+          "new": "टुना"
+        },
+        {
+          "old": "बुझदैनथ्यौं,",
+          "new": "बुझ्दैनथ्यौं,"
+        },
+        {
+          "old": "श्रद्दा",
+          "new": "श्रद्धा"
+        },
+        {
+          "old": "कुँदेझै",
+          "new": "कुँदेझैं"
+        },
+        {
+          "old": "बुझनेले",
+          "new": "बुझ्नेले"
+        },
+        {
+          "old": "कुँदन",
+          "new": "कुँद्न"
+        },
+        {
+          "old": "उती",
+          "new": "उनी"
+        },
+        {
+          "old": "कबि",
+          "new": "कवि"
+        },
+        {
+          "old": "सस्कताधिम्य,",
+          "new": "संस्कृताधिक्य,"
+        },
+        {
+          "old": "सम्झँदैनौ",
+          "new": "सम्झँदैनौं"
+        },
+        {
+          "old": "!",
+          "new": "।"
+        },
+        {
+          "old": "गठेल",
+          "new": "सङ्केत"
+        },
+        {
+          "old": "मक्त",
+          "new": "भक्त"
+        },
+        {
+          "old": "देख्तिने",
+          "new": "देख्तिनँ"
+        },
+        {
+          "old": "कबिता",
+          "new": "कविता"
+        },
+        {
+          "old": "देखिँदैन जातको",
+          "new": "देखिंदैन जतिको"
+        },
+        {
+          "old": "सोद्दै",
+          "new": "सोद्धै"
+        },
+        {
+          "old": "शव्दलालित्यको",
+          "new": "शब्दलालित्यको"
+        },
+        {
+          "old": "शाब्दहरूसित",
+          "new": "शब्दहरूसित"
+        },
+        {
+          "old": "र",
+          "new": "?"
+        },
+        {
+          "old": "लेखिरहेछौँ",
+          "new": "लेखिरहेछौं"
+        },
+        {
+          "old": "बिभिन्न",
+          "new": "विभिन्न"
+        },
+        {
+          "old": "राक्तछन्",
+          "new": "सक्तछन्"
+        },
+        {
+          "old": "सधैँ",
+          "new": "सधैं"
+        },
+        {
+          "old": "छामछाम-छमछम",
+          "new": "छामछाम-छुमछुम"
+        },
+        {
+          "old": "महत्त्व",
+          "new": "महत्व"
+        }
+      ],
+      "correction_summary": [
+        {
+          "pages": [
+            1,
+            2
+          ],
+          "note": "Corrected ऊँचा and literal anusvara endings हेरें, पसें, देखें, सुनें; restored गर्‍यो, झ्यालतिर, हुनुहुन्थ्यो, दिंदै, श्रोतृवर्गमा, प्रकृति-वर्णनमा, गर्नुभयो, बेस, उस्तो, गर्ने, पाउँदिनथें, हौंटहौंट and गरें. The original has गर्दथेँ with chandrabindu; retained following independent image confirmation. The uncommon धौंसिया and बाँकेघरको are printed and retained."
+        },
+        {
+          "pages": [
+            3,
+            4
+          ],
+          "note": "Corrected समीपवर्ती जुहारलाई, जोड्नु, राख्तछौं, नवीनताको, बुझ्दैनौं, देख्तछौं, कथनी-पथनीभन्दा, मुर्दा, तिर्दछ, तिर्न, छुट्ट्याउन, बुझ्नेलाई, वञ्चित, बुझ्न, three erroneous क readings of ऊ, टोह्लाउँथे, विद्वान्हरू, उचालिंदै, टुना and बुझ्दैनथ्यौं. The source independently confirms दुरदुर् with no first र halant. Retained primary सुवर्णरेखा, पाउँला and पहिला ज्योति where the digital differs."
+        },
+        {
+          "pages": [
+            5,
+            6
+          ],
+          "note": "Corrected श्रद्धा, कुँदेझैं, बुझ्नेले, कुँद्न, उनी, कवि, संस्कृताधिक्य, सम्झँदैनौं, the full stop after प्राकृत हुन्, सङ्केत, भक्त, देख्तिनँ, कविता, देखिंदैन जतिको, सोद्धै, शब्दलालित्यको, शब्दहरूसित, the question mark after भावकै दोष हो कि and लेखिरहेछौं. Retained scan wording भाषाका मूर्तिमान्, उनीनजीक पुग्ने, कविक भावहरू, तीतोपनाको, जङ्गलीपनाको and रूपमा rather than accepting digital variants or grammatical repairs."
+        },
+        {
+          "pages": [
+            7
+          ],
+          "note": "Corrected विभिन्न, सक्तछन्, सधैं, छामछाम-छुमछुम and literal महत्व with single त. Retained primary आदर्श and कठिन, where the digital witness has independent transposition/consonant errors. Read the final paragraph, final line and page bottom."
+        },
+        {
+          "pages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "note": "Preserved all 15 original prose paragraphs, including their continuations across physical page turns. All primary page bottoms were read: no author notes, colophon, or embedded verse quotations occur. The baseline already excludes the display title and running footers; none were introduced."
+        }
+      ],
+      "retained_edition_differences": [
+        {
+          "pages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "primary_examples": [
+            "गर्दथेँ",
+            "देखिंदैनथ्यो",
+            "दुब्ला-दुब्ला",
+            "चन्दनदार",
+            "नजीकमा",
+            "तारीफ",
+            "धौंसिया",
+            "'मुनामदन'",
+            "शायद",
+            "बेलासम्म",
+            "हामीबीचमा",
+            "चीज",
+            "कि हाम्रो",
+            "सुवर्णरेखा",
+            "पाउँला",
+            "मीठो",
+            "पहिला ज्योति",
+            "बूढा",
+            "भाषाका मूर्तिमान्",
+            "उनीनजीक पुग्ने",
+            "ह्वैन",
+            "तीतोपनाको",
+            "जङ्गलीपनाको",
+            "रूपमा",
+            "आदर्श",
+            "कठिन",
+            "मुशिकल"
+          ],
+          "action": "Preserved source-edition spellings, literal wording and particles. The digital witness includes missing particles, spelling changes and independent typographical errors, so it was not substituted wholesale."
+        },
+        {
+          "pages": [
+            2,
+            3,
+            5,
+            6
+          ],
+          "primary_examples": [
+            "श्रोतृवर्गमा विस्तार गर्नुमा",
+            "गर्ने मौका",
+            "दुरदुर्",
+            "कुँदेझैं",
+            "कविक भावहरू",
+            "जङ्गलीपनाको"
+          ],
+          "action": "Used enlarged primary-image readings, preserving the rest of each phrase when the digital comparison independently garbles or edits it."
+        },
+        {
+          "pages": [
+            1,
+            2,
+            3,
+            6,
+            7
+          ],
+          "primary_examples": [
+            "गर्दथेँ",
+            "हेरें",
+            "धौंसिया",
+            "दुरदुर्",
+            "मुशिकल",
+            "कविक",
+            "सुनें",
+            "महत्व"
+          ],
+          "action": "Independently checked enlarged primary crops. Retained literal गर्दथेँ, धौंसिया, दुरदुर्, मुशिकल and कविक; restored the printed anusvara हेरें and सुनें and single-त महत्व. The anomalous मुशिकल is printed without a श्क conjunct, and कविक has no final आ matra."
+        }
+      ],
+      "source_anomalies": [
+        {
+          "page": 3,
+          "note": "Retained the source’s unusual wording हामी कामी काना गोरुलाई सधैं पूर्णिमा जस्तै छन् and its printed दुरदुर्."
+        },
+        {
+          "page": 4,
+          "note": "Retained literal पाउँला and पहिला ज्योति. The digital पाउँदा and पहिलो are not imposed on the primary edition."
+        },
+        {
+          "pages": [
+            5,
+            6
+          ],
+          "note": "Retained source grammar/wording भाषाका मूर्तिमान् मिठास, उनीनजीक पुग्ने, कविक भावहरू and जङ्गलीपनाको; no modernization or stylistic rewriting."
+        },
+        {
+          "page": 3,
+          "note": "The primary edition literally prints मुशिकल without a श्क conjunct; independently confirmed against the enlarged image and retained instead of the digital मुश्किल."
+        },
+        {
+          "page": 6,
+          "note": "The primary literally prints कविक भावहरू without the final आ of कविका. Independently confirmed and preserved without grammatical correction."
+        }
+      ],
+      "reconciliation": {
+        "reviewed": "2026-10-31",
+        "pages_reviewed": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "checks": [
+          "correction spans",
+          "paragraph and verse boundaries",
+          "numbering",
+          "author notes and page bottoms",
+          "complete ending"
+        ]
+      }
+    },
+    {
+      "path": "archives/authors/devkota/shiksha",
+      "title": "शिक्षा",
+      "status": "proofread",
+      "before_sha256": "e99a68849bd648b18ee207857377159ef2bed3c2535ea8da71c86f5060132934",
+      "after_sha256": "f46b732b4d7302e78152fa544930e4f90283dc0a44563e5acc415c6120d1589b",
+      "primary_source": {
+        "file": "archives/authors/devkota/shiksha/shiksha.pdf",
+        "sha256": "58d8ce7dffc2cfa3baee2c93ad42c34a77e3272919cd27b4466ac09656b54649",
+        "pages_reviewed": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "digital_comparisons": [
+        {
+          "book": "laxmi-nibandhasangraha",
+          "revision": "831ac1e09b4b613c04118f61644aaa20b9940227",
+          "path": "src/EPUB/text/sikshya.xhtml",
+          "sha256": "fc99e960fff486463aeda3ba67d2a83be18f8db37813ade4041705b192c63ab9"
+        }
+      ],
+      "word_change_groups": 41,
+      "changes": [
+        {
+          "old": "कइरोद्वारा",
+          "new": "कुइरोद्वारा"
+        },
+        {
+          "old": "दिदैन",
+          "new": "दिंदैन"
+        },
+        {
+          "old": "हाबाका",
+          "new": "हावाका"
+        },
+        {
+          "old": "देखिरहेछु,",
+          "new": "देखिरहेछु;"
+        },
+        {
+          "old": "बिकासद्वारा",
+          "new": "विकासद्वारा"
+        },
+        {
+          "old": "रहेझै",
+          "new": "रहेझैं"
+        },
+        {
+          "old": "पर्दछौँ",
+          "new": "पर्दछौं"
+        },
+        {
+          "old": "ऐठन;",
+          "new": "एँठन;"
+        },
+        {
+          "old": "दोहोप्यायो, दोहोप्यायो,",
+          "new": "दोहोर्‍यायो, दोहोर्‍यायो,"
+        },
+        {
+          "old": "अङ्गका",
+          "new": "अङ्कका"
+        },
+        {
+          "old": "कतकुती",
+          "new": "कुतकुती"
+        },
+        {
+          "old": "अङ्गगणितमा",
+          "new": "अङ्कगणितमा"
+        },
+        {
+          "old": "औँ औँ",
+          "new": "ऊँ ऊँ"
+        },
+        {
+          "old": "'",
+          "new": "!'"
+        },
+        {
+          "old": "हिँड्‌",
+          "new": "हिंड्"
+        },
+        {
+          "old": "आफैँ टुङ्गिखेलमा",
+          "new": "आफैं टुडिखेलमा"
+        },
+        {
+          "old": "हिँड्नुभन्दा",
+          "new": "हिंड्नुभन्दा"
+        },
+        {
+          "old": "उड्वा",
+          "new": "उडुवा"
+        },
+        {
+          "old": "स्टीभन्सत",
+          "new": "स्टीभन्सन"
+        },
+        {
+          "old": "कुड्रो",
+          "new": "कुइरो"
+        },
+        {
+          "old": "गर्नुपत्र्यो",
+          "new": "गर्नुपर्‍यो"
+        },
+        {
+          "old": "धक्कु",
+          "new": "धक्कू"
+        },
+        {
+          "old": "चुम्बकिँदा",
+          "new": "चुम्बकिंदा"
+        },
+        {
+          "old": "सम्वद्धनशील",
+          "new": "सम्वर्द्धनशील"
+        },
+        {
+          "old": "विद्वदत्ता",
+          "new": "विद्वत्ता"
+        },
+        {
+          "old": "बिदेशी",
+          "new": "विदेशी"
+        },
+        {
+          "old": "सङ्गीर्णता,",
+          "new": "सङ्कीर्णता,"
+        },
+        {
+          "old": "दोहोराबटमा",
+          "new": "दोहोरावटमा"
+        },
+        {
+          "old": "पढेँ",
+          "new": "पढें"
+        },
+        {
+          "old": "न्यूनसर्वाद्धित",
+          "new": "न्यूनसम्वर्द्धित"
+        },
+        {
+          "old": "मलाइ",
+          "new": "मलाई"
+        },
+        {
+          "old": "पढिसकेँ",
+          "new": "पढिसकें"
+        },
+        {
+          "old": "पढेँ",
+          "new": "पढें"
+        },
+        {
+          "old": "आइपुगेँ",
+          "new": "आइपुगें"
+        },
+        {
+          "old": "बर्षको",
+          "new": "वर्षको"
+        },
+        {
+          "old": "आफैँ",
+          "new": "आफैं"
+        },
+        {
+          "old": "कथाकथुङ्ग्रीबाटै सिकिहालोस्‌",
+          "new": "कथाकुथुङ्ग्रीबाटै सिकिहालोस्"
+        },
+        {
+          "old": "वन्नुमा",
+          "new": "बन्नुमा"
+        },
+        {
+          "old": "देखुन्‌",
+          "new": "देखून्"
+        },
+        {
+          "old": "!",
+          "new": ""
+        },
+        {
+          "old": "धपिने",
+          "new": "थपिने"
+        }
+      ],
+      "correction_summary": [
+        {
+          "pages": [
+            1,
+            2
+          ],
+          "note": "Corrected कुइरोद्वारा, दिंदैन, हावाका, the semicolon after देखिरहेछु, विकासद्वारा, रहेझैं and पर्दछौं. Preserved source तालीम, अदालतका, शुरू, जमीन, बीउलाई and कानून-स्थिति where the digital witness differs. The printed quotation after पद्धतिपुजारीहरू is unclosed at the paragraph end; no closing mark was invented."
+        },
+        {
+          "pages": [
+            3,
+            4
+          ],
+          "note": "Restored the literal एँठन on p3, दोहोर्‍यायो twice, अङ्कका, कुतकुती, अङ्कगणितमा, ऊँ ऊँ, the printed exclamation after काल पनि आउन्न, हिंड्, आफैं टुडिखेलमा, हिंड्नुभन्दा, उडुवा, स्टीभन्सन, कुइरो, गर्नुपर्‍यो, धक्कू, चुम्बकिंदा and सम्वर्द्धनशील. Preserved the quotation wording, mathematical examples and original punctuation otherwise, including primary मोहिनी, अचेत and सचेत."
+        },
+        {
+          "pages": [
+            5,
+            6
+          ],
+          "note": "Corrected विद्वत्ता, विदेशी, सङ्कीर्णता, दोहोरावटमा, पढें, independently verified न्यूनसम्वर्द्धित, मलाई, पढिसकें, आइपुगें, वर्षको, आफैं, कथाकुथुङ्ग्रीबाटै, बन्नुमा, देखून् and थपिने. Removed the OCR-only exclamation between समयको दुरुपयोग and देख्दा. Preserved independently checked literal एँडीमा and long-ू बनून्, as well as the primary degree abbreviations बी०ए० / एम०ए०, पच्चीस, चाहन्न, नतीजा, सापेक्षिक, बीस, सुनौला and जीवनको."
+        },
+        {
+          "pages": [
+            7
+          ],
+          "note": "Read all remaining source text through the final line and page bottom. It agrees with the baseline: the concluding prose, including सामर्थ्यदायी नै आत्मबलको गौरव and final प्रत्युत्तरदायी बनाउँछ, is preserved."
+        },
+        {
+          "pages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "note": "Preserved all eight original prose paragraphs, inline dialogue/quotes and their continuations across physical page turns. All page bottoms read; no footnotes, verse quotations, colophon or authorial material omitted. The baseline already excludes running footers and the duplicated display title."
+        }
+      ],
+      "retained_edition_differences": [
+        {
+          "pages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "primary_examples": [
+            "तालीम",
+            "अदालतका",
+            "चीजहरू",
+            "शुरू",
+            "जमीन",
+            "बीउलाई",
+            "कानून-स्थिति",
+            "रेखागणित",
+            "मोहिनी",
+            "अचेत",
+            "सचेत",
+            "रीतले",
+            "ठूलो",
+            "तत्त्वलाई",
+            "रङ्गाएको",
+            "ठीक",
+            "गर्छौं",
+            "बी०ए०",
+            "एम०ए०",
+            "पच्चीस",
+            "चाहन्न",
+            "गरीब",
+            "बनून्",
+            "नतीजा",
+            "लगेर",
+            "सापेक्षिक",
+            "बीस",
+            "छाड्ने",
+            "सुनौला",
+            "जीवनको"
+          ],
+          "action": "Retained the source edition’s spelling, word forms, particles, typography and meaning instead of copying digital modernizations, omissions or independent errors."
+        },
+        {
+          "pages": [
+            3,
+            5,
+            6
+          ],
+          "primary_examples": [
+            "एँठन",
+            "एँडीमा",
+            "न्यूनसम्वर्द्धित",
+            "देखून्",
+            "बनून्"
+          ],
+          "action": "Enlarged primary crops independently checked. Preserve the literal vowel carrier/nasal in both एँ words, the full सम्वर्द्धित conjunct, and the printed long-ू imperatives."
+        },
+        {
+          "pages": [
+            1,
+            3
+          ],
+          "primary_examples": [
+            "ऐठन",
+            "एँठन"
+          ],
+          "action": "The primary edition prints ordinary ऐठन in समाजको ऐठन परेको on p1 and एँठन after नहोस् on p3. Preserve this internal orthographic variation."
+        }
+      ],
+      "source_anomalies": [
+        {
+          "page": 2,
+          "note": "The paragraph opens a quotation before त्यो सिद्धान्त but ends सक्तैनौं । without a closing quotation; source punctuation retained (enlarged crop confirms the absence)."
+        },
+        {
+          "pages": [
+            1,
+            3
+          ],
+          "note": "The source uses both ऐठन and एँठन in separate passages. The p3 एँ spelling was independently confirmed and is not silently normalized."
+        },
+        {
+          "pages": [
+            1,
+            4,
+            5,
+            6,
+            7
+          ],
+          "note": "Retained source wording such as भौतिकता, आर्यसंस्कार, गानको मधुर आत्मा, शववेदनाबाट, साङ्ग्रो गराओस्, कानून-स्थिति and सामर्थ्यदायी नै आत्मबलको; no grammatical or conceptual rewriting."
+        }
+      ],
+      "reconciliation": {
+        "reviewed": "2026-10-31",
+        "pages_reviewed": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "checks": [
+          "correction spans",
+          "paragraph and verse boundaries",
+          "numbering",
+          "author notes and page bottoms",
+          "complete ending"
+        ]
+      }
+    },
+    {
+      "path": "archives/authors/devkota/sukulamathi",
+      "title": "सुकुलमाथि",
+      "status": "proofread",
+      "before_sha256": "939c110e1f9fb24da069fd5c59172b8acd9da351848aad0c31bb1198b8465abd",
+      "after_sha256": "f58ddc2423ec4a7b81ecdf75aea3dd31c5fa09cc361644364529973f199ce51a",
+      "primary_source": {
+        "file": "archives/authors/devkota/sukulamathi/sukulamathi.pdf",
+        "sha256": "6a45dfd7cbf398f5b82fcfcc03168b0ca147b07b97e889923eb8302d3704f858",
+        "pages_reviewed": [
+          1,
+          2
+        ]
+      },
+      "digital_comparisons": [
+        {
+          "book": "laxmi-nibandhasangraha",
+          "revision": "831ac1e09b4b613c04118f61644aaa20b9940227",
+          "path": "src/EPUB/text/sukulmathi.xhtml",
+          "sha256": "e8e1b28bc5e7991fcd4ce4d661ae2872d9e01b62935a563acadcca7cdc2c9b35"
+        }
+      ],
+      "word_change_groups": 9,
+      "changes": [
+        {
+          "old": "बगैंचामा",
+          "new": "बगैँचामा"
+        },
+        {
+          "old": "बगैंचामा",
+          "new": "बगैँचामा"
+        },
+        {
+          "old": "भइरहेका युगका",
+          "new": "भइरहेको युगको"
+        },
+        {
+          "old": "घोरिरहेभँे",
+          "new": "घोरिरहेझैं"
+        },
+        {
+          "old": "पद्यासनमा,",
+          "new": "पद्मासनमा,"
+        },
+        {
+          "old": "हाल्लिन्छन्‌",
+          "new": "हल्लिन्छन्‌"
+        },
+        {
+          "old": "कच्रिएका",
+          "new": "कुच्रिएका"
+        },
+        {
+          "old": "फर्कदा",
+          "new": "फर्कंदा"
+        },
+        {
+          "old": "!?'",
+          "new": "?'"
+        }
+      ],
+      "correction_summary": [
+        {
+          "old": "बगैंचामा",
+          "new": "बगैँचामा",
+          "page": 1,
+          "basis": "Read all primary text and compared digital witness; restored printed text."
+        },
+        {
+          "old": "भइरहेका युगका",
+          "new": "भइरहेको युगको",
+          "page": 1,
+          "basis": "Read all primary text and compared digital witness; restored printed text."
+        },
+        {
+          "old": "घोरिरहेभँे",
+          "new": "घोरिरहेझैं",
+          "page": 1,
+          "basis": "Read all primary text and compared digital witness; restored printed text."
+        },
+        {
+          "old": "पद्यासनमा",
+          "new": "पद्मासनमा",
+          "page": 1,
+          "basis": "Read all primary text and compared digital witness; restored printed text."
+        },
+        {
+          "old": "हाल्लिन्छन्",
+          "new": "हल्लिन्छन्",
+          "page": 1,
+          "basis": "Read all primary text and compared digital witness; restored printed text."
+        },
+        {
+          "old": "कच्रिएका",
+          "new": "कुच्रिएका",
+          "page": 1,
+          "basis": "Read all primary text and compared digital witness; restored printed text."
+        },
+        {
+          "old": "फर्कदा",
+          "new": "फर्कंदा",
+          "page": 1,
+          "basis": "Read all primary text and compared digital witness; restored printed text."
+        },
+        {
+          "old": "सक्ला !?",
+          "new": "सक्ला ?",
+          "page": 2,
+          "basis": "Read all primary text and compared digital witness; restored printed text."
+        }
+      ],
+      "retained_edition_differences": [
+        "Preserved printed बनकर, पिंडौलालाई, पलेंटी, घण्टौं, टिठाहरूसँग and joined एकदिन. Retained the primary punctuation and its ऐ/औ nasal forms where legible; no wholesale digital normalization. Digital बुभ्दैनन् and बुभ्दछन् were not imported over primary बुझ्दैनन् and बुझ्दछन्.",
+        "Reconciliation against same-font न्य and र्य controls confirms printed खन्याकखुरुक. Retained this primary reading rather than digital खर्याकखुरुक."
+      ],
+      "source_anomalies": [
+        "All eight paragraphs checked against both complete primary pages, including the cross-page continuation and closing question. Running title and folios excluded. No footnotes or missing literary text."
+      ],
+      "reconciliation": {
+        "reviewed": "2026-10-31",
+        "pages_reviewed": [
+          1,
+          2
+        ],
+        "checks": [
+          "correction spans",
+          "paragraph and verse boundaries",
+          "numbering",
+          "author notes and page bottoms",
+          "complete ending"
+        ]
+      }
+    },
+    {
+      "path": "archives/authors/devkota/sunako_bihan",
+      "title": "सुनको बिहान",
+      "status": "proofread",
+      "before_sha256": "e97ebc5d83533c096a4276ebc93272f902008ab59f488eb7e31c149666583814",
+      "after_sha256": "49a185c4314dd823e7ca7e69e69a10e2d677feaf37a1b045d2330e3ff3ce3851",
+      "primary_source": {
+        "file": "archives/authors/devkota/sunako_bihan/sunako_bihan.pdf",
+        "sha256": "f30e765353b020d5f0d26cb0f31008e7922b12f16cfb4ff4024c6f828a0ffcd4",
+        "pages_reviewed": [
+          1
+        ]
+      },
+      "digital_comparisons": [
+        {
+          "book": "sunko-bihan",
+          "revision": "06f16ba2dd5d0433c2b9f301feea6d8399afc745",
+          "path": "src/EPUB/text/sunko-bihan.xhtml",
+          "sha256": "f271d8d47ba3a59054f50cf3037bf6be5dc360e03ec8a269dd1426e89c8367f4"
+        }
+      ],
+      "word_change_groups": 2,
+      "changes": [
+        {
+          "old": "रंगीला",
+          "new": "रँगीला"
+        },
+        {
+          "old": "बिउँकेर",
+          "new": "बिउँझेर"
+        }
+      ],
+      "correction_summary": [
+        {
+          "old": "रंगीला",
+          "new": "रँगीला",
+          "page": 1,
+          "basis": "primary page image"
+        },
+        {
+          "old": "बिउँकेर",
+          "new": "बिउँझेर",
+          "page": 1,
+          "basis": "primary page image"
+        }
+      ],
+      "retained_edition_differences": [
+        "Retained the original edition spelling चिडिया; the digital rendition reads चिडया. Retained झलकाउँछ rather than imposing a lexical correction."
+      ],
+      "source_anomalies": [],
+      "reconciliation": {
+        "reviewed": "2026-10-31",
+        "pages_reviewed": [
+          1
+        ],
+        "checks": [
+          "correction spans",
+          "paragraph and verse boundaries",
+          "numbering",
+          "author notes and page bottoms",
+          "complete ending"
+        ]
+      }
+    },
+    {
+      "path": "archives/authors/lekhnath_paudyal/banshidharako_dibya_banshi",
+      "title": "वंशीधरको दिव्य वंशी",
+      "status": "proofread",
+      "before_sha256": "70630eb83783f255c6ef521f7185247c55921b5891732bf0054ac23b68987fc1",
+      "after_sha256": "7f7decf2d1eeb670be0d4dbfd56c882091d41722f5faf6fcd88daf8766d9699a",
+      "primary_source": {
+        "file": "archives/authors/lekhnath_paudyal/banshidharako_dibya_banshi/banshidharako_dibya_banshi.pdf",
+        "sha256": "ad2f21f62a80ed043bf66fda8634d4b84da41b08dec4bb07ec2a2bab8c8ff043",
+        "pages_reviewed": [
+          1
+        ]
+      },
+      "digital_comparisons": [
+        {
+          "book": "lalitya-bhag-1",
+          "revision": "74abd6f5a305a34fada43604fda49f056ca9d2d9",
+          "path": "src/EPUB/text/bamshidharko-dibya-bamshi.xhtml",
+          "sha256": "802466e31d354fb4aa988d90098722238f77f0401bbd175b2cfbffdb5fcb8a36"
+        }
+      ],
+      "word_change_groups": 1,
+      "changes": [
+        {
+          "old": "ढिकी",
+          "new": "झिकी"
+        }
+      ],
+      "correction_summary": [
+        {
+          "old": "सुर ढिकी",
+          "new": "सुर झिकी",
+          "page": 1,
+          "basis": "primary page image"
+        }
+      ],
+      "retained_edition_differences": [
+        "Retained print readings वाग्रूपिणी, तिम्रो, घुम्ने, and the printed punctuation, instead of the digital variants वाक्‌रूपिणी, तिम्रै, घुम्न."
+      ],
+      "source_anomalies": [],
+      "reconciliation": {
+        "reviewed": "2026-10-31",
+        "pages_reviewed": [
+          1
+        ],
+        "checks": [
+          "correction spans",
+          "paragraph and verse boundaries",
+          "numbering",
+          "author notes and page bottoms",
+          "complete ending"
+        ]
+      }
+    },
+    {
+      "path": "archives/authors/lekhnath_paudyal/basanta_kokil",
+      "title": "वसन्त कोकिल",
+      "status": "proofread",
+      "before_sha256": "5ed5fff5ca55a332f4403ca57ae61b336d9e8bff1b8ad5bee8fe1c707548fba0",
+      "after_sha256": "7f8b0f53208ee9c4c9633ab6f6c98d61fa733683a9f60947c7b460e9fa6d5594",
+      "primary_source": {
+        "file": "archives/authors/lekhnath_paudyal/basanta_kokil/basanta_kokil.pdf",
+        "sha256": "aa976c9bc1948a96ccdb2ee1d2d45fb9d11febeb493dd38ab58699882dc6da35",
+        "pages_reviewed": [
+          1,
+          2
+        ]
+      },
+      "digital_comparisons": [
+        {
+          "book": "lalitya-bhag-1",
+          "revision": "74abd6f5a305a34fada43604fda49f056ca9d2d9",
+          "path": "src/EPUB/text/basanta-kokil.xhtml",
+          "sha256": "f10921405f110c915ec03b44f8df1f4be845ab47e8f97495bc52696e4acc4a58"
+        }
+      ],
+      "word_change_groups": 6,
+      "changes": [
+        {
+          "old": "बसन्त",
+          "new": "वसन्त"
+        },
+        {
+          "old": "दु:खमा",
+          "new": "दुःखमा"
+        },
+        {
+          "old": "दुबै",
+          "new": "दुवै"
+        },
+        {
+          "old": "खोलौं",
+          "new": "खोली"
+        },
+        {
+          "old": "ठडच्याईकन",
+          "new": "ठड्याईकन"
+        },
+        {
+          "old": "बसन्तका",
+          "new": "वसन्तका"
+        }
+      ],
+      "correction_summary": [
+        {
+          "old": "बसन्त आयो",
+          "new": "वसन्त आयो",
+          "page": 1,
+          "basis": "complete primary-page image comparison"
+        },
+        {
+          "old": "दु:खमा",
+          "new": "दुःखमा",
+          "page": 1,
+          "basis": "complete primary-page image comparison"
+        },
+        {
+          "old": "दुबै मदाऽलस",
+          "new": "दुवै मदाऽलस",
+          "page": 2,
+          "basis": "complete primary-page image comparison"
+        },
+        {
+          "old": "सहर्ष खोलौं",
+          "new": "सहर्ष खोली",
+          "page": 2,
+          "basis": "complete primary-page image comparison"
+        },
+        {
+          "old": "ठडच्याईकन",
+          "new": "ठड्याईकन",
+          "page": 2,
+          "basis": "complete primary-page image comparison"
+        },
+        {
+          "old": "बसन्तका गौरवले",
+          "new": "वसन्तका गौरवले",
+          "page": 2,
+          "basis": "complete primary-page image comparison"
+        }
+      ],
+      "retained_edition_differences": [
+        "Kept primary फूल, सहकारमञ्जरी, कुहूकुहू, खुसी, नहोस त्यो किन ?॥, पुष्प परागको, रसरङ्गमा, मदाऽलस (one avagraha) and वसन्तका against the digital variants. The digital author note is absent from both primary pages and has not been imported."
+      ],
+      "source_anomalies": [
+        "All nine printed stanza markers १–९, all 36 verse lines, and the source colophon वि.सं.१९७४ were checked. Stanza 5, second line has no terminal danda. No primary footnotes."
+      ],
+      "reconciliation": {
+        "reviewed": "2026-10-31",
+        "pages_reviewed": [
+          1,
+          2
+        ],
+        "checks": [
+          "correction spans",
+          "paragraph and verse boundaries",
+          "numbering",
+          "author notes and page bottoms",
+          "complete ending"
+        ]
+      }
+    },
+    {
+      "path": "archives/authors/lekhnath_paudyal/bigyaanako_moh",
+      "title": "विज्ञानको मोह",
+      "status": "proofread",
+      "before_sha256": "0d958b34e5927598cbc258541db66f382257166f28a6f0de83448d9876b4754b",
+      "after_sha256": "4874ad1384bda5ade7ee82a114c054e1f52350ffcfba611370d2c8e85fdaea95",
+      "primary_source": {
+        "file": "archives/authors/lekhnath_paudyal/bigyaanako_moh/bigyaanako_moh.pdf",
+        "sha256": "e21f75fb1127375e99f576a1227b28acebf10f6f02c692edf5fb1520a8d4bde1",
+        "pages_reviewed": [
+          1,
+          2
+        ]
+      },
+      "digital_comparisons": [
+        {
+          "book": "lalitya-bhag-1",
+          "revision": "74abd6f5a305a34fada43604fda49f056ca9d2d9",
+          "path": "src/EPUB/text/bigyanko-moha.xhtml",
+          "sha256": "a520469d812de0fccffccd932f58519d4bcf31238cf3771f19f6dc9611163290"
+        }
+      ],
+      "word_change_groups": 4,
+      "changes": [
+        {
+          "old": "नि:सार",
+          "new": "निःसार"
+        },
+        {
+          "old": "करर्को",
+          "new": "झर्को"
+        },
+        {
+          "old": "बिश्वकल्याणकारी",
+          "new": "विश्वकल्याणकारी"
+        },
+        {
+          "old": "अध्यात्म-विद्या-बिषयक",
+          "new": "अध्यात्म-विद्या-विषयक"
+        }
+      ],
+      "correction_summary": [
+        {
+          "old": "नि:सार",
+          "new": "निःसार",
+          "page": 1,
+          "basis": "Full primary-page comparison; visarga and printed consonants restored."
+        },
+        {
+          "old": "करर्को",
+          "new": "झर्को",
+          "page": 1,
+          "basis": "Full primary-page comparison; visarga and printed consonants restored."
+        },
+        {
+          "old": "बिश्वकल्याणकारी",
+          "new": "विश्वकल्याणकारी",
+          "page": 2,
+          "basis": "Full primary-page comparison; visarga and printed consonants restored."
+        },
+        {
+          "old": "बिषयक",
+          "new": "विषयक",
+          "page": 2,
+          "basis": "Full primary-page comparison; visarga and printed consonants restored."
+        }
+      ],
+      "retained_edition_differences": [
+        "Retained primary बोक्रो in stanza 2, सृष्टि-शोभा, भित्र, सरुवा, ठूलो, शास, and the final double danda in stanza 4. The digital witness differs on these readings; its punctuation, extra hyphens and spacing were not substituted. Preserved historical आकाशमाथी, विज्ञानमाथी, सानू and printed joined compounds."
+      ],
+      "source_anomalies": [
+        "All 20 verse lines and five printed stanza markers checked, together with the 1995 BS and शारदा publication colophon. No footnotes or missing literary passages."
+      ],
+      "reconciliation": {
+        "reviewed": "2026-10-31",
+        "pages_reviewed": [
+          1,
+          2
+        ],
+        "checks": [
+          "correction spans",
+          "paragraph and verse boundaries",
+          "numbering",
+          "author notes and page bottoms",
+          "complete ending"
+        ]
+      }
+    },
+    {
+      "path": "archives/authors/lekhnath_paudyal/patitapabani_shri_ganggajiko_jhaki",
+      "title": "पतित-पावनी श्री गङ्गाजीको झाँकी",
+      "status": "proofread",
+      "before_sha256": "b925705d0925067f5db9e42ff27483a2da5986cee53efc03a516ff2d5464ed43",
+      "after_sha256": "09f155de502bf5469e30ca98fcf3f0bbe49c05a5aa59e306f7b0bf82143e298b",
+      "primary_source": {
+        "file": "archives/authors/lekhnath_paudyal/patitapabani_shri_ganggajiko_jhaki/patitapabani_shri_ganggajiko_jhaki.pdf",
+        "sha256": "f9b013933c3fb337e92c2c3971d4ebc7d4b0006d0a3b3965981c9eb80e2ffb60",
+        "pages_reviewed": [
+          1
+        ]
+      },
+      "digital_comparisons": [
+        {
+          "book": "lalitya-bhag-2",
+          "revision": "31cc71f35445c5d1e612b2b6b125bfe5b0e65287",
+          "path": "src/EPUB/text/patita-pawani-gangajiko-jhaki.xhtml",
+          "sha256": "87bc9f7969255bcaca55ab0b03a712fc42ddac5dd71aff3e19ff09cef5817f0c"
+        }
+      ],
+      "word_change_groups": 6,
+      "changes": [
+        {
+          "old": "दुततर",
+          "new": "द्रुततर"
+        },
+        {
+          "old": "कुर्दी कुर्दा",
+          "new": "झर्दी झर्दा"
+        },
+        {
+          "old": "सर्पकैँ",
+          "new": "सर्पझैँ"
+        },
+        {
+          "old": "श्रबण-विवरमा",
+          "new": "श्रवण-विवरमा"
+        },
+        {
+          "old": "करेका",
+          "new": "झरेका"
+        },
+        {
+          "old": "बि.सं.",
+          "new": "वि.सं."
+        }
+      ],
+      "correction_summary": [
+        {
+          "old": "कुर्दी",
+          "new": "झर्दी",
+          "page": 1,
+          "basis": "primary page image"
+        },
+        {
+          "old": "कुर्दा",
+          "new": "झर्दा",
+          "page": 1,
+          "basis": "primary page image"
+        },
+        {
+          "old": "सर्पकैँ",
+          "new": "सर्पझैँ",
+          "page": 1,
+          "basis": "primary page image"
+        },
+        {
+          "old": "श्रबण",
+          "new": "श्रवण",
+          "page": 1,
+          "basis": "primary page image"
+        },
+        {
+          "old": "भन्दै करेका",
+          "new": "भन्दै झरेका",
+          "page": 1,
+          "basis": "primary page image"
+        },
+        {
+          "old": "दुततर",
+          "new": "द्रुततर",
+          "page": 1,
+          "basis": "independent enlarged primary-page comparison"
+        },
+        {
+          "old": "बि.सं.",
+          "new": "वि.सं.",
+          "page": 1,
+          "basis": "independent enlarged primary-page comparison"
+        }
+      ],
+      "retained_edition_differences": [
+        "Retained the original short printed lines and readings कैलाशदेखी, बन्दै, नित्य संगीत, मुक्त‍ि and दुइ, rather than digital-edition wording/orthography."
+      ],
+      "source_anomalies": [],
+      "reconciliation": {
+        "reviewed": "2026-10-31",
+        "pages_reviewed": [
+          1
+        ],
+        "checks": [
+          "correction spans",
+          "paragraph and verse boundaries",
+          "numbering",
+          "author notes and page bottoms",
+          "complete ending"
+        ]
+      }
+    },
+    {
+      "path": "archives/authors/lekhnath_paudyal/sahityako_phutabal",
+      "title": "साहित्यको फुटबल",
+      "status": "proofread",
+      "before_sha256": "afc56a9352591b232fca208383c5b76cc76475aa7c663f8acb729446fcbf1d82",
+      "after_sha256": "8643bb3c538d30c1628b1c25815e7a031cbdb13f6f8c0aad6296fbdedbc7597b",
+      "primary_source": {
+        "file": "archives/authors/lekhnath_paudyal/sahityako_phutabal/sahityako_phutabal.pdf",
+        "sha256": "fe0439d811cf2d3a10c551b845c787a57b286d7cc776dac7065d68d1fdc9fce1",
+        "pages_reviewed": [
+          1
+        ]
+      },
+      "digital_comparisons": [
+        {
+          "book": "lalitya-bhag-1",
+          "revision": "74abd6f5a305a34fada43604fda49f056ca9d2d9",
+          "path": "src/EPUB/text/sahityako-football.xhtml",
+          "sha256": "795b9754bf2a3301a38d8cb30e2e397745db07d9f49cd9a8920544da0f46edce"
+        }
+      ],
+      "word_change_groups": 3,
+      "changes": [
+        {
+          "old": "ल्याऔँ",
+          "new": "ल्याऊँ"
+        },
+        {
+          "old": "लिंदै",
+          "new": "लिदै"
+        },
+        {
+          "old": "बर्ग",
+          "new": "वर्ग"
+        }
+      ],
+      "correction_summary": [
+        {
+          "old": "ल्याऔँ",
+          "new": "ल्याऊँ",
+          "page": 1,
+          "basis": "primary page image"
+        },
+        {
+          "old": "दर्शक बर्ग",
+          "new": "दर्शक वर्ग",
+          "page": 1,
+          "basis": "primary page image"
+        },
+        {
+          "old": "लिंदै",
+          "new": "लिदै",
+          "page": 1,
+          "basis": "independent enlarged primary-page comparison"
+        }
+      ],
+      "retained_edition_differences": [
+        "Retained print readings खेल्नै, चङ्क्रमण, उठेर, लिदै and punctuation. The digital rendition has different readings, including खेल्न्यै, सङ्क्रमण and उडेर. Its author note is not on the preserved primary page and has not been imported."
+      ],
+      "source_anomalies": [],
+      "reconciliation": {
+        "reviewed": "2026-10-31",
+        "pages_reviewed": [
+          1
+        ],
+        "checks": [
+          "correction spans",
+          "paragraph and verse boundaries",
+          "numbering",
+          "author notes and page bottoms",
+          "complete ending"
+        ]
+      }
+    },
+    {
+      "path": "archives/authors/lekhnath_paudyal/sarasbati_smriti",
+      "title": "सरस्वती स्मृति",
+      "status": "proofread",
+      "before_sha256": "c8310b58e3c053b746241a5b2f7ae58d91ad24dcb5c2d96070dcfe97ae4bf233",
+      "after_sha256": "311f98c82987d62061fe85c580ed33bb35fc96b34a240c929368a67bb351f322",
+      "primary_source": {
+        "file": "archives/authors/lekhnath_paudyal/sarasbati_smriti/sarasbati_smriti.pdf",
+        "sha256": "189542a31a67a95ba4a2bc007bfdb1acddf10c4bc75b2bf948023de0f7c689ad",
+        "pages_reviewed": [
+          1,
+          2
+        ]
+      },
+      "digital_comparisons": [
+        {
+          "book": "lalitya-bhag-1",
+          "revision": "74abd6f5a305a34fada43604fda49f056ca9d2d9",
+          "path": "src/EPUB/text/saraswati-stuti.xhtml",
+          "sha256": "43e3116b77894782829eb458f2caec00cad43c888626a0a704898cf832d1e9d4"
+        }
+      ],
+      "word_change_groups": 2,
+      "changes": [
+        {
+          "old": "किक्ती",
+          "new": "झिक्ती"
+        },
+        {
+          "old": "हंसवरभा",
+          "new": "हंसवरमा"
+        }
+      ],
+      "correction_summary": [
+        {
+          "old": "किक्ती",
+          "new": "झिक्ती",
+          "page": 1,
+          "basis": "complete primary-page image comparison"
+        },
+        {
+          "old": "हंसवरभा",
+          "new": "हंसवरमा",
+          "page": 1,
+          "basis": "complete primary-page image comparison"
+        }
+      ],
+      "retained_edition_differences": [
+        "Primary मिही has no visible nasal mark; kept over digital मिहीँ. Retained first-line semicolon and absent second-line danda, जुनिभरी with long final ई in all 5 refrains, and source मात्रातक line without the digital additional पनि. No normalization to the digital punctuation or spelling."
+      ],
+      "source_anomalies": [
+        "All five printed stanza markers १–५ and all 20 verse lines plus the २०१० BS source colophon checked. No author footnotes or missing literary text."
+      ],
+      "reconciliation": {
+        "reviewed": "2026-10-31",
+        "pages_reviewed": [
+          1,
+          2
+        ],
+        "checks": [
+          "correction spans",
+          "paragraph and verse boundaries",
+          "numbering",
+          "author notes and page bottoms",
+          "complete ending"
+        ]
+      }
+    },
+    {
+      "path": "archives/authors/lekhnath_paudyal/satya_sandeshaharu",
+      "title": "सत्य सन्देशहरू",
+      "status": "proofread",
+      "before_sha256": "23470a8457859236c785a434e9ab19ec534ed7a4b1cb226561c8d67377fd795d",
+      "after_sha256": "c4e9bcafa91fdc8103b66c520c344baded9c1902be601d6ffa85fc7afffdd8e7",
+      "primary_source": {
+        "file": "archives/authors/lekhnath_paudyal/satya_sandeshaharu/satya_sandeshaharu.pdf",
+        "sha256": "d3d63c95d7909e36cdba01c2c2f27ad23c5c53a2b165c310605c6473868edb68",
+        "pages_reviewed": [
+          1,
+          2
+        ]
+      },
+      "digital_comparisons": [
+        {
+          "book": "lalitya-bhag-1",
+          "revision": "74abd6f5a305a34fada43604fda49f056ca9d2d9",
+          "path": "src/EPUB/text/satya-sandesh-1.xhtml",
+          "sha256": "881a68056eb764ed59cbc9f743551882fe14b47fb19a5e347d111adbcce26ae7"
+        },
+        {
+          "book": "lalitya-bhag-1",
+          "revision": "74abd6f5a305a34fada43604fda49f056ca9d2d9",
+          "path": "src/EPUB/text/satya-sandesh-2.xhtml",
+          "sha256": "d5e384f388ec3e39d1997dd74e0bbb4d1601a3f130f3a7445493da4e3a682505"
+        },
+        {
+          "book": "lalitya-bhag-1",
+          "revision": "74abd6f5a305a34fada43604fda49f056ca9d2d9",
+          "path": "src/EPUB/text/satya-sandesh-3.xhtml",
+          "sha256": "a960b3848cedb766efa65e6aecd28f00bfee7825a3851753f7ab6f584ba161af"
+        },
+        {
+          "book": "lalitya-bhag-1",
+          "revision": "74abd6f5a305a34fada43604fda49f056ca9d2d9",
+          "path": "src/EPUB/text/satya-sandesh-4.xhtml",
+          "sha256": "9e53181cb664c601ca1fa5750958814f260183b784d4cbf3f90df98a1210f0cd"
+        },
+        {
+          "book": "lalitya-bhag-1",
+          "revision": "74abd6f5a305a34fada43604fda49f056ca9d2d9",
+          "path": "src/EPUB/text/satya-sandesh-6.xhtml",
+          "sha256": "ba02f37b517057795b63c909540926c2376ea00e46d8f67de7e71121aaff612a"
+        },
+        {
+          "book": "lalitya-bhag-2",
+          "revision": "31cc71f35445c5d1e612b2b6b125bfe5b0e65287",
+          "path": "src/EPUB/text/satya-sandesh-9.xhtml",
+          "sha256": "81384ded6fccd004f92f85c86c0bd738d363353985217956d7b22cb4b0e8cb7f"
+        }
+      ],
+      "word_change_groups": 7,
+      "changes": [
+        {
+          "old": "कलमल",
+          "new": "झलमल"
+        },
+        {
+          "old": "कन्‌",
+          "new": "झन्‌"
+        },
+        {
+          "old": "धन",
+          "new": "घन"
+        },
+        {
+          "old": "ऊर्द्व",
+          "new": "झर्दा"
+        },
+        {
+          "old": "नि:शेष",
+          "new": "निःशेष"
+        },
+        {
+          "old": "विधि-बश",
+          "new": "विधि-वश"
+        },
+        {
+          "old": "आफन्‌",
+          "new": "आफनू"
+        }
+      ],
+      "correction_summary": [
+        {
+          "old": "कलमल",
+          "new": "झलमल",
+          "page": 1,
+          "basis": "Read full primary page, compared all six digital sections, restored printed letters and punctuation."
+        },
+        {
+          "old": "कन्दरा कन्",
+          "new": "कन्दरा झन्",
+          "page": 1,
+          "basis": "Read full primary page, compared all six digital sections, restored printed letters and punctuation."
+        },
+        {
+          "old": "अझ धन",
+          "new": "अझ घन",
+          "page": 1,
+          "basis": "Read full primary page, compared all six digital sections, restored printed letters and punctuation."
+        },
+        {
+          "old": "ऊर्द्व",
+          "new": "झर्दा",
+          "page": 1,
+          "basis": "Read full primary page, compared all six digital sections, restored printed letters and punctuation."
+        },
+        {
+          "old": "नि:शेष",
+          "new": "निःशेष",
+          "page": 2,
+          "basis": "Read full primary page, compared all six digital sections, restored printed letters and punctuation."
+        },
+        {
+          "old": "विधि-बश",
+          "new": "विधि-वश",
+          "page": 2,
+          "basis": "Read full primary page, compared all six digital sections, restored printed letters and punctuation."
+        },
+        {
+          "old": "आफन्‌ दृष्टि",
+          "new": "आफनू दृष्टि",
+          "page": 2,
+          "basis": "Independent reconciliation against the printed page: final long ऊ restored without inserting a conjunct."
+        }
+      ],
+      "retained_edition_differences": [
+        "Retained printed जलजल, निधिको, मोतिको जोति, कैलाश, शागशिस्नू, नभएर, आपस्त, वितत and source stanza order. The digital witness has other spellings and breaks this primary selection into six separate items. Kept the three original publication colophons and unnumbered stanza separators; no invented stanza numbers.",
+        "Independent reconciliation confirms two avagrahas in गुरुजनाऽऽदेश, no comma after बिम्ब कालो and the full-consonant spelling आफनू."
+      ],
+      "source_anomalies": [
+        "All six four-line stanzas, three multiplication-sign separators and three publication colophons checked. No footnotes."
+      ],
+      "reconciliation": {
+        "reviewed": "2026-10-31",
+        "pages_reviewed": [
+          1,
+          2
+        ],
+        "checks": [
+          "correction spans",
+          "paragraph and verse boundaries",
+          "numbering",
+          "author notes and page bottoms",
+          "complete ending"
+        ]
+      }
+    }
+  ],
+  "completed_works": 22,
+  "batch": 1,
+  "series_total_works": 56
+}

@@ -56,7 +56,7 @@
   "text": {
     "extraction_method": "ocr",
     "ocr_status": "ocr-done",
-    "proofread": false,
+    "proofread": true,
     "quality": "good"
   },
   "formats": {
@@ -66,6 +66,6 @@
     "epub": "reader.epub"
   },
   "added": "2026-06-07",
-  "updated": "2026-09-09",
+  "updated": "2026-10-31",
   "summary": "कल्पनाले सीमित यथार्थबाट उडाएर तारा, फूल, स्वप्न र असम्भव संसारमा पुर्‍याउने शक्तिको स्तुति।"
 }

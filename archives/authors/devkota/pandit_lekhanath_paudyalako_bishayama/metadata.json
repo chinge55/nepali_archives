@@ -56,7 +56,7 @@
   "text": {
     "extraction_method": "ocr",
     "ocr_status": "ocr-done",
-    "proofread": false,
+    "proofread": true,
     "quality": "good"
   },
   "formats": {
@@ -66,6 +66,6 @@
     "epub": "reader.epub"
   },
   "added": "2026-06-07",
-  "updated": "2026-09-09",
+  "updated": "2026-10-31",
   "summary": "पण्डित लेखनाथ पौड्यालको काव्य, प्रकृतिप्रेम र भाषिक साधनाबारे चर्चा गर्दै लेखले उनको साहित्यिक योगदान र शैलीको मूल्याङ्कन गर्छ।"
 }

@@ -56,7 +56,7 @@
   "text": {
     "extraction_method": "ocr",
     "ocr_status": "ocr-done",
-    "proofread": false,
+    "proofread": true,
     "quality": "good"
   },
   "formats": {
@@ -66,7 +66,7 @@
     "epub": "reader.epub"
   },
   "added": "2026-06-07",
-  "updated": "2026-09-09",
+  "updated": "2026-10-31",
   "summary": "वृन्दावनरूपी जड जगतमा कृष्णको बाँसुरीले नयाँ जीवन भर्दा गोपिनीरूपी बुद्धिवृत्तिहरू जागेर लुकेका वंशीधरको खोज र रासमा लाग्ने सृष्टिरूपक छ।",
   "prosody": {
     "status": "reviewed",
@@ -74,8 +74,8 @@
     "metres": [
       "shardul"
     ],
-    "text_sha256": "70630eb83783f255c6ef521f7185247c55921b5891732bf0054ac23b68987fc1",
-    "reviewed": "2026-10-30",
+    "text_sha256": "7f7decf2d1eeb670be0d4dbfd56c882091d41722f5faf6fcd88daf8766d9699a",
+    "reviewed": "2026-10-31",
     "evidence": [
       {
         "basis": "metrical-reading",

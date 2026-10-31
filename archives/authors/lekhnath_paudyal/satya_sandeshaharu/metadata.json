@@ -95,7 +95,7 @@
   "text": {
     "extraction_method": "ocr",
     "ocr_status": "ocr-done",
-    "proofread": false,
+    "proofread": true,
     "quality": "good"
   },
   "formats": {
@@ -105,7 +105,7 @@
     "epub": "reader.epub"
   },
   "added": "2026-06-07",
-  "updated": "2026-09-09",
+  "updated": "2026-10-31",
   "summary": "मनमा दम्भ भए उज्यालो सृष्टि पनि कालो र तृष्णा मेटिए भारी वस्तु हलुका हुनेजस्ता सूक्तिमार्फत आफ्नै दृष्टिले संसार राम्रो वा दोषी देखिने भनिएको छ।",
   "prosody": {
     "status": "reviewed",
@@ -114,7 +114,7 @@
       "sragdhara",
       "shardul"
     ],
-    "text_sha256": "23470a8457859236c785a434e9ab19ec534ed7a4b1cb226561c8d67377fd795d",
+    "text_sha256": "c4e9bcafa91fdc8103b66c520c344baded9c1902be601d6ffa85fc7afffdd8e7",
     "reviewed": "2026-10-31",
     "evidence": [
       {

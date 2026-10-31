@@ -56,7 +56,7 @@
   "text": {
     "extraction_method": "ocr",
     "ocr_status": "ocr-done",
-    "proofread": false,
+    "proofread": true,
     "quality": "good"
   },
   "formats": {
@@ -66,7 +66,7 @@
     "epub": "reader.epub"
   },
   "added": "2026-06-07",
-  "updated": "2026-09-09",
+  "updated": "2026-10-31",
   "summary": "वसन्तमा कोइलीको मधुर पुकारले वन, प्रेम र विरह जगाएको गीत।",
   "prosody": {
     "status": "reviewed",
@@ -74,8 +74,8 @@
     "metres": [
       "vamshastha"
     ],
-    "text_sha256": "5ed5fff5ca55a332f4403ca57ae61b336d9e8bff1b8ad5bee8fe1c707548fba0",
-    "reviewed": "2026-10-30",
+    "text_sha256": "7f8b0f53208ee9c4c9633ab6f6c98d61fa733683a9f60947c7b460e9fa6d5594",
+    "reviewed": "2026-10-31",
     "evidence": [
       {
         "basis": "metrical-reading",
