@@ -20,7 +20,7 @@
   },
   "edition": "साझा प्रकाशन (पहिलो संस्करण २०१५; पाँचौं २०६३)",
   "publisher": "साझा प्रकाशन",
-  "description": "Devkota's गीतिकाव्य (lyric poem) म्हेन्दु — the poetic fruit of his 2003 BS journey toward Gosaikunda — sings of म्हेन्दु, a Tamang highland flower-maiden, and of love amid the Helambu mountains, in five short sections (प्रथम–पञ्चम) of brief Tamang/Bhote-rhythm stanzas. It opens with Devkota's own note 'म्हेन्दुको विषयमा', where he likens the attempt to मुनामदन's म्याउरे-छन्द experiment. First published by साझा प्रकाशन (2015 BS); digitized from the print edition by OLE Nepal / pustakalaya.org.",
+  "description": "Devkota's गीतिकाव्य (lyric poem) म्हेन्दु — the poetic fruit of his 2003 BS journey toward Gosaikunda — sings of म्हेन्दु, a Tamang highland flower-maiden, and of love amid the Helambu mountains, in five short sections (प्रथम–पञ्चम) of brief Tamang/Bhote-rhythm stanzas. It opens with Devkota's own note 'म्हेन्दुको विषयमा', where he likens the attempt to मुनामदन's म्याउरे-छन्द experiment. First published by साझा प्रकाशन (2015 BS); digitized from the print edition by OLE Nepal / pustakalaya.org. Author’s म्हेन्दुको विषयमा retained; third-party प्राक्कथन excluded. Printed variants including मावनताको and अफ retained.",
   "rights": {
     "status": "public-domain",
     "basis": "Author died 1959; Nepal's Copyright Act 2059 grants life + 50 years, expiring 2009."
@@ -81,7 +81,7 @@
   "text": {
     "extraction_method": "ocr",
     "ocr_status": "ocr-done",
-    "proofread": false,
+    "proofread": true,
     "quality": "good"
   },
   "formats": {
@@ -91,7 +91,7 @@
     "epub": "reader.epub"
   },
   "added": "2026-06-07",
-  "updated": "2026-09-09",
+  "updated": "2026-10-31",
   "summary": "म्हेन्दुको जीवन र परिवेशमा प्रेम, वियोग, संस्कृति तथा सामाजिक दबाब मिसिएको मानवीय कथा विस्तारपूर्वक चित्रित छ।",
   "prosody": {
     "status": "uncertain",
@@ -99,7 +99,7 @@
     "metres": [
       "vidyunmala"
     ],
-    "text_sha256": "0e4d13762b86f0bf95cf04fc65454ec16428a91d763bdb3a390783c7aa6f9939",
+    "text_sha256": "332d71e6a85e0de3a5e5c498e7a62d0f73a5ccfe1090bfc7e6dcf740eece85e0",
     "reviewed": "2026-10-31",
     "evidence": [
       {

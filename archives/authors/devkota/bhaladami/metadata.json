@@ -20,7 +20,7 @@
   },
   "edition": "साझा प्रकाशन (२०६४)",
   "publisher": "साझा प्रकाशन",
-  "description": "From the collection लक्ष्मी निबन्ध सङ्ग्रह.",
+  "description": "From the collection लक्ष्मी निबन्ध सङ्ग्रह. Previous PDF excerpt ended mid-sentence; restored the complete essay from printed pages 61–64 of the same preserved anthology.",
   "rights": {
     "status": "public-domain",
     "basis": "Author died 1959; Nepal's Copyright Act 2059 grants life + 50 years, expiring 2009."
@@ -52,11 +52,11 @@
       }
     ]
   },
-  "pages": 3,
+  "pages": 4,
   "text": {
     "extraction_method": "ocr",
     "ocr_status": "ocr-done",
-    "proofread": false,
+    "proofread": true,
     "quality": "good"
   },
   "formats": {
@@ -66,6 +66,6 @@
     "epub": "reader.epub"
   },
   "added": "2026-06-07",
-  "updated": "2026-09-09",
+  "updated": "2026-10-31",
   "summary": "‘भलादमी’ शब्दको पुरानो अर्थ र बोक्रे शिष्टताबीच फरक छुट्याउँदै निबन्धले साँचो भलादमीपन अरूतर्फ फर्किएको दृष्टि हो भन्छ।"
 }

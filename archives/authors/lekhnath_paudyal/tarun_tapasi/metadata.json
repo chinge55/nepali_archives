@@ -20,7 +20,7 @@
   },
   "edition": null,
   "publisher": "साझा प्रकाशन",
-  "description": "Lekhnath Paudyal's नव्यकाव्य (narrative poem) in nineteen विश्राम (cantos), first published 2010 BS, opening with the invocation श्री गौरीशङ्कराभ्यां नमः and closing at समाप्त. OCR'd from the साझा प्रकाशन scan and cleaned to the poem itself — the front-matter cataloguing, the editorial भूमिका (by बालकृष्ण सम), running footers, and the back-cover catalogue were removed. OCR quality is poor; pending proofreading.",
+  "description": "Lekhnath Paudyal's नव्यकाव्य (narrative poem) in nineteen विश्राम (cantos), first published 2010 BS, opening with the invocation श्री गौरीशङ्कराभ्यां नमः and closing at समाप्त. OCR'd from the साझा प्रकाशन scan and cleaned to the poem itself — the front-matter cataloguing, the editorial भूमिका (by बालकृष्ण सम), running footers, and the back-cover catalogue were removed. Reconciled against every preserved scan page with Sahitya Ras as a secondary witness. Third-party भूमिका excluded. Printed variants including विगह, झुकांयी and नशकने retained; all 19 विश्राम and both original notes are included.",
   "rights": {
     "status": "public-domain",
     "basis": "Author died 1966; public domain since 2016 (Nepal's Copyright Act 2059: life + 50 years)."
@@ -182,8 +182,8 @@
   "text": {
     "extraction_method": "ocr",
     "ocr_status": "ocr-done",
-    "proofread": false,
-    "quality": "poor"
+    "proofread": true,
+    "quality": "good"
   },
   "formats": {
     "pdf": "000051__लेखनाथ_पौड्_याल__तरुण_तपसी_नव्यकाव्य.pdf",
@@ -192,7 +192,7 @@
     "epub": "reader.epub"
   },
   "added": "2026-06-05",
-  "updated": "2026-09-09",
+  "updated": "2026-10-31",
   "summary": "कवि र रुखको संवादमा प्रकृतिको जीवनयात्रा, मानव लोभ, सहनशीलता र आत्मबोध बुन्ने काव्य।",
   "prosody": {
     "status": "reviewed",
@@ -202,7 +202,7 @@
       "viyogini",
       "malini"
     ],
-    "text_sha256": "3e20ba741948d7205f4b8b491e5de087022fba06b10c2a1c24f0d3e1023b5dd4",
+    "text_sha256": "7978cf63f5dfa8a0348899858ce301df00ad72e4925dc81d679d738e0027929a",
     "reviewed": "2026-10-31",
     "evidence": [
       {
@@ -219,7 +219,7 @@
         "metre": "shikharini",
         "label": "अन्त्यभागको शिखरिणी चौपदी",
         "start": "बिहानैको चीसो पवन बहनाले सिरिसिरी",
-        "end": "रहँछु त्यै कापी,, कलमहरुकै साथ म पनि ॥"
+        "end": "रहेँछू त्यै कापी, कलमहरुकै साथ म पनि ॥"
       },
       {
         "id": "viyogini-2",
@@ -232,7 +232,7 @@
         "id": "malini-3",
         "metre": "malini",
         "label": "अन्तिम मालिनी वन्दना",
-        "start": "बिजन वितत पन्था धन्य, त्यो वृक्ष धन्य,",
+        "start": "विजन वितत पन्था धन्य, त्यो वृक्ष धन्य,",
         "end": "सतत मनन उस्को गर्छ जो, त्यो छ धन्य ॥"
       }
     ]

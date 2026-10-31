@@ -1,6 +1,6 @@
 {
   "id": "ashadhako_pandhra",
-  "title": "आषाढको पन्ध्र",
+  "title": "आषाढको पन्ध",
   "title_roman": "Ashadhako Pandhra",
   "subtitle": null,
   "author": {
@@ -20,7 +20,7 @@
   },
   "edition": "साझा प्रकाशन (२०६४)",
   "publisher": "साझा प्रकाशन",
-  "description": "From the collection लक्ष्मी निबन्ध सङ्ग्रह.",
+  "description": "From the collection लक्ष्मी निबन्ध सङ्ग्रह. Title and text retain the printed पन्ध spelling.",
   "rights": {
     "status": "public-domain",
     "basis": "Author died 1959; Nepal's Copyright Act 2059 grants life + 50 years, expiring 2009."
@@ -56,7 +56,7 @@
   "text": {
     "extraction_method": "ocr",
     "ocr_status": "ocr-done",
-    "proofread": false,
+    "proofread": true,
     "quality": "good"
   },
   "formats": {
@@ -66,6 +66,6 @@
     "epub": "reader.epub"
   },
   "added": "2026-06-07",
-  "updated": "2026-09-09",
+  "updated": "2026-10-31",
   "summary": "आषाढको पन्ध्रमा नेपालमा आएको वर्षा, पाहुनाको स्वागत, खेतबारी र जनजीवनमा फैलिएको उत्सवमय हरियाली वर्णित छ।"
 }

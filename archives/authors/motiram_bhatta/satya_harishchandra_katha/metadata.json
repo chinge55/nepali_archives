@@ -17,7 +17,7 @@
   "first_published": null,
   "edition": null,
   "publisher": "रत्न पुस्तक भण्डार",
-  "description": "मोतीराम भट्टको पद्यकृति; सत्यनिष्ठ राजा हरिश्चन्द्रको कथा।",
+  "description": "मोतीराम भट्टको पद्यकृति; सत्यनिष्ठ राजा हरिश्चन्द्रको कथा। Reconciled stanza by stanza against the primary scan, retaining original notes, the complete ending and printed variants including दिश्वामित्र and एक्‌ता.",
   "rights": {
     "status": "public-domain",
     "basis": "Author died 1896; long in the public domain (Nepal's Copyright Act 2059: life + 50 years)."
@@ -53,7 +53,7 @@
   "text": {
     "extraction_method": "ocr",
     "ocr_status": "ocr-done",
-    "proofread": false,
+    "proofread": true,
     "quality": "good"
   },
   "formats": {
@@ -63,7 +63,7 @@
     "epub": "reader.epub"
   },
   "added": "2026-07-23",
-  "updated": "2026-09-09",
+  "updated": "2026-10-31",
   "summary": "सत्य र दानको परीक्षामा राज्य, पत्नी र पुत्रसमेत गुमाएका हरिश्चन्द्रले कठोर दुःखपछि धर्मको विजय पाएको विस्तृत कथा।",
   "prosody": {
     "status": "reviewed",
@@ -76,7 +76,7 @@
       "malini",
       "drutavilambita"
     ],
-    "text_sha256": "1b776f8594dc49c3d2498538933db4edc2c7edfe065fa82ed9682bff653b0e36",
+    "text_sha256": "194b2a4aadc77af7848e8fc939cdc73464da3bc3cdc47808a6b5e73a9d1ac6f8",
     "reviewed": "2026-10-31",
     "evidence": [
       {
@@ -92,8 +92,8 @@
         "id": "vasanta-1",
         "metre": "vasanta",
         "label": "मङ्गलाचरणको वसन्ततिलका",
-        "start": "जस्का भुजा विच छ खङ्ग र पद्म कच्ची।",
-        "end": "गर्छू प्रणाम गर आपति नाश सारा।।"
+        "start": "जस्का भुजा विच छ खङ्ग र पद्म कची।",
+        "end": "गर्छू प्रणाम गर आपति नाश सारा॥"
       },
       {
         "id": "bhujanga-2",
@@ -107,7 +107,7 @@
         "metre": "shardul",
         "label": "सत्यकथाको शार्दूल",
         "start": "हे राजन्! सुनिलेउ सत्य महिमा विस्तार गर्छू यहाँ।",
-        "end": "सन्तान् क्वै नहुँदासँधै ति रहने अत्यन्त दिक्दार पनी।।"
+        "end": "सन्तान् क्वै नहुँदासँधै ति रहने अत्यन्त दिक्दार पनी॥"
       },
       {
         "id": "upajati-4",
@@ -121,7 +121,7 @@
         "metre": "malini",
         "label": "राजविलापको मालिनी",
         "start": "यति सुनि कन राजा हा!भनी छाती ठोके।",
-        "end": "सहन न सकि रोयिन् हा!भनी छाति ठोकि।।"
+        "end": "सहन न सकि रोयिन् हा!भनी छाति ठोकि॥"
       },
       {
         "id": "drutavilambita-6",

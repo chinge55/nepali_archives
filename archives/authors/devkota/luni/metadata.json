@@ -20,7 +20,7 @@
   },
   "edition": "साझा प्रकाशन (पहिलो संस्करण २०२५; छैटौं २०६० — २१०० प्रति)",
   "publisher": "साझा प्रकाशन",
-  "description": "Devkota's खण्डकाव्य लूनी — a narrative poem set in a Sherpa/Helambu highland kingdom (सेर्पा 'साम्बा सोङ्गो', हेलम्बू), singing of लूनी, a mountain flower-maiden, across eighteen alphabetically-lettered cantos (क–द) of brief Tamang/Bhote-rhythm stanzas akin to म्हेन्दु. Composed around 2001 BS — when त्रिचन्द्र कलेजका विद्यार्थीहरू were already humming 'रानी लूनी रामी, शिरीष कोमल हामी' — it lay unpublished (in गुप्तबास, as the publisher's note recalls) for some twenty-two years until साझा प्रकाशन first issued it in 2025 BS. Digitized from the print edition (साझा प्रकाशन). The editorial प्रकाशकीय by कमलमणि दीक्षित is not part of this text.",
+  "description": "Devkota's खण्डकाव्य लूनी — a narrative poem set in a Sherpa/Helambu highland kingdom (सेर्पा 'साम्बा सोझो', हेलम्बू), singing of लूनी, a mountain flower-maiden, across eighteen alphabetically-lettered cantos (क–द) of brief Tamang/Bhote-rhythm stanzas akin to म्हेन्दु. Composed around 2001 BS — when त्रिचन्द्र कलेजका विद्यार्थीहरू were already humming 'रानी लूनी रामी, शिरीष कोमल हामी' — it lay unpublished (in गुप्तबास, as the publisher's note recalls) for some twenty-two years until साझा प्रकाशन first issued it in 2025 BS. Digitized from the print edition (साझा प्रकाशन). The editorial प्रकाशकीय by कमलमणि दीक्षित is not part of this text. Text follows printed folio order: folio 7 is displaced after 8–9 in the PDF. Unnumbered passages and repeated lines remain as printed.",
   "rights": {
     "status": "public-domain",
     "basis": "Author died 1959; Nepal's Copyright Act 2059 grants life + 50 years, expiring 2009."
@@ -141,7 +141,7 @@
   "text": {
     "extraction_method": "ocr",
     "ocr_status": "ocr-done",
-    "proofread": false,
+    "proofread": true,
     "quality": "good"
   },
   "formats": {
@@ -151,13 +151,13 @@
     "epub": "reader.epub"
   },
   "added": "2026-06-08",
-  "updated": "2026-09-09",
+  "updated": "2026-10-31",
   "summary": "लूनीको जीवन, प्रेम, मरुभूमि र सामाजिक बन्धनबीचको पीडा तथा मानवीय आकांक्षालाई लामो आख्यानात्मक कविताले करुण रूपमा पछ्याउँछ।",
   "prosody": {
     "status": "uncertain",
     "kind": "unresolved",
     "metres": [],
-    "text_sha256": "c3d38039bf481f9c46735a795c425eb830670b553a8e94c809b76725990f9dfa",
+    "text_sha256": "f920611dfc10267433e1288aac404dea42aa10dde6b70dbd3e994794933052fd",
     "reviewed": "2026-10-31",
     "evidence": [
       {

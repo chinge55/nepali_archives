@@ -20,7 +20,7 @@
   },
   "edition": "साझा प्रकाशन (२०६४)",
   "publisher": "साझा प्रकाशन",
-  "description": "From the collection लक्ष्मी निबन्ध सङ्ग्रह.",
+  "description": "From the collection लक्ष्मी निबन्ध सङ्ग्रह. Printed variant प्रार्थमिक retained.",
   "rights": {
     "status": "public-domain",
     "basis": "Author died 1959; Nepal's Copyright Act 2059 grants life + 50 years, expiring 2009."
@@ -56,7 +56,7 @@
   "text": {
     "extraction_method": "ocr",
     "ocr_status": "ocr-done",
-    "proofread": false,
+    "proofread": true,
     "quality": "good"
   },
   "formats": {
@@ -66,6 +66,6 @@
     "epub": "reader.epub"
   },
   "added": "2026-06-07",
-  "updated": "2026-09-09",
+  "updated": "2026-10-31",
   "summary": "साहित्यमा बाह्य आकार र भित्री अभिप्रायको सम्बन्ध, कलात्मक रूपले विचारलाई कसरी जीवन दिन्छ भन्ने विवेचना।"
 }
