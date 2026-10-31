@@ -56,7 +56,7 @@
   "text": {
     "extraction_method": "ocr",
     "ocr_status": "ocr-done",
-    "proofread": false,
+    "proofread": true,
     "quality": "good"
   },
   "formats": {
@@ -66,6 +66,6 @@
     "epub": "reader.epub"
   },
   "added": "2026-06-07",
-  "updated": "2026-09-09",
+  "updated": "2026-10-31",
   "summary": "सत्य अन्ततः सरल र सीधा भएर प्रकट हुने भन्दै रचनाले छल, घुमाउरो बोली र अस्थायी झूटमाथि विश्वासको पक्ष लिन्छ।"
 }

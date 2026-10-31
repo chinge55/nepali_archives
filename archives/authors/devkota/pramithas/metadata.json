@@ -111,7 +111,7 @@
   "text": {
     "extraction_method": "ocr",
     "ocr_status": "ocr-done",
-    "proofread": false,
+    "proofread": true,
     "quality": "good"
   },
   "formats": {
@@ -121,13 +121,13 @@
     "epub": "reader.epub"
   },
   "added": "2026-06-07",
-  "updated": "2026-09-09",
+  "updated": "2026-10-31",
   "summary": "मानवलाई आगो दिने प्रमिथसले देवसत्ताको दण्ड सहँदै मानवमुक्ति र विद्रोहको पक्ष लिएको कथा बोकेको महाकाव्य।",
   "prosody": {
     "status": "uncertain",
     "kind": "unresolved",
     "metres": [],
-    "text_sha256": "7b50b3fb9b767bb31dffa09ca99933277b6335f81d61d41988a034af4453d0fe",
+    "text_sha256": "d25a7703abf9b975a929adb684db697e136be99402de337b3bcbf9c1f31b93b5",
     "reviewed": "2026-10-31",
     "evidence": [
       {

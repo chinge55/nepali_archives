@@ -56,7 +56,7 @@
   "text": {
     "extraction_method": "ocr",
     "ocr_status": "ocr-done",
-    "proofread": false,
+    "proofread": true,
     "quality": "good"
   },
   "formats": {
@@ -66,6 +66,6 @@
     "epub": "reader.epub"
   },
   "added": "2026-06-07",
-  "updated": "2026-09-09",
+  "updated": "2026-10-31",
   "summary": "फूल टिप्न डराउने कोमलताबाट मासु खाने आफ्नै बानीको आत्मालोचना गर्दै लोभ, क्रोध र हिंसा त्यागेर सबै जीवप्रति मृदुल बन्न गरिएको आग्रह।"
 }

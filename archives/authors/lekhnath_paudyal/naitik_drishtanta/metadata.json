@@ -56,7 +56,7 @@
   "text": {
     "extraction_method": "ocr",
     "ocr_status": "ocr-done",
-    "proofread": false,
+    "proofread": true,
     "quality": "good"
   },
   "formats": {
@@ -66,7 +66,7 @@
     "epub": "reader.epub"
   },
   "added": "2026-06-07",
-  "updated": "2026-09-09",
+  "updated": "2026-10-31",
   "summary": "नैतिक दृष्टान्तका कथा र उदाहरणमार्फत रचनाले कर्मको फल, सत्य आचरण र विवेकपूर्ण जीवनको शिक्षा दिन्छ।",
   "prosody": {
     "status": "reviewed",
@@ -74,8 +74,8 @@
     "metres": [
       "anushtup"
     ],
-    "text_sha256": "8ab468e7082b52339a9cf601f465543e67666ee4f0ccfbd8d506d7eb01ea018c",
-    "reviewed": "2026-10-30",
+    "text_sha256": "dff2217348844291e5431c95b5a0835588ba9ed9e7a731023b617e96c4cb386e",
+    "reviewed": "2026-10-31",
     "evidence": [
       {
         "basis": "metrical-reading",

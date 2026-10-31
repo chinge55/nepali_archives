@@ -56,7 +56,7 @@
   "text": {
     "extraction_method": "ocr",
     "ocr_status": "ocr-done",
-    "proofread": false,
+    "proofread": true,
     "quality": "good"
   },
   "formats": {
@@ -66,7 +66,7 @@
     "epub": "reader.epub"
   },
   "added": "2026-06-07",
-  "updated": "2026-09-09",
+  "updated": "2026-10-31",
   "summary": "भूकम्पले घर भत्किएपछि आश्रय खोज्दै आएको गौँथली-जोडीको आँखाबाट घर, स्वामित्व, डर र अस्थिर संसारबारे संवाद गरिएको छ।",
   "prosody": {
     "status": "reviewed",
@@ -74,8 +74,8 @@
     "metres": [
       "shikharini"
     ],
-    "text_sha256": "a8cb5894d6ceea91c9b155be62f8d31e0c9c69ae7159e903ca9c9ba805af01b0",
-    "reviewed": "2026-10-30",
+    "text_sha256": "f382c937c04e344e7bf28999d9091a16bb6ef6ce77557f8049f482e2fa425b26",
+    "reviewed": "2026-10-31",
     "evidence": [
       {
         "basis": "metrical-reading",
