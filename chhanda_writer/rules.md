@@ -4,7 +4,13 @@ The `/kavita-lekhan/` writer analyses the spelling under an explicit verse readi
 The retired `/chhanda/` URL redirects to it, preserving query parameters and
 fragments. The original local draft key stays unchanged for saved writing.
 
-The writer's catalogue contains ten metres with a fixed pattern for each पाउ:
+Every archive category is available in the writer: 31 named metres and मुक्तछन्द.
+`catalogue.json` and `guides.json` supply the names, definitions and reviewed
+examples; the site build emits `writer-data.json` for the editor. The same ids
+drive browse-page writing links and the dropdown. Adding a category cannot leave
+its writing link behind. No draft text is sent to the build or server.
+
+The original ten classical fixtures retain their source-checked formulae:
 
 | Metre | Ganas and tail | Syllables | Internal pause positions |
 | --- | --- | --- | --- |
@@ -19,9 +25,34 @@ The writer's catalogue contains ten metres with a fixed pattern for each पा�
 | स्रग्धरा | म र भ न य य य | 21 | 7, 14 |
 | मन्दाक्रान्ता | म भ न त त गुरु गुरु | 17 | 4, 10 |
 
-A verse has four पाउ; a newline,
+A classical stanza has four पाउ, and a गजल शेर has two मिसरा; a newline,
 slash, vertical bar, or danda separates पाउ. Blank lines separate stanzas.
 Screen wrapping never changes the analysis.
+
+**Form-specific writing assistance**
+
+- Fixed वर्णिक patterns use syllable alignment and soft problem underlines.
+  उपजाति accepts either component pattern for each pada. द्वादशाक्षरी उपजाति
+  separately accepts वंशस्थ and इन्द्रवंशा.
+- वियोगिनी and पुष्पिताग्रा alternate their odd/even templates by pada position.
+  Blank lines restart the stanza position. The selected template also drives
+  word suggestions and the displayed target count.
+- The five बहर modes use their own feet. The classical final-short-as-long
+  checkbox is hidden and never applied to them. An extra final short is allowed
+  in the four reference forms that permit it, excluding हजज मुसम्मन सालिम.
+- अनुष्टुप् provides eight-syllable count assistance. गीति counts 12/18 matras
+  alternately, औपच्छन्दसिक 16/18, and पादाकुलक 16. Matching a count is labelled
+  गणना मिल्यो, never a complete metrical match: internal rules and variant
+  readings still need human review. Raw matra counts and the explicit final
+  allowance remain visible. The optional अनुष्टुप् practice example separates
+  the source's two padas into two lines without changing their words.
+- झ्याउरे provides syllable counts with its folk-rhythm guide; मुक्तछन्द gives
+  neutral counts. Neither imposes a universal fixed template or produces
+  metrical error underlines. Their word choices are vocabulary suggestions.
+
+Writing in any category preserves the same textarea, script detection, draft
+storage, exports and undo history. A category chosen from a browse page presets
+the writer while retaining the existing poem; reloading retains the saved mode.
 
 The main writing surface has one textarea, a Devanagari/Roman switch, and a
 metre dropdown. Roman words are composed and converted in that same textarea

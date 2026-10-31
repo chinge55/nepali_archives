@@ -15,11 +15,13 @@ $('boot-retry').addEventListener('click', boot);
 
 async function start() {
   const attempt = bootstrapAttempt++;
-  const [{ METRES, VOCABULARY }, { analyse, rebaseOverrides, splitPadas, suggestWords, digits, weightName }, { pendingWord, changedRange, transliterateEdit, inputScript }, { problemRanges, createUnderlines }] = await Promise.all([
+  const [{ createMetres, VOCABULARY }, { analyse, rebaseOverrides, splitPadas, suggestWords, digits, weightName }, { pendingWord, changedRange, transliterateEdit, inputScript }, { problemRanges, createUnderlines }, data] = await Promise.all([
     import(`${versioned('./metres.js')}&attempt=${attempt}`), import(`${versioned('./engine.js')}&attempt=${attempt}`),
     import(`${versioned('./inline.js')}&attempt=${attempt}`),
     import(`${versioned('./underlines.js')}&attempt=${attempt}`),
+    fetch(versioned('./writer-data.json')).then(response => { if (!response.ok) throw new Error('Metres unavailable'); return response.json(); }),
   ]);
+  const METRES = createMetres(data.metres);
   const poem = $('poem');
   const underlines = createUnderlines(poem, $('poem-measure'), $('poem-underlines'));
   let state = { version: 2, text: poem.value, metre: METRES[0].id, overrides: {}, finalFlexible: true, mode: 'devanagari', automatic: true };
@@ -123,38 +125,40 @@ async function start() {
       const colon = key.indexOf(':'), pos = Number(key.slice(0, colon));
       if (pos >= part.start && pos < part.end) overrides[`${pos - part.start}:${key.slice(colon + 1)}`] = value;
     }
-    return { overrides, finalFlexible: state.finalFlexible };
+    return { overrides, finalFlexible: state.finalFlexible, pada: part.ordinal || 0 };
   }
-  const statusLabels = { match: '✓ लय मिल्यो', partial: 'अधुरो पाउ', mismatch: '△ लय जाँच्नुहोस्', uncertain: '? पाठ जाँच्नुहोस्', empty: '', typing: 'लेख्दै…' };
+  const statusLabels = { match: '✓ लय मिल्यो', counted: 'गणना मिल्यो', guided: 'लेख्दै…', partial: 'अधुरो पाउ', mismatch: '△ लय जाँच्नुहोस्', uncertain: '? पाठ जाँच्नुहोस्', empty: '', typing: 'लेख्दै…' };
 
   function render() {
     preview = null; $('word-preview').hidden = true;
     const metre = currentMetre();
     $('guide-heading').textContent = metre.name;
     $('metre-description').textContent = metre.description;
-    $('metre-ganas').textContent = `गण: ${metre.ganas.join(' · ')}${metre.tail ? ' · ' + [...metre.tail].map(weightName).join(' · ') : ''}`;
+    $('metre-ganas').textContent = metre.structure;
     $('pause-note').textContent = metre.pauseNote;
-    $('metre-pattern').replaceChildren(...metre.ganas.map((g, i) => {
-      const node = element('span');
-      const group = metre.pattern.slice(i * 3, i * 3 + 3);
-      node.append(element('b', [...group].map(w => w === 'G' ? 'ग' : 'ल').join(' ')));
-      return node;
-    }));
-    if (metre.tail) $('metre-pattern').append(element('span', [...metre.tail].map(w => w === 'G' ? 'ग' : 'ल').join(' ')));
+    $('analysis-panel').querySelector('summary').textContent = metre.mode === 'pattern' ? 'लय जाँच्नुहोस्' : 'गणना हेर्नुहोस्';
+    $('final-flexible').closest('label').hidden = !metre.allowFinalFlexible;
+    $('word-note').textContent = metre.mode === 'pattern' ? 'तौलमा मिल्ने विकल्पहरू। अर्थ र भावअनुसार रोज्नुहोस्।'
+      : metre.mode === 'count' ? 'गणनाभित्र आउने विकल्पहरू। भित्री लय, अर्थ र भावअनुसार रोज्नुहोस्।'
+        : 'शब्दभण्डारका विकल्पहरू। आफ्नो लय, अर्थ र भावअनुसार रोज्नुहोस्।';
     $('example-text').textContent = metre.example;
     $('example-source').href = metre.source;
-    $('example-source').textContent = `लक्ष्मीप्रसाद देवकोटा · ${metre.citation}`;
-    $('example-page').textContent = `साहित्यरस संस्करण · PDF पृष्ठ ${digits(metre.page)} · मुद्रित पृष्ठ ${metre.folio}। मूल पृष्ठसँग तुलना गरिएको अंश।`;
+    $('example-source').textContent = [metre.author, metre.citation].filter(Boolean).join(' · ');
+    $('example-page').textContent = metre.exampleNote;
 
     parts = splitPadas(state.text);
     active = parts.findIndex(p => selection.start >= p.start && selection.start <= p.end);
     if (active < 0) active = parts.findIndex(p => p.start > selection.start);
     if (active < 0) {
       if (!parts.length || /[\n/|]\s*$/.test(state.text.slice(parts.at(-1)?.end || 0))) {
-        parts.push({ text: '', start: state.text.length, end: state.text.length, stanza: parts.at(-1)?.stanza || 0 });
+        const last = parts.at(-1);
+        parts.push({ text: '', start: state.text.length, end: state.text.length,
+          stanza: (last?.stanza || 0) + (/\n\s*\n/.test(state.text.slice(last?.end || 0)) ? 1 : 0) });
       }
       active = parts.length - 1;
     }
+    const ordinals = new Map();
+    parts.forEach(p => { p.ordinal = ordinals.get(p.stanza) || 0; ordinals.set(p.stanza, p.ordinal + 1); });
     const pending = romanEnabled() ? pendingWord(state.text, selection.start) : null;
     readings = parts.map(p => {
       const localStart = pending ? pending.start - p.start : -1;
@@ -166,11 +170,21 @@ async function start() {
     });
     underlines.update(state.text, composing ? [] : problemRanges(state.text, parts, readings));
     const part = parts[active], reading = readings[active];
-    $('active-label').textContent = `पाउ ${digits(active + 1)}`;
+    $('active-label').textContent = `${metre.lineName} ${digits(active + 1)}`;
+    const pattern = reading.targetPattern;
+    let offset = 0;
+    const groupedLength = metre.groups.reduce((a,b) => a+b,0);
+    const groups = metre.groups.length && groupedLength === pattern.length ? metre.groups
+      : metre.extraFinalShort && groupedLength + 1 === pattern.length ? [...metre.groups, 1]
+      : Array.from({ length: Math.ceil(pattern.length / 3) }, (_,i) => Math.min(3, pattern.length - i*3));
+    $('metre-pattern').replaceChildren(...groups.map(size => {
+      const node = element('span'); node.append(element('b', [...pattern.slice(offset, offset + size)].map(w => w === 'G' ? 'ग' : 'ल').join(' ')));
+      offset += size; return node;
+    }));
     const tabs = parts.map((p, i) => {
       const button = element('button', `${digits(i + 1)} ${readings[i].status === 'match' ? '✓' : readings[i].status === 'mismatch' ? '△' : '◌'}`, 'ch-pada');
       button.type = 'button'; button.dataset.status = readings[i].status;
-      button.setAttribute('aria-label', `पाउ ${digits(i + 1)}: ${statusLabels[readings[i].status]}`);
+      button.setAttribute('aria-label', `${metre.lineName} ${digits(i + 1)}: ${statusLabels[readings[i].status]}`);
       button.setAttribute('aria-pressed', String(i === active));
       button.addEventListener('click', () => {
         selection = { start: p.start, end: p.start }; poem.focus(); poem.setSelectionRange(p.start, p.start); render();
@@ -179,16 +193,19 @@ async function start() {
     $('pada-tabs').replaceChildren(...tabs);
     $('analysis-status').textContent = statusLabels[reading.status] + (reading.flexible && reading.status === 'match' ? ' · पदान्त छुटसहित' : '');
     $('analysis-status').dataset.status = reading.status;
-    $('editor-live-status').textContent = reading.status === 'empty' ? '' : `${statusLabels[reading.status]} · ${digits(reading.syllables.length)}/${digits(metre.pattern.length)}`;
+    const amount = reading.measure === 'matras' ? reading.matras : reading.syllables.length;
+    const unit = reading.measure === 'matras' ? 'मात्रा' : 'अक्षर';
+    const counted = `${digits(amount)}${reading.flexible && reading.measure === 'matras' ? ' + १' : ''}${reading.targetCount ? ' / ' + digits(reading.targetCount) : ''} ${unit}`;
+    $('editor-live-status').textContent = reading.status === 'empty' ? '' : `${statusLabels[reading.status]} · ${counted}`;
     $('editor-live-status').dataset.status = reading.status;
-    $('editor-live-pattern').textContent = reading.status === 'partial' ? `अझै ${digits(metre.pattern.length - reading.syllables.length)} अक्षर` : '';
-    $('counts').textContent = `${digits(reading.syllables.length)} / ${digits(metre.pattern.length)} अक्षर · ${digits(reading.matras)} मात्रा`;
+    $('editor-live-pattern').textContent = reading.status === 'partial' ? `अझै ${digits(reading.targetCount - amount)} ${unit}` : '';
+    $('counts').textContent = reading.measure === 'matras' ? `${counted} · ${digits(reading.syllables.length)} अक्षर` : `${counted} · ${digits(reading.matras)} मात्रा`;
     const slots = reading.slots.map(slot => {
       const node = element(slot.syllable ? 'button' : 'div', undefined, `ch-slot ch-${slot.kind}${metre.pauses.includes(slot.position) ? ' ch-pause' : ''}`);
       node.append(element('small', slot.position ? digits(slot.position) : 'थप'),
         element('span', slot.syllable?.text || '·'),
         element('span', slot.syllable ? (slot.syllable.weight === 'G' ? 'ग' : 'ल') + (slot.kind === 'flexible' ? '*' : '') : '—'),
-        element('span', slot.expected ? `चाहिने ${slot.expected === 'G' ? 'ग' : 'ल'}` : 'बढी', 'ch-expected'));
+        element('span', slot.expected ? `चाहिने ${slot.expected === 'G' ? 'ग' : 'ल'}` : slot.kind === 'extra' ? 'बढी' : '', 'ch-expected'));
       if (slot.syllable) {
         node.type = 'button';
         const s = slot.syllable;
@@ -205,18 +222,23 @@ async function start() {
       return node;
     });
     $('scansion').replaceChildren(...slots);
-    $('syllable-detail').textContent = 'अक्षर थिचेर लघु वा गुरु हुनुको कारण हेर्नुहोस्। माथिल्लो पङ्क्तिमा तपाईंको पाठ, तल चाहिने तौल छ।';
-    const missing = metre.pattern.length - reading.syllables.length;
-    let hint = reading.status === 'partial' ? `अझै ${digits(missing)} अक्षर: ${[...reading.remaining].map(weightName).join(' · ')}`
-      : reading.status === 'mismatch' ? missing > 0 ? `${digits(missing)} अक्षर कम छन्। सङ्केत गरिएका स्थानको तौल पनि जाँच्नुहोस्।`
-        : missing < 0 ? `${digits(-missing)} अक्षर बढी छन्। सङ्केत गरिएका स्थान जाँच्नुहोस्।`
+    $('syllable-detail').textContent = metre.mode === 'pattern'
+      ? 'अक्षर थिचेर लघु वा गुरु हुनुको कारण हेर्नुहोस्। माथिल्लो पङ्क्तिमा तपाईंको पाठ, तल चाहिने तौल छ।'
+      : 'अक्षर थिचेर लघु वा गुरु हुनुको कारण हेर्नुहोस्। यहाँ उच्चारणअनुसारको गणना देखाइएको छ।';
+    const missing = (reading.targetCount || 0) - amount;
+    let hint = reading.status === 'partial' ? `अझै ${digits(missing)} ${unit}${reading.remaining ? ': ' + [...reading.remaining].map(weightName).join(' · ') : '।'}`
+      : reading.status === 'mismatch' ? missing > 0 ? `${digits(missing)} ${unit} कम छन्। सङ्केत गरिएका स्थानको तौल पनि जाँच्नुहोस्।`
+        : missing < 0 ? `${digits(-missing)} ${unit} बढी छन्। सङ्केत गरिएका स्थान जाँच्नुहोस्।`
           : 'अक्षर सङ्ख्या पुगेको छ। सङ्केत गरिएका स्थानमा लघु–गुरुको क्रम वा शब्दको उच्चारण जाँच्नुहोस्।'
         : reading.status === 'uncertain' ? reading.oversized ? 'यो पाउ धेरै लामो छ। / वा नयाँ हरफले पाउ छुट्याउनुहोस्।' : reading.issues.join(' ')
-          : reading.status === 'match' ? 'यो नतिजा देखाइएको काव्यपाठमा आधारित छ। शब्दको उच्चारण आफ्नो पाठसँग मिलाउनुहोस्।' : 'ल = लघु, ग = गुरु। एउटा हरफमा एउटा पाउ लेखेर सुरु गर्न सकिन्छ।';
+          : reading.status === 'match' ? 'यो नतिजा देखाइएको काव्यपाठमा आधारित छ। शब्दको उच्चारण आफ्नो पाठसँग मिलाउनुहोस्।'
+            : reading.status === 'counted' ? 'अहिले अक्षर वा मात्राको गणना मिलेको छ। भित्री गणक्रम र लय छन्दको बनोटसँग दाँजेर पढ्नुहोस्।'
+              : reading.status === 'guided' ? metre.pauseNote : 'ल = लघु, ग = गुरु। एउटा हरफमा एउटा पाउ लेखेर सुरु गर्न सकिन्छ।';
     for (const pause of reading.pauses) if (pause.wordBoundary === false) hint += ` ${digits(pause.position)}औँ अक्षरमा शब्द सकिएको छैन; यतिको पाठ जाँच्नुहोस्।`;
+    if (metre.extraFinalShort && pattern.length > metre.pattern.length) hint += ' यस बहरमा अन्त्यको अतिरिक्त लघु अनुमत छ।';
     $('analysis-hint').textContent = hint;
 
-    const choices = reading.words.filter(w => w.canDrop).map(w => {
+    const choices = (reading.oversized ? [] : reading.words.filter(w => w.canDrop)).map(w => {
       const label = element('label', w.text), select = element('select');
       select.setAttribute('aria-label', `${w.text} को अन्तिम अ`);
       for (const [value, text] of [['keep', 'अ उच्चारित'], ['drop', 'अ नबोल्ने']]) {
@@ -235,9 +257,11 @@ async function start() {
     const nonempty = parts.filter(p => p.text.trim());
     const stanza = new Map();
     nonempty.forEach(p => stanza.set(p.stanza, (stanza.get(p.stanza) || 0) + 1));
-    const complete = [...stanza.values()].filter(count => count === 4).length;
+    const complete = metre.stanzaSize ? [...stanza.values()].filter(count => count === metre.stanzaSize).length : 0;
     const matches = readings.filter(r => r.status === 'match').length;
-    $('stanza-summary').textContent = nonempty.length ? `${digits(nonempty.length)} पाउमध्ये ${digits(matches)} मा तौल मिल्यो। ${digits(complete)} श्लोकमा चार पाउ छन्।` : '';
+    $('stanza-summary').textContent = nonempty.length ? metre.mode === 'pattern'
+      ? `${digits(nonempty.length)} ${metre.lineName}मध्ये ${digits(matches)} मा तौल मिल्यो। ${digits(complete)} ${metre.kind === 'bahr' ? 'शेरमा दुई मिसरा' : 'श्लोकमा चार पाउ'} छन्।`
+      : `${digits(nonempty.length)} ${metre.lineName}। ${metre.mode === 'count' ? 'अक्षर वा मात्राको गणनासँगै भित्री लय पनि पढेर हेर्नुहोस्।' : 'हरफको अर्थ र आफ्नो लयअनुसार पढ्नुहोस्।'}` : '';
     sync(); queueSuggestions();
   }
 
@@ -309,7 +333,7 @@ async function start() {
   $('example-open').addEventListener('click', () => $('example-dialog').showModal());
   $('example-close').addEventListener('click', () => $('example-dialog').close());
   $('use-example').addEventListener('click', () => {
-    action(() => { state.text = currentMetre().example; state.overrides = {}; selection = { start: 0, end: 0 }; });
+    action(() => { state.text = currentMetre().draftExample || currentMetre().example; state.overrides = {}; selection = { start: 0, end: 0 }; });
     $('example-dialog').close();
     poem.focus(); poem.setSelectionRange(0, 0); poem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   });

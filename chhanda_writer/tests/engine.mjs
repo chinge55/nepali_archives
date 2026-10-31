@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { METRES } from '../../assets/chhanda/metres.js';
+import { CLASSICAL_METRES as METRES } from '../../assets/chhanda/metres.js';
 import { scan, analyse, align, splitPadas, suggestWords, rebaseOverrides } from '../../assets/chhanda/engine.js';
 import { changedRange, pendingWord, transliterateEdit, inputScript } from '../../assets/chhanda/inline.js';
 import { problemRanges } from '../../assets/chhanda/underlines.js';
@@ -35,7 +35,7 @@ test('the located Manoladdu ending follows anushtup without a universal fixed te
   const entry = catalogue.find(m => m.id === 'anushtup');
   assert.equal(entry.pattern, undefined);
   assert.equal(entry.patterns, undefined);
-  assert.equal(entry.writer, undefined);
+  assert.equal(entry.writer, entry.id);
   const padas = ['सानू यौटा मनोलड्डु', 'लेखनाथ अनाथको', 'लिनुहोला कृपासाथ', 'गहना पारि हातको'];
   padas.forEach((text, i) => {
     const reading = scan(text);
@@ -51,7 +51,7 @@ test('Panchachamara has eight light-heavy pairs in source-preserved Dagbatti pad
   for (const text of ['म सात वर्षको थिएँ, अबोध बालकै थिएँ,', 'कुनै कुरा थिएन थाह, मस्त नींदमा थिएँ,']) {
     assert.equal(scan(text).pattern, entry.pattern);
   }
-  assert.equal(entry.writer, undefined);
+  assert.equal(entry.writer, entry.id);
 });
 test('twelve-syllable Upajati keeps Vamshastha and Indravamsha distinct from eleven-syllable Upajati', () => {
   const catalogue = JSON.parse(readFileSync(new URL('../../assets/chhanda/catalogue.json', import.meta.url))).metres;
@@ -64,7 +64,7 @@ test('twelve-syllable Upajati keeps Vamshastha and Indravamsha distinct from ele
     assert.equal(align(reading.syllables, entry.patterns[i], true).distance, 0);
   });
   assert.ok(catalogue.find(m => m.id === 'upajati').patterns.every(p => p.length === 11));
-  assert.equal(entry.writer, undefined);
+  assert.equal(entry.writer, entry.id);
 });
 test('the located Viyogini ending alternates ten and eleven syllables', () => {
   const catalogue = JSON.parse(readFileSync(new URL('../../assets/chhanda/catalogue.json', import.meta.url))).metres;
@@ -74,7 +74,7 @@ test('the located Viyogini ending alternates ten and eleven syllables', () => {
   // Alternating lengths cannot be represented as interchangeable fixed templates.
   assert.equal(entry.pattern, undefined);
   assert.equal(entry.patterns, undefined);
-  assert.equal(entry.writer, undefined);
+  assert.equal(entry.writer, entry.id);
 });
 test('five archive bahr readings follow their reference feet in preserved Nepali lines', () => {
   const catalogue = JSON.parse(readFileSync(new URL('../../assets/chhanda/catalogue.json', import.meta.url))).metres;
@@ -89,7 +89,7 @@ test('five archive bahr readings follow their reference feet in preserved Nepali
     const entry = catalogue.find(m => m.id === id);
     assert.equal(entry.pattern, formula);
     assert.equal(scan(text).pattern, formula, id);
-    assert.equal(entry.writer, undefined);
+    assert.equal(entry.writer, entry.id);
     assert.equal(matchesCataloguePattern(formula.slice(0, -1) + 'L', formula, entry), false);
     assert.equal(matchesCataloguePattern(formula + 'L', formula, entry), id !== 'hazaj_musamman_salim');
   }
@@ -101,7 +101,7 @@ test('alternating and mora-based archive forms retain their stanza order and fin
     const entry = catalogue.find(m => m.id === id);
     assert.equal(entry.pattern, undefined);
     assert.equal(entry.patterns, undefined);
-    assert.equal(entry.writer, undefined);
+    assert.equal(entry.writer, entry.id);
   }
   const heavyEnd = text => { const p = scan(text).pattern; return p.slice(0, -1) + 'G'; };
   assert.equal(heavyEnd('अब मति सब यो वितृष्ण गर्छु'), 'LLLLLLGLGLGG');

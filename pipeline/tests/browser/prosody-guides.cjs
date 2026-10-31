@@ -64,7 +64,7 @@ const base = (process.env.PROSODY_TEST_URL || 'http://localhost:8262/').replace(
       await noOverflow();
       if (id === 'muktachhanda') {
         assert.equal(await page.$('.metre-pattern'), null);
-        assert.equal(await page.$('.prosody-write'), null);
+        assert.ok(await page.$('.prosody-write'));
       }
       await (await page.$('.metre-guide')).screenshot({path:'/tmp/metre-guide-' + id + '-mobile.png'});
     }

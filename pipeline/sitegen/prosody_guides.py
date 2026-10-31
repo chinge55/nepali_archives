@@ -48,12 +48,12 @@ def _pattern_html(metre, guide):
     return "".join(rows)
 
 
-def _example_html(identifier, guide, catalogue):
+def guide_example(identifier, guide, catalogue):
     example = guide["example"]
     record = next((row for row in catalogue.records if row[0]["path"] == example["work"]), None)
     # A smaller deployment may omit the example work; the guide still stands alone.
     if record is None:
-        return ""
+        return None
     work, meta, text = record
     annotation = catalogue.extras[work["path"]]["prosody"]
     if identifier not in published_metres(annotation):
@@ -69,6 +69,15 @@ def _example_html(identifier, guide, catalogue):
                 break
         else:
             raise ValueError(f"Reading example is outside the reviewed passage: {identifier}")
+    return meta, excerpt, href
+
+
+def _example_html(identifier, guide, catalogue):
+    record = guide_example(identifier, guide, catalogue)
+    if record is None:
+        return ""
+    meta, excerpt, href = record
+    example = guide["example"]
     reading = "".join('<p class="metre-reading">' + ' <span class="reading-divider">│</span> '.join(esc(chunk) for chunk in chunks) + '</p>'
                       for chunks in example["reading"])
     return ('<div class="metre-example"><h3>पढेर हेर्नुहोस्</h3>'

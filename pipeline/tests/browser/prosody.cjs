@@ -58,7 +58,7 @@ const pause = ms => new Promise(resolve => setTimeout(resolve, ms));
 
     await go('chhandas/upajati/');
     assert.match(await page.$eval('h1', n => n.textContent), /उपजाति छन्दका कविता/);
-    assert.equal(await page.$('.prosody-write'), null);
+    assert.ok(await page.$('.prosody-write'));
     await page.screenshot({ path: '/tmp/prosody-upajati-desktop.png', fullPage: true });
     await go('authors/bhanubhakta_acharya/katai_kharani_chhari_bhus_katai/');
     assert.match(await page.$eval('.meta', n => n.textContent), /छन्द: उपजाति/);
@@ -78,7 +78,7 @@ const pause = ms => new Promise(resolve => setTimeout(resolve, ms));
 
     await go('chhandas/anushtup/');
     assert.match(await page.$eval('h1', n => n.textContent), /अनुष्टुप् छन्दका कविता/);
-    assert.equal(await page.$('.prosody-write'), null);
+    assert.ok(await page.$('.prosody-write'));
     await page.screenshot({ path: '/tmp/prosody-anushtup-desktop.png', fullPage: true });
     await page.type('#q', 'सानू');
     await page.waitForSelector('#ft .ftlink[href*="/manoladdu/"]');
@@ -108,7 +108,7 @@ const pause = ms => new Promise(resolve => setTimeout(resolve, ms));
     for (const [id, name] of [['panchachamara', 'पञ्चचामर'], ['upajati_12', 'द्वादशाक्षरी उपजाति'], ['viyogini', 'वियोगिनी']]) {
       await go('chhandas/' + id + '/');
       assert.ok((await page.$eval('h1', n => n.textContent)).includes(name));
-      assert.equal(await page.$('.prosody-write'), null);
+      assert.ok(await page.$('.prosody-write'));
     }
     await go('authors/bhimnidhi_tiwari/dagbatti/');
     assert.match(await page.$eval('.meta', n => n.textContent), /छन्द: पञ्चचामर/);
@@ -145,7 +145,7 @@ const pause = ms => new Promise(resolve => setTimeout(resolve, ms));
       'pramanika', 'giti', 'pushpitagra', 'aupachchhandasika', 'padakulak']) {
       await go('chhandas/' + id + '/');
       assert.ok(await page.$('.works li'));
-      assert.equal(await page.$('.prosody-write'), null);
+      assert.ok(await page.$('.prosody-write'));
       if (id === 'ramal_musamman_mahzuf') await page.screenshot({ path: '/tmp/prosody-bahr.png', fullPage: true });
     }
     await go('authors/motiram_bhatta/apsara_jhain_sbargaka/');
@@ -191,8 +191,8 @@ const pause = ms => new Promise(resolve => setTimeout(resolve, ms));
     await go('authors/devkota/pagal/');
     assert.match(await page.$eval('.meta', n => n.textContent), /मुक्तछन्द/);
     await go('chhandas/jhyaure/');
-    assert.equal(await page.$('.prosody-write'), null);
-    console.log('PASS: reviewed free verse and folk metre remain distinct from writer support');
+    assert.ok(await page.$('.prosody-write'));
+    console.log('PASS: reviewed free verse and folk metre have writing links');
 
     await go('chhandas/malini/');
     await page.click('.metre-guide > summary');

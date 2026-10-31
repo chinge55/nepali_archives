@@ -51,6 +51,7 @@ jobs:
           trap 'kill "$search_server_pid"' EXIT
           NODE_PATH="$RUNNER_TEMP/search-test/node_modules" node pipeline/tests/browser/search.cjs
           CHHANDA_TEST_URL=http://localhost:8262/kavita-lekhan/ NODE_PATH="$RUNNER_TEMP/search-test/node_modules" node chhanda_writer/tests/browser.cjs
+          CHHANDA_TEST_URL=http://localhost:8262/kavita-lekhan/ NODE_PATH="$RUNNER_TEMP/search-test/node_modules" node chhanda_writer/tests/coverage.cjs
           NODE_PATH="$RUNNER_TEMP/search-test/node_modules" node pipeline/tests/browser/patro.cjs
           NODE_PATH="$RUNNER_TEMP/search-test/node_modules" node pipeline/tests/browser/prosody.cjs
           NODE_PATH="$RUNNER_TEMP/search-test/node_modules" node pipeline/tests/browser/prosody-guides.cjs

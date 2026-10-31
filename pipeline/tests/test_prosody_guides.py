@@ -80,12 +80,12 @@ class ProsodyGuideTests(unittest.TestCase):
         self.assertNotIn("<blockquote>", rendered)
         self.assertIn("../../kavita-lekhan/?metre=malini", rendered)
 
-    def test_free_verse_and_unsupported_writer_metres_do_not_get_fixed_templates(self):
+    def test_flexible_forms_have_writer_links_without_fixed_templates(self):
         for identifier in ["muktachhanda", "viyogini", "giti", "aupachchhandasika", "jhyaure"]:
             rendered = metre_guide(identifier, self.metres[identifier], self.guides[identifier],
                                    self.example_catalogue(identifier))
             self.assertNotIn('class="metre-pattern"', rendered)
-            self.assertNotIn("kavita-lekhan/?metre=", rendered)
+            self.assertIn("kavita-lekhan/?metre=" + identifier, rendered)
 
     def test_guide_copy_is_escaped(self):
         guide = copy.deepcopy(self.guides["malini"])

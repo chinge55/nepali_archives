@@ -1,12 +1,14 @@
 """Browser-local Nepali chhanda writing assistant."""
 
+import json
 import shutil
 
 from ..assets import asset_version
 from ..config import SITE_NAME
+from ..prosody_guides import guide_example, load_guides
 
 
-def write_chhanda_page(context, page):
+def write_chhanda_page(context, page, catalogue):
     source = context.root / "assets" / "chhanda"
     target = context.site / "kavita-lekhan"
     target.mkdir(exist_ok=True)
@@ -18,6 +20,24 @@ def write_chhanda_page(context, page):
     version = asset_version("".join(p.read_text(encoding="utf-8") for p in files + typing_dependencies))
     for path in files:
         shutil.copy(path, target / path.name)
+    guides = load_guides(context.root, catalogue.metres)
+    definitions = []
+    for identifier, metre in catalogue.metres.items():
+        guide = guides[identifier]
+        example = guide_example(identifier, guide, catalogue)
+        definitions.append({**metre, "description": guide["description"], "structure": guide["structure"],
+                            "tips": guide["reading"], "groups": guide.get("groups", []),
+                            "example": example[1] if example else "", "author": example[0]["author"]["name"] if example else "",
+                            "citation": example[0]["title"] if example else "",
+                            "source": "../" + example[2] if example else "",
+                            "exampleNote": guide["example"]["note"]})
+        if identifier == "anushtup" and example:
+            # Keep the source quotation intact; the opt-in practice draft separates its two padas.
+            definitions[-1]["draftExample"] = "\n".join(guide["example"]["reading"][0])
+            definitions[-1]["exampleNote"] += " लेखन अभ्यासमा यी दुई पाउ अलग हरफमा राखिन्छन्।"
+    data = json.dumps({"metres": definitions}, ensure_ascii=False, separators=(",", ":"))
+    (target / "writer-data.json").write_text(data, encoding="utf-8")
+    version = asset_version(version + data)
     body = """
 <div class="ch-heading"><h1>छन्दमा कविता लेखन</h1><span class="ch-edition">अभ्यास संस्करण</span></div>
 <section id="chhanda-tool" aria-label="छन्द लेखन सहायक">
@@ -61,7 +81,7 @@ def write_chhanda_page(context, page):
 <div class="ch-detail-body"><label class="ch-prefix-label" for="word-prefix">सुरुको अक्षर <input id="word-prefix" placeholder="जस्तै: म" autocomplete="off"></label>
 <p id="suggestion-context" class="ch-caption"></p><div id="word-choices" class="ch-candidates" role="group" aria-label="ढाँचामा मिल्ने शब्दहरू"></div>
 <div id="word-preview" class="ch-preview" hidden><p id="preview-line"></p><button id="insert-word" type="button">यो शब्द राख्नुहोस्</button><button id="cancel-preview" type="button">रद्द</button></div>
-<p class="ch-caption">तौलमा मिल्ने विकल्पहरू। अर्थ र भावअनुसार रोज्नुहोस्।</p></div></details>
+<p id="word-note" class="ch-caption">तौलमा मिल्ने विकल्पहरू। अर्थ र भावअनुसार रोज्नुहोस्।</p></div></details>
 <button type="button" id="example-open" class="ch-text-button">उदाहरण</button>
 <details id="help-panel" class="ch-help"><summary>मद्दत</summary><div class="ch-detail-body">
 <h2 id="guide-heading"></h2><p id="metre-description"></p><div id="metre-pattern" class="ch-formula"></div>
@@ -83,7 +103,7 @@ def write_chhanda_page(context, page):
         page(
             "छन्दमा कविता लेखन — " + SITE_NAME,
             body,
-            desc="नेपाली छन्दमा कविता लेख्नुहोस्। भुजङ्गप्रयात, शार्दूलविक्रीडित, शिखरिणी, मन्दाक्रान्ता लगायतका छन्दमा लघु–गुरु जाँच, शब्दका विकल्प र रोमनबाट नेपाली टाइप।",
+            desc="नेपाली छन्दमा कविता लेख्नुहोस्। वर्णिक छन्द, मात्रिक छन्द, गजलका बहर, झ्याउरे र मुक्तछन्दमा लेखन, लघु–गुरु वा मात्रागणना, शब्दका विकल्प र रोमनबाट नेपाली टाइप।",
             css_depth=1,
             extra_head=f'<link rel="stylesheet" href="chhanda.css?v={version}">',
             active="chhanda",

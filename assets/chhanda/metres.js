@@ -1,7 +1,7 @@
-// Metre formulae are facts; examples are transcribed from the linked source pages.
+// Source-checked classical fixtures. The writer's full catalogue is built by createMetres below.
 export const GANAS = { य: 'LGG', म: 'GGG', त: 'GGL', र: 'GLG', ज: 'LGL', भ: 'GLL', न: 'LLL', स: 'LLG' };
 const source = '../authors/devkota/shakuntala/';
-export const METRES = [
+export const CLASSICAL_METRES = [
   {
     id: 'bhujanga', name: 'भुजङ्गप्रयात', ganas: ['य', 'य', 'य', 'य'], tail: '',
     description: 'हरेक पाउमा १२ अक्षर। लघु–गुरु–गुरुको क्रम चारपटक दोहोरिन्छ।',
@@ -83,5 +83,29 @@ export const METRES = [
     page: 299, folio: '३०५',
   },
 ].map(m => ({ ...m, pattern: m.ganas.map(g => GANAS[g]).join('') + m.tail }));
+
+export function createMetres(entries) {
+  const sequences = {
+    viyogini: ['LLGLLGLGLG', 'LLGGLLGLGLG'],
+    pushpitagra: ['LLLLLLGLGLGG', 'LLLLGLLGLGLGG'],
+  };
+  const counts = { anushtup: ['syllables', [8]], giti: ['matras', [12, 18]],
+    aupachchhandasika: ['matras', [16, 18]], padakulak: ['matras', [16]] };
+  const pauses = { prithvi: [8], vamshastha: [5], mattamayuri: [4] };
+  return entries.map(entry => {
+    const classical = CLASSICAL_METRES.find(m => m.id === entry.id);
+    const counting = counts[entry.id];
+    const mode = entry.pattern || entry.patterns || sequences[entry.id] ? 'pattern' : counting ? 'count' : 'guided';
+    return { ...entry, mode, sequence: sequences[entry.id], measure: counting?.[0], targets: counting?.[1],
+      pauses: classical?.pauses || pauses[entry.id] || [],
+      groups: entry.groups || [], pauseNote: (entry.tips || []).join(' '),
+      allowFinalFlexible: entry.kind !== 'bahr' && entry.kind !== 'folk' && entry.kind !== 'free-verse'
+        && (!counting || counting[0] === 'matras'),
+      extraFinalShort: entry.kind === 'bahr' && entry.id !== 'hazaj_musamman_salim',
+      stanzaSize: entry.kind === 'bahr' ? 2 : entry.kind === 'free-verse' ? 0 : 4,
+      lineName: entry.kind === 'free-verse' ? 'हरफ' : entry.kind === 'bahr' ? 'मिसरा' : 'पाउ',
+    };
+  });
+}
 
 export const VOCABULARY = ('मन वन तन जन धन जल फल घर भर पर कर वर अब तब सब र न त म छ हो यो त्यो ती यी को के कि पनि अनि अति गति मति रति कति यति यहाँ त्यहाँ जहाँ तिमी हामी उनी मेरो तिम्रो हाम्रो राम्रो प्यारो सानो ठूलो मीठो चिसो तातो उज्यालो अँध्यारो बिहान साँझ रात दिन जून घाम तारा आकाश धरा धरती नदी हिमाल पहाड फूल पात हावा बादल पानी माटो बाटो गाउँ देश सपना माया प्रेम आशा भाषा कविता कलम कागज गीत लय छन्द स्वर शब्द कथा व्यथा प्राण आँखा मुटु हृदय किरण जीवन जगत संसार अनन्त सुन्दर सरल कोमल निर्मल शीतल मधुर पवन कमल कुसुम लता वसन्त आनन्द प्रकाश विश्वास साहस करुणा भावना कल्पना सुगन्ध सुन सुनको मनको वनको जीवनको मायाको प्रेमको फूलको घामको चन्द्रमा पूर्णिमा उषा निशा हाँसो आँसु साथी आमा बाबा बाल बालक बालिका नानी शिशु युवा मान्छे मानव धरामा वनमा मनमा घरमा नदीमा नभमा पथमा सधैँ सबै नयाँ पुरानो आफ्नो अर्को पहिलो दोस्रो आयो गयो भयो दियो लियो गर लेख बोल हेर सुन बस चल हिँड फुल्यो खुल्यो भेट्यो खोज्यो नाच्यो गाऊ गाउँछु लेख्छु देख्छु हेर्छु भन्छु बन्छु रहन्छ बहन्छ हराउँछ मिल्छ चल्छ बल्छ हुन्छ').split(' ');

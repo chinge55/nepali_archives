@@ -131,8 +131,45 @@ export function align(syllables, pattern, finalFlexible = true) {
   return { slots: slots.reverse(), distance: dp[n][m] };
 }
 
-export function analyse(text, metre, { overrides = {}, finalFlexible = true } = {}) {
-  const result = scan(text, overrides), n = result.syllables.length, pattern = metre.pattern;
+export function metrePatterns(metre, pada = 0) {
+  const patterns = metre.sequence ? [metre.sequence[pada % metre.sequence.length]]
+    : metre.patterns || (metre.pattern ? [metre.pattern] : []);
+  return metre.extraFinalShort ? [...patterns, ...patterns.map(pattern => pattern + 'L')] : patterns;
+}
+
+function countReading(result, metre, options) {
+  const n = result.syllables.length, oversized = n > 120;
+  const measure = metre.measure || 'syllables';
+  const actual = measure === 'matras' ? result.syllables.reduce((sum, s) => sum + (s.weight === 'G' ? 2 : 1), 0) : n;
+  const target = metre.targets?.[(options.pada || 0) % metre.targets.length] || null;
+  const flexible = measure === 'matras' && target === actual + 1 && result.pattern.endsWith('L')
+    && options.finalFlexible !== false && metre.allowFinalFlexible !== false;
+  const counted = actual + Number(flexible);
+  let used = 0;
+  const slots = oversized ? [] : result.syllables.map((syllable, i) => {
+    used += measure === 'matras' ? syllable.weight === 'G' ? 2 : 1 : 1;
+    return {syllable, position:i + 1, expected:null, kind:target && used > target ? 'extra' : 'match'};
+  });
+  return { ...result, slots, pauses:[], flexible, oversized, remaining:'', targetPattern:'',
+    targetCount:target, measure, matras:result.syllables.reduce((sum, s) => sum + (s.weight === 'G' ? 2 : 1), 0),
+    status: result.issues.length || oversized ? 'uncertain' : !n ? 'empty' : !target ? 'guided'
+      : counted === target ? 'counted' : counted < target ? 'partial' : 'mismatch' };
+}
+
+export function analyse(text, metre, options = {}) {
+  const { overrides = {}, pada = 0 } = options;
+  const finalFlexible = options.finalFlexible !== false && metre.allowFinalFlexible !== false;
+  const patterns = metrePatterns(metre, pada);
+  if (!patterns.length) return countReading(scan(text, overrides), metre, options);
+  // Select a permitted reading without changing either the text or pronunciation.
+  const scanned = scan(text, overrides);
+  let selected = patterns[0], best = Infinity;
+  if (scanned.syllables.length <= 120) for (const candidate of patterns) {
+    const score = candidate.startsWith(scanned.pattern) ? 0 : align(scanned.syllables, candidate, finalFlexible).distance;
+    if (score < best) {best = score; selected = candidate;}
+  }
+  const pattern = selected;
+  const result = scanned, n = result.syllables.length;
   const prefixFits = n < pattern.length && result.pattern === pattern.slice(0, n);
   // Bound pathological paste costs without truncating or altering the user's draft.
   const oversized = n > 120;
@@ -142,13 +179,14 @@ export function analyse(text, metre, { overrides = {}, finalFlexible = true } = 
   } : align(result.syllables, pattern, finalFlexible);
   const status = result.issues.length || oversized ? 'uncertain' : !n ? 'empty'
     : n === pattern.length && alignment.distance === 0 ? 'match' : prefixFits ? 'partial' : 'mismatch';
-  const pauses = metre.pauses.map(position => {
+  const pauses = (metre.pauses || []).map(position => {
     const s = result.syllables[position - 1], next = result.syllables[position];
     return { position, wordBoundary: !s || !next ? null : /[\s,;:!?।॥]/.test(text.slice(s.end, next.start)) };
   });
   return { ...result, ...alignment, status, remaining: prefixFits || !n ? pattern.slice(n) : '', pauses,
     matras: result.syllables.reduce((sum, s) => sum + (s.weight === 'G' ? 2 : 1), 0),
-    flexible: alignment.slots.some(s => s.kind === 'flexible'), oversized };
+    flexible: alignment.slots.some(s => s.kind === 'flexible'), oversized,
+    targetPattern:pattern, targetCount:pattern.length, measure:'syllables' };
 }
 
 export function splitPadas(text) {
@@ -169,19 +207,24 @@ export function suggestWords(text, start, end, metre, words, prefix = '', option
   const lead = before && !/[\s/|।॥]$/.test(before) ? ' ' : '';
   const tail = after && !/^[\s,;!?/|।॥]/.test(after) ? ' ' : '';
   const original = analyse(text, metre, options), results = [];
+  const patterns = metrePatterns(metre, options.pada || 0);
   for (const word of words) {
     if (prefix && !word.startsWith(prefix)) continue;
     const inserted = lead + word + tail;
     const candidate = before + inserted + after;
     const scanned = scan(candidate, rebaseOverrides(text, candidate, options.overrides));
-    const n = scanned.pattern.length, size = metre.pattern.length;
-    const full = n === size && (scanned.pattern === metre.pattern ||
-      options.finalFlexible !== false && scanned.pattern.slice(0, -1) === metre.pattern.slice(0, -1) && scanned.pattern.at(-1) === 'L' && metre.pattern.at(-1) === 'G');
-    const partial = n < size && scanned.pattern === metre.pattern.slice(0, n);
+    const n = scanned.pattern.length;
+    const flexible = options.finalFlexible !== false && metre.allowFinalFlexible !== false;
+    const fullPattern = patterns.find(p => scanned.pattern === p || flexible && n === p.length &&
+      scanned.pattern === p.slice(0, -1) + 'L' && p.endsWith('G'));
+    const partialPattern = patterns.find(p => n < p.length && p.startsWith(scanned.pattern));
+    const counted = !patterns.length ? countReading(scanned, metre, options) : null;
+    const full = !!fullPattern || counted && ['counted', 'guided'].includes(counted.status);
+    const partial = !!partialPattern || counted?.status === 'partial';
     if (scanned.issues.length || !full && !partial) continue;
     if (start !== end && candidate === text) continue;
-    results.push({ word, inserted, candidate, status: full ? 'match' : 'partial', remaining: metre.pattern.slice(n) });
+    results.push({ word, inserted, candidate, status: counted?.status || (full ? 'match' : 'partial'), remaining: (fullPattern || partialPattern || '').slice(n) });
     if (results.length === 8) break;
   }
-  return { results, needsRepair: !['empty', 'partial', 'match'].includes(original.status) };
+  return { results, needsRepair: !['empty', 'partial', 'match', 'counted', 'guided'].includes(original.status) };
 }

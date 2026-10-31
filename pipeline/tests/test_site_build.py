@@ -322,6 +322,10 @@ class FullBuildTests(unittest.TestCase):
         self.assertIn('href="../kavita-lekhan/" class=on>कविता लेखन</a>', chhanda)
         self.assertIn('href="chhanda.css?v=', chhanda)
         self.assertTrue((context.site / "kavita-lekhan/engine.js").is_file())
+        definitions = json.loads((context.site / "kavita-lekhan/writer-data.json").read_text())["metres"]
+        self.assertEqual(len(definitions), 32)
+        self.assertEqual({m["id"] for m in definitions}, {m["writer"] for m in definitions})
+        self.assertTrue(all(m["description"] and m["structure"] for m in definitions))
         self.assertFalse((context.site / "kavita-lekhan/package.json").exists())
         self.assertIn('rel="canonical" href="https://www.nepaliarchives.org/kavita-lekhan/"', chhanda)
         legacy = (context.site / "chhanda/index.html").read_text(encoding="utf-8")

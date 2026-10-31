@@ -3,7 +3,7 @@ export function problemRanges(text, parts, readings) {
   const ranges = [];
   parts.forEach((part, index) => {
     const reading = readings[index];
-    if (!reading || ['empty', 'match', 'typing', 'uncertain'].includes(reading.status)) return;
+    if (!reading || ['empty', 'match', 'counted', 'guided', 'typing', 'uncertain'].includes(reading.status)) return;
     const ended = /^[\r\n/|।॥]/.test(text.slice(part.end));
     if (reading.status === 'partial') {
       // An unfinished line is normal while writing. Mark it only after a boundary.

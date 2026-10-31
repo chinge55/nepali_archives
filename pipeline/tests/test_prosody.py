@@ -104,17 +104,19 @@ class ProsodyTests(unittest.TestCase):
                 metadata['prosody'][key] = value
                 self.assertTrue(validate_prosody(self.work, metadata))
 
-    def test_catalogue_keeps_annotation_scope_larger_than_writer_support(self):
+    def test_every_catalogue_category_has_a_writer_without_a_fictitious_fixed_pattern(self):
         metres = load_metres()
         self.assertEqual(metres['jhyaure']['name'], 'झ्याउरे')
-        self.assertNotIn('writer', metres['jhyaure'])
+        self.assertEqual(metres['jhyaure']['writer'], 'jhyaure')
+        self.assertNotIn('pattern', metres['jhyaure'])
+        self.assertTrue(all(metre['writer'] == identifier for identifier, metre in metres.items()))
         self.assertEqual(metres['malini']['writer'], 'malini')
 
     def test_alternative_patterns_describe_a_family_without_inventing_one_template(self):
         metres = load_metres()
         self.assertEqual(metres['upajati']['patterns'], ['GGLGGLLGLGG', 'LGLGGLLGLGG'])
         self.assertNotIn('pattern', metres['upajati'])
-        self.assertNotIn('writer', metres['upajati'])
+        self.assertEqual(metres['upajati']['writer'], 'upajati')
         self.assertEqual(metres['vamshastha']['pattern'], 'LGLGGLLGLGLG')
         folder = self.work / 'assets/chhanda'
         folder.mkdir(parents=True)

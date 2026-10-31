@@ -10,7 +10,7 @@ import re
 
 ROOT = Path(__file__).resolve().parent.parent
 POETIC_GENRES = {"kavita", "balkavita", "git", "bhajan", "gazal", "mahakavya", "khandakavya"}
-FREE_VERSE = {"id": "muktachhanda", "name": "मुक्तछन्द", "kind": "free-verse"}
+FREE_VERSE = {"id": "muktachhanda", "name": "मुक्तछन्द", "kind": "free-verse", "writer": "muktachhanda"}
 
 
 def load_metres(root: Path = ROOT) -> dict[str, dict]:

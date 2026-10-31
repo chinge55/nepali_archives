@@ -86,21 +86,24 @@
       "name": "पृथ्वी",
       "kind": "varnika",
       "pattern": "LGLLLGLGLLLGLGGLG",
-      "reference": "https://www.sanskrit-lexicon.uni-koeln.de/scans/csldev/csldoc/build/dictionaries/prefaces/ap90app1.html"
+      "reference": "https://www.sanskrit-lexicon.uni-koeln.de/scans/csldev/csldoc/build/dictionaries/prefaces/ap90app1.html",
+      "writer": "prithvi"
     },
     {
       "id": "swagata",
       "name": "स्वागता",
       "kind": "varnika",
       "pattern": "GLGLLLGLLGG",
-      "reference": "https://www.sanskrit-lexicon.uni-koeln.de/scans/csldev/csldoc/build/dictionaries/prefaces/ap90app1.html"
+      "reference": "https://www.sanskrit-lexicon.uni-koeln.de/scans/csldev/csldoc/build/dictionaries/prefaces/ap90app1.html",
+      "writer": "swagata"
     },
     {
       "id": "vamshastha",
       "name": "वंशस्थ",
       "kind": "varnika",
       "pattern": "LGLGGLLGLGLG",
-      "reference": "https://www.sanskrit-lexicon.uni-koeln.de/scans/csldev/csldoc/build/dictionaries/prefaces/ap90app1.html"
+      "reference": "https://www.sanskrit-lexicon.uni-koeln.de/scans/csldev/csldoc/build/dictionaries/prefaces/ap90app1.html",
+      "writer": "vamshastha"
     },
     {
       "id": "upajati",
@@ -110,20 +113,23 @@
         "GGLGGLLGLGG",
         "LGLGGLLGLGG"
       ],
-      "reference": "https://www.sanskrit-lexicon.uni-koeln.de/scans/csldev/csldoc/build/dictionaries/prefaces/ap90app1.html"
+      "reference": "https://www.sanskrit-lexicon.uni-koeln.de/scans/csldev/csldoc/build/dictionaries/prefaces/ap90app1.html",
+      "writer": "upajati"
     },
     {
       "id": "anushtup",
       "name": "अनुष्टुप्",
       "kind": "varnika",
-      "reference": "https://www.sanskrit-lexicon.uni-koeln.de/scans/csldev/csldoc/build/dictionaries/prefaces/ap90app1.html"
+      "reference": "https://www.sanskrit-lexicon.uni-koeln.de/scans/csldev/csldoc/build/dictionaries/prefaces/ap90app1.html",
+      "writer": "anushtup"
     },
     {
       "id": "panchachamara",
       "name": "पञ्चचामर",
       "kind": "varnika",
       "pattern": "LGLGLGLGLGLGLGLG",
-      "reference": "https://www.sanskrit-lexicon.uni-koeln.de/scans/csldev/csldoc/build/dictionaries/prefaces/ap90app1.html"
+      "reference": "https://www.sanskrit-lexicon.uni-koeln.de/scans/csldev/csldoc/build/dictionaries/prefaces/ap90app1.html",
+      "writer": "panchachamara"
     },
     {
       "id": "upajati_12",
@@ -133,98 +139,113 @@
         "LGLGGLLGLGLG",
         "GGLGGLLGLGLG"
       ],
-      "reference": "https://sa.wikisource.org/wiki/पृष्ठम्:वृत्तरत्नाकरम्.pdf/६८"
+      "reference": "https://sa.wikisource.org/wiki/पृष्ठम्:वृत्तरत्नाकरम्.pdf/६८",
+      "writer": "upajati_12"
     },
     {
       "id": "viyogini",
       "name": "वियोगिनी",
       "kind": "varnika",
-      "reference": "https://www.sanskrit-lexicon.uni-koeln.de/scans/csldev/csldoc/build/dictionaries/prefaces/ap90app1.html"
+      "reference": "https://www.sanskrit-lexicon.uni-koeln.de/scans/csldev/csldoc/build/dictionaries/prefaces/ap90app1.html",
+      "writer": "viyogini"
     },
     {
       "id": "jhyaure",
       "name": "झ्याउरे",
-      "kind": "folk"
+      "kind": "folk",
+      "writer": "jhyaure"
     },
     {
       "id": "ramal_musamman_mahzuf",
       "name": "रमल मुसम्मन महजूफ",
       "kind": "bahr",
       "pattern": "GLGGGLGGGLGGGLG",
-      "reference": "https://franpritchett.com/00ghalib/meterbk/06_meters.html"
+      "reference": "https://franpritchett.com/00ghalib/meterbk/06_meters.html",
+      "writer": "ramal_musamman_mahzuf"
     },
     {
       "id": "hazaj_musamman_salim",
       "name": "हजज मुसम्मन सालिम",
       "kind": "bahr",
       "pattern": "LGGGLGGGLGGGLGGG",
-      "reference": "https://franpritchett.com/00ghalib/meterbk/06_meters.html"
+      "reference": "https://franpritchett.com/00ghalib/meterbk/06_meters.html",
+      "writer": "hazaj_musamman_salim"
     },
     {
       "id": "hazaj_musaddas_mahzuf",
       "name": "हजज मुसद्दस महजूफ",
       "kind": "bahr",
       "pattern": "LGGGLGGGLGG",
-      "reference": "https://franpritchett.com/00ghalib/meterbk/06_meters.html"
+      "reference": "https://franpritchett.com/00ghalib/meterbk/06_meters.html",
+      "writer": "hazaj_musaddas_mahzuf"
     },
     {
       "id": "mutaqarib_musamman_mahzuf",
       "name": "मुतकारिब मुसम्मन महजूफ",
       "kind": "bahr",
       "pattern": "LGGLGGLGGLG",
-      "reference": "https://franpritchett.com/00ghalib/meterbk/06_meters.html"
+      "reference": "https://franpritchett.com/00ghalib/meterbk/06_meters.html",
+      "writer": "mutaqarib_musamman_mahzuf"
     },
     {
       "id": "kamil_musamman_salim",
       "name": "कामिल मुसम्मन सालिम",
       "kind": "bahr",
       "pattern": "LLGLGLLGLGLLGLGLLGLG",
-      "reference": "https://franpritchett.com/00ghalib/meterbk/06_meters.html"
+      "reference": "https://franpritchett.com/00ghalib/meterbk/06_meters.html",
+      "writer": "kamil_musamman_salim"
     },
     {
       "id": "vidyunmala",
       "name": "विद्युन्माला",
       "kind": "varnika",
       "pattern": "GGGGGGGG",
-      "reference": "https://www.sanskrit-lexicon.uni-koeln.de/scans/csldev/csldoc/build/dictionaries/prefaces/ap90app1.html"
+      "reference": "https://www.sanskrit-lexicon.uni-koeln.de/scans/csldev/csldoc/build/dictionaries/prefaces/ap90app1.html",
+      "writer": "vidyunmala"
     },
     {
       "id": "mattamayuri",
       "name": "मत्तमयूरी",
       "kind": "varnika",
       "pattern": "GGGGGLLGGLLGG",
-      "reference": "https://www.sanskrit-lexicon.uni-koeln.de/scans/csldev/csldoc/build/dictionaries/prefaces/ap90app1.html"
+      "reference": "https://www.sanskrit-lexicon.uni-koeln.de/scans/csldev/csldoc/build/dictionaries/prefaces/ap90app1.html",
+      "writer": "mattamayuri"
     },
     {
       "id": "giti",
       "name": "गीति",
       "kind": "matrika",
-      "reference": "https://www.sanskrit-lexicon.uni-koeln.de/scans/csldev/csldoc/build/dictionaries/prefaces/ap90app1.html"
+      "reference": "https://www.sanskrit-lexicon.uni-koeln.de/scans/csldev/csldoc/build/dictionaries/prefaces/ap90app1.html",
+      "writer": "giti"
     },
     {
       "id": "pushpitagra",
       "name": "पुष्पिताग्रा",
       "kind": "varnika",
-      "reference": "https://www.sanskrit-lexicon.uni-koeln.de/scans/csldev/csldoc/build/dictionaries/prefaces/ap90app1.html"
+      "reference": "https://www.sanskrit-lexicon.uni-koeln.de/scans/csldev/csldoc/build/dictionaries/prefaces/ap90app1.html",
+      "writer": "pushpitagra"
     },
     {
       "id": "aupachchhandasika",
       "name": "औपच्छन्दसिक",
       "kind": "matrika",
-      "reference": "https://www.sanskrit-lexicon.uni-koeln.de/scans/csldev/csldoc/build/dictionaries/prefaces/ap90app1.html"
+      "reference": "https://www.sanskrit-lexicon.uni-koeln.de/scans/csldev/csldoc/build/dictionaries/prefaces/ap90app1.html",
+      "writer": "aupachchhandasika"
     },
     {
       "id": "padakulak",
       "name": "पादाकुलक",
       "kind": "matrika",
-      "reference": "https://gmmcjournal.edu.np/index.php/journal/article/download/99/62/160"
+      "reference": "https://gmmcjournal.edu.np/index.php/journal/article/download/99/62/160",
+      "writer": "padakulak"
     },
     {
       "id": "pramanika",
       "name": "प्रमाणिका",
       "kind": "varnika",
       "pattern": "LGLGLGLG",
-      "reference": "https://www.sanskrit-lexicon.uni-koeln.de/scans/csldev/csldoc/build/dictionaries/prefaces/ap90app1.html"
+      "reference": "https://www.sanskrit-lexicon.uni-koeln.de/scans/csldev/csldoc/build/dictionaries/prefaces/ap90app1.html",
+      "writer": "pramanika"
     }
   ]
 }

@@ -58,7 +58,7 @@ def build(
     write_about_page(context, page, catalogue)
     write_ocr_page(context, page)
     write_type_page(context, page, assets)
-    write_chhanda_page(context, page)
+    write_chhanda_page(context, page, catalogue)
     write_patro_page(context, page, assets)
     stats.build_stats_page(
         catalogue.records,
